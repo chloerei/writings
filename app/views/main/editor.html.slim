@@ -1,0 +1,24 @@
+#mainbar.container
+  header#toolbar
+    .permalink
+      | Book Name /
+      small pemark-link
+    ul.toolbar-bottons
+      li Bold
+      li Italy
+      li Code
+      li Quote
+    ul.toolbar-menu
+      li= button_to 'Draft / Publish', '#'
+      li= button_to 'Save', '#'
+  article#editarea contentEditable="true"
+    p text
+
+javascript:
+  $(window).scroll(function() {
+    if ($(window).scrollTop() > 3) {
+      $('#toolbar').addClass('toolbar-shadow');
+    } else {
+      $('#toolbar').removeClass('toolbar-shadow');
+    }
+  })

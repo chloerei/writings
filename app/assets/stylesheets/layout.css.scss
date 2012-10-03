@@ -1,0 +1,70 @@
+body {
+  background-color: $background-color;
+  font-size: 14px;
+  font-family: $helvetica;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+#mainbar {
+  width: 768px;
+  margin: 0 auto 60px;
+}
+
+#toolbar {
+  height: $toolbar-height;
+  width: 768px;
+  position: fixed;
+  top: 0;
+  margin-left: -30px;
+  padding: 20px 30px 5px;
+  background-color: $background-color;
+
+  &.toolbar-shadow {
+    @include box-shadow(0 5px 5px -4px #CCC);
+  }
+
+  ul.toolbar-bottons {
+    list-style: none;
+    margin: 0 0 5px;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+
+    li {
+      display: inline-block;
+      padding: 5px;
+      cursor: pointer;
+
+      &:hover {
+        @include box-shadow(0 0 1px 1px #CCC);
+      }
+    }
+  }
+
+  ul.toolbar-menu {
+    list-style: none;
+    margin: 0 0 5px;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    right: 30px;
+
+    li {
+      display: inline-block;
+      padding: 5px;
+    }
+  }
+}
+
+#editarea {
+  margin-top: $toolbar-height + 27px;
+  background-color: white;
+  min-height: 1024px - 120px;
+  padding: 60px;
+  outline: none;
+  @include box-shadow(0 0 2px 1px #CCC);
+}
