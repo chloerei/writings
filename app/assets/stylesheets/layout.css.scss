@@ -40,7 +40,6 @@ h1 {
       cursor: pointer;
 
       &:hover {
-        @include box-shadow(0 0 1px 1px #CCC);
       }
     }
   }
