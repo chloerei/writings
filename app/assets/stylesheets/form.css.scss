@@ -1,0 +1,53 @@
+select {
+  border: none;
+  background-color: transparent;
+  outline: none;
+
+  option {
+    background: white;
+  }
+}
+
+@mixin button-color($color) {
+  background-color: $color;
+  border: 1px solid darken($color, 15%);
+  @include linear-gradient(lighten($color, 5%), $color);
+
+  &:hover, &:focus {
+    background-color: darken($color, 5%);
+    @include linear-gradient($color, darken($color, 5%));
+  }
+
+  &:active {
+    background-color: darken($color, 10%);
+    @include linear-gradient(darken($color, 5%), darken($color, 5%));
+  }
+
+}
+
+a.button {
+  text-decoration: none;
+}
+
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+a.button
+{
+  padding: 2px 6px;
+  color: #333;
+
+  @include border-radius(2px);
+  @include button-color(#EEE);
+
+  &.button-primary {
+    @include button-color($green);
+    color: white;
+  }
+
+  &.button-danger {
+    @include button-color($red);
+    color: white;
+  }
+}

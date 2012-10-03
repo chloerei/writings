@@ -34,10 +34,10 @@
           option Header 4
           option Header 5
           option Code
-          option Quote
+          option Blockquote
     ul.toolbar-menu
-      li= button_to 'Draft / Publish', '#'
-      li= button_to 'Save', '#'
+      li= link_to 'Draft / Publish', '#', :class => 'button'
+      li= link_to 'Save', '#', :class => 'button button-primary'
   article#editarea contentEditable="true"
     p text
 
