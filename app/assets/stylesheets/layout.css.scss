@@ -8,6 +8,15 @@ h1 {
   margin-top: 0;
 }
 
+a {
+  color: $red;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 #mainbar {
   width: 768px;
   margin: 0 auto 60px;
@@ -24,6 +33,30 @@ h1 {
 
   &.toolbar-shadow {
     @include box-shadow(0 5px 5px -4px #CCC);
+  }
+
+  h1 {
+    font-size: 1.3em;
+    margin: 0;
+
+    span {
+      margin-right: 5px;
+      color: #AAA;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .permark-link:hover {
+      color: #999;
+      cursor: pointer;
+      background: $inline-edit-background-color;
+    }
+
+    .preview a:hover {
+      text-decoration: none;
+    }
   }
 
   ul.toolbar-bottons {

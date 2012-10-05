@@ -1,8 +1,15 @@
 #mainbar.container
   header#toolbar
-    .permalink
-      | Book Name /
-      small pemark-link
+    h1
+      span.book-name
+        = link_to 'Book Name', '#'
+      span.seprator
+        | /
+      span.permark-link title="click to edit"
+        | pemark-link
+      span.preview
+        small= link_to '#' do
+          i.icon-external-link
     ul.toolbar-bottons
       li
         i.icon-bold
@@ -36,7 +43,10 @@
           option Code
           option Blockquote
     ul.toolbar-menu
-      li= link_to 'Draft / Publish', '#', :class => 'button'
+      li
+        .button-group
+          = link_to 'Draft', '#', :class => 'button button-actived'
+          = link_to 'Publish', '#', :class => 'button'
       li= link_to 'Save', '#', :class => 'button button-primary'
   article#editarea contentEditable="true"
     p text
