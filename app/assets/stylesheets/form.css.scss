@@ -8,6 +8,13 @@ select {
   }
 }
 
+#{$all-text-inputs} {
+  border: 0;
+  border-bottom: 1px #CCC solid;
+  outline: none;
+  color: #666;
+}
+
 @mixin button-color($color) {
   background-color: $color;
   border: 1px solid darken($color, 15%);

@@ -1,5 +1,6 @@
 Publish::Application.routes.draw do
   root :to => "main#index"
+  get "book", :to => "main#book"
   get "editor", :to => "main#editor"
 
   # The priority is based upon order of creation:

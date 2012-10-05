@@ -1,0 +1,36 @@
+#mainbar.container
+  header#site-header
+    h1
+      span.book-name
+        = link_to 'Books', '/'
+      span.seperator
+        | /
+      span.book-name
+        | Book Name
+  #main
+    nav#main-nav
+      ul
+        li.active
+          = link_to 'Publish', '#'
+        li
+          = link_to 'Draft', '#'
+        li
+          = link_to 'Theme', '#'
+        li
+          = link_to 'Setting', '#'
+    #main-content
+      header
+        .search
+          input type="search" placeholder="Filter"
+        .new-article
+          = link_to '/editor' do
+            i.icon-plus-sign
+            = " New Article"
+      table.articles
+        tbody
+          - 30.times do
+            tr
+              td.article-title
+                = link_to 'Article title example', '/editor'
+              td.article-date
+                = Date.today
