@@ -135,11 +135,15 @@ a {
 #main {
   background-color: white;
   padding: 20px;
-  min-height: 1024px;
   @include box-shadow(0 0 2px 1px #CCC);
+  @include clearfix();
 }
 
 #main-nav {
+  float: left;
+  width: 130px;
+  margin-right: 28px;
+
   ul {
     list-style: none;
     margin: 0;
@@ -152,6 +156,7 @@ a {
 
     a {
       color: #666;
+      display: block;
 
       &:hover {
         color: $red;
@@ -160,6 +165,57 @@ a {
 
     .active a {
       color: $red;
+    }
+  }
+}
+
+#main-content {
+  width: 570px;
+  float: left;
+
+  header {
+    margin-bottom: 5px;
+
+    .search {
+      float: left;
+    }
+
+    .new-article {
+      float: right;
+      margin-top: 3px;
+    }
+
+    @include clearfix();
+  }
+
+  table.articles {
+    width: 100%;
+
+    tr {
+      border-bottom: 1px #EEE solid;
+    }
+
+    td {
+      padding: 0;
+    }
+
+    td.article-date {
+      width: 1%;
+      white-space: nowrap;
+      color: #666;
+    }
+
+    .article-title {
+      a {
+        display: block;
+        padding: 10px 10px 10px 0;
+        color: #666;
+        font-weight: bold;
+
+        &:hover {
+          color: $red;
+        }
+      }
     }
   }
 }

@@ -18,3 +18,19 @@
           = link_to 'Theme', '#'
         li
           = link_to 'Setting', '#'
+    #main-content
+      header
+        .search
+          input type="search" placeholder="Search"
+        .new-article
+          = link_to '#' do
+            i.icon-plus-sign
+            | New Article
+      table.articles
+        tbody
+          - 30.times do
+            tr
+              td.article-title
+                = link_to 'Article title example', '#'
+              td.article-date
+                = Date.today
