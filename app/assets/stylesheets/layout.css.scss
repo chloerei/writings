@@ -22,6 +22,24 @@ a {
   margin: 0 auto 60px;
 }
 
+#site-header {
+  padding: 20px 0;
+
+  h1 {
+    font-size: 1.3em;
+    margin: 0;
+
+    span {
+      margin-right: 5px;
+      color: #AAA;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
 #toolbar {
   height: $toolbar-height;
   width: 768px;
@@ -112,4 +130,36 @@ a {
   padding: 60px;
   outline: none;
   @include box-shadow(0 0 2px 1px #CCC);
+}
+
+#main {
+  background-color: white;
+  padding: 20px;
+  min-height: 1024px;
+  @include box-shadow(0 0 2px 1px #CCC);
+}
+
+#main-nav {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1.3em;
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: #666;
+
+      &:hover {
+        color: $red;
+      }
+    }
+
+    .active a {
+      color: $red;
+    }
+  }
 }
