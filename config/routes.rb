@@ -2,6 +2,7 @@ Publish::Application.routes.draw do
   root :to => "main#index"
   get "book", :to => "main#book"
   get "editor", :to => "main#editor"
+  get "form", :to => "main#form"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

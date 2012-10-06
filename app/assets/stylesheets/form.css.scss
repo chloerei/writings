@@ -2,17 +2,46 @@ select {
   border: none;
   background-color: transparent;
   outline: none;
+  border: 1px #CCC solid;
+  cursor: pointer;
 
   option {
     background: white;
   }
 }
 
+.field {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  color: $gray-dark;
+  margin-bottom: 5px;
+}
+
 #{$all-text-inputs} {
   border: 0;
   border-bottom: 1px #CCC solid;
   outline: none;
-  color: #666;
+  color: $gray;
+
+  &:hover,
+  &:focus {
+    @include box-shadow(0 1px 1px -1px $gray-dark);
+  }
+}
+
+textarea {
+  border: 0;
+  border: 1px #CCC solid;
+  outline: none;
+  color: $gray;
+
+  &:hover,
+  &:focus {
+    @include box-shadow(0 0 1px $gray);
+  }
 }
 
 @mixin button-color($color) {
