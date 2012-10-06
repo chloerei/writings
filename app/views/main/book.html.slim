@@ -1,8 +1,8 @@
 #mainbar.container
   header#site-header
     h1
-      span.book-name
-        = link_to 'Books', '/'
+      span
+        = link_to 'Publi.sh', '/'
       span.seperator
         | /
       span.book-name
@@ -15,6 +15,8 @@
         li
           = link_to 'Draft', '#'
         li
+          = link_to 'Index', '#'
+        li
           = link_to 'Theme', '#'
         li
           = link_to 'Setting', '#'
@@ -22,7 +24,7 @@
       header
         .search
           input type="search" placeholder="Filter"
-        .new-article
+        .actions
           = link_to '/editor' do
             i.icon-plus-sign
             = " New Article"

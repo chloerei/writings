@@ -180,7 +180,7 @@ a {
       float: left;
     }
 
-    .new-article {
+    .actions {
       float: right;
       margin-top: 3px;
     }
@@ -218,4 +218,48 @@ a {
       }
     }
   }
+
+  ul.books {
+    list-style: none;
+    margin: 10px 0 0 -10px;
+    padding: 0;
+    @include clearfix();
+
+    li {
+      float: left;
+      margin: 0 0 10px 10px;
+
+      a {
+        display: block;
+        height: 80px;
+        width: 260px;
+        padding: 10px;
+        color: #666;
+
+        &:hover {
+          background-color: #EEE;
+        }
+      }
+
+      .book-cover {
+        float: left;
+        width: 60px;
+
+        img {
+          width: 60px;
+          height: 80px;
+        }
+      }
+
+      .book-info {
+        float: left;
+        margin-left: 10px;
+      }
+
+      .book-name {
+        font-size: 1.3em;
+      }
+    }
+  }
 }
+
