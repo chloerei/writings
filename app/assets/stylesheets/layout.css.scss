@@ -9,7 +9,7 @@ h1 {
 }
 
 a {
-  color: $red;
+  color: $link-color;
   text-decoration: none;
 
   &:hover {
@@ -31,7 +31,7 @@ a {
 
     span {
       margin-right: 5px;
-      color: #AAA;
+      color: $gray-light;
 
       &:last-child {
         margin-right: 0;
@@ -50,7 +50,7 @@ a {
   background-color: $background-color;
 
   &.toolbar-shadow {
-    @include box-shadow(0 5px 5px -4px #CCC);
+    @include box-shadow(0 5px 5px -4px $box-shadow-color);
   }
 
   h1 {
@@ -59,17 +59,19 @@ a {
 
     span {
       margin-right: 5px;
-      color: #AAA;
+      color: $gray-light;
 
       &:last-child {
         margin-right: 0;
       }
     }
 
-    .permark-link:hover {
-      color: #999;
-      cursor: pointer;
-      background: $inline-edit-background-color;
+    .permark-link {
+      &:hover {
+        color: $gray-light;
+        cursor: pointer;
+        background: $inline-edit-background-color;
+      }
     }
 
     .preview a:hover {
@@ -91,7 +93,7 @@ a {
       cursor: pointer;
 
       &:hover {
-        color: $red;
+        color: $link-color;
       }
 
       &:first-child {
@@ -129,13 +131,13 @@ a {
   min-height: 1024px - 120px;
   padding: 60px;
   outline: none;
-  @include box-shadow(0 0 2px 1px #CCC);
+  @include box-shadow(0 0 2px 1px $box-shadow-color);
 }
 
 #main {
   background-color: white;
   padding: 20px;
-  @include box-shadow(0 0 2px 1px #CCC);
+  @include box-shadow(0 0 2px 1px $box-shadow-color);
   @include clearfix();
 }
 
@@ -155,16 +157,16 @@ a {
     }
 
     a {
-      color: #666;
+      color: $gray;
       display: block;
 
       &:hover {
-        color: $red;
+        color: $link-color;
       }
     }
 
     .active a {
-      color: $red;
+      color: $link-color;
     }
   }
 }
@@ -192,7 +194,7 @@ a {
     width: 100%;
 
     tr {
-      border-bottom: 1px #EEE solid;
+      border-bottom: 1px $gray-lighter solid;
     }
 
     td {
@@ -202,18 +204,18 @@ a {
     td.article-date {
       width: 1%;
       white-space: nowrap;
-      color: #666;
+      color: $gray;
     }
 
     .article-title {
       a {
         display: block;
         padding: 10px 10px 10px 0;
-        color: #666;
+        color: $gray;
         font-weight: bold;
 
         &:hover {
-          color: $red;
+          color: $link-color;
         }
       }
     }
@@ -234,10 +236,10 @@ a {
         height: 80px;
         width: 260px;
         padding: 10px;
-        color: #666;
+        color: $gray;
 
         &:hover {
-          background-color: #EEE;
+          background-color: $gray-lighter;
         }
       }
 
