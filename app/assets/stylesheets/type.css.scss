@@ -1,0 +1,46 @@
+body {
+  font-size: 14px;
+  font-family: $helvetica;
+  color: $gray-darker;
+}
+
+h1 {
+  margin: 0 0 30px;
+}
+
+h2, h3, h4, h5 {
+  margin: 20px 0 20px;
+}
+
+p {
+  line-height: 20px;
+  margin: 0 0 20px;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+blockquote {
+  margin: 0 0 0 10px;
+  padding: 0 0 0 10px;
+  border-left: 3px $gray-lighter solid;
+  font-size: 1.1em;
+  color: $gray-dark;
+}
+
+ul, ol {
+  margin: 0 0 20px;
+  padding: 0 0 0 30px;
+}
+
+article {
+  img {
+    max-width: 100%;
+  }
+}

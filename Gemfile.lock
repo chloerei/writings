@@ -58,6 +58,8 @@ GEM
       em-websocket (>= 0.2.0)
       guard (>= 1.1.0)
       multi_json (~> 1.0)
+    highlight_js-rails (7.1.0)
+      rails (>= 3.1.1)
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
@@ -108,6 +110,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12)
       json (~> 1.4)
+    redcarpet (2.1.1)
     sass (3.2.1)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -140,9 +143,11 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   font-awesome-sass-rails
   guard-livereload
+  highlight_js-rails
   jquery-rails
   rack-livereload
   rails (= 3.2.8)
+  redcarpet
   sass-rails (~> 3.2.3)
   slim
   sqlite3

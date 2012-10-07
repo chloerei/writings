@@ -4,6 +4,8 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3'
 gem 'slim'
+gem 'redcarpet'
+gem 'highlight_js-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
