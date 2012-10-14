@@ -2,32 +2,14 @@ body {
   background-color: $background-color;
 }
 
-#mainbar {
-  width: 768px;
+#editor {
+  width: $editor-width;
   margin: 0 auto 60px;
-}
-
-#site-header {
-  padding: 20px 0;
-
-  h1 {
-    font-size: 1.3em;
-    margin: 0;
-
-    span {
-      margin-right: 5px;
-      color: $gray-light;
-
-      &:last-child {
-        margin-right: 0;
-      }
-    }
-  }
 }
 
 #toolbar {
   height: $toolbar-height;
-  width: 768px;
+  width: $editor-width;
   position: fixed;
   top: 0;
   margin-left: -30px;
@@ -119,6 +101,29 @@ body {
   @include box-shadow(0 0 2px 1px $box-shadow-color);
 }
 
+#container {
+  width: $container-width;
+  margin: 0 auto 60px;
+}
+
+#site-header {
+  padding: 20px 0;
+
+  h1 {
+    font-size: 1.3em;
+    margin: 0;
+
+    span {
+      margin-right: 5px;
+      color: $gray-light;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
 #main {
   background-color: white;
   padding: 20px;
@@ -126,10 +131,11 @@ body {
   @include clearfix();
 }
 
+$main-inner-width: $container-width - 40px;
 #main-nav {
   float: left;
-  width: 130px;
-  margin-right: 28px;
+  width: $main-inner-width * 0.18;
+  margin-right: $main-inner-width * 0.02;
 
   ul {
     list-style: none;
@@ -157,7 +163,7 @@ body {
 }
 
 #main-content {
-  width: 570px;
+  width: $main-inner-width * 0.8;
   float: left;
 
   header {
@@ -208,16 +214,18 @@ body {
 
   ul.books {
     list-style: none;
-    margin: 10px 0 0 -10px;
+    margin: 20px 0 0 -20px;
     padding: 0;
+    @include clearfix();
 
+    $book-width: ($main-inner-width * 0.8 - 20px) / 2;
     li {
       float: left;
-      margin: 0 0 10px 10px;
+      margin: 0 0 20px 20px;
+      width: $book-width;
 
       a {
         display: block;
-        width: 260px;
         padding: 10px;
         color: $gray;
         @include clearfix();
@@ -241,7 +249,7 @@ body {
       .book-info {
         float: left;
         margin-left: 10px;
-        width: 190px;
+        width: $book-width - 20px - 60px - 10px;
       }
 
       .book-name {
