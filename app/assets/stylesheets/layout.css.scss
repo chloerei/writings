@@ -56,15 +56,17 @@ body {
 
     li {
       display: inline-block;
-      padding: 5px;
       cursor: pointer;
 
-      &:hover {
-        color: $link-color;
-      }
+      a {
+        color: $gray-dark;
+        display: inline-block;
+        padding: 5px;
 
-      &:first-child {
-        padding-left: 0;
+        &:hover {
+          color: $link-color;
+          text-decoration: none;
+        }
       }
 
       select {

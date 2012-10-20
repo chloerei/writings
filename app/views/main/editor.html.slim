@@ -1,3 +1,6 @@
+= content_for :head do
+  = javascript_include_tag 'editor'
+
 #editor
   header#toolbar
     h1
@@ -11,28 +14,9 @@
         small= link_to '#' do
           i.icon-external-link
     ul.toolbar-bottons
-      li
-        i.icon-bold
-      li
-        i.icon-italic
-      li
-        i.icon-strikethrough
-      li
-        i.icon-underline
-      li
-        i.icon-link
-      li
-        i.icon-list-ol
-      li
-        i.icon-list-ul
-      li
-        i.icon-align-left
-      li
-        i.icon-align-center
-      li
-        i.icon-align-right
-      li
-        i.icon-align-justify
+      - %w(bold italic strikethrough underline link list-ol list-ul align-left align-center align-right align-justify).each do |action|
+        li
+          a class=("icon-#{action}") href="#" data-action=(action)
       li
         select
           option Normal Text
