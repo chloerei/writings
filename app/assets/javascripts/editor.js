@@ -1,7 +1,13 @@
+Mousetrap.stopCallback = function(e, element, combo) {
+  // stop for input, select, and textarea
+  return element.tagName == 'INPUT' || element.tagName == 'SELECT' || element.tagName == 'TEXTAREA';
+};
+
 var Editor = function() {
   this.toolbar = $('#toolbar');
   this.connectActions();
-}
+  this.connectShortcuts();
+};
 
 Editor.prototype = {
   actions: {
@@ -31,6 +37,28 @@ Editor.prototype = {
 
     _this.toolbar.on('change', '[data-action=formatBlock]', function(event) {
       _this["formatBlock"].call(_this, $(this).val());
+    });
+  },
+
+  shortcuts: {
+    'ctrl+b': 'bold',
+    'ctrl+i': 'italic',
+    'ctrl+d': 'strikeThrough',
+    'ctrl+u': 'underline',
+    'ctrl+l': 'createLink',
+    'ctrl+shift+l': 'insertUnorderedList',
+    'ctrl+shift+o': 'insertOrderedList',
+    'ctrl+left': 'justifyLeft',
+    'ctrl+right': 'justifyRight'
+  },
+
+  connectShortcuts: function() {
+    var _this = this;
+    $.each(this.shortcuts, function(key, action) {
+      Mousetrap.bind(key, function(event) {
+        event.preventDefault();
+        _this[action].call(_this);
+      });
     });
   },
 

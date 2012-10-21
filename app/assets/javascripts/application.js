@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require mousetrap
 //= require highlight_js/highlight
 //= require highlight_js/languages/ruby
 //= require highlight_js/languages/javascript

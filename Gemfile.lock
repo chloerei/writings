@@ -76,6 +76,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
+    mousetrap-rails (0.0.5)
     multi_json (1.3.6)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -145,6 +146,7 @@ DEPENDENCIES
   guard-livereload
   highlight_js-rails
   jquery-rails
+  mousetrap-rails
   rack-livereload
   rails (= 3.2.8)
   redcarpet

@@ -5,7 +5,6 @@ gem 'rails', '3.2.8'
 gem 'sqlite3'
 gem 'slim'
 gem 'redcarpet'
-gem 'highlight_js-rails'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -13,9 +12,11 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'bourbon'
   gem 'font-awesome-sass-rails'
+  gem 'highlight_js-rails'
+  gem 'jquery-rails'
+  gem 'mousetrap-rails'
 end
 
-gem 'jquery-rails'
 
 group :development do
   gem 'guard-livereload'
