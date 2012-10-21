@@ -1,6 +1,6 @@
 var Editor = function() {
   this.toolbar = $('#toolbar');
-  this.delegateEvents(this.events);
+  this.connectActions();
 }
 
 Editor.prototype = {
@@ -18,15 +18,19 @@ Editor.prototype = {
     'align-justify': 'justifyFull'
   },
 
-  delegateEvents: function(events) {
+  connectActions: function(events) {
     var _this = this;
 
-    _this.toolbar.on('click', '[data-action]', function(event) {
+    _this.toolbar.on('click', 'a[data-action]', function(event) {
       event.preventDefault();
       var action = _this.actions[$(this).data('action')];
       if (_this[action]) {
         _this[action].call(_this);
       }
+    });
+
+    _this.toolbar.on('change', '[data-action=formatBlock]', function(event) {
+      _this["formatBlock"].call(_this, $(this).val());
     });
   },
 
@@ -75,6 +79,10 @@ Editor.prototype = {
 
   justifyFull: function() {
     this.exec('justifyFull');
+  },
+
+  formatBlock: function(type) {
+    this.exec('formatBlock', type);
   },
 
   exec: function(command, arg) {

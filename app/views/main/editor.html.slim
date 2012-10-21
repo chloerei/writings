@@ -18,14 +18,14 @@
         li
           a class=("icon-#{action}") href="#" data-action=(action)
       li
-        select
-          option Normal Text
-          option Header 2
-          option Header 3
-          option Header 4
-          option Header 5
-          option Code
-          option Blockquote
+        select data-action="formatBlock"
+          option value="p" Normal Text
+          option value="h1" Header 1
+          option value="h2" Header 2
+          option value="h3" Header 3
+          option value="h4" Header 4
+          option value="h5" Header 5
+          option value="blockquote" Blockquote
     ul.toolbar-menu
       li
         .button-group
