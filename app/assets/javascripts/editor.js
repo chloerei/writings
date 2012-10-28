@@ -5,8 +5,10 @@ Mousetrap.stopCallback = function(e, element, combo) {
 
 var Editor = function() {
   this.toolbar = $('#toolbar');
+  this.editarea = $('#editarea');
   this.connectActions();
   this.connectShortcuts();
+  this.connectDetectState();
 };
 
 Editor.prototype = {
@@ -17,11 +19,7 @@ Editor.prototype = {
     'underline': 'underline',
     'link': 'createLink',
     'list-ol': 'insertOrderedList',
-    'list-ul': 'insertUnorderedList',
-    'align-left': 'justifyLeft',
-    'align-center': 'justifyCenter',
-    'align-right': 'justifyRight',
-    'align-justify': 'justifyFull'
+    'list-ul': 'insertUnorderedList'
   },
 
   connectActions: function(events) {
@@ -40,6 +38,37 @@ Editor.prototype = {
     });
   },
 
+  connectDetectState: function() {
+    var _this = this;
+
+    _this.editarea.on('keyup mouseup', function() {
+      _this.detectActions();
+      _this.detectBlocks();
+    });
+  },
+
+  detectActions: function() {
+    var _this = this;
+
+    $.each(_this.actions, function(action, command) {
+      if (document.queryCommandValue(command) !== 'true') {
+        _this.toolbar.find('a[data-action=' + action + ']').removeClass('actived');
+      } else {
+        if (command === 'bold' && /^h/.test(document.queryCommandValue('formatBlock'))) {
+          _this.toolbar.find('a[data-action=' + action + ']').removeClass('actived');
+        } else {
+          _this.toolbar.find('a[data-action=' + action + ']').addClass('actived');
+        }
+      }
+    });
+  },
+
+  detectBlocks: function() {
+    var _this = this;
+
+    _this.toolbar.find('select').val(document.queryCommandValue('formatBlock'));
+  },
+
   shortcuts: {
     'ctrl+b': 'bold',
     'ctrl+i': 'italic',
@@ -47,9 +76,7 @@ Editor.prototype = {
     'ctrl+u': 'underline',
     'ctrl+l': 'createLink',
     'ctrl+shift+l': 'insertUnorderedList',
-    'ctrl+shift+o': 'insertOrderedList',
-    'ctrl+left': 'justifyLeft',
-    'ctrl+right': 'justifyRight'
+    'ctrl+shift+o': 'insertOrderedList'
   },
 
   connectShortcuts: function() {

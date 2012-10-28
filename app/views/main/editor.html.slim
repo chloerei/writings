@@ -14,7 +14,7 @@
         small= link_to '#' do
           i.icon-external-link
     ul.toolbar-bottons
-      - %w(bold italic strikethrough underline link list-ol list-ul align-left align-center align-right align-justify).each do |action|
+      - %w(bold italic strikethrough underline link list-ol list-ul).each do |action|
         li
           a class=("icon-#{action}") href="#" data-action=(action)
       li

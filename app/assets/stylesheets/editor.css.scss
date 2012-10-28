@@ -1,0 +1,104 @@
+#editor {
+  width: $editor-width;
+  margin: 0 auto 60px;
+}
+
+#toolbar {
+  height: $toolbar-height;
+  width: $editor-width;
+  position: fixed;
+  top: 0;
+  margin-left: -30px;
+  padding: 20px 30px 5px;
+  background-color: $background-color;
+
+  &.toolbar-shadow {
+    @include box-shadow(0 5px 5px -4px $box-shadow-color);
+  }
+
+  h1 {
+    font-size: 1.3em;
+    margin: 0;
+
+    span {
+      margin-right: 5px;
+      color: $gray-light;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .permark-link {
+      &:hover {
+        color: $gray-light;
+        cursor: pointer;
+        background: $inline-edit-background-color;
+      }
+    }
+
+    .preview a:hover {
+      text-decoration: none;
+    }
+  }
+
+  ul.toolbar-bottons {
+    list-style: none;
+    margin: 0 0 5px;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+
+    li {
+      display: inline-block;
+      cursor: pointer;
+
+      a {
+        color: $gray-dark;
+        display: inline-block;
+        padding: 5px;
+
+        &.actived,
+        &:focus,
+        &:hover {
+          text-decoration: none;
+          padding: 4px;
+          border: 1px solid $gray-light;
+          background-color: $gray-lighter;
+        }
+      }
+
+      select {
+        border: 0;
+      }
+    }
+  }
+
+  ul.toolbar-menu {
+    list-style: none;
+    margin: 0 0 5px;
+    padding: 0;
+    position: absolute;
+    bottom: 0;
+    right: 30px;
+
+    li {
+      display: inline-block;
+      padding: 5px;
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+#editarea {
+  margin-top: $toolbar-height + 27px;
+  background-color: white;
+  min-height: 1024px - 120px;
+  padding: 60px;
+  outline: none;
+  @include box-shadow(0 0 2px 1px $box-shadow-color);
+}
