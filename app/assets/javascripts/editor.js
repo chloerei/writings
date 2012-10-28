@@ -36,7 +36,7 @@ Editor.prototype = {
     });
 
     _this.toolbar.on('change', '[data-action=formatBlock]', function(event) {
-      _this["formatBlock"].call(_this, $(this).val());
+      _this.formatBlock.call(_this, $(this).val());
     });
   },
 
@@ -87,10 +87,10 @@ Editor.prototype = {
   },
 
   createLink: function() {
-    var url = prompt("Link url:", "http://");
-    if (url != null && url != "") {
+    var url = prompt('Link url:', 'http://');
+    if (url !== null && url !== '') {
       this.exec('createLink', url);
-    };
+    }
   },
 
   justifyLeft: function() {
@@ -116,7 +116,7 @@ Editor.prototype = {
   exec: function(command, arg) {
     document.execCommand(command, false, arg);
   }
-}
+};
 
 var editor;
 $(function() {
