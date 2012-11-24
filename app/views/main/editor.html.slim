@@ -2,26 +2,27 @@
   = javascript_include_tag 'editor'
 
 #topbar
-  .container
-    ul.top-nav
-      li
-        = link_to 'Book Name', '/book'
-        span.divider
-          | /
-      li
-        span.permark-link title="click to edit"
-          | pemark-link
-        span.preview
-          small= link_to '#' do
-            i.icon-external-link
-      li.pull-right
-        .button-group
-          = link_to 'Draft', '#', :class => 'button button-actived'
-          = link_to 'Publish', '#', :class => 'button'
-        = link_to 'Save', '#', :class => 'button no-margin'
+  .editor-container
+    header#editor-header
+      ul.top-nav
+        li
+          = link_to 'Book Name', '/book'
+          span.divider
+            | /
+        li
+          span.permark-link title="click to edit"
+            | pemark-link
+          span.preview
+            small= link_to '#' do
+              i.icon-external-link
+        li.pull-right
+          .button-group
+            = link_to 'Draft', '#', :class => 'button button-actived'
+            = link_to 'Publish', '#', :class => 'button'
+          = link_to 'Save', '#', :class => 'button no-margin'
 
 #toolbar
-  .container
+  .editor-container
     ul.toolbar-bottons
       - %w(bold italic strikethrough underline link list-ol list-ul).each do |action|
         li
@@ -34,7 +35,7 @@
               li
                 a= action
 #editarea
-  .container
+  .editor-container
     article contentEditable="true"
       markdown:
         # 写给大家看的 Rails 部署：第一篇 简单快捷的部署方案

@@ -18,9 +18,24 @@ a {
   }
 }
 
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .container {
   margin: 0 auto;
   width: $container-width;
+}
+
+.editor-container {
+  margin: 0 auto;
+  width: $editor-container-width;
+}
+
+.clearfix {
+  @include clearfix();
 }
 
 .pull-left {
@@ -96,6 +111,8 @@ a.button:hover {
   right: 0;
   z-index: 999;
   height: 45px;
+  border-bottom: 1px solid #ccc;
+  @include box-shadow(0 1px 3px #ddd);
 
   ul.top-nav {
     margin: 0;
@@ -135,6 +152,7 @@ a.button:hover {
   z-index: 999;
   border-top: 1px solid #CCC;
   border-bottom: 1px solid #CCC;
+  @include box-shadow(0 1px 3px #ddd);
 
   ul.toolbar-bottons {
     margin: 0;
@@ -178,7 +196,7 @@ a.button:hover {
     outline: 0;
     min-height: 1024px;
     margin-bottom: 60px;
-    @include box-shadow(0 0 10px #999);
+    border: 1px solid #ccc;
 
     h1 {
       margin-top: 0;
@@ -186,6 +204,84 @@ a.button:hover {
 
     img {
       max-width: 100%;
+    }
+  }
+}
+
+#mainarea {
+  #main {
+    margin-top: 65px;
+    background: #FFF;
+    padding: 40px;
+    border: 1px solid #ccc;
+    @include clearfix();
+
+    #main-nav {
+      width: 18%;
+      margin-right: 2%;
+      float: left;
+
+      nav {
+        font-size: 1.5em;
+
+        li {
+          margin-bottom: 10px;
+
+          a {
+            color: #999;
+          }
+
+          a:hover,
+          &.active a {
+            color: $linkColor;
+          }
+        }
+      }
+    }
+
+    #main-content {
+      width: 80%;
+      float: left;
+
+      header {
+        margin-bottom: 10px;
+      }
+
+      table.articles {
+        width: 100%;
+
+        a {
+          color: #555;
+        }
+
+        .article-title {
+          font-weight: bold;
+        }
+
+        td {
+          padding: 15px 5px 14px 0;
+          border-bottom: 1px solid #ddd;
+
+          &:hover {
+          }
+
+          &:last-child {
+            text-align: right;
+            padding-right: 0;
+          }
+        }
+
+        tr:hover {
+          cursor: pointer;
+          a {
+            color: $linkColor;
+          }
+        }
+
+        tr:last-child td {
+          border-bottom: 0;
+        }
+      }
     }
   }
 }
