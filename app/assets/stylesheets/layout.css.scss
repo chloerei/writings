@@ -1,22 +1,122 @@
 body {
-  background-color: $background-color;
+  color: #333;
+  background-color: #F9F9F9;
+  font-size: 14px;
 }
 
-#container {
+p {
+  line-height: 1.6em;
+  margin-bottom: 1em;
+}
+
+a {
+  color: $linkColor;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.container {
+  margin: 0 auto;
   width: $container-width;
-  margin: 0 auto 60px;
 }
 
-#site-header {
-  padding: 20px 0;
+.pull-left {
+  float: left;
+}
 
-  h1 {
-    font-size: 1.3em;
+.pull-right {
+  float: right;
+}
+
+// button
+
+@mixin button-color($color) {
+  border: 1px solid darken($color, 30%);
+  @include linear-gradient($color, darken($color, 15%));
+
+  &:hover,
+  &:focus {
+    @include linear-gradient(darken($color, 5%), darken($color, 20%));
+    text-decoration: none;
+  }
+
+  &.button-actived,
+  &:active {
+    @include box-shadow(inset 0 1px 2px #bbb);
+    @include linear-gradient(darken($color, 10%), darken($color, 25%));
+  }
+}
+
+.button {
+  color: #444;
+  padding: 3px 7px;
+  font-size: 0.9em;
+  font-weight: bold;
+  @include border-radius(3px);
+  @include button-color(#fff);
+
+  &.no-margin {
     margin: 0;
+  }
+}
 
-    span {
-      margin-right: 5px;
-      color: $gray-light;
+a.button:hover {
+  text-decoration: none;
+}
+
+.button-group {
+  display: inline-block;
+  margin-right: 10px;
+
+  .button {
+    margin-right: 0;
+    @include border-radius(0);
+
+    &:first-child {
+      @include border-radius(3px 0 0 3px);
+    }
+
+    &:last-child {
+      border-left: 0;
+      @include border-radius(0 3px 3px 0);
+    }
+  }
+}
+
+// layout
+
+#topbar {
+  background-color: #FFF;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  height: 45px;
+
+  ul.top-nav {
+    margin: 0;
+    padding: 15px 0;
+    list-style: none;
+    font-weight: bold;
+    @include clearfix();
+
+    li {
+      margin-right: 10px;
+      display: inline-block;
+      float: left;
+
+      .divider {
+        margin-left: 10px;
+        color: #555;
+      }
+
+      &.pull-right {
+        float: right;
+      }
 
       &:last-child {
         margin-right: 0;
@@ -25,151 +125,67 @@ body {
   }
 }
 
-#main {
-  background-color: white;
-  padding: 20px;
-  @include box-shadow(0 0 2px 1px $box-shadow-color);
-  @include clearfix();
-}
+#toolbar {
+  background-color: #EEE;
+  padding: 2px 0;
+  position: fixed;
+  top: 45px;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  border-top: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
 
-$main-inner-width: $container-width - 40px;
-#main-nav {
-  float: left;
-  width: $main-inner-width * 0.18;
-  margin-right: $main-inner-width * 0.02;
-
-  ul {
-    list-style: none;
+  ul.toolbar-bottons {
     margin: 0;
     padding: 0;
-    font-size: 1.3em;
+    list-style: none;
+    @include clearfix();
 
     li {
-      margin-bottom: 10px;
-    }
+      display: inline-block;
+      float: left;
+      padding: 2px;
 
-    a {
-      color: $gray;
-      display: block;
+      a {
+        color: #333;
+        padding: 3px;
+        border: 1px solid transparent;
+        @include border-radius(2px);
 
-      &:hover {
-        color: $link-color;
+        &:hover {
+          text-decoration: none;
+          border: 1px solid #ccc;
+          @include linear-gradient(#fff, darken(#fff, 15%));
+        }
+
+        &.actived,
+        &:active {
+          border: 1px solid #ccc;
+          @include box-shadow(inset 0 1px 2px #ccc);
+          @include linear-gradient(#fff, darken(#fff, 15%));
+        }
       }
-    }
-
-    .active a {
-      color: $link-color;
     }
   }
 }
 
-#main-content {
-  width: $main-inner-width * 0.8;
-  float: left;
+#editarea {
+  margin-top: 95px;
+  article {
+    background: #FFF;
+    padding: 70px;
+    outline: 0;
+    min-height: 1024px;
+    margin-bottom: 60px;
+    @include box-shadow(0 0 10px #999);
 
-  header {
-    margin-bottom: 5px;
-
-    .search {
-      float: left;
+    h1 {
+      margin-top: 0;
     }
 
-    .actions {
-      float: right;
-      margin-top: 3px;
-    }
-
-    @include clearfix();
-  }
-
-  table.articles {
-    width: 100%;
-
-    tr {
-      border-bottom: 1px $gray-lighter solid;
-    }
-
-    td {
-      padding: 0;
-    }
-
-    td.article-date {
-      width: 1%;
-      white-space: nowrap;
-      color: $gray;
-    }
-
-    .article-title {
-      a {
-        display: block;
-        padding: 10px 10px 10px 0;
-        color: $gray;
-        font-weight: bold;
-
-        &:hover {
-          color: $link-color;
-        }
-      }
-    }
-  }
-
-  ul.books {
-    list-style: none;
-    margin: 20px 0 0 -20px;
-    padding: 0;
-    @include clearfix();
-
-    $book-width: ($main-inner-width * 0.8 - 20px) / 2;
-    li {
-      float: left;
-      margin: 0 0 20px 20px;
-      width: $book-width;
-
-      a {
-        display: block;
-        padding: 10px;
-        color: $gray;
-        @include clearfix();
-
-        &:hover {
-          background-color: $gray-lighter;
-        }
-      }
-
-      .book-cover {
-        float: left;
-        width: 60px;
-        line-height: 0;
-
-        img {
-          width: 60px;
-          height: 80px;
-        }
-      }
-
-      .book-info {
-        float: left;
-        margin-left: 10px;
-        width: $book-width - 20px - 60px - 10px;
-      }
-
-      .book-name {
-        line-height: 20px;
-        font-size: 1.3em;
-        max-height: 60px;
-        overflow: hidden;
-      }
-
-      .book-articles {
-        height: 15px;
-        margin-top: 5px;
-      }
-
-      &:hover {
-        .book-name {
-          color: $link-color;
-        }
-      }
+    img {
+      max-width: 100%;
     }
   }
 }
