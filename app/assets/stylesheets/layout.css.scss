@@ -143,7 +143,7 @@ a.button:hover {
 }
 
 #toolbar {
-  background-color: #EEE;
+  background-color: #f9f9f9;
   padding: 2px 0;
   position: fixed;
   top: 45px;
@@ -280,6 +280,31 @@ a.button:hover {
 
         tr:last-child td {
           border-bottom: 0;
+        }
+      }
+
+      ul.books {
+        margin: 0;
+        padding: 0;
+        @include clearfix();
+
+        li {
+          width: 48%;
+          margin-right: 2%;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          display: block;
+          float: left;
+          @include clearfix();
+
+          .book-cover {
+            float: left;
+            margin-right: 10px;
+          }
+
+          .book-info {
+            float: left;
+          }
         }
       }
     }

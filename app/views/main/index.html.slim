@@ -1,37 +1,41 @@
 #topbar
   .container
     header#site-header
-      h1
-        span
-          = link_to 'Publi.sh', '/'
-#main
+      ul.top-nav
+        li
+          = link_to 'Publish', '/'
+        li.pull-right
+          = link_to 'Quit', '#'
+#mainarea
   .container
-    nav#main-nav
-      ul
-        li.active
-          = link_to 'Books', '#'
-        li
-          = link_to 'Profile', '#'
-        li
-          = link_to 'Account', '#'
-        li
-          = link_to 'Biling', '#'
-    #main-content
-      header
-        .search
-          input type="search" placeholder="Filter"
-        .actions
-          = link_to '#' do
-            i.icon-plus-sign
-            = " New Book"
-      ul.books
-        - 10.times do
-          li
-            = link_to '/book' do
-              .book-cover
-                = image_tag('rails.png')
-              .book-info
-                .book-name
-                  | Book Name
-                .book-articles
-                  | 100 articles
+    #main
+      #main-nav
+        nav
+          ul
+            li.active
+              = link_to 'Books', '#'
+            li
+              = link_to 'Profile', '#'
+            li
+              = link_to 'Account', '#'
+            li
+              = link_to 'Biling', '#'
+      #main-content
+        header.clearfix
+          .pull-left
+            input type="search" placeholder="Filter"
+          .pull-right
+            = link_to '#' do
+              i.icon-plus-sign
+              = " New Book"
+        ul.books
+          - 10.times do
+            li
+              = link_to '/book' do
+                .book-cover
+                  = image_tag('rails.png')
+                .book-info
+                  .book-name
+                    | Book Name
+                  .book-articles
+                    | 100 articles
