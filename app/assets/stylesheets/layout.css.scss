@@ -295,7 +295,17 @@ a.button:hover {
           margin-bottom: 20px;
           display: block;
           float: left;
-          @include clearfix();
+
+          a {
+            display: block;
+            @include clearfix();
+
+            &:hover {
+              img {
+                @include box-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+              }
+            }
+          }
 
           .book-cover {
             float: left;
@@ -304,6 +314,14 @@ a.button:hover {
 
           .book-info {
             float: left;
+
+            .book-name {
+              font-size: 1.3em;
+            }
+
+            .book-description {
+              color: #999;
+            }
           }
         }
       }
