@@ -1,36 +1,41 @@
-#mainbar.container
-  header#site-header
-    h1
-      span
-        = link_to 'Publi.sh', '/'
-  #main
-    nav#main-nav
-      ul
-        li.active
-          = link_to 'Form', '#'
-    #main-content
-      form
-        .field
-          label Text
-          = text_field_tag ''
-        .field
-          label Password
-          = password_field_tag ''
-        .field
-          label File Input
-          = file_field_tag ''
-        .field
-          label Text Area
-          = text_area_tag '', '', :size => '50x10'
-        .field
-          label Select
-          select
-            option One
-            option Two
-            option Three
-        .field
-          = submit_tag 'Save'
-          = " "
-          = submit_tag 'Primary', :class => 'button-primary'
-          = " "
-          = submit_tag 'Danger', :class => 'button-danger'
+#topbar
+  .container
+    header#site-header
+      ul.top-nav
+        li
+          = link_to 'Publish', '/'
+        li.pull-right
+          = link_to 'Quit', '#'
+#mainarea
+  .container
+    #main
+      nav#main-nav
+        ul
+          li.active
+            = link_to 'Form', '#'
+      #main-content
+        form
+          .field
+            label Text
+            = text_field_tag ''
+          .field
+            label Password
+            = password_field_tag ''
+          .field
+            label File Input
+            = file_field_tag ''
+          .field
+            label Text Area
+            = text_area_tag '', '', :size => '50x10'
+          .field
+            label Select
+            select
+              option One
+              option Two
+              option Three
+          .field
+            = submit_tag 'Save', :class => 'button'
+            = " "
+            = submit_tag 'Primary', :class => 'button button-primary'
+            = " "
+            = submit_tag 'Danger', :class => 'button button-danger'
