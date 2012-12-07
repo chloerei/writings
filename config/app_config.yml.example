@@ -1,0 +1,11 @@
+defaults: &defaults
+  host: 'localhost'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

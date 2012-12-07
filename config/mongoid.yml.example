@@ -1,0 +1,20 @@
+production:
+  sessions:
+    default:
+      database: publish_production
+      hosts:
+        - localhost:27017
+
+development:
+  sessions:
+    default:
+      database: publish_development
+      hosts:
+        - localhost:27017
+
+test:
+  sessions:
+    default:
+      database: publish_test
+      hosts:
+        - localhost:27017
