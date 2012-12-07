@@ -17,8 +17,11 @@ group :assets do
   gem 'mousetrap-rails'
 end
 
-
 group :development do
   gem 'guard-livereload'
   gem 'rack-livereload'
+end
+
+group :development, :test do
+  gem 'factory_girl_rails'
 end

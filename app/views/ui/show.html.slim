@@ -3,7 +3,7 @@
     header#site-header
       ul.top-nav
         li
-          = link_to 'Publish', '/'
+          = link_to 'Publish', ui_path
         li.pull-right
           = link_to 'Quit', '#'
 #mainarea
@@ -31,7 +31,7 @@
         ul.books
           - 10.times do
             li
-              = link_to '/book' do
+              = link_to book_ui_path do
                 .book-cover
                   = image_tag('rails.png')
                 .book-info

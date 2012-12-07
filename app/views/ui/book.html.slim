@@ -3,7 +3,7 @@
     header#site-header
       ul.top-nav
         li
-          = link_to 'Publish', '/'
+          = link_to 'Publish', ui_path
           span.divider
             | /
         li
@@ -31,7 +31,7 @@
           .pull-left
             input type="search" placeholder="Filter"
           .pull-right
-            = link_to '/editor' do
+            = link_to editor_ui_path do
               i.icon-plus-sign
               = " New Article"
         table.articles
@@ -39,6 +39,6 @@
             - 50.times do
               tr
                 td.article-title
-                  = link_to 'Article title example', '/editor'
+                  = link_to 'Article title example', editor_ui_path
                 td.article-date
                   = Date.today
