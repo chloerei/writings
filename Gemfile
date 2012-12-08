@@ -3,8 +3,12 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 
 gem 'mongoid'
+gem 'bcrypt-ruby'
 gem 'slim'
 gem 'redcarpet'
+gem 'gravtastic'
+gem 'http_accept_language'
+gem 'rails-i18n'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

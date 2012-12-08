@@ -30,6 +30,7 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.2)
     arel (3.0.2)
+    bcrypt-ruby (3.0.1)
     bourbon (3.0.0)
       sass (>= 3.2.0)
       thor
@@ -57,6 +58,7 @@ GEM
     font-awesome-sass-rails (2.0.0.0)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
+    gravtastic (3.2.6)
     guard (1.5.4)
       listen (>= 0.4.2)
       lumberjack (>= 1.0.2)
@@ -69,6 +71,7 @@ GEM
     highlight_js-rails (7.1.0)
       rails (>= 3.1.1)
     hike (1.2.1)
+    http_accept_language (1.0.2)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.1.4)
@@ -114,6 +117,8 @@ GEM
       activesupport (= 3.2.8)
       bundler (~> 1.0)
       railties (= 3.2.8)
+    rails-i18n (0.6.6)
+      i18n (~> 0.5)
     railties (3.2.8)
       actionpack (= 3.2.8)
       activesupport (= 3.2.8)
@@ -153,17 +158,21 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby
   bourbon
   coffee-rails (~> 3.2.1)
   factory_girl_rails
   font-awesome-sass-rails
+  gravtastic
   guard-livereload
   highlight_js-rails
+  http_accept_language
   jquery-rails
   mongoid
   mousetrap-rails
   rack-livereload
   rails (= 3.2.8)
+  rails-i18n
   redcarpet
   sass-rails (~> 3.2.3)
   slim
