@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale_from_accept_language_header
-    request.compatible_language_from(AllowLocale)
+    request.compatible_language_from(ALLOW_LOCALE)
   end
 
   def require_logined

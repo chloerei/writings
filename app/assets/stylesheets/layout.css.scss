@@ -104,7 +104,7 @@ select {
   margin-right: 10px;
   font-weight: normal;
   display: inline-block;
-  @include border-radius(3px);
+  border-radius: 3px;
   @include button-color(#fff);
 
   &.no-margin {
@@ -132,15 +132,15 @@ a.button:hover {
 
   .button {
     margin-right: 0;
-    @include border-radius(0);
+    border-radius: 0;
 
     &:first-child {
-      @include border-radius(3px 0 0 3px);
+      border-radius: 3px 0 0 3px;
     }
 
     &:last-child {
       border-left: 0;
-      @include border-radius(0 3px 3px 0);
+      border-radius: 0 3px 3px 0;
     }
   }
 }
@@ -217,7 +217,7 @@ a.button:hover {
         color: #333;
         padding: 3px;
         border: 1px solid transparent;
-        @include border-radius(2px);
+        border-radius: 2px;
 
         &:hover {
           text-decoration: none;
@@ -263,6 +263,15 @@ a.button:hover {
     padding: 40px;
     border: 1px solid #ccc;
     @include clearfix();
+
+    &.signup {
+      width: 55%;
+      margin: 105px auto 0;
+
+      #{$all-text-inputs} {
+        width: 75%;
+      }
+    }
 
     #main-nav {
       width: 18%;

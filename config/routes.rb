@@ -1,11 +1,16 @@
 Publish::Application.routes.draw do
   root :to => "main#index"
 
-  resource :ui, :controller => 'ui', :only => [:show] do
-    collection do
-      get :book
-      get :editor
-      get :forum
+  get 'signup' => 'users#new', :as => :signup
+  resources :users, :only => [:create]
+
+  if Rails.env.development?
+    resource :ui, :controller => 'ui', :only => [:show] do
+      collection do
+        get :book
+        get :editor
+        get :forum
+      end
     end
   end
 
