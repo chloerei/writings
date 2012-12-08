@@ -48,15 +48,6 @@ nav ul {
 
 // form
 
-.field {
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
 #{$all-text-inputs},
 textarea {
   border: 1px solid #ccc;
@@ -77,6 +68,25 @@ select {
   padding: 4px 5px;
   outline: 0;
   border-radius: 3px;
+}
+
+.field {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  label.message {
+    margin: 5px 0 0;
+  }
+
+  .field_with_errors {
+    label.message {
+      color: $red;
+    }
+  }
 }
 
 // button

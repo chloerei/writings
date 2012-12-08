@@ -35,6 +35,10 @@ GEM
       sass (>= 3.2.0)
       thor
     builder (3.0.4)
+    client_side_validations (3.2.1)
+    client_side_validations-mongoid (3.0.1)
+      client_side_validations (~> 3.2.0)
+      mongoid (~> 3.0.0)
     coderay (1.0.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -160,6 +164,8 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby
   bourbon
+  client_side_validations
+  client_side_validations-mongoid
   coffee-rails (~> 3.2.1)
   factory_girl_rails
   font-awesome-sass-rails

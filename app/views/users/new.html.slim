@@ -15,7 +15,7 @@
           ul
             li.active Signup
       #main-content
-        = form_for @user do |f|
+        = form_for @user, :validate => true do |f|
           .field
             = f.label :name
             = f.text_field :name

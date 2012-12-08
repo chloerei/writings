@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require rails.validations
 //= require mousetrap
 //= require highlight_js/highlight
 //= require highlight_js/languages/ruby
