@@ -5,4 +5,17 @@ head
   = stylesheet_link_tag "application"
   = yield :head
 body
+  #topbar
+    .container
+      header#site-header
+        ul.top-nav
+          li
+            = link_to 'Publish', root_path
+          li.pull-right
+            - if logined?
+              = link_to 'Logout', logout_path, :method => :delete
+            - else
+              = link_to 'Login', login_path
+              = ' / '
+              = link_to 'Signup', signup_path
   = yield
