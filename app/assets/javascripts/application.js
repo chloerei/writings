@@ -9,3 +9,10 @@
 //= require highlight_js/languages/bash
 //= require highlight_js/languages/xml
 //= require highlight_js/languages/css
+
+$(function() {
+  // Client Side Validations - Turbolinks
+  $(document).bind('page:change', function() {
+    $('form[data-validate]').validate();
+  });
+});
