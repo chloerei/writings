@@ -21,6 +21,7 @@ group :assets do
   gem 'highlight_js-rails'
   gem 'jquery-rails'
   gem 'mousetrap-rails'
+  gem 'turbolinks'
 end
 
 group :development do
