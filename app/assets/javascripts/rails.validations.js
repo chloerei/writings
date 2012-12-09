@@ -250,9 +250,6 @@
           _ref1 = {
             'focusout.ClientSideValidations': function() {
               return element.data('changed', true).isValid(form.ClientSideValidations.settings.validators);
-            },
-            'keyup.ClientSideValidations': function() {
-              return element.data('changed', true).isValid(form.ClientSideValidations.settings.validators);
             }
           };
           _results = [];
@@ -444,7 +441,8 @@
         }
       },
       confirmation: function(element, options) {
-        if (element.val() !== jQuery("#" + (element.attr('id')) + "_confirmation").val()) {
+        var confirmValue = jQuery("#" + (element.attr('id')) + "_confirmation").val();
+        if (confirmValue && confirmValue !== '' && element.val() !== confirmValue) {
           return options.message;
         }
       },
