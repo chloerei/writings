@@ -85,6 +85,13 @@ select {
   .field_with_errors {
     label.message {
       color: $red;
+
+      &::before {
+        font-family: FontAwesome;
+        display: inline-block;
+        content: "\f05e"; // ban-icon
+        margin-right: 2px;
+      }
     }
   }
 }
