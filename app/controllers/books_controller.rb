@@ -19,6 +19,10 @@ class BooksController < ApplicationController
     end
   end
 
+  def edit
+    @book = current_user.books.find_by(:urlname => params[:id])
+  end
+
   private
 
   def book_params

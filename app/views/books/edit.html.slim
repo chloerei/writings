@@ -1,0 +1,19 @@
+#mainarea
+  .container
+    #main
+      = render 'main_nav'
+      #main-content
+        header
+          h2
+            i.icon-book
+            = ' '
+            | Book Settings
+        = form_for @book, :validate => true do |f|
+          .field
+            = f.label :name
+            = f.text_field :name
+          .field
+            = f.label :urlname
+            = f.text_field :urlname
+          .field
+            = f.submit 'Save', :class => 'button'

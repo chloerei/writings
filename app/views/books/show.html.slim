@@ -1,19 +1,7 @@
 #mainarea
   .container
     #main
-      #main-nav
-        nav
-          ul
-            li.active
-              = link_to 'Publish', '#'
-            li
-              = link_to 'Draft', '#'
-            li
-              = link_to 'Index', '#'
-            li
-              = link_to 'Theme', '#'
-            li
-              = link_to 'Setting', '#'
+      = render 'main_nav'
       #main-content
         header.clearfix
           .pull-left

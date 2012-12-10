@@ -1,0 +1,13 @@
+#main-nav
+  nav
+    ul
+      li class=(action_name == 'show' ? 'active' : nil)
+        = link_to 'Publish', @book
+      li
+        = link_to 'Draft', '#'
+      li
+        = link_to 'Index', '#'
+      li
+        = link_to 'Theme', '#'
+      li class=(action_name == 'edit' ? 'active' : nil)
+        = link_to 'Settings', edit_book_path(@book)

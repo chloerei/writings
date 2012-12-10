@@ -8,7 +8,7 @@ Publish::Application.routes.draw do
     delete 'logout' => 'user_sessions#destroy', :as => :logout
     resources :user_sessions, :only => [:create]
 
-    resources :books, :only => [:show, :new, :create]
+    resources :books, :only => [:show, :new, :create, :edit, :update, :destroy], :path_names => { :edit => :settings }
   end
 
   if Rails.env.development?

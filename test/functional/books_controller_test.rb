@@ -3,12 +3,12 @@ require 'test_helper'
 class BooksControllerTest < ActionController::TestCase
   def setup
     @user = create :user
+    @book = create :book, :user => @user
     login_as @user
   end
 
   test "should show book" do
-    book = create :book, :user => @user
-    get :show, :id => book
+    get :show, :id => @book
     assert_response :success, @response.body
   end
 
@@ -25,5 +25,10 @@ class BooksControllerTest < ActionController::TestCase
 
     post :create, :book => attributes_for(:book).slice(:name)
     assert_template :new
+  end
+
+  test "should get edit page" do
+    get :edit, :id => @book
+    assert_response :success, @response.body
   end
 end
