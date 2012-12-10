@@ -17,9 +17,10 @@
           .pull-left
             input type="search" placeholder="Filter"
           .pull-right
-            = link_to '#' do
+            = link_to new_book_path do
               i.icon-plus-sign
-              = " New Book"
+              = " "
+              | New Book
         ul.books
           - @books.each do |book|
             li

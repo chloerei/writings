@@ -13,4 +13,12 @@ end
 class ActionController::TestCase
   attr_reader :controller
   delegate :login_as, :logout, :current_user, :logined?, :to => :controller
+
+  def assert_require_logined(user = create(:user))
+    logout
+    yield
+    assert_redirected_to login_url
+    login_as user
+    yield
+  end
 end

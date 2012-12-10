@@ -1,0 +1,29 @@
+#mainarea
+  .container
+    #main
+      #main-nav
+        nav
+          ul
+            li.active
+              = link_to 'Books', '#'
+            li
+              = link_to 'Profile', '#'
+            li
+              = link_to 'Account', '#'
+            li
+              = link_to 'Biling', '#'
+      #main-content
+        header
+          h2
+            i.icon-book
+            = ' '
+            | New Book
+        = form_for @book, :validate => true do |f|
+          .field
+            = f.label :name
+            = f.text_field :name
+          .field
+            = f.label :urlname
+            = f.text_field :urlname
+          .field
+            = f.submit 'Create', :class => 'button'
