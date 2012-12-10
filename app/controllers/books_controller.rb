@@ -23,6 +23,16 @@ class BooksController < ApplicationController
     @book = current_user.books.find_by(:urlname => params[:id])
   end
 
+  def update
+    @book = current_user.books.find_by(:urlname => params[:id])
+
+    if @book.update_attributes book_params
+      redirect_to edit_book_url(@book)
+    else
+      render :new
+    end
+  end
+
   private
 
   def book_params
