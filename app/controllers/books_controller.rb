@@ -1,6 +1,10 @@
 class BooksController < ApplicationController
   before_filter :require_logined
 
+  def show
+    @book = current_user.books.find_by(:urlname => params[:id])
+  end
+
   def new
     @book = current_user.books.new
   end

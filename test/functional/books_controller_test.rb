@@ -6,6 +6,12 @@ class BooksControllerTest < ActionController::TestCase
     login_as @user
   end
 
+  test "should show book" do
+    book = create :book, :user => @user
+    get :show, :id => book
+    assert_response :success, @response.body
+  end
+
   test "should get new page" do
     get :new
     assert_response :success, @response.body

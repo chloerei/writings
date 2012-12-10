@@ -24,7 +24,7 @@
         ul.books
           - @books.each do |book|
             li
-              = link_to book_ui_path do
+              = link_to book do
                 .book-cover
                   = image_tag('rails.png')
                 .book-info
