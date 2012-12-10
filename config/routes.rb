@@ -1,11 +1,13 @@
 Publish::Application.routes.draw do
-  root :to => "main#index"
+  constraints :host => APP_CONFIG["host"] do
+    root :to => "main#index"
 
-  get 'signup' => 'users#new', :as => :signup
-  resources :users, :only => [:create]
-  get 'login' => 'user_sessions#new', :as => :login
-  delete 'logout' => 'user_sessions#destroy', :as => :logout
-  resources :user_sessions, :only => [:create]
+    get 'signup' => 'users#new', :as => :signup
+    resources :users, :only => [:create]
+    get 'login' => 'user_sessions#new', :as => :login
+    delete 'logout' => 'user_sessions#destroy', :as => :logout
+    resources :user_sessions, :only => [:create]
+  end
 
   if Rails.env.development?
     resource :ui, :controller => 'ui', :only => [:show] do

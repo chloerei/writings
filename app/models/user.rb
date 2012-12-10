@@ -9,6 +9,8 @@ class User
   field :access_token
   field :locale, :default => I18n.locale.to_s
 
+  has_many :books
+
   has_secure_password
 
   validates :name, :email, :presence => true, :uniqueness => {:case_sensitive => false}
