@@ -7,7 +7,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should create news" do
-    post :create
+    post :create, :user => attributes_for(:user).slice(:name)
     assert_template :new
 
     assert_difference "User.count" do

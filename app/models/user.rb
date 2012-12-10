@@ -2,6 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps::Created
   include ActiveModel::SecurePassword
+  include ActiveModel::ForbiddenAttributesProtection
 
   field :name
   field :email
@@ -21,7 +22,6 @@ class User
   validates :locale, :inclusion => {:in => ALLOW_LOCALE}
 
   attr_accessor :current_password
-  attr_accessible :name, :email, :password, :password_confirmation, :current_password, :locale
 
   def remember_token
     [id, Digest::SHA512.hexdigest(password_digest)].join('$')

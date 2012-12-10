@@ -11,6 +11,7 @@ gem 'redcarpet'
 gem 'gravtastic'
 gem 'http_accept_language'
 gem 'rails-i18n'
+gem 'strong_parameters'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

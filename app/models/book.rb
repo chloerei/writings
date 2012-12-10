@@ -1,5 +1,6 @@
 class Book
   include Mongoid::Document
+  include ActiveModel::ForbiddenAttributesProtection
 
   field :name
   field :urlname

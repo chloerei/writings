@@ -23,7 +23,7 @@ class BooksControllerTest < ActionController::TestCase
       assert_redirected_to @user.books.last
     end
 
-    post :create, attributes_for(:book).slice(:name)
+    post :create, :book => attributes_for(:book).slice(:name)
     assert_template :new
   end
 end

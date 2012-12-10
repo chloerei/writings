@@ -10,12 +10,18 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = current_user.books.new params[:book]
+    @book = current_user.books.new book_params
 
     if @book.save
       redirect_to @book
     else
       render :new
     end
+  end
+
+  private
+
+  def book_params
+    params.require(:book).permit(:name, :urlname)
   end
 end
