@@ -183,27 +183,53 @@ a.button:hover {
     @include clearfix();
 
     li {
-      margin-right: 10px;
       display: inline-block;
       float: left;
 
-      .divider {
-        margin-left: 10px;
-        color: #555;
-      }
-
-      &.pull-right {
-        float: right;
+      &:after {
+        content: "/";
+        margin: 0 10px;
       }
 
       &:last-child {
         margin-right: 0;
+
+        &:after {
+          content: "";
+        }
       }
     }
 
-    .button {
-      display: inline;
-    }
+  }
+}
+
+#site-header {
+  @include clearfix();
+
+  .top-nav {
+    float: left;
+  }
+
+  .login-nav {
+    padding: 15px 0;
+    float: right;
+  }
+}
+
+#editor-header {
+  @include clearfix();
+
+  .top-nav {
+    float: left;
+  }
+
+  .top-buttons {
+    padding: 15px 0;
+    float: right;
+  }
+
+  .button {
+    display: inline;
   }
 }
 

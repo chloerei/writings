@@ -7,19 +7,17 @@
       ul.top-nav
         li
           = link_to 'Book Name', book_ui_path
-          span.divider
-            | /
         li
           span.permark-link title="click to edit"
             | pemark-link
           span.preview
             small= link_to '#' do
               i.icon-external-link
-        li.pull-right
-          .button-group
-            = link_to 'Draft', '#', :class => 'button button-actived'
-            = link_to 'Publish', '#', :class => 'button'
-          = link_to 'Save', '#', :class => 'button no-margin'
+      .top-buttons
+        .button-group
+          = link_to 'Draft', '#', :class => 'button button-actived'
+          = link_to 'Publish', '#', :class => 'button'
+        = link_to 'Save', '#', :class => 'button no-margin'
 
 #toolbar
   .editor-container
