@@ -37,4 +37,11 @@ class BooksControllerTest < ActionController::TestCase
     assert_redirected_to edit_book_url(@book)
     assert_equal 'change', @book.reload.name
   end
+
+  test "should destroy book" do
+    assert_difference "@user.books.count", -1 do
+      delete :destroy, :id => @book
+      assert_redirected_to root_url
+    end
+  end
 end

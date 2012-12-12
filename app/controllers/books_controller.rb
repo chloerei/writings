@@ -1,8 +1,8 @@
 class BooksController < ApplicationController
   before_filter :require_logined
+  before_filter :find_book, :only => [:show, :edit, :update, :destroy]
 
   def show
-    @book = current_user.books.find_by(:urlname => params[:id])
   end
 
   def new
@@ -20,12 +20,9 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = current_user.books.find_by(:urlname => params[:id])
   end
 
   def update
-    @book = current_user.books.find_by(:urlname => params[:id])
-
     if @book.update_attributes book_params
       redirect_to edit_book_url(@book)
     else
@@ -33,7 +30,16 @@ class BooksController < ApplicationController
     end
   end
 
+  def destroy
+    @book.destroy
+    redirect_to root_url
+  end
+
   private
+
+  def find_book
+    @book = current_user.books.find_by(:urlname => params[:id])
+  end
 
   def book_params
     params.require(:book).permit(:name, :urlname)

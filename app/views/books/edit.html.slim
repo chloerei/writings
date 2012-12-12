@@ -1,3 +1,6 @@
+- content_for :top_nav do
+  li= link_to @book.name, @book
+
 #mainarea
   .container
     #main
@@ -17,3 +20,5 @@
             = f.text_field :urlname
           .field
             = f.submit 'Save', :class => 'button'
+        hr
+        = link_to 'delete this book', @book, :method => :delete, :confirm => "delete book #{@book.name} with all articles?", :class => 'button button-danger'

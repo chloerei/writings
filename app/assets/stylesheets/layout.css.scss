@@ -18,6 +18,14 @@ a {
   }
 }
 
+hr {
+  margin: 40px 0;
+  border: 0;
+  height: 1px;
+  @include linear-gradient(left, transparent, #ccc, transparent);
+
+}
+
 nav ul {
   list-style: none;
   margin: 0;

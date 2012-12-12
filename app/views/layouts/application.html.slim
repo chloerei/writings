@@ -4,6 +4,7 @@ head
   = javascript_include_tag "application"
   = stylesheet_link_tag "application"
   = yield :head
+  = csrf_meta_tags
 body
   #topbar
     .container
@@ -11,6 +12,7 @@ body
         ul.top-nav
           li
             = link_to 'Publish', root_path
+            = yield :top_nav
         .login-nav
           - if logined?
             = link_to 'Logout', logout_path, :method => :delete
