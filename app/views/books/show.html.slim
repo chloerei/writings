@@ -13,7 +13,7 @@
             = link_to '' do
               i.icon-plus-sign
               = ' '
-              | New Article
+              = link_to 'New Article', new_book_article_path(@book)
         table.articles
           tbody
             - 50.times do

@@ -12,7 +12,9 @@ Publish::Application.routes.draw do
     put 'account' => 'users#update'
     delete 'account' => 'users#destroy'
 
-    resources :books, :only => [:show, :new, :create, :edit, :update, :destroy], :path_names => { :edit => :settings }
+    resources :books, :only => [:show, :new, :create, :edit, :update, :destroy], :path_names => { :edit => :settings } do
+      resources :articles, :only => [:new, :create, :edit, :update, :destroy]
+    end
   end
 
   if Rails.env.development?
