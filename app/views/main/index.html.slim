@@ -1,17 +1,7 @@
 #mainarea
   .container
     #main
-      #main-nav
-        nav
-          ul
-            li.active
-              = link_to 'Books', root_path
-            li
-              = link_to 'Profile', '#'
-            li
-              = link_to 'Account', '#'
-            li
-              = link_to 'Biling', '#'
+      = render 'main_nav'
       #main-content
         header.clearfix
           .pull-left

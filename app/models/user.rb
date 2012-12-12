@@ -18,10 +18,20 @@ class User
   validates :name, :format => {:with => /\A\w+\z/, :message => 'only A-Z, a-z, _ allowed'}, :length => {:in => 3..20}
   validates :email, :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}
   validates :password, :password_confirmation, :presence => true, :on => :create
-  validates :password, :length => {:minimum => 6, :allow_nil => true}
+  validates :password, :length => {:minimum => 6, :allow_blank => true}
   validates :locale, :inclusion => {:in => ALLOW_LOCALE}
+  validates :current_password, :presence => true, :on => :update
 
   attr_accessor :current_password
+
+  def check_current_password(password)
+    if authenticate(password)
+      true
+    else
+      errors.add(:current_password, "is not match")
+      false
+    end
+  end
 
   def remember_token
     [id, Digest::SHA512.hexdigest(password_digest)].join('$')

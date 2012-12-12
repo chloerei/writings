@@ -8,6 +8,10 @@ Publish::Application.routes.draw do
     delete 'logout' => 'user_sessions#destroy', :as => :logout
     resources :user_sessions, :only => [:create]
 
+    get 'account' => 'users#edit', :as => :account
+    put 'account' => 'users#update'
+    delete 'account' => 'users#destroy'
+
     resources :books, :only => [:show, :new, :create, :edit, :update, :destroy], :path_names => { :edit => :settings }
   end
 
