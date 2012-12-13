@@ -10,7 +10,7 @@ body
     .editor-container
       header#editor-header
         ul.top-nav
-          li= link_to 'Publish', root_path
+          li= link_to @book.name, @book
           li
             span.urlname title="click to edit"
               = @article.urlname

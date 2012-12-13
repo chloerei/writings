@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :article do
+    sequence(:urlname){|n| "urlname#{n}" }
+    book
+    user
   end
 end

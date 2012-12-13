@@ -1,6 +1,7 @@
 class Article
   include Mongoid::Document
   include Mongoid::Timestamps::Created
+  include ActiveModel::ForbiddenAttributesProtection
 
   field :title
   field :body
@@ -9,7 +10,7 @@ class Article
   belongs_to :user
   belongs_to :book
 
-  validates :urlname, :uniqueness => { :scope => :book_id, :case_sensitive => false }
+  validates :urlname, :presence => true, :uniqueness => { :scope => :book_id, :case_sensitive => false }
 
   after_initialize do |article|
     article.urlname ||= article.id.to_s
