@@ -19,6 +19,6 @@
             - @book.articles.each do |article|
               tr
                 td.article-title
-                  = link_to article, book_article_path(@book, article)
+                  = link_to article.title, article
                 td.article-date
                   = Date.today

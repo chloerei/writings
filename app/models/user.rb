@@ -11,6 +11,7 @@ class User
   field :locale, :default => I18n.locale.to_s
 
   has_many :books
+  has_many :articles
 
   has_secure_password
 

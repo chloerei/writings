@@ -13,8 +13,9 @@ Publish::Application.routes.draw do
     delete 'account' => 'users#destroy'
 
     resources :books, :only => [:show, :new, :create, :edit, :update, :destroy], :path_names => { :edit => :settings } do
-      resources :articles, :only => [:new, :create, :show, :update, :destroy]
+      resources :articles, :only => [:new, :create]
     end
+    resources :articles, :only => [:show, :update, :destroy]
   end
 
   if Rails.env.development?

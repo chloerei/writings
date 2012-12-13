@@ -15,7 +15,7 @@ class ArticlesControllerTest < ActionController::TestCase
 
   test "should create article" do
     post :create, :book_id => @book, :article => attributes_for(:article)
-    assert_redirected_to book_article_url(@book, @book.articles.last)
+    assert_redirected_to @book.articles.last
   end
 
   test "should show article" do

@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_filter :require_logined
-  before_filter :find_book
+  before_filter :find_book, :only => [:new, :create]
 
   def new
     @article = @book.articles.new
@@ -10,14 +10,14 @@ class ArticlesController < ApplicationController
   def create
     @article = @book.articles.new article_params.merge(:user => current_user)
     if @article.save
-      redirect_to book_article_url(@book, @article)
+      redirect_to @article
     else
       render :editor
     end
   end
 
   def show
-    @article = @book.articles.find(params[:id])
+    @article = current_user.articles.find(params[:id])
     render :editor, :layout => false
   end
 
