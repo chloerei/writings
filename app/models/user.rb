@@ -10,6 +10,8 @@ class User
   field :access_token
   field :locale, :default => I18n.locale.to_s
 
+  embeds_one :profile
+
   has_many :books
   has_many :articles
 
@@ -24,6 +26,8 @@ class User
   validates :current_password, :presence => true, :on => :update
 
   attr_accessor :current_password
+
+  before_create :build_profile
 
   def check_current_password(password)
     if authenticate(password)

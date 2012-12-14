@@ -11,6 +11,7 @@ Publish::Application.routes.draw do
     get 'account' => 'users#edit', :as => :account
     put 'account' => 'users#update'
     delete 'account' => 'users#destroy'
+    resource :profile, :only => [:show, :update]
 
     resources :books, :only => [:show, :new, :create, :edit, :update, :destroy], :path_names => { :edit => :settings } do
       resources :articles, :only => [:new, :create]

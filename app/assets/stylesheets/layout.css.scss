@@ -355,6 +355,17 @@ a.button:hover {
       width: 80%;
       float: left;
 
+      .field {
+        #{$all-text-inputs} {
+          width: 37.5%;
+        }
+
+        textarea {
+          width: 75%;
+          height: 120px;
+        }
+      }
+
       header {
         margin-bottom: 10px;
 
