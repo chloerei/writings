@@ -16,7 +16,7 @@
               = link_to 'New Article', new_book_article_path(@book)
         table.articles
           tbody
-            - @book.articles.each do |article|
+            - @articles.each do |article|
               tr
                 td.article-title
                   = link_to article.title, article

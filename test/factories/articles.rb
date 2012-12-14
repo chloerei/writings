@@ -7,6 +7,8 @@ FactoryGirl.define do
     body '<p>body</p>'
 
     book
-    user
+    after(:build) do |article|
+      article.user = article.book.user
+    end
   end
 end

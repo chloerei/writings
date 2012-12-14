@@ -6,6 +6,7 @@ class Article
   field :title
   field :body
   field :urlname
+  field :publish, :type => Boolean, :default => false
 
   belongs_to :user
   belongs_to :book
@@ -13,7 +14,10 @@ class Article
   validates :title, :body, :presence => true
   validates :urlname, :presence => true, :uniqueness => { :scope => :book_id, :case_sensitive => false }
 
+  scope :publish, where(:publish => true)
+  scope :draft, where(:publish => false)
+
   after_initialize do |article|
-    article.urlname ||= article.id.to_s
+      article.urlname ||= Time.now.to_s(:number)
   end
 end

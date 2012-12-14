@@ -1,8 +1,14 @@
 class BooksController < ApplicationController
   before_filter :require_logined
-  before_filter :find_book, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_book, :only => [:show, :draft, :edit, :update, :destroy]
 
   def show
+    @articles = @book.articles.publish.desc(:created_at)
+  end
+
+  def draft
+    @articles = @book.articles.draft.desc(:created_at)
+    render :show
   end
 
   def new

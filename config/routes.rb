@@ -14,6 +14,10 @@ Publish::Application.routes.draw do
 
     resources :books, :only => [:show, :new, :create, :edit, :update, :destroy], :path_names => { :edit => :settings } do
       resources :articles, :only => [:new, :create]
+
+      member do
+        get :draft
+      end
     end
     resources :articles, :only => [:show, :update, :destroy]
   end

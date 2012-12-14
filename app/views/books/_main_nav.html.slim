@@ -4,7 +4,7 @@
       li class=(action_name == 'show' ? 'active' : nil)
         = link_to 'Publish', @book
       li
-        = link_to 'Draft', '#'
+        = link_to 'Draft', draft_book_path(@book)
       li
         = link_to 'Index', '#'
       li
