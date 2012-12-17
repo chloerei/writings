@@ -14,12 +14,18 @@ class ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should create article" do
-    post :create, :book_id => @book, :article => attributes_for(:article)
-    assert_redirected_to @book.articles.last
+    post :create, :book_id => @book, :article => attributes_for(:article), :format => :json
+    assert_response :success, @response.body
   end
 
   test "should show article" do
     get :show, :book_id => @book, :id => @article
     assert_response :success, @response.body
+  end
+
+  test "should update article" do
+    put :update, :id => @article, :article => { :title => 'change' }, :format => :json
+    assert_response :success, @response.body
+    assert_equal 'change', @article.reload.title
   end
 end

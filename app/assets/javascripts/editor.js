@@ -6,9 +6,16 @@ Mousetrap.stopCallback = function(e, element, combo) {
 var Editor = function() {
   this.toolbar = $('#toolbar');
   this.editarea = $('#editarea');
+  this.article = $('#editarea article');
   this.connectActions();
   this.connectShortcuts();
   this.connectDetectState();
+
+  var _this = this;
+  $('#save-button').click(function(event) {
+    event.preventDefault();
+    _this.saveArticle.call(_this);
+  });
 };
 
 Editor.prototype = {
@@ -142,6 +149,69 @@ Editor.prototype = {
 
   exec: function(command, arg) {
     document.execCommand(command, false, arg);
+  },
+
+  articleId: function() {
+    return this.article.data('article-id');
+  },
+
+  setArticleId: function(id) {
+    this.article.data('article-id', id);
+  },
+
+  saveArticle: function() {
+    if (this.articleId()) {
+      this.updateArticle();
+    } else {
+      this.createArticle();
+    }
+  },
+
+  createArticle: function() {
+    console.log('create');
+    var _this = this;
+    $.ajax({
+      url: '/books/' + this.article.data('book-urlname') + '/articles',
+      data: _this.formData(),
+      type: 'post',
+      dataType: 'json'
+    }).success(function(data) {
+      _this.setArticleId(data.id);
+       window.history.replaceState(null, null, '/articles/' + _this.articleId());
+    }).error(function(jqXHR) {
+      console.log(jqXHR);
+    });
+  },
+
+  updateArticle: function() {
+    console.log('update');
+    var _this = this;
+    $.ajax({
+      data: _this.formData(),
+      type: 'put',
+      dataType: 'json'
+    }).success(function(data) {
+      console.log('updated');
+    }).error(function(jqXHR) {
+      console.log(jqXHR);
+    });
+  },
+
+  formData: function() {
+    return {
+      article: {
+        title: this.extractTitle(),
+        body: this.extractBody()
+      }
+    };
+  },
+
+  extractTitle: function() {
+    return this.article.find('h1:first-child').text();
+  },
+
+  extractBody: function() {
+    return this.article.text();
   }
 };
 

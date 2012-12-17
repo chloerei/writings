@@ -21,7 +21,7 @@ body
           .button-group
             = link_to 'Draft', '#', :class => 'button button-actived'
             = link_to 'Publish', '#', :class => 'button'
-          = link_to 'Save', '#', :class => 'button no-margin'
+          = link_to 'Save', '#', :class => 'button no-margin', :id => 'save-button'
   #toolbar
     .editor-container
       ul.toolbar-bottons
@@ -37,5 +37,5 @@ body
                   a= action
   #editarea
     .editor-container
-      article contentEditable="true"
+      article contentEditable="true" data-article-id=(@article.id) data-book-urlname=(@article.book.urlname)
         = sanitize @article.body

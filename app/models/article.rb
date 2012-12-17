@@ -11,7 +11,6 @@ class Article
   belongs_to :user
   belongs_to :book
 
-  validates :title, :body, :presence => true
   validates :urlname, :presence => true, :uniqueness => { :scope => :book_id, :case_sensitive => false }
 
   scope :publish, where(:publish => true)
