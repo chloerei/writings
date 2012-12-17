@@ -10,15 +10,15 @@
           /.pull-left
             input type="search" placeholder="Filter"
           .pull-right
-            = link_to '' do
+            = link_to new_book_article_path(@book), :target => '_blank' do
               i.icon-plus-sign
               = ' '
-              = link_to 'New Article', new_book_article_path(@book)
+              = 'New Article'
         table.articles
           tbody
             - @articles.each do |article|
               tr
                 td.article-title
-                  = link_to article.title, article
+                  = link_to article.title, article, :target => '_blank'
                 td.article-date
                   = Date.today

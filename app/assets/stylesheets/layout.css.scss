@@ -319,6 +319,18 @@ a.button:hover {
     border: 1px solid #ccc;
     @include clearfix();
 
+    .field {
+      #{$all-text-inputs} {
+        width: 37.5%;
+      }
+
+      textarea {
+        width: 75%;
+        height: 120px;
+      }
+    }
+
+
     &.signup {
       width: 55%;
       margin: 105px auto 0;
@@ -354,17 +366,6 @@ a.button:hover {
     #main-content {
       width: 80%;
       float: left;
-
-      .field {
-        #{$all-text-inputs} {
-          width: 37.5%;
-        }
-
-        textarea {
-          width: 75%;
-          height: 120px;
-        }
-      }
 
       header {
         margin-bottom: 10px;
