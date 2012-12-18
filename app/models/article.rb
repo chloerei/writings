@@ -19,4 +19,8 @@ class Article
   after_initialize do |article|
       article.urlname ||= Time.now.to_s(:number)
   end
+
+  def title
+    read_attribute(:title).blank? ? 'untitle' : read_attribute(:title)
+  end
 end
