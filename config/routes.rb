@@ -29,6 +29,7 @@ Publish::Application.routes.draw do
         get :book
         get :editor
         get :forum
+        get :modal
       end
     end
   end

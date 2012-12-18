@@ -80,6 +80,11 @@ select {
 
 .field {
   margin-bottom: 20px;
+  padding-right: 12px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   label {
     display: block;
@@ -455,6 +460,57 @@ a.button:hover {
           }
         }
       }
+    }
+  }
+}
+
+// modal
+
+#modal-background {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 0.5;
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.modal-dialog {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  z-index: 1001;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 30px;
+  @include box-shadow(0 4px 16px #ccc);
+
+  width: 340px;
+  margin-left: -186px;
+
+  span.modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+    color: #999;
+
+    &:hover {
+      color: #444;
+    }
+  }
+
+  .field {
+    #{$all-text-inputs} {
+      width: 100%;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
     }
   }
 }

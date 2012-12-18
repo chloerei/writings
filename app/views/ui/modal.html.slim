@@ -1,0 +1,22 @@
+#mainarea
+  .container
+    #main
+      #main-nav
+        nav
+          ul
+            li.active
+              = link_to 'Modal', '#'
+      #main-content
+        = link_to 'Toggle', nil, :class => 'button', :data => { 'toggle-modal' => '#test-modal' }
+
+#modal-background
+#test-modal.modal-dialog
+  span.modal-close
+    i.icon-remove
+  form
+    .field
+      label text
+      = text_field_tag ''
+    .field
+      = submit_tag 'Save', :class => 'button'
+      = button_tag 'Cancel', :class => 'button modal-close'

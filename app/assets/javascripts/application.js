@@ -3,6 +3,7 @@
 //= require turbolinks
 //= require rails.validations
 //= require mousetrap
+//= require modal
 //= require highlight_js/highlight
 //= require highlight_js/languages/ruby
 //= require highlight_js/languages/javascript
