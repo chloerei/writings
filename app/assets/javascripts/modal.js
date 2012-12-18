@@ -1,7 +1,7 @@
 var Dialog = {
   show: function(id) {
     $('body').append($('<div id="modal-background"></div>'));
-    $(id).show();
+    $(id).show().find('input[type=text]').focus();
   },
 
   hide: function(el) {

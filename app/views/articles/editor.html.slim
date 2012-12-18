@@ -12,7 +12,7 @@ body
         ul.top-nav
           li= link_to @article.book.name, @article.book
           li
-            span.urlname title="click to edit"
+            span.urlname.editable title="click to edit" data-toggle-modal="#urlname-modal"
               = @article.urlname
             span.preview
               small= link_to '#' do
@@ -39,3 +39,13 @@ body
     .editor-container
       article contentEditable="true" data-article-id=(@article.id) data-book-urlname=(@article.book.urlname)
         = sanitize @article.body
+  #urlname-modal.modal-dialog
+    span.modal-close
+      i.icon-remove
+    = form_for :article do |f|
+      .field
+        = f.label :urlname
+        = f.text_field :urlname
+      .field
+        = f.submit 'Save', :class => 'button'
+        = f.submit 'Cancel', :class => 'button modal-close'

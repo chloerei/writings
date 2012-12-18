@@ -479,6 +479,7 @@ a.button:hover {
 
 .modal-dialog {
   position: absolute;
+  display: none;
   top: 30%;
   left: 50%;
   z-index: 1001;
@@ -512,5 +513,13 @@ a.button:hover {
       width: 100%;
       height: 120px;
     }
+  }
+}
+
+.editable {
+  cursor: pointer;
+
+  &:hover {
+    background-color: lighten(yellow, 30%);
   }
 }
