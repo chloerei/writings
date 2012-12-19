@@ -98,7 +98,8 @@ Editor.prototype = {
     'ctrl+u': 'underline',
     'ctrl+l': 'createLink',
     'ctrl+shift+l': 'insertUnorderedList',
-    'ctrl+shift+o': 'insertOrderedList'
+    'ctrl+shift+o': 'insertOrderedList',
+    'ctrl+s': 'saveArticle'
   },
 
   connectShortcuts: function() {
