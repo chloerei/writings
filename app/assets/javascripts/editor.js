@@ -155,38 +155,10 @@ Editor.prototype = {
     return this.article.data('article-id');
   },
 
-  setArticleId: function(id) {
-    this.article.data('article-id', id);
-  },
-
   saveArticle: function() {
-    if (this.articleId()) {
-      this.updateArticle();
-    } else {
-      this.createArticle();
-    }
-  },
-
-  createArticle: function() {
-    console.log('create');
     var _this = this;
     $.ajax({
-      url: '/books/' + this.article.data('book-urlname') + '/articles',
-      data: _this.formData(),
-      type: 'post',
-      dataType: 'json'
-    }).success(function(data) {
-      _this.setArticleId(data.id);
-       window.history.replaceState(null, null, '/articles/' + _this.articleId());
-    }).error(function(jqXHR) {
-      console.log(jqXHR);
-    });
-  },
-
-  updateArticle: function() {
-    console.log('update');
-    var _this = this;
-    $.ajax({
+      url: '/articles/' + _this.articleId(),
       data: _this.formData(),
       type: 'put',
       dataType: 'json'

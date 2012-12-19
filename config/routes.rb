@@ -14,13 +14,13 @@ Publish::Application.routes.draw do
     resource :profile, :only => [:show, :update]
 
     resources :books, :only => [:show, :new, :create, :edit, :update, :destroy], :path_names => { :edit => :settings } do
-      resources :articles, :only => [:new, :create]
+      resources :articles, :only => [:create]
 
       member do
         get :draft
       end
     end
-    resources :articles, :only => [:show, :update, :destroy]
+    resources :articles, :only => [:edit, :update, :destroy]
   end
 
   if Rails.env.development?

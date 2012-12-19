@@ -8,18 +8,13 @@ class ArticlesControllerTest < ActionController::TestCase
     login_as @user
   end
 
-  test "should get new page" do
-    get :new, :book_id => @book
-    assert_response :success, @response.body
-  end
-
   test "should create article" do
-    post :create, :book_id => @book, :article => attributes_for(:article), :format => :json
-    assert_response :success, @response.body
+    post :create, :book_id => @book
+    assert_redirected_to edit_article_url(current_user.articles.last)
   end
 
-  test "should show article" do
-    get :show, :book_id => @book, :id => @article
+  test "should edit article" do
+    get :edit, :book_id => @book, :id => @article
     assert_response :success, @response.body
   end
 

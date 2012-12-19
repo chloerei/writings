@@ -2,28 +2,14 @@ class ArticlesController < ApplicationController
   before_filter :require_logined
   before_filter :find_book, :only => [:new, :create]
 
-  def new
-    @article = @book.articles.new
-    @article.id = nil
-    render :editor, :layout => false
-  end
-
   def create
-    @article = @book.articles.new article_params.merge(:user => current_user)
-    if @article.save
-      respond_to do |format|
-        format.json { render :json => {:id => @article.id} }
-      end
-    else
-      respond_to do |format|
-        format.json { render :text => @article.errors.full_messages, :status => :error }
-      end
-    end
+    @article = @book.articles.create :user => current_user
+    redirect_to edit_article_url(@article)
   end
 
-  def show
+  def edit
     @article = current_user.articles.find(params[:id])
-    render :editor, :layout => false
+    render :layout => false
   end
 
   def update
