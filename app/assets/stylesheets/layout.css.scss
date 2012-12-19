@@ -275,12 +275,19 @@ a.button:hover {
 
       a {
         color: #333;
-        padding: 3px;
-        border: 1px solid transparent;
-        border-radius: 2px;
 
         &:hover {
           text-decoration: none;
+        }
+      }
+
+      .toolbar-botton {
+        padding: 3px;
+        border: 1px solid transparent;
+        border-radius: 2px;
+        cursor: pointer;
+
+        &:hover {
           border: 1px solid #ccc;
           @include linear-gradient(#fff, darken(#fff, 15%));
         }
@@ -290,6 +297,74 @@ a.button:hover {
           border: 1px solid #ccc;
           @include box-shadow(inset 0 1px 2px #ccc);
           @include linear-gradient(#fff, darken(#fff, 15%));
+        }
+      }
+    }
+
+    p, h1, h2, h3, h4, pre, blockquote {
+      padding: 0;
+      margin: 0;
+    }
+
+    .dropdown {
+      position: relative;
+
+      .dropdown-toggle {
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &:after {
+          padding-left: 5px;
+          font-family: FontAwesome;
+          display: inline-block;
+          content: "\f0d7";
+        }
+      }
+
+      .dropdown-menu {
+        display: none;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        width: 97px;
+        top: 22px;
+        left: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        @include box-shadow(0 2px 10px #ccc);
+
+        li {
+          cursor: pointer;
+          display: block;
+          float: none;
+          padding: 5px;
+          border-bottom: 1px solid #ccc;
+
+          &:hover {
+            background-color: #efefef;
+          }
+
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+      }
+
+      &.actived {
+        .dropdown-toggle {
+          border: 1px solid #ccc;
+          @include box-shadow(inset 0 1px 2px #ccc);
+          @include linear-gradient(#fff, darken(#fff, 15%));
+        }
+
+        .dropdown-toggle:after {
+          content: "\f0d8";
+        }
+
+        .dropdown-menu {
+          display: block;
         }
       }
     }

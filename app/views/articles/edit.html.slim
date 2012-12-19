@@ -26,26 +26,44 @@ body
     .editor-container
       ul.toolbar-bottons
         li
-          a class='icon-bold' href='#' data-command='bold'
+          a class='toolbar-botton icon-bold' href='#' data-command='bold'
         li
-          a class='icon-italic' href='#' data-command='italic'
+          a class='toolbar-botton icon-italic' href='#' data-command='italic'
         li
-          a class='icon-strikethrough' href='#' data-command='strikeThrough'
+          a class='toolbar-botton icon-strikethrough' href='#' data-command='strikeThrough'
         li
-          a class='icon-underline' href='#' data-command='underline'
+          a class='toolbar-botton icon-underline' href='#' data-command='underline'
         li
-          a class='icon-link' href='#' data-command='createLink'
+          a class='toolbar-botton icon-link' href='#' data-command='createLink'
         li
-          a class='icon-list-ol' href='#' data-command='insertOrderedList'
+          a class='toolbar-botton icon-list-ol' href='#' data-command='insertOrderedList'
         li
-          a class='icon-list-ul' href='#' data-command='insertUnorderedList'
-        /li
+          a class='toolbar-botton icon-list-ul' href='#' data-command='insertUnorderedList'
+        li
           .dropdown
-            a.dropdown-toggle Normal Text
+            a.dropdown-toggle.toolbar-botton Normal Text
             ul.dropdown-menu
-              - %w(p h1 h2 h3 h4 h5 blockquote code).each do |action|
-                li
-                  a= action
+              li
+                a
+                  p Pargraph
+              li
+                a
+                  h1 H1
+              li
+                a
+                  h2 H2
+              li
+                a
+                  h3 H3
+              li
+                a
+                  h4 H4
+              li
+                a
+                  pre Code
+              li
+                a
+                  blockquote Blockquote
   #editarea
     .editor-container
       article contentEditable="true" data-article-id=(@article.id) data-book-urlname=(@article.book.urlname)
