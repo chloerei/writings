@@ -21,6 +21,16 @@ var Editor = function() {
     event.preventDefault();
     _this.saveUrlname.call(_this);
   });
+
+  $('#draft-button').click(function(event) {
+    event.preventDefault();
+    _this.draft.call(_this);
+  });
+
+  $('#publish-button').click(function(event) {
+    event.preventDefault();
+    _this.publish.call(_this);
+  });
 };
 
 Editor.prototype = {
@@ -173,6 +183,28 @@ Editor.prototype = {
     this.update($('#urlname-modal form').serializeArray(), function(data) {
       $('#topbar .urlname').text(data.urlname);
       Dialog.hide('#urlname-modal');
+    });
+  },
+
+  publish: function() {
+    this.update({
+      article: {
+        publish: true
+      }
+    }, function(data) {
+      $('#draft-button').removeClass('button-actived');
+      $('#publish-button').addClass('button-actived');
+    });
+  },
+
+  draft: function() {
+    this.update({
+      article: {
+        publish: false
+      }
+    }, function(data) {
+      $('#publish-button').removeClass('button-actived');
+      $('#draft-button').addClass('button-actived');
     });
   },
 

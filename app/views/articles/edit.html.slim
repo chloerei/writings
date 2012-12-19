@@ -19,8 +19,8 @@ body
                 i.icon-external-link
         .top-buttons
           .button-group
-            = link_to 'Draft', '#', :class => 'button button-actived'
-            = link_to 'Publish', '#', :class => 'button'
+            = link_to 'Draft', '#', :class => ['button', (@article.publish? ? nil : 'button-actived')], :id => 'draft-button'
+            = link_to 'Publish', '#', :class => ['button', (@article.publish? ? 'button-actived' : nil)], :id => 'publish-button'
           = link_to 'Save', '#', :class => 'button no-margin', :id => 'save-button'
   #toolbar
     .editor-container
