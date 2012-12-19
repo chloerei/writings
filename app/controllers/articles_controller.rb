@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.find params[:id]
     if @article.update_attributes article_params
       respond_to do |format|
-        format.json { render :json => {:id => @article.id} }
+        format.json { render :json => {:id => @article.id, :urlname => @article.urlname} }
       end
     else
       respond_to do |format|

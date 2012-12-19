@@ -16,6 +16,11 @@ var Editor = function() {
     event.preventDefault();
     _this.saveArticle.call(_this);
   });
+
+  $('#urlname-modal form').submit(function(event) {
+    event.preventDefault();
+    _this.saveUrlname.call(_this);
+  });
 };
 
 Editor.prototype = {
@@ -156,26 +161,28 @@ Editor.prototype = {
   },
 
   saveArticle: function() {
-    var _this = this;
-    $.ajax({
-      url: '/articles/' + _this.articleId(),
-      data: _this.formData(),
-      type: 'put',
-      dataType: 'json'
-    }).success(function(data) {
-      console.log('updated');
-    }).error(function(jqXHR) {
-      console.log(jqXHR);
-    });
-  },
-
-  formData: function() {
-    return {
+    this.update({
       article: {
         title: this.extractTitle(),
         body: this.extractBody()
       }
-    };
+    });
+  },
+
+  saveUrlname: function() {
+    this.update($('#urlname-modal form').serializeArray(), function(data) {
+      $('#topbar .urlname').text(data.urlname);
+      Dialog.hide('#urlname-modal');
+    });
+  },
+
+  update: function(data, success_callback, error_callback) {
+    $.ajax({
+      url: '/articles/' + this.articleId(),
+      data: data,
+      type: 'put',
+      dataType: 'json'
+    }).success(success_callback).error(error_callback);
   },
 
   extractTitle: function() {
@@ -183,7 +190,7 @@ Editor.prototype = {
   },
 
   extractBody: function() {
-    return this.article.text();
+    return this.article.html();
   }
 };
 

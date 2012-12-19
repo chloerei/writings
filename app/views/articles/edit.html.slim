@@ -42,7 +42,7 @@ body
   #urlname-modal.modal-dialog
     span.modal-close
       i.icon-remove
-    = form_for :article do |f|
+    = form_for @article do |f|
       .field
         = f.label :urlname
         = f.text_field :urlname

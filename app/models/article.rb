@@ -17,7 +17,7 @@ class Article
   scope :draft, where(:publish => false)
 
   after_initialize do |article|
-      article.urlname ||= Time.now.to_s(:number)
+      article.urlname ||= article.id.to_s
   end
 
   def title
