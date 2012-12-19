@@ -7,56 +7,32 @@ var Editor = function() {
   this.toolbar = $('#toolbar');
   this.editarea = $('#editarea');
   this.article = $('#editarea article');
-  this.connectActions();
+
+  this.connectToolbar();
   this.connectShortcuts();
   this.connectDetectState();
 
-  var _this = this;
-  $('#save-button').click(function(event) {
-    event.preventDefault();
-    _this.saveArticle.call(_this);
-  });
-
-  $('#urlname-modal form').submit(function(event) {
-    event.preventDefault();
-    _this.saveUrlname.call(_this);
-  });
-
-  $('#draft-button').click(function(event) {
-    event.preventDefault();
-    _this.draft.call(_this);
-  });
-
-  $('#publish-button').click(function(event) {
-    event.preventDefault();
-    _this.publish.call(_this);
-  });
+  this.connect('#save-button', 'click', 'saveArticle');
+  this.connect('#urlname-modal form', 'submit', 'saveUrlname');
+  this.connect('#draft-button', 'click', 'draft');
+  this.connect('#publish-button', 'click', 'publish');
 };
 
 Editor.prototype = {
-  actions: {
-    'bold': 'bold',
-    'italic': 'italic',
-    'strikethrough': 'strikeThrough',
-    'underline': 'underline',
-    'link': 'createLink',
-    'list-ol': 'insertOrderedList',
-    'list-ul': 'insertUnorderedList'
+  connect: function(id, type, method) {
+    var _this = this;
+    $(id).on(type, function(event) {
+      event.preventDefault();
+      _this[method].call(_this);
+      _this.detectActions();
+    });
   },
 
-  connectActions: function(events) {
+  connectToolbar: function(events) {
     var _this = this;
 
-    _this.toolbar.on('click', 'a[data-action]', function(event) {
-      event.preventDefault();
-      var action = _this.actions[$(this).data('action')];
-      if (_this[action]) {
-        _this[action].call(_this);
-      }
-    });
-
-    _this.toolbar.on('change', '[data-action=formatBlock]', function(event) {
-      _this.formatBlock.call(_this, $(this).val());
+    _this.toolbar.find('[data-command]').each(function(index, element) {
+      _this.connect(element, 'click', $(element).data('command'));
     });
   },
 
@@ -64,22 +40,23 @@ Editor.prototype = {
     var _this = this;
 
     _this.editarea.on('keyup mouseup', function() {
-      _this.detectActions();
-      _this.detectBlocks();
+      _this.detectCommand();
+      //_this.detectBlocks();
     });
   },
 
-  detectActions: function() {
+  detectCommand: function() {
     var _this = this;
 
-    $.each(_this.actions, function(action, command) {
+    _this.toolbar.find('[data-command]').each(function(index, element) {
+      var command = $(element).data('command');
       if (document.queryCommandValue(command) !== 'true') {
-        _this.toolbar.find('a[data-action=' + action + ']').removeClass('actived');
+        $(element).removeClass('actived');
       } else {
         if (command === 'bold' && /^h/.test(document.queryCommandValue('formatBlock'))) {
-          _this.toolbar.find('a[data-action=' + action + ']').removeClass('actived');
+          $(element).removeClass('actived');
         } else {
-          _this.toolbar.find('a[data-action=' + action + ']').addClass('actived');
+          $(element).addClass('actived');
         }
       }
     });
