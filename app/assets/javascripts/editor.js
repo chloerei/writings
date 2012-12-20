@@ -16,6 +16,12 @@ var Editor = function() {
   this.connect('#urlname-modal form', 'submit', 'saveUrlname');
   this.connect('#draft-button', 'click', 'draft');
   this.connect('#publish-button', 'click', 'publish');
+
+  this.clearFormat();
+  var _this = this;
+  this.article.on('keyup', function() {
+    _this.clearFormat();
+  });
 };
 
 Editor.prototype = {
@@ -182,6 +188,13 @@ Editor.prototype = {
 
   exec: function(command, arg) {
     document.execCommand(command, false, arg);
+  },
+
+  clearFormat: function() {
+    var block = document.queryCommandValue('formatBlock');
+    if (block === '' || block === 'div') {
+      this.p();
+    }
   },
 
   articleId: function() {

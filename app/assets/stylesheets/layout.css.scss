@@ -4,9 +4,19 @@ body {
   font-size: 14px;
 }
 
-p {
-  line-height: 1.6em;
-  margin-bottom: 1em;
+article {
+  font-size: 1em;
+  line-height: 1.4em;
+
+  p, div {
+    font-size: 1em;
+    line-height: 1.6em;
+    margin-bottom: 1em;
+  }
+
+  :first-child {
+    margin-top: 0;
+  }
 }
 
 a {
