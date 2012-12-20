@@ -81,6 +81,13 @@ Editor.prototype = {
     'ctrl+l': 'createLink',
     'ctrl+shift+l': 'insertUnorderedList',
     'ctrl+shift+o': 'insertOrderedList',
+    'ctrl+p': 'p',
+    'ctrl+1': 'h1',
+    'ctrl+2': 'h2',
+    'ctrl+3': 'h3',
+    'ctrl+4': 'h4',
+    'ctrl+k': 'code',
+    'ctrl+q': 'blockquote',
     'ctrl+s': 'saveArticle'
   },
 
