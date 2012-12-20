@@ -24,15 +24,17 @@ Editor.prototype = {
     $(id).on(type, function(event) {
       event.preventDefault();
       _this[method].call(_this);
-      _this.detectActions();
     });
   },
 
   connectToolbar: function(events) {
     var _this = this;
 
-    _this.toolbar.find('[data-command]').each(function(index, element) {
-      _this.connect(element, 'click', $(element).data('command'));
+    _this.toolbar.on('click', '[data-command]', function(event) {
+      event.preventDefault();
+      _this[$(this).data('command')].call(_this);
+      _this.detectButton();
+      _this.detectBlocks();
     });
   },
 
@@ -40,12 +42,12 @@ Editor.prototype = {
     var _this = this;
 
     _this.editarea.on('keyup mouseup', function() {
-      _this.detectCommand();
-      //_this.detectBlocks();
+      _this.detectButton();
+      _this.detectBlocks();
     });
   },
 
-  detectCommand: function() {
+  detectButton: function() {
     var _this = this;
 
     _this.toolbar.find('[data-command]').each(function(index, element) {
@@ -63,9 +65,12 @@ Editor.prototype = {
   },
 
   detectBlocks: function() {
-    var _this = this;
-
-    _this.toolbar.find('select').val(document.queryCommandValue('formatBlock'));
+    var type = document.queryCommandValue('formatBlock');
+    var text = this.toolbar.find('#format-block [data-command=' + type + ']').text();
+    if (text === '') {
+      text = this.toolbar.find('#format-block [data-command]:first').text();
+    }
+    this.toolbar.find('#format-block .toolbar-botton').text(text);
   },
 
   shortcuts: {
@@ -134,6 +139,34 @@ Editor.prototype = {
 
   justifyFull: function() {
     this.exec('justifyFull');
+  },
+
+  p: function() {
+    this.formatBlock('p');
+  },
+
+  h1: function() {
+    this.formatBlock('h1');
+  },
+
+  h2: function() {
+    this.formatBlock('h2');
+  },
+
+  h3: function() {
+    this.formatBlock('h3');
+  },
+
+  h4: function() {
+    this.formatBlock('h4');
+  },
+
+  code: function() {
+    this.formatBlock('code');
+  },
+
+  blockquote: function() {
+    this.formatBlock('blockquote');
   },
 
   formatBlock: function(type) {

@@ -40,29 +40,29 @@ body
         li
           a class='toolbar-botton icon-list-ul' href='#' data-command='insertUnorderedList'
         li
-          .dropdown
-            a.dropdown-toggle.toolbar-botton Normal Text
+          #format-block.dropdown
+            a.dropdown-toggle.toolbar-botton href="#" Normal text
             ul.dropdown-menu
               li
-                a
-                  p Pargraph
+                a href="#" data-command="p"
+                  p Normal text
               li
-                a
+                a href="#" data-command="h1"
                   h1 H1
               li
-                a
+                a href="#" data-command="h2"
                   h2 H2
               li
-                a
+                a href="#" data-command="h3"
                   h3 H3
               li
-                a
+                a href="#" data-command="h4"
                   h4 H4
               li
-                a
+                a href="#" data-command="code"
                   pre Code
               li
-                a
+                a href="#" data-command="blockquote"
                   blockquote Blockquote
   #editarea
     .editor-container
