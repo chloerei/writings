@@ -41,7 +41,7 @@ Editor.prototype = {
   connectDetectState: function() {
     var _this = this;
 
-    _this.editarea.on('keyup mouseup', function() {
+    _this.article.on('keyup mouseup', function() {
       _this.detectButton();
       _this.detectBlocks();
     });
