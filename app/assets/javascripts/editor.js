@@ -19,7 +19,16 @@ var Editor = function() {
 
   this.article.focus();
   this.clearFormat();
+  var _this = this;
   this.connect(this.article, 'keyup', 'clearFormat');
+  this.article.on('keydown', function(event) {
+    // Stop Backspace when empty, avoid cursor flash
+    if (event.keyCode === 8) {
+      if (_this.isEmpty) {
+        event.preventDefault();
+      }
+    }
+  });
 };
 
 Editor.prototype = {
@@ -189,9 +198,12 @@ Editor.prototype = {
   },
 
   clearFormat: function() {
-    if (this.article.html() === '') {
+    // chrome is empty and firefox is <br>
+    if (this.article.html() === '' || this.article.html() === '<br>') {
       this.p();
     }
+
+    this.isEmpty = (this.article.html() === '<p><br></p>');
   },
 
   articleId: function() {
