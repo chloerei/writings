@@ -186,15 +186,32 @@ Editor.prototype = {
   },
 
   blockquote: function() {
-    if (document.queryCommandValue('formatBlock') === 'blockquote') {
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
+    var start = $(range.startContainer).closest('article > *')[0];
+    var end = $(range.endContainer).closest('article > *')[0];
+    range.setStartBefore(start);
+    range.setEndAfter(end);
+
+    if (range.cloneContents().querySelector('blockquote')) {
+      $(start).nextUntil(end.nextSibling).andSelf().each(function() {
+        var node = $(this);
+        if (node.prop('tagName') === 'BLOCKQUOTE') {
+          if (this === start) {
+            start = node.children()[0];
+          }
+          if (this === end) {
+            end = node.children().last()[0];
+          }
+          node.replaceWith(node.children());
+        }
+      });
+      range.setStart(start, 0);
+      range.setEnd(end, end.childNodes.length);
+      selection.removeAllRanges();
+      selection.addRange(range);
     } else {
-      var selection = window.getSelection();
-      var range = selection.getRangeAt(0);
       var blockquote = document.createElement('blockquote');
-      var start = $(range.startContainer).closest('article > *')[0];
-      var end = $(range.endContainer).closest('article > *')[0];
-      range.setStartBefore(start);
-      range.setEndAfter(end);
       blockquote.appendChild(range.extractContents());
       range.insertNode(blockquote);
       selection.selectAllChildren(blockquote);
