@@ -287,7 +287,7 @@ Editor.prototype = {
   },
 
   extractTitle: function() {
-    return this.article.find('h1:first-child').text();
+    return this.article.find('h1').text();
   },
 
   extractBody: function() {
