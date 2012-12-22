@@ -186,7 +186,19 @@ Editor.prototype = {
   },
 
   blockquote: function() {
-    this.formatBlock('blockquote');
+    if (document.queryCommandValue('formatBlock') === 'blockquote') {
+    } else {
+      var selection = window.getSelection();
+      var range = selection.getRangeAt(0);
+      var blockquote = document.createElement('blockquote');
+      var start = $(range.startContainer).closest('article > *')[0];
+      var end = $(range.endContainer).closest('article > *')[0];
+      range.setStartBefore(start);
+      range.setEndAfter(end);
+      blockquote.appendChild(range.extractContents());
+      range.insertNode(blockquote);
+      selection.selectAllChildren(blockquote);
+    }
   },
 
   formatBlock: function(type) {
