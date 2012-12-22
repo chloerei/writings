@@ -17,11 +17,9 @@ var Editor = function() {
   this.connect('#draft-button', 'click', 'draft');
   this.connect('#publish-button', 'click', 'publish');
 
+  this.article.focus();
   this.clearFormat();
-  var _this = this;
-  this.article.on('keyup', function() {
-    _this.clearFormat();
-  });
+  this.connect(this.article, 'keyup', 'clearFormat');
 };
 
 Editor.prototype = {
@@ -191,8 +189,7 @@ Editor.prototype = {
   },
 
   clearFormat: function() {
-    var block = document.queryCommandValue('formatBlock');
-    if (block === '' || block === 'div') {
+    if (this.article.html() === '') {
       this.p();
     }
   },
