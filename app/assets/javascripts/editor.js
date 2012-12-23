@@ -5,59 +5,77 @@ Mousetrap.stopCallback = function(e, element, combo) {
 
 var Editor = function() {
   this.toolbar = $('#toolbar');
-  this.editarea = $('#editarea');
   this.article = $('#editarea article');
 
-  this.connectToolbar();
+  this.connectEvents();
   this.connectShortcuts();
-  this.connectDetectState();
-
-  this.connect('#save-button', 'click', 'saveArticle');
-  this.connect('#urlname-modal form', 'submit', 'saveUrlname');
-  this.connect('#draft-button', 'click', 'draft');
-  this.connect('#publish-button', 'click', 'publish');
 
   this.article.focus();
   this.clearFormat();
-  var _this = this;
-  this.connect(this.article, 'keyup', 'clearFormat');
-  this.article.on('keydown', function(event) {
-    // Stop Backspace when empty, avoid cursor flash
-    if (event.keyCode === 8) {
-      if (_this.isEmpty) {
-        event.preventDefault();
-      }
-    }
-  });
 };
 
 Editor.prototype = {
-  connect: function(id, type, method) {
+  events: {
+    'click #save-button': 'saveArticle',
+    'submit #urlname-modal form':  'saveUrlname',
+    'click #draft-button': 'draft',
+    'click #publish-button': 'publish',
+    'keyup #editarea article': 'keyup',
+    'keydown #editarea article': 'keydown',
+    'mouseup #editarea article': 'detectState',
+    'click #toolbar [data-command]': 'toolbarCommand'
+  },
+
+  connectEvents: function() {
     var _this = this;
-    $(id).on(type, function(event) {
-      event.preventDefault();
-      _this[method].call(_this);
+    $.each(this.events, function(key, method) {
+      var actions = key.split(' ');
+      var event = actions.shift();
+      var selector = actions.join(' ');
+      $(selector).on(event, function(event) {
+        _this[method].call(_this, event, this);
+      });
     });
   },
 
-  connectToolbar: function(events) {
-    var _this = this;
+  shortcuts: {
+    'ctrl+b': 'bold',
+    'ctrl+i': 'italic',
+    'ctrl+d': 'strikeThrough',
+    'ctrl+u': 'underline',
+    'ctrl+l': 'createLink',
+    'ctrl+shift+l': 'insertUnorderedList',
+    'ctrl+shift+o': 'insertOrderedList',
+    'ctrl+p': 'p',
+    'ctrl+1': 'h1',
+    'ctrl+2': 'h2',
+    'ctrl+3': 'h3',
+    'ctrl+4': 'h4',
+    'ctrl+k': 'code',
+    'ctrl+q': 'blockquote',
+    'ctrl+s': 'saveArticle'
+  },
 
-    _this.toolbar.on('click', '[data-command]', function(event) {
-      event.preventDefault();
-      _this[$(this).data('command')].call(_this);
-      _this.detectButton();
-      _this.detectBlocks();
+  connectShortcuts: function() {
+    var _this = this;
+    $.each(this.shortcuts, function(key, method) {
+      Mousetrap.bind(key, function(event) {
+        event.preventDefault();
+        _this[method].call(_this);
+      });
     });
   },
 
-  connectDetectState: function() {
-    var _this = this;
+  toolbarCommand: function(event, element) {
+    event.preventDefault();
+    this[$(element).data('command')].call(this);
+    this.detectButton();
+    this.detectBlocks();
+  },
 
-    _this.article.on('keyup mouseup', function() {
-      _this.detectButton();
-      _this.detectBlocks();
-    });
+  detectState: function() {
+    this.detectButton();
+    this.detectBlocks();
   },
 
   detectButton: function() {
@@ -84,34 +102,6 @@ Editor.prototype = {
       text = this.toolbar.find('#format-block [data-command]:first').text();
     }
     this.toolbar.find('#format-block .toolbar-botton').text(text);
-  },
-
-  shortcuts: {
-    'ctrl+b': 'bold',
-    'ctrl+i': 'italic',
-    'ctrl+d': 'strikeThrough',
-    'ctrl+u': 'underline',
-    'ctrl+l': 'createLink',
-    'ctrl+shift+l': 'insertUnorderedList',
-    'ctrl+shift+o': 'insertOrderedList',
-    'ctrl+p': 'p',
-    'ctrl+1': 'h1',
-    'ctrl+2': 'h2',
-    'ctrl+3': 'h3',
-    'ctrl+4': 'h4',
-    'ctrl+k': 'code',
-    'ctrl+q': 'blockquote',
-    'ctrl+s': 'saveArticle'
-  },
-
-  connectShortcuts: function() {
-    var _this = this;
-    $.each(this.shortcuts, function(key, action) {
-      Mousetrap.bind(key, function(event) {
-        event.preventDefault();
-        _this[action].call(_this);
-      });
-    });
   },
 
   bold: function() {
@@ -226,6 +216,15 @@ Editor.prototype = {
     document.execCommand(command, false, arg);
   },
 
+  keyup: function() {
+    this.clearFormat();
+    this.detectState();
+  },
+
+  keydown: function(event) {
+    this.stopEmptyBackspace(event);
+  },
+
   clearFormat: function() {
     // chrome is empty and firefox is <br>
     if (this.article.html() === '' || this.article.html() === '<br>') {
@@ -238,6 +237,15 @@ Editor.prototype = {
     }
 
     this.isEmpty = (this.article.html() === '<p><br></p>');
+  },
+
+  stopEmptyBackspace: function(event) {
+    // Stop Backspace when empty, avoid cursor flash
+    if (event.keyCode === 8) {
+      if (this.isEmpty) {
+        event.preventDefault();
+      }
+    }
   },
 
   articleId: function() {
