@@ -232,6 +232,11 @@ Editor.prototype = {
       this.p();
     }
 
+    // replace div to p
+    if (document.queryCommandValue('formatBlock') === 'div') {
+      this.p();
+    }
+
     this.isEmpty = (this.article.html() === '<p><br></p>');
   },
 
