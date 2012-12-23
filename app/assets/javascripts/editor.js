@@ -23,6 +23,7 @@ Editor.prototype = {
     'keyup #editarea article': 'keyup',
     'keydown #editarea article': 'keydown',
     'mouseup #editarea article': 'detectState',
+    'paste #editarea article': 'paste',
     'click #toolbar [data-command]': 'toolbarCommand'
   },
 
@@ -102,6 +103,20 @@ Editor.prototype = {
       text = this.toolbar.find('#format-block [data-command]:first').text();
     }
     this.toolbar.find('#format-block .toolbar-botton').text(text);
+  },
+
+  paste: function(event) {
+    if (event.originalEvent.clipboardData) {
+      event.preventDefault();
+      var text = event.originalEvent.clipboardData.getData('text/plain');
+      text = $.map(text.split("\n"), function(line) {
+        line = $.trim(line);
+        if (line !== '') {
+          return '<p>' + line + '</p>';
+        }
+      }).join('');
+      this.exec('insertHtml', text);
+    }
   },
 
   bold: function() {
