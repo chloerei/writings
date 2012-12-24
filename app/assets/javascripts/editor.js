@@ -189,6 +189,7 @@ Editor.prototype = {
     range.setEndAfter(end);
 
     if (range.cloneContents().querySelector('blockquote')) {
+      // remmove blockquote
       $(start).nextUntil(end.nextSibling).andSelf().each(function() {
         var node = $(this);
         if (node.prop('tagName') === 'BLOCKQUOTE') {
@@ -206,10 +207,12 @@ Editor.prototype = {
       selection.removeAllRanges();
       selection.addRange(range);
     } else {
+      // wrap blockquote
       var blockquote = document.createElement('blockquote');
       blockquote.appendChild(range.extractContents());
       range.insertNode(blockquote);
       selection.selectAllChildren(blockquote);
+      $('<p><br></p>').insertAfter(blockquote);
     }
   },
 
