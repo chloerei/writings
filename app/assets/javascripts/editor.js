@@ -106,17 +106,7 @@ Editor.prototype = {
   },
 
   paste: function(event) {
-    if (event.originalEvent.clipboardData) {
-      event.preventDefault();
-      var text = event.originalEvent.clipboardData.getData('text/plain');
-      text = $.map(text.split("\n"), function(line) {
-        line = $.trim(line);
-        if (line !== '') {
-          return '<p>' + line + '</p>';
-        }
-      }).join('');
-      this.exec('insertHtml', text);
-    }
+    this.dirty = true;
   },
 
   bold: function() {
@@ -234,6 +224,7 @@ Editor.prototype = {
   keyup: function() {
     this.clearFormat();
     this.detectState();
+    this.sanitize();
   },
 
   keydown: function(event) {
@@ -252,6 +243,91 @@ Editor.prototype = {
     }
 
     this.isEmpty = (this.article.html() === '<p><br></p>');
+  },
+
+  allowTags: ['p', 'br', 'img', 'a', 'b', 'i', 'strike', 'u', 'h1', 'h2', 'h3', 'h4', 'pre', 'code', 'ol', 'ul', 'li', 'blockquote'],
+
+  sanitize: function() {
+    var _this = this;
+    if (this.dirty) {
+      // replace div to p
+      while(this.article.find('div').length) {
+        this.convertDivToP();
+      }
+
+      // stript not allow tags
+      while(this.article.find(':not(' + this.allowTags.join() + ')').length) {
+        this.striptNotAllowTags();
+      }
+
+      // flatten block element
+      this.article.find('> :not(blockquote)').each(function() {
+        _this.flattenBlock(this);
+      });
+      this.article.find('> blockquote').find('> :not(blockquote)').each(function() {
+        _this.flattenBlock(this);
+      });
+
+      // remove style
+      this.article.find('[style]').each(function() {
+        $(this).attr('style', null);
+      });
+
+      // remove class
+      this.article.find('[class]').each(function() {
+        $(this).attr('class', null);
+      });
+
+      this.dirty = false;
+    }
+  },
+
+  convertDivToP: function() {
+    this.article.find('div').each(function() {
+      $(this).replaceWith($('<p></p>').html($(this).html()));
+    });
+  },
+
+  striptNotAllowTags: function() {
+    this.article.find(':not(' + this.allowTags.join() + ')').each(function() {
+      $(this).replaceWith($(this).html());
+    });
+  },
+
+  blockElementSelector: '> p, > h1, > h2, > h3, > h4',
+
+  flattenBlock: function(element) {
+    var _this = this;
+    var hasNoBlockContent = $(element).contents().filter(function() { return this.nodeType !== 1; }).length;
+    if (hasNoBlockContent) {
+      // stript block
+      this.flattenBlockStript(element);
+    } else {
+      // split block
+
+      // stript children
+      $(element).find(this.blockElementSelector).each(function() {
+        _this.flattenBlockStript.call(_this, this);
+      });
+
+      // replace with last child, and set other before
+      // not use replaceWith() for avoid cursor lose.
+      var last = $(element).find('> :last');
+      var other = $(element).find('> :not(:last)');
+      $(element).html(last.html()).before(other);
+    }
+  },
+
+  flattenBlockStript: function(element) {
+    while($(element).find(this.blockElementSelector).length) {
+      this.flattenBlockStriptExecute.call(this, element);
+    }
+  },
+
+  flattenBlockStriptExecute: function(element) {
+    $(element).find(this.blockElementSelector).each(function() {
+      $(this).replaceWith($(this).html());
+    });
   },
 
   stopEmptyBackspace: function(event) {
