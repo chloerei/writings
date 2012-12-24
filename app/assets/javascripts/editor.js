@@ -11,7 +11,7 @@ var Editor = function() {
   this.connectShortcuts();
 
   this.article.focus();
-  this.clearFormat();
+  this.initParagraph();
 };
 
 Editor.prototype = {
@@ -222,7 +222,7 @@ Editor.prototype = {
   },
 
   keyup: function() {
-    this.clearFormat();
+    this.initParagraph();
     this.detectState();
     this.sanitize();
   },
@@ -231,7 +231,7 @@ Editor.prototype = {
     this.stopEmptyBackspace(event);
   },
 
-  clearFormat: function() {
+  initParagraph: function() {
     // chrome is empty and firefox is <br>
     if (this.article.html() === '' || this.article.html() === '<br>') {
       this.p();
@@ -241,8 +241,6 @@ Editor.prototype = {
     if (document.queryCommandValue('formatBlock') === 'div') {
       this.p();
     }
-
-    this.isEmpty = (this.article.html() === '<p><br></p>');
   },
 
   allowTags: ['p', 'br', 'img', 'a', 'b', 'i', 'strike', 'u', 'h1', 'h2', 'h3', 'h4', 'pre', 'code', 'ol', 'ul', 'li', 'blockquote'],
@@ -333,7 +331,7 @@ Editor.prototype = {
   stopEmptyBackspace: function(event) {
     // Stop Backspace when empty, avoid cursor flash
     if (event.keyCode === 8) {
-      if (this.isEmpty) {
+      if (this.article.html() === '<p><br></p>') {
         event.preventDefault();
       }
     }
