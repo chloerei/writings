@@ -243,7 +243,12 @@ Editor.prototype = {
     }
   },
 
-  allowTags: ['p', 'br', 'img', 'a', 'b', 'i', 'strike', 'u', 'h1', 'h2', 'h3', 'h4', 'pre', 'code', 'ol', 'ul', 'li', 'blockquote'],
+  tagWhiteList: ['p', 'br', 'img', 'a', 'b', 'i', 'strike', 'u', 'h1', 'h2', 'h3', 'h4', 'pre', 'code', 'ol', 'ul', 'li', 'blockquote'],
+
+  attrWhiteList: {
+    a: ['href', 'title'],
+    img: ['src', 'title', 'alt']
+  },
 
   sanitize: function() {
     var _this = this;
@@ -254,7 +259,7 @@ Editor.prototype = {
       }
 
       // stript not allow tags
-      while(this.article.find(':not(' + this.allowTags.join() + ')').length) {
+      while(this.article.find(':not(' + this.tagWhiteList.join() + ')').length) {
         this.striptNotAllowTags();
       }
 
@@ -262,20 +267,33 @@ Editor.prototype = {
       this.article.find('> :not(blockquote)').each(function() {
         _this.flattenBlock(this);
       });
+      // blockquote as a document
       this.article.find('> blockquote').find('> :not(blockquote)').each(function() {
         _this.flattenBlock(this);
       });
 
-      // remove style
-      this.article.find('[style]').each(function() {
-        $(this).attr('style', null);
+      // remove all attribute not in attrWhiteList
+      var tags = $.map(this.attrWhiteList, function(tag) { return tag; });
+      this.article.find(':not(' + tags.join() + ')').each(function() {
+        $element = $(this);
+        $.each(this.attributes, function(i, attr) {
+          if (attr) {
+            $element.removeAttr(attr.name);
+          }
+        });
       });
 
-      // remove class
-      this.article.find('[class]').each(function() {
-        $(this).attr('class', null);
+      // remove attributes not in white list for attrWhiteList
+      $.each(this.attrWhiteList, function(tag, attrList) {
+        _this.article.find(tag).each(function() {
+          $element = $(this);
+          $.each(this.attributes, function(i, attr) {
+            if (attr && ($.inArray(attr.name, attrList) == -1)) {
+              $element.removeAttr(attr.name);
+            }
+          });
+        });
       });
-
       this.dirty = false;
     }
   },
@@ -287,7 +305,7 @@ Editor.prototype = {
   },
 
   striptNotAllowTags: function() {
-    this.article.find(':not(' + this.allowTags.join() + ')').each(function() {
+    this.article.find(':not(' + this.tagWhiteList.join() + ')').each(function() {
       $(this).replaceWith($(this).html());
     });
   },
