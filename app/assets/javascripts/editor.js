@@ -140,40 +140,32 @@ Editor.prototype = {
     }
   },
 
-  justifyLeft: function() {
-    this.exec('justifyLeft');
-  },
-
-  justifyRight: function() {
-    this.exec('justifyRight');
-  },
-
-  justifyCenter: function() {
-    this.exec('justifyCenter');
-  },
-
-  justifyFull: function() {
-    this.exec('justifyFull');
-  },
-
   p: function() {
     this.formatBlock('p');
   },
 
+  formatHeader: function(type) {
+    if (document.queryCommandValue('formatBlock') === type) {
+      this.p();
+    } else {
+      this.formatBlock(type);
+    }
+  },
+
   h1: function() {
-    this.formatBlock('h1');
+    this.formatHeader('h1');
   },
 
   h2: function() {
-    this.formatBlock('h2');
+    this.formatHeader('h2');
   },
 
   h3: function() {
-    this.formatBlock('h3');
+    this.formatHeader('h3');
   },
 
   h4: function() {
-    this.formatBlock('h4');
+    this.formatHeader('h4');
   },
 
   code: function() {
