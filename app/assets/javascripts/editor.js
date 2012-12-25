@@ -212,8 +212,8 @@ Editor.prototype = {
         $code = $('<code>').html(range.extractContents());
         range.insertNode($code[0]);
       }
-      selection.selectAllChildren($code[0]);
       this.striptCode($code);
+      selection.selectAllChildren($code[0]);
     }
   },
 
