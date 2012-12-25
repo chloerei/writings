@@ -204,17 +204,20 @@ Editor.prototype = {
         $code = $('<code>').html(range.extractContents());
         $pre = $('<pre>').html($code);
         range.insertNode($pre[0]);
+        if ($pre.next().length === 0) {
+          $('<p><br></p>').insertAfter($pre);
+        }
       } else {
         // inline code
         $code = $('<code>').html(range.extractContents());
         range.insertNode($code[0]);
       }
       selection.selectAllChildren($code[0]);
-      this.clearCode($code);
+      this.striptCode($code);
     }
   },
 
-  clearCode: function(code) {
+  striptCode: function(code) {
     code.find('p, h1, h2, h3, h4').each(function() {
       $(this).replaceWith($(this).text() + "\n");
     }).children().each(function() {
@@ -323,11 +326,11 @@ Editor.prototype = {
       }
 
       // flatten block element
-      this.article.find('> :not(blockquote)').each(function() {
+      this.article.find('> :not(blockquote, pre)').each(function() {
         _this.flattenBlock(this);
       });
       // blockquote as a document
-      this.article.find('> blockquote').find('> :not(blockquote)').each(function() {
+      this.article.find('> blockquote').find('> :not(blockquote, pre)').each(function() {
         _this.flattenBlock(this);
       });
 
@@ -359,13 +362,15 @@ Editor.prototype = {
 
   convertDivToP: function() {
     this.article.find('div').each(function() {
-      $(this).replaceWith($('<p></p>').html($(this).html()));
+      // don't use replaceWith, it flash cursor
+      $(this).before($(this).html().wrap('<p>')).remove();
     });
   },
 
   striptNotAllowTags: function() {
     this.article.find(':not(' + this.tagWhiteList.join() + ')').each(function() {
-      $(this).replaceWith($(this).html());
+      // don't use replaceWith, it flash cursor
+      $(this).before($(this).html()).remove();
     });
   },
 
@@ -385,11 +390,8 @@ Editor.prototype = {
         _this.flattenBlockStript.call(_this, this);
       });
 
-      // replace with last child, and set other before
-      // not use replaceWith() for avoid cursor lose.
-      var last = $(element).find('> :last');
-      var other = $(element).find('> :not(:last)');
-      $(element).html(last.html()).before(other);
+      // don't replaceWith() for avoid cursor lose.
+      $(element).before($(element).html()).remove();
     }
   },
 
