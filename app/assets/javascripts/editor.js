@@ -175,36 +175,36 @@ Editor.prototype = {
   blockquote: function() {
     var selection = window.getSelection();
     var range = selection.getRangeAt(0);
-    var start = $(range.startContainer).closest('article > *')[0];
-    var end = $(range.endContainer).closest('article > *')[0];
-    range.setStartBefore(start);
-    range.setEndAfter(end);
+    var rangeAncestor = range.commonAncestorContainer;
+    var start, end;
 
-    if (range.cloneContents().querySelector('blockquote')) {
+    var $blockquote = $(rangeAncestor).closest('blockquote');
+    if ($blockquote.length) {
       // remmove blockquote
-      $(start).nextUntil(end.nextSibling).andSelf().each(function() {
-        var node = $(this);
-        if (node.prop('tagName') === 'BLOCKQUOTE') {
-          if (this === start) {
-            start = node.children()[0];
-          }
-          if (this === end) {
-            end = node.children().last()[0];
-          }
-          node.replaceWith(node.children());
-        }
-      });
+      var $content = $blockquote.children();
+      start = $content.first()[0];
+      end = $content.last()[0];
+
+      $blockquote.replaceWith($content);
       range.setStart(start, 0);
       range.setEnd(end, end.childNodes.length);
       selection.removeAllRanges();
       selection.addRange(range);
     } else {
       // wrap blockquote
-      var blockquote = document.createElement('blockquote');
-      blockquote.appendChild(range.extractContents());
-      range.insertNode(blockquote);
-      selection.selectAllChildren(blockquote);
-      $('<p><br></p>').insertAfter(blockquote);
+      start = $(range.startContainer).closest('article > *')[0];
+      end = $(range.endContainer).closest('article > *')[0];
+      range.setStartBefore(start);
+      range.setEndAfter(end);
+      $blockquote = $('<blockquote>');
+      $blockquote.html(range.extractContents()).find('blockquote').each(function() {
+        $(this).replaceWith($(this).html());
+      });
+      range.insertNode($blockquote[0]);
+      selection.selectAllChildren($blockquote[0]);
+      if ($blockquote.next().length === 0) {
+        $('<p><br></p>').insertAfter($blockquote);
+      }
     }
   },
 
