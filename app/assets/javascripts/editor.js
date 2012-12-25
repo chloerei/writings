@@ -182,6 +182,9 @@ Editor.prototype = {
         // pre code
         this.splitCode($code);
         $contents = $code.contents();
+        if ($contents.length === 0) {
+          $contents = $('<p><br></p>');
+        }
         $code.closest('pre').replaceWith($contents);
         this.selectContents($contents);
       } else {
@@ -205,7 +208,7 @@ Editor.prototype = {
         $pre = $('<pre>').html($code);
         range.insertNode($pre[0]);
         if ($pre.next().length === 0) {
-          $('<p><br></p>').insertAfter($pre);
+          $pre.after('<p><br></p>');
         }
       } else {
         // inline code
@@ -240,7 +243,6 @@ Editor.prototype = {
     var end = contents.last()[0];
     range.setStart(start, 0);
     range.setEnd(end, end.childNodes.length || end.length); // text node don't have childNodes
-    console.log(range);
     selection.removeAllRanges();
     selection.addRange(range);
   },
@@ -270,7 +272,7 @@ Editor.prototype = {
       range.insertNode($blockquote[0]);
       selection.selectAllChildren($blockquote[0]);
       if ($blockquote.next().length === 0) {
-        $('<p><br></p>').insertAfter($blockquote);
+        $blockquote.after('<p><br></p>');
       }
     }
   },
