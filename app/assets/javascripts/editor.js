@@ -169,7 +169,77 @@ Editor.prototype = {
   },
 
   code: function() {
-    this.formatBlock('code');
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
+    var rangeAncestor = range.commonAncestorContainer;
+    var start, end, $contents;
+
+    var $code = $(rangeAncestor).closest('code');
+
+    if ($code.length) {
+      // remove code
+      if ($code.closest('pre').length) {
+        // pre code
+        this.splitCode($code);
+        $contents = $code.contents();
+        $code.closest('pre').replaceWith($contents);
+        this.selectContents($contents);
+      } else {
+        // inline code
+        $contents = $code.contents();
+        $code.replaceWith($code.contents());
+        this.selectContents($contents);
+      }
+    } else {
+      // wrap code
+      var isEmptyRange = (range.toString() === '');
+      var isWholeBlock = (range.toString() === $(range.startContainer).closest('p, h1, h2, h3, h4').text());
+      var hasBlock = (range.cloneContents().querySelector('p, h1, h2, h3, h4'));
+      if (isEmptyRange || isWholeBlock || hasBlock) {
+        // pre code
+        start = $(range.startContainer).closest('article > *')[0];
+        end = $(range.endContainer).closest('article > *')[0];
+        range.setStartBefore(start);
+        range.setEndAfter(end);
+        $code = $('<code>').html(range.extractContents());
+        $pre = $('<pre>').html($code);
+        range.insertNode($pre[0]);
+      } else {
+        // inline code
+        $code = $('<code>').html(range.extractContents());
+        range.insertNode($code[0]);
+      }
+      selection.selectAllChildren($code[0]);
+      this.clearCode($code);
+    }
+  },
+
+  clearCode: function(code) {
+    code.find('p, h1, h2, h3, h4').each(function() {
+      $(this).replaceWith($(this).text() + "\n");
+    }).children().each(function() {
+      $(this).replaceWith($(this).text());
+    });
+  },
+
+  splitCode: function(code) {
+    code.html($.map(code.text().split("\n"), function(line) {
+      if (line !== '') {
+        return $('<p>').text(line);
+      }
+    }));
+  },
+
+  selectContents: function(contents) {
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
+    var start = contents.first()[0];
+    var end = contents.last()[0];
+    range.setStart(start, 0);
+    range.setEnd(end, end.childNodes.length || end.length); // text node don't have childNodes
+    console.log(range);
+    selection.removeAllRanges();
+    selection.addRange(range);
   },
 
   blockquote: function() {
@@ -181,15 +251,9 @@ Editor.prototype = {
     var $blockquote = $(rangeAncestor).closest('blockquote');
     if ($blockquote.length) {
       // remmove blockquote
-      var $content = $blockquote.children();
-      start = $content.first()[0];
-      end = $content.last()[0];
-
-      $blockquote.replaceWith($content);
-      range.setStart(start, 0);
-      range.setEnd(end, end.childNodes.length);
-      selection.removeAllRanges();
-      selection.addRange(range);
+      var $contents = $blockquote.contents();
+      $blockquote.replaceWith($contents);
+      this.selectContents($contents);
     } else {
       // wrap blockquote
       start = $(range.startContainer).closest('article > *')[0];

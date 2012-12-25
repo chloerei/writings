@@ -44,6 +44,12 @@ article {
     color: #555;
   }
 
+  p code {
+    margin: 0 5px;
+    padding: 0 5px;
+    background-color: #eee;
+  }
+
   :first-child {
     margin-top: 0;
   }
