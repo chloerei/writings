@@ -12,6 +12,8 @@ var Editor = function() {
 
   this.article.focus();
   this.initParagraph();
+
+  this.exec('defaultParagraphSeparator', 'p');
 };
 
 Editor.prototype = {
@@ -324,11 +326,6 @@ Editor.prototype = {
   initParagraph: function() {
     // chrome is empty and firefox is <br>
     if (this.article.html() === '' || this.article.html() === '<br>') {
-      this.p();
-    }
-
-    // replace div to p
-    if (document.queryCommandValue('formatBlock') === 'div') {
       this.p();
     }
   },
