@@ -292,7 +292,33 @@ Editor.prototype = {
   },
 
   keydown: function(event) {
-    this.stopEmptyBackspace(event);
+    switch (event.keyCode) {
+      case 8: // Backspace
+        this.backspcae(event);
+        break;
+      case 13: // Enter
+        this.enter(event);
+        break;
+    }
+  },
+
+  backspcae: function(event) {
+    // Stop Backspace when empty, avoid cursor flash
+    if (this.article.html() === '<p><br></p>') {
+      event.preventDefault();
+    }
+  },
+
+  enter: function(event) {
+    // If in pre code, insert \n
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
+    var rangeAncestor = range.commonAncestorContainer;
+
+    if ($(rangeAncestor).closest('pre').length) {
+      event.preventDefault();
+      this.exec('insertHTML', "\n");
+    }
   },
 
   initParagraph: function() {
@@ -407,15 +433,6 @@ Editor.prototype = {
     $(element).find(this.blockElementSelector).each(function() {
       $(this).replaceWith($(this).html());
     });
-  },
-
-  stopEmptyBackspace: function(event) {
-    // Stop Backspace when empty, avoid cursor flash
-    if (event.keyCode === 8) {
-      if (this.article.html() === '<p><br></p>') {
-        event.preventDefault();
-      }
-    }
   },
 
   articleId: function() {
