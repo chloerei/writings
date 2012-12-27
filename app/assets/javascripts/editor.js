@@ -366,6 +366,16 @@ Editor.prototype = {
   sanitize: function() {
     var _this = this;
     if (this.dirty) {
+      // replace div to p
+      while(this.article.find('div').length) {
+        this.convertDivToP();
+      }
+
+      // stript not allow tags
+      while(this.article.find(':not(' + this.tagWhiteList.join() + ')').length) {
+        this.striptNotAllowTags();
+      }
+
       // flatten block element
       this.article.find('> :not(blockquote, pre)').each(function() {
         _this.flattenBlock(this);
@@ -402,31 +412,19 @@ Editor.prototype = {
         });
       });
 
-      // replace div to p
-      while(this.article.find('div').length) {
-        this.convertDivToP();
-      }
-
-      // stript not allow tags
-      while(this.article.find(':not(' + this.tagWhiteList.join() + ')').length) {
-        this.striptNotAllowTags();
-      }
-
       this.dirty = false;
     }
   },
 
   convertDivToP: function() {
     this.article.find('div').each(function() {
-      // don't use replaceWith, it flash cursor
-      $(this).before($('<p>').html($(this).contents())).remove();
+      $(this).replaceWith($('<p>').html($(this).html()));
     });
   },
 
   striptNotAllowTags: function() {
     this.article.find(':not(' + this.tagWhiteList.join() + ')').each(function() {
-      // don't use replaceWith, it flash cursor
-      $(this).before($(this).contents()).remove();
+      $(this).replaceWith($(this).html());
     });
   },
 
@@ -448,7 +446,7 @@ Editor.prototype = {
       });
 
       // don't replaceWith() for avoid cursor lose.
-      $(element).before($(element).html()).remove();
+      $(element).replaceWith($(element).html());
     }
   },
 
