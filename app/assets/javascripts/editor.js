@@ -317,9 +317,20 @@ Editor.prototype = {
     var range = selection.getRangeAt(0);
     var rangeAncestor = range.commonAncestorContainer;
 
-    if ($(rangeAncestor).closest('pre').length) {
+    var $pre = $(rangeAncestor).closest('pre');
+    if ($pre.length) {
       event.preventDefault();
-      this.exec('insertHTML', "\n");
+      range.deleteContents();
+      var node = document.createTextNode("\n");
+      range.insertNode(node);
+      // keep two \n at the end, fix webkit eat \n issues.
+      if (! /\n\n$/m.test($pre.text())) {
+        $pre.find('code').append(document.createTextNode("\n"));
+      }
+      range.setStartAfter(node);
+      range.setEndAfter(node);
+      selection.removeAllRanges();
+      selection.addRange(range);
     }
   },
 
