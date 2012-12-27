@@ -321,10 +321,12 @@ Editor.prototype = {
     if ($pre.length) {
       event.preventDefault();
       range.deleteContents();
+      var isLastLine = ($pre.find('code').contents().last()[0] === range.endContainer);
+      var isEnd = (range.endContainer.length === range.endOffset);
       var node = document.createTextNode("\n");
       range.insertNode(node);
       // keep two \n at the end, fix webkit eat \n issues.
-      if (! /\n\n$/m.test($pre.text())) {
+      if (isLastLine && isEnd) {
         $pre.find('code').append(document.createTextNode("\n"));
       }
       range.setStartAfter(node);
