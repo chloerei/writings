@@ -303,7 +303,10 @@ Editor.prototype = {
   keyup: function() {
     this.initParagraph();
     this.detectState();
-    this.sanitize();
+    if (this.dirty) {
+      this.sanitize();
+      this.dirty = false;
+    }
   },
 
   keydown: function(event) {
@@ -365,55 +368,51 @@ Editor.prototype = {
 
   sanitize: function() {
     var _this = this;
-    if (this.dirty) {
-      // replace div to p
-      while(this.editable.find('div').length) {
-        this.convertDivToP();
-      }
+    // replace div to p
+    while(this.editable.find('div').length) {
+      this.convertDivToP();
+    }
 
-      // stript not allow tags
-      while(this.editable.find(':not(' + this.tagWhiteList.join() + ')').length) {
-        this.striptNotAllowTags();
-      }
+    // stript not allow tags
+    while(this.editable.find(':not(' + this.tagWhiteList.join() + ')').length) {
+      this.striptNotAllowTags();
+    }
 
-      // flatten block element
-      this.editable.find(this.blockElementSelector).each(function() {
-        _this.flattenBlock(this);
-      });
-      // blockquote as a document
-      this.editable.find('> blockquote').find(this.blockElementSelector).each(function() {
-        _this.flattenBlock(this);
-      });
-      // stript code
-      this.editable.find('code').each(function() {
-        _this.striptCode(this);
-      });
+    // flatten block element
+    this.editable.find(this.blockElementSelector).each(function() {
+      _this.flattenBlock(this);
+    });
+    // blockquote as a document
+    this.editable.find('> blockquote').find(this.blockElementSelector).each(function() {
+      _this.flattenBlock(this);
+    });
+    // stript code
+    this.editable.find('code').each(function() {
+      _this.striptCode(this);
+    });
 
-      // remove all attribute not in attrWhiteList
-      var tags = $.map(this.attrWhiteList, function(attrs, tag) { return tag; });
-      this.editable.find(':not(' + tags.join() + ')').each(function() {
+    // remove all attribute not in attrWhiteList
+    var tags = $.map(this.attrWhiteList, function(attrs, tag) { return tag; });
+    this.editable.find(':not(' + tags.join() + ')').each(function() {
+      $element = $(this);
+      $.each(this.attributes, function(i, attr) {
+        if (attr) {
+          $element.removeAttr(attr.name);
+        }
+      });
+    });
+
+    // remove attributes not in white list for attrWhiteList
+    $.each(this.attrWhiteList, function(tag, attrList) {
+      _this.editable.find(tag).each(function() {
         $element = $(this);
         $.each(this.attributes, function(i, attr) {
-          if (attr) {
+          if (attr && ($.inArray(attr.name, attrList) == -1)) {
             $element.removeAttr(attr.name);
           }
         });
       });
-
-      // remove attributes not in white list for attrWhiteList
-      $.each(this.attrWhiteList, function(tag, attrList) {
-        _this.editable.find(tag).each(function() {
-          $element = $(this);
-          $.each(this.attributes, function(i, attr) {
-            if (attr && ($.inArray(attr.name, attrList) == -1)) {
-              $element.removeAttr(attr.name);
-            }
-          });
-        });
-      });
-
-      this.dirty = false;
-    }
+    });
   },
 
   convertDivToP: function() {
