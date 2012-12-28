@@ -37,9 +37,31 @@ test("sanitize p", function() {
   );
 });
 
-test("div to p", function() {
+test("sanitize div to p", function() {
   sanitizeTest(
     '<div>text</div>',
+    '<p>text</p>'
+  );
+});
+
+test("sanitize stript not allow tags", function() {
+  sanitizeTest(
+    '<p>text<table></table></p>',
+    '<p>text</p>'
+  );
+});
+
+test("sanitize code", function() {
+  // stript code
+  sanitizeTest(
+    '<code>code1<code>code2</code></code>',
+    '<code>code1code2</code>'
+  );
+});
+
+test("sanitize attr", function() {
+  sanitizeTest(
+    '<p style="font-weight: bold">text</p>',
     '<p>text</p>'
   );
 });
