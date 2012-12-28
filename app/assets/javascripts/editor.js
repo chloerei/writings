@@ -390,7 +390,7 @@ Editor.prototype = {
       });
 
       // remove all attribute not in attrWhiteList
-      var tags = $.map(this.attrWhiteList, function(tag) { return tag; });
+      var tags = $.map(this.attrWhiteList, function(attrs, tag) { return tag; });
       this.article.find(':not(' + tags.join() + ')').each(function() {
         $element = $(this);
         $.each(this.attributes, function(i, attr) {
