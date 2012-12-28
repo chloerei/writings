@@ -1,0 +1,12 @@
+doctype 5
+html
+  head
+    title Unit Test Runner
+    = stylesheet_link_tag "qunit"
+    = stylesheet_link_tag "test_helper"
+    = javascript_include_tag "qunit"
+    = javascript_include_tag "test_helper"
+    = csrf_meta_tags
+  body
+    #qunit
+    #qunit-fixture

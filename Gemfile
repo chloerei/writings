@@ -33,4 +33,5 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'quiet_assets'
+  gem 'qunit-rails'
 end

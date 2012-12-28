@@ -106,6 +106,8 @@ GEM
       slop (~> 3.3.1)
     quiet_assets (1.0.1)
       railties (~> 3.1)
+    qunit-rails (0.0.2)
+      railties (~> 3.2.3)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -185,6 +187,7 @@ DEPENDENCIES
   mongoid
   mousetrap-rails
   quiet_assets
+  qunit-rails
   rack-livereload
   rails (= 3.2.8)
   rails-i18n
