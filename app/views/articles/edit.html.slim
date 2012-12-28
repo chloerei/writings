@@ -1,80 +1,81 @@
 doctype 5
-head
-  title = 'Pubish'
-  = javascript_include_tag "application"
-  = javascript_include_tag 'editor'
-  = stylesheet_link_tag "application"
-  = csrf_meta_tags
-body
-  #topbar
-    .editor-container
-      header#editor-header
-        ul.top-nav
-          li= link_to @article.book.name, @article.book
+html
+  head
+    title = 'Pubish'
+    = javascript_include_tag "application"
+    = javascript_include_tag "editor"
+    = stylesheet_link_tag "application"
+    = csrf_meta_tags
+  body id="editor-page"
+    #topbar
+      .editor-container
+        header#editor-header
+          ul.top-nav
+            li= link_to @article.book.name, @article.book
+            li
+              span.urlname.editable title="click to edit" data-toggle-modal="#urlname-modal"
+                = @article.urlname
+              span.preview
+                = link_to '#' do
+                  i.icon-external-link
+          .top-buttons
+            .button-group
+              = link_to 'Draft', '#', :class => ['button', (@article.publish? ? nil : 'button-actived')], :id => 'draft-button'
+              = link_to 'Publish', '#', :class => ['button', (@article.publish? ? 'button-actived' : nil)], :id => 'publish-button'
+            = link_to 'Save', '#', :class => 'button no-margin', :id => 'save-button'
+    #toolbar
+      .editor-container
+        ul.toolbar-bottons
           li
-            span.urlname.editable title="click to edit" data-toggle-modal="#urlname-modal"
-              = @article.urlname
-            span.preview
-              = link_to '#' do
-                i.icon-external-link
-        .top-buttons
-          .button-group
-            = link_to 'Draft', '#', :class => ['button', (@article.publish? ? nil : 'button-actived')], :id => 'draft-button'
-            = link_to 'Publish', '#', :class => ['button', (@article.publish? ? 'button-actived' : nil)], :id => 'publish-button'
-          = link_to 'Save', '#', :class => 'button no-margin', :id => 'save-button'
-  #toolbar
-    .editor-container
-      ul.toolbar-bottons
-        li
-          a class='toolbar-botton icon-bold' href='#' data-command='bold'
-        li
-          a class='toolbar-botton icon-italic' href='#' data-command='italic'
-        li
-          a class='toolbar-botton icon-strikethrough' href='#' data-command='strikeThrough'
-        li
-          a class='toolbar-botton icon-underline' href='#' data-command='underline'
-        li
-          a class='toolbar-botton icon-link' href='#' data-command='createLink'
-        li
-          a class='toolbar-botton icon-list-ol' href='#' data-command='insertOrderedList'
-        li
-          a class='toolbar-botton icon-list-ul' href='#' data-command='insertUnorderedList'
-        li
-          #format-block.dropdown
-            a.dropdown-toggle.toolbar-botton href="#" Normal text
-            ul.dropdown-menu
-              li
-                a href="#" data-command="p"
-                  p Normal text
-              li
-                a href="#" data-command="h1"
-                  h1 H1
-              li
-                a href="#" data-command="h2"
-                  h2 H2
-              li
-                a href="#" data-command="h3"
-                  h3 H3
-              li
-                a href="#" data-command="h4"
-                  h4 H4
-              li
-                a href="#" data-command="code"
-                  pre Code
-              li
-                a href="#" data-command="blockquote"
-                  blockquote Blockquote
-  #editarea
-    .editor-container
-      article contentEditable="true" data-article-id=(@article.id) data-book-urlname=(@article.book.urlname)
-        = sanitize @article.body
-  #urlname-modal.modal-dialog
-    span.modal-close
-      i.icon-remove
-    = form_for @article do |f|
-      .field
-        = f.label :urlname
-        = f.text_field :urlname
-      .field
-        = f.submit 'Save', :class => 'button'
-        = f.submit 'Cancel', :class => 'button modal-close'
+            a class='toolbar-botton icon-bold' href='#' data-command='bold'
+          li
+            a class='toolbar-botton icon-italic' href='#' data-command='italic'
+          li
+            a class='toolbar-botton icon-strikethrough' href='#' data-command='strikeThrough'
+          li
+            a class='toolbar-botton icon-underline' href='#' data-command='underline'
+          li
+            a class='toolbar-botton icon-link' href='#' data-command='createLink'
+          li
+            a class='toolbar-botton icon-list-ol' href='#' data-command='insertOrderedList'
+          li
+            a class='toolbar-botton icon-list-ul' href='#' data-command='insertUnorderedList'
+          li
+            #format-block.dropdown
+              a.dropdown-toggle.toolbar-botton href="#" Normal text
+              ul.dropdown-menu
+                li
+                  a href="#" data-command="p"
+                    p Normal text
+                li
+                  a href="#" data-command="h1"
+                    h1 H1
+                li
+                  a href="#" data-command="h2"
+                    h2 H2
+                li
+                  a href="#" data-command="h3"
+                    h3 H3
+                li
+                  a href="#" data-command="h4"
+                    h4 H4
+                li
+                  a href="#" data-command="code"
+                    pre Code
+                li
+                  a href="#" data-command="blockquote"
+                    blockquote Blockquote
+    #editarea
+      .editor-container
+        article contentEditable="true" data-article-id=(@article.id) data-book-urlname=(@article.book.urlname)
+          = sanitize @article.body
+    #urlname-modal.modal-dialog
+      span.modal-close
+        i.icon-remove
+      = form_for @article do |f|
+        .field
+          = f.label :urlname
+          = f.text_field :urlname
+        .field
+          = f.submit 'Save', :class => 'button'
+          = f.submit 'Cancel', :class => 'button modal-close'

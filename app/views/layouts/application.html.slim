@@ -1,23 +1,24 @@
 doctype 5
-head
-  title = 'Pubish'
-  = javascript_include_tag "application"
-  = stylesheet_link_tag "application"
-  = yield :head
-  = csrf_meta_tags
-body
-  #topbar
-    .container
-      header#site-header
-        ul.top-nav
-          li
-            = link_to 'Publish', root_path
-            = yield :top_nav
-        .login-nav
-          - if logined?
-            = link_to 'Logout', logout_path, :method => :delete
-          - else
-            = link_to 'Login', login_path
-            = ' / '
-            = link_to 'Signup', signup_path
-  = yield
+html
+  head
+    title = 'Pubish'
+    = javascript_include_tag "application"
+    = stylesheet_link_tag "application"
+    = yield :head
+    = csrf_meta_tags
+  body
+    #topbar
+      .container
+        header#site-header
+          ul.top-nav
+            li
+              = link_to 'Publish', root_path
+              = yield :top_nav
+          .login-nav
+            - if logined?
+              = link_to 'Logout', logout_path, :method => :delete
+            - else
+              = link_to 'Login', login_path
+              = ' / '
+              = link_to 'Signup', signup_path
+    = yield

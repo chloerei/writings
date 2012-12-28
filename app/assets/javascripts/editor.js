@@ -3,14 +3,14 @@ Mousetrap.stopCallback = function(e, element, combo) {
   return element.tagName == 'INPUT' || element.tagName == 'SELECT' || element.tagName == 'TEXTAREA';
 };
 
-var Editor = function() {
-  this.toolbar = $('#toolbar');
-  this.article = $('#editarea article');
+var Editor = function(options) {
+  this.toolbar = $(options.toolbar);
+  this.editable = $(options.editable);
 
   this.connectEvents();
   this.connectShortcuts();
 
-  this.article.focus();
+  this.editable.focus();
   this.initParagraph();
 
   this.exec('defaultParagraphSeparator', 'p');
@@ -319,7 +319,7 @@ Editor.prototype = {
 
   backspcae: function(event) {
     // Stop Backspace when empty, avoid cursor flash
-    if (this.article.html() === '<p><br></p>') {
+    if (this.editable.html() === '<p><br></p>') {
       event.preventDefault();
     }
   },
@@ -351,7 +351,7 @@ Editor.prototype = {
 
   initParagraph: function() {
     // chrome is empty and firefox is <br>
-    if (this.article.html() === '' || this.article.html() === '<br>') {
+    if (this.editable.html() === '' || this.editable.html() === '<br>') {
       this.p();
     }
   },
@@ -367,31 +367,31 @@ Editor.prototype = {
     var _this = this;
     if (this.dirty) {
       // replace div to p
-      while(this.article.find('div').length) {
+      while(this.editable.find('div').length) {
         this.convertDivToP();
       }
 
       // stript not allow tags
-      while(this.article.find(':not(' + this.tagWhiteList.join() + ')').length) {
+      while(this.editable.find(':not(' + this.tagWhiteList.join() + ')').length) {
         this.striptNotAllowTags();
       }
 
       // flatten block element
-      this.article.find(this.blockElementSelector).each(function() {
+      this.editable.find(this.blockElementSelector).each(function() {
         _this.flattenBlock(this);
       });
       // blockquote as a document
-      this.article.find('> blockquote').find(this.blockElementSelector).each(function() {
+      this.editable.find('> blockquote').find(this.blockElementSelector).each(function() {
         _this.flattenBlock(this);
       });
       // stript code
-      this.article.find('code').each(function() {
+      this.editable.find('code').each(function() {
         _this.striptCode(this);
       });
 
       // remove all attribute not in attrWhiteList
       var tags = $.map(this.attrWhiteList, function(attrs, tag) { return tag; });
-      this.article.find(':not(' + tags.join() + ')').each(function() {
+      this.editable.find(':not(' + tags.join() + ')').each(function() {
         $element = $(this);
         $.each(this.attributes, function(i, attr) {
           if (attr) {
@@ -402,7 +402,7 @@ Editor.prototype = {
 
       // remove attributes not in white list for attrWhiteList
       $.each(this.attrWhiteList, function(tag, attrList) {
-        _this.article.find(tag).each(function() {
+        _this.editable.find(tag).each(function() {
           $element = $(this);
           $.each(this.attributes, function(i, attr) {
             if (attr && ($.inArray(attr.name, attrList) == -1)) {
@@ -417,13 +417,13 @@ Editor.prototype = {
   },
 
   convertDivToP: function() {
-    this.article.find('div').each(function() {
+    this.editable.find('div').each(function() {
       $(this).replaceWith($('<p>').html($(this).html()));
     });
   },
 
   striptNotAllowTags: function() {
-    this.article.find(':not(' + this.tagWhiteList.join() + ')').each(function() {
+    this.editable.find(':not(' + this.tagWhiteList.join() + ')').each(function() {
       $(this).replaceWith($(this).html());
     });
   },
@@ -463,7 +463,7 @@ Editor.prototype = {
   },
 
   articleId: function() {
-    return this.article.data('article-id');
+    return this.editable.data('article-id');
   },
 
   saveArticle: function() {
@@ -514,15 +514,19 @@ Editor.prototype = {
   },
 
   extractTitle: function() {
-    return this.article.find('h1').text();
+    return this.editable.find('h1').text();
   },
 
   extractBody: function() {
-    return this.article.html();
+    return this.editable.html();
   }
 };
 
-var editor;
 $(function() {
-  editor = new Editor();
+  if ($('#editor-page').length) {
+    window.editor = new Editor({
+      toolbar: '#editarea .toolbar',
+      editable: '#editarea article'
+    });
+  }
 });
