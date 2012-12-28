@@ -377,11 +377,11 @@ Editor.prototype = {
       }
 
       // flatten block element
-      this.article.find('> :not(blockquote, pre)').each(function() {
+      this.article.find(this.blockElementSelector).each(function() {
         _this.flattenBlock(this);
       });
       // blockquote as a document
-      this.article.find('> blockquote').find('> :not(blockquote, pre)').each(function() {
+      this.article.find('> blockquote').find(this.blockElementSelector).each(function() {
         _this.flattenBlock(this);
       });
       // stript code
