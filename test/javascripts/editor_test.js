@@ -96,4 +96,10 @@ test("sanitize li", function() {
     '<ul><li><h1>header</h1><span>span<span></li></ul>',
     '<ul><li>headerspan</li></ul>'
   );
+
+  // allow nested list
+  sanitizeTest(
+    '<ul><li>level one</li><li><ul><li>level two</li></ul></li></ul>',
+    '<ul><li>level one</li><li><ul><li>level two</li></ul></li></ul>'
+  );
 });

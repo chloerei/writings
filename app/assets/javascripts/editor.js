@@ -490,7 +490,7 @@ Editor.prototype = {
       }
 
       // stript other element
-      while ($li.find(':not(a, img, br)').length) {
+      while ($li.find(':not(a, img, br, ul, ol, li)').length) {
         _this.sanitizeListOther(this);
       }
     });
