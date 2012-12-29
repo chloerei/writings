@@ -2,7 +2,6 @@ Editor.UndoManager = function(editable) {
   this.editable = $(editable);
   this.undoStack = [];
   this.redoStack = [];
-  this.save();
 };
 
 Editor.UndoManager.prototype = {
