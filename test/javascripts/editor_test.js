@@ -96,4 +96,10 @@ test("sanitize li", function() {
     '<ul><li><h1>header</h1><span>span<span></li></ul>',
     '<ul><li>headerspan</li></ul>'
   );
+
+  // stript nested li
+  sanitizeTest(
+    '<ul><li><ul><li>header</li></ul></li></ul>',
+    '<ul><li>header</li></ul>'
+  );
 });
