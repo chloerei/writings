@@ -57,11 +57,29 @@ test("sanitize code", function() {
     '<code>code1<code>code2</code></code>',
     '<code>code1code2</code>'
   );
+
+  // stript p to line
+  sanitizeTest(
+    '<code><p>line one</p><p>line two</p></code>',
+    '<code>line one\nline two\n</code>'
+  );
+
+  // stript other tags
+  sanitizeTest(
+    '<code><span>text</span></code>',
+    '<code>text</code>'
+  );
 });
 
 test("sanitize attr", function() {
   sanitizeTest(
-    '<p style="font-weight: bold">text</p>',
+    '<p style="font-weight: bold;">text</p>',
     '<p>text</p>'
+  );
+
+  // allow attr in white list
+  sanitizeTest(
+    '<a href="http://domain.name" style="font-weight: bold;">text</a>',
+    '<a href="http://domain.name">text</a>'
   );
 });
