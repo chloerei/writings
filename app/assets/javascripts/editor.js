@@ -367,32 +367,30 @@ Editor.prototype = {
   },
 
   sanitize: function() {
-    var _this = this;
+    this.sanitizeDiv();
+    this.sanitizeTag();
+    this.sanitizeAttr();
+    this.sanitizeBlockElement();
+    this.sanitizeCode();
+    this.sanitizeList();
+  },
+
+  sanitizeDiv: function() {
     // replace div to p
     while(this.editable.find('div').length) {
       this.convertDivToP();
     }
+  },
 
+  sanitizeTag: function() {
     // stript not allow tags
     while(this.editable.find(':not(' + this.tagWhiteList.join() + ')').length) {
       this.striptNotAllowTags();
     }
+  },
 
-    // flatten block element
-    this.editable.find(this.blockElementSelector).each(function() {
-      _this.flattenBlock(this);
-    });
-    // blockquote as a document
-    this.editable.find('> blockquote').find(this.blockElementSelector).each(function() {
-      _this.flattenBlock(this);
-    });
-    // stript code
-    this.editable.find('code').each(function() {
-      _this.striptCode(this);
-    });
-    // sanitize list
-    _this.sanitizeList();
-
+  sanitizeAttr: function() {
+    var _this = this;
     // remove all attribute not in attrWhiteList
     var tags = $.map(this.attrWhiteList, function(attrs, tag) { return tag; });
     this.editable.find(':not(' + tags.join() + ')').each(function() {
@@ -426,6 +424,18 @@ Editor.prototype = {
   striptNotAllowTags: function() {
     this.editable.find(':not(' + this.tagWhiteList.join() + ')').each(function() {
       $(this).replaceWith($(this).html());
+    });
+  },
+
+  sanitizeBlockElement: function () {
+    var _this = this;
+    // flatten nested block element
+    this.editable.find(this.blockElementSelector).each(function() {
+      _this.flattenBlock(this);
+    });
+    // blockquote as a document
+    this.editable.find('> blockquote').find(this.blockElementSelector).each(function() {
+      _this.flattenBlock(this);
     });
   },
 
@@ -463,30 +473,37 @@ Editor.prototype = {
     });
   },
 
+  sanitizeCode: function() {
+    var _this = this;
+    this.editable.find('code').each(function() {
+      _this.striptCode(this);
+    });
+  },
+
   sanitizeList: function() {
     var _this = this;
     this.editable.find('li').each(function() {
       var $li = $(this);
       // stript p
       while ($li.find('p').length) {
-        _this.sanitizeListP($li);
+        _this.sanitizeListP(this);
       }
 
       // stript other element
       while ($li.find(':not(a, img, br)').length) {
-        _this.sanitizeListOther($li);
+        _this.sanitizeListOther(this);
       }
     });
   },
 
-  sanitizeListP: function($li) {
-    $li.find('p').each(function() {
+  sanitizeListP: function(li) {
+    $(li).find('p').each(function() {
       $(this).append('<br>').replaceWith($(this).contents());
     });
   },
 
-  sanitizeListOther: function($li) {
-    $li.find(':not(a, img, br)').each(function() {
+  sanitizeListOther: function(li) {
+    $(li).find(':not(a, img, br)').each(function() {
       $(this).replaceWith($(this).contents());
     });
   },
