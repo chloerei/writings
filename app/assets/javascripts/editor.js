@@ -16,6 +16,8 @@ var Editor = function(options) {
   this.initParagraph();
 
   this.sanitize = new Editor.Sanitize(this.editable);
+  this.undoManager = new Editor.UndoManager(this.editable);
+  this.undoManager.save();
 
   this.exec('defaultParagraphSeparator', 'p');
 };
@@ -60,7 +62,9 @@ Editor.prototype = {
     'ctrl+4': 'h4',
     'ctrl+k': 'code',
     'ctrl+q': 'blockquote',
-    'ctrl+s': 'saveArticle'
+    'ctrl+s': 'saveArticle',
+    'ctrl+z': 'undo',
+    'ctrl+y': 'redo'
   },
 
   connectShortcuts: function() {
@@ -111,6 +115,7 @@ Editor.prototype = {
   },
 
   paste: function(event) {
+    this.undoManager.save();
     this.dirty = true;
   },
 
@@ -310,6 +315,8 @@ Editor.prototype = {
   },
 
   enter: function(event) {
+    this.undoManager.save();
+
     // If in pre code, insert \n
     var selection = window.getSelection();
     var range = selection.getRangeAt(0);
@@ -332,6 +339,14 @@ Editor.prototype = {
       selection.removeAllRanges();
       selection.addRange(range);
     }
+  },
+
+  undo: function() {
+    this.undoManager.undo();
+  },
+
+  redo: function() {
+    this.undoManager.redo();
   },
 
   initParagraph: function() {
