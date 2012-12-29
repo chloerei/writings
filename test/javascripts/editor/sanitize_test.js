@@ -1,6 +1,6 @@
 module("Editor.Sanitize");
 
-sanitize = new Editor.Sanitize({editable: '#qunit-fixture .editable'});
+var sanitize = new Editor.Sanitize('#qunit-fixture .editable');
 
 var sanitizeTest = function(html, expected) {
   sanitize.editable.html(html);

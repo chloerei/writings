@@ -15,7 +15,7 @@ var Editor = function(options) {
   this.editable.focus();
   this.initParagraph();
 
-  this.sanitize = new Editor.Sanitize({editable: this.editable});
+  this.sanitize = new Editor.Sanitize(this.editable);
 
   this.exec('defaultParagraphSeparator', 'p');
 };

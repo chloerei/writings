@@ -1,6 +1,6 @@
 module("Editor");
 
-editor = new Editor({
+var editor = new Editor({
   toolbar: '#qunit-fixture .toolbar',
   editable: '#qunit-fixture .editable'
 });

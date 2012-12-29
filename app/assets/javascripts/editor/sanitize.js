@@ -1,5 +1,5 @@
-Editor.Sanitize = function(options) {
-  this.editable = $(options.editable);
+Editor.Sanitize = function(editable) {
+  this.editable = $(editable);
 };
 
 Editor.Sanitize.prototype = {
