@@ -72,8 +72,7 @@ Editor.prototype = {
   toolbarCommand: function(event, element) {
     event.preventDefault();
     this[$(element).data('command')].call(this);
-    this.detectButton();
-    this.detectBlocks();
+    this.detectState();
   },
 
   detectState: function() {
@@ -571,7 +570,7 @@ Editor.prototype = {
 $(function() {
   if ($('#editor-page').length) {
     window.editor = new Editor({
-      toolbar: '#editarea .toolbar',
+      toolbar: '#toolbar',
       editable: '#editarea article'
     });
   }
