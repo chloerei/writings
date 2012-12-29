@@ -390,6 +390,8 @@ Editor.prototype = {
     this.editable.find('code').each(function() {
       _this.striptCode(this);
     });
+    // sanitize list
+    _this.sanitizeList();
 
     // remove all attribute not in attrWhiteList
     var tags = $.map(this.attrWhiteList, function(attrs, tag) { return tag; });
@@ -458,6 +460,34 @@ Editor.prototype = {
   flattenBlockStriptExecute: function(element) {
     $(element).find(this.blockElementSelector).each(function() {
       $(this).replaceWith($(this).html());
+    });
+  },
+
+  sanitizeList: function() {
+    var _this = this;
+    this.editable.find('li').each(function() {
+      var $li = $(this);
+      // stript p
+      while ($li.find('p').length) {
+        _this.sanitizeListP($li);
+      }
+
+      // stript other element
+      while ($li.find(':not(a, img, br)').length) {
+        _this.sanitizeListOther($li);
+      }
+    });
+  },
+
+  sanitizeListP: function($li) {
+    $li.find('p').each(function() {
+      $(this).append('<br>').replaceWith($(this).contents());
+    });
+  },
+
+  sanitizeListOther: function($li) {
+    $li.find(':not(a, img, br)').each(function() {
+      $(this).replaceWith($(this).contents());
     });
   },
 
