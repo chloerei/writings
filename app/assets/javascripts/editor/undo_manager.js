@@ -24,5 +24,13 @@ Editor.UndoManager.prototype = {
       this.undoStack.push(this.editable.html());
       this.editable.html(html);
     }
+  },
+
+  hasUndo: function() {
+    return this.undoStack.length > 0;
+  },
+
+  hasRedo: function() {
+    return this.redoStack.length > 0;
   }
 };

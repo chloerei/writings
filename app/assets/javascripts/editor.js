@@ -17,7 +17,6 @@ var Editor = function(options) {
 
   this.sanitize = new Editor.Sanitize(this.editable);
   this.undoManager = new Editor.UndoManager(this.editable);
-  this.undoManager.save();
 
   this.exec('defaultParagraphSeparator', 'p');
 };
@@ -297,6 +296,10 @@ Editor.prototype = {
   },
 
   keydown: function(event) {
+    if (!this.undoManager.hasUndo()) {
+      this.undoManager.save();
+    }
+
     switch (event.keyCode) {
       case 8: // Backspace
         this.backspcae(event);
