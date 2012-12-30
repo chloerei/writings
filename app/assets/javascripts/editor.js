@@ -289,10 +289,6 @@ Editor.prototype = {
   keyup: function() {
     this.initParagraph();
     this.detectState();
-    if (this.dirty) {
-      this.sanitize.run();
-      this.dirty = false;
-    }
   },
 
   keydown: function(event) {
@@ -308,6 +304,10 @@ Editor.prototype = {
 
   input: function(event) {
     var _this = this;
+    if (this.dirty) {
+      this.sanitize.run();
+      this.dirty = false;
+    }
     setTimeout(function() {
       _this.undoManager.save();
     }, 0); // webkit don't get right range offset, so setTimout to fix
