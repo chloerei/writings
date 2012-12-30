@@ -1,19 +1,22 @@
 Editor.UndoManager = function(editable) {
   this.editable = $(editable);
+  this.stashContents = this.currentContents();
   this.undoStack = [];
   this.redoStack = [];
 };
 
 Editor.UndoManager.prototype = {
   save: function() {
-    this.undoStack.push(this.currentContents());
+    this.undoStack.push(this.stashContents);
+    this.stashContents = this.currentContents();
     this.redoStack = [];
   },
 
   undo: function() {
     var $contents = this.undoStack.pop();
     if ($contents) {
-      this.redoStack.push(this.currentContents());
+      this.redoStack.push(this.stashContents);
+      this.stashContents = $contents.clone();
       this.applyContents($contents);
     }
   },
@@ -21,7 +24,8 @@ Editor.UndoManager.prototype = {
   redo: function() {
     var $contents = this.redoStack.pop();
     if ($contents) {
-      this.undoStack.push(this.currentContents());
+      this.undoStack.push(this.stashContents);
+      this.stashContents = $contents.clone();
       this.applyContents($contents);
     }
   },

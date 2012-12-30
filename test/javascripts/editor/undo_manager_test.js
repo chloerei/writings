@@ -18,13 +18,17 @@ test("can save, undo, redo state", function() {
   equal(undoManager.redoStack.length, 0);
 
   undoManager.editable.html('<p>state two</p>');
+  undoManager.save();
+  equal(undoManager.undoStack.length, 2);
+  equal(undoManager.redoStack.length, 0);
+
   undoManager.undo();
-  equal(undoManager.undoStack.length, 0);
+  equal(undoManager.undoStack.length, 1);
   equal(undoManager.redoStack.length, 1);
   equal('<p>state one</p>', undoManager.editable.html());
 
   undoManager.redo();
-  equal(undoManager.undoStack.length, 1);
+  equal(undoManager.undoStack.length, 2);
   equal(undoManager.redoStack.length, 0);
   equal('<p>state two</p>', undoManager.editable.html());
 });
