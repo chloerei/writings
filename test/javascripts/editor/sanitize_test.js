@@ -64,13 +64,13 @@ test("sanitize code", function() {
 
 test("sanitize attr", function() {
   sanitizeTest(
-    '<p style="font-weight: bold;">text</p>',
+    '<p style="font-weight: bold;" class="foo">text</p>',
     '<p>text</p>'
   );
 
   // allow attr in white list
   sanitizeTest(
-    '<a href="http://domain.name" style="font-weight: bold;">text</a>',
+    '<a href="http://domain.name" style="font-weight: bold;" class="foo">text</a>',
     '<a href="http://domain.name">text</a>'
   );
 });

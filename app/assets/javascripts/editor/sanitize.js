@@ -39,10 +39,11 @@ Editor.Sanitize.prototype = {
     var tags = $.map(this.attrWhiteList, function(attrs, tag) { return tag; });
     this.editable.find(':not(' + tags.join() + ')').each(function() {
       var $element = $(this);
-      $.each(this.attributes, function(i, attr) {
-        if (attr) {
-          $element.removeAttr(attr.name);
-        }
+      var attributes = $.map(this.attributes, function(item) {
+        return item.name;
+      });
+      $.each(attributes, function(i, name) {
+        $element.removeAttr(name);
       });
     });
 
@@ -50,9 +51,12 @@ Editor.Sanitize.prototype = {
     $.each(this.attrWhiteList, function(tag, attrList) {
       _this.editable.find(tag).each(function() {
         var $element = $(this);
-        $.each(this.attributes, function(i, attr) {
-          if (attr && ($.inArray(attr.name, attrList) == -1)) {
-            $element.removeAttr(attr.name);
+        var attributes = $.map(this.attributes, function(item) {
+          return item.name;
+        });
+        $.each(attributes, function(i, name) {
+          if ($.inArray(name, attrList) == -1) {
+            $element.removeAttr(name);
           }
         });
       });
