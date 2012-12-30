@@ -22,7 +22,7 @@ Editor.UndoManager.prototype = {
     var $contents = this.redoStack.pop();
     if ($contents) {
       this.undoStack.push(this.currentContents());
-      this.editable.html($contents);
+      this.applyContents($contents);
     }
   },
 
