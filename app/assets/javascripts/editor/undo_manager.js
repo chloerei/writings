@@ -37,6 +37,8 @@ Editor.UndoManager.prototype = {
   currentContents: function() {
     if (document.getSelection().rangeCount !== 0) {
       var range = document.getSelection().getRangeAt(0);
+      var startOffset = range.startOffset,
+          endOffset = range.endOffset;
       var $container,
           $startContainer = $(range.startContainer),
           $endContainer = $(range.endContainer);
@@ -90,6 +92,10 @@ Editor.UndoManager.prototype = {
         }
       }
 
+      range.setStart($startContainer[0], startOffset);
+      range.setEnd($endContainer[0], endOffset);
+      document.getSelection().removeAllRanges();
+      document.getSelection().addRange(range);
       return contents;
     } else {
       return this.editable.contents().clone();

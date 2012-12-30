@@ -17,7 +17,6 @@ var Editor = function(options) {
 
   this.sanitize = new Editor.Sanitize(this.editable);
   this.undoManager = new Editor.UndoManager(this.editable);
-  this.undoManager.save();
 
   this.exec('defaultParagraphSeparator', 'p');
 };
@@ -30,6 +29,7 @@ Editor.prototype = {
     'click #publish-button': 'publish',
     'keyup #editarea article': 'keyup',
     'keydown #editarea article': 'keydown',
+    'keypress #editarea article': 'keypress',
     'mouseup #editarea article': 'detectState',
     'paste #editarea article': 'paste',
     'click #toolbar [data-command]': 'toolbarCommand'
@@ -72,6 +72,9 @@ Editor.prototype = {
     $.each(this.shortcuts, function(key, method) {
       Mousetrap.bind(key, function(event) {
         event.preventDefault();
+        if (method !== 'undo' && method !== 'redo') {
+          _this.undoManager.save();
+        }
         _this[method].call(_this);
       });
     });
@@ -79,6 +82,7 @@ Editor.prototype = {
 
   toolbarCommand: function(event, element) {
     event.preventDefault();
+    this.undoManager.save();
     this[$(element).data('command')].call(this);
     this.detectState();
   },
@@ -307,7 +311,12 @@ Editor.prototype = {
     }
   },
 
+  keypress: function(event) {
+    this.undoManager.save();
+  },
+
   backspcae: function(event) {
+    this.undoManager.save();
     // Stop Backspace when empty, avoid cursor flash
     if (this.editable.html() === '<p><br></p>') {
       event.preventDefault();
@@ -315,8 +324,6 @@ Editor.prototype = {
   },
 
   enter: function(event) {
-    this.undoManager.save();
-
     // If in pre code, insert \n
     var selection = window.getSelection();
     var range = selection.getRangeAt(0);
