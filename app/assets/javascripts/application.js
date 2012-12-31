@@ -1,16 +1,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require rails.validations
 //= require mousetrap
-//= require modal
-//= require dropdown
-//= require highlight_js/highlight
-//= require highlight_js/languages/ruby
-//= require highlight_js/languages/javascript
-//= require highlight_js/languages/bash
-//= require highlight_js/languages/xml
-//= require highlight_js/languages/css
+//= require_tree ./sitewide
 
 $(function() {
   // Client Side Validations - Turbolinks
