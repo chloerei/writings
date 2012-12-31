@@ -6,7 +6,7 @@ html
     = stylesheet_link_tag "application"
     = yield :head
     = csrf_meta_tags
-  body
+  body id=("#{controller_name}-#{action_name}")
     #topbar
       .container
         header#site-header
