@@ -21,16 +21,16 @@ Editor.Sanitize.prototype = {
 
   sanitizeDiv: function() {
     // replace div to p
-    while(this.editable.find('div').length) {
-      this.convertDivToP();
-    }
+    this.editable.find('div').each(function() {
+      $(this).replaceWith($('<p>').append($(this).contents()));
+    });
   },
 
   sanitizeTag: function() {
     // stript not allow tags
-    while(this.editable.find(':not(' + this.tagWhiteList.join() + ')').length) {
-      this.striptNotAllowTags();
-    }
+    this.editable.find(':not(' + this.tagWhiteList.join() + ')').each(function() {
+      $(this).replaceWith($(this).contents());
+    });
   },
 
   sanitizeAttr: function() {
@@ -63,18 +63,6 @@ Editor.Sanitize.prototype = {
     });
   },
 
-  convertDivToP: function() {
-    this.editable.find('div').each(function() {
-      $(this).replaceWith($('<p>').append($(this).contents()));
-    });
-  },
-
-  striptNotAllowTags: function() {
-    this.editable.find(':not(' + this.tagWhiteList.join() + ')').each(function() {
-      $(this).replaceWith($(this).contents());
-    });
-  },
-
   sanitizeBlockElement: function () {
     var _this = this;
     // flatten nested block element
@@ -92,8 +80,8 @@ Editor.Sanitize.prototype = {
   flattenBlock: function(element) {
     var _this = this;
     var hasTextNode = $(element).contents().filter(function() { return this.nodeType !== 1; }).length;
-    var hasBr = $(element).find('> br').length;
-    if (hasTextNode || hasBr) {
+    var hasInline = $(element).find('> :not(p, h1, h2, h3, h4)').length;
+    if (hasTextNode || hasInline) {
       // stript block
       this.flattenBlockStript(element);
     } else {
@@ -109,13 +97,7 @@ Editor.Sanitize.prototype = {
   },
 
   flattenBlockStript: function(element) {
-    while($(element).find(this.blockElementSelector).length) {
-      this.flattenBlockStriptExecute.call(this, element);
-    }
-  },
-
-  flattenBlockStriptExecute: function(element) {
-    $(element).find(this.blockElementSelector).each(function() {
+    $(element).find(':not(code, a, img, b, strike, i, br)').each(function() {
       $(this).replaceWith($(this).contents());
     });
   },
@@ -132,52 +114,26 @@ Editor.Sanitize.prototype = {
     });
   },
 
+  striptCode: function(code) {
+    $(code).find('p, h1, h2, h3, h4, blockquote, pre').each(function() {
+      $(this).replaceWith($(this).text() + "\n");
+    });
+    $(code).children().each(function() {
+      $(this).replaceWith($(this).text());
+    });
+  },
+
   sanitizeList: function() {
     var _this = this;
     this.editable.find('li').each(function() {
       var $li = $(this);
       // stript p
-      while ($li.find('p').length) {
-        _this.sanitizeListP(this);
-      }
-
-      // stript other element
-      while ($li.find(':not(a, img, br)').length) {
-        _this.sanitizeListOther(this);
-      }
-    });
-  },
-
-  sanitizeListP: function(li) {
-    $(li).find('p').each(function() {
-      $(this).append('<br>').replaceWith($(this).contents());
-    });
-  },
-
-  sanitizeListOther: function(li) {
-    $(li).find(':not(a, img, br)').each(function() {
-      $(this).replaceWith($(this).contents());
-    });
-  },
-
-  striptCode: function(code) {
-    while ($(code).find('p, h1, h2, h3, h4, blockquote, pre').length) {
-      this.striptCodeBlock(code);
-    }
-    while ($(code).children().length) {
-      this.striptCodeInline(code);
-    }
-  },
-
-  striptCodeBlock: function(code) {
-    $(code).find('p, h1, h2, h3, h4, blockquote, pre').each(function() {
-      $(this).replaceWith($(this).text() + "\n");
-    });
-  },
-
-  striptCodeInline: function(code) {
-    $(code).children().each(function() {
-      $(this).replaceWith($(this).text());
+      $li.find(':not(code, a, img, b, strike, i, br)').each(function() {
+        if ($(this).next().length) {
+          $(this).append('<br>');
+        }
+        $(this).replaceWith($(this).contents());
+      });
     });
   }
 };

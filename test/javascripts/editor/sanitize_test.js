@@ -33,6 +33,10 @@ test("sanitize div to p", function() {
     '<div>text</div>',
     '<p>text</p>'
   );
+  sanitizeTest(
+    '<div><div>text</div></div>',
+    '<p>text</p>'
+  );
 });
 
 test("sanitize stript not allow tags", function() {
@@ -86,12 +90,12 @@ test("sanitize li", function() {
   // stript p
   sanitizeTest(
     '<ul><li><p>line one</p><p>line two</p></li></ul>',
-    '<ul><li>line one<br>line two<br></li></ul>'
+    '<ul><li>line one<br>line two</li></ul>'
   );
 
   // stript other element
   sanitizeTest(
-    '<ul><li><h1>header</h1><span>span<span></li></ul>',
+    '<ul><li><h1>header</h1><span>span</span></li></ul>',
     '<ul><li>headerspan</li></ul>'
   );
 
