@@ -122,6 +122,11 @@ Editor.Sanitize.prototype = {
 
   sanitizeCode: function() {
     var _this = this;
+    this.editable.find('pre').each(function() {
+      if ($(this).find('> code').length === 0) {
+        $(this).append($('<code>').append($(this).contents()));
+      }
+    });
     this.editable.find('code').each(function() {
       _this.striptCode(this);
     });

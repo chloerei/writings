@@ -60,6 +60,13 @@ test("sanitize code", function() {
     '<code><span>text</span></code>',
     '<code>text</code>'
   );
+
+  // fix pre without code
+  sanitizeTest(
+    '<pre>code</pre>',
+    '<pre><code>code</code></pre>'
+  );
+
 });
 
 test("sanitize attr", function() {
