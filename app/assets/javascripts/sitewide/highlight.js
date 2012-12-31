@@ -4,5 +4,3 @@
 //= require highlight_js/languages/bash
 //= require highlight_js/languages/xml
 //= require highlight_js/languages/css
-
-hljs.initHighlightingOnLoad();

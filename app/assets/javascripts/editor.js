@@ -23,10 +23,6 @@ var Editor = function(options) {
 
 Editor.prototype = {
   events: {
-    'click #save-button': 'saveArticle',
-    'submit #urlname-modal form':  'saveUrlname',
-    'click #draft-button': 'draft',
-    'click #publish-button': 'publish',
     'keyup #editarea article': 'keyup',
     'keydown #editarea article': 'keydown',
     'input #editarea article': 'input',
@@ -62,7 +58,6 @@ Editor.prototype = {
     'ctrl+4': 'h4',
     'ctrl+k': 'code',
     'ctrl+q': 'blockquote',
-    'ctrl+s': 'saveArticle',
     'ctrl+z': 'undo',
     'ctrl+y': 'redo'
   },
@@ -360,57 +355,6 @@ Editor.prototype = {
     }
   },
 
-  articleId: function() {
-    return this.editable.data('article-id');
-  },
-
-  saveArticle: function() {
-    this.update({
-      article: {
-        title: this.extractTitle(),
-        body: this.extractBody()
-      }
-    });
-  },
-
-  saveUrlname: function() {
-    this.update($('#urlname-modal form').serializeArray(), function(data) {
-      $('#topbar .urlname').text(data.urlname);
-      Dialog.hide('#urlname-modal');
-    });
-  },
-
-  publish: function() {
-    this.update({
-      article: {
-        publish: true
-      }
-    }, function(data) {
-      $('#draft-button').removeClass('button-actived');
-      $('#publish-button').addClass('button-actived');
-    });
-  },
-
-  draft: function() {
-    this.update({
-      article: {
-        publish: false
-      }
-    }, function(data) {
-      $('#publish-button').removeClass('button-actived');
-      $('#draft-button').addClass('button-actived');
-    });
-  },
-
-  update: function(data, success_callback, error_callback) {
-    $.ajax({
-      url: '/articles/' + this.articleId(),
-      data: data,
-      type: 'put',
-      dataType: 'json'
-    }).success(success_callback).error(error_callback);
-  },
-
   extractTitle: function() {
     return this.editable.find('h1').text();
   },
@@ -419,12 +363,3 @@ Editor.prototype = {
     return this.editable.html();
   }
 };
-
-$(function() {
-  if ($('#editor-page').length) {
-    window.editor = new Editor({
-      toolbar: '#toolbar',
-      editable: '#editarea article'
-    });
-  }
-});

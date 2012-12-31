@@ -3,6 +3,7 @@
 //= require turbolinks
 //= require mousetrap
 //= require_tree ./sitewide
+//= require articles
 
 $(function() {
   // Client Side Validations - Turbolinks
