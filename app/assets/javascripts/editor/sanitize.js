@@ -65,13 +65,13 @@ Editor.Sanitize.prototype = {
 
   convertDivToP: function() {
     this.editable.find('div').each(function() {
-      $(this).replaceWith($('<p>').html($(this).html()));
+      $(this).replaceWith($('<p>').append($(this).contents()));
     });
   },
 
   striptNotAllowTags: function() {
     this.editable.find(':not(' + this.tagWhiteList.join() + ')').each(function() {
-      $(this).replaceWith($(this).html());
+      $(this).replaceWith($(this).contents());
     });
   },
 
@@ -104,8 +104,7 @@ Editor.Sanitize.prototype = {
         _this.flattenBlockStript.call(_this, this);
       });
 
-      // don't replaceWith() for avoid cursor lose.
-      $(element).replaceWith($(element).html());
+      $(element).replaceWith($(element).contents());
     }
   },
 
@@ -117,7 +116,7 @@ Editor.Sanitize.prototype = {
 
   flattenBlockStriptExecute: function(element) {
     $(element).find(this.blockElementSelector).each(function() {
-      $(this).replaceWith($(this).html());
+      $(this).replaceWith($(this).contents());
     });
   },
 
