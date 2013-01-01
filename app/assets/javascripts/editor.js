@@ -11,6 +11,8 @@ var Editor = function(options) {
   this.sanitize = new Editor.Sanitize(this.editable);
   this.formator = new Editor.Formator(this);
   this.formator.exec('defaultParagraphSeparator', 'p');
+
+  this.editable.focus();
   this.undoManager = new Editor.UndoManager(this.editable);
 
   if (options.toolbar) {
@@ -20,7 +22,6 @@ var Editor = function(options) {
   this.connectEvents();
   this.connectShortcuts();
 
-  this.editable.focus();
   this.initParagraph();
 };
 
