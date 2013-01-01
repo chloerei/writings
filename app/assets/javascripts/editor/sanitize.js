@@ -104,7 +104,7 @@ Editor.Sanitize.prototype = {
   },
 
   flattenBlockStript: function(element) {
-    if ($(element).is(':not(ul)')) {
+    if ($(element).is(':not(ul, ol)')) {
       $(element).find(':not(code, a, img, b, strike, i, br)').each(function() {
         $(this).replaceWith($(this).contents());
       });
