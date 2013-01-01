@@ -69,7 +69,7 @@ Editor.Formator.prototype = {
   },
 
   orderedList: function() {
-    if (this.canUnderline()) {
+    if (this.canOrderedList()) {
       if (this.isOrderedList()) {
         this.exec('insertOrderedList');
         this.p();
@@ -91,7 +91,7 @@ Editor.Formator.prototype = {
   },
 
   unorderedList: function() {
-    if (this.canUnderline()) {
+    if (this.canUnorderedList()) {
       if (this.isUnorderedList()) {
         this.exec('insertUnorderedList');
         this.p();
