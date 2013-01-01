@@ -167,13 +167,5 @@ Editor.prototype = {
     if (this.editable.html() === '' || this.editable.html() === '<br>') {
       this.formator.p();
     }
-  },
-
-  extractTitle: function() {
-    return this.editable.find('h1').text();
-  },
-
-  extractBody: function() {
-    return this.editable.html();
   }
 };

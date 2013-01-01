@@ -28,8 +28,8 @@ $(function() {
       event.preventDefault();
       updateArticle({
         article: {
-          title: editor.extractTitle(),
-          body: editor.extractBody()
+          title: editor.editable.find('h1').text(),
+          body: editor.editable.html()
         }
       });
     };
