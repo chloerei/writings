@@ -188,3 +188,27 @@ test("format header", function() {
   this.formator.unorderedList();
   equal(this.formator.editable.html(), '<code>code</code>');
 });
+
+test("format code", function() {
+  this.formator.editable.html('<p>text</p>');
+  document.getSelection().selectAllChildren(this.formator.editable.find('p')[0]);
+  equal(this.formator.isCode(), false);
+  equal(this.formator.canCode(), true);
+
+  this.formator.code();
+  equal(this.formator.editable.html(), '<pre><code>text\n</code></pre><p><br></p>'); // add a new line after
+  this.formator.code();
+  equal(this.formator.editable.html(), '<p>text</p><p><br></p>'); // add a new line after
+
+  this.formator.editable.html('<p>text</p>');
+  var range = document.createRange();
+  var textNode = this.formator.editable.find('p').contents().first()[0];
+  range.setStart(textNode, 0);
+  range.setEnd(textNode, 1);
+  document.getSelection().removeAllRanges();
+  document.getSelection().addRange(range);
+  this.formator.code();
+  equal(this.formator.editable.html(), '<p><code>t</code>ext</p>');
+  this.formator.code();
+  equal(this.formator.editable.html(), '<p>text</p>');
+});

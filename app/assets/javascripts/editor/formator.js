@@ -221,8 +221,8 @@ Editor.Formator.prototype = {
       var hasBlock = (range.cloneContents().querySelector('p, h1, h2, h3, h4'));
       if (isEmptyRange || isWholeBlock || hasBlock) {
         // pre code
-        start = $(range.startContainer).closest('blockquote > *, article > *')[0];
-        end = $(range.endContainer).closest('blockquote > *, article > *')[0];
+        start = $(range.startContainer).closest('p, h1, h2, h3, h4')[0];
+        end = $(range.endContainer).closest('p, h1, h2, h3, h4')[0];
         range.setStartBefore(start);
         range.setEndAfter(end);
         $code = $('<code>').html(range.extractContents());
