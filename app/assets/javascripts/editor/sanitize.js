@@ -80,7 +80,7 @@ Editor.Sanitize.prototype = {
   flattenBlock: function(element) {
     var _this = this;
     var hasTextNode = $(element).contents().filter(function() { return this.nodeType !== 1; }).length;
-    var hasInline = $(element).find('> :not(p, h1, h2, h3, h4)').length;
+    var hasInline = $(element).find('> :not(p, h1, h2, h3, h4, ul, ol, li)').length;
     if (hasTextNode || hasInline) {
       // stript block
       this.flattenBlockStript(element);
@@ -88,7 +88,7 @@ Editor.Sanitize.prototype = {
       // split block
 
       // stript children
-      $(element).find(this.blockElementSelector).each(function() {
+      $(element).children().each(function() {
         _this.flattenBlockStript.call(_this, this);
       });
 
@@ -97,9 +97,11 @@ Editor.Sanitize.prototype = {
   },
 
   flattenBlockStript: function(element) {
-    $(element).find(':not(code, a, img, b, strike, i, br)').each(function() {
-      $(this).replaceWith($(this).contents());
-    });
+    if ($(element).is(':not(ul)')) {
+      $(element).find(':not(code, a, img, b, strike, i, br)').each(function() {
+        $(this).replaceWith($(this).contents());
+      });
+    }
   },
 
   sanitizeCode: function() {

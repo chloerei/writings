@@ -35,6 +35,13 @@ test("sanitize p", function() {
     $('<p>').text('text').append($('<h1>').append($('<p>').text('nested'))),
     '<p>textnested</p>'
   );
+
+  // keep list
+  sanitizeTest(
+    this,
+    $('<p>').append($('<ul>').append($('<li>').text('text'))),
+    '<ul><li>text</li></ul>'
+  );
 });
 
 test("sanitize div to p", function() {
