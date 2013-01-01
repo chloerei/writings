@@ -6,6 +6,7 @@ Mousetrap.stopCallback = function(e, element, combo) {
 };
 
 var Editor = function(options) {
+  this.editable_selector = options.editable;
   this.editable = $(options.editable);
 
   this.sanitize = new Editor.Sanitize(this.editable);
@@ -23,6 +24,11 @@ var Editor = function(options) {
   this.connectShortcuts();
 
   this.initParagraph();
+
+  var _this = this;
+  this.editable.on('keyup mouseup', function() {
+    _this.storeRange();
+  });
 };
 
 Editor.prototype = {
@@ -70,6 +76,9 @@ Editor.prototype = {
       if (_this.formator[method]) {
         Mousetrap.bind(key, function(event) {
           event.preventDefault();
+          if (!_this.hasRange()) {
+            _this.restoreRange();
+          }
           _this.formator[method]();
         });
       } else if (_this[method]) {
@@ -167,5 +176,21 @@ Editor.prototype = {
     if (this.editable.html() === '' || this.editable.html() === '<br>') {
       this.formator.p();
     }
+  },
+
+  storeRange: function() {
+    this.storedRange = document.getSelection().getRangeAt(0).cloneRange();
+  },
+
+  restoreRange: function() {
+    var selection = document.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(this.storedRange);
+  },
+
+  hasRange: function() {
+    var selection = document.getSelection();
+
+    return selection.rangeCount && $(selection.getRangeAt(0).commonAncestorContainer).closest(this.editable_selector).length;
   }
 };

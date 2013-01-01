@@ -57,6 +57,9 @@ Editor.Toolbar.prototype = {
   },
 
   command: function(element) {
+    if (!this.editor.hasRange()) {
+      this.editor.restoreRange();
+    }
     this.editor.formator[$(element).data('command')]();
     this.detectState();
   }
