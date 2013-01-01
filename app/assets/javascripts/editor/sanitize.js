@@ -96,7 +96,7 @@ Editor.Sanitize.prototype = {
 
       // stript children
       $(element).children().each(function() {
-        _this.flattenBlockStript.call(_this, this);
+        _this.flattenBlockStript(this);
       });
 
       $(element).replaceWith($(element).contents());
