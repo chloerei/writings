@@ -1,12 +1,16 @@
-module("Editor");
-
-var editor = new Editor({
-  toolbar: '#qunit-fixture .toolbar',
-  editable: '#qunit-fixture .editable'
+module("Editor", {
+  setup: function() {
+    this.editor = new Editor({
+      toolbar: '#qunit-fixture .toolbar',
+        editable: '#qunit-fixture .editable'
+    });
+  }, teardowm: function() {
+    this.editor = null;
+  }
 });
 
 test("create", function() {
-  ok(editor);
-  ok(editor.toolbar.length);
-  ok(editor.editable.length);
+  ok(this.editor);
+  ok(this.editor.editable.length);
+  ok(this.editor.toolbar);
 });

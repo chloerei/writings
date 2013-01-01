@@ -6,8 +6,11 @@ Mousetrap.stopCallback = function(e, element, combo) {
 };
 
 var Editor = function(options) {
-  this.toolbar = $(options.toolbar);
   this.editable = $(options.editable);
+
+  if (options.toolbar) {
+    this.toolbar = new Editor.Toolbar(this, options.toolbar);
+  }
 
   this.connectEvents();
   this.connectShortcuts();
@@ -26,9 +29,7 @@ Editor.prototype = {
     'keyup #editarea article': 'keyup',
     'keydown #editarea article': 'keydown',
     'input #editarea article': 'input',
-    'mouseup #editarea article': 'detectState',
-    'paste #editarea article': 'paste',
-    'click #toolbar [data-command]': 'toolbarCommand'
+    'paste #editarea article': 'paste'
   },
 
   connectEvents: function() {
@@ -70,43 +71,6 @@ Editor.prototype = {
         _this[method].call(_this);
       });
     });
-  },
-
-  toolbarCommand: function(event, element) {
-    event.preventDefault();
-    this[$(element).data('command')].call(this);
-    this.detectState();
-  },
-
-  detectState: function() {
-    this.detectButton();
-    this.detectBlocks();
-  },
-
-  detectButton: function() {
-    var _this = this;
-
-    _this.toolbar.find('[data-command]').each(function(index, element) {
-      var command = $(element).data('command');
-      if (document.queryCommandValue(command) !== 'true') {
-        $(element).removeClass('actived');
-      } else {
-        if (command === 'bold' && /^h/.test(document.queryCommandValue('formatBlock'))) {
-          $(element).removeClass('actived');
-        } else {
-          $(element).addClass('actived');
-        }
-      }
-    });
-  },
-
-  detectBlocks: function() {
-    var type = document.queryCommandValue('formatBlock');
-    var text = this.toolbar.find('#format-block [data-command=' + type + ']').text();
-    if (text === '') {
-      text = this.toolbar.find('#format-block [data-command]:first').text();
-    }
-    this.toolbar.find('#format-block .toolbar-botton').text(text);
   },
 
   paste: function(event) {
@@ -283,7 +247,6 @@ Editor.prototype = {
 
   keyup: function() {
     this.initParagraph();
-    this.detectState();
   },
 
   keydown: function(event) {
