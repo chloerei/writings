@@ -20,7 +20,6 @@ var Editor = function(options) {
     this.toolbar = new Editor.Toolbar(this, options.toolbar);
   }
 
-  this.connectEvents();
   this.connectShortcuts();
 
   this.initParagraph();
@@ -29,28 +28,24 @@ var Editor = function(options) {
   this.editable.on('keyup mouseup', function() {
     _this.storeRange();
   });
+
+  this.editable.on({
+    keyup: function(event) {
+      _this.keyup(event);
+    },
+    keydowm: function(event) {
+      _this.keydown(event);
+    },
+    input: function(event) {
+      _this.input(event);
+    },
+    paste: function(event) {
+      _this.paste(event);
+    }
+  });
 };
 
 Editor.prototype = {
-  events: {
-    'keyup #editarea article': 'keyup',
-    'keydown #editarea article': 'keydown',
-    'input #editarea article': 'input',
-    'paste #editarea article': 'paste'
-  },
-
-  connectEvents: function() {
-    var _this = this;
-    $.each(this.events, function(key, method) {
-      var actions = key.split(' ');
-      var event = actions.shift();
-      var selector = actions.join(' ');
-      $(selector).on(event, function(event) {
-        _this[method].call(_this, event, this);
-      });
-    });
-  },
-
   shortcuts: {
     'ctrl+b': 'bold',
     'ctrl+i': 'italic',
