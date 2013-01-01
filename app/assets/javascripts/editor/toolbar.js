@@ -23,13 +23,25 @@ Editor.Toolbar.prototype = {
 
     _this.toolbar.find('[data-command]').each(function(index, element) {
       var command = $(element).data('command');
-      if (document.queryCommandValue(command) !== 'true') {
-        $(element).removeClass('actived');
-      } else {
-        if (command === 'bold' && /^h/.test(document.queryCommandValue('formatBlock'))) {
-          $(element).removeClass('actived');
-        } else {
-          $(element).addClass('actived');
+      if (command) {
+        var isCommand = 'is' + command[0].toUpperCase() + command.substring(1);
+
+        if (_this.editor.formator[isCommand]) {
+          if (_this.editor.formator[isCommand]()) {
+            $(element).addClass('actived');
+          } else {
+            $(element).removeClass('actived');
+          }
+        }
+
+        var canCommand = 'can' + command[0].toUpperCase() + command.substring(1);
+
+        if (_this.editor.formator[canCommand]) {
+          if (_this.editor.formator[canCommand]()) {
+            $(element).removeClass('disabled');
+          } else {
+            $(element).addClass('disabled');
+          }
         }
       }
     });
