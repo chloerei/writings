@@ -80,7 +80,7 @@ Editor.Sanitize.prototype = {
   flattenBlock: function(element) {
     var _this = this;
     var hasTextNode = $(element).contents().filter(function() { return this.nodeType !== 1; }).length;
-    var hasInline = $(element).find('> :not(p, h1, h2, h3, h4, ul, ol, li)').length;
+    var hasInline = $(element).find('> :not(p, h1, h2, h3, h4, ul, ol, pre, blockquote)').length;
     if (hasTextNode || hasInline) {
       // stript block
       this.flattenBlockStript(element);

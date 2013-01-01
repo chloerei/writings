@@ -243,7 +243,7 @@ Editor.Formator.prototype = {
         range.setStartBefore(start);
         range.setEndAfter(end);
         $code = $('<code>').html(range.extractContents());
-        $pre = $('<pre>').html($code);
+        var $pre = $('<pre>').html($code);
         range.insertNode($pre[0]);
         if ($pre.next().length === 0) {
           $pre.after('<p><br></p>');

@@ -6,8 +6,8 @@ module("Editor.toolbar", {
     this.toolbar = new Editor.Toolbar(this.editor, '#qunit-fixture .toolbar');
   },
   teardown: function() {
-    editor = null;
-    toolbar = null;
+    this.editor = null;
+    this.toolbar = null;
   }
 });
 
