@@ -32,8 +32,9 @@ test("sanitize p", function() {
   // stript more nested block
   sanitizeTest(
     this,
-    $('<p>').text('text').append($('<h1>').append($('<p>').text('nested'))),
-    '<p>textnested</p>'
+    // '<p><h1>header</h1><p><p>line one</p><p>line two</p></p></p>
+    $('<p>').append($('<h1>').text('header')).append($('<p>').append($('<p>').text('line one')).append($('<p>').text('line two'))),
+    '<h1>header</h1><p>line one</p><p>line two</p>'
   );
 
   // keep list
