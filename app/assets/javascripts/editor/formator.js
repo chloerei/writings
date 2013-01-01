@@ -70,7 +70,15 @@ Editor.Formator.prototype = {
 
   orderedList: function() {
     if (this.canUnderline()) {
-      this.exec('insertOrderedList');
+      if (this.isOrderedList()) {
+        this.exec('insertOrderedList');
+        this.p();
+      } else {
+        this.exec('insertOrderedList');
+        if ($(this.commonAncestorContainer()).closest('p').length) {
+          $(this.commonAncestorContainer()).closest('ol').unwrap('p');
+        }
+      }
     }
   },
 
@@ -84,7 +92,15 @@ Editor.Formator.prototype = {
 
   unorderedList: function() {
     if (this.canUnderline()) {
-      this.exec('insertUnorderedList');
+      if (this.isUnorderedList()) {
+        this.exec('insertUnorderedList');
+        this.p();
+      } else {
+        this.exec('insertUnorderedList');
+        if ($(this.commonAncestorContainer()).closest('p').length) {
+          $(this.commonAncestorContainer()).closest('ul').unwrap('p');
+        }
+      }
     }
   },
 

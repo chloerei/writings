@@ -110,18 +110,17 @@ test("should format underline", function() {
 });
 
 test("should format orderedList", function() {
-  this.formator.editable.html('<p>text<br></p>');
+  this.formator.editable.html('<p>text</p>');
   document.getSelection().selectAllChildren(this.formator.editable.find('p')[0]);
   equal(this.formator.isOrderedList(), false);
   equal(this.formator.canOrderedList(), true);
 
   this.formator.orderedList();
-  equal(this.formator.editable.html(), '<p><ol><li>text<br></li></ol></p>');
-  equal(this.formator.isOrderedList(), true);
-  equal(this.formator.canOrderedList(), true);
+  equal(this.formator.editable.html(), '<ol><li>text<br></li></ol>');
 
+  document.getSelection().selectAllChildren(this.formator.editable.find('li')[0]);
   this.formator.orderedList();
-  equal(this.formator.editable.html(), '<p>text<br></p>');
+  equal(this.formator.editable.html(), '<p>text</p>');
   equal(this.formator.isOrderedList(), false);
   equal(this.formator.canOrderedList(), true);
 
@@ -136,18 +135,17 @@ test("should format orderedList", function() {
 
 
 test("should format orderedList", function() {
-  this.formator.editable.html('<p>text<br></p>');
+  this.formator.editable.html('<p>text</p>');
   document.getSelection().selectAllChildren(this.formator.editable.find('p')[0]);
   equal(this.formator.isUnorderedList(), false);
   equal(this.formator.canUnorderedList(), true);
 
   this.formator.unorderedList();
-  equal(this.formator.editable.html(), '<p><ul><li>text<br></li></ul></p>');
-  equal(this.formator.isUnorderedList(), true);
-  equal(this.formator.canUnorderedList(), true);
+  equal(this.formator.editable.html(), '<ul><li>text<br></li></ul>');
 
+  document.getSelection().selectAllChildren(this.formator.editable.find('li')[0]);
   this.formator.unorderedList();
-  equal(this.formator.editable.html(), '<p>text<br></p>');
+  equal(this.formator.editable.html(), '<p>text</p>');
   equal(this.formator.isUnorderedList(), false);
   equal(this.formator.canUnorderedList(), true);
 
