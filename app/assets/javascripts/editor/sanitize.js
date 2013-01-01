@@ -7,7 +7,6 @@ Editor.Sanitize.prototype = {
     this.sanitizeDiv();
     this.sanitizeTag();
     this.sanitizeAttr();
-    this.sanitizeBr();
     this.sanitizeBlockElement();
     this.sanitizeCode();
     this.sanitizeList();
@@ -61,12 +60,6 @@ Editor.Sanitize.prototype = {
           }
         });
       });
-    });
-  },
-
-  sanitizeBr: function() {
-    this.editable.find('> br').each(function() {
-      $(this).wrap('<p>');
     });
   },
 

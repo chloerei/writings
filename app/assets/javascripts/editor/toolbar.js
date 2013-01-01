@@ -58,7 +58,6 @@ Editor.Toolbar.prototype = {
 
   command: function(element) {
     this.editor.formator[$(element).data('command')]();
-    _this.sanitize.run();
     this.detectState();
   }
 };

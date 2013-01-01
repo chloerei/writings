@@ -71,7 +71,6 @@ Editor.prototype = {
         Mousetrap.bind(key, function(event) {
           event.preventDefault();
           _this.formator[method]();
-          _this.sanitize.run();
         });
       } else if (_this[method]) {
         Mousetrap.bind(key, function(event) {

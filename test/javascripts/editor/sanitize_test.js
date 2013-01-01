@@ -14,14 +14,6 @@ var sanitizeTest = function(_this, html, expected) {
   equal(_this.sanitize.editable.html(), expected);
 };
 
-test("wrap single br in p", function() {
-  sanitizeTest(
-    this,
-    '<br>',
-    '<p><br></p>'
-  );
-});
-
 test("sanitize p", function() {
   // flatten nested p
   sanitizeTest(
