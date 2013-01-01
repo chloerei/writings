@@ -8,6 +8,11 @@ Mousetrap.stopCallback = function(e, element, combo) {
 var Editor = function(options) {
   this.editable = $(options.editable);
 
+  this.sanitize = new Editor.Sanitize(this.editable);
+  this.formator = new Editor.Formator(this);
+  this.formator.exec('defaultParagraphSeparator', 'p');
+  this.undoManager = new Editor.UndoManager(this.editable);
+
   if (options.toolbar) {
     this.toolbar = new Editor.Toolbar(this, options.toolbar);
   }
@@ -17,11 +22,6 @@ var Editor = function(options) {
 
   this.editable.focus();
   this.initParagraph();
-
-  this.sanitize = new Editor.Sanitize(this.editable);
-  this.undoManager = new Editor.UndoManager(this.editable);
-
-  this.exec('defaultParagraphSeparator', 'p');
 };
 
 Editor.prototype = {
@@ -49,9 +49,9 @@ Editor.prototype = {
     'ctrl+i': 'italic',
     'ctrl+d': 'strikeThrough',
     'ctrl+u': 'underline',
-    'ctrl+l': 'createLink',
-    'ctrl+shift+l': 'insertUnorderedList',
-    'ctrl+shift+o': 'insertOrderedList',
+    'ctrl+l': 'link',
+    'ctrl+shift+l': 'unorderedList',
+    'ctrl+shift+o': 'orderedList',
     'ctrl+p': 'p',
     'ctrl+1': 'h1',
     'ctrl+2': 'h2',
@@ -66,130 +66,22 @@ Editor.prototype = {
   connectShortcuts: function() {
     var _this = this;
     $.each(this.shortcuts, function(key, method) {
-      Mousetrap.bind(key, function(event) {
-        event.preventDefault();
-        _this[method].call(_this);
-      });
+      if (_this.formator[method]) {
+        Mousetrap.bind(key, function(event) {
+          event.preventDefault();
+          _this.formator[method]();
+        });
+      } else if (_this[method]) {
+        Mousetrap.bind(key, function(event) {
+          event.preventDefault();
+          _this[method]();
+        });
+      }
     });
   },
 
   paste: function(event) {
     this.dirty = true;
-  },
-
-  italic: function() {
-    this.exec('italic');
-  },
-
-  strikeThrough: function() {
-    this.exec('strikeThrough');
-  },
-
-  underline: function() {
-    this.exec('underline');
-  },
-
-  insertOrderedList: function() {
-    this.exec('insertOrderedList');
-  },
-
-  insertUnorderedList: function() {
-    this.exec('insertUnorderedList');
-  },
-
-  createLink: function() {
-    var url = prompt('Link url:', 'http://');
-    if (url !== null && url !== '') {
-      this.exec('createLink', url);
-    }
-  },
-
-  p: function() {
-    this.formatBlock('p');
-  },
-
-  formatHeader: function(type) {
-    if (document.queryCommandValue('formatBlock') === type) {
-      this.p();
-    } else {
-      this.formatBlock(type);
-    }
-  },
-
-  h1: function() {
-    this.formatHeader('h1');
-  },
-
-  h2: function() {
-    this.formatHeader('h2');
-  },
-
-  h3: function() {
-    this.formatHeader('h3');
-  },
-
-  h4: function() {
-    this.formatHeader('h4');
-  },
-
-  code: function() {
-    var selection = window.getSelection();
-    var range = selection.getRangeAt(0);
-    var rangeAncestor = range.commonAncestorContainer;
-    var start, end, $contents;
-
-    var $code = $(rangeAncestor).closest('code');
-
-    if ($code.length) {
-      // remove code
-      if ($code.closest('pre').length) {
-        // pre code
-        this.splitCode($code);
-        $contents = $code.contents();
-        if ($contents.length === 0) {
-          $contents = $('<p><br></p>');
-        }
-        $code.closest('pre').replaceWith($contents);
-        this.selectContents($contents);
-      } else {
-        // inline code
-        $contents = $code.contents();
-        $code.replaceWith($code.contents());
-        this.selectContents($contents);
-      }
-    } else {
-      // wrap code
-      var isEmptyRange = (range.toString() === '');
-      var isWholeBlock = (range.toString() === $(range.startContainer).closest('p, h1, h2, h3, h4').text());
-      var hasBlock = (range.cloneContents().querySelector('p, h1, h2, h3, h4'));
-      if (isEmptyRange || isWholeBlock || hasBlock) {
-        // pre code
-        start = $(range.startContainer).closest('blockquote > *, article > *')[0];
-        end = $(range.endContainer).closest('blockquote > *, article > *')[0];
-        range.setStartBefore(start);
-        range.setEndAfter(end);
-        $code = $('<code>').html(range.extractContents());
-        $pre = $('<pre>').html($code);
-        range.insertNode($pre[0]);
-        if ($pre.next().length === 0) {
-          $pre.after('<p><br></p>');
-        }
-      } else {
-        // inline code
-        $code = $('<code>').html(range.extractContents());
-        range.insertNode($code[0]);
-      }
-      this.sanitize.striptCode($code);
-      selection.selectAllChildren($code[0]);
-    }
-  },
-
-  splitCode: function(code) {
-    code.html($.map(code.text().split("\n"), function(line) {
-      if (line !== '') {
-        return $('<p>').text(line);
-      }
-    }));
   },
 
   selectContents: function(contents) {
@@ -201,44 +93,6 @@ Editor.prototype = {
     range.setEnd(end, end.childNodes.length || end.length); // text node don't have childNodes
     selection.removeAllRanges();
     selection.addRange(range);
-  },
-
-  blockquote: function() {
-    var selection = window.getSelection();
-    var range = selection.getRangeAt(0);
-    var rangeAncestor = range.commonAncestorContainer;
-    var start, end;
-
-    var $blockquote = $(rangeAncestor).closest('blockquote');
-    if ($blockquote.length) {
-      // remmove blockquote
-      var $contents = $blockquote.contents();
-      $blockquote.replaceWith($contents);
-      this.selectContents($contents);
-    } else {
-      // wrap blockquote
-      start = $(range.startContainer).closest('article > *')[0];
-      end = $(range.endContainer).closest('article > *')[0];
-      range.setStartBefore(start);
-      range.setEndAfter(end);
-      $blockquote = $('<blockquote>');
-      $blockquote.html(range.extractContents()).find('blockquote').each(function() {
-        $(this).replaceWith($(this).html());
-      });
-      range.insertNode($blockquote[0]);
-      selection.selectAllChildren($blockquote[0]);
-      if ($blockquote.next().length === 0) {
-        $blockquote.after('<p><br></p>');
-      }
-    }
-  },
-
-  formatBlock: function(type) {
-    this.exec('formatBlock', type);
-  },
-
-  exec: function(command, arg) {
-    document.execCommand(command, false, arg);
   },
 
   keyup: function() {
@@ -310,7 +164,7 @@ Editor.prototype = {
   initParagraph: function() {
     // chrome is empty and firefox is <br>
     if (this.editable.html() === '' || this.editable.html() === '<br>') {
-      this.p();
+      this.formator.p();
     }
   },
 

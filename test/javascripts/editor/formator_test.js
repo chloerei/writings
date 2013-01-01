@@ -1,6 +1,9 @@
 module("Editor.formator", {
   setup: function() {
-    this.formator = new Editor.Formator('#qunit-fixture .editable');
+    this.editor = new Editor({
+      editable: '#qunit-fixture .editable'
+    });
+    this.formator = new Editor.Formator(this.editor);
   },
   teardown: function() {
   }

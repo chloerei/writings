@@ -1,5 +1,6 @@
-Editor.Formator = function(editable) {
-  this.editable = $(editable);
+Editor.Formator = function(editor) {
+  this.editor = editor;
+  this.editable = editor.editable;
 };
 
 Editor.Formator.prototype = {
@@ -177,6 +178,112 @@ Editor.Formator.prototype = {
       this.p();
     } else {
       this.exec('formatBlock', type);
+    }
+  },
+
+  isCode: function() {
+    return this.isWraped('code');
+  },
+
+  canCode: function() {
+    return true;
+  },
+
+  code: function() {
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
+    var rangeAncestor = range.commonAncestorContainer;
+    var start, end, $contents;
+
+    var $code = $(rangeAncestor).closest('code');
+
+    if ($code.length) {
+      // remove code
+      if ($code.closest('pre').length) {
+        // pre code
+        this.splitCode($code);
+        $contents = $code.contents();
+        if ($contents.length === 0) {
+          $contents = $('<p><br></p>');
+        }
+        $code.closest('pre').replaceWith($contents);
+        this.editor.selectContents($contents);
+      } else {
+        // inline code
+        $contents = $code.contents();
+        $code.replaceWith($code.contents());
+        this.editor.selectContents($contents);
+      }
+    } else {
+      // wrap code
+      var isEmptyRange = (range.toString() === '');
+      var isWholeBlock = (range.toString() === $(range.startContainer).closest('p, h1, h2, h3, h4').text());
+      var hasBlock = (range.cloneContents().querySelector('p, h1, h2, h3, h4'));
+      if (isEmptyRange || isWholeBlock || hasBlock) {
+        // pre code
+        start = $(range.startContainer).closest('blockquote > *, article > *')[0];
+        end = $(range.endContainer).closest('blockquote > *, article > *')[0];
+        range.setStartBefore(start);
+        range.setEndAfter(end);
+        $code = $('<code>').html(range.extractContents());
+        $pre = $('<pre>').html($code);
+        range.insertNode($pre[0]);
+        if ($pre.next().length === 0) {
+          $pre.after('<p><br></p>');
+        }
+      } else {
+        // inline code
+        $code = $('<code>').html(range.extractContents());
+        range.insertNode($code[0]);
+      }
+      this.editor.sanitize.striptCode($code);
+      selection.selectAllChildren($code[0]);
+    }
+  },
+
+  splitCode: function(code) {
+    code.html($.map(code.text().split("\n"), function(line) {
+      if (line !== '') {
+        return $('<p>').text(line);
+      }
+    }));
+  },
+
+  isBlcokquote: function() {
+    return this.isWraped('blockquote');
+  },
+
+  canBlockquote: function() {
+    return true;
+  },
+
+  blockquote: function() {
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
+    var rangeAncestor = range.commonAncestorContainer;
+    var start, end;
+
+    var $blockquote = $(rangeAncestor).closest('blockquote');
+    if ($blockquote.length) {
+      // remmove blockquote
+      var $contents = $blockquote.contents();
+      $blockquote.replaceWith($contents);
+      this.editor.selectContents($contents);
+    } else {
+      // wrap blockquote
+      start = $(range.startContainer).closest('article > *')[0];
+      end = $(range.endContainer).closest('article > *')[0];
+      range.setStartBefore(start);
+      range.setEndAfter(end);
+      $blockquote = $('<blockquote>');
+      $blockquote.html(range.extractContents()).find('blockquote').each(function() {
+        $(this).replaceWith($(this).html());
+      });
+      range.insertNode($blockquote[0]);
+      selection.selectAllChildren($blockquote[0]);
+      if ($blockquote.next().length === 0) {
+        $blockquote.after('<p><br></p>');
+      }
     }
   },
 
