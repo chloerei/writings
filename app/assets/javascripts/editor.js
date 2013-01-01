@@ -77,10 +77,6 @@ Editor.prototype = {
     this.dirty = true;
   },
 
-  bold: function() {
-    this.exec('bold');
-  },
-
   italic: function() {
     this.exec('italic');
   },
