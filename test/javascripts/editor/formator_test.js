@@ -185,6 +185,12 @@ test("format header", function() {
   equal(this.formator.canUnorderedList(), false);
   this.formator.unorderedList();
   equal(this.formator.editable.html(), '<code>code</code>');
+
+  // stirpt header
+  this.formator.editable.html('<p><b>text</b></p>');
+  document.getSelection().selectAllChildren(this.formator.editable.find('p')[0]);
+  this.formator.h1();
+  equal(this.formator.editable.html(), '<h1>text</h1>');
 });
 
 test("format code", function() {

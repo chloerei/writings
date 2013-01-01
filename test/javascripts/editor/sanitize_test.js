@@ -44,6 +44,14 @@ test("sanitize p", function() {
   );
 });
 
+test("sanitize header", function() {
+  sanitizeTest(
+    this,
+    '<h1><b>header</b></h1>',
+    '<h1>header</h1>'
+  );
+});
+
 test("sanitize div to p", function() {
   sanitizeTest(
     this,

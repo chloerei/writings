@@ -8,6 +8,7 @@ Editor.Sanitize.prototype = {
     this.sanitizeTag();
     this.sanitizeAttr();
     this.sanitizeBlockElement();
+    this.sanitizeHeader();
     this.sanitizeCode();
     this.sanitizeList();
   },
@@ -102,6 +103,12 @@ Editor.Sanitize.prototype = {
         $(this).replaceWith($(this).contents());
       });
     }
+  },
+
+  sanitizeHeader: function() {
+    this.editable.find('h1, h2, h3, h4').find(':not(i, strike, u, a)').each(function() {
+      $(this).replaceWith($(this).contents());
+    });
   },
 
   sanitizeCode: function() {
