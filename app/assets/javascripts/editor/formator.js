@@ -96,6 +96,7 @@ Editor.Formator.prototype = {
     return !this.isWraped('code');
   },
 
+  // TODO no complete
   link: function() {
     var url = prompt('Link url:', 'http://');
     if (url !== null && url !== '') {
@@ -249,7 +250,7 @@ Editor.Formator.prototype = {
     }));
   },
 
-  isBlcokquote: function() {
+  isBlockquote: function() {
     return this.isWraped('blockquote');
   },
 
@@ -271,8 +272,8 @@ Editor.Formator.prototype = {
       this.editor.selectContents($contents);
     } else {
       // wrap blockquote
-      start = $(range.startContainer).closest('article > *')[0];
-      end = $(range.endContainer).closest('article > *')[0];
+      start = $(range.startContainer).closest('p, h1, h2, h3, h4, pre')[0];
+      end = $(range.endContainer).closest('p, h1, h2, h3, h4, pre')[0];
       range.setStartBefore(start);
       range.setEndAfter(end);
       $blockquote = $('<blockquote>');

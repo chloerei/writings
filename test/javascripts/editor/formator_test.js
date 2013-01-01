@@ -198,7 +198,7 @@ test("format code", function() {
   this.formator.code();
   equal(this.formator.editable.html(), '<pre><code>text\n</code></pre><p><br></p>'); // add a new line after
   this.formator.code();
-  equal(this.formator.editable.html(), '<p>text</p><p><br></p>'); // add a new line after
+  equal(this.formator.editable.html(), '<p>text</p><p><br></p>');
 
   this.formator.editable.html('<p>text</p>');
   var range = document.createRange();
@@ -211,4 +211,24 @@ test("format code", function() {
   equal(this.formator.editable.html(), '<p><code>t</code>ext</p>');
   this.formator.code();
   equal(this.formator.editable.html(), '<p>text</p>');
+});
+
+test("format blockquote", function() {
+  this.formator.editable.html('<p>text</p>');
+  document.getSelection().selectAllChildren(this.formator.editable.find('p')[0]);
+  equal(this.formator.isBlockquote(), false);
+  equal(this.formator.canBlockquote(), true);
+
+  this.formator.blockquote();
+  equal(this.formator.editable.html(), '<blockquote><p>text</p></blockquote><p><br></p>'); // add a new line after
+  this.formator.blockquote();
+  equal(this.formator.editable.html(), '<p>text</p><p><br></p>');
+
+  // multi line
+  this.formator.editable.html('<p>text</p><p>text</p>');
+  document.getSelection().selectAllChildren(this.formator.editable[0]);
+  this.formator.blockquote();
+  equal(this.formator.editable.html(), '<blockquote><p>text</p><p>text</p></blockquote><p><br></p>'); // add a new line after
+  this.formator.blockquote();
+  equal(this.formator.editable.html(), '<p>text</p><p>text</p><p><br></p>');
 });
