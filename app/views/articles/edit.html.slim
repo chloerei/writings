@@ -8,16 +8,14 @@ html
   body#article-edit
     #topbar
       .editor-container
-        header#editor-header
-          ul.top-nav
-            li= link_to @article.book.name, @article.book
-            li
-              span.urlname.editable title="click to edit" data-toggle-modal="#urlname-modal"
-                = @article.urlname
-              span.preview
-                = link_to '#' do
+        header#editor-header.clearfix
+          .pull-left
+            ul.top-nav
+              li= link_to @article.book.name, @article.book
+              li= link_to @article.urlname, '#urlname-modal', :data => {'toggle-modal' => '#urlname-modal'}, :title => 'Click to edit'
+              li = link_to '#' do
                   i.icon-external-link
-          .top-buttons
+          .pull-right
             .button-group
               = link_to 'Draft', '#', :class => ['button', (@article.publish? ? nil : 'button-actived')], :id => 'draft-button'
               = link_to 'Publish', '#', :class => ['button', (@article.publish? ? 'button-actived' : nil)], :id => 'publish-button'
