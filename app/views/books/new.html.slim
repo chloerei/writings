@@ -5,19 +5,8 @@
         nav
           ul
             li.active
-              = link_to 'Books', '#'
-            li
-              = link_to 'Profile', '#'
-            li
-              = link_to 'Account', '#'
-            li
-              = link_to 'Biling', '#'
+              | New Book
       #main-content
-        header
-          h2
-            i.icon-book
-            = ' '
-            | New Book
         = form_for @book, :validate => true do |f|
           .field
             = f.label :name

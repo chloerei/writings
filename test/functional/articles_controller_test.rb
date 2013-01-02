@@ -32,7 +32,7 @@ class ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should edit article" do
-    get :edit, :book_id => @book, :id => @article
+    get :edit, :id => @article
     assert_response :success, @response.body
   end
 

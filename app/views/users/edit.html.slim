@@ -1,7 +1,13 @@
 #mainarea
   .container
     #main
-      = render 'main/main_nav'
+      #main-nav
+        nav
+          ul
+            li.active
+              = link_to 'Account', account_path
+            li
+              = link_to 'Profile', profile_path
       #main-content
         = form_for current_user, :url => account_path, :validate => true do |f|
           .field

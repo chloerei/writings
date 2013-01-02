@@ -4,13 +4,8 @@
 #mainarea
   .container
     #main
-      = render 'main_nav'
+      = render 'articles/main_nav'
       #main-content
-        header
-          h2
-            i.icon-book
-            = ' '
-            | Book Settings
         = form_for @book, :validate => true do |f|
           .field
             = f.label :name

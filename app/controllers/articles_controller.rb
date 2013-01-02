@@ -12,8 +12,8 @@ class ArticlesController < ApplicationController
         @articles = @articles.draft
       end
 
-      if params[:book].present?
-        @book = current_user.books.where(:urlname => params[:book].to_s).first
+      if params[:book_id].present?
+        @book = current_user.books.where(:urlname => params[:book_id].to_s).first
         @articles = @articles.where(:book_id => @book.try(:id))
       elsif params[:not_collected]
         @articles = @articles.where(:book_id => nil)

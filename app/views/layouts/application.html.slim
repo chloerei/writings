@@ -14,12 +14,21 @@ html
             ul.top-nav
               li
                 = link_to 'Home', root_path
-              = render 'layouts/book_selector'
+              - if logined?
+                = render 'layouts/book_selector'
               = yield :top_nav
           .pull-right
             ul.top-nav
               - if logined?
-                li= link_to 'Logout', logout_path, :method => :delete
+                li
+                  .dropdown
+                    = link_to account_path, :class => 'dropdown-toggle' do
+                      i.icon-wrench
+                      = 'Account'
+                    ul.dropdown-menu
+                      li= link_to 'Account', account_path
+                      li= link_to 'Profile', profile_path
+                      li= link_to 'Logout', logout_path, :method => :delete
               - else
                 li= link_to 'Login', login_path
                 li= link_to 'Signup', signup_path
