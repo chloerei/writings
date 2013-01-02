@@ -1,6 +1,7 @@
 Publish::Application.routes.draw do
   constraints :host => APP_CONFIG["host"] do
     root :to => "articles#index"
+    get '(/books/:book_id)(/:status)', :to => 'articles#index', :as => :articles, :constraints => { :status => /(publish|draft)/ }
 
     get 'signup' => 'users#new', :as => :signup
     resources :users, :only => [:create]
@@ -13,7 +14,7 @@ Publish::Application.routes.draw do
     delete 'account' => 'users#destroy'
     resource :profile, :only => [:show, :update]
 
-    resources :books, :only => [:show, :new, :create, :edit, :update, :destroy], :path_names => { :edit => :settings } do
+    resources :books, :only => [:new, :create, :edit, :update, :destroy], :path_names => { :edit => :settings } do
     end
     resources :articles, :only => [:create, :edit, :update, :destroy]
   end
