@@ -1,15 +1,14 @@
 #mainarea
   .container
     #main
-      #main-header.clearfix
-        .pull-left
-        .pull-right
-          = link_to articles_path, :method => :post, :target => '_blank' do
-            i.icon-plus-sign
-            = ' '
-            = 'Create Article'
       = render 'main_nav'
       #main-content
+        header.clearfix
+          .pull-right
+            = link_to articles_path, :method => :post, :target => '_blank' do
+              i.icon-plus-sign
+              = ' '
+              = 'Create Article'
         table.articles
           tbody
             - @articles.each do |article|

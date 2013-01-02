@@ -8,11 +8,11 @@
         - if options.empty?
           = link_to 'Index', root_path
         - else
-          = link_to 'Index', articles_path(options.merge(:status => nil))
+          = link_to 'Index', root_path(options.merge(:status => nil))
       li class=(controller_name == 'articles' && params[:status] == 'publish' ? 'active' : nil)
-        = link_to 'Publish', articles_path(options.merge(:status => 'publish'))
+        = link_to 'Publish', root_path(options.merge(:status => 'publish'))
       li class=(controller_name == 'articles' && params[:status] == 'draft' ? 'active' : nil)
-        = link_to 'Draft', articles_path(options.merge(:status => 'draft'))
+        = link_to 'Draft', root_path(options.merge(:status => 'draft'))
       - if @book
         li class=(controller_name == 'books' ? 'active' : nil)
           = link_to 'Settings', edit_book_path(@book)

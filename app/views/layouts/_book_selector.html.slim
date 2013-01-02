@@ -2,12 +2,12 @@ li
   #book-selector.dropdown
     - if controller_name == 'articles' and action_name == 'index'
       - if @book
-        a.dropdown-toggle href=(articles_path(:book_id => @book)) = @book.name
+        a.dropdown-toggle href=(root_path(:book_id => @book)) = @book.name
         ul.dropdown-menu
           li = link_to 'All Articles', root_path
           li = link_to 'New Book', new_book_path
           - current_user.books.where(:id.ne => @book).each do |book|
-            li = link_to book.name, articles_path(:book_id => book)
+            li = link_to book.name, root_path(:book_id => book)
           li = link_to 'Not Collected', root_path(:not_collected => true)
       - elsif params[:not_collected]
         a.dropdown-toggle href=(root_path(:not_collected => true)) Not Collected
@@ -15,13 +15,13 @@ li
           li = link_to 'All Articles', root_path
           li = link_to 'New Book', new_book_path
           - current_user.books.each do |book|
-            li = link_to book.name, articles_path(:book_id => book)
+            li = link_to book.name, root_path(:book_id => book)
       - else
         a.dropdown-toggle href=(root_path) All Articles
         ul.dropdown-menu
           li = link_to 'New Book', new_book_path
           - current_user.books.each do |book|
-            li = link_to book.name, articles_path(:book_id => book)
+            li = link_to book.name, root_path(:book_id => book)
           li = link_to 'Not Collected', root_path(:not_collected => true)
     - elsif controller_name == 'books' and action_name == 'new'
         a.dropdown-toggle href=(new_book_path) New Book
@@ -29,7 +29,7 @@ li
           li = link_to 'All Articles', root_path
           - current_user.books.each do |book|
             li
-              = link_to book.name, articles_path(:book_id => book)
+              = link_to book.name, root_path(:book_id => book)
           li = link_to 'Not Collected', root_path(:not_collected => true)
     - else
         a.dropdown-toggle href=(root_path) Select List
@@ -37,5 +37,5 @@ li
           li = link_to 'All Articles', root_path
           li = link_to 'New Book', new_book_path
           - current_user.books.each do |book|
-            li = link_to book.name, articles_path(:book_id => book)
+            li = link_to book.name, root_path(:book_id => book)
           li = link_to 'Not Collected', root_path(:not_collected => true)

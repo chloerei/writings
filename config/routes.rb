@@ -1,7 +1,6 @@
 Publish::Application.routes.draw do
   constraints :host => APP_CONFIG["host"] do
     root :to => "articles#index"
-    get '(/books/:book_id)(/:status)', :to => 'articles#index', :as => :articles, :constraints => { :status => /(publish|draft)/ }
 
     get 'signup' => 'users#new', :as => :signup
     resources :users, :only => [:create]
