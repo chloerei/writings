@@ -28,7 +28,7 @@ Publish::Application.routes.draw do
       collection do
         get :book
         get :editor
-        get :forum
+        get :form
         get :modal
       end
     end

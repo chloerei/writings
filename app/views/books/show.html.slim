@@ -4,16 +4,20 @@
 #mainarea
   .container
     #main
+      #main-header.clearfix
+        .pull-left
+          .dropdown
+            a.dropdown-toggle href='#' = @book.name
+            ul.dropdown-menu
+              li
+                a href="#" other
+        .pull-right
+          = link_to book_articles_path(@book), :method => :post, :target => '_blank' do
+            i.icon-plus-sign
+            = ' '
+            = 'Create Article'
       = render 'main_nav'
       #main-content
-        header.clearfix
-          /.pull-left
-            input type="search" placeholder="Filter"
-          .pull-right
-            = link_to book_articles_path(@book), :method => :post, :target => '_blank' do
-              i.icon-plus-sign
-              = ' '
-              = 'Create Article'
         table.articles
           tbody
             - @articles.each do |article|
