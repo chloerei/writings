@@ -1,9 +1,30 @@
 class ArticlesController < ApplicationController
   before_filter :require_logined
-  before_filter :find_book, :only => [:new, :create]
 
+  def index
+    if logined?
+      @articles = current_user.articles.desc(:created_at)
+
+      case params[:status]
+      when 'publish'
+        @articles = @articles.publish
+      when 'draft'
+        @articles = @articles.draft
+      end
+
+      if params[:book].present?
+        @book = current_user.books.where(:urlname => params[:book].to_s).first
+        @articles = @articles.where(:book_id => @book.try(:id))
+      elsif params[:not_collected]
+        @articles = @articles.where(:book_id => nil)
+      end
+
+    else
+      render :guest_index
+    end
+  end
   def create
-    @article = @book.articles.create :user => current_user
+    @article = current_user.articles.create :book => current_user.books.where(:urlname => params[:book_id]).first
     redirect_to edit_article_url(@article)
   end
 
@@ -26,10 +47,6 @@ class ArticlesController < ApplicationController
   end
 
   private
-
-  def find_book
-    @book = current_user.books.find_by(:urlname => params[:book_id])
-  end
 
   def article_params
     params.require(:article).permit(:title, :body, :urlname, :publish)

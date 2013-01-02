@@ -347,7 +347,7 @@ a.button:hover {
 
   .dropdown {
     .dropdown-toggle {
-      padding: 15px 15px 14px;
+      padding: 15px 30px 14px 15px;
       color: $linkColor;
       vertical-align: baseline;
 
@@ -362,7 +362,7 @@ a.button:hover {
 
     .dropdown-menu {
       top: 47px;
-      width: 129px;
+      width: 144px;
       font-weight: normal;
 
       li {

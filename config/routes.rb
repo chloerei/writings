@@ -1,6 +1,6 @@
 Publish::Application.routes.draw do
   constraints :host => APP_CONFIG["host"] do
-    root :to => "main#index"
+    root :to => "articles#index"
 
     get 'signup' => 'users#new', :as => :signup
     resources :users, :only => [:create]
@@ -14,13 +14,11 @@ Publish::Application.routes.draw do
     resource :profile, :only => [:show, :update]
 
     resources :books, :only => [:show, :new, :create, :edit, :update, :destroy], :path_names => { :edit => :settings } do
-      resources :articles, :only => [:create]
-
       member do
         get :draft
       end
     end
-    resources :articles, :only => [:edit, :update, :destroy]
+    resources :articles, :only => [:create, :edit, :update, :destroy]
   end
 
   if Rails.env.development?

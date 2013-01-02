@@ -1,0 +1,20 @@
+#mainarea
+  .container
+    #main
+      #main-header.clearfix
+        .pull-left
+        .pull-right
+          = link_to articles_path, :method => :post, :target => '_blank' do
+            i.icon-plus-sign
+            = ' '
+            = 'Create Article'
+      = render 'main_nav'
+      #main-content
+        table.articles
+          tbody
+            - @articles.each do |article|
+              tr
+                td.article-title
+                  = link_to article.title, edit_article_path(article), :target => '_blank'
+                td.article-date
+                  = Date.today

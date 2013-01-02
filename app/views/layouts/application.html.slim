@@ -14,7 +14,8 @@ html
             ul.top-nav
               li
                 = link_to 'Home', root_path
-                = yield :top_nav
+              = render 'layouts/book_selector'
+              = yield :top_nav
           .pull-right
             ul.top-nav
               - if logined?

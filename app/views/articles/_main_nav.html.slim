@@ -1,0 +1,10 @@
+#main-nav
+  - options = params.slice(:book, :not_collected)
+  nav
+    ul
+      li class=(params[:status].nil? ? 'active' : nil)
+        = link_to 'Index', url_for(options.merge(:status => nil))
+      li class=(params[:status] == 'publish' ? 'active' : nil)
+        = link_to 'Publish', url_for(options.merge(:status => 'publish'))
+      li class=(params[:status] == 'draft' ? 'active' : nil)
+        = link_to 'Draft', url_for(options.merge(:status => 'draft'))

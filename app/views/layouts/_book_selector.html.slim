@@ -1,0 +1,40 @@
+li
+  #book-selector.dropdown
+    - if controller_name == 'articles' and action_name == 'index'
+      - if @book
+        a.dropdown-toggle href='#' = @book.name
+        ul.dropdown-menu
+          li = link_to 'Articles', root_path
+          li = link_to 'New Book', new_book_path
+          - current_user.books.where(:id.ne => @book).each do |book|
+            li = link_to book.name, root_path(:book => book)
+          li = link_to 'Not Collected', root_path(:not_collected => true)
+      - elsif params[:not_collected]
+        a.dropdown-toggle href='#' Not Collected
+        ul.dropdown-menu
+          li = link_to 'Articles', root_path
+          li = link_to 'New Book', new_book_path
+          - current_user.books.each do |book|
+            li = link_to book.name, root_path(:book => book)
+      - else
+        a.dropdown-toggle href='#' Articles
+        ul.dropdown-menu
+          li = link_to 'New Book', new_book_path
+          - current_user.books.each do |book|
+            li = link_to book.name, root_path(:book => book)
+          li = link_to 'Not Collected', root_path(:not_collected => true)
+    - elsif controller_name == 'books' and action_name == 'new'
+        = link_to 'New Book', new_book_path, :class => 'dropdown-toggle'
+        ul.dropdown-menu
+          li = link_to 'Articles', root_path
+          - current_user.books.each do |book|
+            li = link_to book.name, root_path(:book => book)
+          li = link_to 'Not Collected', root_path(:not_collected => true)
+    - else
+        = link_to 'Select List', '#', :class => 'dropdown-toggle'
+        ul.dropdown-menu
+          li = link_to 'Articles', root_path
+          li = link_to 'New Book', new_book_path
+          - current_user.books.each do |book|
+            li = link_to book.name, root_path(:book => book)
+          li = link_to 'Not Collected', root_path(:not_collected => true)
