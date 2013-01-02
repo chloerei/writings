@@ -6,36 +6,58 @@ li
         ul.dropdown-menu
           li = link_to 'All Articles', root_path
           li = link_to 'New Book', new_book_path
-          - current_user.books.where(:id.ne => @book).each do |book|
-            li = link_to book.name, root_path(:book_id => book)
+          li
+            hr
+          - if current_user.books.where(:id.ne => @book).any?
+            - current_user.books.where(:id.ne => @book).each do |book|
+              li = link_to book.name, root_path(:book_id => book)
+            li
+              hr
           li = link_to 'Not Collected', root_path(:not_collected => true)
       - elsif params[:not_collected]
         a.dropdown-toggle href=(root_path(:not_collected => true)) Not Collected
         ul.dropdown-menu
           li = link_to 'All Articles', root_path
           li = link_to 'New Book', new_book_path
+          li
+            hr
           - current_user.books.each do |book|
             li = link_to book.name, root_path(:book_id => book)
       - else
         a.dropdown-toggle href=(root_path) All Articles
         ul.dropdown-menu
           li = link_to 'New Book', new_book_path
-          - current_user.books.each do |book|
-            li = link_to book.name, root_path(:book_id => book)
+          li
+            hr
+          - if current_user.books.any?
+            - current_user.books.each do |book|
+              li = link_to book.name, root_path(:book_id => book)
+            li
+              hr
           li = link_to 'Not Collected', root_path(:not_collected => true)
     - elsif controller_name == 'books' and action_name == 'new'
         a.dropdown-toggle href=(new_book_path) New Book
         ul.dropdown-menu
           li = link_to 'All Articles', root_path
-          - current_user.books.each do |book|
+          li
+            hr
+          - if current_user.books.any?
+            - current_user.books.each do |book|
+              li
+                = link_to book.name, root_path(:book_id => book)
             li
-              = link_to book.name, root_path(:book_id => book)
+              hr
           li = link_to 'Not Collected', root_path(:not_collected => true)
     - else
         a.dropdown-toggle href=(root_path) Select List
         ul.dropdown-menu
           li = link_to 'All Articles', root_path
           li = link_to 'New Book', new_book_path
-          - current_user.books.each do |book|
-            li = link_to book.name, root_path(:book_id => book)
+          li
+            hr
+          - if current_user.books.any?
+            - current_user.books.each do |book|
+              li = link_to book.name, root_path(:book_id => book)
+            li
+              hr
           li = link_to 'Not Collected', root_path(:not_collected => true)

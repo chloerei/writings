@@ -25,9 +25,11 @@ html
                     = link_to account_path, :class => 'dropdown-toggle' do
                       i.icon-wrench
                       = 'Account'
-                    ul.dropdown-menu
+                    ul.dropdown-menu.align-right
                       li= link_to 'Account', account_path
                       li= link_to 'Profile', profile_path
+                      li
+                        hr
                       li= link_to 'Logout', logout_path, :method => :delete
               - else
                 li= link_to 'Login', login_path

@@ -240,7 +240,6 @@ a.button:hover {
 
   .dropdown-toggle {
     position: relative;
-    width: 100px;
     padding: 5px 27px 5px 10px;
     vertical-align: middle;
     display: inline-block;
@@ -263,8 +262,8 @@ a.button:hover {
     margin: 0;
     padding: 0;
     z-index: 1000;
+    min-width: 140px;
     position: absolute;
-    width: 137px;
     top: 30px;
     left: 0;
     background: #fff;
@@ -272,11 +271,19 @@ a.button:hover {
     border-radius: 3px;
     @include box-shadow(0 2px 10px #ccc);
 
+    &.align-right {
+      left: auto;
+      right: 0;
+    }
+
     li {
       display: block;
       cursor: pointer;
       float: none;
-      border-bottom: 1px solid #ccc;
+
+      hr {
+        margin: 3px 0;
+      }
 
       a {
         display: block;
@@ -473,8 +480,7 @@ a.button:hover {
       }
 
       .dropdown-menu {
-        width: 103px;
-        top: 25px;
+        top: 26px;
         left: 0;
 
         li {
