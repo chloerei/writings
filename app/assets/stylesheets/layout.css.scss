@@ -247,8 +247,6 @@ a.button:hover {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    border-radius: 3px;
-    @include button-color(#fff);
 
     &:after {
       position: absolute;
@@ -264,6 +262,7 @@ a.button:hover {
     display: none;
     margin: 0;
     padding: 0;
+    z-index: 1000;
     position: absolute;
     width: 137px;
     top: 30px;
@@ -291,7 +290,7 @@ a.button:hover {
   }
 
   &.actived {
-    .dropdown-toggle {
+    .dropdown-toggle.button {
       @include box-shadow(inset 0 1px 2px darken(#fff, 25%));
       @include linear-gradient(darken(#fff, 10%), darken(#fff, 25%));
     }
@@ -453,7 +452,6 @@ a.button:hover {
         width: 80px;
         height: 16px;
         padding-right: 20px;
-        background: none;
 
         &:after {
           right: 0;
