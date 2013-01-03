@@ -1,12 +1,26 @@
 var Dialog = {
   show: function(id) {
-    $('body').append($('<div id="modal-background"></div>'));
-    $(id).show().find('input[type=text]').focus();
+    if ($('#modal-background').length === 0) {
+      $('body').append($('<div id="modal-background"></div>'));
+    }
+    var $modal = $(id);
+
+    if ($modal.hasClass('level-2')) {
+      $('#modal-background').addClass('level-2');
+    }
+    $modal.show().find('input[type=text]').first().focus();
+    $modal.find(ClientSideValidations.selectors.forms).resetClientSideValidations();
   },
 
   hide: function(el) {
-    $('#modal-background').remove();
-    $(el).hide();
+    $modal = $(el);
+    $modal.hide();
+
+    if ($modal.hasClass('level-2')) {
+      $('#modal-background').removeClass('level-2');
+    } else {
+      $('#modal-background').remove();
+    }
   }
 };
 

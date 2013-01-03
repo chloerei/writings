@@ -10,9 +10,15 @@ class BooksController < ApplicationController
     @book = current_user.books.new book_params
 
     if @book.save
-      redirect_to @book
+      respond_to do |format|
+        format.html { redirect_to @book }
+        format.js { render :json => @book.as_json(:only => [:urlname, :name]) }
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html { render :new }
+        format.js { render :text => @book.errors.full_messages, :status => :error }
+      end
     end
   end
 

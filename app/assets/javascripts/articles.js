@@ -26,9 +26,7 @@ $(function() {
       event.preventDefault();
       var urlname = $('#article-urlname').val();
       if (isPersisted()) {
-        updateArticle({
-          article: { urlname: urlname }
-        }, function(data) {
+        updateArticle($('#urlname-form').serializeArray(), function(data) {
           $('#topbar .urlname').text(data.urlname);
           Dialog.hide('#urlname-modal');
         });
@@ -41,12 +39,10 @@ $(function() {
 
     var saveBook = function(event) {
       event.preventDefault();
-      var bookId = $('#book-form .dropdown-toggle').data('book-id');
+      var bookId = $('#article-book-id').val();
       var bookName = $('#book-form .dropdown-toggle').text();
       if (isPersisted()) {
-        updateArticle({
-          article: { book_id: bookId }
-        }, function(data) {
+        updateArticle($('#book-form').serializeArray(), function(data) {
           article.data('book-id', bookId);
           $('#topbar .book-name').text(bookId ? bookName : '');
           Dialog.hide('#book-modal');
@@ -56,6 +52,23 @@ $(function() {
         $('#topbar .book-name').text(bookId ? bookName : '');
         Dialog.hide('#book-modal');
       }
+    };
+
+    var createBook = function(event) {
+      event.preventDefault();
+      $.ajax({
+        url: '/books/',
+        data: $('#new-book-form').serializeArray(),
+        type: 'post',
+        dataType: 'json'
+      }).success(function(data) {
+        var $li = $('<li><a href="#">');
+        $li.find('a').text(data.name).data('book-id', data.urlname);
+        $('#book-form .dropdown-menu').prepend($li);
+        $('#book-form .dropdown-toggle').text(data.name);
+        $('#article-book-id').val(data.urlname);
+        Dialog.hide('#new-book-modal');
+      });
     };
 
     var saveArticle = function(event) {
@@ -136,9 +149,11 @@ $(function() {
     $('#book-form .dropdown').on('click', '.dropdown-menu li a', function(event) {
       event.preventDefault();
       var $li = $(this);
-      $li.closest('.dropdown').find('.dropdown-toggle').text($li.text()).data('book-id', $li.data('book-id'));
+      $li.closest('.dropdown').find('.dropdown-toggle').text($li.text());
+      $('#article-book-id').val($li.data('book-id'));
     });
     $('#book-form').on('submit', saveBook);
+    $('#new-book-form').on('submit', createBook);
 
     Mousetrap.bind('ctrl+s', saveArticle);
   }

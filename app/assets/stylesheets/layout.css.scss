@@ -229,6 +229,7 @@ a.button:hover {
 
 .dropdown {
   position: relative;
+  display: inline-block;
 
   a {
     color: #333;
@@ -678,13 +679,17 @@ a.button:hover {
   background-color: white;
   opacity: 0.5;
   z-index: 1000;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
+
+  &.level-2 {
+    z-index: 2000;
+  }
 }
 
 .modal-dialog {
-  position: absolute;
+  position: fixed;
   display: none;
   top: 30%;
   left: 50%;
@@ -696,6 +701,10 @@ a.button:hover {
 
   width: 340px;
   margin-left: -186px;
+
+  &.level-2 {
+    z-index: 2001;
+  }
 
   span.modal-close {
     position: absolute;
