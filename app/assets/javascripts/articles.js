@@ -105,39 +105,47 @@ $(function() {
       });
     };
 
+    var setPbulishClass = function(isPublish) {
+      if (isPublish) {
+        $('#draft-button').removeClass('button-actived');
+        $('#publish-button').addClass('button-actived');
+      } else {
+        $('#publish-button').removeClass('button-actived');
+        $('#draft-button').addClass('button-actived');
+      }
+    };
+
     var publishArticle = function(event) {
+      setPbulishClass(true);
       event.preventDefault();
         if (isPersisted()) {
         updateArticle({
           article: {
             publish: true
           }
-        }, function(data) {
-          $('#draft-button').removeClass('button-actived');
-          $('#publish-button').addClass('button-actived');
+        }, null, function(data) {
+          setPbulishClass(false);
+          article.data('publish', false);
         });
       } else {
         article.data('publish', true);
-        $('#draft-button').removeClass('button-actived');
-        $('#publish-button').addClass('button-actived');
       }
     };
 
     var draftArticle = function(event) {
       event.preventDefault();
+      setPbulishClass(false);
       if (isPersisted()) {
         updateArticle({
           article: {
             publish: false
           }
-        }, function(data) {
-          $('#publish-button').removeClass('button-actived');
-          $('#draft-button').addClass('button-actived');
+        }, null, function(data) {
+          setPbulishClass(true);
+          article.data('publish', true);
         });
       } else {
-        article.data('publish', true);
-        $('#publish-button').removeClass('button-actived');
-        $('#draft-button').addClass('button-actived');
+        article.data('publish', false);
       }
     };
 
