@@ -72,7 +72,7 @@ hr {
   margin: 40px 0;
   border: 0;
   height: 1px;
-  @include linear-gradient(left, transparent, #ccc, transparent);
+  background-color: #ccc;
 
 }
 
@@ -241,6 +241,7 @@ a.button:hover {
   .dropdown-toggle {
     position: relative;
     padding: 5px 27px 5px 10px;
+    width: 100px;
     vertical-align: middle;
     display: inline-block;
     white-space: nowrap;
@@ -262,7 +263,7 @@ a.button:hover {
     margin: 0;
     padding: 0;
     z-index: 1000;
-    min-width: 140px;
+    width: 137px;
     position: absolute;
     top: 30px;
     left: 0;
@@ -357,6 +358,7 @@ a.button:hover {
       padding: 15px 30px 14px 15px;
       color: $linkColor;
       vertical-align: baseline;
+      width: 100px;
 
       &:after {
         padding: 2px 15px;
