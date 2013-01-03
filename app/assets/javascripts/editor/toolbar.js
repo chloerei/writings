@@ -49,6 +49,9 @@ Editor.Toolbar.prototype = {
 
   detectBlocks: function() {
     var type = document.queryCommandValue('formatBlock');
+    if (type === 'pre') {
+      type = 'code'; // rename
+    }
     var text = this.toolbar.find('#format-block [data-command=' + type + ']').text();
     if (text === '') {
       text = this.toolbar.find('#format-block [data-command]:first').text();
