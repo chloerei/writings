@@ -15,7 +15,7 @@ Publish::Application.routes.draw do
 
     resources :books, :only => [:new, :create, :edit, :update, :destroy], :path_names => { :edit => :settings } do
     end
-    resources :articles, :only => [:create, :edit, :update, :destroy]
+    resources :articles, :only => [:new, :create, :edit, :update, :destroy]
   end
 
   if Rails.env.development?

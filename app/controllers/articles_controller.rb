@@ -23,9 +23,23 @@ class ArticlesController < ApplicationController
       render :guest_index
     end
   end
+
+  def new
+    @article = Article.new
+    render :edit
+  end
+
   def create
-    @article = current_user.articles.create :book => current_user.books.where(:urlname => params[:book_id]).first
-    redirect_to edit_article_url(@article)
+    @article = current_user.articles.new article_params
+    if @article.save
+      respond_to do |format|
+        format.json { render :json => @article.as_json(:only => [:urlname, :title, :publish], :methods => :id) }
+      end
+    else
+      respond_to do |format|
+        format.json { render :text => @article.errors.full_messages, :status => :error }
+      end
+    end
   end
 
   def edit
@@ -37,7 +51,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.find params[:id]
     if @article.update_attributes article_params
       respond_to do |format|
-        format.json { render :json => {:id => @article.id, :urlname => @article.urlname} }
+        format.json { render :json => @article.as_json(:only => [:urlname, :title, :publish], :methods => :id) }
       end
     else
       respond_to do |format|
@@ -49,6 +63,12 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :body, :urlname, :publish)
+    base_params = params.require(:article).permit(:title, :body, :urlname, :publish)
+
+    if params[:article][:book_id] and book = current_user.books.where(:urlname => params[:article][:book_id]).first
+      base_params.merge!(:book => book)
+    end
+
+    base_params
   end
 end
