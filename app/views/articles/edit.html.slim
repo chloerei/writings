@@ -96,8 +96,8 @@ html
         i.icon-remove
       = form_for @article, :html => { :id => 'book-form' } do |f|
         .field
+          label Select Book
           .dropdown
-            label Select Book
             a.dropdown-toggle.button data-book-id=(@article.book.try(:urlname)) href="#" = @article.book.try(:urlname) || 'Select Book'
             ul.dropdown-menu
               - current_user.books.each do |book|
