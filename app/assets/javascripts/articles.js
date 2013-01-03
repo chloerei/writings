@@ -24,16 +24,37 @@ $(function() {
 
     var saveUrlname = function(event) {
       event.preventDefault();
+      var urlname = $('#article-urlname').val();
       if (isPersisted()) {
-        updateArticle($('#urlname-modal form').serializeArray(), function(data) {
+        updateArticle({
+          article: { urlname: urlname }
+        }, function(data) {
           $('#topbar .urlname').text(data.urlname);
           Dialog.hide('#urlname-modal');
         });
       } else {
-        var urlname = $('#article_urlname').val();
         article.data('urlname', urlname);
         $('#topbar .urlname').text(urlname);
         Dialog.hide('#urlname-modal');
+      }
+    };
+
+    var saveBook = function(event) {
+      event.preventDefault();
+      var bookId = $('#book-form .dropdown-toggle').data('book-id');
+      var bookName = $('#book-form .dropdown-toggle').text();
+      if (isPersisted()) {
+        updateArticle({
+          article: { book_id: bookId }
+        }, function(data) {
+          article.data('book-id', bookId);
+          $('#topbar .book-name').text(bookId ? bookName : '');
+          Dialog.hide('#book-modal');
+        });
+      } else {
+        article.data('book-id', bookId);
+        $('#topbar .book-name').text(bookId ? bookName : '');
+        Dialog.hide('#book-modal');
       }
     };
 
@@ -107,10 +128,17 @@ $(function() {
       }
     };
 
-    $('#urlname-modal form').on('submit', saveUrlname);
+    $('#urlname-form').on('submit', saveUrlname);
     $('#save-button').on('click', saveArticle);
     $('#publish-button').on('click', publishArticle);
     $('#draft-button').on('click', draftArticle);
+
+    $('#book-form .dropdown').on('click', '.dropdown-menu li a', function(event) {
+      event.preventDefault();
+      var $li = $(this);
+      $li.closest('.dropdown').find('.dropdown-toggle').text($li.text()).data('book-id', $li.data('book-id'));
+    });
+    $('#book-form').on('submit', saveBook);
 
     Mousetrap.bind('ctrl+s', saveArticle);
   }

@@ -27,6 +27,9 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new
     @article.id = nil
+    if params[:book_id]
+      @article.book = current_user.books.where(:urlname => params[:book_id]).first
+    end
     render :edit, :layout => false
   end
 

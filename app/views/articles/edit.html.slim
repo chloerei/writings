@@ -12,10 +12,10 @@ html
           .pull-left
             ul.top-nav
               li
-                = link_to '#book-modal' do
+                = link_to '#book-modal', :data => {'toggle-modal' => '#book-modal'} do
                   i.icon-book
                   = ' '
-                  = @article.book.try(:name)
+                  span.book-name= @article.book.try(:name)
               li
                 = link_to '#urlname-modal', :data => {'toggle-modal' => '#urlname-modal'}, :title => 'Click to edit' do
                   i.icon-link
@@ -77,15 +77,34 @@ html
                     blockquote Blockquote
     #editarea
       .editor-container
-        article contentEditable="true" data-id=(@article.id) data-book-urlname=(@article.book.try(:urlname)) data-urlname=(@article.urlname) data-publish=(@article.publish.to_s)
+        article contentEditable="true" data-id=(@article.id) data-book-id=(@article.book.try(:urlname)) data-urlname=(@article.urlname) data-publish=(@article.publish.to_s)
           = sanitize @article.body
+
     #urlname-modal.modal-dialog
       span.modal-close
         i.icon-remove
-      = form_for @article do |f|
+      = form_for @article, :html => { :id => 'urlname-form' } do |f|
         .field
           = f.label :urlname
-          = f.text_field :urlname
+          = f.text_field :urlname, :id => 'article-urlname'
+        .field
+          = f.submit 'Save', :class => 'button'
+          = f.submit 'Cancel', :class => 'button modal-close'
+
+    #book-modal.modal-dialog
+      span.modal-close
+        i.icon-remove
+      = form_for @article, :html => { :id => 'book-form' } do |f|
+        .field
+          .dropdown
+            label Select Book
+            a.dropdown-toggle.button data-book-id=(@article.book.try(:urlname)) href="#" = @article.book.try(:urlname) || 'Select Book'
+            ul.dropdown-menu
+              - current_user.books.each do |book|
+                li
+                  a href="#" data-book-id=(book.urlname) = book.name
+              li
+                a href="#" data-book-id=('null') Not Collected
         .field
           = f.submit 'Save', :class => 'button'
           = f.submit 'Cancel', :class => 'button modal-close'

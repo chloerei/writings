@@ -5,7 +5,7 @@
       #main-content
         header.clearfix
           .pull-right
-            = link_to new_article_path, :target => '_blank' do
+            = link_to new_article_path(:book_id => @book), :target => '_blank' do
               i.icon-plus-sign
               = ' '
               = 'New Article'
