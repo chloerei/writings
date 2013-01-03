@@ -69,8 +69,8 @@ class ArticlesController < ApplicationController
   def article_params
     base_params = params.require(:article).permit(:title, :body, :urlname, :publish)
 
-    if params[:article][:book_id] and book = current_user.books.where(:urlname => params[:article][:book_id]).first
-      base_params.merge!(:book => book)
+    if params[:article][:book_id]
+      base_params.merge!(:book => current_user.books.where(:urlname => params[:article][:book_id]).first)
     end
 
     base_params
