@@ -20,7 +20,7 @@ html
                 = link_to '#urlname-modal', :data => {'toggle-modal' => '#urlname-modal'}, :title => 'Click to edit' do
                   i.icon-link
                   = ' '
-                  = @article.urlname
+                  span.urlname= @article.urlname
               li
                 = link_to '#' do
                   i.icon-external-link
