@@ -26,7 +26,8 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    render :edit
+    @article.id = nil
+    render :edit, :layout => false
   end
 
   def create

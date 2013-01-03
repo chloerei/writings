@@ -15,7 +15,7 @@ html
                 = link_to '#book-modal' do
                   i.icon-book
                   = ' '
-                  = @article.book.try(:name) || 'Not Collection'
+                  = @article.book.try(:name)
               li
                 = link_to '#urlname-modal', :data => {'toggle-modal' => '#urlname-modal'}, :title => 'Click to edit' do
                   i.icon-link
@@ -77,7 +77,7 @@ html
                     blockquote Blockquote
     #editarea
       .editor-container
-        article contentEditable="true" data-article-id=(@article.id) data-book-urlname=(@article.book.try(:urlname))
+        article contentEditable="true" data-id=(@article.id) data-book-urlname=(@article.book.try(:urlname)) data-urlname=(@article.urlname) data-publish=(@article.publish.to_s)
           = sanitize @article.body
     #urlname-modal.modal-dialog
       span.modal-close
