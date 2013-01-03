@@ -33,7 +33,7 @@ var Editor = function(options) {
     keyup: function(event) {
       _this.keyup(event);
     },
-    keydowm: function(event) {
+    keydown: function(event) {
       _this.keydown(event);
     },
     input: function(event) {
@@ -135,13 +135,14 @@ Editor.prototype = {
 
   enter: function(event) {
     // If in pre code, insert \n
-    var selection = window.getSelection();
-    var range = selection.getRangeAt(0);
-    var rangeAncestor = range.commonAncestorContainer;
 
-    var $pre = $(rangeAncestor).closest('pre');
-    if ($pre.length) {
+    if (document.queryCommandValue('formatBlock') === 'pre') {
       event.preventDefault();
+      var selection = window.getSelection();
+      var range = selection.getRangeAt(0);
+      var rangeAncestor = range.commonAncestorContainer;
+      var $pre = $(rangeAncestor).closest('pre');
+
       range.deleteContents();
       var isLastLine = ($pre.find('code').contents().last()[0] === range.endContainer);
       var isEnd = (range.endContainer.length === range.endOffset);
