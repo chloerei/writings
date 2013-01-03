@@ -195,7 +195,7 @@ Editor.Formator.prototype = {
       this.p();
     } else {
       this.exec('formatBlock', type);
-      $(this.commonAncestorContainer()).closest(type).find(':not(i, strike, u, a)').each(function() {
+      $(this.commonAncestorContainer()).closest(type).find(':not(i, strike, u, a, br)').each(function() {
         $(this).replaceWith($(this).contents());
       });
     }
