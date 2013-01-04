@@ -13,7 +13,10 @@
           tbody
             - @articles.each do |article|
               tr
-                td.article-title
-                  = link_to article.title, edit_article_path(article), :target => '_blank'
-                td.article-date
-                  = Date.today
+                td.info
+                  = link_to edit_article_path(article), :target => '_blank' do
+                    span.title= article.title
+                    span.date= l article.created_at.to_date, :format => :short
+                td.config
+                  = link_to edit_article_path(article) do
+                    i.icon-chevron-right

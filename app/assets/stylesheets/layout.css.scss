@@ -557,10 +557,6 @@ a.button:hover {
       }
     }
 
-    #main-header {
-      margin-bottom: 20px;
-    }
-
     #main-nav {
       width: 18%;
       margin-right: 2%;
@@ -588,39 +584,70 @@ a.button:hover {
       width: 80%;
       float: left;
 
+      header {
+        margin-bottom: 25px;
+      }
+
       table.articles {
         width: 100%;
 
-        a {
-          color: #555;
-        }
-
-        .article-title {
-          font-weight: bold;
-        }
-
         td {
-          padding: 15px 5px 14px 0;
-          border-bottom: 1px solid #ddd;
+          border-top: 1px solid #ddd;
 
           &:hover {
+            background-color: #f9f9f9;
           }
 
-          &:last-child {
-            text-align: right;
-            padding-right: 0;
+          a {
+            color: #555;
+            padding: 15px 20px 15px 0;
+            display: block;
+            @include clearfix();
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
+
+          &.info {
+            .title {
+              float: left;
+            }
+
+            .date {
+              color: #666;
+              float: right;
+            }
+
+            a:hover {
+              .title {
+                color: $linkColor;
+              }
+            }
+          }
+
+          &.config {
+            width: 1%;
+
+            a {
+              padding-left: 20px;
+              color: #999;
+
+              &:hover {
+                color: $linkColor;
+              }
+            }
           }
         }
 
         tr:hover {
-          cursor: pointer;
-          a {
-            color: $linkColor;
+          td.config {
+            background-color: #f9f9f9;
           }
         }
 
         tr:last-child td {
-          border-bottom: 0;
+          border-bottom: 1px solid #ddd;
         }
       }
 
