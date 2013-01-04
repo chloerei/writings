@@ -169,7 +169,7 @@ ArticleEdit.prototype = {
 
 
 page_ready(function() {
-  if ($('body#article-edit').length) {
+  if ($('body#articles-edit').length) {
     new ArticleEdit();
   }
 });
