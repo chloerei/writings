@@ -1,25 +1,31 @@
 var Dialog = {
+  level: 0,
+  zIndex: 1000,
+  zIndexStep: 10,
   show: function(id) {
     if ($('#modal-background').length === 0) {
       $('body').append($('<div id="modal-background"></div>'));
     }
     var $modal = $(id);
 
-    if ($modal.hasClass('level-2')) {
-      $('#modal-background').addClass('level-2');
-    }
-    $modal.show().find('input[type=text]').first().focus();
+    var zIndex = Dialog.zIndex + Dialog.zIndexStep * Dialog.level;
+    $('#modal-background').css('z-index', zIndex);
+    $modal.css('z-index', zIndex + 1).show();
     $modal.find(ClientSideValidations.selectors.forms).resetClientSideValidations();
+
+    Dialog.level += 1;
   },
 
   hide: function(el) {
     $modal = $(el);
     $modal.hide();
+    Dialog.level -= 1;
 
-    if ($modal.hasClass('level-2')) {
-      $('#modal-background').removeClass('level-2');
-    } else {
+    if (Dialog.level === 0) {
       $('#modal-background').remove();
+    } else {
+      var zIndex = Dialog.zIndex + Dialog.zIndexStep * (Dialog.level - 1);
+      $('#modal-background').css('z-index', zIndex);
     }
   }
 };

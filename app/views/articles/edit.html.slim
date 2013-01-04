@@ -111,7 +111,7 @@ html
           = f.submit 'Save', :class => 'button'
           = f.submit 'Cancel', :class => 'button modal-close'
 
-    #new-book-modal.modal-dialog.level-2
+    #new-book-modal.modal-dialog
       span.modal-close
         i.icon-remove
       = form_for current_user.books.new, :validate => true, :html => { :id => 'new-book-form' } do |f|
