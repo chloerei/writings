@@ -1,0 +1,11 @@
+var $articles = $('#articles');
+$articles.append('<%= j render(:partial => 'article', :collection => @articles) %>');
+
+<% count = @articles.to_a.count %>
+<% next_skip = @articles.options[:skip].to_i + count %>
+
+$articles.data('skip', <%= next_skip %>);
+
+<% unless @articles.skip(next_skip).exists? %>
+  $articles.data('is-end', true);
+<% end %>

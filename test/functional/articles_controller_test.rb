@@ -24,6 +24,11 @@ class ArticlesControllerTest < ActionController::TestCase
     assert_response :success, @response.body
   end
 
+  test "should respond to js" do
+    get :index, :format => :js
+    assert_response :success, @response.body
+  end
+
   test "should create article" do
     assert_difference "@user.articles.count" do
       post :create, :format => :json, :article => attributes_for(:article)

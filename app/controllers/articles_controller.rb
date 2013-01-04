@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
   def index
     if logined?
-      @articles = current_user.articles.desc(:created_at)
+      @articles = current_user.articles.desc(:created_at).limit(25)
 
       case params[:status]
       when 'publish'
@@ -17,6 +17,15 @@ class ArticlesController < ApplicationController
         @articles = @articles.where(:book_id => @book.try(:id))
       elsif params[:not_collected]
         @articles = @articles.where(:book_id => nil)
+      end
+
+      if params[:skip]
+        @articles = @articles.skip(params[:skip])
+      end
+
+      respond_to do |format|
+        format.html
+        format.js
       end
 
     else
