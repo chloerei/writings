@@ -4,7 +4,7 @@ class ArticlesControllerTest < ActionController::TestCase
   def setup
     @user = create(:user)
     @book = create(:book, :user => @user)
-    @article = create(:article, :book => @book)
+    @article = create(:article, :user => @user, :book => @book)
     login_as @user
   end
 

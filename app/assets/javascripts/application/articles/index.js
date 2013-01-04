@@ -3,7 +3,7 @@ var ArticleIndex = function() {
   this.articles = $('#articles');
 
   var _this = this;
-  $(window).on('scroll', function() {
+  $(window).on('scroll.ArticleIndex', function() {
 
     var isButtom = $(window).scrollTop() + 200 >= $(document).height() - $(window).height();
 
@@ -23,10 +23,22 @@ var ArticleIndex = function() {
 };
 
 ArticleIndex.prototype = {
+  uninstall: function() {
+    $(window).off('.ArticleIndex');
+  }
 };
 
+var count = 0;
+
 page_ready(function() {
-  if ($('body#articles-index').length) {
-    new ArticleIndex();
+  if (window.articleIndex) {
+    window.articleIndex.uninstall();
+    delete window.articleIndex;
+  }
+
+  if ($('#articles-index').length) {
+    if (!window.articleIndex) {
+      window.articleIndex = new ArticleIndex();
+    }
   }
 });

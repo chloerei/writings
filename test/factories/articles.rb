@@ -3,12 +3,7 @@
 FactoryGirl.define do
   factory :article do
     sequence(:urlname){|n| "urlname#{n}" }
-    title 'title'
+    sequence(:title){|n| "title #{n}" }
     body '<p>body</p>'
-
-    book
-    after(:build) do |article|
-      article.user = article.book.user
-    end
   end
 end
