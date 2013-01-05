@@ -23,12 +23,25 @@ test("can save, undo, redo state", function() {
   this.undoManager.undo();
   equal(this.undoManager.undoStack.length, 1);
   equal(this.undoManager.redoStack.length, 1);
-  equal('<p>state one</p>', this.undoManager.editable.html());
+  equal(this.undoManager.editable.html(), '<p>state one</p>');
 
   this.undoManager.redo();
   equal(this.undoManager.undoStack.length, 2);
   equal(this.undoManager.redoStack.length, 0);
-  equal('<p>state two</p>', this.undoManager.editable.html());
+  equal(this.undoManager.editable.html(), '<p>state two</p>');
+});
+
+test("shoud save two text node range.", function() {
+  var textNode1 = document.createTextNode('text1');
+  var textNode2 = document.createTextNode('text2');
+  this.undoManager.editable.append($('<p>').append(textNode1).append(textNode2));
+  var range = document.createRange();
+  range.setStart(textNode1, 0);
+  range.setEnd(textNode2, textNode2.length);
+  document.getSelection().removeAllRanges();
+  document.getSelection().addRange(range);
+  this.undoManager.save();
+  equal(this.undoManager.editable.html(), '<p>text1text2</p>');
 });
 
 test("flush redo state when save", function() {

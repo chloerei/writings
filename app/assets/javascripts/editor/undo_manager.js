@@ -85,12 +85,12 @@ Editor.UndoManager.prototype = {
         }
       } else {
         if ($startContainer[0].nodeType === 3 /* TEXT NODE */) {
-          $startContainer.parent('span').replaceWith($startContainer.contents());
+          $startContainer.parent('span').replaceWith($startContainer);
         } else {
           $startContainer.removeAttr('data-range-start');
         }
         if ($endContainer[0].nodeType === 3 /* TEXT NODE */) {
-          $endContainer.parent('span').replaceWith($endContainer.contents());
+          $endContainer.parent('span').replaceWith($endContainer);
         } else {
           $endContainer.removeAttr('data-range-end');
         }
