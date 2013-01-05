@@ -8,24 +8,29 @@ var ArticleEdit = function() {
 
   this.article = $('#editarea article');
 
-  $('#urlname-form').on('submit', this.saveUrlname);
-  $('#save-button').on('click', this.saveArticle);
-  $('#publish-button').on('click', this.publishArticle);
-  $('#draft-button').on('click', this.draftArticle);
+  this.connect('#urlname-form', 'submit', this.saveUrlname);
+  this.connect('#save-button', 'click', this.saveArticle);
+  this.connect('#publish-button', 'click', this.publishArticle);
+  this.connect('#draft-button', 'click', this.draftArticle);
+  this.connect('#book-form', 'submit', this.saveBook);
+  this.connect('#new-book-form', 'submit', this.createBook);
 
-  $('#book-form .dropdown').on('click', '.dropdown-menu li a', function(event) {
-    event.preventDefault();
-    var $li = $(this);
-    $li.closest('.dropdown').find('.dropdown-toggle').text($li.text());
-    $('#article-book-id').val($li.data('book-id'));
+  $('#book-form .dropdown').on('click', '.dropdown-menu li a', this.selectBook);
+
+  var _this = this;
+  Mousetrap.bind('ctrl+s', function(event) {
+    _this.saveArticle(event);
   });
-  $('#book-form').on('submit', this.saveBook);
-  $('#new-book-form').on('submit', this.createBook);
-
-  Mousetrap.bind('ctrl+s', this.saveArticle);
 };
 
 ArticleEdit.prototype = {
+  connect: function(element, event, fn) {
+    var _this = this;
+    $(element).on(event, function(event) {
+      fn.call(_this, event, this);
+    });
+  },
+
   isPersisted: function() {
     return !!this.article.data('id');
   },
@@ -42,8 +47,8 @@ ArticleEdit.prototype = {
   saveUrlname: function(event) {
     event.preventDefault();
     var urlname = $('#article-urlname').val();
-    if (isPersisted()) {
-      updateArticle($('#urlname-form').serializeArray(), function(data) {
+    if (this.isPersisted()) {
+      this.updateArticle($('#urlname-form').serializeArray(), function(data) {
         $('#topbar .urlname').text(data.urlname);
         Dialog.hide('#urlname-modal');
       });
@@ -58,9 +63,10 @@ ArticleEdit.prototype = {
     event.preventDefault();
     var bookId = $('#article-book-id').val();
     var bookName = $('#book-form .dropdown-toggle').text();
-    if (isPersisted()) {
-      updateArticle($('#book-form').serializeArray(), function(data) {
-        this.article.data('book-id', bookId);
+    var _this = this;
+    if (this.isPersisted()) {
+      this.updateArticle($('#book-form').serializeArray(), function(data) {
+        _this.article.data('book-id', bookId);
         $('#topbar .book-name').text(bookId ? bookName : '');
         Dialog.hide('#book-modal');
       });
@@ -88,21 +94,29 @@ ArticleEdit.prototype = {
     });
   },
 
+  selectBook: function(event) {
+    event.preventDefault();
+    var $li = $(this);
+    $li.closest('.dropdown').find('.dropdown-toggle').text($li.text());
+    $('#article-book-id').val($li.data('book-id'));
+  },
+
   saveArticle: function(event) {
     event.preventDefault();
-    if (isPersisted()) {
-      updateArticle({
+    if (this.isPersisted()) {
+      this.updateArticle({
         article: {
           title: this.editor.editable.find('h1').text(),
           body: this.editor.editable.html()
         }
       });
     } else {
-      createArticle();
+      this.createArticle();
     }
   },
 
   createArticle: function() {
+    var _this = this;
     $.ajax({
       url: '/articles',
       data: {
@@ -117,7 +131,7 @@ ArticleEdit.prototype = {
       type: 'post',
       dataType: 'json'
     }).success(function(data) {
-      this.article.data('id', data.id);
+      _this.article.data('id', data.id);
       history.replaceState(null, null, '/articles/' + data.id + '/edit');
     });
   },
@@ -133,16 +147,17 @@ ArticleEdit.prototype = {
   },
 
   publishArticle: function(event) {
-    setPbulishClass(true);
+    var _this = this;
+    this.setPbulishClass(true);
     event.preventDefault();
       if (isPersisted()) {
-      updateArticle({
+      this.updateArticle({
         article: {
           publish: true
         }
       }, null, function(data) {
-        setPbulishClass(false);
-        this.article.data('publish', false);
+        this.setPbulishClass(false);
+        _this.article.data('publish', false);
       });
     } else {
       this.article.data('publish', true);
@@ -150,15 +165,16 @@ ArticleEdit.prototype = {
   },
 
   draftArticle: function(event) {
+    var _this = this;
     event.preventDefault();
-    setPbulishClass(false);
-    if (isPersisted()) {
-      updateArticle({
+    this.setPbulishClass(false);
+    if (this.isPersisted()) {
+      this.updateArticle({
         article: {
           publish: false
         }
       }, null, function(data) {
-        setPbulishClass(true);
+        _this.setPbulishClass(true);
         this.article.data('publish', true);
       });
     } else {
@@ -167,9 +183,8 @@ ArticleEdit.prototype = {
   }
 };
 
-
 page_ready(function() {
   if ($('body#articles-edit').length) {
-    new ArticleEdit();
+    window.articleEdit = new ArticleEdit();
   }
 });
