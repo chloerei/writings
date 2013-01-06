@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
   def index
     if logined?
-      @articles = current_user.articles.desc(:created_at).limit(25).skip(params[:skip]).status(params[:status])
+      @articles = current_user.articles.desc(:created_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:book)
 
       respond_to do |format|
         format.html
@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
 
   def book
     @book = current_user.books.find_by :urlname => params[:book_id]
-    @articles = current_user.articles.where(:book_id => @book).desc(:created_at).limit(25).skip(params[:skip]).status(params[:status])
+    @articles = current_user.articles.where(:book_id => @book).desc(:created_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:book)
 
     respond_to do |format|
       format.html { render :index }
@@ -25,7 +25,7 @@ class ArticlesController < ApplicationController
   end
 
   def not_collected
-    @articles = current_user.articles.where(:book_id => nil).desc(:created_at).limit(25).skip(params[:skip]).status(params[:status])
+    @articles = current_user.articles.where(:book_id => nil).desc(:created_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:book)
 
     respond_to do |format|
       format.html { render :index }
