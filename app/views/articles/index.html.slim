@@ -12,3 +12,4 @@
         table#articles.articles data-skip=(@articles.options[:skip].to_i + @articles.to_a.count) data-url=(url_for(params.slice(:book_id, :status)))
           tbody
             = render :partial => 'article', :collection => @articles
+= render 'books/new_book_modal'

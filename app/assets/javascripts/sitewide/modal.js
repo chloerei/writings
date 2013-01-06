@@ -30,12 +30,12 @@ var Dialog = {
   }
 };
 
-$(document).on('click', '[data-toggle-modal]', function(event) {
+$(document).on('click', '[data-toggle=modal]', function(event) {
   event.preventDefault();
-  Dialog.show($(this).data('toggle-modal'));
+  Dialog.show($(this).data('target') || $(this).attr('href'));
 });
 
-$(document).on('click', '.modal-close', function(event) {
+$(document).on('click', '[data-close=modal]', function(event) {
   event.preventDefault();
   Dialog.hide($(this).closest('.modal-dialog'));
 });

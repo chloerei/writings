@@ -68,12 +68,12 @@ ArticleEdit.prototype = {
       this.updateArticle($('#book-form').serializeArray(), function(data) {
         _this.article.data('book-id', bookId);
         $('#topbar .book-name').text(bookId ? bookName : '');
-        Dialog.hide('#book-modal');
+        Dialog.hide('#select-book-modal');
       });
     } else {
       this.article.data('book-id', bookId);
       $('#topbar .book-name').text(bookId ? bookName : '');
-      Dialog.hide('#book-modal');
+      Dialog.hide('#select-book-modal');
     }
   },
 

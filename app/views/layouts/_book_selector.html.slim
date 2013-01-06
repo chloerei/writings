@@ -8,13 +8,11 @@ li
         a.dropdown-toggle href=(root_path(:not_collected => true)) Not Collected
       - else
         a.dropdown-toggle href=(root_path) All Articles
-    - elsif controller_name == 'books' and action_name == 'new'
-      a.dropdown-toggle href=(new_book_path) New Book
     - else
       a.dropdown-toggle href=(root_path) Select List
     ul.dropdown-menu
       li = link_to 'All Articles', all_articles_path
-      li = link_to 'New Book', new_book_path
+      li = link_to 'New Book', '#new-book-modal', :data => { :toggle => :modal }
       li
         hr
       - if current_user.books.where(:id.ne => @book).any?

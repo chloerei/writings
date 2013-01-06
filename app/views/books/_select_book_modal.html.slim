@@ -1,0 +1,19 @@
+#select-book-modal.modal-dialog
+  span.modal-close data-close='modal'
+    i.icon-remove
+  = form_for @article, :html => { :id => 'book-form' } do |f|
+    .field
+      label Select Book
+      .dropdown
+        a.dropdown-toggle.button href="#" = @article.book.try(:urlname) || 'Select Book'
+        ul.dropdown-menu
+          - current_user.books.each do |book|
+            li
+              a href="#" data-book-id=(book.urlname) = book.name
+          li
+            a href="#" data-book-id=('null') Not Collected
+      = link_to 'Add New Book', '#new-book-modal', :data => { :toggle => :modal }
+      = f.hidden_field :book_id, :value => @article.book.try(:urlname), :id => 'article-book-id'
+    .field
+      = f.submit 'Save', :class => 'button'
+      = f.submit 'Cancel', :class => 'button', :data => { :close => :modal }

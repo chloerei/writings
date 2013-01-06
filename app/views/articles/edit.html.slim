@@ -12,12 +12,12 @@ html
           .pull-left
             ul.top-nav
               li
-                = link_to '#book-modal', :data => {'toggle-modal' => '#book-modal'} do
+                = link_to '#select-book-modal', :data => { :toggle => :modal } do
                   i.icon-book
                   = ' '
                   span.book-name= @article.book.try(:name)
               li
-                = link_to '#urlname-modal', :data => {'toggle-modal' => '#urlname-modal'}, :title => 'Click to edit' do
+                = link_to '#urlname-modal', :data => { :toggle => :modal }, :title => 'Click to edit' do
                   i.icon-link
                   = ' '
                   span.urlname= @article.urlname
@@ -91,36 +91,5 @@ html
           = f.submit 'Save', :class => 'button'
           = f.submit 'Cancel', :class => 'button modal-close'
 
-    #book-modal.modal-dialog
-      span.modal-close
-        i.icon-remove
-      = form_for @article, :html => { :id => 'book-form' } do |f|
-        .field
-          label Select Book
-          .dropdown
-            a.dropdown-toggle.button href="#" = @article.book.try(:urlname) || 'Select Book'
-            ul.dropdown-menu
-              - current_user.books.each do |book|
-                li
-                  a href="#" data-book-id=(book.urlname) = book.name
-              li
-                a href="#" data-book-id=('null') Not Collected
-          = link_to 'Add New Book', '#new-book-modal', :data => {'toggle-modal' => '#new-book-modal'}
-          = f.hidden_field :book_id, :value => @article.book.try(:urlname), :id => 'article-book-id'
-        .field
-          = f.submit 'Save', :class => 'button'
-          = f.submit 'Cancel', :class => 'button modal-close'
-
-    #new-book-modal.modal-dialog
-      span.modal-close
-        i.icon-remove
-      = form_for current_user.books.new, :validate => true, :html => { :id => 'new-book-form' } do |f|
-        .field
-          = f.label :name
-          = f.text_field :name
-        .field
-          = f.label :urlname
-          = f.text_field :urlname
-        .field
-          = f.submit 'Save', :class => 'button'
-          = f.submit 'Cancel', :class => 'button modal-close'
+    = render 'books/select_book_modal'
+    = render 'books/new_book_modal'
