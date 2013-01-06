@@ -31,14 +31,12 @@ ArticleIndex.prototype = {
 var count = 0;
 
 page_ready(function() {
-  if (window.articleIndex) {
-    window.articleIndex.uninstall();
-    delete window.articleIndex;
-  }
+  if ($('#articles-index, #articles-book, #articles-not_collected').length) {
+    window.articleIndex = new ArticleIndex();
 
-  if ($('#articles-index').length) {
-    if (!window.articleIndex) {
-      window.articleIndex = new ArticleIndex();
-    }
+    $(document).one('page:change', function() {
+      window.articleIndex.uninstall();
+      delete window.articleIndex;
+    });
   }
 });
