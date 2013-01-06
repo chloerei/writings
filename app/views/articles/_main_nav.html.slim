@@ -1,18 +1,12 @@
 #main-nav
-  - options = params.slice(:book_id, :not_collected)
-  - if @book
-    - options.merge!(:book_id => @book.to_param)
   nav
     ul
       li class=(controller_name == 'articles' && params[:status].nil? ? 'active' : nil)
-        - if options.empty?
-          = link_to 'Index', root_path
-        - else
-          = link_to 'Index', root_path(options.merge(:status => nil))
+        = link_to 'Index', url_for(:status => nil)
       li class=(controller_name == 'articles' && params[:status] == 'publish' ? 'active' : nil)
-        = link_to 'Publish', root_path(options.merge(:status => 'publish'))
+        = link_to 'Publish', url_for(:status => 'publish')
       li class=(controller_name == 'articles' && params[:status] == 'draft' ? 'active' : nil)
-        = link_to 'Draft', root_path(options.merge(:status => 'draft'))
+        = link_to 'Draft', url_for(:status => 'draft')
       - if @book
         li class=(controller_name == 'books' ? 'active' : nil)
           = link_to 'Settings', edit_book_path(@book)

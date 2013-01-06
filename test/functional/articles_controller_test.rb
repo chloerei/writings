@@ -20,12 +20,23 @@ class ArticlesControllerTest < ActionController::TestCase
     get :index, :status => 'publish'
     assert_response :success, @response.body
 
-    get :index, :book => @book.urlname
+    get :index, :format => :js
     assert_response :success, @response.body
   end
 
-  test "should respond to js" do
-    get :index, :format => :js
+  test "should get book articles" do
+    get :book, :book_id => @book
+    assert_response :success, @response.body
+
+    get :book, :book_id => @book, :format => :js
+    assert_response :success, @response.body
+  end
+
+  test "should get not_collected articles" do
+    get :not_collected
+    assert_response :success, @response.body
+
+    get :not_collected, :format => :js
     assert_response :success, @response.body
   end
 

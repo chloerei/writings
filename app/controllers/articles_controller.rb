@@ -3,33 +3,33 @@ class ArticlesController < ApplicationController
 
   def index
     if logined?
-      @articles = current_user.articles.desc(:created_at).limit(25)
-
-      case params[:status]
-      when 'publish'
-        @articles = @articles.publish
-      when 'draft'
-        @articles = @articles.draft
-      end
-
-      if params[:book_id].present?
-        @book = current_user.books.where(:urlname => params[:book_id].to_s).first
-        @articles = @articles.where(:book_id => @book.try(:id))
-      elsif params[:not_collected]
-        @articles = @articles.where(:book_id => nil)
-      end
-
-      if params[:skip]
-        @articles = @articles.skip(params[:skip])
-      end
+      @articles = current_user.articles.desc(:created_at).limit(25).skip(params[:skip]).status(params[:status])
 
       respond_to do |format|
         format.html
         format.js
       end
-
     else
       render :guest_index
+    end
+  end
+
+  def book
+    @book = current_user.books.find_by :urlname => params[:book_id]
+    @articles = current_user.articles.where(:book_id => @book).desc(:created_at).limit(25).skip(params[:skip]).status(params[:status])
+
+    respond_to do |format|
+      format.html { render :index }
+      format.js { render :index }
+    end
+  end
+
+  def not_collected
+    @articles = current_user.articles.where(:book_id => nil).desc(:created_at).limit(25).skip(params[:skip]).status(params[:status])
+
+    respond_to do |format|
+      format.html { render :index }
+      format.js { render :index }
     end
   end
 

@@ -13,6 +13,16 @@ class Article
 
   scope :publish, where(:publish => true)
   scope :draft, where(:publish => false)
+  scope :status, -> status {
+    case status
+    when 'publish'
+      where(:publish => true)
+    when 'draft'
+      where(:publish => false)
+    else
+      scoped
+    end
+  }
 
   def title
     read_attribute(:title).blank? ? 'untitle' : read_attribute(:title)
