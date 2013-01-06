@@ -3,12 +3,6 @@
     #main
       = render 'main_nav'
       #main-content
-        header.clearfix
-          .pull-right
-            = link_to new_article_path(:book_id => @book), :target => '_blank' do
-              i.icon-plus-sign
-              = ' '
-              = 'New Article'
         table#articles.articles data-skip=(@articles.options[:skip].to_i + @articles.to_a.count) data-url=(url_for(params.slice(:book_id, :status)))
           tbody
             = render :partial => 'article', :collection => @articles

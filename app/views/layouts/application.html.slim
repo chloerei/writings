@@ -13,7 +13,7 @@ html
           .pull-left
             ul.top-nav
               li
-                = link_to 'Home', root_path
+                = link_to 'Writings.io', root_path
               - if logined?
                 = render 'layouts/book_selector'
               = yield :top_nav
@@ -34,4 +34,9 @@ html
               - else
                 li= link_to 'Login', login_path
                 li= link_to 'Signup', signup_path
+              li
+                = link_to new_article_path(:book_id => @book), :target => '_blank' do
+                  i.icon-plus-sign
+                  = ' '
+                  = 'New Article'
     = yield
