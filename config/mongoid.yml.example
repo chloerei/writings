@@ -4,6 +4,8 @@ production:
       database: publish_production
       hosts:
         - localhost:27017
+  options:
+    identity_map_enabled: true
 
 development:
   sessions:
@@ -11,6 +13,8 @@ development:
       database: publish_development
       hosts:
         - localhost:27017
+  options:
+    identity_map_enabled: true
 
 test:
   sessions:
@@ -18,3 +22,5 @@ test:
       database: publish_test
       hosts:
         - localhost:27017
+  options:
+    identity_map_enabled: true
