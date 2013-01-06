@@ -20,10 +20,23 @@ var ArticleIndex = function() {
       });
     }
   });
+
+  $('#new-book-form').on('submit.ArticleIndex', function(event) {
+    event.preventDefault();
+
+    $.ajax({
+      url: '/books',
+      data: $(this).serializeArray(),
+      type: 'post',
+      dataType: 'json'
+    }).success(function(data) {
+      Turbolinks.visit('/books/' + data.urlname);
+    });
+  });
 };
 
 ArticleIndex.prototype = {
-  uninstall: function() {
+  destroy: function() {
     $(window).off('.ArticleIndex');
   }
 };
@@ -35,7 +48,7 @@ page_ready(function() {
     window.articleIndex = new ArticleIndex();
 
     $(document).one('page:change', function() {
-      window.articleIndex.uninstall();
+      window.articleIndex.destroy();
       delete window.articleIndex;
     });
   }

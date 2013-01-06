@@ -7,19 +7,11 @@ class BooksControllerTest < ActionController::TestCase
     login_as @user
   end
 
-  test "should get new page" do
-    get :new
-    assert_response :success, @response.body
-  end
-
   test "should create book" do
     assert_difference "@user.books.count" do
-      post :create, :book => attributes_for(:book)
-      assert_redirected_to @user.books.last
+      post :create, :book => attributes_for(:book), :format => :json
+      assert_response :success, @response.body
     end
-
-    post :create, :book => attributes_for(:book).slice(:name)
-    assert_template :new
   end
 
   test "should get edit page" do

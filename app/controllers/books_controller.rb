@@ -2,22 +2,16 @@ class BooksController < ApplicationController
   before_filter :require_logined
   before_filter :find_book, :only => [:edit, :update, :destroy]
 
-  def new
-    @book = Book.new
-  end
-
   def create
     @book = current_user.books.new book_params
 
     if @book.save
       respond_to do |format|
-        format.html { redirect_to @book }
-        format.js { render :json => @book.as_json(:only => [:urlname, :name]) }
+        format.json { render :json => @book.as_json(:only => [:urlname, :name]) }
       end
     else
       respond_to do |format|
-        format.html { render :new }
-        format.js { render :text => @book.errors.full_messages, :status => :error }
+        format.json { render :text => @book.errors.full_messages, :status => :error }
       end
     end
   end
