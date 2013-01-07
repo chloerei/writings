@@ -9,6 +9,3 @@
         = link_to 'Draft', url_for(:status => 'draft')
       li class=(controller_name == 'articles' && params[:status] == 'trash' ? 'active' : nil)
         = link_to 'Trash', url_for(:status => 'trash')
-      - if @book
-        li class=(controller_name == 'books' ? 'active' : nil)
-          = link_to 'Settings', edit_book_path(@book)

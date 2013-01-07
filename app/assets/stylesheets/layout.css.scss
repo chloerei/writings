@@ -242,7 +242,6 @@ a.button:hover {
   .dropdown-toggle {
     position: relative;
     padding: 5px 27px 5px 10px;
-    width: 100px;
     vertical-align: middle;
     display: inline-block;
     white-space: nowrap;
@@ -358,12 +357,17 @@ a.button:hover {
     }
   }
 
+  #book-selector.dropdown {
+    .dropdown-toggle {
+      width: 100px;
+    }
+  }
+
   .dropdown {
     .dropdown-toggle {
       padding: 15px 30px 14px 15px;
       color: $linkColor;
       vertical-align: baseline;
-      width: 100px;
 
       &:after {
         padding: 2px 15px;

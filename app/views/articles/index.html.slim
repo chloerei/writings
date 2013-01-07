@@ -1,3 +1,9 @@
+= content_for :top_nav do
+  - if @book
+    li
+      = link_to edit_book_path(@book) do
+        i.icon-cog
+
 #mainarea
   .container
     #main
