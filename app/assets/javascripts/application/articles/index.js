@@ -19,6 +19,7 @@ var ArticleIndex = function() {
   this.connect(this.$bulkbar.find('.edit-button'), 'click', this.bulkEdit);
   this.connect(this.$bulkbar.find('.publish-button'), 'click', this.bulkPublish);
   this.connect(this.$bulkbar.find('.draft-button'), 'click', this.bulkDraft);
+  this.connect(('#delete-modal .confirm-delete-button'), 'click', this.bulkDelete);
 
   this.$moveBookForm = $('#move-book-form');
   this.connect(this.$moveBookForm, 'submit', this.bulkMove);
@@ -183,6 +184,29 @@ ArticleIndex.prototype = {
         var skip = _this.$articles.data('skip');
         _this.$articles.data('skip', skip - data.length);
       }
+    });
+  },
+
+  bulkDelete: function(event) {
+    event.preventDefault();
+    var _this = this;
+
+    $.ajax({
+      url: '/articles/bulk',
+      data: {
+        type: 'delete',
+        ids: this.selectedArticleIds().get()
+      },
+      dataType: 'json',
+      type: 'post'
+    }).success(function(data) {
+      var deleteCount = _this.$articles.find('.article.selected').length;
+      var skip = _this.$articles.data('skip');
+      _this.$articles.data('skip', skip - deleteCount);
+      _this.$articles.find('.article.selected').remove();
+
+      Dialog.hide('#delete-modal');
+      _this.updateBulkbar();
     });
   },
 
