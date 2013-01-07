@@ -683,18 +683,22 @@ a.button:hover {
   }
 
   ul {
-    margin: 0 0 0 20%;
+    margin: 0;
     padding: 0;
     list-style: none;
     font-weight: bold;
     @include clearfix();
+
+    &.pull-left {
+      margin-left: 20%;
+    }
 
     > li {
       display: inline-block;
       float: left;
 
       > a {
-        padding: 10px 10px 10px 5px;
+        padding: 10px;
         display: block;
         color: #fff;
 

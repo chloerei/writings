@@ -6,39 +6,7 @@
         table#articles.articles data-skip=(@articles.options[:skip].to_i + @articles.to_a.count) data-url=(url_for(params.slice(:book_id, :status))) data-book-id=(@book.try(:urlname))
           tbody
             = render :partial => 'article', :collection => @articles
-#bulkbar
-  .container
-    #bulkmenu.clearfix data-no-turbolink="true"
-      ul.pull-left
-        li
-          a.edit-button href='#'
-            i.icon-pencil
-            = ' '
-            | Edit
-        li
-          a.move-button href='#move-book-modal' data-toggle='modal'
-            i.icon-book
-            = ' '
-            | Move
-        li
-          a.publish-button href='#'
-            i.icon-bullhorn
-            = ' '
-            | Publish
-        li
-          a.delete-button href='#'
-            i.icon-trash
-            = ' '
-            | Delete
-      ul.pull-right
-        li
-          span
-            = "Selected "
-            span.selected-count 10
-            = " items"
-        li
-          a.cancel-button href='#'
-            | Cancel
 
+= render 'bulkbar'
 = render 'new_book_modal'
 = render 'move_book_modal'
