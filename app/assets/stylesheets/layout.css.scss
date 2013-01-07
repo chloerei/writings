@@ -271,7 +271,7 @@ a.button:hover {
     background: #fff;
     border: 1px solid #ccc;
     border-radius: 3px;
-    @include box-shadow(0 2px 10px #ccc);
+    @include box-shadow(0 2px 10px rgba(0, 0, 0, 0.5));
 
     &.align-right {
       left: auto;
@@ -326,10 +326,10 @@ a.button:hover {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 10;
   height: 45px;
   border-bottom: 1px solid #ccc;
-  @include box-shadow(0 1px 3px #ddd);
+  @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
 
   ul.top-nav {
     margin: 0;
@@ -410,7 +410,7 @@ a.button:hover {
   top: 45px;
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 9;
   border-top: 1px solid #CCC;
   border-bottom: 1px solid #CCC;
   @include box-shadow(0 1px 3px #ddd);
@@ -530,7 +530,7 @@ a.button:hover {
 
 #mainarea {
   #main {
-    margin-top: 65px;
+    margin-top: 82px;
     background: #FFF;
     padding: 40px;
     border: 1px solid #ccc;
@@ -694,6 +694,53 @@ a.button:hover {
   }
 }
 
+#bulkbar {
+  position: fixed;
+  display: none;
+  top: 45px;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  border-bottom: 1px solid #ccc;
+  background-color: #555;
+  @include box-shadow(0 1px 3px #ddd);
+
+  #bulkmenu {
+    padding: 0 40px;
+  }
+
+  ul {
+    margin: 0 0 0 20%;
+    padding: 0;
+    list-style: none;
+    font-weight: bold;
+    @include clearfix();
+
+    > li {
+      display: inline-block;
+      float: left;
+
+      > a {
+        padding: 10px 10px 10px 5px;
+        display: block;
+        color: #fff;
+
+        &:hover {
+          text-decoration: none;
+          color: #555;
+          background-color: #f9f9f9;
+        }
+      }
+
+      > span {
+        padding: 10px 10px 10px 5px;
+        display: inline-block;
+        color: #fff;
+      }
+    }
+  }
+}
+
 // modal
 
 #modal-background {
@@ -718,7 +765,7 @@ a.button:hover {
   background: white;
   border: 1px solid #ccc;
   padding: 30px;
-  @include box-shadow(0 4px 16px #ccc);
+  @include box-shadow(0 4px 16px rgba(0, 0, 0, 0.5));
 
   width: 340px;
   margin-left: -186px;
