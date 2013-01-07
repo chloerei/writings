@@ -78,7 +78,8 @@ class ArticlesController < ApplicationController
 
     case params[:type]
     when 'move'
-      @articles.update_all :book_id => current_user.books.find_by(:urlname => params[:book_id]).try(:id)
+      book = current_user.books.where(:urlname => params[:book_id]).first
+      @articles.update_all :book_id => book.try(:id)
     when 'publish'
       @articles.update_all :publish => true
     when 'draft'
@@ -88,7 +89,7 @@ class ArticlesController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render :json => @articles.as_json(:methods => :id) }
+      format.json { render :json => @articles.includes(:book).as_json(:only => [:title, :urlname, :publish], :methods => [:id, :book_name, :book_urlname]) }
     end
   end
 

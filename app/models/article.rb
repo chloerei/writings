@@ -24,6 +24,8 @@ class Article
     end
   }
 
+  delegate :name, :urlname, :to => :book, :prefix => true, :allow_nil => true
+
   def title
     read_attribute(:title).blank? ? 'untitle' : read_attribute(:title)
   end

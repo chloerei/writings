@@ -617,7 +617,21 @@ a.button:hover {
 
           &:last-child {
             padding-right: 0;
+          }
+
+          &.book,
+          &.date {
+            width: 1%;
+            white-space: nowrap;
             text-align: right;
+          }
+
+          .book_name {
+            font-size: 0.9em;
+            color: #555;
+            padding: 3px 5px;
+            background-color: #eee;
+            border-radius: 3px;
           }
         }
 

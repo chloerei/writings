@@ -87,11 +87,7 @@ ArticleIndex.prototype = {
     this.$moveBookForm.find('[name*=book_id]').val($item.data('book-id'));
   },
 
-  bulkSelect: function(event, element) {
-    event.preventDefault();
-
-    $(element).toggleClass('selected');
-
+  updateBulkbar: function() {
     var count = $('#articles .article.selected').length;
     this.$bulkbar.find('.selected-count').text(count);
     if (count) {
@@ -105,6 +101,13 @@ ArticleIndex.prototype = {
     } else {
       this.$bulkbar.find('.edit-button').removeClass('disabled');
     }
+  },
+
+  bulkSelect: function(event, element) {
+    event.preventDefault();
+
+    $(element).toggleClass('selected');
+    this.updateBulkbar();
   },
 
   bulkCancel: function(event) {
@@ -123,6 +126,41 @@ ArticleIndex.prototype = {
 
   bulkMove: function(event) {
     event.preventDefault();
+    var _this = this;
+
+    $.ajax({
+      url: '/articles/bulk',
+      data: {
+        type: 'move',
+        ids: this.selectedArticleIds().get(),
+        book_id: this.$moveBookForm.find('[name*=book_id]').val()
+      },
+      dataType: 'json',
+      type: 'post'
+    }).success(function(data) {
+      var moveOut = !$('#articles-index').length; // except all article page
+      $.each(data, function() {
+        var $article = _this.$articles.find('.article[data-id=' + this.id + ']');
+        if (moveOut) {
+          $article.remove();
+        } else {
+          if (this.book_name) {
+            $article.find('.book').html($('<span class="book_name">').text(this.book_name));
+          } else {
+            $article.find('.book').html('');
+          }
+        }
+      });
+
+      if (moveOut) {
+        var skip = _this.$articles.data('skip');
+        _this.$articles.data('skip', skip - data.length);
+        console.log(_this.$articles.data('skip'));
+      }
+
+      Dialog.hide('#move-book-modal');
+      _this.updateBulkbar();
+    });
   }
 };
 
