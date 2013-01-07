@@ -77,7 +77,7 @@ html
                     blockquote Blockquote
     #editarea
       .editor-container
-        article contentEditable="true" data-id=(@article.id) data-book-id=(@article.book.try(:urlname)) data-urlname=(@article.urlname) data-publish=(@article.publish.to_s)
+        article contentEditable="true" data-id=(@article.id) data-book-id=(@article.book.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status)
           = sanitize @article.body
 
     #urlname-modal.modal-dialog

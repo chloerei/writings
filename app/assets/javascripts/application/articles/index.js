@@ -146,7 +146,7 @@ ArticleIndex.prototype = {
         if (moveOut) {
           $article.remove();
         } else {
-          $article.addClass('publish').removeClass('draft');
+          $article.addClass('publish').removeClass('trash draft');
         }
       });
 
@@ -176,7 +176,7 @@ ArticleIndex.prototype = {
         if (moveOut) {
           $article.remove();
         } else {
-          $article.addClass('draft').removeClass('publish');
+          $article.addClass('draft').removeClass('trash publish');
         }
       });
 

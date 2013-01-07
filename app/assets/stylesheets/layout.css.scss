@@ -608,14 +608,23 @@ a.button:hover {
           }
 
           &.publish {
-            .title i {
+            .icon-status:before {
               color: green;
+              content: "\f10c";
             }
           }
 
           &.draft {
-            .title i {
+            .icon-status:before {
               color: gray;
+              content: "\f10c";
+            }
+          }
+
+          &.trash {
+            .icon-status:before {
+              color: gray;
+              content: "\f014";
             }
           }
         }

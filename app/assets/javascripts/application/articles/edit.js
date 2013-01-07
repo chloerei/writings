@@ -125,7 +125,7 @@ ArticleEdit.prototype = {
           body: this.editor.editable.html(),
           urlname: this.article.data('urlname'),
           book_id : this.article.data('book-id'),
-          publish: this.article.data('publish')
+          status: this.article.data('status')
         }
       },
       type: 'post',
@@ -150,17 +150,17 @@ ArticleEdit.prototype = {
     var _this = this;
     this.setPbulishClass(true);
     event.preventDefault();
-      if (isPersisted()) {
+      if (this.isPersisted()) {
       this.updateArticle({
         article: {
-          publish: true
+          status: 'publish'
         }
       }, null, function(data) {
         this.setPbulishClass(false);
-        _this.article.data('publish', false);
+        _this.article.data('status', 'draft');
       });
     } else {
-      this.article.data('publish', true);
+      this.article.data('status', 'publish');
     }
   },
 
@@ -171,14 +171,14 @@ ArticleEdit.prototype = {
     if (this.isPersisted()) {
       this.updateArticle({
         article: {
-          publish: false
+          status: 'draft'
         }
       }, null, function(data) {
         _this.setPbulishClass(true);
-        this.article.data('publish', true);
+        this.article.data('status', 'publish');
       });
     } else {
-      this.article.data('publish', false);
+      this.article.data('status', 'draft');
     }
   }
 };

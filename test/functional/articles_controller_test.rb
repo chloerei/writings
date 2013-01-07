@@ -88,6 +88,10 @@ class ArticlesControllerTest < ActionController::TestCase
       post :bulk, :ids => [article1.id, article2.id], :type => 'draft', :book_id => @book.urlname, :format => :json
     end
 
+    assert_difference "@book.articles.trash.count", 2 do
+      post :bulk, :ids => [article1.id, article2.id], :type => 'trash', :book_id => @book.urlname, :format => :json
+    end
+
     assert_difference "@book.articles.count", -2 do
       post :bulk, :ids => [article1.id, article2.id], :type => 'delete', :book_id => @book.urlname, :format => :json
     end

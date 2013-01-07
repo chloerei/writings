@@ -46,7 +46,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.new article_params
     if @article.save
       respond_to do |format|
-        format.json { render :json => @article.as_json(:only => [:urlname, :title, :publish], :methods => :id) }
+        format.json { render :json => @article.as_json(:only => [:urlname, :title, :status], :methods => :id) }
       end
     else
       respond_to do |format|
@@ -64,7 +64,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.find params[:id]
     if @article.update_attributes article_params
       respond_to do |format|
-        format.json { render :json => @article.as_json(:only => [:urlname, :title, :publish], :methods => :id) }
+        format.json { render :json => @article.as_json(:only => [:urlname, :title, :status], :methods => :id) }
       end
     else
       respond_to do |format|
@@ -81,22 +81,24 @@ class ArticlesController < ApplicationController
       book = current_user.books.where(:urlname => params[:book_id]).first
       @articles.update_all :book_id => book.try(:id)
     when 'publish'
-      @articles.update_all :publish => true
+      @articles.update_all :status => 'publish'
     when 'draft'
-      @articles.update_all :publish => false
+      @articles.update_all :status => 'draft'
+    when 'trash'
+      @articles.update_all :status => 'trash'
     when 'delete'
-      @articles.delete_all
+      @articles.trash.delete_all
     end
 
     respond_to do |format|
-      format.json { render :json => @articles.includes(:book).as_json(:only => [:title, :urlname, :publish], :methods => [:id, :book_name, :book_urlname]) }
+      format.json { render :json => @articles.includes(:book).as_json(:only => [:title, :urlname, :status], :methods => [:id, :book_name, :book_urlname]) }
     end
   end
 
   private
 
   def article_params
-    base_params = params.require(:article).permit(:title, :body, :urlname, :publish)
+    base_params = params.require(:article).permit(:title, :body, :urlname, :status)
 
     if params[:article][:book_id]
       base_params.merge!(:book => current_user.books.where(:urlname => params[:article][:book_id]).first)
