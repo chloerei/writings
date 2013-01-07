@@ -96,4 +96,21 @@ class ArticlesControllerTest < ActionController::TestCase
       post :bulk, :ids => [article1.id, article2.id], :type => 'delete', :book_id => @book.urlname, :format => :json
     end
   end
+
+  test "should empty trash" do
+    2.times { create :article, :user => @user, :status => 'trash' }
+    assert_difference "@user.articles.count", -2 do
+      delete :empty_trash, :format => :json
+    end
+
+    2.times { create :article, :user => @user, :status => 'trash', :book => @book }
+    create :article, :user => @user, :status => 'trash'
+    assert_difference "@user.articles.count", -2 do
+      delete :empty_trash, :format => :json, :book_id => @book.urlname
+    end
+
+    assert_difference "@user.articles.count", -1 do
+      delete :empty_trash, :format => :json, :not_collected => true
+    end
+  end
 end

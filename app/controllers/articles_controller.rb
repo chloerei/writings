@@ -95,6 +95,20 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def empty_trash
+    if params[:book_id]
+      current_user.articles.where(:book_id => current_user.books.find_by(:urlname => params[:book_id])).trash.delete_all
+    elsif params[:not_collected]
+      current_user.articles.where(:book_id => nil).trash.delete_all
+    else
+      current_user.articles.trash.delete_all
+    end
+
+    respond_to do |format|
+      format.json { render :json => [] }
+    end
+  end
+
   private
 
   def article_params

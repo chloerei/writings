@@ -21,6 +21,7 @@ var ArticleIndex = function() {
   this.connect(this.$bulkbar.find('.draft-button'), 'click', this.bulkDraft);
   this.connect(this.$bulkbar.find('.trash-button'), 'click', this.bulkTrash);
   this.connect(('#delete-modal .confirm-delete-button'), 'click', this.bulkDelete);
+  this.connect(('#empty-trash-modal .confirm-empty-trash-button'), 'click', this.emptyTrash);
 
   this.$moveBookForm = $('#move-book-form');
   this.connect(this.$moveBookForm, 'submit', this.bulkMove);
@@ -227,6 +228,33 @@ ArticleIndex.prototype = {
       _this.$articles.find('.article.selected').remove();
 
       Dialog.hide('#delete-modal');
+      _this.updateBulkbar();
+    });
+  },
+
+  emptyTrash: function(event) {
+    event.preventDefault();
+    var _this = this;
+    var data;
+
+    if (this.$articles.data('book-id')) {
+      data = { book_id: this.$articles.data('book-id') };
+    } else if (this.$articles.data('not-collected')) {
+      data = { not_collected: true };
+    } else {
+      data = null;
+    }
+
+    $.ajax({
+      url: '/trash',
+      data: data,
+      dataType: 'json',
+      type: 'delete'
+    }).success(function(data) {
+      _this.$articles.data('skip', 0);
+      _this.$articles.find('.article').remove();
+
+      Dialog.hide('#empty-trash-modal');
       _this.updateBulkbar();
     });
   },

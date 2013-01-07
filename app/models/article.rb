@@ -24,7 +24,7 @@ class Article
     when 'trash'
       trash
     else
-      scoped
+      where(:status.ne => 'trash')
     end
   }
 

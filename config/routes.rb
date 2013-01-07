@@ -5,6 +5,8 @@ Publish::Application.routes.draw do
     get 'books/:book_id(/:status)', :to => 'articles#book', :constraints => { :status => /publish|draft|trash/ }, :as => :book_articles
     get 'not_collected(/:status)', :to => 'articles#not_collected', :constraints => { :status => /publish|draft|trash/ }, :as => :not_collected_articles
 
+    delete 'trash', :to => 'articles#empty_trash'
+
     get 'signup' => 'users#new', :as => :signup
     resources :users, :only => [:create]
     get 'login' => 'user_sessions#new', :as => :login
