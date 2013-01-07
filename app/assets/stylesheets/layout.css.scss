@@ -669,6 +669,14 @@ a.button:hover {
           color: #555;
           background-color: #f9f9f9;
         }
+
+        &.disabled {
+          color: #999;
+
+          &:hover {
+            background-color: transparent;
+          }
+        }
       }
 
       > span {

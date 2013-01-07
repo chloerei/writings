@@ -33,6 +33,35 @@ var ArticleIndex = function() {
       Turbolinks.visit('/books/' + data.urlname);
     });
   });
+
+  var $bulkbar = $('#bulkbar');
+
+  $('#articles').on('click.ArticleIndex', '.article', function(event) {
+    event.preventDefault();
+
+    $(this).toggleClass('selected');
+
+    var count = $('#articles .article.selected').length;
+    $bulkbar.find('.selected-count').text(count);
+    if (count) {
+      $bulkbar.show();
+    } else {
+      $bulkbar.hide();
+    }
+
+    if (count > 1) {
+      $bulkbar.find('.edit-button').addClass('disabled');
+    } else {
+      $bulkbar.find('.edit-button').removeClass('disabled');
+    }
+  });
+
+  $bulkbar.on('click', '.cancel-button', function(event) {
+    event.preventDefault();
+    $articles.find('.article.selected').removeClass('selected');
+    $bulkbar.find('.selected-count').text(0).hide();
+  });
+
 };
 
 ArticleIndex.prototype = {

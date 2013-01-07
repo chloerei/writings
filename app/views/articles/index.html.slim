@@ -11,22 +11,22 @@
     #bulkmenu.clearfix
       ul.pull-left
         li
-          a href='#'
+          a.edit-button href='#'
             i.icon-pencil
             = ' '
             | Edit
         li
-          a href='#'
+          a.move-button href='#'
             i.icon-book
             = ' '
             | Move
         li
-          a href='#'
+          a.publish-button href='#'
             i.icon-bullhorn
             = ' '
             | Publish
         li
-          a href='#'
+          a.delete-button href='#'
             i.icon-trash
             = ' '
             | Delete
@@ -34,7 +34,10 @@
         li
           span
             = "Selected "
-            span.select-count 10
+            span.selected-count 10
             = " items"
+        li
+          a.cancle-button href='#'
+            | Cancel
 
 = render 'books/new_book_modal'
