@@ -2,16 +2,17 @@
   .container
     #bulkmenu.clearfix data-no-turbolink="true"
       ul.pull-left
-        li
-          a.edit-button href='#'
-            i.icon-pencil
-            = ' '
-            | Edit
-        li
-          a.move-button href='#move-book-modal' data-toggle='modal'
-            i.icon-book
-            = ' '
-            | Move
+        - if params[:status] != 'trash'
+          li
+            a.edit-button href='#'
+              i.icon-pencil
+              = ' '
+              | Edit
+          li
+            a.move-button href='#move-book-modal' data-toggle='modal'
+              i.icon-book
+              = ' '
+              | Move
         li
           a.publish-button href='#'
             i.icon-bullhorn
@@ -27,7 +28,12 @@
             a.delete-button href='#delete-modal' data-toggle='modal'
               i.icon-remove-sign
               = ' '
-              | Delete
+              | Delete Selected
+          li
+            a.delete-button href='#empty-trash-modal' data-toggle='modal'
+              i.icon-trash
+              = ' '
+              | Empty Trash
         - else
           li
             a.trash-button href='#'

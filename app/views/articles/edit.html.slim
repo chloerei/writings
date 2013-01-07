@@ -26,7 +26,7 @@ html
                   i.icon-external-link
           .pull-right
             .button-group
-              = link_to 'Draft', '#', :class => ['button', (@article.publish? ? nil : 'button-actived')], :id => 'draft-button'
+              = link_to 'Draft', '#', :class => ['button', (@article.draft? ? 'button-actived' : nil)], :id => 'draft-button'
               = link_to 'Publish', '#', :class => ['button', (@article.publish? ? 'button-actived' : nil)], :id => 'publish-button'
             = link_to 'Save', '#', :class => 'button no-margin', :id => 'save-button'
     #toolbar
