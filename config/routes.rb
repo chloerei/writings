@@ -1,9 +1,9 @@
 Publish::Application.routes.draw do
   constraints :host => APP_CONFIG["host"] do
     root :to => "articles#index"
-    get '(:status)', :to => 'articles#index', :constraints => { :status => /publish|draft/ }, :as => :all_articles
-    get 'books/:book_id(/:status)', :to => 'articles#book', :constraints => { :status => /publish|draft/ }, :as => :book_articles
-    get 'not_collected(/:status)', :to => 'articles#not_collected', :constraints => { :status => /publish|draft/ }, :as => :not_collected_articles
+    get '(:status)', :to => 'articles#index', :constraints => { :status => /publish|draft|trash/ }, :as => :all_articles
+    get 'books/:book_id(/:status)', :to => 'articles#book', :constraints => { :status => /publish|draft|trash/ }, :as => :book_articles
+    get 'not_collected(/:status)', :to => 'articles#not_collected', :constraints => { :status => /publish|draft|trash/ }, :as => :not_collected_articles
 
     get 'signup' => 'users#new', :as => :signup
     resources :users, :only => [:create]

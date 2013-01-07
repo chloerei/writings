@@ -22,11 +22,18 @@
             i.icon-folder-open
             = ' '
             | Draft
-        li
-          a.delete-button href='#delete-modal' data-toggle='modal'
-            i.icon-trash
-            = ' '
-            | Delete
+        - if params[:status] == 'trash'
+          li
+            a.delete-button href='#delete-modal' data-toggle='modal'
+              i.icon-remove-sign
+              = ' '
+              | Delete
+        - else
+          li
+            a.trash-button href='#'
+              i.icon-trash
+              = ' '
+              | Trash
       ul.pull-right
         li
           span

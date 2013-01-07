@@ -19,6 +19,7 @@ var ArticleIndex = function() {
   this.connect(this.$bulkbar.find('.edit-button'), 'click', this.bulkEdit);
   this.connect(this.$bulkbar.find('.publish-button'), 'click', this.bulkPublish);
   this.connect(this.$bulkbar.find('.draft-button'), 'click', this.bulkDraft);
+  this.connect(this.$bulkbar.find('.trash-button'), 'click', this.bulkTrash);
   this.connect(('#delete-modal .confirm-delete-button'), 'click', this.bulkDelete);
 
   this.$moveBookForm = $('#move-book-form');
@@ -140,7 +141,7 @@ ArticleIndex.prototype = {
       dataType: 'json',
       type: 'post'
     }).success(function(data) {
-      var moveOut = (_this.$articles.data('status') === 'draft');
+      var moveOut = (!_this.$articles.data('status') || _this.$articles.data('status') !== 'publish');
       $.each(data, function() {
         var $article = _this.$articles.find('.article[data-id=' + this.id + ']');
         if (moveOut) {
@@ -170,7 +171,7 @@ ArticleIndex.prototype = {
       dataType: 'json',
       type: 'post'
     }).success(function(data) {
-      var moveOut = (_this.$articles.data('status') === 'publish');
+      var moveOut = (!_this.$articles.data('status') || _this.$articles.data('status') !== 'draft');
       $.each(data, function() {
         var $article = _this.$articles.find('.article[data-id=' + this.id + ']');
         if (moveOut) {
@@ -187,6 +188,26 @@ ArticleIndex.prototype = {
     });
   },
 
+  bulkTrash: function(event) {
+    event.preventDefault();
+    var _this = this;
+
+    $.ajax({
+      url: '/articles/bulk',
+      data: {
+        type: 'trash',
+        ids: this.selectedArticleIds().get()
+      },
+      dataType: 'json',
+      type: 'post'
+    }).success(function(data) {
+      var count = _this.$articles.find('.article.selected').length;
+      var skip = _this.$articles.data('skip');
+      _this.$articles.data('skip', skip - count);
+      _this.$articles.find('.article.selected').remove();
+    });
+  },
+
   bulkDelete: function(event) {
     event.preventDefault();
     var _this = this;
@@ -200,9 +221,9 @@ ArticleIndex.prototype = {
       dataType: 'json',
       type: 'post'
     }).success(function(data) {
-      var deleteCount = _this.$articles.find('.article.selected').length;
+      var count = _this.$articles.find('.article.selected').length;
       var skip = _this.$articles.data('skip');
-      _this.$articles.data('skip', skip - deleteCount);
+      _this.$articles.data('skip', skip - count);
       _this.$articles.find('.article.selected').remove();
 
       Dialog.hide('#delete-modal');
