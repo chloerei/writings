@@ -71,4 +71,25 @@ class ArticlesControllerTest < ActionController::TestCase
     assert_response :success, @response.body
     assert_equal 'change', @article.reload.title
   end
+
+  test "should should bulk update article" do
+    article1 = create :article, :user => @user
+    article2 = create :article, :user => @user
+    create :article, :user => @user
+    assert_difference "@book.articles.count", 2 do
+      post :bulk, :ids => [article1.id, article2.id], :type => 'move', :book_id => @book.urlname, :format => :json
+    end
+
+    assert_difference "@book.articles.publish.count", 2 do
+      post :bulk, :ids => [article1.id, article2.id], :type => 'publish', :book_id => @book.urlname, :format => :json
+    end
+
+    assert_difference "@book.articles.publish.count", -2 do
+      post :bulk, :ids => [article1.id, article2.id], :type => 'draft', :book_id => @book.urlname, :format => :json
+    end
+
+    assert_difference "@book.articles.count", -2 do
+      post :bulk, :ids => [article1.id, article2.id], :type => 'delete', :book_id => @book.urlname, :format => :json
+    end
+  end
 end

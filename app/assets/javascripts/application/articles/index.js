@@ -37,6 +37,12 @@ ArticleIndex.prototype = {
     });
   },
 
+  selectedArticleIds: function() {
+    return this.$articles.find('.selected').map(function() {
+      return $(this).data('id');
+    });
+  },
+
   onScroll: function() {
     var isButtom = $(window).scrollTop() + 200 >= $(document).height() - $(window).height();
     var _this = this;
@@ -83,7 +89,6 @@ ArticleIndex.prototype = {
 
   bulkSelect: function(event, element) {
     event.preventDefault();
-    console.log('hit');
 
     $(element).toggleClass('selected');
 

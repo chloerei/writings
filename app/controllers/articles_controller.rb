@@ -73,6 +73,25 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def bulk
+    @articles = current_user.articles.where(:id.in => params.require(:ids))
+
+    case params[:type]
+    when 'move'
+      @articles.update_all :book_id => current_user.books.find_by(:urlname => params[:book_id]).try(:id)
+    when 'publish'
+      @articles.update_all :publish => true
+    when 'draft'
+      @articles.update_all :publish => false
+    when 'delete'
+      @articles.delete_all
+    end
+
+    respond_to do |format|
+      format.json { render :json => @articles.as_json(:methods => :id) }
+    end
+  end
+
   private
 
   def article_params
