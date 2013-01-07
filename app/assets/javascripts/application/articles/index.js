@@ -142,7 +142,7 @@ ArticleIndex.prototype = {
       dataType: 'json',
       type: 'post'
     }).success(function(data) {
-      var moveOut = (!_this.$articles.data('status') || _this.$articles.data('status') !== 'publish');
+      var moveOut = (_this.$articles.data('status') && _this.$articles.data('status') !== 'publish');
       $.each(data, function() {
         var $article = _this.$articles.find('.article[data-id=' + this.id + ']');
         if (moveOut) {
@@ -172,7 +172,7 @@ ArticleIndex.prototype = {
       dataType: 'json',
       type: 'post'
     }).success(function(data) {
-      var moveOut = (!_this.$articles.data('status') || _this.$articles.data('status') !== 'draft');
+      var moveOut = (_this.$articles.data('status') && _this.$articles.data('status') !== 'draft');
       $.each(data, function() {
         var $article = _this.$articles.find('.article[data-id=' + this.id + ']');
         if (moveOut) {
