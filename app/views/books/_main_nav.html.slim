@@ -1,0 +1,11 @@
+#main-nav
+  nav
+    ul
+      li
+        = link_to 'Index', book_articles_path(:book_id => @book.urlname, :status => nil)
+      li
+        = link_to 'Publish', book_articles_path(:book_id => @book.urlname, :status => 'publish')
+      li
+        = link_to 'Draft', book_articles_path(:book_id => @book.urlname, :status => 'draft')
+      li
+        = link_to 'Trash', book_articles_path(:book_id => @book.urlname, :status => 'trash')
