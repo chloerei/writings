@@ -115,7 +115,7 @@ textarea {
   border-radius: 3px;
 
   &:focus {
-    @include box-shadow(inset 0 0 5px #ccc);
+    @include box-shadow(inset 0 0 5px rgba(0, 0, 0, 0.3));
     @include transition(box-shadow 0.15s ease);
   }
 }
@@ -329,7 +329,11 @@ a.button:hover {
   z-index: 10;
   height: 45px;
   border-bottom: 1px solid #ccc;
-  @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+  @include box-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+
+  &.no-shadow {
+    @include box-shadow(none);
+  }
 
   ul.top-nav {
     margin: 0;
@@ -413,7 +417,7 @@ a.button:hover {
   z-index: 9;
   border-top: 1px solid #CCC;
   border-bottom: 1px solid #CCC;
-  @include box-shadow(0 1px 3px #ddd);
+  @include box-shadow(0 0 5px rgba(0, 0, 0, 0.3));
 
   ul.toolbar-bottons {
     margin: 0;
@@ -587,106 +591,41 @@ a.button:hover {
       table.articles {
         width: 100%;
 
-        td {
+        tr {
           border-top: 1px solid #ddd;
+
+          &.selected {
+            background-color: #f6f6f6;
+          }
 
           &:hover {
             background-color: #f9f9f9;
+            cursor: pointer;
           }
 
-          a {
-            color: #555;
-            padding: 15px 20px 15px 0;
-            display: block;
-            @include clearfix();
-
-            &:hover {
-              text-decoration: none;
-            }
-          }
-
-          &.info {
-            .title {
-              float: left;
-            }
-
-            .date {
-              color: #666;
-              float: right;
-            }
-
-            a:hover {
-              .title {
-                color: $linkColor;
-              }
-            }
-          }
-
-          &.config {
-            width: 1%;
-
-            a {
-              padding-left: 20px;
-              color: #999;
-
-              &:hover {
-                color: $linkColor;
-              }
-            }
+          &:last-child {
+            border-bottom: 1px solid #ddd;
           }
         }
 
-        tr:hover {
-          td.config {
-            background-color: #f9f9f9;
+        td {
+          padding: 15px 20px;
+
+          &:first-child {
+            padding-left: 0;
+          }
+
+          &:last-child {
+            padding-right: 0;
+            text-align: right;
           }
         }
 
-        tr:last-child td {
-          border-bottom: 1px solid #ddd;
-        }
-      }
+        a {
+          color: #555;
 
-      ul.books {
-        margin: 0;
-        padding: 0;
-        @include clearfix();
-
-        li {
-          width: 48%;
-          margin-right: 2%;
-          margin-top: 20px;
-          margin-bottom: 20px;
-          display: block;
-          float: left;
-
-          a {
-            display: block;
-            @include clearfix();
-
-            &:hover {
-              img {
-                @include box-shadow(0 0 10px rgba(0, 0, 0, 0.5));
-                @include transition(box-shadow 0.1s ease);
-              }
-            }
-          }
-
-          .book-cover {
-            float: left;
-            margin-right: 10px;
-          }
-
-          .book-info {
-            float: left;
-
-            .book-name {
-              font-size: 1.3em;
-            }
-
-            .book-description {
-              color: #999;
-            }
+          &:hover {
+            color: $linkColor;
           }
         }
       }
@@ -703,7 +642,7 @@ a.button:hover {
   z-index: 9;
   border-bottom: 1px solid #ccc;
   background-color: #555;
-  @include box-shadow(0 1px 3px #ddd);
+  @include box-shadow(0 0 5px rgba(0, 0, 0, 0.5));
 
   #bulkmenu {
     padding: 0 40px;
