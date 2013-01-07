@@ -8,7 +8,7 @@
             = render :partial => 'article', :collection => @articles
 #bulkbar
   .container
-    #bulkmenu.clearfix
+    #bulkmenu.clearfix data-no-turbolink="true"
       ul.pull-left
         li
           a.edit-button href='#'
@@ -16,7 +16,7 @@
             = ' '
             | Edit
         li
-          a.move-button href='#'
+          a.move-button href='#move-book-modal' data-toggle='modal'
             i.icon-book
             = ' '
             | Move
@@ -40,4 +40,5 @@
           a.cancel-button href='#'
             | Cancel
 
-= render 'books/new_book_modal'
+= render 'new_book_modal'
+= render 'move_book_modal'

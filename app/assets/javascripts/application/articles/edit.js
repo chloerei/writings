@@ -96,9 +96,9 @@ ArticleEdit.prototype = {
 
   selectBook: function(event) {
     event.preventDefault();
-    var $li = $(this);
-    $li.closest('.dropdown').find('.dropdown-toggle').text($li.text());
-    $('#article-book-id').val($li.data('book-id'));
+    var $item = $(this);
+    $item.closest('.dropdown').find('.dropdown-toggle').text($item.text());
+    $('#article-book-id').val($item.data('book-id'));
   },
 
   saveArticle: function(event) {
