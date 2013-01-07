@@ -1,18 +1,19 @@
 var ArticleIndex = function() {
   this.fetching = false;
-  this.articles = $('#articles');
+  this.$articles = $('#articles');
+  this.$bulkbar = $('#bulkbar');
 
   var _this = this;
   $(window).on('scroll.ArticleIndex', function() {
 
     var isButtom = $(window).scrollTop() + 200 >= $(document).height() - $(window).height();
 
-    if (isButtom && !_this.fetching && !_this.articles.data('is-end')) {
+    if (isButtom && !_this.fetching && !_this.$articles.data('is-end')) {
       _this.fetching = true;
 
       $.ajax({
-        url: _this.articles.data('url'),
-        data: { skip: _this.articles.data('skip') },
+        url: _this.$articles.data('url'),
+        data: { skip: _this.$articles.data('skip') },
         dataType: 'script',
         complete: function() {
           _this.fetching = false;
@@ -34,34 +35,46 @@ var ArticleIndex = function() {
     });
   });
 
-  var $bulkbar = $('#bulkbar');
+  this.$articles.on('click.ArticleIndex', '.article .title a', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
 
-  $('#articles').on('click.ArticleIndex', '.article', function(event) {
+    window.open($(this).attr('href'), '_blank');
+  });
+
+  this.$articles.on('click.ArticleIndex', '.article', function(event) {
     event.preventDefault();
 
     $(this).toggleClass('selected');
 
     var count = $('#articles .article.selected').length;
-    $bulkbar.find('.selected-count').text(count);
+    _this.$bulkbar.find('.selected-count').text(count);
     if (count) {
-      $bulkbar.show();
+      _this.$bulkbar.show();
     } else {
-      $bulkbar.hide();
+      _this.$bulkbar.hide();
     }
 
     if (count > 1) {
-      $bulkbar.find('.edit-button').addClass('disabled');
+      _this.$bulkbar.find('.edit-button').addClass('disabled');
     } else {
-      $bulkbar.find('.edit-button').removeClass('disabled');
+      _this.$bulkbar.find('.edit-button').removeClass('disabled');
     }
   });
 
-  $bulkbar.on('click', '.cancel-button', function(event) {
+  this.$bulkbar.on('click', '.cancel-button', function(event) {
     event.preventDefault();
-    $articles.find('.article.selected').removeClass('selected');
-    $bulkbar.find('.selected-count').text(0).hide();
+    _this.$articles.find('.article.selected').removeClass('selected');
+    _this.$bulkbar.hide().find('.selected-count').text(0);
   });
 
+  this.$bulkbar.on('click', '.edit-button', function(event) {
+    event.preventDefault();
+
+    if (_this.$articles.find('.article.selected').length === 1) {
+      window.open(_this.$articles.find('.article.selected .title a').attr('href'), '_blank');
+    }
+  });
 };
 
 ArticleIndex.prototype = {
