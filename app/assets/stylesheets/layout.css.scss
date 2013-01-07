@@ -606,6 +606,18 @@ a.button:hover {
           &:last-child {
             border-bottom: 1px solid #ddd;
           }
+
+          &.publish {
+            .title i {
+              color: green;
+            }
+          }
+
+          &.draft {
+            .title i {
+              color: gray;
+            }
+          }
         }
 
         td {
@@ -617,6 +629,14 @@ a.button:hover {
 
           &:last-child {
             padding-right: 0;
+          }
+
+          &.title {
+            width: 99%;
+
+            i {
+              margin-right: 5px;
+            }
           }
 
           &.book,
