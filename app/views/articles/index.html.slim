@@ -3,7 +3,7 @@
     #main
       = render 'main_nav'
       #main-content
-        table#articles.articles data-skip=(@articles.options[:skip].to_i + @articles.to_a.count) data-url=(url_for(params.slice(:book_id, :status))) data-book-id=(@book.try(:urlname))
+        table#articles.articles data-skip=(@articles.options[:skip].to_i + @articles.to_a.count) data-url=(url_for(params.slice(:book_id, :status))) data-book-id=(@book.try(:urlname)) data-status=(params[:status])
           tbody
             = render :partial => 'article', :collection => @articles
 

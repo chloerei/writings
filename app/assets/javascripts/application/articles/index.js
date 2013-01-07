@@ -17,6 +17,8 @@ var ArticleIndex = function() {
   this.connect(this.$newBookForm, 'submit', this.createBook);
   this.connect(this.$bulkbar.find('.cancel-button'), 'click', this.bulkCancel);
   this.connect(this.$bulkbar.find('.edit-button'), 'click', this.bulkEdit);
+  this.connect(this.$bulkbar.find('.publish-button'), 'click', this.bulkPublish);
+  this.connect(this.$bulkbar.find('.draft-button'), 'click', this.bulkDraft);
 
   this.$moveBookForm = $('#move-book-form');
   this.connect(this.$moveBookForm, 'submit', this.bulkMove);
@@ -124,6 +126,66 @@ ArticleIndex.prototype = {
     }
   },
 
+  bulkPublish: function(event) {
+    event.preventDefault();
+    var _this = this;
+
+    $.ajax({
+      url: '/articles/bulk',
+      data: {
+        type: 'publish',
+        ids: this.selectedArticleIds().get()
+      },
+      dataType: 'json',
+      type: 'post'
+    }).success(function(data) {
+      var moveOut = (_this.$articles.data('status') === 'draft');
+      $.each(data, function() {
+        var $article = _this.$articles.find('.article[data-id=' + this.id + ']');
+        if (moveOut) {
+          $article.remove();
+        } else {
+          $article.addClass('publish').removeClass('draft');
+        }
+      });
+
+      if (moveOut) {
+        var skip = _this.$articles.data('skip');
+        _this.$articles.data('skip', skip - data.length);
+      }
+    });
+  },
+
+  bulkDraft: function(event) {
+    event.preventDefault();
+    var _this = this;
+
+    $.ajax({
+      url: '/articles/bulk',
+      data: {
+        type: 'draft',
+        ids: this.selectedArticleIds().get()
+      },
+      dataType: 'json',
+      type: 'post'
+    }).success(function(data) {
+      var moveOut = (_this.$articles.data('status') === 'publish');
+      $.each(data, function() {
+        var $article = _this.$articles.find('.article[data-id=' + this.id + ']');
+        if (moveOut) {
+          $article.remove();
+        } else {
+          $article.addClass('draft').removeClass('publish');
+        }
+      });
+
+      if (moveOut) {
+        var skip = _this.$articles.data('skip');
+        _this.$articles.data('skip', skip - data.length);
+      }
+    });
+  },
+
   bulkMove: function(event) {
     event.preventDefault();
     var _this = this;
@@ -155,7 +217,6 @@ ArticleIndex.prototype = {
       if (moveOut) {
         var skip = _this.$articles.data('skip');
         _this.$articles.data('skip', skip - data.length);
-        console.log(_this.$articles.data('skip'));
       }
 
       Dialog.hide('#move-book-modal');
