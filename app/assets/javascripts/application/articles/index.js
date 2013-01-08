@@ -201,6 +201,7 @@ ArticleIndex.prototype = {
       if (moveOut) {
         var skip = _this.$articles.data('skip');
         _this.$articles.data('skip', skip - data.length);
+        _this.updateBulkbar();
       }
     });
   },
@@ -231,6 +232,7 @@ ArticleIndex.prototype = {
       if (moveOut) {
         var skip = _this.$articles.data('skip');
         _this.$articles.data('skip', skip - data.length);
+        _this.updateBulkbar();
       }
     });
   },
@@ -252,6 +254,7 @@ ArticleIndex.prototype = {
       var skip = _this.$articles.data('skip');
       _this.$articles.data('skip', skip - count);
       _this.$articles.find('.article.selected').remove();
+      _this.updateBulkbar();
     });
   },
 
