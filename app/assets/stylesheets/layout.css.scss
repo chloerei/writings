@@ -289,7 +289,7 @@ a.button:hover {
         padding: 6px 10px;
 
         &:hover {
-          background-color: #666;
+          background-color: #555;
           color: #fff;
         }
       }
@@ -327,7 +327,7 @@ a.button:hover {
   z-index: 10;
   height: 45px;
   border-bottom: 1px solid #ccc;
-  @include box-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+  @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
 
   &.no-shadow {
     @include box-shadow(none);
@@ -347,10 +347,12 @@ a.button:hover {
       > a {
         padding: 15px 10px 14px;
         display: block;
+        color: #555;
 
         &:hover {
+          color: #fff;
+          background-color: #555;
           text-decoration: none;
-          background-color: #f9f9f9;
         }
       }
     }
@@ -365,7 +367,7 @@ a.button:hover {
   .dropdown {
     .dropdown-toggle {
       padding: 15px 30px 14px 15px;
-      color: $linkColor;
+      color: #555;
       vertical-align: baseline;
 
       &:after {
@@ -373,13 +375,14 @@ a.button:hover {
       }
 
       &:hover {
-        background-color: #f9f9f9;
+        color: #fff;
+        background-color: #555;
       }
     }
 
     .dropdown-menu {
       top: 47px;
-      width: 143px;
+      width: 145px;
       font-weight: normal;
 
       li {
@@ -391,7 +394,8 @@ a.button:hover {
 
     &.actived {
       .dropdown-toggle {
-        background-color: #f9f9f9;
+        color: #fff;
+        background-color: #555;
       }
     }
   }
@@ -419,7 +423,7 @@ a.button:hover {
   left: 0;
   right: 0;
   z-index: 9;
-  @include box-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+  @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
 
   ul.toolbar-bottons {
     margin: 0;
@@ -435,7 +439,7 @@ a.button:hover {
       }
 
       .toolbar-botton {
-        padding: 8px;
+        padding: 10px;
         display: block;
         color: #fff;
 
@@ -476,12 +480,12 @@ a.button:hover {
 
         &:after {
           right: 0;
-          padding: 2px 5px;
+          padding: 2px 10px;
         }
       }
 
       .dropdown-menu {
-        top: 32px;
+        top: 36px;
         left: 0;
 
         li {
@@ -489,7 +493,7 @@ a.button:hover {
           float: none;
 
           a {
-            padding: 5px 8px;
+            padding: 10px;
           }
         }
       }
@@ -530,6 +534,8 @@ a.button:hover {
     background: #FFF;
     padding: 40px;
     border: 1px solid #ccc;
+    min-height: 1024px;
+    margin-bottom: 60px;
     @include clearfix();
 
     .field {
@@ -555,22 +561,29 @@ a.button:hover {
 
     #main-nav {
       width: 18%;
+      height: 1px;
       margin-right: 2%;
       float: left;
 
       nav {
+        position: fixed;
+        width: 150px;
         font-size: 1.5em;
 
         li {
           margin-bottom: 10px;
 
           a {
-            color: #999;
+            color: #555;
+            border-radius: 3px;
+            padding: 5px 10px;
+            display: block;
           }
 
           a:hover,
           &.active a {
-            color: $linkColor;
+            color: #fff;
+            background-color: #555;
             text-decoration: none;
           }
         }
@@ -585,19 +598,19 @@ a.button:hover {
         width: 100%;
 
         tr {
-          border-top: 1px solid #ddd;
+          border-top: 1px dashed #ddd;
 
           &.selected {
-            background-color: #f6f6f6;
+            background-color: #eee;
           }
 
           &:hover {
-            background-color: #f9f9f9;
+            background-color: #eee;
             cursor: pointer;
           }
 
           &:last-child {
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px dashed #ddd;
           }
 
           &.publish {
@@ -678,7 +691,7 @@ a.button:hover {
   z-index: 9;
   border-bottom: 1px solid #ccc;
   background-color: #555;
-  @include box-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+  @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
 
   #bulkmenu {
     padding: 0 40px;

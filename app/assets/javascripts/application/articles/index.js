@@ -107,8 +107,10 @@ ArticleIndex.prototype = {
     this.$bulkbar.find('.selected-count').text(count);
     if (count) {
       this.$bulkbar.show();
+      $('#topbar').addClass('no-shadow');
     } else {
       this.$bulkbar.hide();
+      $('#topbar').removeClass('no-shadow');
     }
 
     if (count > 1) {
@@ -129,6 +131,7 @@ ArticleIndex.prototype = {
     event.preventDefault();
     this.$articles.find('.article.selected').removeClass('selected');
     this.$bulkbar.hide().find('.selected-count').text(0);
+    $('#topbar').removeClass('no-shadow');
   },
 
   bulkEdit: function(event) {
