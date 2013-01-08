@@ -184,8 +184,12 @@ ArticleEdit.prototype = {
   },
 
   pickUpTopbar: function() {
-    console.log('hit');
     $('body').toggleClass('pick-up-topbar');
+    if ($('body').hasClass('pick-up-topbar')) {
+      $.cookie('pick_up_topbar', true);
+    } else {
+      $.removeCookie('pick_up_topbar');
+    }
   }
 };
 

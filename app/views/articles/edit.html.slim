@@ -5,7 +5,7 @@ html
     = javascript_include_tag "application"
     = stylesheet_link_tag "application"
     = csrf_meta_tags
-  body#articles-edit data-no-turbolink="true"
+  body#articles-edit data-no-turbolink="true" class=(cookies[:pick_up_topbar] ? 'pick-up-topbar' : nil)
     #topbar.no-shadow
       .editor-container
         header#editor-header.clearfix
