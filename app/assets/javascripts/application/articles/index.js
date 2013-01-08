@@ -202,6 +202,7 @@ ArticleIndex.prototype = {
         var skip = _this.$articles.data('skip');
         _this.$articles.data('skip', skip - data.length);
         _this.updateBulkbar();
+        _this.emptyMessage();
       }
     });
   },
@@ -233,8 +234,15 @@ ArticleIndex.prototype = {
         var skip = _this.$articles.data('skip');
         _this.$articles.data('skip', skip - data.length);
         _this.updateBulkbar();
+        _this.emptyMessage();
       }
     });
+  },
+
+  emptyMessage: function() {
+    if (!this.$articles.find('.article').length) {
+      $('#empty-message').show();
+    }
   },
 
   bulkTrash: function(event) {
@@ -339,10 +347,11 @@ ArticleIndex.prototype = {
       if (moveOut) {
         var skip = _this.$articles.data('skip');
         _this.$articles.data('skip', skip - data.length);
+        _this.updateBulkbar();
+        _this.emptyMessage();
       }
 
       Dialog.hide('#move-book-modal');
-      _this.updateBulkbar();
     });
   }
 };

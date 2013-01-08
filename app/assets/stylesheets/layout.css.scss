@@ -105,6 +105,10 @@ nav ul {
   float: right;
 }
 
+.hide {
+  display: none;
+}
+
 // form
 
 #{$all-text-inputs},
@@ -785,6 +789,14 @@ a.button:hover {
     display: inline-block;
     @include animation(spin 1s infinite linear);
   }
+}
+
+#empty-message {
+  text-align: center;
+  padding: 20px;
+  font-size: 2em;
+  border: 2px dashed #ccc;
+  color: #999;
 }
 
 // modal
