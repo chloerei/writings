@@ -123,7 +123,12 @@ ArticleIndex.prototype = {
   bulkSelect: function(event, element) {
     event.preventDefault();
 
-    $(element).toggleClass('selected');
+    if (event.ctrlKey) {
+      $(element).toggleClass('selected');
+    } else {
+      this.$articles.find('.article.selected').removeClass('selected');
+      $(element).addClass('selected');
+    }
     this.updateBulkbar();
   },
 
