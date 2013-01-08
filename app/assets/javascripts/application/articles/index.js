@@ -122,14 +122,40 @@ ArticleIndex.prototype = {
 
   bulkSelect: function(event, element) {
     event.preventDefault();
+    document.getSelection().removeAllRanges();
+
+    var $element = $(element);
 
     if (event.ctrlKey) {
-      $(element).toggleClass('selected');
+      this.$articles.find('.last-shift-clicked').removeClass('last-shift-clicked');
+      this.$articles.find('.last-clicked').removeClass('last-clicked');
+      $element.toggleClass('selected').addClass('last-clicked');
+    } else if (event.shiftKey) {
+      var $lastClicked = this.$articles.find('.last-clicked');
+      var $lastShiftClicked = this.$articles.find('.last-shift-clicked');
+
+      // clear prev
+      if ($lastClicked.prevAll('.last-shift-clicked').length) {
+        $lastClicked.prevUntil('.last-shift-clicked').removeClass('selected');
+      } else if ($lastClicked.nextAll('.last-shift-clicked').length) {
+        $lastClicked.nextUntil('.last-shift-clicked').removeClass('selected');
+      }
+
+      $lastShiftClicked.removeClass('last-shift-clicked selected');
+      $element.addClass('last-shift-clicked selected');
+      // select range
+
+      if ($lastClicked.prevAll('.last-shift-clicked').length) {
+        $lastClicked.prevUntil('.last-shift-clicked').andSelf().addClass('selected');
+      } else if ($lastClicked.nextAll('.last-shift-clicked').length) {
+        $lastClicked.nextUntil('.last-shift-clicked').andSelf().addClass('selected');
+      }
+
     } else {
-      this.$articles.find('.article.selected').filter(function() {
-        return this !== element;
-      }).removeClass('selected');
-      $(element).toggleClass('selected');
+      this.$articles.find('.article.selected').removeClass('selected');
+      this.$articles.find('.last-clicked').removeClass('last-clicked');
+      this.$articles.find('.last-shift-clicked').removeClass('last-shift-clicked');
+      $element.addClass('selected last-clicked');
     }
     this.updateBulkbar();
   },
