@@ -22,6 +22,9 @@ var ArticleEdit = function() {
   Mousetrap.bind('ctrl+s', function(event) {
     _this.saveArticle(event);
   });
+  Mousetrap.bind('alt+p', function(event) {
+    _this.pickUpTopbar();
+  });
 };
 
 ArticleEdit.prototype = {
