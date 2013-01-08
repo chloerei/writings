@@ -43,6 +43,6 @@ class Article
   end
 
   def title
-    read_attribute(:title).blank? ? 'untitle' : read_attribute(:title)
+    read_attribute(:title).blank? ? 'Untitle' : read_attribute(:title)
   end
 end

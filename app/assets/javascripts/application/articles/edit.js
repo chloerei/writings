@@ -110,13 +110,19 @@ ArticleEdit.prototype = {
     if (this.isPersisted()) {
       this.updateArticle({
         article: {
-          title: this.editor.editable.find('h1').text(),
+          title: this.extractTitle(),
           body: this.editor.editable.html()
         }
       });
     } else {
       this.createArticle();
     }
+
+    document.title = this.extractTitle() || 'Untitle';
+  },
+
+  extractTitle: function() {
+    return this.editor.editable.find('h1').text();
   },
 
   createArticle: function() {
