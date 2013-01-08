@@ -28,6 +28,7 @@ end
 group :development do
   gem 'guard-livereload'
   gem 'rack-livereload'
+  gem 'rb-inotify', '~> 0.8.8'
 end
 
 group :development, :test do

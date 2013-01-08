@@ -59,6 +59,7 @@ GEM
     factory_girl_rails (4.1.0)
       factory_girl (~> 4.1.0)
       railties (>= 3.0.0)
+    ffi (1.0.11)
     font-awesome-sass-rails (3.0.0.0)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
@@ -135,6 +136,8 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.0.3)
+    rb-inotify (0.8.8)
+      ffi (>= 0.5.0)
     rdoc (3.12)
       json (~> 1.4)
     redcarpet (2.2.2)
@@ -191,6 +194,7 @@ DEPENDENCIES
   rack-livereload
   rails (= 3.2.8)
   rails-i18n
+  rb-inotify (~> 0.8.8)
   redcarpet
   sass-rails (~> 3.2.3)
   slim
