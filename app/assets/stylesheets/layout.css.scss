@@ -235,6 +235,7 @@ a.button:hover {
 .dropdown {
   position: relative;
   display: inline-block;
+  vertical-align: middle;
 
   a {
     color: #333;
@@ -439,6 +440,10 @@ a.button:hover {
     list-style: none;
     @include clearfix();
 
+    [class^="icon-"], [class*=" icon-"] {
+      line-height: 14px;
+    }
+
     li {
       display: inline-block;
       float: left;
@@ -482,9 +487,9 @@ a.button:hover {
 
       .dropdown-toggle {
         width: 80px;
-        height: 14px;
         padding-right: 20px;
         font-weight: bold;
+        line-height: 14px;
 
         &:after {
           right: 0;
