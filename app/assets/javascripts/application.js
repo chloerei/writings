@@ -13,6 +13,7 @@ $(function() {
 
   $(document).on('page:fetch', function() {
     $('#spinner').show();
-  }).on('page:load', function() {
+  }).on('page:restore', function() {
+    $('#spinner').hide();
   });
 });
