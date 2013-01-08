@@ -14,6 +14,7 @@ var ArticleEdit = function() {
   this.connect('#draft-button', 'click', this.draftArticle);
   this.connect('#book-form', 'submit', this.saveBook);
   this.connect('#new-book-form', 'submit', this.createBook);
+  this.connect('#pick-up-button', 'click', this.pickUpTopbar);
 
   $('#book-form .dropdown').on('click', '.dropdown-menu li a', this.selectBook);
 
@@ -180,6 +181,11 @@ ArticleEdit.prototype = {
     } else {
       this.article.data('status', 'draft');
     }
+  },
+
+  pickUpTopbar: function() {
+    console.log('hit');
+    $('body').toggleClass('pick-up-topbar');
   }
 };
 

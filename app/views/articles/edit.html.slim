@@ -5,7 +5,7 @@ html
     = javascript_include_tag "application"
     = stylesheet_link_tag "application"
     = csrf_meta_tags
-  body#articles-edit
+  body#articles-edit data-no-turbolink="true"
     #topbar.no-shadow
       .editor-container
         header#editor-header.clearfix
@@ -30,25 +30,25 @@ html
               = link_to 'Publish', '#', :class => ['button', (@article.publish? ? 'button-actived' : nil)], :id => 'publish-button'
             = link_to 'Save', '#', :class => 'button no-margin', :id => 'save-button'
     #toolbar
-      .editor-container
-        ul.toolbar-bottons
+      .editor-container.clearfix
+        ul.toolbar-buttons.pull-left
           li
-            a class='toolbar-botton icon-bold' href='#' data-command='bold'
+            a class='toolbar-button icon-bold' href='#' data-command='bold'
           li
-            a class='toolbar-botton icon-italic' href='#' data-command='italic'
+            a class='toolbar-button icon-italic' href='#' data-command='italic'
           li
-            a class='toolbar-botton icon-strikethrough' href='#' data-command='strikeThrough'
+            a class='toolbar-button icon-strikethrough' href='#' data-command='strikeThrough'
           li
-            a class='toolbar-botton icon-underline' href='#' data-command='underline'
+            a class='toolbar-button icon-underline' href='#' data-command='underline'
           li
-            a class='toolbar-botton icon-link' href='#' data-command='link'
+            a class='toolbar-button icon-link' href='#' data-command='link'
           li
-            a class='toolbar-botton icon-list-ol' href='#' data-command='orderedList'
+            a class='toolbar-button icon-list-ol' href='#' data-command='orderedList'
           li
-            a class='toolbar-botton icon-list-ul' href='#' data-command='unorderedList'
+            a class='toolbar-button icon-list-ul' href='#' data-command='unorderedList'
           li
             #format-block.dropdown
-              a.dropdown-toggle.toolbar-botton href="#" Normal text
+              a.dropdown-toggle.toolbar-button href="#" Normal text
               ul.dropdown-menu
                 li
                   a href="#" data-command="p"
@@ -75,6 +75,9 @@ html
                 li
                   a href="#" data-command="blockquote"
                     blockquote Blockquote
+        ul.toolbar-buttons.pull-right
+          li
+            a#pick-up-button.toolbar-button.icon-double-angle-up href="#"
     #editarea
       .editor-container
         article contentEditable="true" data-id=(@article.id) data-book-id=(@article.book.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status)

@@ -426,7 +426,7 @@ a.button:hover {
   z-index: 9;
   @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
 
-  ul.toolbar-bottons {
+  ul.toolbar-buttons {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -439,7 +439,7 @@ a.button:hover {
       a {
       }
 
-      .toolbar-botton {
+      .toolbar-button {
         padding: 10px;
         display: block;
         color: #fff;
@@ -526,6 +526,24 @@ a.button:hover {
     img {
       max-width: 100%;
     }
+  }
+}
+
+.pick-up-topbar {
+  #topbar {
+    display: none;
+  }
+
+  #toolbar {
+    top: 0;
+  }
+
+  #editarea {
+    margin-top: 37px;
+  }
+
+  #pick-up-button.icon-double-angle-up:before {
+    content: "\f103";
   }
 }
 
