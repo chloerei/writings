@@ -52,11 +52,12 @@ Editor.Toolbar.prototype = {
     if (type === 'pre') {
       type = 'code'; // rename
     }
+    console.log(type);
     var text = this.toolbar.find('#format-block [data-command=' + type + ']').text();
     if (text === '') {
       text = this.toolbar.find('#format-block [data-command]:first').text();
     }
-    this.toolbar.find('#format-block .toolbar-botton').text(text);
+    this.toolbar.find('#format-block .toolbar-button').text(text);
   },
 
   command: function(element) {
