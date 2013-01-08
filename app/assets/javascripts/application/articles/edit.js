@@ -186,9 +186,9 @@ ArticleEdit.prototype = {
   pickUpTopbar: function() {
     $('body').toggleClass('pick-up-topbar');
     if ($('body').hasClass('pick-up-topbar')) {
-      $.cookie('pick_up_topbar', true);
+      $.cookie('pick_up_topbar', true, { path: '/articles' });
     } else {
-      $.removeCookie('pick_up_topbar');
+      $.removeCookie('pick_up_topbar',  { path: '/articles' });
     }
   }
 };
