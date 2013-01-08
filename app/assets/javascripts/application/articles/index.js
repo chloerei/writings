@@ -126,8 +126,10 @@ ArticleIndex.prototype = {
     if (event.ctrlKey) {
       $(element).toggleClass('selected');
     } else {
-      this.$articles.find('.article.selected').removeClass('selected');
-      $(element).addClass('selected');
+      this.$articles.find('.article.selected').filter(function() {
+        return this !== element;
+      }).removeClass('selected');
+      $(element).toggleClass('selected');
     }
     this.updateBulkbar();
   },
