@@ -7,7 +7,12 @@
 
 $(function() {
   // Client Side Validations - Turbolinks
-  $(document).bind('page:change', function() {
+  $(document).on('page:change', function() {
     $('form[data-validate]').validate();
+  });
+
+  $(document).on('page:fetch', function() {
+    $('#spinner').show();
+  }).on('page:load', function() {
   });
 });

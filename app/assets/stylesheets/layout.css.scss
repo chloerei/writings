@@ -771,6 +771,22 @@ a.button:hover {
   }
 }
 
+#spinner {
+  position: fixed;
+  top: 11px;
+  left: 50%;
+  z-index: 2000;
+  margin-left: -12px;
+  display: none;
+
+  i {
+    font-size: 24px;
+    color: #999;
+    display: inline-block;
+    @include animation(spin 1s infinite linear);
+  }
+}
+
 // modal
 
 #modal-background {
