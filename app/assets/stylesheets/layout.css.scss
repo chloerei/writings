@@ -402,6 +402,8 @@ a.button:hover {
 }
 
 #editor-header {
+  @include box-shadow(none);
+
   .pull-right {
     padding: 15px 0;
   }
@@ -412,16 +414,13 @@ a.button:hover {
 }
 
 #toolbar {
-  background-color: #f9f9f9;
-  padding: 2px 0;
+  background-color: #555;
   position: fixed;
   top: 45px;
   left: 0;
   right: 0;
   z-index: 9;
-  border-top: 1px solid #CCC;
-  border-bottom: 1px solid #CCC;
-  @include box-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+  @include box-shadow(0 0 5px rgba(0, 0, 0, 0.5));
 
   ul.toolbar-bottons {
     margin: 0;
@@ -432,41 +431,32 @@ a.button:hover {
     li {
       display: inline-block;
       float: left;
-      padding: 2px;
 
       a {
-        color: #333;
-
-        &:hover {
-          text-decoration: none;
-        }
       }
 
       .toolbar-botton {
-        padding: 3px;
-        border: 1px solid transparent;
-        border-radius: 2px;
-        cursor: pointer;
+        padding: 8px;
+        display: block;
+        color: #fff;
 
         &:hover {
-          border: 1px solid #ccc;
-          @include linear-gradient(#fff, darken(#fff, 15%));
+          text-decoration: none;
+          color: #555;
+          background-color: #f9f9f9;
         }
 
         &.actived,
         &:active {
-          border: 1px solid #ccc;
-          @include box-shadow(inset 0 1px 2px #ccc);
-          @include linear-gradient(#fff, darken(#fff, 15%));
+          color: #555;
+          background-color: #f9f9f9;
         }
 
         &.disabled,
         &.disabled:hover,
         &.disabled:focus {
           color: #999;
-          @include box-shadow(none);
-          border: 1px solid transparent;
-          background: none;
+          background-color: #555;
         }
       }
     }
@@ -481,8 +471,9 @@ a.button:hover {
 
       .dropdown-toggle {
         width: 80px;
-        height: 16px;
+        height: 14px;
         padding-right: 20px;
+        font-weight: bold;
 
         &:after {
           right: 0;
@@ -491,7 +482,7 @@ a.button:hover {
       }
 
       .dropdown-menu {
-        top: 26px;
+        top: 32px;
         left: 0;
 
         li {
@@ -507,9 +498,8 @@ a.button:hover {
 
       &.actived {
         .dropdown-toggle {
-          border: 1px solid #ccc;
-          @include box-shadow(inset 0 1px 2px #ccc);
-          @include linear-gradient(#fff, darken(#fff, 15%));
+          color: #555;
+          background-color: #f9f9f9;
         }
       }
     }
@@ -517,7 +507,7 @@ a.button:hover {
 }
 
 #editarea {
-  margin-top: 95px;
+  margin-top: 82px;
   article {
     background: #FFF;
     padding: 70px;
@@ -537,8 +527,8 @@ a.button:hover {
 }
 
 #mainarea {
+  margin-top: 82px;
   #main {
-    margin-top: 82px;
     background: #FFF;
     padding: 40px;
     border: 1px solid #ccc;
@@ -791,13 +781,5 @@ a.button:hover {
       width: 100%;
       height: 120px;
     }
-  }
-}
-
-.editable {
-  cursor: pointer;
-
-  &:hover {
-    background-color: lighten(yellow, 30%);
   }
 }
