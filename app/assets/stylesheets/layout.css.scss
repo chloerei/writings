@@ -583,6 +583,7 @@ a.button:hover {
           a:hover,
           &.active a {
             color: $linkColor;
+            text-decoration: none;
           }
         }
       }
@@ -613,8 +614,8 @@ a.button:hover {
 
           &.publish {
             .icon-status:before {
-              color: green;
-              content: "\f10c";
+              color: gray;
+              content: "\f111";
             }
           }
 

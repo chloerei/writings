@@ -5,7 +5,7 @@
         - if params[:status] != 'trash'
           li
             a.edit-button href='#'
-              i.icon-pencil
+              i.icon-edit
               = ' '
               | Edit
           li
@@ -15,12 +15,12 @@
               | Move
         li
           a.publish-button href='#'
-            i.icon-bullhorn
+            i.icon-circle
             = ' '
             | Publish
         li
           a.draft-button href='#'
-            i.icon-folder-open
+            i.icon-circle-blank
             = ' '
             | Draft
         - if params[:status] == 'trash'
