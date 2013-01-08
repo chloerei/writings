@@ -350,6 +350,7 @@ a.button:hover {
         padding: 15px 10px 14px;
         display: block;
         color: #555;
+        @include transition(all 0.15s ease);
 
         &:hover {
           color: #fff;
@@ -497,6 +498,12 @@ a.button:hover {
 
           a {
             padding: 10px;
+
+            &:hover {
+              h1, h2, h3, h4 {
+                color: #fff;
+              }
+            }
           }
         }
       }
@@ -600,6 +607,7 @@ a.button:hover {
             border-radius: 3px;
             padding: 5px 10px;
             display: block;
+            @include transition(all 0.15s ease);
           }
 
           a:hover,
