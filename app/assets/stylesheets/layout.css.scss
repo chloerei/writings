@@ -328,6 +328,7 @@ a.button:hover {
   z-index: 10;
   height: 45px;
   border-bottom: 1px solid #ccc;
+  @include transition(top 0.15s ease);
   @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
 
   &.no-shadow {
@@ -425,6 +426,7 @@ a.button:hover {
   right: 0;
   z-index: 9;
   @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+  @include transition(top 0.15s ease);
 
   ul.toolbar-buttons {
     margin: 0;
@@ -511,6 +513,7 @@ a.button:hover {
 
 #editarea {
   margin-top: 82px;
+  @include transition(margin-top 0.15s ease);
   article {
     background: #FFF;
     padding: 70px;
@@ -531,7 +534,7 @@ a.button:hover {
 
 .pick-up-topbar {
   #topbar {
-    display: none;
+    top: -46px;
   }
 
   #toolbar {
