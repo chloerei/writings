@@ -5,7 +5,7 @@ Editor.Formator = function(editor) {
 
 Editor.Formator.prototype = {
   isBold: function() {
-    return this.canBold() && document.queryCommandValue('bold') === 'true';
+    return this.canBold() && this.isWraped('b');
   },
 
   canBold: function() {
@@ -19,7 +19,7 @@ Editor.Formator.prototype = {
   },
 
   isItalic: function() {
-    return this.canItalic() && document.queryCommandValue('italic') === 'true';
+    return this.canItalic() && this.isWraped('i');
   },
 
   canItalic: function() {
@@ -33,7 +33,7 @@ Editor.Formator.prototype = {
   },
 
   isStrikeThrough: function() {
-    return this.canItalic() && document.queryCommandValue('strikeThrough') === 'true';
+    return this.canItalic() && this.isWraped('strike');
   },
 
   canStrikeThrough: function() {
@@ -47,7 +47,7 @@ Editor.Formator.prototype = {
   },
 
   isUnderline: function() {
-    return this.canUnderline() && document.queryCommandValue('underline') === 'true';
+    return this.canUnderline() && this.isWraped('u');
   },
 
   canUnderline: function() {
