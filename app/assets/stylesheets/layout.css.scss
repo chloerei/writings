@@ -88,9 +88,54 @@ nav ul {
   width: $container-width;
 }
 
+.alert-message {
+  position: fixed;
+  top: 102px;
+  right: 50%;
+  margin-right: -460px;
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  color: #fff;
+  z-index: 2000;
+  opacity: 1;
+  visibility: visible;
+  @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.3));
+  @include transition(top 0.15s ease, visibility 0s ease 0.15s, opacity 0.15s ease);
+
+  &.hide {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  i {
+    margin-right: 5px;
+  }
+
+  &.loading {
+    i {
+      display: inline-block;
+      @include animation(spin 1s infinite linear);
+    }
+  }
+
+  &.error {
+    background-color: $red;
+  }
+
+  &.success {
+    background-color: $green;
+  }
+}
+
 .editor-container {
   margin: 0 auto;
   width: $editor-container-width;
+
+  .alert-message {
+    margin-right: -364px;
+    top: 102px;
+  }
 }
 
 .clearfix {
@@ -530,6 +575,7 @@ a.button:hover {
 #editarea {
   margin-top: 82px;
   @include transition(margin-top 0.15s ease);
+
   article {
     background: #FFF;
     padding: 70px;
@@ -563,6 +609,10 @@ a.button:hover {
 
   #pick-up-button.icon-double-angle-up:before {
     content: "\f103";
+  }
+
+  .alert-message {
+    top: 57px;
   }
 }
 

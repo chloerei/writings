@@ -84,6 +84,7 @@ html
       .editor-container
         article contentEditable="true" data-id=(@article.id) data-book-id=(@article.book.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status)
           = sanitize @article.body
+        = render 'layouts/alert_messages'
 
     #urlname-modal.modal-dialog
       span.modal-close

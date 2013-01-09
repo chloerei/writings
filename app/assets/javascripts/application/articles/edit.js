@@ -97,12 +97,23 @@ ArticleEdit.prototype = {
   },
 
   updateArticle: function(data, success_callback, error_callback) {
+    AlertMessage.loading('Saving...');
     $.ajax({
       url: '/articles/' + this.article.data('id'),
       data: data,
       type: 'put',
       dataType: 'json'
-    }).success(success_callback).error(error_callback);
+    }).success(function() {
+      AlertMessage.clear();
+      if (success_callback) {
+        success_callback();
+      }
+    }).error(function() {
+      AlertMessage.error('Save Failed.');
+      if (error_callback) {
+        error_callback();
+      }
+    });
   },
 
   saveUrlname: function(event) {
@@ -184,6 +195,7 @@ ArticleEdit.prototype = {
 
   createArticle: function() {
     var _this = this;
+    AlertMessage.loading('Saving...');
     $.ajax({
       url: '/articles',
       data: {
@@ -198,8 +210,11 @@ ArticleEdit.prototype = {
       type: 'post',
       dataType: 'json'
     }).success(function(data) {
+      AlertMessage.clear();
       _this.article.data('id', data.id);
       history.replaceState(null, null, '/articles/' + data.id + '/edit');
+    }).error(function() {
+      AlertMessage.error('Save Failed.');
     });
   },
 
