@@ -112,11 +112,13 @@ Editor.Formator.prototype = {
     return !this.isWraped('code');
   },
 
-  // TODO no complete
   link: function() {
     var url = prompt('Link url:', 'http://');
-    if (url !== null && url !== '') {
+
+    if (url && url !== '') {
       this.exec('createLink', url);
+    } else {
+      this.exec('unlink');
     }
   },
 

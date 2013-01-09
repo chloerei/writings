@@ -52,7 +52,6 @@ Editor.Toolbar.prototype = {
     if (type === 'pre') {
       type = 'code'; // rename
     }
-    console.log(type);
     var text = this.toolbar.find('#format-block [data-command=' + type + ']').text();
     if (text === '') {
       text = this.toolbar.find('#format-block [data-command]:first').text();
