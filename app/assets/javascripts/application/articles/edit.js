@@ -1,5 +1,31 @@
 //= require editor
 
+Editor.Formator.prototype.link = function(url) {
+  this.editor.restoreRange();
+
+  if (url !== undefined) {
+    if (this.isWraped('a')) {
+      document.getSelection().selectAllChildren($(this.commonAncestorContainer()).closest('a')[0]);
+    }
+    if (url !== '') {
+      if (!/^http/.test(url)) {
+        url = 'http://' + url;
+      }
+      this.exec('createLink', url);
+    } else {
+      this.exec('unlink');
+    }
+    Dialog.hide('#link-modal');
+  } else {
+    var link = 'http://';
+    if (this.isWraped('a')) {
+      link = $(this.commonAncestorContainer()).closest('a').attr('href');
+    }
+    Dialog.show('#link-modal');
+    $('#link-modal').find('input[name=url]').val(link).focus();
+  }
+};
+
 var ArticleEdit = function() {
   this.editor = new Editor({
     toolbar: '#toolbar',
@@ -19,6 +45,17 @@ var ArticleEdit = function() {
   $('#book-form .dropdown').on('click', '.dropdown-menu li a', this.selectBook);
 
   var _this = this;
+
+  $('#link-form').on('submit', function(event) {
+    event.preventDefault();
+    _this.editor.formator.link($(this).find('input[name=url]').val());
+  });
+
+  $('#unlink-button').on('click', function(event) {
+    event.preventDefault();
+    _this.editor.formator.link('');
+  });
+
   Mousetrap.bind('ctrl+s', function(event) {
     _this.saveArticle(event);
   });

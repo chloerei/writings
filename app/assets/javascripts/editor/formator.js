@@ -105,7 +105,7 @@ Editor.Formator.prototype = {
   },
 
   isLink: function() {
-    return this.canLink() && document.queryCommandValue('createLink') === 'true';
+    return this.canLink() && this.isWraped('a');
   },
 
   canLink: function() {

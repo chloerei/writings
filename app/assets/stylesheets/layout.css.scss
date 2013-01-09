@@ -118,6 +118,7 @@ textarea {
   margin-right: 10px;
   outline: 0;
   border-radius: 3px;
+  @include box-sizing(border-box);
 
   &:focus {
     @include box-shadow(0 0 5px rgba(0, 0, 0, 0.2));
@@ -135,7 +136,6 @@ select {
 
 .field {
   margin-bottom: 20px;
-  padding-right: 12px;
 
   &:last-child {
     margin-bottom: 0;

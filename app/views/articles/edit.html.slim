@@ -85,14 +85,27 @@ html
 
     #urlname-modal.modal-dialog
       span.modal-close
-        i.icon-remove
+        i.icon-remove data-close='modal'
       = form_for @article, :html => { :id => 'urlname-form' } do |f|
         .field
           = f.label :urlname
           = f.text_field :urlname, :id => 'article-urlname'
         .field
           = f.submit 'Save', :class => 'button'
-          = f.submit 'Cancel', :class => 'button modal-close'
+          = f.submit 'Cancel', :class => 'button', :data => { :close => 'modal' }
+    #link-modal.modal-dialog
+      span.modal-close data-close='modal'
+        i.icon-remove
+      = form_tag nil, :id => 'link-form' do
+        .field
+          = label_tag :url
+          = text_field_tag :url
+        .field.clearfix
+          .pull-left
+            = submit_tag 'Link', :class => 'button'
+            = button_tag 'Cancel', :class => 'button', :data => { :close => 'modal' }
+          .pull-right
+            = button_tag 'Unlink', :class => 'button no-margin', :id => 'unlink-button'
 
     = render 'select_book_modal'
     = render 'new_book_modal'
