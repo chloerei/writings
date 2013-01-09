@@ -47,11 +47,11 @@ Editor.Formator.prototype = {
   },
 
   isUnderline: function() {
-    return this.canItalic() && document.queryCommandValue('underline') === 'true';
+    return this.canUnderline() && document.queryCommandValue('underline') === 'true';
   },
 
   canUnderline: function() {
-    return !this.isWraped('code');
+    return !this.isWraped('code, a');
   },
 
   underline: function() {
