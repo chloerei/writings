@@ -572,9 +572,12 @@ a.button:hover {
     background: #FFF;
     padding: 40px;
     border: 1px solid #ccc;
-    min-height: 1024px;
     margin-bottom: 60px;
     @include clearfix();
+
+    &.articles-list {
+      min-height: 1024px;
+    }
 
     .field {
       #{$all-text-inputs} {
@@ -604,9 +607,12 @@ a.button:hover {
       float: left;
 
       nav {
-        position: fixed;
-        width: 150px;
         font-size: 1.5em;
+        width: 150px;
+
+        &.fixed {
+          position: fixed;
+        }
 
         li {
           margin-bottom: 10px;

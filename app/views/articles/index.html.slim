@@ -6,7 +6,7 @@
 
 #mainarea
   .container
-    #main
+    #main.articles-list
       = render 'main_nav'
       #main-content
         table#articles.articles data-skip=(@articles.options[:skip].to_i + @articles.to_a.count) data-url=(url_for(params.slice(:book_id, :status))) data-book-id=(@book.try(:urlname)) data-status=(params[:status]) data-not-collected=(action_name == 'not_collected')

@@ -1,5 +1,5 @@
 #main-nav
-  nav
+  nav.fixed
     ul
       li class=(params[:status].nil? ? 'active' : nil)
         = link_to url_for(:status => nil) do
