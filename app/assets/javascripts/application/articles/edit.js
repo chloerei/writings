@@ -26,8 +26,9 @@ Editor.Formator.prototype.link = function(url) {
   }
 };
 
-Editor.Formator.prototype.link = function(url) {
+Editor.Formator.prototype.image = function(url) {
   this.editor.restoreRange();
+  console.log(url);
 
   if (url !== undefined) {
     if (!/^http/.test(url)) {
@@ -37,7 +38,7 @@ Editor.Formator.prototype.link = function(url) {
     Dialog.hide('#image-modal');
   } else {
     Dialog.show('#image-modal');
-    $('#link-modal').find('input[name=url]').val('http://').focus();
+    $('#image-modal').find('input[name=url]').val('http://').focus();
   }
 };
 
