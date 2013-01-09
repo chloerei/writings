@@ -122,6 +122,12 @@ Editor.Formator.prototype = {
     }
   },
 
+  image: function() {
+    var url = prompt('Link url:', 'http://');
+
+    this.exec('insertImage', url);
+  },
+
   isH1: function() {
     return this.isWraped('h1');
   },

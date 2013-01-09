@@ -26,6 +26,21 @@ Editor.Formator.prototype.link = function(url) {
   }
 };
 
+Editor.Formator.prototype.link = function(url) {
+  this.editor.restoreRange();
+
+  if (url !== undefined) {
+    if (!/^http/.test(url)) {
+      url = 'http://' + url;
+    }
+    this.exec('insertImage', url);
+    Dialog.hide('#image-modal');
+  } else {
+    Dialog.show('#image-modal');
+    $('#link-modal').find('input[name=url]').val('http://').focus();
+  }
+};
+
 var ArticleEdit = function() {
   this.editor = new Editor({
     toolbar: '#toolbar',
@@ -54,6 +69,11 @@ var ArticleEdit = function() {
   $('#unlink-button').on('click', function(event) {
     event.preventDefault();
     _this.editor.formator.link('');
+  });
+
+  $('#image-form').on('submit', function(event) {
+    event.preventDefault();
+    _this.editor.formator.image($(this).find('input[name=url]').val());
   });
 
   Mousetrap.bind('ctrl+s', function(event) {

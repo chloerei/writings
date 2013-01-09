@@ -49,6 +49,7 @@ Editor.prototype = {
   shortcuts: {
     'ctrl+b': 'bold',
     'ctrl+i': 'italic',
+    'ctrl+g': 'image',
     'ctrl+d': 'strikeThrough',
     'ctrl+u': 'underline',
     'ctrl+l': 'link',

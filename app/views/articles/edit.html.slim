@@ -43,6 +43,8 @@ html
           li
             a class='toolbar-button icon-link' href='#' data-command='link'
           li
+            a class='toolbar-button icon-picture' href='#' data-command='image'
+          li
             a class='toolbar-button icon-list-ol' href='#' data-command='orderedList'
           li
             a class='toolbar-button icon-list-ul' href='#' data-command='unorderedList'
@@ -102,10 +104,21 @@ html
           = text_field_tag :url
         .field.clearfix
           .pull-left
-            = submit_tag 'Link', :class => 'button'
+            = submit_tag 'Create Link', :class => 'button'
             = button_tag 'Cancel', :class => 'button', :data => { :close => 'modal' }
           .pull-right
             = button_tag 'Unlink', :class => 'button no-margin', :id => 'unlink-button'
+    #image-modal.modal-dialog
+      span.modal-close data-close='modal'
+        i.icon-remove
+      = form_tag nil, :id => 'link-form' do
+        .field
+          = label_tag :url
+          = text_field_tag :url
+        .field.clearfix
+          .pull-left
+            = submit_tag 'Insert Image', :class => 'button'
+            = button_tag 'Cancel', :class => 'button', :data => { :close => 'modal' }
 
     = render 'select_book_modal'
     = render 'new_book_modal'
