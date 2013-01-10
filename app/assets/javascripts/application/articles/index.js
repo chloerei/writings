@@ -106,10 +106,10 @@ ArticleIndex.prototype = {
     var count = $('#articles .article.selected').length;
     this.$bulkbar.find('.selected-count').text(count);
     if (count) {
-      this.$bulkbar.show();
+      this.$bulkbar.removeClass('bulkbar-hide');
       $('#topbar').addClass('no-shadow');
     } else {
-      this.$bulkbar.hide();
+      this.$bulkbar.addClass('bulkbar-hide');
       $('#topbar').removeClass('no-shadow');
     }
 
@@ -163,7 +163,7 @@ ArticleIndex.prototype = {
   bulkCancel: function(event) {
     event.preventDefault();
     this.$articles.find('.article.selected').removeClass('selected');
-    this.$bulkbar.hide().find('.selected-count').text(0);
+    this.$bulkbar.addClass('bulkbar-hide').find('.selected-count').text(0);
     $('#topbar').removeClass('no-shadow');
   },
 

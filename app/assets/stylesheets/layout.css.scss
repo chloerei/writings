@@ -781,14 +781,22 @@ a.button:hover {
 
 #bulkbar {
   position: fixed;
-  display: none;
   top: 45px;
   left: 0;
   right: 0;
   z-index: 9;
   border-bottom: 1px solid #ccc;
   background-color: #555;
+  visibility: visible;
+  opacity: 1;
   @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+  @include transition(opacity 0.15s ease);
+
+  &.bulkbar-hide {
+    visibility: hidden;
+    opacity: 0;
+    @include transition(visibility 0s ease 0.15s, opacity 0.15s ease);
+  }
 
   #bulkmenu {
     padding: 0 40px;
