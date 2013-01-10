@@ -267,7 +267,7 @@ ArticleEdit.prototype = {
   pickUpTopbar: function() {
     $('body').toggleClass('pick-up-topbar');
     if ($('body').hasClass('pick-up-topbar')) {
-      $.cookie('pick_up_topbar', true, { path: '/articles' });
+      $.cookie('pick_up_topbar', true, { path: '/articles', expires: 14 });
     } else {
       $.removeCookie('pick_up_topbar',  { path: '/articles' });
     }
