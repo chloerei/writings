@@ -181,6 +181,8 @@ ArticleIndex.prototype = {
     event.preventDefault();
     var _this = this;
 
+    AlertMessage.loading('Loading...');
+
     $.ajax({
       url: '/articles/bulk',
       data: {
@@ -190,6 +192,7 @@ ArticleIndex.prototype = {
       dataType: 'json',
       type: 'post'
     }).success(function(data) {
+      AlertMessage.success('Done', 1500);
       var moveOut = (_this.$articles.data('status') && _this.$articles.data('status') !== 'publish');
       $.each(data, function() {
         var $article = _this.$articles.find('.article[data-id=' + this.id + ']');
@@ -213,6 +216,8 @@ ArticleIndex.prototype = {
     event.preventDefault();
     var _this = this;
 
+    AlertMessage.loading('Loadin...');
+
     $.ajax({
       url: '/articles/bulk',
       data: {
@@ -222,6 +227,7 @@ ArticleIndex.prototype = {
       dataType: 'json',
       type: 'post'
     }).success(function(data) {
+      AlertMessage.success('Done', 1500);
       var moveOut = (_this.$articles.data('status') && _this.$articles.data('status') !== 'draft');
       $.each(data, function() {
         var $article = _this.$articles.find('.article[data-id=' + this.id + ']');
@@ -251,6 +257,8 @@ ArticleIndex.prototype = {
     event.preventDefault();
     var _this = this;
 
+    AlertMessage.loading('Loading...');
+
     $.ajax({
       url: '/articles/bulk',
       data: {
@@ -260,6 +268,7 @@ ArticleIndex.prototype = {
       dataType: 'json',
       type: 'post'
     }).success(function(data) {
+      AlertMessage.success('Done', 1500);
       var count = _this.$articles.find('.article.selected').length;
       var skip = _this.$articles.data('skip');
       _this.$articles.data('skip', skip - count);
