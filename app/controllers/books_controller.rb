@@ -11,7 +11,7 @@ class BooksController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render :text => @book.errors.full_messages, :status => :error }
+        format.json { render :json => { :message => 'Validation Failed', :errors => @book.errors }, :status => 400 }
       end
     end
   end
@@ -21,9 +21,13 @@ class BooksController < ApplicationController
 
   def update
     if @book.update_attributes book_params
-      redirect_to edit_book_url(@book)
+      respond_to do |format|
+        format.json { render :json => @book.as_json(:only => [:urlname, :name]) }
+      end
     else
-      render :new
+      respond_to do |format|
+        format.json { render :json => { :message => 'Validation Failed', :errors => @book.errors }, :status => 400 }
+      end
     end
   end
 

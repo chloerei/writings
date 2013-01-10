@@ -8,7 +8,7 @@
     #main
       = render 'main_nav'
       #main-content
-        = form_for @book, :validate => true do |f|
+        = form_for @book, :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
           .field
             = f.label :name
             = f.text_field :name

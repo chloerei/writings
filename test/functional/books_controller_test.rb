@@ -20,8 +20,8 @@ class BooksControllerTest < ActionController::TestCase
   end
 
   test "should update book" do
-    post :update, :id => @book, :book => { :name => 'change' }
-    assert_redirected_to edit_book_url(@book)
+    post :update, :id => @book, :book => { :name => 'change' }, :format => :json
+    assert_response :success, @response.body
     assert_equal 'change', @book.reload.name
   end
 

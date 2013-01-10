@@ -50,7 +50,7 @@ class ArticlesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render :text => @article.errors.full_messages, :status => :error }
+        format.json { render :json => { :message => 'Validation Failed', :errors => @article.errors }, :status => 400 }
       end
     end
   end
@@ -68,7 +68,7 @@ class ArticlesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render :text => @article.errors.full_messages, :status => :error }
+        format.json { render :json => { :message => 'Validation Failed', :errors => @article.errors }, :status => 400 }
       end
     end
   end
