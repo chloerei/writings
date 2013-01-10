@@ -14,6 +14,7 @@ var Dialog = {
     $modal.find(ClientSideValidations.selectors.forms).resetClientSideValidations();
 
     Dialog.level += 1;
+    $modal.addClass('modal-level-' + Dialog.level);
   },
 
   hide: function(el) {
@@ -38,4 +39,10 @@ $(document).on('click', '[data-toggle=modal]', function(event) {
 $(document).on('click', '[data-close=modal]', function(event) {
   event.preventDefault();
   Dialog.hide($(this).closest('.modal-dialog'));
+});
+
+$(document).on('keyup', function(event) {
+  if (event.keyCode === 27 && Dialog.level > 0) { // Esc
+    Dialog.hide('.modal-level-' + Dialog.level);
+  }
 });
