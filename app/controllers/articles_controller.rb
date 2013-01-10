@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
 
   def index
     if logined?
+      sleep(1)
       @articles = current_user.articles.desc(:created_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:book)
 
       respond_to do |format|

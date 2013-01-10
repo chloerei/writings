@@ -30,6 +30,10 @@ p {
   margin: 1em 0;
 }
 
+.hide {
+  display: none;
+}
+
 article {
   font-size: 1em;
   line-height: 160%;
@@ -81,6 +85,10 @@ nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.icon-spin {
+  @include animation(spin 1s infinite linear);
 }
 
 .container {
@@ -867,6 +875,20 @@ a.button:hover {
   padding: 20px;
   font-size: 2em;
   border: 2px dashed #ccc;
+  color: #999;
+}
+
+#end-message {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5em;
+  color: #999;
+}
+
+#articles-spinner {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5em;
   color: #999;
 }
 

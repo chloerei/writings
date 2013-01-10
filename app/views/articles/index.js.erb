@@ -1,3 +1,4 @@
+$('#articles-spinner').hide();
 var $articles = $('#articles');
 $articles.append('<%= j render(:partial => 'article', :collection => @articles) %>');
 
@@ -6,6 +7,7 @@ $articles.append('<%= j render(:partial => 'article', :collection => @articles) 
 
 $articles.data('skip', <%= next_skip %>);
 
-<% unless @articles.skip(next_skip).exists? %>
+<% if articles_is_end?(@articles) %>
   $articles.data('is-end', true);
+  $('#end-message').show();
 <% end %>

@@ -55,6 +55,8 @@ ArticleIndex.prototype = {
     if (isButtom && !_this.fetching && !_this.$articles.data('is-end')) {
       _this.fetching = true;
 
+      $('#articles-spinner').show();
+
       $.ajax({
         url: _this.$articles.data('url'),
         data: { skip: _this.$articles.data('skip') },

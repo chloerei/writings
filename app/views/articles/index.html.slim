@@ -9,12 +9,17 @@
     #main.articles-list
       = render 'main_nav'
       #main-content
-        table#articles.articles data-skip=(@articles.options[:skip].to_i + @articles.to_a.count) data-url=(url_for(params.slice(:book_id, :status))) data-book-id=(@book.try(:urlname)) data-status=(params[:status]) data-not-collected=(action_name == 'not_collected')
+        table#articles.articles data-skip=(@articles.options[:skip].to_i + @articles.to_a.count) data-url=(url_for(params.slice(:book_id, :status))) data-book-id=(@book.try(:urlname)) data-status=(params[:status]) data-not-collected=(action_name == 'not_collected') data-is-end=(articles_is_end?(@articles))
           tbody
             = render :partial => 'article', :collection => @articles
         #empty-message class=(@articles.empty? ? nil : 'hide')
           i.icon-folder-close-alt
           = ' No Articles'
+        #articles-spinner.hide
+          i.icon-spinner.icon-spin
+        #end-message.hide
+          i.icon-folder-close-alt
+          = ' is end.'
 
 = render 'bulkbar'
 = render 'new_book_modal'
