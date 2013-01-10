@@ -8,6 +8,9 @@ class Article
   field :urlname
   field :status, :default => 'draft'
 
+  field :number_id, :type => Integer
+  index({ :user_id => 1, :number_id => 1 },  { :unique => true })
+
   belongs_to :user
   belongs_to :book
 
@@ -44,5 +47,15 @@ class Article
 
   def title
     read_attribute(:title).blank? ? 'Untitle' : read_attribute(:title)
+  end
+
+  before_create :set_number_id
+
+  def set_number_id
+    self.number_id = user.inc(:next_topic_id, 1)
+  end
+
+  def to_param
+    self.number_id.to_s
   end
 end

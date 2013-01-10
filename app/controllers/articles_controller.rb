@@ -35,7 +35,6 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    @article.id = nil
     if params[:book_id]
       @article.book = current_user.books.where(:urlname => params[:book_id]).first
     end
@@ -46,7 +45,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.new article_params
     if @article.save
       respond_to do |format|
-        format.json { render :json => @article.as_json(:only => [:urlname, :title, :status], :methods => :id) }
+        format.json { render :json => @article.as_json(:only => [:urlname, :title, :status, :number_id]) }
       end
     else
       respond_to do |format|
@@ -56,15 +55,15 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = current_user.articles.find(params[:id])
+    @article = current_user.articles.find_by(:number_id => params[:id])
     render :layout => false
   end
 
   def update
-    @article = current_user.articles.find params[:id]
+    @article = current_user.articles.find_by(:number_id => params[:id])
     if @article.update_attributes article_params
       respond_to do |format|
-        format.json { render :json => @article.as_json(:only => [:urlname, :title, :status], :methods => :id) }
+        format.json { render :json => @article.as_json(:only => [:urlname, :title, :status, :number_id]) }
       end
     else
       respond_to do |format|
@@ -74,7 +73,7 @@ class ArticlesController < ApplicationController
   end
 
   def bulk
-    @articles = current_user.articles.where(:id.in => params.require(:ids))
+    @articles = current_user.articles.where(:number_id.in => params.require(:ids))
 
     case params[:type]
     when 'move'
@@ -91,7 +90,7 @@ class ArticlesController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render :json => @articles.includes(:book).as_json(:only => [:title, :urlname, :status], :methods => [:id, :book_name, :book_urlname]) }
+      format.json { render :json => @articles.includes(:book).as_json(:only => [:title, :urlname, :status, :number_id], :methods => [:book_name, :book_urlname]) }
     end
   end
 

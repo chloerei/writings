@@ -195,7 +195,7 @@ ArticleIndex.prototype = {
       AlertMessage.success('Done', 1500);
       var moveOut = (_this.$articles.data('status') && _this.$articles.data('status') !== 'publish');
       $.each(data, function() {
-        var $article = _this.$articles.find('.article[data-id=' + this.id + ']');
+        var $article = _this.$articles.find('.article[data-id=' + this.number_id + ']');
         if (moveOut) {
           $article.remove();
         } else {
@@ -230,7 +230,7 @@ ArticleIndex.prototype = {
       AlertMessage.success('Done', 1500);
       var moveOut = (_this.$articles.data('status') && _this.$articles.data('status') !== 'draft');
       $.each(data, function() {
-        var $article = _this.$articles.find('.article[data-id=' + this.id + ']');
+        var $article = _this.$articles.find('.article[data-id=' + this.number_id + ']');
         if (moveOut) {
           $article.remove();
         } else {
@@ -343,7 +343,7 @@ ArticleIndex.prototype = {
     }).success(function(data) {
       var moveOut = !$('#articles-index').length; // except all article page
       $.each(data, function() {
-        var $article = _this.$articles.find('.article[data-id=' + this.id + ']');
+        var $article = _this.$articles.find('.article[data-id=' + this.number_id + ']');
         if (moveOut) {
           $article.remove();
         } else {
