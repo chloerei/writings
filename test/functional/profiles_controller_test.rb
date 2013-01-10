@@ -12,8 +12,8 @@ class ProfilesControllerTest < ActionController::TestCase
   end
 
   test "should update profile" do
-    put :update, :profile => { :name => 'change' }
-    assert_redirected_to profile_url
+    put :update, :profile => { :name => 'change' }, :format => :json
+    assert_response :success, @response.body
     assert_equal 'change', @user.reload.profile.name
   end
 end

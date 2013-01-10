@@ -16,4 +16,13 @@ $(function() {
   }).on('page:restore', function() {
     $('#spinner').hide();
   });
+
+  $(document).on('ajax:before', function() {
+    AlertMessage.loading('Posting...');
+  }).on('ajax:success', function() {
+    AlertMessage.success('Success');
+  }).on('ajax:error', function(xhr, status, error) {
+    var data = $.parseJSON(status.responseText);
+    AlertMessage.error(data.error.message || 'Error');
+  });
 });

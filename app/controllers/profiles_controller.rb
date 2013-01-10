@@ -6,9 +6,13 @@ class ProfilesController < ApplicationController
 
   def update
     if current_user.profile.update_attributes profile_params
-      redirect_to profile_url
+      respond_to do |format|
+        format.json { render :json => current_user.profile.as_json(:only => [:name, :description]) }
+      end
     else
-      render :show
+      respond_to do |format|
+        format.json { render :json => { :error => { :message => current_user.profile.errors.full_messages.join } }, :status => 400 }
+      end
     end
   end
 
