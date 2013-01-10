@@ -20,9 +20,13 @@ $(function() {
   $(document).on('ajax:before', function() {
     AlertMessage.loading('Posting...');
   }).on('ajax:success', function() {
-    AlertMessage.success('Success');
+    AlertMessage.success('Success', 1500);
   }).on('ajax:error', function(xhr, status, error) {
     var data = $.parseJSON(status.responseText);
     AlertMessage.error(data.error.message || 'Error');
+  });
+
+  $(document).on('click', '.alert-message', function() {
+    AlertMessage.clear();
   });
 });

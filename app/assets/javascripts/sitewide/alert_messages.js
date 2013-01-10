@@ -1,20 +1,29 @@
 var AlertMessage = {
-  loading: function(message) {
+  loading: function(message, timeout) {
     this.clear();
-    $('.alert-message.loading').find('span').text(message).end().show().removeClass('hide');
+    $('.alert-message.loading').find('span').text(message).end().removeClass('alert-hide');
+    if (timeout) {
+      setTimeout(this.clear, timeout);
+    }
   },
 
-  error: function(message) {
+  error: function(message, timeout) {
     this.clear();
-    $('.alert-message.error').find('span').text(message).end().show().removeClass('hide');
+    $('.alert-message.error').find('span').text(message).end().show().removeClass('alert-hide');
+    if (timeout) {
+      setTimeout(this.clear, timeout);
+    }
   },
 
-  success: function(message) {
+  success: function(message, timeout) {
     this.clear();
-    $('.alert-message.success').find('span').text(message).end().removeClass('hide');
+    $('.alert-message.success').find('span').text(message).end().removeClass('alert-hide');
+    if (timeout) {
+      setTimeout(this.clear, timeout);
+    }
   },
 
   clear: function() {
-    $('.alert-message').addClass('hide');
+    $('.alert-message').addClass('alert-hide');
   }
 };
