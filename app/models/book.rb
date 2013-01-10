@@ -5,7 +5,7 @@ class Book
   field :name
   field :urlname
 
-  has_many :articles
+  has_many :articles, :dependent => :nullify
   belongs_to :user
 
   validates :name, :urlname, :presence => true
