@@ -11,7 +11,7 @@ class ProfilesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render :json => { :error => { :message => current_user.profile.errors.full_messages.join } }, :status => 400 }
+        format.json { render :json => { :message => 'Validation Failed', :errors => current_user.profile.errors }, :status => 400 }
       end
     end
   end

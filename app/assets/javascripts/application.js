@@ -23,7 +23,7 @@ $(function() {
     AlertMessage.success('Success', 1500);
   }).on('ajax:error', function(xhr, status, error) {
     var data = $.parseJSON(status.responseText);
-    AlertMessage.error(data.error.message || 'Error');
+    AlertMessage.error(data.message || 'Error');
   });
 
   $(document).on('click', '.alert-message', function() {

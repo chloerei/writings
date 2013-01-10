@@ -9,7 +9,7 @@
             li
               = link_to 'Profile', profile_path
       #main-content
-        = form_for current_user, :url => account_path, :validate => true do |f|
+        = form_for current_user, :url => account_path, :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
           .field
             = f.label :name
             = f.text_field :name

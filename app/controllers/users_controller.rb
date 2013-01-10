@@ -22,9 +22,13 @@ class UsersController < ApplicationController
 
   def update
     if current_user.check_current_password(update_user_params[:current_password]) && current_user.update_attributes(update_user_params)
-      redirect_to account_url
+      respond_to do |format|
+        format.json { render :json => current_user.as_json(:only => [:name, :email]) }
+      end
     else
-      render :edit
+      respond_to do |format|
+        format.json { render :json => { :message => 'Validation Failed', :errors => current_user.errors }, :status => 400}
+      end
     end
   end
 
@@ -35,6 +39,6 @@ class UsersController < ApplicationController
   end
 
   def update_user_params
-    params.require(:user).permit(:name, :email, :password, :current_password).delete_if { |key, value| value.empty? }
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password).delete_if { |key, value| value.empty? }
   end
 end
