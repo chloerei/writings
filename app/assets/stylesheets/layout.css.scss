@@ -123,10 +123,6 @@ nav ul {
   }
 
   &.loading {
-    i {
-      display: inline-block;
-      @include animation(spin 1s infinite linear);
-    }
   }
 
   &.error {
@@ -861,13 +857,8 @@ a.button:hover {
   z-index: 2000;
   margin-left: -12px;
   display: none;
-
-  i {
-    font-size: 24px;
-    color: #999;
-    display: inline-block;
-    @include animation(spin 1s infinite linear);
-  }
+  font-size: 24px;
+  color: #999;
 }
 
 #empty-message {
