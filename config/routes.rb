@@ -1,28 +1,30 @@
 Publish::Application.routes.draw do
   constraints :host => APP_CONFIG["host"] do
-    root :to => "articles#index"
-    get '(:status)', :to => 'articles#index', :constraints => { :status => /publish|draft|trash/ }, :as => :all_articles
-    get 'books/:book_id(/:status)', :to => 'articles#book', :constraints => { :status => /publish|draft|trash/ }, :as => :book_articles
-    get 'not_collected(/:status)', :to => 'articles#not_collected', :constraints => { :status => /publish|draft|trash/ }, :as => :not_collected_articles
-
-    delete 'trash', :to => 'articles#empty_trash'
-
+    root :to => 'dashboard/articles#index'
     get 'signup' => 'users#new', :as => :signup
-    resources :users, :only => [:create]
     get 'login' => 'user_sessions#new', :as => :login
     delete 'logout' => 'user_sessions#destroy', :as => :logout
+
+    resources :users, :only => [:create]
     resources :user_sessions, :only => [:create]
 
-    get 'account' => 'users#edit', :as => :account
-    put 'account' => 'users#update'
-    delete 'account' => 'users#destroy'
-    resource :profile, :only => [:show, :update]
+    scope :module => 'dashboard', :as => 'dashboard' do
+      root :to => 'articles#index'
+      get '(:status)', :to => 'articles#index', :constraints => { :status => /publish|draft|trash/ }, :as => :all_articles
+      get 'books/:book_id(/:status)', :to => 'articles#book', :constraints => { :status => /publish|draft|trash/ }, :as => :book_articles
+      get 'not_collected(/:status)', :to => 'articles#not_collected', :constraints => { :status => /publish|draft|trash/ }, :as => :not_collected_articles
 
-    resources :books, :only => [:new, :create, :edit, :update, :destroy], :path_names => { :edit => :settings } do
-    end
-    resources :articles, :only => [:new, :create, :edit, :update, :destroy] do
-      collection do
-        post :bulk
+      delete 'trash', :to => 'articles#empty_trash'
+
+      resource :profile, :only => [:show, :update]
+      resource :account, :only => [:show, :update, :destroy]
+
+      resources :books, :only => [:new, :create, :edit, :update, :destroy], :path_names => { :edit => :settings } do
+      end
+      resources :articles, :only => [:new, :create, :edit, :update, :destroy] do
+        collection do
+          post :bulk
+        end
       end
     end
   end

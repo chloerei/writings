@@ -1,6 +1,6 @@
 = content_for :top_nav do
   li.actived
-    = link_to edit_book_path(@book) do
+    = link_to edit_dashboard_book_path(@book) do
       i.icon-cog
 
 #mainarea
@@ -8,7 +8,7 @@
     #main
       = render 'main_nav'
       #main-content
-        = form_for @book, :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
+        = form_for @book, :url => dashboard_book_path(@book), :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
           .field
             = f.label :name
             = f.text_field :name
@@ -18,4 +18,4 @@
           .field
             = f.submit 'Save', :class => 'button'
         hr
-        = link_to 'delete this book', @book, :method => :delete, :confirm => "delete book #{@book.name} with all articles?", :class => 'button button-danger'
+        = link_to 'delete this book', dashboard_book_path(@book), :method => :delete, :confirm => "delete book #{@book.name} with all articles?", :class => 'button button-danger'

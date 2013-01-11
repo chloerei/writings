@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BooksControllerTest < ActionController::TestCase
+class Dashboard::BooksControllerTest < ActionController::TestCase
   def setup
     @user = create :user
     @book = create :book, :user => @user

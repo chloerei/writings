@@ -1,4 +1,4 @@
-class ArticlesController < ApplicationController
+class Dashboard::ArticlesController < Dashboard::BaseController
   before_filter :require_logined
 
   def index

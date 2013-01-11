@@ -5,11 +5,11 @@
         nav
           ul
             li.active
-              = link_to 'Account', account_path
+              = link_to 'Account', dashboard_account_path
             li
-              = link_to 'Profile', profile_path
+              = link_to 'Profile', dashboard_profile_path
       #main-content
-        = form_for current_user, :url => account_path, :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
+        = form_for current_user, :url => dashboard_account_path, :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
           .field
             = f.label :name
             = f.text_field :name

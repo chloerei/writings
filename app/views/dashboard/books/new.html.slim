@@ -7,7 +7,7 @@
             li.active
               | New Book
       #main-content
-        = form_for @book, :validate => true do |f|
+        = form_for @book, :url => dashboard_books_path, :validate => true do |f|
           .field
             = f.label :name
             = f.text_field :name

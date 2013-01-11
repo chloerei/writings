@@ -1,7 +1,7 @@
 tr.article data-id=(article.number_id) data-title=(article.title) data-book-id=(article.book.try(:urlname)) data-book-name=(article.book.try(:name)) class=(article.status)
   td.title
     i.icon-status
-    = link_to article.title, edit_article_path(article), :target => '_blank'
+    = link_to article.title, edit_dashboard_article_path(article), :target => '_blank'
   td.book
     - if article.book
       span.book_name = article.book.name

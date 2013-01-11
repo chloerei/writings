@@ -1,4 +1,4 @@
-class BooksController < ApplicationController
+class Dashboard::BooksController < Dashboard::BaseController
   before_filter :require_logined
   before_filter :find_book, :only => [:edit, :update, :destroy]
 

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProfilesControllerTest < ActionController::TestCase
+class Dashboard::ProfilesControllerTest < ActionController::TestCase
   def setup
     @user = create :user
     login_as @user

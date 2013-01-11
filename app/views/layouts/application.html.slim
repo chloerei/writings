@@ -13,7 +13,7 @@ html
           .pull-left
             ul.top-nav
               li
-                = link_to 'Writings.io', root_path
+                = link_to 'Writings.io', dashboard_root_path
               - if logined?
                 = render 'layouts/book_selector'
               = yield :top_nav
@@ -22,11 +22,11 @@ html
               - if logined?
                 li
                   .dropdown
-                    = link_to account_path, :class => 'dropdown-toggle' do
+                    = link_to dashboard_account_path, :class => 'dropdown-toggle' do
                       i.icon-user
                     ul.dropdown-menu.align-right
-                      li= link_to 'Account', account_path
-                      li= link_to 'Profile', profile_path
+                      li= link_to 'Account', dashboard_account_path
+                      li= link_to 'Profile', dashboard_profile_path
                       li
                         hr
                       li= link_to 'Logout', logout_path, :method => :delete
@@ -34,7 +34,7 @@ html
                 li= link_to 'Login', login_path
                 li= link_to 'Signup', signup_path
               li
-                = link_to new_article_path(:book_id => @book), :target => '_blank' do
+                = link_to new_dashboard_article_path(:book_id => @book), :target => '_blank' do
                   i.icon-pencil
                   = ' '
                   = 'New Article'
