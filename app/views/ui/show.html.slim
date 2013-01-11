@@ -8,34 +8,3 @@
           = link_to 'Quit', '#'
 #mainarea
   .container
-    #main
-      #main-nav
-        nav
-          ul
-            li.active
-              = link_to 'Books', '#'
-            li
-              = link_to 'Profile', '#'
-            li
-              = link_to 'Account', '#'
-            li
-              = link_to 'Biling', '#'
-      #main-content
-        header.clearfix
-          .pull-left
-            input type="search" placeholder="Filter"
-          .pull-right
-            = link_to '#' do
-              i.icon-plus-sign
-              = " New Book"
-        ul.books
-          - 10.times do
-            li
-              = link_to book_ui_path do
-                .book-cover
-                  = image_tag('rails.png')
-                .book-info
-                  .book-name
-                    | Book Name
-                  .book-description
-                    | 100 articles
