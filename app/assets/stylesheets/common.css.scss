@@ -1,0 +1,418 @@
+@import "normalize";
+@import "bourbon";
+@import "font-awesome";
+@import "variables";
+@import "highlight_js/tomorrow-night-bright";
+
+// base
+
+body {
+  color: #333;
+  background-color: #F9F9F9;
+  font-size: 14px;
+}
+
+h1, h2, h3, h4 {
+  margin: 1.6em 0 1em;
+  color: #555;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.6em;
+}
+
+h3 {
+  font-size: 1.4em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+p {
+  font-size: 1em;
+  margin: 1em 0;
+}
+
+article {
+  font-size: 1em;
+  line-height: 160%;
+
+  * {
+    line-height: 160%;
+  }
+
+  blockquote {
+    margin: 1em 0;
+    padding: 0 0 0 1em;
+    border-left: 5px solid #ccc;
+    color: #555;
+  }
+
+  p code {
+    margin: 0 5px;
+    padding: 0 5px;
+    background-color: #eee;
+  }
+
+  :first-child {
+    margin-top: 0;
+  }
+
+  :last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  color: $linkColor;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+hr {
+  margin: 40px 0;
+  border: 0;
+  height: 1px;
+  background-color: #ccc;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.icon-spin {
+  @include animation(spin 1s infinite linear);
+}
+
+.clearfix {
+  @include clearfix();
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.hide {
+  display: none;
+}
+
+// form
+
+#{$all-text-inputs},
+textarea {
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-right: 10px;
+  outline: 0;
+  border-radius: 3px;
+  @include box-sizing(border-box);
+
+  &:focus {
+    @include box-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+    @include transition(box-shadow 0.15s ease);
+  }
+}
+
+select {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 4px 5px;
+  outline: 0;
+  border-radius: 3px;
+}
+
+.field {
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  label.message {
+    margin: 5px 0 0;
+  }
+
+  .field_with_errors {
+    label.message {
+      color: $red;
+
+      &::before {
+        font-family: FontAwesome;
+        display: inline-block;
+        content: "\f05e"; // ban-icon
+        margin-right: 2px;
+      }
+    }
+  }
+}
+
+// button
+
+@mixin button-color($color) {
+  border: 1px solid darken($color, 15%);
+  @include linear-gradient($color, darken($color, 10%));
+
+  &:hover,
+  &:focus {
+    @include linear-gradient(darken($color, 5%), darken($color, 10%));
+    text-decoration: none;
+  }
+
+  &.button-actived,
+  &:active {
+    @include box-shadow(inset 0 1px 3px darken($color, 20%));
+    @include linear-gradient(darken($color, 10%), darken($color, 15%));
+  }
+}
+
+.button {
+  color: #555;
+  padding: 5px 10px;
+  margin-right: 10px;
+  font-weight: normal;
+  display: inline-block;
+  border-radius: 3px;
+  @include button-color(#fefefe);
+
+  &.no-margin {
+    margin: 0;
+  }
+
+  &.button-primary {
+    color: #fff;
+    @include button-color($green);
+  }
+
+  &.button-danger {
+    color: #fff;
+    @include button-color($red);
+  }
+}
+
+a.button:hover {
+  text-decoration: none;
+}
+
+.button-group {
+  display: inline-block;
+  margin-right: 10px;
+
+  .button {
+    margin-right: 0;
+    border-radius: 0;
+
+    &:first-child {
+      border-radius: 3px 0 0 3px;
+    }
+
+    &:last-child {
+      border-left: 0;
+      border-radius: 0 3px 3px 0;
+    }
+  }
+}
+
+// dropdown
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+
+  a {
+    color: #333;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .dropdown-toggle {
+    position: relative;
+    padding: 5px 27px 5px 10px;
+    vertical-align: middle;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:after {
+      position: absolute;
+      right: 0;
+      padding: 2px 10px;
+      font-family: FontAwesome;
+      display: inline-block;
+      content: "\f0d7";
+    }
+  }
+
+  .dropdown-menu {
+    display: none;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+    width: 140px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background: #fff;
+    @include box-shadow(0 2px 10px 1px rgba(0, 0, 0, 0.5));
+
+    &.align-right {
+      left: auto;
+      right: 0;
+    }
+
+    li {
+      display: block;
+      cursor: pointer;
+      float: none;
+
+      hr {
+        margin: 3px 0;
+      }
+
+      a {
+        display: block;
+        padding: 6px 10px;
+
+        &:hover {
+          background-color: #555;
+          color: #fff;
+        }
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  &.actived {
+    .dropdown-toggle.button {
+      @include box-shadow(inset 0 1px 2px darken(#fff, 25%));
+      @include linear-gradient(darken(#fff, 10%), darken(#fff, 25%));
+    }
+
+    .dropdown-toggle:after {
+      content: "\f0d8";
+    }
+
+    .dropdown-menu {
+      display: block;
+    }
+  }
+}
+
+// modal
+
+#modal-background {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  &.level-2 {
+    z-index: 2000;
+  }
+}
+
+.modal-dialog {
+  position: fixed;
+  display: none;
+  top: 30%;
+  left: 50%;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 30px;
+  @include box-shadow(0 4px 16px rgba(0, 0, 0, 0.5));
+
+  width: 340px;
+  margin-left: -186px;
+
+  span.modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+    color: #999;
+
+    &:hover {
+      color: #444;
+    }
+  }
+
+  .field {
+    #{$all-text-inputs} {
+      width: 100%;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+    }
+  }
+}
+
+// alert message
+
+.alert-message {
+  position: fixed;
+  top: 102px;
+  right: 50%;
+  margin-right: -460px;
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  color: #fff;
+  z-index: 2000;
+  cursor: pointer;
+  opacity: 1;
+  visibility: visible;
+  @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.3));
+  @include transition(top 0.15s ease, opacity 0.15s ease);
+
+  &.alert-hide {
+    opacity: 0;
+    visibility: hidden;
+    @include transition(top 0.15s ease, visibility 0s ease 0.15s, opacity 0.15s ease);
+  }
+
+  i {
+    margin-right: 5px;
+  }
+
+  &.loading {
+  }
+
+  &.error {
+    background-color: $red;
+  }
+
+  &.success {
+    background-color: $green;
+  }
+}
