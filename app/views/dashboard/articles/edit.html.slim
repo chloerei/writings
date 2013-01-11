@@ -2,8 +2,8 @@ doctype 5
 html
   head
     title = @article.title
-    = javascript_include_tag "application"
-    = stylesheet_link_tag "application"
+    = javascript_include_tag "dashboard"
+    = stylesheet_link_tag "dashboard"
     = csrf_meta_tags
   body#articles-edit data-no-turbolink="true" class=(cookies[:pick_up_topbar] ? 'pick-up-topbar' : nil)
     #topbar.no-shadow
