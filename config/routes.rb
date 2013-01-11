@@ -34,6 +34,7 @@ Publish::Application.routes.draw do
         get :editor
         get :form
         get :modal
+        get :site_home
       end
     end
   end

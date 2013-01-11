@@ -1,0 +1,13 @@
+doctype 5
+html
+  head
+    title = 'Pubish'
+    = javascript_include_tag "site"
+    = stylesheet_link_tag "application"
+    = yield :head
+    = csrf_meta_tags
+  body id=("#{controller_name}-#{action_name}")
+    = yield
+    #spinner
+      i.icon-spinner.icon-spin
+    = render 'layouts/alert_messages'
