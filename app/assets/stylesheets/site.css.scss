@@ -17,8 +17,6 @@
 
   .avatar {
     line-height: 0;
-    margin-bottom: 20px;
-
     img {
       width: 128px;
       height: 128px;
@@ -29,8 +27,27 @@
   .info {
   }
 
-  h1.name {
-    margin: 0 0 20px;
+  .books {
+    li {
+      display: inline-block;
+      font-size: 1.2em;
+      margin-right: 10px;
+
+      a {
+        color: #555;
+        padding: 5px;
+        border-radius: 3px;
+        padding: 5px 10px;
+        display: block;
+        @include transition(all 0.15s ease);
+
+        &:hover {
+          background: #555;
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+    }
   }
 }
 
