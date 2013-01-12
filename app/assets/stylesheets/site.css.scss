@@ -10,28 +10,23 @@
 
   .profile-content {
     background: #FFF;
-    padding: 70px;
+    padding: 40px 70px;
     border: 1px solid #ccc;
-    @include clearfix();
-    @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.2));
+    text-align: center;
   }
 
   .avatar {
-    float: right;
-    width: 128px;
-    height: 128px;
-    margin-left: 40px;
     line-height: 0;
+    margin-bottom: 20px;
 
     img {
-      max-width: 100%;
-      border-radius: 3px;
+      width: 128px;
+      height: 128px;
+      border-radius: 64px;
     }
   }
 
   .info {
-    float: left;
-    width: $site-container-width - 168px - 140px - 2px;
   }
 
   h1.name {
@@ -40,16 +35,41 @@
 }
 
 #mainarea {
+
+  margin-bottom: 40px;
+
   article {
     background: #FFF;
     padding: 70px;
     border: 1px solid #ccc;
     margin-bottom:  40px;
-    @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.2));
     cursor: pointer;
 
     &:hover {
-      @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.5));
+    }
+  }
+
+  #paginator {
+    text-align: center;
+    font-size: 2em;
+    color: #999;
+    @include clearfix();
+
+    a {
+      color: #999;
+
+      &:hover {
+        color: #555;
+        text-decoration: none;
+      }
+    }
+
+    .prev {
+      float: left;
+    }
+
+    .next {
+      float: right;
     }
   }
 }
