@@ -1,4 +1,5 @@
 class UserSessionsController < ApplicationController
+  layout 'dashboard'
   before_filter :require_no_logined, :except => :destroy
 
   def new

@@ -3,11 +3,11 @@ html
   head
     title = 'Pubish'
     = javascript_include_tag "site"
-    = stylesheet_link_tag "application"
+    = stylesheet_link_tag "site"
     = yield :head
     = csrf_meta_tags
   body id=("#{controller_name}-#{action_name}")
     = yield
     #spinner
       i.icon-spinner.icon-spin
-    = render 'layouts/alert_messages'
+    /= render 'layouts/alert_messages'

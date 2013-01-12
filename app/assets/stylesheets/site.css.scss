@@ -1,0 +1,55 @@
+@import "common";
+
+.container {
+  margin: 0 auto;
+  width: $site-container-width;
+}
+
+#profile {
+  margin: 40px 0;
+
+  .profile-content {
+    background: #FFF;
+    padding: 70px;
+    border: 1px solid #ccc;
+    @include clearfix();
+    @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.2));
+  }
+
+  .avatar {
+    float: right;
+    width: 128px;
+    height: 128px;
+    margin-left: 40px;
+    line-height: 0;
+
+    img {
+      max-width: 100%;
+      border-radius: 3px;
+    }
+  }
+
+  .info {
+    float: left;
+    width: $site-container-width - 168px - 140px - 2px;
+  }
+
+  h1.name {
+    margin: 0 0 20px;
+  }
+}
+
+#mainarea {
+  article {
+    background: #FFF;
+    padding: 70px;
+    border: 1px solid #ccc;
+    margin-bottom:  40px;
+    @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.2));
+    cursor: pointer;
+
+    &:hover {
+      @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.5));
+    }
+  }
+}

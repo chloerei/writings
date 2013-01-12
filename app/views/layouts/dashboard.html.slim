@@ -30,14 +30,14 @@ html
                       li
                         hr
                       li= link_to 'Logout', logout_path, :method => :delete
+                li
+                  = link_to new_dashboard_article_path(:book_id => @book), :target => '_blank' do
+                    i.icon-pencil
+                    = ' '
+                    = 'New Article'
               - else
                 li= link_to 'Login', login_path
                 li= link_to 'Signup', signup_path
-              li
-                = link_to new_dashboard_article_path(:book_id => @book), :target => '_blank' do
-                  i.icon-pencil
-                  = ' '
-                  = 'New Article'
     = yield
     #spinner
       i.icon-spinner.icon-spin
