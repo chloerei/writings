@@ -30,14 +30,9 @@ Publish::Application.routes.draw do
   end
 
   if Rails.env.development?
-    resource :ui, :controller => 'ui', :only => [:show] do
-      collection do
-        get :book
-        get :editor
-        get :form
-        get :modal
-        get :site_home
-      end
+    namespace :ui do
+      get 'dashboard/:action', :controller => 'dashboard'
+      get 'site/:action', :controller => 'site'
     end
   end
 end
