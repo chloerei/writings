@@ -9,6 +9,7 @@
   margin: 40px 0;
 
   .profile-content {
+    text-align: center;
     background: #FFF;
     padding: 40px 70px;
     border: 1px solid #ccc;
@@ -16,45 +17,39 @@
 
     .avatar {
       line-height: 0;
-      float: left;
-      width: 128px;
-      height: 128px;
-      margin-right: 20px;
+      margin-bottom: 40px;
 
       img {
+        width: 128px;
+        height: 128px;
         border-radius: 5px;
+        @include box-shadow(0 3px 8px rgba(0, 0, 0, 0.3));
       }
-    }
-
-    .info {
-      float: right;
-      width: 400px;
     }
 
     h1.name {
       margin-top: 0;
     }
 
-    .books {
-      li {
-        display: inline-block;
+    .description {
+      margin-bottom: 20px;
+      font-size: 1.2em;
+    }
+
+    .links {
+      a {
+        color: #555;
+        border-radius: 3px;
+        padding: 5px 10px;
+        margin: 10px;
         font-size: 1.2em;
-        margin-right: 10px;
+        display: inline-block;
+        @include transition(all 0.15s ease);
 
-        a {
-          color: #555;
-          background: #eee;
-          border-radius: 3px;
-          padding: 5px 10px;
-          margin-bottom: 10px;
-          display: block;
-          @include transition(all 0.15s ease);
-
-          &:hover {
-            background: #555;
-            color: #fff;
-            text-decoration: none;
-          }
+        &:hover {
+          background: #555;
+          color: #fff;
+          text-decoration: none;
         }
       }
     }
