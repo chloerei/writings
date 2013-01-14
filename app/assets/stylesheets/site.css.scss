@@ -46,6 +46,7 @@
         display: inline-block;
         @include transition(all 0.15s ease);
 
+        &.actived,
         &:hover {
           background: #555;
           color: #fff;
@@ -68,6 +69,7 @@
     cursor: pointer;
 
     &:hover {
+      @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
     }
   }
 
@@ -92,6 +94,45 @@
 
     .next {
       float: right;
+    }
+  }
+}
+
+#mainarea {
+  section.book {
+    background: #FFF;
+    padding: 40px 70px;
+    border: 1px solid #ccc;
+    margin-bottom:  40px;
+
+    h1 {
+      font-size: 1.5em;
+      margin: 0 0 20px;
+    }
+
+    .description {
+      font-size: 1.2em;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .links {
+      a {
+        color: #555;
+        background-color: #eee;
+        border-radius: 3px;
+        padding: 5px 10px;
+        margin-right: 10px;
+        font-size: 1.2em;
+        display: inline-block;
+        @include transition(all 0.15s ease);
+
+        &:hover {
+          background: #555;
+          color: #fff;
+          text-decoration: none;
+        }
+      }
     }
   }
 }

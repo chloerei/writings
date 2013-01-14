@@ -1,0 +1,33 @@
+#profile
+  .container
+    .profile-content
+      .avatar
+        img src="http://gravatar.com/avatar/5aec84cd0b5479a0d1d89b6ffa2a9a20.png?r=G&s=128"
+      h1.name
+        | Rei
+      .description
+        | Web developer, love Ruby, Qt, KDE. male.
+          http://chloerei.com
+      .links
+        a href='#'
+          i.icon-home
+          = ' Home'
+        a href='#'
+          i.icon-rss
+          = ' Feed'
+        a href='#' class='actived'
+          i.icon-book
+          = ' Books'
+
+#mainarea
+  .container
+    - 3.times do
+      section.book
+        h1
+          a href='#' Book Name
+        .description
+          | Description
+        .links
+          a href='#' Articles
+          a href='#' Index
+          a href='#' Feed
