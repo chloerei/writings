@@ -3,6 +3,9 @@ class User
   include Mongoid::Timestamps::Created
   include ActiveModel::SecurePassword
   include ActiveModel::ForbiddenAttributesProtection
+  include Gravtastic
+
+  gravtastic :filetype => :png, :size => 100
 
   field :name
   field :email

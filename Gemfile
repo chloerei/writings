@@ -4,6 +4,7 @@ gem 'rails', '3.2.11'
 
 gem 'mongoid'
 gem 'bcrypt-ruby'
+gem 'kaminari'
 gem 'slim'
 gem 'client_side_validations'
 gem 'client_side_validations-mongoid'

@@ -1,0 +1,33 @@
+#main
+  .container
+    #profile
+      .avatar
+        = link_to image_tag(@user.gravatar_url), root_path
+      .name
+        h1
+          = link_to @user.profile.name, root_path
+      .description
+        = simple_format @user.profile.description
+      .links
+        a href='#'
+          i.icon-book
+          = ' Books'
+        a href='#'
+          i.icon-rss
+          = ' Feed'
+    #articles
+      - @articles.each do |article|
+        .article
+          .header
+            a.date href='#'
+              i.icon-time
+              = ' 2013-1-1'
+          article
+            = article_format_body article.body
+    #paginator
+      a.prev href='#'
+        i.icon-circle-arrow-left
+        = ' Prev'
+      a.next href='#'
+        = 'Next '
+        i.icon-circle-arrow-right
