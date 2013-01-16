@@ -1,3 +1,9 @@
+class Sitedomain
+  def matches?(request)
+    request.host =~ /^\w+\.#{APP_CONFIG["HOST"]}$/
+  end
+end
+
 Publish::Application.routes.draw do
   constraints :host => APP_CONFIG["host"] do
     root :to => 'dashboard/articles#index'
@@ -27,6 +33,10 @@ Publish::Application.routes.draw do
         end
       end
     end
+  end
+
+  constraints(Sitedomain) do
+    root :to => 'site/articles#index'
   end
 
   if Rails.env.development?
