@@ -18,14 +18,15 @@
         a href='#'
           i.icon-rss
           = ' Feed'
-    - 5.times do
-      section.book
-        .title
-          h1
-            a href='#' Book Name
-        .description
-          | Description
-        .links
-          a href='#' Articles
-          a href='#' Index
-          a href='#' Feed
+    #books
+      - 5.times do
+        section.book
+          .title
+            h1
+              a href='#' Book Name
+          .description
+            | Description
+          .links
+            a href='#' Articles
+            a href='#' Index
+            a href='#' Feed

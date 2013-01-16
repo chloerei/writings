@@ -1,12 +1,8 @@
 @import "common";
 
-body {
-  background-color: #fff;
-}
-
 #main {
   width: 768px;
-  margin: 0 auto;
+  margin: 0 auto 50px;
 
   .container {
   }
@@ -77,7 +73,6 @@ body {
 
   #bottom-profile {
     padding: 40px;
-    margin-bottom: 40px;
     border-bottom: 1px solid #ccc;
     @include clearfix();
 
@@ -125,32 +120,34 @@ body {
     }
   }
 
-  section.book {
-    padding: 70px;
-    border-bottom: 1px solid #ccc;
+  #books {
+    .book {
+      padding: 70px;
+      border-bottom: 1px solid #ccc;
 
-    .title {
-      margin-bottom: 20px;
+      .title {
+        margin-bottom: 20px;
 
-      h1 {
-        margin: 0;
+        h1 {
+          margin: 0;
+        }
       }
-    }
 
-    .description {
-      margin-bottom: 20px;
-      font-size: 1.2em;
-    }
-
-    .links {
-      a {
-        color: #999;
+      .description {
+        margin-bottom: 20px;
         font-size: 1.2em;
-        margin-right: 20px;
+      }
 
-        &:hover {
-          color: #555;
-          text-decoration: none;
+      .links {
+        a {
+          color: #999;
+          font-size: 1.2em;
+          margin-right: 20px;
+
+          &:hover {
+            color: #555;
+            text-decoration: none;
+          }
         }
       }
     }
