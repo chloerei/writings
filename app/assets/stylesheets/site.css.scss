@@ -6,13 +6,13 @@ body {
 
 #main {
   width: 768px;
-  margin: 50px auto;
+  margin: 0 auto;
 
   .container {
   }
 
   #profile {
-    padding-bottom: 70px;
+    padding: 70px 0;
     border-bottom: 1px solid #ccc;
     text-align: center;
 
@@ -55,24 +55,49 @@ body {
     }
   }
 
-  #articles {
-    .article {
-      border-bottom: 1px solid #ccc;
-      padding: 70px;
+  .article {
+    border-bottom: 1px solid #ccc;
+    padding: 70px;
 
-      .header {
-        margin-bottom: 10px;
+    .header {
+      margin-bottom: 10px;
 
-        a {
-          font-size: 1.5em;
-          color: #999;
-          font-weight: bold;
+      a {
+        font-size: 1.5em;
+        color: #999;
+        font-weight: bold;
 
-          &:hover {
-            text-decoration: none;
-            color: #555;
-          }
+        &:hover {
+          text-decoration: none;
+          color: #555;
         }
+      }
+    }
+  }
+
+  #bottom-profile {
+    padding: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #ccc;
+    @include clearfix();
+
+    .avatar {
+      float: left;
+      width: 20%;
+
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+      }
+    }
+
+    .info {
+      width: 80%;
+      float: left;
+
+      h1 {
+        margin: 0 0 20px;
       }
     }
   }

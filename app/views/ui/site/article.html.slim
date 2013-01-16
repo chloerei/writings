@@ -1,6 +1,10 @@
-#mainarea
+#main
   .container
-    #main
+    .article
+      .header
+        a.date href='#'
+          i.icon-time
+          = ' 2013-1-1'
       article
         markdown:
           # 写给大家看的 Rails 部署：第一篇 简单快捷的部署方案
@@ -30,3 +34,12 @@
            3. Passenger
 
           没用过不要紧，下面会一个个解释它们的用途。本文会使用纯净的 ubuntu server 12.04 做范例，从零开始搭建 Rails 生产环境。
+    #bottom-profile
+      .avatar
+        img src="http://gravatar.com/avatar/5aec84cd0b5479a0d1d89b6ffa2a9a20.png?r=G&s=100"
+      .info
+        .name
+          h1 Rei
+        .description
+          | Web developer, love Ruby, Qt, KDE. male.
+            http://chloerei.com
