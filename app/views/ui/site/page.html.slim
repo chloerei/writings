@@ -1,57 +1,57 @@
-#profile
+#main
   .container
-    .profile-content
+    #profile
       .avatar
-        img src="http://gravatar.com/avatar/5aec84cd0b5479a0d1d89b6ffa2a9a20.png?r=G&s=128"
-      h1.name
-        | Rei
+        img src="http://gravatar.com/avatar/5aec84cd0b5479a0d1d89b6ffa2a9a20.png?r=G&s=100"
+      .name
+        h1 Rei
       .description
         | Web developer, love Ruby, Qt, KDE. male.
           http://chloerei.com
       .links
-        a href='#' class='actived'
-          i.icon-home
-          = ' Home'
-        a href='#'
-          i.icon-rss
-          = ' Feed'
         a href='#'
           i.icon-book
           = ' Books'
-
-#mainarea
-  .container
-    #main
+        a href='#'
+          i.icon-inbox
+          = ' Archives'
+        a href='#'
+          i.icon-rss
+          = ' Feed'
+    #articles
       - 5.times do
-        article
-          markdown:
-            # 写给大家看的 Rails 部署：第一篇 简单快捷的部署方案
+        .article
+          .header
+            a.date href='#' 2013-1-1
+          article
+            markdown:
+              # 写给大家看的 Rails 部署：第一篇 简单快捷的部署方案
 
-            ## 前言
+              ## 前言
 
-            Rails 是当今最优秀的 Web 框架，它大大提升了 Web 开发者的开发效率。但由于 Web 实质上是一门综合技术，牵涉的领域较多，没有其他 Web 开发经验的人也是不好上手 Rails 的。
+              Rails 是当今最优秀的 Web 框架，它大大提升了 Web 开发者的开发效率。但由于 Web 实质上是一门综合技术，牵涉的领域较多，没有其他 Web 开发经验的人也是不好上手 Rails 的。
 
-            最近，新手问题中部署相关的问题出现频率较高。其实现在并不是没有部署相关的书籍和文章，比如入门宝书《[Web开发敏捷之道][1]》中就有一章的内容是专门讲部署。不过我观察发现，中文的资料普遍滞后，英文资料对于新手可能有难度。所以我萌生了写一系列、由浅至深的部署文章的想法。我的部署经验并不丰富，基本是伴随 CodeCampo 的上线运行积累起来的，很多时候处于得过且过的状态。如果能达到理解我的部署方案，并且找到更好的替代方案，那么就相当于越过了入门这道坎了，相信你就可以根据自己的需求优化自己的部署方案。
+              最近，新手问题中部署相关的问题出现频率较高。其实现在并不是没有部署相关的书籍和文章，比如入门宝书《[Web开发敏捷之道][1]》中就有一章的内容是专门讲部署。不过我观察发现，中文的资料普遍滞后，英文资料对于新手可能有难度。所以我萌生了写一系列、由浅至深的部署文章的想法。我的部署经验并不丰富，基本是伴随 CodeCampo 的上线运行积累起来的，很多时候处于得过且过的状态。如果能达到理解我的部署方案，并且找到更好的替代方案，那么就相当于越过了入门这道坎了，相信你就可以根据自己的需求优化自己的部署方案。
 
-            ## 第一篇：简单快捷的基础部署
+              ## 第一篇：简单快捷的基础部署
 
-            本篇希望讲解一个简单快捷的基础部署方案。不过简单快捷并不等于无需思考，每个操作的前后会有少量的解释。
+              本篇希望讲解一个简单快捷的基础部署方案。不过简单快捷并不等于无需思考，每个操作的前后会有少量的解释。
 
-            Rails 的开发环境服务器非常容易跑起来，只要输入`rails s`，就能在本机的 3000 端口打开一个 web 服务。那么，真实的部署环境是不是`rails s` 就够了呢？当然不是，`rails s` 调用的是 Ruby 标准库里的 WEBrick 服务器，它并不足够支撑真实世界的大量请求。所以，我们需要一个 Rails 的**生产环境**部署方案。
+              Rails 的开发环境服务器非常容易跑起来，只要输入`rails s`，就能在本机的 3000 端口打开一个 web 服务。那么，真实的部署环境是不是`rails s` 就够了呢？当然不是，`rails s` 调用的是 Ruby 标准库里的 WEBrick 服务器，它并不足够支撑真实世界的大量请求。所以，我们需要一个 Rails 的**生产环境**部署方案。
 
-            如果现在打开 Google 搜索「Rails 部署」，你会看到五花八门的部署方案，一大堆名词映入你的眼帘：Apache、Nginx、Unicorn、Thin、Puma……这真让人看花了眼。之所以有这么多部署方案，是因为真实世界有各种各样的项目需求，也有各种各样的开发者喜好，这些五花八门的部署方案，也是 Rails 社区活跃的证明。
+              如果现在打开 Google 搜索「Rails 部署」，你会看到五花八门的部署方案，一大堆名词映入你的眼帘：Apache、Nginx、Unicorn、Thin、Puma……这真让人看花了眼。之所以有这么多部署方案，是因为真实世界有各种各样的项目需求，也有各种各样的开发者喜好，这些五花八门的部署方案，也是 Rails 社区活跃的证明。
 
-            现在我希望你把焦点放在我推荐的部署方案上：Nginx + Passenger，毕竟，DHH 也推荐 Passenger，相信他没错！
+              现在我希望你把焦点放在我推荐的部署方案上：Nginx + Passenger，毕竟，DHH 也推荐 Passenger，相信他没错！
 
-            > Phusion Passenger Enterprise is looking like a pretty swanky way to deploy Rails apps —— [DHH][2] (Creator of Ruby on Rails)
+              > Phusion Passenger Enterprise is looking like a pretty swanky way to deploy Rails apps —— [DHH][2] (Creator of Ruby on Rails)
 
-            在本篇文章里，你会接触到以下工具：
+              在本篇文章里，你会接触到以下工具：
 
-             1. RVM
-             2. Nginx
-             3. Passenger
+               1. RVM
+               2. Nginx
+               3. Passenger
 
-            没用过不要紧，下面会一个个解释它们的用途。本文会使用纯净的 ubuntu server 12.04 做范例，从零开始搭建 Rails 生产环境。
+              没用过不要紧，下面会一个个解释它们的用途。本文会使用纯净的 ubuntu server 12.04 做范例，从零开始搭建 Rails 生产环境。
     #paginator
       a.prev href='#'
         i.icon-circle-arrow-left

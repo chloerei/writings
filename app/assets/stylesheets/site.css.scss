@@ -1,113 +1,34 @@
 @import "common";
 
-.container {
-  margin: 0 auto;
-  width: $site-container-width;
+body {
+  background-color: #fff;
 }
 
-#profile {
-  margin: 40px 0;
+#main {
+  width: 768px;
+  margin: 50px auto;
 
-  .profile-content {
+  .container {
+  }
+
+  #profile {
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #ccc;
     text-align: center;
-    background: #FFF;
-    padding: 40px 70px;
-    border: 1px solid #ccc;
-    @include clearfix();
 
     .avatar {
-      line-height: 0;
-      margin-bottom: 40px;
-
       img {
-        width: 128px;
-        height: 128px;
-        border-radius: 5px;
-        @include box-shadow(0 3px 8px rgba(0, 0, 0, 0.3));
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
       }
     }
 
-    h1.name {
-      margin-top: 0;
-    }
-
-    .description {
-      margin-bottom: 20px;
-      font-size: 1.2em;
-    }
-
-    .links {
-      a {
-        color: #555;
-        border-radius: 3px;
-        padding: 5px 10px;
-        margin: 10px;
-        font-size: 1.2em;
-        display: inline-block;
-        @include transition(all 0.15s ease);
-
-        &.actived,
-        &:hover {
-          background: #555;
-          color: #fff;
-          text-decoration: none;
-        }
+    .name {
+      h1 {
+        margin: 20px 0;
       }
-    }
-  }
-}
-
-#mainarea {
-
-  margin-bottom: 40px;
-
-  article {
-    background: #FFF;
-    padding: 70px;
-    border: 1px solid #ccc;
-    margin-bottom:  40px;
-    cursor: pointer;
-
-    &:hover {
-      @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
-    }
-  }
-
-  #paginator {
-    text-align: center;
-    font-size: 2em;
-    color: #999;
-    @include clearfix();
-
-    a {
-      color: #999;
-
-      &:hover {
-        color: #555;
-        text-decoration: none;
-      }
-    }
-
-    .prev {
-      float: left;
-    }
-
-    .next {
-      float: right;
-    }
-  }
-}
-
-#mainarea {
-  section.book {
-    background: #FFF;
-    padding: 40px 70px;
-    border: 1px solid #ccc;
-    margin-bottom:  40px;
-
-    h1 {
-      font-size: 1.5em;
-      margin: 0 0 20px;
     }
 
     .description {
@@ -119,18 +40,39 @@
     .links {
       a {
         color: #555;
-        background-color: #eee;
-        border-radius: 3px;
-        padding: 5px 10px;
-        margin-right: 10px;
         font-size: 1.2em;
+        margin: 0 10px;
+        padding: 5px 10px;
+        border-radius: 3px;
         display: inline-block;
-        @include transition(all 0.15s ease);
 
+        &.actived,
         &:hover {
-          background: #555;
+          background-color: #555;
           color: #fff;
           text-decoration: none;
+        }
+      }
+    }
+  }
+
+  #articles {
+    .article {
+      border-bottom: 1px solid #ccc;
+      padding: 70px;
+
+      .header {
+        margin-bottom: 10px;
+
+        a {
+          font-size: 1.5em;
+          color: #999;
+          font-weight: bold;
+
+          &:hover {
+            text-decoration: none;
+            color: #555;
+          }
         }
       }
     }
