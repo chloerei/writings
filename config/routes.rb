@@ -36,7 +36,10 @@ Publish::Application.routes.draw do
   end
 
   constraints(Sitedomain) do
-    root :to => 'site/articles#index'
+    scope :module => 'site', :as => 'site' do
+      root :to => 'articles#index'
+      get 'articles/:id(/:urlname)', :to => 'articles#show', :as => :article
+    end
   end
 
   if Rails.env.development?

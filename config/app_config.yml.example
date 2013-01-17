@@ -5,6 +5,7 @@ development:
   <<: *defaults
 
 test:
+  host: 'local.test'
   <<: *defaults
 
 production:

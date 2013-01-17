@@ -2,10 +2,10 @@
   .container
     #profile
       .avatar
-        = link_to image_tag(@user.gravatar_url), root_path
+        = link_to image_tag(@user.gravatar_url), site_root_path
       .name
         h1
-          = link_to @user.profile.name, root_path
+          = link_to @user.profile.name, site_root_path
       .description
         = simple_format @user.profile.description
       .links
@@ -19,9 +19,10 @@
       - @articles.each do |article|
         .article
           .header
-            a.date href='#'
+            = link_to site_article_path(article, :urlname => article.urlname) do
               i.icon-time
-              = ' 2013-1-1'
+              = ' '
+              = article.created_at.to_date.to_s
           article
             = article_format_body article.body
     = paginate @articles, :theme => 'site'
