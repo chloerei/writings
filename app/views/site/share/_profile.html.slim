@@ -1,0 +1,15 @@
+#profile
+  .avatar
+    = link_to image_tag(@user.gravatar_url), site_root_path
+  .name
+    h1
+      = link_to @user.profile.name, site_root_path
+  .description
+    = simple_format @user.profile.description
+  .links
+    = link_to site_books_path, :class => (controller_name == 'books' ? 'actived' : nil) do
+      i.icon-book
+      = ' Books'
+    a href='#'
+      i.icon-rss
+      = ' Feed'

@@ -3,6 +3,7 @@ class Book
   include ActiveModel::ForbiddenAttributesProtection
 
   field :name
+  field :description
   field :urlname
 
   has_many :articles, :dependent => :nullify

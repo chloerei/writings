@@ -1,0 +1,15 @@
+#main
+  .container
+    = render 'site/share/profile'
+    #books
+      - @books.each do |book|
+        section.book
+          .title
+            h1
+              a href='#' = book.name
+          .description
+            = book.description
+          .links
+            a href='#'
+              i.icon-rss
+              = ' Feed'

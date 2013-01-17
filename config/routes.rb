@@ -39,6 +39,7 @@ Publish::Application.routes.draw do
     scope :module => 'site', :as => 'site' do
       root :to => 'articles#index'
       get 'articles/:id(/:urlname)', :to => 'articles#show', :as => :article
+      resources :books, :only => [:index, :show]
     end
   end
 
