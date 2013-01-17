@@ -30,6 +30,7 @@ group :development do
   gem 'guard-livereload'
   gem 'rack-livereload'
   gem 'rb-inotify', '~> 0.8.8'
+  gem 'capistrano'
 end
 
 group :development, :test do
