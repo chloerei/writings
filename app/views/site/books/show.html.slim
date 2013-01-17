@@ -1,0 +1,24 @@
+#main
+  .container
+    section#bottom-profile
+      .avatar
+        = link_to image_tag(@user.gravatar_url), site_root_path
+      .info
+        .name
+          h1
+            = link_to @book.name, site_book_path(@book)
+            = ' by '
+            = link_to @user.profile.name, site_root_path
+        .description
+          = simple_format @book.description
+    #articles
+      - @articles.each do |article|
+        .article
+          .header
+            = link_to site_article_path(article, :urlname => article.urlname) do
+              i.icon-time
+              = ' '
+              = article.created_at.to_date.to_s
+          article
+            = article_format_body article.body
+    = paginate @articles, :theme => 'site'

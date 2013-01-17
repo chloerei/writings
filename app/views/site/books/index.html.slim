@@ -6,9 +6,10 @@
         section.book
           .title
             h1
-              a href='#' = book.name
+              = link_to book.name, site_book_path(book)
           .description
-            = book.description
+            = simple_format book.description
+            = "#{book.articles.count} articles"
           .links
             a href='#'
               i.icon-rss
