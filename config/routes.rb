@@ -40,7 +40,11 @@ Publish::Application.routes.draw do
       root :to => 'articles#index'
       get 'feed', :to => 'articles#feed', :as => :feed
       get 'articles/:id(/:urlname)', :to => 'articles#show', :as => :article
-      resources :books, :only => [:index, :show]
+      resources :books, :only => [:index, :show] do
+        member do
+          get :feed
+        end
+      end
     end
   end
 

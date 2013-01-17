@@ -10,6 +10,6 @@
     = link_to site_books_path, :class => (controller_name == 'books' ? 'actived' : nil) do
       i.icon-book
       = ' Books'
-    a href='#'
+    = link_to site_feed_path(:format => :rss) do
       i.icon-rss
       = ' Feed'

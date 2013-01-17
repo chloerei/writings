@@ -11,6 +11,6 @@
             = simple_format book.description
             = "#{book.articles.count} articles"
           .links
-            a href='#'
+            = link_to feed_site_book_path(book, :format => :rss) do
               i.icon-rss
               = ' Feed'

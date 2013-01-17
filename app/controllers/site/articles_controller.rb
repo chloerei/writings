@@ -9,6 +9,8 @@ class Site::ArticlesController < Site::BaseController
 
   def feed
     @articles = @user.articles.desc(:created_at).limit(20)
+    @feed_title = @user.profile.name.present? ? @user.profile.name : @user.name
+    @feed_link = site_root_url
 
     respond_to do |format|
       format.rss
