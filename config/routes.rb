@@ -38,6 +38,7 @@ Publish::Application.routes.draw do
   constraints(Sitedomain) do
     scope :module => 'site', :as => 'site' do
       root :to => 'articles#index'
+      get 'feed', :to => 'articles#feed', :as => :feed
       get 'articles/:id(/:urlname)', :to => 'articles#show', :as => :article
       resources :books, :only => [:index, :show]
     end

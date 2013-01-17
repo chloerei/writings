@@ -6,4 +6,12 @@ class Site::ArticlesController < Site::BaseController
   def show
     @article = @user.articles.find_by :number_id => params[:id]
   end
+
+  def feed
+    @articles = @user.articles.desc(:created_at).limit(20)
+
+    respond_to do |format|
+      format.rss
+    end
+  end
 end

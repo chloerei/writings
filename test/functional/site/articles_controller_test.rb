@@ -16,4 +16,9 @@ class Site::ArticlesControllerTest < ActionController::TestCase
     get :show, :id => @article
     assert_response :success, @response.body
   end
+
+  test "should get feed" do
+    get :feed, :format => :rss
+    assert_response :success, @response.body
+  end
 end
