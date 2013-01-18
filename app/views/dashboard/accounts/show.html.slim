@@ -17,6 +17,9 @@
             = f.label :email
             = f.text_field :email
           .field
+            = f.label :domain
+            = f.text_field :domain
+          .field
             = f.label :password
             = f.password_field :password, :validate => { :presence => false }, :autocomplete => 'off'
           .field

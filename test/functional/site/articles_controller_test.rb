@@ -15,6 +15,10 @@ class Site::ArticlesControllerTest < ActionController::TestCase
 
   test "should get index when setting domain" do
     @user.update_attribute :domain, 'custom.domain'
+
+    get :index
+    assert_redirected_to "http://#{@user.domain}/"
+
     @request.host = 'custom.domain'
     get :index
     assert_equal @user, assigns(:user)
