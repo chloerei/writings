@@ -4,18 +4,18 @@ set :rvm_type, :system
 require 'bundler/capistrano'
 
 set :application, "writings.io"
-set :repository,  "git://chloerei.com:git/publish-design"
-
-role :web, "codecampo.com"
-role :app, "codecampo.com"
-role :db,  "codecampo.com", :primary => true
+set :repository,  "rei@chloerei.com:git/publish-design"
+set :scm, "git"
+set :branch, "master"
+set :deploy_via, :remote_cache
 
 set :user, "webuser"
 set :deploy_to, "~/#{application}"
 set :use_sudo, false
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+role :web, "chloerei.com"
+role :app, "chloerei.com"
+role :db,  "chloerei.com", :primary => true
 
 namespace :deploy do
   task :start do ; end

@@ -31,6 +31,7 @@ group :development do
   gem 'rack-livereload'
   gem 'rb-inotify', '~> 0.8.8'
   gem 'capistrano'
+  gem 'rvm-capistrano', :require => false
 end
 
 group :development, :test do
