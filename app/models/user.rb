@@ -12,6 +12,7 @@ class User
   field :password_digest
   field :access_token
   field :locale, :default => I18n.locale.to_s
+  field :domain
 
   embeds_one :profile
 
@@ -27,6 +28,7 @@ class User
   validates :password, :length => {:minimum => 6, :allow_blank => true}
   validates :locale, :inclusion => {:in => ALLOW_LOCALE}
   validates :current_password, :presence => true, :on => :update
+  validates :domain, :format => {:with => /(\w+\.)+\w+/}, :uniqueness => {:case_sensitive => false}, :allow_blank => true
 
   attr_accessor :current_password
 

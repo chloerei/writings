@@ -5,6 +5,10 @@ class Site::BaseController < ApplicationController
   private
 
   def require_site
-    @user = User.find_by(:name => /^#{request.subdomain(DOMAIN_LENGTH)}$/i)
+    if request.host =~ /^\w+\.#{APP_CONFIG["host"]}$/
+      @user = User.find_by(:name => /^#{request.subdomain(DOMAIN_LENGTH)}$/i)
+    else
+      @user = User.find_by(:domain => request.host)
+    end
   end
 end
