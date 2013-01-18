@@ -5,12 +5,12 @@ class Site::BooksController < Site::BaseController
 
   def show
     @book = @user.books.find_by :urlname => params[:id]
-    @articles = @book.articles.desc(:created_at).page(params[:page])
+    @articles = @book.articles.publish.desc(:created_at).page(params[:page])
   end
 
   def feed
     @book = @user.books.find_by :urlname => params[:id]
-    @articles = @book.articles.desc(:created_at).limit(20)
+    @articles = @book.articles.publish.desc(:created_at).limit(20)
     @feed_title = "#{@book.name} - #{@user.profile.name.present? ? @user.profile.name : @user.name}"
     @feed_link = site_book_url(@book)
 

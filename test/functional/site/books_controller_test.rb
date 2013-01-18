@@ -4,8 +4,8 @@ class Site::BooksControllerTest < ActionController::TestCase
   def setup
     @user = create :user
     @book = create :book, :user => @user
-    @article = create :article, :user => @user, :book => @book
-    @request.host = "#{@user.name}.local.test"
+    @article = create :article, :user => @user, :book => @book, :status => 'publish'
+    @request.host = "#{@user.name}.#{APP_CONFIG["host"]}"
   end
 
   test "should get index" do
