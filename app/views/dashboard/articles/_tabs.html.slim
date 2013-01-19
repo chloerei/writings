@@ -1,0 +1,20 @@
+#tabs.tabs
+  .container
+    nav.fixed
+      ul
+        li class=(params[:status].nil? ? 'actived' : nil)
+          = link_to url_for(:status => nil) do
+            i.icon-inbox.index-icon
+            = ' Index'
+        li class=(params[:status] == 'publish' ? 'actived' : nil)
+          = link_to url_for(:status => 'publish') do
+            i.icon-file-alt.publish-icon
+            = ' Publish'
+        li class=(params[:status] == 'draft' ? 'actived' : nil)
+          = link_to url_for(:status => 'draft') do
+            i.icon-file.draft-icon
+            = ' Draft'
+        li class=(params[:status] == 'trash' ? 'actived' : nil)
+          = link_to url_for(:status => 'trash') do
+            i.icon-trash.trash-icon
+            = ' Trash'

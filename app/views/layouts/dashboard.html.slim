@@ -10,34 +10,33 @@ html
     #topbar
       .container
         header#site-header.clearfix
-          .pull-left
-            ul.top-nav
+          ul.top-nav.pull-left
+            li
+              = link_to dashboard_root_path do
+                i.icon-home
+            - if logined?
+              = render 'layouts/book_selector'
+            = yield :top_nav
+          ul.top-nav.pull-right
+            - if logined?
               li
-                = link_to 'Writings.io', dashboard_root_path
-              - if logined?
-                = render 'layouts/book_selector'
-              = yield :top_nav
-          .pull-right
-            ul.top-nav
-              - if logined?
-                li
-                  .dropdown
-                    = link_to dashboard_account_path, :class => 'dropdown-toggle' do
-                      i.icon-user
-                    ul.dropdown-menu.align-right
-                      li= link_to 'Account', dashboard_account_path
-                      li= link_to 'Profile', dashboard_profile_path
-                      li
-                        hr
-                      li= link_to 'Logout', logout_path, :method => :delete
-                li
-                  = link_to new_dashboard_article_path(:book_id => @book), :target => '_blank' do
-                    i.icon-pencil
-                    = ' '
-                    = 'New Article'
-              - else
-                li= link_to 'Login', login_path
-                li= link_to 'Signup', signup_path
+                .dropdown
+                  = link_to dashboard_account_path, :class => 'dropdown-toggle' do
+                    i.icon-user
+                  ul.dropdown-menu.align-right
+                    li= link_to 'Account', dashboard_account_path
+                    li= link_to 'Profile', dashboard_profile_path
+                    li
+                      hr
+                    li= link_to 'Logout', logout_path, :method => :delete
+              li
+                = link_to new_dashboard_article_path(:book_id => @book), :target => '_blank' do
+                  i.icon-pencil
+                  = ' '
+                  = 'New Article'
+            - else
+              li= link_to 'Login', login_path
+              li= link_to 'Signup', signup_path
     = yield
     #spinner
       i.icon-spinner.icon-spin

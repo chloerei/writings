@@ -15,27 +15,26 @@
   }
 }
 
+// topbar
+
 #topbar {
-  background-color: #FFF;
+  background-color: #fff;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10;
-  height: 45px;
+  height: 50px;
   border-bottom: 1px solid #ccc;
+  font-size: 1.2em;
+  @include linear-gradient(#fff, #eee);
   @include transition(top 0.15s ease);
-  @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
-
-  &.no-shadow {
-    @include box-shadow(none);
-  }
+  @include box-shadow(0 0px 5px rgba(0, 0, 0, 0.3));
 
   ul.top-nav {
     margin: 0;
     padding: 0;
     list-style: none;
-    font-weight: bold;
     @include clearfix();
 
     > li {
@@ -43,7 +42,7 @@
       float: left;
 
       > a {
-        padding: 15px 10px 14px;
+        padding: 15px 20px;
         display: block;
         color: #555;
         @include transition(all 0.15s ease);
@@ -65,7 +64,7 @@
 
   .dropdown {
     .dropdown-toggle {
-      padding: 15px 30px 14px 15px;
+      padding: 15px 30px 15px 20px;
       color: #555;
       vertical-align: baseline;
 
@@ -80,7 +79,7 @@
     }
 
     .dropdown-menu {
-      top: 47px;
+      top: 51px;
       width: 145px;
       font-weight: normal;
 
@@ -100,8 +99,186 @@
   }
 }
 
-#site-header {
+// main
+
+.tabs {
+  position: fixed;
+  top: 51px;
+  left: 0;
+  right: 0;
+  z-index: 9;
+
+  li [class^="icon-"], li [class*=" icon-"] {
+    width: auto;
+  }
+
+  nav {
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.2em;
+    @include box-shadow(0 3px 3px -3px rgba(0, 0, 0, 0.3));
+
+    ul {
+      @include clearfix();
+
+      li {
+        display: inline-block;
+        float: left;
+
+        .label {
+          color: #999;
+          padding: 15px 20px;
+        }
+
+        a {
+          color: #555;
+          display: block;
+          padding: 15px 20px;
+
+          &:hover {
+            text-decoration: none;
+            color: #fff;
+            background-color: #555;
+          }
+        }
+
+        &.actived {
+          a {
+            color: #fff;
+            background-color: #555;
+          }
+        }
+      }
+    }
+  }
 }
+
+#bulkbar {
+  visibility: visible;
+  opacity: 1;
+  @include transition(opacity 0.15s ease);
+
+  nav {
+    @include box-shadow(none);
+  }
+
+  &.bulkbar-hide {
+    visibility: hidden;
+    opacity: 0;
+    @include transition(visibility 0s ease 0.15s, opacity 0.15s ease);
+  }
+}
+
+#main {
+  .inner {
+    background-color: #fff;
+    padding: 102px 0 20px;
+    @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+  }
+
+  #articles {
+    table {
+      width: 100%;
+
+      tr {
+        border-bottom: 1px solid #ddd;
+
+        &.selected {
+          background-color: #eee;
+        }
+
+        &:hover {
+          background-color: #eee;
+          cursor: pointer;
+        }
+
+        &:last-child {
+          border-bottom: 0;
+        }
+
+        &.publish {
+          .icon-status:before {
+            color: gray;
+            content: "\f0f6";
+          }
+        }
+
+        &.draft {
+          .icon-status:before {
+            color: gray;
+            content: "\f016";
+          }
+        }
+
+        &.trash {
+          .icon-status:before {
+            color: gray;
+            content: "\f014";
+          }
+        }
+      }
+
+      td {
+        padding: 20px;
+
+        &.title {
+          width: 99%;
+
+          i {
+            margin-right: 5px;
+          }
+        }
+
+        &.book,
+        &.date {
+          width: 1%;
+          white-space: nowrap;
+          text-align: right;
+        }
+
+        .book_name {
+          font-size: 0.9em;
+          color: #555;
+          padding: 3px 5px;
+          background-color: #eee;
+          border-radius: 3px;
+        }
+      }
+
+      a {
+        color: #555;
+
+        &:hover {
+          color: $linkColor;
+        }
+      }
+    }
+  }
+}
+
+#empty-message {
+  text-align: center;
+  padding: 20px;
+  font-size: 2em;
+  border: 2px dashed #ccc;
+  color: #999;
+}
+
+#end-message {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5em;
+  color: #999;
+}
+
+#articles-spinner {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5em;
+  color: #999;
+}
+
+// editor
 
 #editor-header {
   @include box-shadow(none);
@@ -252,246 +429,4 @@
   .alert-message {
     top: 57px;
   }
-}
-
-#mainarea {
-  margin-top: 82px;
-  #main {
-    background: #FFF;
-    padding: 40px;
-    border: 1px solid #ccc;
-    margin-bottom: 60px;
-    @include clearfix();
-
-    &.articles-list {
-      min-height: 1024px;
-    }
-
-    .field {
-      #{$all-text-inputs} {
-        width: 37.5%;
-      }
-
-      textarea {
-        width: 75%;
-        height: 120px;
-      }
-    }
-
-
-    &.signup {
-      width: 55%;
-      margin: 105px auto 0;
-
-      #{$all-text-inputs} {
-        width: 75%;
-      }
-    }
-
-    #main-nav {
-      width: 18%;
-      height: 1px;
-      margin-right: 2%;
-      float: left;
-
-      nav {
-        font-size: 1.5em;
-        width: 150px;
-
-        &.fixed {
-          position: fixed;
-        }
-
-        li {
-          margin-bottom: 10px;
-
-          a {
-            color: #555;
-            border-radius: 3px;
-            padding: 5px 10px;
-            display: block;
-            @include transition(all 0.15s ease);
-          }
-
-          a:hover,
-          &.active a {
-            color: #fff;
-            background-color: #555;
-            text-decoration: none;
-          }
-        }
-      }
-    }
-
-    #main-content {
-      width: 80%;
-      float: left;
-
-      table.articles {
-        width: 100%;
-
-        tr {
-          border-top: 1px dashed #ddd;
-
-          &.selected {
-            background-color: #eee;
-          }
-
-          &:hover {
-            background-color: #eee;
-            cursor: pointer;
-          }
-
-          &:last-child {
-            border-bottom: 1px dashed #ddd;
-          }
-
-          &.publish {
-            .icon-status:before {
-              color: gray;
-              content: "\f111";
-            }
-          }
-
-          &.draft {
-            .icon-status:before {
-              color: gray;
-              content: "\f10c";
-            }
-          }
-
-          &.trash {
-            .icon-status:before {
-              color: gray;
-              content: "\f014";
-            }
-          }
-        }
-
-        td {
-          padding: 15px 20px;
-
-          &.title {
-            width: 99%;
-
-            i {
-              margin-right: 5px;
-            }
-          }
-
-          &.book,
-          &.date {
-            width: 1%;
-            white-space: nowrap;
-            text-align: right;
-          }
-
-          .book_name {
-            font-size: 0.9em;
-            color: #555;
-            padding: 3px 5px;
-            background-color: #eee;
-            border-radius: 3px;
-          }
-        }
-
-        a {
-          color: #555;
-
-          &:hover {
-            color: $linkColor;
-          }
-        }
-      }
-    }
-  }
-}
-
-#bulkbar {
-  position: fixed;
-  top: 45px;
-  left: 0;
-  right: 0;
-  z-index: 9;
-  border-bottom: 1px solid #ccc;
-  background-color: #555;
-  visibility: visible;
-  opacity: 1;
-  @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
-  @include transition(opacity 0.15s ease);
-
-  &.bulkbar-hide {
-    visibility: hidden;
-    opacity: 0;
-    @include transition(visibility 0s ease 0.15s, opacity 0.15s ease);
-  }
-
-  #bulkmenu {
-    padding: 0 40px;
-  }
-
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    font-weight: bold;
-    @include clearfix();
-
-    &.pull-left {
-      margin-left: 20%;
-    }
-
-    > li {
-      display: inline-block;
-      float: left;
-
-      > a {
-        padding: 9px;
-        display: block;
-        color: #fff;
-
-        &:hover {
-          text-decoration: none;
-          color: #555;
-          background-color: #f9f9f9;
-        }
-
-        &.disabled {
-          color: #999;
-
-          &:hover {
-            background-color: transparent;
-          }
-        }
-      }
-
-      > span {
-        padding: 9px;
-        display: inline-block;
-        color: #fff;
-      }
-    }
-  }
-}
-
-#empty-message {
-  text-align: center;
-  padding: 20px;
-  font-size: 2em;
-  border: 2px dashed #ccc;
-  color: #999;
-}
-
-#end-message {
-  text-align: center;
-  padding: 20px;
-  font-size: 1.5em;
-  color: #999;
-}
-
-#articles-spinner {
-  text-align: center;
-  padding: 20px;
-  font-size: 1.5em;
-  color: #999;
 }

@@ -1,6 +1,6 @@
 $('#articles-spinner').hide();
 var $articles = $('#articles');
-$articles.append('<%= j render(:partial => 'article', :collection => @articles) %>');
+$articles.find('tbody').append('<%= j render(:partial => 'article', :collection => @articles) %>');
 
 <% count = @articles.to_a.count %>
 <% next_skip = @articles.options[:skip].to_i + count %>

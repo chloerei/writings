@@ -1,6 +1,6 @@
-#bulkbar.bulkbar-hide
+#bulkbar.tabs.bulkbar-hide
   .container
-    #bulkmenu.clearfix data-no-turbolink="true"
+    nav#bulkmenu.clearfix data-no-turbolink="true"
       ul.pull-left
         - if params[:status] != 'trash'
           li
@@ -15,12 +15,12 @@
               | Move
         li
           a.publish-button href='#'
-            i.icon-circle
+            i.icon-file-alt
             = ' '
             | Publish
         li
           a.draft-button href='#'
-            i.icon-circle-blank
+            i.icon-file
             = ' '
             | Draft
         - if params[:status] == 'trash'
@@ -42,7 +42,7 @@
               | Trash
       ul.pull-right
         li
-          span
+          .label
             = "Selected "
             span.selected-count 10
             = " items"
