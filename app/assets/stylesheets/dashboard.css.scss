@@ -177,6 +177,8 @@
   }
 
   #articles {
+    min-height: 600px;
+
     table {
       width: 100%;
 
@@ -254,28 +256,30 @@
       }
     }
   }
-}
 
-#empty-message {
-  text-align: center;
-  padding: 20px;
-  font-size: 2em;
-  border: 2px dashed #ccc;
-  color: #999;
-}
+  #empty-message {
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    font-size: 2em;
+    border: 2px dashed #ccc;
+    color: #999;
+  }
 
-#end-message {
-  text-align: center;
-  padding: 20px;
-  font-size: 1.5em;
-  color: #999;
-}
+  #end-message {
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    font-size: 1.5em;
+    color: #999;
+  }
 
-#articles-spinner {
-  text-align: center;
-  padding: 20px;
-  font-size: 1.5em;
-  color: #999;
+  #articles-spinner {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.5em;
+    color: #999;
+  }
 }
 
 // editor
@@ -411,7 +415,7 @@
 
 .pick-up-topbar {
   #topbar {
-    top: -46px;
+    top: -51px;
   }
 
   #toolbar {
