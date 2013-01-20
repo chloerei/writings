@@ -1,20 +1,7 @@
-#topbar
+#main
   .container
-    header#site-header
-      ul.top-nav
-        li
-          = link_to 'Publish', ui_path
-        li.pull-right
-          = link_to 'Quit', '#'
-#mainarea
-  .container
-    #main
-      #main-nav
-        nav
-          ul
-            li.active
-              = link_to 'Form', '#'
-      #main-content
+    .inner
+      section
         form
           .field
             label Text
