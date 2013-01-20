@@ -300,7 +300,7 @@ a.button:hover {
         padding: 6px 10px;
 
         &:hover {
-          background-color: #555;
+          background-color: $linkColor;
           color: #fff;
         }
       }

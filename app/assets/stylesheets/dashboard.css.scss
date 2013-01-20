@@ -24,9 +24,8 @@
   left: 0;
   right: 0;
   z-index: 10;
-  height: 50px;
   border-bottom: 1px solid #ccc;
-  font-size: 1.2em;
+  font-weight: bold;
   @include linear-gradient(#fff, #eee);
   @include transition(top 0.15s ease);
   @include box-shadow(0 0px 5px rgba(0, 0, 0, 0.3));
@@ -48,8 +47,7 @@
         @include transition(all 0.15s ease);
 
         &:hover {
-          color: #fff;
-          background-color: #555;
+          background-color: #eee;
           text-decoration: none;
         }
       }
@@ -73,14 +71,13 @@
       }
 
       &:hover {
-        color: #fff;
-        background-color: #555;
+        background-color: #eee;
       }
     }
 
     .dropdown-menu {
       top: 51px;
-      width: 145px;
+      width: 150px;
       font-weight: normal;
 
       li {
@@ -92,8 +89,7 @@
 
     &.actived {
       .dropdown-toggle {
-        color: #fff;
-        background-color: #555;
+        background-color: #eee;
       }
     }
   }
@@ -103,7 +99,7 @@
 
 .tabs {
   position: fixed;
-  top: 51px;
+  top: 47px;
   left: 0;
   right: 0;
   z-index: 9;
@@ -115,7 +111,6 @@
   nav {
     background-color: #fff;
     border-bottom: 1px solid #ccc;
-    font-size: 1.2em;
     @include box-shadow(0 3px 3px -3px rgba(0, 0, 0, 0.3));
 
     ul {
@@ -137,15 +132,13 @@
 
           &:hover {
             text-decoration: none;
-            color: #fff;
-            background-color: #555;
+            background-color: #eee;
           }
         }
 
         &.actived {
           a {
-            color: #fff;
-            background-color: #555;
+            background-color: #eee;
           }
         }
       }
@@ -172,7 +165,7 @@
 #main {
   .inner {
     background-color: #fff;
-    padding: 102px 0 20px;
+    padding: 94px 0 20px;
     @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
   }
 
@@ -415,7 +408,7 @@
 
 .pick-up-topbar {
   #topbar {
-    top: -51px;
+    top: -47px;
   }
 
   #toolbar {
