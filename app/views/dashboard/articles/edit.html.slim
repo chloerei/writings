@@ -94,8 +94,8 @@ html
           = f.label :urlname
           = f.text_field :urlname, :id => 'article-urlname'
         .field
-          = f.submit 'Save', :class => 'button'
-          = f.submit 'Cancel', :class => 'button', :data => { :close => 'modal' }
+          = f.submit 'Save'
+          = f.submit 'Cancel', :data => { :close => 'modal' }
     #link-modal.modal-dialog
       span.modal-close data-close='modal'
         i.icon-remove
@@ -105,10 +105,10 @@ html
           = text_field_tag :url
         .field.clearfix
           .pull-left
-            = submit_tag 'Create Link', :class => 'button'
-            = button_tag 'Cancel', :class => 'button', :data => { :close => 'modal' }
+            = submit_tag 'Create Link'
+            = button_tag 'Cancel', :data => { :close => 'modal' }
           .pull-right
-            = button_tag 'Unlink', :class => 'button no-margin', :id => 'unlink-button'
+            = button_tag 'Unlink', :class => 'no-margin', :id => 'unlink-button'
     #image-modal.modal-dialog
       span.modal-close data-close='modal'
         i.icon-remove
@@ -118,8 +118,8 @@ html
           = text_field_tag :url
         .field.clearfix
           .pull-left
-            = submit_tag 'Insert Image', :class => 'button'
-            = button_tag 'Cancel', :class => 'button', :data => { :close => 'modal' }
+            = submit_tag 'Insert Image'
+            = button_tag 'Cancel', :data => { :close => 'modal' }
 
     = render 'select_book_modal'
     = render 'new_book_modal'

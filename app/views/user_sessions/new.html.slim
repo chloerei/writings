@@ -1,17 +1,12 @@
-#mainarea
+#main
   .container
-    #main.signup
-      #main-nav
-        nav
-          ul
-            li.active Login
-      #main-content
-        = form_tag user_sessions_path do |f|
-          .field
-            = label_tag :login
-            = text_field_tag :login
-          .field
-            = label_tag :password
-            = password_field_tag :password
-          .field
-            = submit_tag 'Submit', :class => 'button'
+    .signup
+      = form_tag user_sessions_path do |f|
+        .field
+          = label_tag :login
+          = text_field_tag :login
+        .field
+          = label_tag :password
+          = password_field_tag :password
+        .field
+          = submit_tag 'Login'

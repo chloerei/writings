@@ -1,23 +1,18 @@
-#mainarea
+#main
   .container
-    #main.signup
-      #main-nav
-        nav
-          ul
-            li.active Signup
-      #main-content
-        = form_for @user, :validate => true do |f|
-          .field
-            = f.label :name
-            = f.text_field :name
-          .field
-            = f.label :email
-            = f.text_field :email
-          .field
-            = f.label :password
-            = f.password_field :password
-          .field
-            = f.label :password_confirmation
-            = f.password_field :password_confirmation
-          .field
-            = f.submit 'Submit', :class => 'button'
+    .signup
+      = form_for @user, :validate => true do |f|
+        .field
+          = f.label :name
+          = f.text_field :name
+        .field
+          = f.label :email
+          = f.text_field :email
+        .field
+          = f.label :password
+          = f.password_field :password
+        .field
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation
+        .field
+          = f.submit 'Signup'

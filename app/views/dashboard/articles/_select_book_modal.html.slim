@@ -15,5 +15,5 @@
       = link_to 'Add New Book', '#new-book-modal', :data => { :toggle => :modal }
       = f.hidden_field :book_id, :value => @article.book.try(:urlname), :id => 'article-book-id'
     .field
-      = f.submit 'Save', :class => 'button'
-      = f.submit 'Cancel', :class => 'button', :data => { :close => :modal }
+      = f.submit 'Save'
+      = button_tag 'Cancel', :data => { :close => :modal }

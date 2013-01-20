@@ -16,6 +16,6 @@
             = f.label :urlname
             = f.text_field :urlname
           .field
-            = f.submit 'Save', :class => 'button'
+            = f.submit 'Save'
         hr
         = link_to 'delete this book', dashboard_book_path(@book), :method => :delete, :confirm => "delete book #{@book.name} with all articles?", :class => 'button button-danger'

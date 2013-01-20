@@ -15,6 +15,25 @@
   }
 }
 
+// signup, login
+.signup,
+.login {
+  margin: 150px auto;
+  width: 350px;
+  padding: 40px;
+  background-color: #fff;
+  @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+
+  .field {
+    width: 100%;
+
+    #{$all-text-inputs},
+    textarea {
+      width: 100%;
+    }
+  }
+}
+
 // topbar
 
 #topbar {
