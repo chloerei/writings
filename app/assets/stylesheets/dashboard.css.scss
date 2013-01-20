@@ -167,6 +167,10 @@
     background-color: #fff;
     padding: 94px 0 20px;
     @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+
+    section {
+      padding: 20px;
+    }
   }
 
   #articles {

@@ -1,14 +1,8 @@
-#mainarea
+= render 'dashboard/share/settings_tabs'
+#main
   .container
-    #main
-      #main-nav
-        nav
-          ul
-            li.active
-              = link_to 'Account', dashboard_account_path
-            li
-              = link_to 'Profile', dashboard_profile_path
-      #main-content
+    .inner
+      section
         = form_for current_user, :url => dashboard_account_path, :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
           .field
             = f.label :name

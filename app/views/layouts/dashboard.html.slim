@@ -22,10 +22,18 @@ html
               li
                 .dropdown
                   = link_to dashboard_account_path, :class => 'dropdown-toggle' do
-                    i.icon-user
+                    i.icon-cog
                   ul.dropdown-menu.align-right
-                    li= link_to 'Account', dashboard_account_path
-                    li= link_to 'Profile', dashboard_profile_path
+                    li
+                      = link_to dashboard_account_path do
+                        i.icon-user
+                        = ' '
+                        | Account
+                    li
+                      = link_to dashboard_profile_path do
+                        i.icon-credit-card
+                        = ' '
+                        | Profile
                     li
                       hr
                     li= link_to 'Logout', logout_path, :method => :delete
