@@ -169,6 +169,39 @@ select {
   }
 }
 
+fieldset {
+  border: 0;
+  border-bottom: 1px dashed #ccc;
+  padding: 40px 0;
+  @include clearfix();
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  legend {
+    display: block;
+    float: left;
+    width: 30%;
+    font-size: 1.2em;
+  }
+
+  .field {
+    float: right;
+    width: 70%;
+
+    #{$all-text-inputs} {
+      width: (3/7) * 100%;
+    }
+
+    textarea {
+      width: (3/7) * 100%;
+      height: 120px;
+    }
+  }
+}
+
+
 // button
 
 @mixin button-color($color) {
