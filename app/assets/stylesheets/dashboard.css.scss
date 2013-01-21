@@ -1,5 +1,16 @@
 @import "common";
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+}
+
 .container {
   margin: 0 auto;
   width: $container-width;
@@ -185,7 +196,7 @@ body,
 
     #main-nav {
       position: fixed;
-      width: 199px;
+      width: 200px;
       height: 100%;
       color: #fff;
       border-right: 1px solid #ccc;
@@ -194,10 +205,22 @@ body,
       padding-top: 49px;
       @include box-sizing(border-box);
 
-      nav {
-        overflow-y: auto;
+      .scroll-nav {
+        position: fixed;
+        top: 0;
+        padding-top: 164px;
         height: 100%;
+        width: 199px;
+        z-index: -1;
+        @include box-sizing(border-box);
 
+        nav {
+          overflow-y: auto;
+          height: 100%;
+        }
+      }
+
+      nav {
         li {
           hr {
             margin: 0;
