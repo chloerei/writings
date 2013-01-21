@@ -255,8 +255,11 @@ a.button:hover {
   display: inline-block;
   margin-right: 10px;
 
+  input[type=submit],
+  button,
   .button {
     margin-right: 0;
+    border-right-width: 0;
     border-radius: 0;
 
     &:first-child {
@@ -264,7 +267,7 @@ a.button:hover {
     }
 
     &:last-child {
-      border-left: 0;
+      border-right-width: 1px;
       border-radius: 0 3px 3px 0;
     }
   }

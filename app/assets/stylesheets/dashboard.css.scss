@@ -123,44 +123,17 @@
   right: 0;
   z-index: 9;
 
-  li [class^="icon-"], li [class*=" icon-"] {
-    width: auto;
-  }
-
-  nav {
+  .inner {
     background-color: #fff;
     border-bottom: 1px solid #ccc;
+    padding: 10px 20px;
     @include box-shadow(0 3px 3px -3px rgba(0, 0, 0, 0.3));
 
-    ul {
-      @include clearfix();
-
-      li {
-        display: inline-block;
-        float: left;
-
-        .label {
-          color: #999;
-          padding: 15px 20px;
-        }
-
-        a {
-          color: #555;
-          display: block;
-          padding: 15px 20px;
-
-          &:hover {
-            text-decoration: none;
-            background-color: #eee;
-          }
-        }
-
-        &.actived {
-          a {
-            background-color: #eee;
-          }
-        }
-      }
+    .label {
+      padding: 7px 14px;
+      display: inline-block;
+      color: #999;
+      font-weight: bold;
     }
   }
 }
@@ -184,7 +157,7 @@
 #main {
   .inner {
     background-color: #fff;
-    padding: 94px 0 20px;
+    padding: 100px 0 20px;
     @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
 
     section {
@@ -202,11 +175,11 @@
         border-bottom: 1px solid #ddd;
 
         &.selected {
-          background-color: #eee;
+          background-color: lighten(yellow, 40%);
         }
 
         &:hover {
-          background-color: #eee;
+          background-color: lighten(yellow, 40%);
           cursor: pointer;
         }
 
@@ -252,9 +225,9 @@
 
         .book_name {
           font-size: 0.9em;
-          color: #555;
+          color: #fff;
           padding: 3px 5px;
-          background-color: #eee;
+          background-color: #999;
           border-radius: 3px;
         }
       }

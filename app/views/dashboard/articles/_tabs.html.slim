@@ -1,20 +1,16 @@
 #tabs.tabs
   .container
-    nav.fixed
-      ul
-        li class=(params[:status].nil? ? 'actived' : nil)
-          = link_to url_for(:status => nil) do
-            i.icon-inbox.index-icon
-            = ' Index'
-        li class=(params[:status] == 'publish' ? 'actived' : nil)
-          = link_to url_for(:status => 'publish') do
-            i.icon-file-alt.publish-icon
-            = ' Publish'
-        li class=(params[:status] == 'draft' ? 'actived' : nil)
-          = link_to url_for(:status => 'draft') do
-            i.icon-file.draft-icon
-            = ' Draft'
-        li class=(params[:status] == 'trash' ? 'actived' : nil)
-          = link_to url_for(:status => 'trash') do
-            i.icon-trash.trash-icon
-            = ' Trash'
+    .inner
+      .button-group
+        a.button href=(url_for(:status => nil)) class=(params[:status].nil? ? 'button-actived' : nil)
+          i.icon-inbox.index-icon
+          = ' Index'
+        a.button href=(url_for(:status => 'publish')) class=(params[:status] == 'publish' ? 'button-actived' : nil)
+          i.icon-file-alt.publish-icon
+          = ' Publish'
+        a.button href=(url_for(:status => 'draft')) class=(params[:status] == 'draft' ? 'button-actived' : nil)
+          i.icon-file.draft-icon
+          = ' Draft'
+        a.button href=(url_for(:status => 'trash')) class=(params[:status] == 'trash' ? 'button-actived' : nil)
+          i.icon-trash.trash-icon
+          = ' Trash'
