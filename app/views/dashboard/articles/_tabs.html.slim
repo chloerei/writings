@@ -14,6 +14,10 @@
         a.button href=(url_for(:status => 'trash')) class=(params[:status] == 'trash' ? 'button-actived' : nil)
           i.icon-trash.trash-icon
           = ' Trash'
+      - if @book
+        a.button href=(edit_dashboard_book_path(@book))
+          i.icon-wrench
+
     .pull-right
       a.button.no-margin href=(new_dashboard_article_path(:book_id => @book)) target='_blank'
         i.icon-pencil
