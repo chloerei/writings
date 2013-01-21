@@ -5,10 +5,13 @@
 }
 
 ::-webkit-scrollbar-track {
+  background-color: #eee;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ddd;
+  background-color: #aaa;
+  border-radius: 5px;
 }
 
 .container {
