@@ -165,11 +165,13 @@ body,
 
 #main .container .inner {
   min-height: 100%;
+  @include box-sizing(border-box);
 }
 
 #main {
   .inner {
     background-color: #fff;
+    padding-top: 49px;
     @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
     @include clearfix();
 
@@ -178,7 +180,6 @@ body,
     }
 
     #main-nav {
-      margin-top: 49px;
       float: left;
       position: fixed;
       width: 199px;
@@ -219,7 +220,6 @@ body,
 
     #main-content {
       float: left;
-      margin-top: 49px;
       margin-left: 200px;
       width: 960px - 200px;
     }
