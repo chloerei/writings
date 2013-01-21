@@ -5,8 +5,8 @@
       #main-content
         = render 'tabs'
         = render 'bulkbar'
-        #articles.tabs-margin
-          table data-skip=(@articles.options[:skip].to_i + @articles.to_a.count) data-url=(url_for(params.slice(:book_id, :status))) data-book-id=(@book.try(:urlname)) data-status=(params[:status]) data-not-collected=(action_name == 'not_collected') data-is-end=(articles_is_end?(@articles))
+        #articles.tabs-margin data-skip=(@articles.options[:skip].to_i + @articles.to_a.count) data-url=(url_for(params.slice(:book_id, :status))) data-book-id=(@book.try(:urlname)) data-status=(params[:status]) data-not-collected=(action_name == 'not_collected') data-is-end=(articles_is_end?(@articles))
+          table
             tbody
               = render :partial => 'article', :collection => @articles
           #empty-message class=(@articles.empty? ? nil : 'hide')
