@@ -111,23 +111,27 @@
 // main
 
 html,
-body,
-#main,
-#main .container {
+body {
   height: 100%;
 }
 
-#main .container .inner {
-  min-height: 100%;
-  @include box-sizing(border-box);
-}
-
 #main {
+  height: 100%;
+
+  .container {
+    height: 100%;
+  }
+
   .inner {
     background-color: #fff;
-    padding-top: 49px;
     @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
     @include clearfix();
+
+    &.inner-full-height {
+      padding-top: 49px;
+      min-height: 100%;
+      @include box-sizing(border-box);
+    }
 
     section {
       padding: 20px;
