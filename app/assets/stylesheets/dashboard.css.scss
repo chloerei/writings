@@ -110,56 +110,6 @@
 
 // main
 
-.tabs {
-  position: fixed;
-  top: 49px;
-  z-index: 9;
-  width: 960px - 200px;
-
-  .tabs-inner {
-    background-color: #f9f9f9;
-    border-bottom: 1px solid #ccc;
-    padding: 10px 20px;
-
-    .label {
-      padding: 7px 14px 7px 0;
-      display: inline-block;
-      color: #999;
-      font-weight: bold;
-    }
-  }
-
-  #book-selector.dropdown {
-    .dropdown-toggle {
-      width: 100px;
-    }
-
-    .dropdown-menu {
-      width: 137px;
-    }
-  }
-}
-
-.tabs-margin {
-  margin-top: 55px;
-}
-
-#bulkbar {
-  visibility: visible;
-  opacity: 1;
-  @include transition(opacity 0.15s ease);
-
-  .inner {
-    @include box-shadow(none);
-  }
-
-  &.bulkbar-hide {
-    visibility: hidden;
-    opacity: 0;
-    @include transition(visibility 0s ease 0.15s, opacity 0.15s ease);
-  }
-}
-
 html,
 body,
 #main,
@@ -183,16 +133,70 @@ body,
       padding: 20px;
     }
 
+    .tabs {
+      position: fixed;
+      top: 49px;
+      z-index: 9;
+      width: 960px - 200px;
+
+      .tabs-inner {
+        background-color: #f9f9f9;
+        border-bottom: 1px solid #ccc;
+        padding: 10px 20px;
+
+        .label {
+          padding: 7px 14px 7px 0;
+          display: inline-block;
+          color: #999;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .tabs-margin {
+      margin-top: 55px;
+    }
+
+    #bulkbar {
+      visibility: visible;
+      opacity: 1;
+      @include transition(opacity 0.15s ease);
+
+      .inner {
+        @include box-shadow(none);
+      }
+
+      &.bulkbar-hide {
+        visibility: hidden;
+        opacity: 0;
+        @include transition(visibility 0s ease 0.15s, opacity 0.15s ease);
+      }
+    }
+
+    #book-selector.dropdown {
+      .dropdown-toggle {
+        width: 100px;
+      }
+
+      .dropdown-menu {
+        width: 137px;
+      }
+    }
+
     #main-nav {
-      float: left;
       position: fixed;
       width: 199px;
       height: 100%;
       color: #fff;
       border-right: 1px solid #ccc;
-      overflow-y: auto;
+      height: 100%;
+      top: 0;
+      padding-top: 49px;
+      @include box-sizing(border-box);
 
       nav {
+        overflow-y: auto;
+        height: 100%;
 
         li {
           hr {
