@@ -210,10 +210,6 @@
           cursor: pointer;
         }
 
-        &:last-child {
-          border-bottom: 0;
-        }
-
         &.publish {
           .icon-status:before {
             color: gray;
@@ -237,7 +233,7 @@
       }
 
       td {
-        padding: 20px;
+        padding: 15px 20px;
 
         &.title {
           width: 99%;
