@@ -73,12 +73,6 @@
     }
   }
 
-  #book-selector.dropdown {
-    .dropdown-toggle {
-      width: 100px;
-    }
-  }
-
   .dropdown {
     .dropdown-toggle {
       padding: 15px 30px 15px 20px;
@@ -124,7 +118,7 @@
   z-index: 9;
 
   .inner {
-    background-color: #fff;
+    background-color: #f9f9f9;
     border-bottom: 1px solid #ccc;
     padding: 10px 20px;
     @include box-shadow(0 3px 3px -3px rgba(0, 0, 0, 0.3));
@@ -136,6 +130,16 @@
       font-weight: bold;
     }
   }
+
+  #book-selector.dropdown {
+    .dropdown-toggle {
+      width: 100px;
+    }
+
+    .dropdown-menu {
+      width: 137px;
+    }
+  }
 }
 
 #bulkbar {
@@ -143,7 +147,7 @@
   opacity: 1;
   @include transition(opacity 0.15s ease);
 
-  nav {
+  .inner {
     @include box-shadow(none);
   }
 

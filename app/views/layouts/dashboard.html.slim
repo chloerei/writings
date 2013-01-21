@@ -14,8 +14,6 @@ html
             li
               = link_to dashboard_root_path do
                 i.icon-home
-            - if logined?
-              = render 'layouts/book_selector'
             = yield :top_nav
           ul.top-nav.pull-right
             - if logined?
@@ -41,11 +39,6 @@ html
                         i.icon-signout
                         = ' '
                         | Logout
-              li
-                = link_to new_dashboard_article_path(:book_id => @book), :target => '_blank' do
-                  i.icon-pencil
-                  = ' '
-                  = 'New Article'
             - else
               li
                 = link_to login_path do

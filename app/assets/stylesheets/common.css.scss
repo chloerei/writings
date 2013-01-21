@@ -278,7 +278,6 @@ a.button:hover {
 .dropdown {
   position: relative;
   display: inline-block;
-  vertical-align: middle;
 
   a {
     color: #333;
@@ -291,7 +290,6 @@ a.button:hover {
   .dropdown-toggle {
     position: relative;
     padding: 7px 27px 7px 10px;
-    vertical-align: middle;
     display: inline-block;
     white-space: nowrap;
     overflow: hidden;
