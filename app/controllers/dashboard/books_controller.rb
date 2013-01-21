@@ -2,6 +2,10 @@ class Dashboard::BooksController < Dashboard::BaseController
   before_filter :require_logined
   before_filter :find_book, :only => [:edit, :update, :destroy]
 
+  def new
+    @book = Book.new :user => current_user
+  end
+
   def create
     @book = current_user.books.new book_params
 

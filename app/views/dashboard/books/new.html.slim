@@ -1,13 +1,13 @@
-#mainarea
+#main
   .container
-    #main
-      #main-nav
-        nav
-          ul
-            li.active
-              | New Book
+    .inner
+      = render 'dashboard/articles/main_nav'
       #main-content
-        = form_for @book, :url => dashboard_books_path, :validate => true do |f|
+        .tabs
+          .tabs-inner
+            .label
+              | Create a new book
+        section.tabs-margin= form_for @book, :url => dashboard_books_path, :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
           .field
             = f.label :name
             = f.text_field :name

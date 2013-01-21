@@ -25,8 +25,8 @@ Publish::Application.routes.draw do
       resource :profile, :only => [:show, :update]
       resource :account, :only => [:show, :update, :destroy]
 
-      resources :books, :only => [:new, :create, :edit, :update, :destroy], :path_names => { :edit => :settings } do
-      end
+      resources :books, :only => [:create, :edit, :update, :destroy], :path_names => { :edit => :settings }
+      get 'new_book', :to => 'books#new', :as => :new_book
       resources :articles, :only => [:new, :create, :edit, :update, :destroy] do
         collection do
           post :bulk

@@ -84,16 +84,12 @@ ArticleIndex.prototype = {
       type: 'post',
       dataType: 'json'
     }).success(function(data) {
-      if (_this.$moveBookForm.is(':visible')) {
-        var $li = $('<li><a href="#">');
-        $li.find('a').text(data.name).data('book-id', data.urlname);
-        _this.$moveBookForm.find('.dropdown-menu').prepend($li);
-        _this.$moveBookForm.find('.dropdown-toggle').text(data.name);
-        _this.$moveBookForm.find('[name*=book_id]').val(data.urlname);
-        Dialog.hide('#new-book-modal');
-      } else {
-        Turbolinks.visit('/books/' + data.urlname);
-      }
+      var $li = $('<li><a href="#">');
+      $li.find('a').text(data.name).data('book-id', data.urlname);
+      _this.$moveBookForm.find('.dropdown-menu').prepend($li);
+      _this.$moveBookForm.find('.dropdown-toggle').text(data.name);
+      _this.$moveBookForm.find('[name*=book_id]').val(data.urlname);
+      Dialog.hide('#new-book-modal');
     });
   },
 

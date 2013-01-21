@@ -122,7 +122,7 @@
     padding: 10px 20px;
 
     .label {
-      padding: 7px 14px;
+      padding: 7px 14px 7px 0;
       display: inline-block;
       color: #999;
       font-weight: bold;
@@ -138,6 +138,10 @@
       width: 137px;
     }
   }
+}
+
+.tabs-margin {
+  margin-top: 55px;
 }
 
 #bulkbar {
@@ -226,8 +230,6 @@ body,
   }
 
   #articles {
-    margin-top: 55px;
-
     table {
       width: 100%;
 

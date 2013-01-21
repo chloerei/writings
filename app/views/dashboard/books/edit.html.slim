@@ -1,9 +1,10 @@
-#mainarea
+#main
   .container
-    #main
-      = render 'main_nav'
+    .inner
+      = render 'dashboard/articles/main_nav'
       #main-content
-        = form_for @book, :url => dashboard_book_path(@book), :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
+        = render 'tabs'
+        section.tabs-margin= form_for @book, :url => dashboard_book_path(@book), :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
           .field
             = f.label :name
             = f.text_field :name
@@ -12,5 +13,5 @@
             = f.text_field :urlname
           .field
             = f.submit 'Save'
-        hr
-        = link_to 'delete this book', dashboard_book_path(@book), :method => :delete, :confirm => "delete book #{@book.name} with all articles?", :class => 'button button-danger'
+          hr
+          = link_to 'delete this book', dashboard_book_path(@book), :method => :delete, :confirm => "delete book #{@book.name} with all articles?", :class => 'button button-danger'

@@ -18,14 +18,16 @@
           .pull-right
             i.icon-chevron-right
       li
-        a.clearfix href='#new-book-modal' data-toggle="modal"
+        a.clearfix href=(dashboard_new_book_path) class=(action_name == 'new' ? 'actived' : nil)
           .pull-left
             i.icon-plus-sign
             = ' '
             | New Book
+          .pull-right
+            i.icon-chevron-right
       li
         hr
-      - current_user.books.each do |book|
+      - current_user.books(true).each do |book|
         li
           a.clearfix href=(dashboard_book_articles_path(:book_id => book)) class=(@book == book ? 'actived' : nil)
             .pull-left
