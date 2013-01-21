@@ -89,7 +89,7 @@
     }
 
     .dropdown-menu {
-      top: 47px;
+      top: 49px;
       width: 150px;
       font-weight: normal;
 
@@ -112,16 +112,14 @@
 
 .tabs {
   position: fixed;
-  top: 47px;
-  left: 0;
-  right: 0;
+  top: 49px;
   z-index: 9;
+  width: 960px - 200px;
 
-  .inner {
+  .tabs-inner {
     background-color: #f9f9f9;
     border-bottom: 1px solid #ccc;
     padding: 10px 20px;
-    @include box-shadow(0 3px 3px -3px rgba(0, 0, 0, 0.3));
 
     .label {
       padding: 7px 14px;
@@ -158,19 +156,77 @@
   }
 }
 
+html,
+body,
+#main,
+#main .container {
+  height: 100%;
+}
+
+#main .container .inner {
+  min-height: 100%;
+}
+
 #main {
   .inner {
     background-color: #fff;
-    padding: 100px 0 20px;
     @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+    @include clearfix();
 
     section {
       padding: 20px;
     }
+
+    #main-nav {
+      margin-top: 49px;
+      float: left;
+      position: fixed;
+      width: 199px;
+      height: 100%;
+      color: #fff;
+      border-right: 1px solid #ccc;
+      overflow-y: auto;
+
+      nav {
+
+        li {
+          hr {
+            margin: 0;
+          }
+
+          a {
+            display: block;
+            color: #555;
+            padding: 10px 20px;
+
+            .pull-right {
+              display: none;
+            }
+
+            &.actived,
+            &:hover {
+              text-decoration: none;
+              background-color: #eee;
+
+              .pull-right {
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    #main-content {
+      float: left;
+      margin-top: 49px;
+      margin-left: 200px;
+      width: 960px - 200px;
+    }
   }
 
   #articles {
-    min-height: 600px;
+    margin-top: 55px;
 
     table {
       width: 100%;
@@ -250,7 +306,7 @@
     text-align: center;
     margin: 20px;
     padding: 20px;
-    font-size: 2em;
+    font-size: 1.5em;
     border: 2px dashed #ccc;
     color: #999;
   }
@@ -404,7 +460,7 @@
 
 .pick-up-topbar {
   #topbar {
-    top: -47px;
+    top: -49px;
   }
 
   #toolbar {

@@ -1,41 +1,40 @@
 #bulkbar.tabs.bulkbar-hide
-  .container
-    #bulkmenu.inner.clearfix data-no-turbolink="true"
-      .button-group.pull-left
-        - if params[:status] != 'trash'
-          a.button.edit-button href='#'
-            i.icon-edit
-            = ' '
-            | Edit
-          a.button.move-button href='#move-book-modal' data-toggle='modal'
-            i.icon-book
-            = ' '
-            | Move
-        a.button.publish-button href='#'
-          i.icon-file-alt
+  #bulkmenu.tabs-inner.clearfix data-no-turbolink="true"
+    .button-group.pull-left
+      - if params[:status] != 'trash'
+        a.button.edit-button href='#'
+          i.icon-edit
           = ' '
-          | Publish
-        a.button.draft-button href='#'
-          i.icon-file
+          | Edit
+        a.button.move-button href='#move-book-modal' data-toggle='modal'
+          i.icon-book
           = ' '
-          | Draft
-        - if params[:status] == 'trash'
-          a.button.delete-button href='#delete-modal' data-toggle='modal'
-            i.icon-remove-sign
-            = ' '
-            | Delete Selected
-          a.button.delete-button href='#empty-trash-modal' data-toggle='modal'
-            i.icon-trash
-            = ' '
-            | Empty Trash
-        - else
-          a.button.trash-button href='#'
-            i.icon-trash
-            = ' '
-            | Trash
-      .pull-right
-        span.label
-          span.selected-count 10
-          = " items "
-        a.button.no-margin.cancel-button href='#'
-          | Cancel
+          | Move
+      a.button.publish-button href='#'
+        i.icon-file-alt
+        = ' '
+        | Publish
+      a.button.draft-button href='#'
+        i.icon-file
+        = ' '
+        | Draft
+      - if params[:status] == 'trash'
+        a.button.delete-button href='#delete-modal' data-toggle='modal'
+          i.icon-remove-sign
+          = ' '
+          | Delete Selected
+        a.button.delete-button href='#empty-trash-modal' data-toggle='modal'
+          i.icon-trash
+          = ' '
+          | Empty Trash
+      - else
+        a.button.trash-button href='#'
+          i.icon-trash
+          = ' '
+          | Trash
+    .pull-right
+      span.label
+        span.selected-count 10
+        = " items "
+      a.button.no-margin.cancel-button href='#'
+        | Cancel
