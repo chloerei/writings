@@ -1,16 +1,27 @@
 #main
   .container
-    = render 'site/share/profile'
-    #books
-      - @books.each do |book|
-        section.book
-          .title
-            h1
-              = link_to book.name, site_book_path(book)
-          .description
-            = simple_format book.description
-            = "#{book.articles.count} articles"
-          .links
-            = link_to feed_site_book_path(book, :format => :rss) do
-              i.icon-rss
-              = ' Feed'
+    #profile
+      .avatar
+        = link_to image_tag(@user.gravatar_url), site_root_path
+      .name
+        h1
+          = link_to @user.profile.name, site_root_path
+      .description
+        = simple_format @user.profile.description
+    #main-content
+      #books
+        - @books.each do |book|
+          section.book
+            .title
+              h1
+                = link_to book.name, site_book_path(book)
+            .description
+              = simple_format book.description
+            nav
+              ul
+                li
+                  = link_to feed_site_book_path(book, :format => :rss) do
+                    i.icon-rss
+                    = ' Feed'
+                li
+                  = "#{book.articles.count} articles"

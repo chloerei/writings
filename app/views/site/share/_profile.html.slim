@@ -6,10 +6,13 @@
       = link_to @user.profile.name, site_root_path
   .description
     = simple_format @user.profile.description
-  .links
-    = link_to site_books_path, :class => (controller_name == 'books' ? 'actived' : nil) do
-      i.icon-book
-      = ' Books'
-    = link_to site_feed_path(:format => :rss) do
-      i.icon-rss
-      = ' Feed'
+  nav
+    ul
+      li
+        = link_to site_books_path, :class => (controller_name == 'books' ? 'actived' : nil) do
+          i.icon-book
+          = ' Books'
+      li
+        = link_to site_feed_path(:format => :rss) do
+          i.icon-rss
+          = ' Feed'

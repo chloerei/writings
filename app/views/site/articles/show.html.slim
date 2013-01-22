@@ -1,19 +1,28 @@
 #main
   .container
-    .article
-      .header
-        = link_to site_article_path(@article, :urlname => @article.urlname) do
-          i.icon-time
-          = ' '
-          = @article.created_at.to_date.to_s
-      article
-        = article_format_body @article.body
-    section#bottom-profile
+    #profile
       .avatar
         = link_to image_tag(@user.gravatar_url), site_root_path
-      .info
-        .name
-          h1
-            = link_to @user.profile.name, site_root_path
-        .description
-          = simple_format @user.profile.description
+      .name
+        h1
+          = link_to @user.profile.name, site_root_path
+      .description
+        = simple_format @user.profile.description
+      hr
+      nav
+        ul
+          li
+            a href=(site_article_path(@article, :urlname => @article.urlname))
+              i.icon-time
+              = ' '
+              = @article.created_at.to_date.to_s
+          - if @article.book
+            li
+              a href=(site_book_path(@article.book))
+                i.icon-bookmark
+                = ' '
+                = @article.book.name
+    #main-content
+      .article
+        article
+          = article_format_body @article.body

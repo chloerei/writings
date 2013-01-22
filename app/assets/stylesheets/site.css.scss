@@ -8,11 +8,6 @@
     @include clearfix();
   }
 
-  #main-content {
-    width: 768px;
-    float: left;
-  }
-
   #profile {
     width: 180px;
     margin-right: 12px;
@@ -30,10 +25,13 @@
       }
     }
 
-    .name {
-      h1 {
-        margin: 20px 0;
-      }
+    h1 {
+      font-size: 1.5em;
+      margin: 20px 0;
+    }
+
+    h2 {
+      font-size: 1.2em;
     }
 
     .description {
@@ -42,7 +40,7 @@
     }
 
     nav {
-      font-size: 1.2em;
+      color: #555;
 
       li {
         display: block;
@@ -60,15 +58,13 @@
     }
   }
 
-  .article {
-    border-bottom: 1px solid #ccc;
-    padding: 70px;
+  #main-content {
+    width: 768px;
+    padding: 0 70px;
+    @include box-sizing(border-box);
+    float: left;
 
-    &:first-child {
-      padding-top: 0;
-    }
-
-    .header {
+    header {
       margin-bottom: 10px;
 
       a {
@@ -82,31 +78,16 @@
         }
       }
     }
-  }
 
-  #bottom-profile {
-    padding: 40px;
-    border-bottom: 1px solid #ccc;
-    @include clearfix();
+    article {
+      padding-bottom: 70px;
+      margin-bottom: 70px;
+      border-bottom: 1px solid #ccc;
 
-    .avatar {
-      float: left;
-      width: 20%;
-
-      img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50px;
+      &:first-child {
+        padding-top: 0;
       }
-    }
 
-    .info {
-      width: 80%;
-      float: left;
-
-      h1 {
-        margin: 0 0 20px;
-      }
     }
   }
 
@@ -135,32 +116,25 @@
 
   #books {
     .book {
-      padding: 70px;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
       border-bottom: 1px solid #ccc;
 
       .title {
-        margin-bottom: 20px;
-
         h1 {
+          font-size: 1.5em;
           margin: 0;
         }
       }
 
       .description {
-        margin-bottom: 20px;
-        font-size: 1.2em;
+        margin-bottom: 10px;
       }
 
-      .links {
-        a {
-          color: #999;
-          font-size: 1.2em;
+      nav {
+        li {
+          display: inline-block;
           margin-right: 20px;
-
-          &:hover {
-            color: #555;
-            text-decoration: none;
-          }
         }
       }
     }
