@@ -118,9 +118,12 @@ ArticleIndex.prototype = {
       if ($selected.data('status') === 'publish') {
         this.$bulkbar.find('.view-button, .draft-button').removeClass('button-disabled');
         this.$bulkbar.find('.publish-button').addClass('button-disabled');
-      } else {
+      } else if ($selected.data('status') === 'draft') {
         this.$bulkbar.find('.view-button, .draft-button').addClass('button-disabled');
         this.$bulkbar.find('.publish-button').removeClass('button-disabled');
+      } else { // trash
+        this.$bulkbar.find('.view-button').addClass('button-disabled');
+        this.$bulkbar.find('.publish-button, .draft-button').removeClass('button-disabled');
       }
       this.$bulkbar.find('.edit-button').removeClass('button-disabled');
     }
