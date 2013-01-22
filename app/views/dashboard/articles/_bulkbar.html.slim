@@ -2,6 +2,10 @@
   #bulkmenu.tabs-inner.clearfix data-no-turbolink="true"
     .button-group.pull-left
       - if params[:status] != 'trash'
+        a.button.view-button href='#'
+          i.icon-external-link
+          = ' '
+          | View
         a.button.edit-button href='#'
           i.icon-edit
           = ' '

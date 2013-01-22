@@ -71,4 +71,8 @@ class User
   def admin?
     APP_CONFIG['admin_emails'].include?(self.email)
   end
+
+  def host
+    domain.present? ? domain : "#{user.name}.#{APP_CONFIG['host']}"
+  end
 end

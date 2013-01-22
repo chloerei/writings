@@ -220,6 +220,18 @@ fieldset {
     @include box-shadow(inset 0 1px 3px darken($color, 20%));
     @include linear-gradient(darken($color, 10%), darken($color, 15%));
   }
+
+  &.button-disabled {
+    color: #999;
+    cursor: normal;
+
+    &:hover,
+    &:focus,
+    &:active {
+      @include box-shadow(none);
+      @include linear-gradient($color, darken($color, 10%));
+    }
+  }
 }
 
 input[type=submit],

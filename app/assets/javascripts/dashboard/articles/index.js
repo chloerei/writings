@@ -16,7 +16,8 @@ var ArticleIndex = function() {
 
   this.connect(this.$newBookForm, 'submit', this.createBook);
   this.connect(this.$bulkbar.find('.cancel-button'), 'click', this.bulkCancel);
-  this.connect(this.$bulkbar.find('.edit-button'), 'click', this.bulkEdit);
+  this.connect(this.$bulkbar.find('.view-button'), 'click', this.view);
+  this.connect(this.$bulkbar.find('.edit-button'), 'click', this.edit);
   this.connect(this.$bulkbar.find('.publish-button'), 'click', this.bulkPublish);
   this.connect(this.$bulkbar.find('.draft-button'), 'click', this.bulkDraft);
   this.connect(this.$bulkbar.find('.trash-button'), 'click', this.bulkTrash);
@@ -101,7 +102,8 @@ ArticleIndex.prototype = {
   },
 
   updateBulkbar: function() {
-    var count = $('#articles .article.selected').length;
+    var $selected = $('#articles .article.selected');
+    var count = $selected.length;
     this.$bulkbar.find('.selected-count').text(count);
     if (count) {
       this.$bulkbar.removeClass('bulkbar-hide');
@@ -112,9 +114,15 @@ ArticleIndex.prototype = {
     }
 
     if (count > 1) {
-      this.$bulkbar.find('.edit-button').addClass('disabled');
+      this.$bulkbar.find('.view-button').addClass('button-disabled');
+      this.$bulkbar.find('.edit-button').addClass('button-disabled');
     } else {
-      this.$bulkbar.find('.edit-button').removeClass('disabled');
+      if ($selected.data('status') === 'publish') {
+        this.$bulkbar.find('.view-button').removeClass('button-disabled');
+      } else {
+        this.$bulkbar.find('.view-button').addClass('button-disabled');
+      }
+      this.$bulkbar.find('.edit-button').removeClass('button-disabled');
     }
   },
 
@@ -165,10 +173,20 @@ ArticleIndex.prototype = {
     $('#topbar').removeClass('no-shadow');
   },
 
-  bulkEdit: function(event) {
+  view: function(event) {
     event.preventDefault();
 
-    if (this.$articles.find('.article.selected').length === 1) {
+    var $article = this.$articles.find('.article.selected');
+    if ($article.length === 1 && $article.data('status') === 'publish') {
+      window.open($article.data('link'), '_blank');
+    }
+  },
+
+  edit: function(event) {
+    event.preventDefault();
+
+    var $article = this.$articles.find('.article.selected');
+    if ($article.length === 1) {
       window.open(this.$articles.find('.article.selected .title a').attr('href'), '_blank');
     }
   },
