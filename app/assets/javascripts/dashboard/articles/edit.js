@@ -97,17 +97,19 @@ ArticleEdit.prototype = {
   },
 
   updateArticle: function(data, success_callback, error_callback) {
+    var _this = this;
     AlertMessage.loading('Saving...');
     $.ajax({
       url: '/articles/' + this.article.data('id'),
       data: data,
       type: 'put',
       dataType: 'json'
-    }).success(function() {
+    }).success(function(data) {
       AlertMessage.clear();
       if (success_callback) {
-        success_callback();
+        success_callback(data);
       }
+      _this.updateViewButton(data);
     }).error(function() {
       AlertMessage.error('Save Failed.');
       if (error_callback) {
@@ -211,11 +213,21 @@ ArticleEdit.prototype = {
       dataType: 'json'
     }).success(function(data) {
       AlertMessage.clear();
-      _this.article.data('id', data.id);
-      history.replaceState(null, null, '/articles/' + data.id + '/edit');
+      _this.article.data('id', data.number_id);
+      _this.updateViewButton(data);
+      history.replaceState(null, null, '/articles/' + data.number_id + '/edit');
     }).error(function() {
       AlertMessage.error('Save Failed.');
     });
+  },
+
+  updateViewButton: function(data) {
+    $('#view-button').attr('href', data.url);
+    if (data.status === 'publish') {
+      $('#view-button').closest('li').removeClass('hide');
+    } else {
+      $('#view-button').closest('li').addClass('hide');
+    }
   },
 
   setPbulishClass: function(isPublish) {

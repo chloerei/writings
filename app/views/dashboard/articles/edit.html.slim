@@ -13,7 +13,7 @@ html
             ul.top-nav
               li
                 = link_to '#select-book-modal', :data => { :toggle => :modal } do
-                  i.icon-book
+                  i.icon-bookmark
                   = ' '
                   span.book-name= @article.book.try(:name)
               li
@@ -21,8 +21,8 @@ html
                   i.icon-link
                   = ' '
                   span.urlname= @article.urlname
-              li
-                = link_to '#' do
+              li class=(@article.persisted? ? nil : 'hide')
+                a#view-button target='_blank' href=(@article.persisted? ? site_article_url(@article, :urlname => @article.urlname, :host => current_user.host) : site_root_url(:host => current_user.host))
                   i.icon-external-link
           .pull-right
             .button-group

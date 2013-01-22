@@ -33,6 +33,10 @@ class Article
 
   delegate :name, :urlname, :to => :book, :prefix => true, :allow_nil => true
 
+  def urlname
+    read_attribute(:urlname).present? ? read_attribute(:urlname) : nil
+  end
+
   def publish?
     self.status == 'publish'
   end
