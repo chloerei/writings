@@ -1,16 +1,26 @@
 @import "common";
 
 #main {
-  width: 768px;
-  margin: 0 auto 50px;
+  margin: 50px auto 50px;
+  width: 960px;
 
   .container {
+    @include clearfix();
+  }
+
+  #main-content {
+    width: 768px;
+    float: left;
   }
 
   #profile {
-    padding: 70px 0;
-    border-bottom: 1px solid #ccc;
-    text-align: center;
+    width: 180px;
+    margin-right: 12px;
+    float: left;
+
+    hr {
+      margin: 10px 0;
+    }
 
     .avatar {
       img {
@@ -27,25 +37,24 @@
     }
 
     .description {
-      font-size: 1.2em;
       color: #555;
       margin-bottom: 20px;
     }
 
-    .links {
+    nav {
+      font-size: 1.2em;
+
+      li {
+        display: block;
+        margin-bottom: 10px;
+      }
+
       a {
         color: #555;
-        font-size: 1.2em;
-        margin: 0 10px;
-        padding: 5px 10px;
-        border-radius: 3px;
-        display: inline-block;
 
-        &.actived,
         &:hover {
-          background-color: #555;
-          color: #fff;
           text-decoration: none;
+          color: $linkColor;
         }
       }
     }
@@ -54,6 +63,10 @@
   .article {
     border-bottom: 1px solid #ccc;
     padding: 70px;
+
+    &:first-child {
+      padding-top: 0;
+    }
 
     .header {
       margin-bottom: 10px;

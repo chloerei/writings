@@ -8,22 +8,26 @@
       .description
         | Web developer, love Ruby, Qt, KDE. male.
           http://chloerei.com
-      .links
-        a.actived href='#'
-          i.icon-book
-          = ' Books'
-        a href='#'
-          i.icon-rss
-          = ' Feed'
-    #books
-      - 5.times do
-        section.book
-          .title
-            h1
-              a href='#' Book Name
-          .description
-            | Description
-          .links
-            a href='#' Articles
-            a href='#' Index
-            a href='#' Feed
+      nav
+        ul
+          li
+            a.actived href='#'
+              i.icon-book
+              = ' Books'
+          li
+            a href='#'
+              i.icon-rss
+              = ' Feed'
+    #main-content
+      #books
+        - 5.times do
+          section.book
+            .title
+              h1
+                a href='#' Book Name
+            .description
+              | Description
+            .links
+              a href='#' Articles
+              a href='#' Index
+              a href='#' Feed
