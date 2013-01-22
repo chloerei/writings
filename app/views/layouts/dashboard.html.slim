@@ -14,6 +14,8 @@ html
             li
               = link_to dashboard_root_path do
                 i.icon-home
+                = ' '
+                | Home
             = yield :top_nav
           ul.top-nav.pull-right
             - if logined?
@@ -21,6 +23,8 @@ html
                 .dropdown
                   = link_to dashboard_account_path, :class => 'dropdown-toggle' do
                     i.icon-cog
+                    = ' '
+                    | Settings
                   ul.dropdown-menu.align-right
                     li
                       = link_to dashboard_account_path do
