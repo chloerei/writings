@@ -65,6 +65,7 @@
         color: #555;
         @include transition(all 0.15s ease);
 
+        &.actived,
         &:hover {
           background-color: #eee;
           text-decoration: none;
@@ -83,6 +84,7 @@
         padding: 2px 20px;
       }
 
+      &.actived,
       &:hover {
         background-color: #eee;
       }

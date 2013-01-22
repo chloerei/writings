@@ -12,7 +12,7 @@ html
         header#site-header.clearfix
           ul.top-nav.pull-left
             li
-              = link_to dashboard_root_path do
+              a href=(dashboard_root_path) class=(%w(articles books).include?(controller_name) ? 'actived' : nil)
                 i.icon-home
                 = ' '
                 | Home
@@ -21,7 +21,7 @@ html
             - if logined?
               li
                 .dropdown
-                  = link_to dashboard_account_path, :class => 'dropdown-toggle' do
+                  a.dropdown-toggle href=(dashboard_account_path) class=(%w(accounts profiles).include?(controller_name) ? 'actived' : nil)
                     i.icon-cog
                     = ' '
                     | Settings
