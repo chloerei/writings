@@ -172,7 +172,8 @@ select {
 fieldset {
   border: 0;
   border-bottom: 1px dashed #ccc;
-  padding: 40px 0;
+  padding-bottom: 34px;
+  margin-bottom: 34px;
   @include clearfix();
 
   &:last-child {
@@ -191,11 +192,11 @@ fieldset {
     width: 70%;
 
     #{$all-text-inputs} {
-      width: (3/7) * 100%;
+      width: 50%;
     }
 
     textarea {
-      width: (3/7) * 100%;
+      width: 100%;
       height: 120px;
     }
   }

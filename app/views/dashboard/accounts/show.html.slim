@@ -1,34 +1,35 @@
-= render 'dashboard/share/settings_tabs'
 #main
   .container
-    .inner
-      section
-        = form_for current_user, :url => dashboard_account_path, :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
-          fieldset
-            legend Login ID
-            .field
-              = f.label :name
-              = f.text_field :name
-            .field
-              = f.label :email
-              = f.text_field :email
-          fieldset
-            legend Custom domain?
-            .field
-              = f.label :domain
-              = f.text_field :domain
-          fieldset
-            legend Change password?
-            .field
-              = f.label :password
-              = f.password_field :password, :validate => { :presence => false }, :autocomplete => 'off'
-            .field
-              = f.label :password_confirmation
-              = f.password_field :password_confirmation, :validate => { :presence => false }, :autocomplete => 'off'
-          fieldset
-            legend Confirm change
-            .field
-              = f.label :current_password
-              = f.password_field :current_password, :validate => true, :autocomplete => 'off'
-            .field
-              = f.submit 'Update'
+    .inner.inner-full-height
+      = render 'dashboard/share/settings_main_nav'
+      #main-content
+        section
+          = form_for current_user, :url => dashboard_account_path, :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
+            fieldset
+              legend Login ID
+              .field
+                = f.label :name
+                = f.text_field :name
+              .field
+                = f.label :email
+                = f.text_field :email
+            fieldset
+              legend Custom domain?
+              .field
+                = f.label :domain
+                = f.text_field :domain
+            fieldset
+              legend Change password?
+              .field
+                = f.label :password
+                = f.password_field :password, :validate => { :presence => false }, :autocomplete => 'off'
+              .field
+                = f.label :password_confirmation
+                = f.password_field :password_confirmation, :validate => { :presence => false }, :autocomplete => 'off'
+            fieldset
+              legend Confirm change
+              .field
+                = f.label :current_password
+                = f.password_field :current_password, :validate => true, :autocomplete => 'off'
+              .field
+                = f.submit 'Update'

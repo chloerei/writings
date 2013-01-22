@@ -1,16 +1,17 @@
-= render 'dashboard/share/settings_tabs'
 #main
   .container
-    .inner
-      section
-        = form_for current_user.profile, :url => dashboard_profile_path, :html => { :data => { :remote => true, :type => :json } } do |f|
-          fieldset
-            legend Publis profile
-            .field
-              = f.label :name
-              = f.text_field :name
-            .field
-              = f.label :description
-              = f.text_area :description
-            .field
-              = f.submit 'Update'
+    .inner.inner-full-height
+      = render 'dashboard/share/settings_main_nav'
+      #main-content
+        section
+          = form_for current_user.profile, :url => dashboard_profile_path, :html => { :data => { :remote => true, :type => :json } } do |f|
+            fieldset
+              legend Publish profile
+              .field
+                = f.label :name
+                = f.text_field :name
+              .field
+                = f.label :description
+                = f.text_area :description
+              .field
+                = f.submit 'Update'
