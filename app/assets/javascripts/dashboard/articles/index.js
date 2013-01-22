@@ -107,20 +107,20 @@ ArticleIndex.prototype = {
     this.$bulkbar.find('.selected-count').text(count);
     if (count) {
       this.$bulkbar.removeClass('bulkbar-hide');
-      $('#topbar').addClass('no-shadow');
     } else {
       this.$bulkbar.addClass('bulkbar-hide');
-      $('#topbar').removeClass('no-shadow');
     }
 
     if (count > 1) {
-      this.$bulkbar.find('.view-button').addClass('button-disabled');
-      this.$bulkbar.find('.edit-button').addClass('button-disabled');
+      this.$bulkbar.find('.view-button, .edit-button').addClass('button-disabled');
+      this.$bulkbar.find('.publish-button, .draft-button').removeClass('button-disabled');
     } else {
       if ($selected.data('status') === 'publish') {
-        this.$bulkbar.find('.view-button').removeClass('button-disabled');
+        this.$bulkbar.find('.view-button, .draft-button').removeClass('button-disabled');
+        this.$bulkbar.find('.publish-button').addClass('button-disabled');
       } else {
-        this.$bulkbar.find('.view-button').addClass('button-disabled');
+        this.$bulkbar.find('.view-button, .draft-button').addClass('button-disabled');
+        this.$bulkbar.find('.publish-button').removeClass('button-disabled');
       }
       this.$bulkbar.find('.edit-button').removeClass('button-disabled');
     }
@@ -214,15 +214,17 @@ ArticleIndex.prototype = {
           $article.remove();
         } else {
           $article.addClass('publish').removeClass('trash draft');
+          $article.data('status', 'publish');
         }
       });
 
       if (moveOut) {
         var skip = _this.$articles.data('skip');
         _this.$articles.data('skip', skip - data.length);
-        _this.updateBulkbar();
         _this.emptyMessage();
       }
+
+      _this.updateBulkbar();
     });
   },
 
@@ -249,15 +251,17 @@ ArticleIndex.prototype = {
           $article.remove();
         } else {
           $article.addClass('draft').removeClass('trash publish');
+          $article.data('status', 'draft');
         }
       });
 
       if (moveOut) {
         var skip = _this.$articles.data('skip');
         _this.$articles.data('skip', skip - data.length);
-        _this.updateBulkbar();
         _this.emptyMessage();
       }
+
+      _this.updateBulkbar();
     });
   },
 
