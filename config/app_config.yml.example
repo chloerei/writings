@@ -1,5 +1,6 @@
 defaults: &defaults
   host: 'localhost'
+  site_name: 'Site Name'
 
 development:
   <<: *defaults
