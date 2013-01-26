@@ -49,6 +49,10 @@
   @include transition(top 0.15s ease);
   @include box-shadow(0 0px 5px rgba(0, 0, 0, 0.3));
 
+  &.no-shadow {
+    @include box-shadow(none);
+  }
+
   ul.top-nav {
     margin: 0;
     padding: 0;
@@ -358,8 +362,6 @@ body {
 // editor
 
 #editor-header {
-  @include box-shadow(none);
-
   .pull-right {
     padding: 15px 0;
   }
