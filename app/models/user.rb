@@ -73,6 +73,6 @@ class User
   end
 
   def host
-    domain.present? ? domain : "#{user.name}.#{APP_CONFIG['host']}"
+    domain.present? ? domain : "#{name}.#{APP_CONFIG['host']}"
   end
 end

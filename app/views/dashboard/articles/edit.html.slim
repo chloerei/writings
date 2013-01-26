@@ -21,7 +21,7 @@ html
                   i.icon-link
                   = ' '
                   span.urlname= @article.urlname
-              li class=(@article.persisted? ? nil : 'hide')
+              li class=(@article.persisted? && @article.publish? ? nil : 'hide')
                 a#view-button target='_blank' href=(@article.persisted? ? site_article_url(@article, :urlname => @article.urlname, :host => current_user.host) : site_root_url(:host => current_user.host))
                   i.icon-external-link
           .pull-right
