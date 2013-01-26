@@ -1,3 +1,5 @@
+- append_title @book.name
+
 #main
   .container
     #profile
@@ -5,7 +7,7 @@
         = link_to image_tag(@user.gravatar_url), site_root_path
       .name
         h1
-          = link_to @user.profile.name, site_root_path
+          = link_to @user.display_name, site_root_path
       .description
         = simple_format @user.profile.description
       hr

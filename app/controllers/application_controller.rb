@@ -1,10 +1,19 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :logined?, :current_user
+  helper_method :logined?, :current_user, :append_title, :page_title
   before_filter :set_locale
 
   protected
+
+  def append_title(title)
+    @page_title ||= []
+    @page_title << title
+  end
+
+  def page_title
+    @page_title.reverse.join(' - ')
+  end
 
   def set_locale
     I18n.locale = set_locale_from_user || set_locale_from_accept_language_header || I18n.default_locale

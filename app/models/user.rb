@@ -75,4 +75,8 @@ class User
   def host
     domain.present? ? domain : "#{name}.#{APP_CONFIG['host']}"
   end
+
+  def display_name
+    profile.name.present? ? profile.name : name
+  end
 end

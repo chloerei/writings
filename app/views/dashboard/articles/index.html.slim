@@ -18,8 +18,8 @@
             i.icon-folder-close-alt
             = ' is end.'
 
-= render 'new_book_modal'
 = render 'move_book_modal'
+= render 'new_book_modal'
 - if params[:status] == 'trash'
   = render 'delete_modal'
   = render 'empty_trash_modal'
