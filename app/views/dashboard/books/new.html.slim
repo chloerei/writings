@@ -1,4 +1,4 @@
-- append_title 'Create book'
+- append_title 'New book'
 
 #main
   .container
@@ -16,5 +16,8 @@
           .field
             = f.label :urlname
             = f.text_field :urlname
+          .field
+            = f.label :description
+            = f.text_area :description
           .field
             = f.submit 'Create'

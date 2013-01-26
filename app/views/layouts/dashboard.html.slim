@@ -16,6 +16,9 @@ html
                 i.icon-home
                 = ' '
                 | Home
+            li
+              a href=(site_root_url(:host => current_user.host)) target='_blank'
+                i.icon-external-link
             = yield :top_nav
           ul.top-nav.pull-right
             - if logined?

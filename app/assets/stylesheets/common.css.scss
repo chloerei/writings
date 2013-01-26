@@ -123,12 +123,17 @@ textarea {
   margin-right: 10px;
   outline: 0;
   border-radius: 3px;
+  width: 300px;
   @include box-sizing(border-box);
 
   &:focus {
     @include box-shadow(0 0 5px rgba(0, 0, 0, 0.2));
     @include transition(box-shadow 0.15s ease);
   }
+}
+
+textarea {
+  height: 150px;
 }
 
 select {

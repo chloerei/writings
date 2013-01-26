@@ -44,7 +44,6 @@
   right: 0;
   z-index: 10;
   border-bottom: 1px solid #ccc;
-  font-weight: bold;
   @include linear-gradient(#fff, #eee);
   @include transition(top 0.15s ease);
   @include box-shadow(0 0px 5px rgba(0, 0, 0, 0.3));
