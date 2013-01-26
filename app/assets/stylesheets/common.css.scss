@@ -176,7 +176,7 @@ select {
 
 fieldset {
   border: 0;
-  border-bottom: 1px dashed #ccc;
+  border-bottom: 1px solid #ccc;
   padding-bottom: 34px;
   margin-bottom: 34px;
   @include clearfix();
@@ -186,24 +186,8 @@ fieldset {
   }
 
   legend {
-    display: block;
-    float: left;
-    width: 30%;
     font-size: 1.2em;
-  }
-
-  .field {
-    float: right;
-    width: 70%;
-
-    #{$all-text-inputs} {
-      width: 50%;
-    }
-
-    textarea {
-      width: 100%;
-      height: 120px;
-    }
+    margin-bottom: 20px;
   }
 }
 
