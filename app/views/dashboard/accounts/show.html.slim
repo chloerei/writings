@@ -16,12 +16,15 @@
                 = f.label :email
                 = f.text_field :email
             fieldset
-              legend Custom domain?
+              legend Custom
               .field
                 = f.label :domain
                 = f.text_field :domain
+              .field
+                = f.label :locale
+                = f.select :locale, ALLOW_LOCALE.map{|locale| [t(locale), locale]}
             fieldset
-              legend Change password?
+              legend Change password
               .field
                 = f.label :password
                 = f.password_field :password, :validate => { :presence => false }, :autocomplete => 'off'
