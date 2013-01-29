@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/dockyard/client_side_validations-mongoid.git
+  revision: 6265d4055a541ecc322f04ed9d2ef0ebfe5d29a0
+  specs:
+    client_side_validations-mongoid (3.0.1)
+      client_side_validations (~> 3.2.0)
+      mongoid (~> 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -41,9 +49,6 @@ GEM
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
     client_side_validations (3.2.1)
-    client_side_validations-mongoid (3.0.1)
-      client_side_validations (~> 3.2.0)
-      mongoid (~> 3.0.0)
     coderay (1.0.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -199,7 +204,7 @@ DEPENDENCIES
   bourbon
   capistrano
   client_side_validations
-  client_side_validations-mongoid
+  client_side_validations-mongoid!
   coffee-rails (~> 3.2.1)
   factory_girl_rails
   font-awesome-sass-rails

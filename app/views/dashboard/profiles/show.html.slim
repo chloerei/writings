@@ -8,7 +8,7 @@
         section
           = form_for current_user.profile, :url => dashboard_profile_path, :html => { :data => { :remote => true, :type => :json } } do |f|
             fieldset
-              legend Publish profile
+              legend = t '.publish_profile'
               .field
                 = f.label :name
                 = f.text_field :name
@@ -16,4 +16,4 @@
                 = f.label :description
                 = f.text_area :description
               .field
-                = f.submit 'Update'
+                = f.submit t 'submit'

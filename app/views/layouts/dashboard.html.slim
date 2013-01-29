@@ -15,7 +15,7 @@ html
               a href=(dashboard_root_path) class=(%w(articles books).include?(controller_name) ? 'actived' : nil)
                 i.icon-home
                 = ' '
-                | Home
+                = t '.home'
             - if logined?
               li
                 a href=(site_root_url(:host => current_user.host)) target='_blank'
@@ -28,31 +28,31 @@ html
                   a.dropdown-toggle href=(dashboard_account_path) class=(%w(accounts profiles).include?(controller_name) ? 'actived' : nil)
                     i.icon-cog
                     = ' '
-                    | Settings
+                    = t '.settings'
                   ul.dropdown-menu.align-right
                     li
                       = link_to dashboard_account_path do
                         i.icon-user
                         = ' '
-                        | Account
+                        = t '.acc"ount'
                     li
                       = link_to dashboard_profile_path do
                         i.icon-credit-card
                         = ' '
-                        | Profile
+                        = t '.profile'
                     li
                       hr
                     li
                       = link_to logout_path, :method => :delete do
                         i.icon-signout
                         = ' '
-                        | Logout
+                        = t '.logout'
             - else
               li
                 = link_to login_path do
                   i.icon-signin
                   = ' '
-                  = 'Login'
+                  = t '.login'
               li
                 = link_to signup_path do
                   i.icon-plus-sign

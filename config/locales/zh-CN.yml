@@ -1,1 +1,42 @@
 zh-CN:
+  en: "英文"
+  zh-CN: "中文（简体）"
+  submit: "提交"
+
+  layouts:
+    dashboard:
+      home: "首页"
+      settings: "设置"
+      account: "账户"
+      profile: "个人资料"
+      logout: "登出"
+      login: "登录"
+
+  dashboard:
+    accounts:
+      show:
+        login_id: "登录 ID"
+        custom: "个性化"
+        change_password: "更换密码"
+        confirm_change: "确认修改"
+    profiles:
+      show:
+        publish_profile: "公开的个人资料"
+    share:
+      settings_main_nav:
+        account: "账户"
+        profile: "个人资料"
+
+  mongoid:
+    attributes:
+      user:
+        name: "用户名"
+        email: "邮箱"
+        domain: "域名"
+        locale: "语言"
+        password: "密码"
+        password_confirmation: "密码确认"
+        current_password: "当前密码"
+      profile:
+        name: "名称"
+        description: "描述"

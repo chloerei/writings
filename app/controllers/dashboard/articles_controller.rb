@@ -1,5 +1,5 @@
 class Dashboard::ArticlesController < Dashboard::BaseController
-  before_filter :require_logined
+  skip_filter :require_logined, :only => :index
 
   def index
     if logined?
