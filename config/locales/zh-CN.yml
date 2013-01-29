@@ -2,6 +2,11 @@ zh-CN:
   en: "英文"
   zh-CN: "中文（简体）"
   submit: "提交"
+  all_articles: "所有文章"
+  not_collected: "未归类"
+  publish: "已发布"
+  draft: "草稿箱"
+  trash: "垃圾桶"
 
   layouts:
     dashboard:
@@ -27,6 +32,46 @@ zh-CN:
         account: "账户"
         profile: "个人资料"
 
+    articles:
+      main_nav:
+        all_articles: "所有文章"
+        not_collected: "未归类"
+        new_book: "新建本子"
+      tabs:
+        index: "索引"
+        publish: "已发布"
+        draft: "草稿箱"
+        trash: "垃圾桶"
+        new_article: "新文章"
+      bulkbar:
+        view: "查看"
+        edit: "编辑"
+        collect: "归类"
+        publish: "发布"
+        draft: "草稿"
+        trash: "丢弃"
+        delete_selected: "删除所选"
+        empty_trash: "清空垃圾桶"
+        items: " 项 "
+        cancel: "取消"
+      index:
+        no_articles: "没有文章"
+        is_end: "到达尾部"
+
+    books:
+      new:
+        new_book: "新建本子"
+      edit:
+        page_title: "设置 %{name}"
+        delete_book: "删除本子"
+        delete_book_confirm: "删除本子 %{name}？本子的文章会被标记为未归类。"
+      tabs:
+        index: "索引"
+        publish: "已发布"
+        draft: "草稿箱"
+        trash: "垃圾桶"
+        new_article: "新文章"
+
   mongoid:
     attributes:
       user:
@@ -40,3 +85,8 @@ zh-CN:
       profile:
         name: "名称"
         description: "描述"
+      book:
+        name: "名字"
+        urlname: "URL 标识"
+        description: "描述"
+

@@ -11,12 +11,14 @@
               = render :partial => 'article', :collection => @articles
           #empty-message class=(@articles.empty? ? nil : 'hide')
             i.icon-folder-close-alt
-            = ' No Articles'
+            = ' '
+            = t '.no_articles'
           #articles-spinner.hide
             i.icon-spinner.icon-spin
           #end-message.hide
             i.icon-folder-close-alt
-            = ' is end.'
+            = ' '
+            = t '.is_end'
 
 = render 'move_book_modal'
 = render 'new_book_modal'

@@ -1,4 +1,4 @@
-- append_title "Edit #{@book.name}"
+- append_title t('.page_title', :name => @book.name)
 
 #main
   .container
@@ -17,6 +17,6 @@
             = f.label :description
             = f.text_area :description
           .field
-            = f.submit 'Save'
+            = f.submit t('submit')
           hr
-          = link_to 'delete this book', dashboard_book_path(@book), :method => :delete, :confirm => "delete book #{@book.name} with all articles?", :class => 'button button-danger'
+          = link_to t('.delete_book'), dashboard_book_path(@book), :method => :delete, :confirm => t('.delete_book_confirm', :name => @book.name), :class => 'button button-danger'

@@ -5,8 +5,8 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     if logined?
       @articles = current_user.articles.desc(:created_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:book)
 
-      append_title 'All articles'
-      append_title params[:status] if params[:status].present?
+      append_title I18n.t('all_articles')
+      append_title I18n.t(params[:status]) if params[:status].present?
 
       respond_to do |format|
         format.html
@@ -22,7 +22,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     @articles = current_user.articles.where(:book_id => @book).desc(:created_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:book)
 
     append_title @book.name
-    append_title params[:status] if params[:status].present?
+    append_title I18n.t(params[:status]) if params[:status].present?
 
     respond_to do |format|
       format.html { render :index }
@@ -33,7 +33,8 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   def not_collected
     @articles = current_user.articles.where(:book_id => nil).desc(:created_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:book)
 
-    append_title 'Not collected'
+    append_title t('not_collected')
+    append_title I18n.t(params[:status]) if params[:status].present?
 
     respond_to do |format|
       format.html { render :index }

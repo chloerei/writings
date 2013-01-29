@@ -4,16 +4,20 @@
       .button-group
         a.button href=(dashboard_book_articles_path(@book, :status => nil))
           i.icon-inbox.index-icon
-          = ' Index'
+          = ' '
+          = t '.index'
         a.button href=(dashboard_book_articles_path(@book, :status => 'publish'))
           i.icon-file-alt.publish-icon
-          = ' Publish'
+          = ' '
+          = t '.publish'
         a.button href=(dashboard_book_articles_path(@book, :status => 'draft'))
           i.icon-file.draft-icon
-          = ' Draft'
+          = ' '
+          = t '.draft'
         a.button href=(dashboard_book_articles_path(@book, :status => 'trash'))
           i.icon-trash.trash-icon
-          = ' Trash'
+          = ' '
+          = t '.trash'
       a.button.button-actived href=(edit_dashboard_book_path(@book))
         i.icon-wrench
 
@@ -21,4 +25,4 @@
       a.button.no-margin href=(new_dashboard_article_path(:book_id => @book)) target='_blank'
         i.icon-pencil
         = ' '
-        = 'New Article'
+        = t '.new_article'

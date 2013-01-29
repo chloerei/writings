@@ -4,16 +4,20 @@
       .button-group
         a.button href=(url_for(:status => nil)) class=(params[:status].nil? ? 'button-actived' : nil)
           i.icon-inbox.index-icon
-          = ' Index'
+          = ' '
+          = t '.index'
         a.button href=(url_for(:status => 'publish')) class=(params[:status] == 'publish' ? 'button-actived' : nil)
           i.icon-file-alt.publish-icon
-          = ' Publish'
+          = ' '
+          = t '.publish'
         a.button href=(url_for(:status => 'draft')) class=(params[:status] == 'draft' ? 'button-actived' : nil)
           i.icon-file.draft-icon
-          = ' Draft'
+          = ' '
+          = t '.draft'
         a.button href=(url_for(:status => 'trash')) class=(params[:status] == 'trash' ? 'button-actived' : nil)
           i.icon-trash.trash-icon
-          = ' Trash'
+          = ' '
+          = t '.trash'
       - if @book
         a.button href=(edit_dashboard_book_path(@book))
           i.icon-wrench
@@ -22,4 +26,4 @@
       a.button.no-margin href=(new_dashboard_article_path(:book_id => @book)) target='_blank'
         i.icon-pencil
         = ' '
-        = 'New Article'
+        = t '.new_article'

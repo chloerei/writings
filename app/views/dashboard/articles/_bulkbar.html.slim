@@ -5,40 +5,40 @@
         a.button.view-button href='#'
           i.icon-external-link
           = ' '
-          | View
+          = t '.view'
         a.button.edit-button href='#'
           i.icon-edit
           = ' '
-          | Edit
+          = t '.edit'
         a.button.move-button href='#move-book-modal' data-toggle='modal'
           i.icon-bookmark
           = ' '
-          | Book
+          = t '.collect'
       a.button.publish-button href='#'
         i.icon-file-alt
         = ' '
-        | Publish
+        = t '.publish'
       a.button.draft-button href='#'
         i.icon-file
         = ' '
-        | Draft
+        = t '.draft'
       - if params[:status] == 'trash'
         a.button.delete-button href='#delete-modal' data-toggle='modal'
           i.icon-remove-sign
           = ' '
-          | Delete Selected
+          = t '.delete_selected'
         a.button.delete-button href='#empty-trash-modal' data-toggle='modal'
           i.icon-trash
           = ' '
-          | Empty Trash
+          = t '.empty_trash'
       - else
         a.button.trash-button href='#'
           i.icon-trash
           = ' '
-          | Trash
+          = t '.trash'
     .pull-right
       span.label
         span.selected-count 10
-        = " items "
+        = t '.items'
       a.button.no-margin.cancel-button href='#'
-        | Cancel
+        = t '.cancel'
