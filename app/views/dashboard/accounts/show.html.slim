@@ -21,6 +21,9 @@
                 = f.label :domain
                 = f.text_field :domain
               .field
+                = f.label :disqus_shortname
+                = f.text_field :disqus_shortname
+              .field
                 = f.label :locale
                 = f.select :locale, ALLOW_LOCALE.map{|locale| [t(locale), locale]}
             fieldset

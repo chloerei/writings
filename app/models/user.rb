@@ -13,6 +13,7 @@ class User
   field :access_token
   field :locale, :default => I18n.locale.to_s
   field :domain
+  field :disqus_shortname
 
   embeds_one :profile
 

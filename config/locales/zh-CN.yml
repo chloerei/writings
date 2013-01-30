@@ -127,6 +127,7 @@ zh-CN:
         name: "用户名"
         email: "邮箱"
         domain: "域名"
+        disqus_shortname: "Disqus 帐号"
         locale: "语言"
         password: "密码"
         password_confirmation: "密码确认"
