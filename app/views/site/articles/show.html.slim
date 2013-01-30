@@ -33,7 +33,7 @@
         javascript:
           var disqus_shortname = '#{@user.disqus_shortname}';
           var disqus_identifier = '#{@article.number_id}';
-          var disqus_url = '#{site_article_url(@article, :host => @user.host)}';
+          var disqus_url = '#{site_article_url(@article, :urlname => @article.urlname, :host => @user.host)}';
 
           (function() {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
