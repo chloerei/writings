@@ -373,7 +373,7 @@ body {
 #toolbar {
   background-color: #555;
   position: fixed;
-  top: 45px;
+  top: 49px;
   left: 0;
   right: 0;
   z-index: 9;
@@ -474,7 +474,7 @@ body {
 }
 
 #editarea {
-  margin-top: 82px;
+  margin-top: 86px;
   @include transition(margin-top 0.15s ease);
 
   article {

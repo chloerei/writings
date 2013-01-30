@@ -2,6 +2,8 @@ zh-CN:
   en: "英文"
   zh-CN: "中文（简体）"
   submit: "提交"
+  save: "保存"
+  cancel: "取消"
   all_articles: "所有文章"
   not_collected: "未归类"
   publish: "已发布"
@@ -33,6 +35,26 @@ zh-CN:
         profile: "个人资料"
 
     articles:
+      delete_modal:
+        label_message: "确定删除所选文章？"
+        delete_forever: "永久删除"
+      empty_trash_modal:
+        label_message: "确定清空垃圾桶？"
+        empty_trash: "清空垃圾桶"
+      image_modal:
+        url: "URL 地址"
+        insert_image: "插入图片"
+      link_modal:
+        url: "URL 地址"
+        create_link: "创建链接"
+        unlink: "去掉链接"
+      move_book_modal:
+        select_book: "选择本子"
+        new_book: "新建本子"
+      select_book_modal:
+        select_book: "选择本子"
+        new_book: "新建本子"
+
       main_nav:
         all_articles: "所有文章"
         not_collected: "未归类"
@@ -57,6 +79,33 @@ zh-CN:
       index:
         no_articles: "没有文章"
         is_end: "到达尾部"
+      edit:
+        urlname: "URL 标识"
+        collect: "归类"
+        publish: "发布"
+        draft: "草稿"
+        bold_tip: "加粗 Ctrl+b"
+        italic_tip: "斜体 Ctrl+i"
+        strike_tip: "删除线 Ctrl+d"
+        underline_tip: "下划线 Ctrl+u"
+        link_tip: "插入超链接 Ctrl+l"
+        image_tip: "插入图片 Ctrl+g"
+        orderList_tip: "有序列表 Ctrl+Shift+o"
+        unorderList_tip: "无序列表 Ctrl+shift+l"
+        normal_text: "普通文本"
+        h1: "一级标题"
+        h2: "二级标题"
+        h3: "三级标题"
+        h4: "四级标题"
+        code: "代码"
+        blockquote: "引用"
+        normal_text_tip: "普通文本 Ctrl+p"
+        h1_tip: "一级标题 Ctrl+1"
+        h2_tip: "二级标题 Ctrl+2"
+        h3_tip: "三级标题 Ctrl+3"
+        h4_tip: "四级标题 Ctrl+4"
+        code_tip: "代码 Ctrl+k"
+        blockquote_tip: "引用 Ctrl+q"
 
     books:
       new:
@@ -89,4 +138,8 @@ zh-CN:
         name: "名字"
         urlname: "URL 标识"
         description: "描述"
+      article:
+        title: "标题"
+        body: "内容"
+        urlname: "URL 标识"
 

@@ -1,0 +1,11 @@
+#image-modal.modal-dialog
+  span.modal-close data-close='modal'
+    i.icon-remove
+  = form_tag nil, :id => 'image-form' do
+    .field
+      = label_tag :url, t('.url')
+      = text_field_tag :url
+    .field.clearfix
+      .pull-left
+        = submit_tag t('.insert_image')
+        = button_tag t('cancel'), :data => { :close => 'modal' }

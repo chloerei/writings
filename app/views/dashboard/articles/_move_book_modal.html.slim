@@ -3,17 +3,17 @@
     i.icon-remove
   = form_for :article, :html => { :id => 'move-book-form' } do |f|
     .field
-      label Select Book
+      label = t('.select_book')
       .dropdown
-        a.dropdown-toggle.button href="#" = 'Select Book'
+        a.dropdown-toggle.button href="#" = t('.select_book')
         ul.dropdown-menu
           - current_user.books.each do |book|
             li
               a href="#" data-book-id=(book.urlname) = book.name
           li
             a href="#" data-book-id=('null') Not Collected
-      = link_to 'Add New Book', '#new-book-modal', :data => { :toggle => :modal }
+      = link_to t('.new_book'), '#new-book-modal', :data => { :toggle => :modal }
       = f.hidden_field :book_id
     .field
-      = f.submit 'Save'
-      = f.submit 'Cancel', :data => { :close => :modal }
+      = f.submit t('save')
+      = f.submit t('cancel'), :data => { :close => :modal }

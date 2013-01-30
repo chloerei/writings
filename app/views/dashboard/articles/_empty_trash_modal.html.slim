@@ -4,6 +4,6 @@
   form
     .field
       label
-        | Do you realy want to empty trash?
-      a.button.button-danger class='confirm-empty-trash-button' href='#' Empty trash
-      a.button href='#' data-close='modal' Cancel
+        = t '.label_message'
+      a.button.button-danger class='confirm-empty-trash-button' href='#' = t '.empty_trash'
+      a.button href='#' data-close='modal' = t 'cancel'

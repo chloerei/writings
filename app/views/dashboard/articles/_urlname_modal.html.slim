@@ -1,0 +1,10 @@
+#urlname-modal.modal-dialog
+  span.modal-close
+    i.icon-remove data-close='modal'
+  = form_for @article, :url => dashboard_article_path(@article), :html => { :id => 'urlname-form' } do |f|
+    .field
+      = f.label :urlname
+      = f.text_field :urlname, :id => 'article-urlname'
+    .field
+      = f.submit t('save')
+      = f.submit t('cancel'), :data => { :close => 'modal' }

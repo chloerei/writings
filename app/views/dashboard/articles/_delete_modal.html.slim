@@ -4,6 +4,6 @@
   form
     .field
       label
-        | Do you realy want to delete this contents?
-      a.button.button-danger class='confirm-delete-button' href='#' Delete forever
-      a.button href='#' data-close='modal' Cancel
+        = t '.label_message'
+      a.button.button-danger class='confirm-delete-button' href='#' = t '.delete_forever'
+      a.button href='#' data-close='modal' = t 'cancel'

@@ -1,0 +1,13 @@
+#link-modal.modal-dialog
+  span.modal-close data-close='modal'
+    i.icon-remove
+  = form_tag nil, :id => 'link-form' do
+    .field
+      = label_tag :url, t('.url')
+      = text_field_tag :url
+    .field.clearfix
+      .pull-left
+        = submit_tag t('.create_link')
+        = button_tag t('cancel'), :data => { :close => 'modal' }
+      .pull-right
+        = button_tag t('.unlink'), :class => 'no-margin', :id => 'unlink-button'

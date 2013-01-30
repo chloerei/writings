@@ -12,12 +12,12 @@ html
           .pull-left
             ul.top-nav
               li
-                = link_to '#select-book-modal', :data => { :toggle => :modal } do
+                = link_to '#select-book-modal', :data => { :toggle => :modal }, :title => t('.collect') do
                   i.icon-bookmark
                   = ' '
                   span.book-name= @article.book.try(:name)
               li
-                = link_to '#urlname-modal', :data => { :toggle => :modal }, :title => 'Click to edit' do
+                = link_to '#urlname-modal', :data => { :toggle => :modal }, :title => t('.urlname') do
                   i.icon-link
                   = ' '
                   span.urlname= @article.urlname
@@ -26,57 +26,57 @@ html
                   i.icon-external-link
           .pull-right
             .button-group
-              = link_to 'Draft', '#', :class => ['button', (@article.draft? ? 'button-actived' : nil)], :id => 'draft-button'
-              = link_to 'Publish', '#', :class => ['button', (@article.publish? ? 'button-actived' : nil)], :id => 'publish-button'
-            = link_to 'Save', '#', :class => 'button no-margin', :id => 'save-button'
+              = link_to t('.publish'), '#', :class => ['button', (@article.publish? ? 'button-actived' : nil)], :id => 'publish-button'
+              = link_to t('.draft'), '#', :class => ['button', (@article.draft? ? 'button-actived' : nil)], :id => 'draft-button'
+            = link_to t('save'), '#', :class => 'button no-margin', :id => 'save-button'
     #toolbar
       .editor-container.clearfix
         ul.toolbar-buttons.pull-left
           li
-            a class='toolbar-button icon-bold' href='#' data-command='bold'
+            a class='toolbar-button icon-bold' href='#' data-command='bold' title=(t '.bold_tip')
           li
-            a class='toolbar-button icon-italic' href='#' data-command='italic'
+            a class='toolbar-button icon-italic' href='#' data-command='italic' title=(t '.italic_tip')
           li
-            a class='toolbar-button icon-strikethrough' href='#' data-command='strikeThrough'
+            a class='toolbar-button icon-strikethrough' href='#' data-command='strikeThrough' title=(t '.strike_tip')
           li
-            a class='toolbar-button icon-underline' href='#' data-command='underline'
+            a class='toolbar-button icon-underline' href='#' data-command='underline' title=(t '.underline_tip')
           li
-            a class='toolbar-button icon-link' href='#' data-command='link'
+            a class='toolbar-button icon-link' href='#' data-command='link' title=(t '.link_tip')
           li
-            a class='toolbar-button icon-picture' href='#' data-command='image'
+            a class='toolbar-button icon-picture' href='#' data-command='image' title=(t '.image_tip')
           li
-            a class='toolbar-button icon-list-ol' href='#' data-command='orderedList'
+            a class='toolbar-button icon-list-ol' href='#' data-command='orderedList' title=(t '.orderList_tip')
           li
-            a class='toolbar-button icon-list-ul' href='#' data-command='unorderedList'
+            a class='toolbar-button icon-list-ul' href='#' data-command='unorderedList' title=(t '.unorderList_tip')
           li
             #format-block.dropdown
-              a.dropdown-toggle.toolbar-button href="#" Normal text
+              a.dropdown-toggle.toolbar-button href="#" = t '.normal_text'
               ul.dropdown-menu
                 li
-                  a href="#" data-command="p"
-                    p Normal text
+                  a href="#" data-command="p" title=(t '.normal_text_tip')
+                    p = t '.normal_text'
                 li
                   hr
                 li
-                  a href="#" data-command="h1"
-                    h1 H1
+                  a href="#" data-command="h1" title=(t '.h1_tip')
+                    h1 = t '.h1'
                 li
-                  a href="#" data-command="h2"
-                    h2 H2
+                  a href="#" data-command="h2" title=(t '.h2_tip')
+                    h2 = t '.h2'
                 li
-                  a href="#" data-command="h3"
-                    h3 H3
+                  a href="#" data-command="h3" title=(t '.h3_tip')
+                    h3 = t '.h3'
                 li
-                  a href="#" data-command="h4"
-                    h4 H4
+                  a href="#" data-command="h4" title=(t '.h4_tip')
+                    h4 = t '.h4'
                 li
                   hr
                 li
-                  a href="#" data-command="code"
-                    pre Code
+                  a href="#" data-command="code" title=(t '.code_tip')
+                    code = t '.code'
                 li
-                  a href="#" data-command="blockquote"
-                    blockquote Blockquote
+                  a href="#" data-command="blockquote" title=(t '.blockquote_tip')
+                    blockquote = t '.blockquote'
         ul.toolbar-buttons.pull-right
           li
             a#pick-up-button.toolbar-button.icon-double-angle-up href="#"
@@ -86,40 +86,8 @@ html
           = sanitize @article.body
         = render 'layouts/alert_messages'
 
-    #urlname-modal.modal-dialog
-      span.modal-close
-        i.icon-remove data-close='modal'
-      = form_for @article, :url => dashboard_article_path(@article), :html => { :id => 'urlname-form' } do |f|
-        .field
-          = f.label :urlname
-          = f.text_field :urlname, :id => 'article-urlname'
-        .field
-          = f.submit 'Save'
-          = f.submit 'Cancel', :data => { :close => 'modal' }
-    #link-modal.modal-dialog
-      span.modal-close data-close='modal'
-        i.icon-remove
-      = form_tag nil, :id => 'link-form' do
-        .field
-          = label_tag :url
-          = text_field_tag :url
-        .field.clearfix
-          .pull-left
-            = submit_tag 'Create Link'
-            = button_tag 'Cancel', :data => { :close => 'modal' }
-          .pull-right
-            = button_tag 'Unlink', :class => 'no-margin', :id => 'unlink-button'
-    #image-modal.modal-dialog
-      span.modal-close data-close='modal'
-        i.icon-remove
-      = form_tag nil, :id => 'image-form' do
-        .field
-          = label_tag :url
-          = text_field_tag :url
-        .field.clearfix
-          .pull-left
-            = submit_tag 'Insert Image'
-            = button_tag 'Cancel', :data => { :close => 'modal' }
-
+    = render 'urlname_modal'
+    = render 'link_modal'
+    = render 'image_modal'
     = render 'select_book_modal'
     = render 'new_book_modal'
