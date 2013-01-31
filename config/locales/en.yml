@@ -1,1 +1,145 @@
 en:
+  en: "English"
+  zh-CN: "Chinese(Simplified)"
+  submit: "Submit"
+  save: "Save"
+  cancel: "Cancel"
+  all_articles: "All Articles"
+  not_collected: "Not Collected"
+  publish: "Publish"
+  draft: "Draft"
+  trash: "Trash"
+
+  layouts:
+    dashboard:
+      home: "Home"
+      settings: "Settings"
+      account: "Account"
+      profile: "Profile"
+      logout: "Logout"
+      login: "Login"
+
+  dashboard:
+    accounts:
+      show:
+        login_id: "Login ID"
+        custom: "Custom"
+        change_password: "Change password"
+        confirm_change: "Confirm change"
+    profiles:
+      show:
+        publish_profile: "Published profile"
+    share:
+      settings_main_nav:
+        account: "Account"
+        profile: "Profile"
+
+    articles:
+      delete_modal:
+        label_message: "Are you sure delete selelcted articles?"
+        delete_forever: "Delete forever"
+      empty_trash_modal:
+        label_message: "Are you sure empty trash?"
+        empty_trash: "Empty trash"
+      image_modal:
+        url: "URL"
+        insert_image: "Insert image"
+      link_modal:
+        url: "URL"
+        create_link: "Create link"
+        unlink: "Unlink"
+      move_book_modal:
+        select_book: "Select book"
+        new_book: "New book"
+      select_book_modal:
+        select_book: "Select book"
+        new_book: "New book"
+
+      main_nav:
+        all_articles: "All articles"
+        not_collected: "Not collected"
+        new_book: "New book"
+      tabs:
+        index: "Index"
+        publish: "Publish"
+        draft: "Draft"
+        trash: "Trash"
+        new_article: "New article"
+      bulkbar:
+        view: "View"
+        edit: "Edit"
+        collect: "Collect"
+        publish: "Publish"
+        draft: "Draft"
+        trash: "Trash"
+        delete_selected: "Delete selected"
+        empty_trash: "Empty trash"
+        items: " Items "
+        cancel: "Cancel"
+      index:
+        no_articles: "No articles"
+        is_end: "is end"
+      edit:
+        urlname: "URL"
+        collect: "Collect"
+        publish: "publish"
+        draft: "draft"
+        bold_tip: "Bold Ctrl+b"
+        italic_tip: "Italic Ctrl+i"
+        strike_tip: "StrikeThrough Ctrl+d"
+        underline_tip: "Underline Ctrl+u"
+        link_tip: "Link Ctrl+l"
+        image_tip: "Image Ctrl+g"
+        orderList_tip: "Order list Ctrl+Shift+o"
+        unorderList_tip: "Unorder list Ctrl+shift+l"
+        normal_text: "Normal text"
+        h1: "Header 1"
+        h2: "Header 2"
+        h3: "Header 3"
+        h4: "Header 4"
+        code: "Code"
+        blockquote: "Blockquote"
+        normal_text_tip: "Normal text Ctrl+p"
+        h1_tip: "Header 1 Ctrl+1"
+        h2_tip: "Header 2 Ctrl+2"
+        h3_tip: "Header 3 Ctrl+3"
+        h4_tip: "Header 4 Ctrl+4"
+        code_tip: "Code Ctrl+k"
+        blockquote_tip: "Blockquote Ctrl+q"
+
+    books:
+      new:
+        new_book: "New book"
+      edit:
+        page_title: "Setting %{name}"
+        delete_book: "Delete book"
+        delete_book_confirm: "Delete book %{name}? All articles in this book will mark not collected."
+      tabs:
+        index: "Index"
+        publish: "Publish"
+        draft: "Draft"
+        trash: "Trash"
+        new_article: "New article"
+
+  mongoid:
+    attributes:
+      user:
+        name: "User name"
+        email: "Email"
+        domain: "Domain"
+        disqus_shortname: "Disqus shortname"
+        locale: "Locale"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        current_password: "Current password"
+      profile:
+        name: "Name"
+        description: "Description"
+      book:
+        name: "Name"
+        urlname: "URL"
+        description: "Description"
+      article:
+        title: "Title"
+        body: "Body"
+        urlname: "URL"
