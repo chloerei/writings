@@ -10,16 +10,12 @@
 }
 
 #header {
-  padding: 20px 0;
   margin-bottom: 20px;
   color: #999;
 
-  a {
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
-    }
+  .info {
+    padding: 20px 0;
+    border-bottom: 2px solid #ccc;
   }
 }
 
@@ -94,6 +90,10 @@
     .info {
       color: #999;
       margin-bottom: 1em;
+
+      a:hover {
+        text-decoration: none;
+      }
     }
 
 
@@ -101,16 +101,12 @@
       a {
         display: block;
         color: #333;
-        text-decoration: none;
 
         &:hover {
+          color: #555;
           text-decoration: none;
         }
       }
-    }
-
-    h1 a:hover {
-      color: $linkColor;
     }
   }
 }
@@ -142,20 +138,11 @@
   font-size: 1.5em;
   @include clearfix();
 
-  a {
-    color: #555;
-
-    &:hover {
-      color: $linkColor;
-      text-decoration: none;
-    }
-  }
-
   .next {
-    float: left;
+    float: right;
   }
 
   .prev {
-    float: right;
+    float: left;
   }
 }

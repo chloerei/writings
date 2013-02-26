@@ -3,12 +3,13 @@
 #header
   .container
     .inner
-      = link_to @user.display_name, site_root_path
-      = ' wrote on '
-      = @article.created_at.to_date.to_s
-      - if @article.book
-        = ', in '
-        = link_to @article.book.name, site_book_path(@article.book)
+      .info
+        = link_to @user.display_name, site_root_path
+        = ' wrote on '
+        = @article.created_at.to_date.to_s
+        - if @article.book
+          = ', in '
+          = link_to @article.book.name, site_book_path(@article.book)
 
 #main
   .container

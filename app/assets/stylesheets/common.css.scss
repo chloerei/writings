@@ -38,12 +38,28 @@ p {
   margin: 1em 0;
 }
 
+a {
+  color: $linkColor;
+  text-decoration: none;
+
+  &:hover {
+    color: darken($linkColor, 10%);
+    @include transition(color 0.15s ease);
+  }
+}
+
 article {
   font-size: 1em;
   line-height: 160%;
 
   * {
     line-height: 160%;
+  }
+
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   blockquote {
@@ -69,15 +85,6 @@ article {
 
   :last-child {
     margin-bottom: 0;
-  }
-}
-
-a {
-  color: $linkColor;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
   }
 }
 
@@ -194,14 +201,16 @@ fieldset {
 
 // button
 
-@mixin button-color($color) {
+@mixin button-color($color, $textColor) {
+  color: $textColor;
   border: 1px solid darken($color, 15%);
   @include linear-gradient($color, darken($color, 10%));
 
   &:hover,
   &:focus {
-    @include linear-gradient(darken($color, 5%), darken($color, 10%));
+    color: $textColor;
     text-decoration: none;
+    @include linear-gradient(darken($color, 5%), darken($color, 10%));
   }
 
   &.button-actived,
@@ -226,26 +235,23 @@ fieldset {
 input[type=submit],
 button,
 .button {
-  color: #555;
   padding: 7px 14px;
   margin-right: 10px;
   font-weight: normal;
   display: inline-block;
   border-radius: 3px;
-  @include button-color(#fefefe);
+  @include button-color(#fefefe, #333);
 
   &.no-margin {
     margin: 0;
   }
 
   &.button-primary {
-    color: #fff;
-    @include button-color($green);
+    @include button-color($green, #fff);
   }
 
   &.button-danger {
-    color: #fff;
-    @include button-color($red);
+    @include button-color($red, #fff);
   }
 }
 
