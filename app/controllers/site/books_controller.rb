@@ -5,7 +5,7 @@ class Site::BooksController < Site::BaseController
 
   def show
     @book = @user.books.find_by :urlname => params[:id]
-    @articles = @book.articles.publish.desc(:created_at).page(params[:page])
+    @articles = @book.articles.publish.desc(:created_at).page(params[:page]).per(10)
   end
 
   def feed

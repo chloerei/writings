@@ -1,6 +1,6 @@
 class Site::ArticlesController < Site::BaseController
   def index
-    @articles = @user.articles.publish.desc(:created_at).page(params[:page]).per(5)
+    @articles = @user.articles.publish.desc(:created_at).page(params[:page]).per(10)
   end
 
   def show
