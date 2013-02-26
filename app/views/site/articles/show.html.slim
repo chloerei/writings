@@ -1,33 +1,28 @@
 - append_title @article.title
 
+#header
+  .container
+    .inner
+      = link_to @user.display_name, site_root_path
+      = ' wrote on '
+      = @article.created_at.to_date.to_s
+      - if @article.book
+        = ', in '
+        = link_to @article.book.name, site_book_path(@article.book)
+
 #main
   .container
-    #profile
-      .avatar
-        = link_to image_tag(@user.gravatar_url), site_root_path
-      .name
-        h1
-          = link_to @user.display_name, site_root_path
-      .description
-        = simple_format @user.profile.description
-      hr
-      nav
-        ul
-          li
-            a href=(site_article_path(@article, :urlname => @article.urlname))
-              i.icon-time
-              = ' '
-              = @article.created_at.to_date.to_s
-          - if @article.book
-            li
-              a href=(site_book_path(@article.book))
-                i.icon-bookmark
-                = ' '
-                = @article.book.name
-    #main-content
-      .article
-        article
-          = article_format_body @article.body
+    .inner
+      article
+        = article_format_body @article.body
+      #profile.bottom
+        .avatar
+          = link_to image_tag(@user.gravatar_url), site_root_path
+        .info
+          h1
+            = link_to @user.display_name, site_root_path
+          .description
+            = simple_format @user.profile.description
       - if @user.disqus_shortname.present?
         #disqus_thread
         javascript:

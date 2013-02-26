@@ -2,33 +2,15 @@
 
 #main
   .container
-    #profile
-      .avatar
-        = link_to image_tag(@user.gravatar_url), site_root_path
-      .name
-        h1
-          = link_to @user.display_name, site_root_path
-      .description
-        = simple_format @user.profile.description
-      nav
-        ul
-          li
-            = link_to site_books_path, :class => (controller_name == 'books' ? 'actived' : nil) do
-              i.icon-book
-              = ' Books'
-          li
-            = link_to site_feed_path(:format => :rss) do
-              i.icon-rss
-              = ' Feed'
-    #main-content
+    .inner
+      #profile
+        .avatar
+          = link_to image_tag(@user.gravatar_url), site_root_path
+        .info
+          h1.name
+            = link_to @user.display_name, site_root_path
+          .description
+            = simple_format @user.profile.description
       #articles
-        - @articles.each do |article|
-          section
-            header
-              = link_to site_article_path(article, :urlname => article.urlname) do
-                i.icon-time
-                = ' '
-                = article.created_at.to_date.to_s
-            article
-              = article_format_body article.body
+        = render :partial => 'article', :collection => @articles
       = paginate @articles, :theme => 'site'

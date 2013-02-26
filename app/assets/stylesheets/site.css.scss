@@ -1,142 +1,161 @@
 @import "common";
 
-#main {
-  margin: 50px auto 50px;
-  width: 960px;
+.container {
+  width: 768px;
+  margin: 0 auto;
+}
 
-  .container {
-    @include clearfix();
+.inner {
+  padding: 0 70px;
+}
+
+#header {
+  padding: 20px 0;
+  margin-bottom: 20px;
+  color: #999;
+
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+#profile {
+  padding: 40px 0;
+  border-bottom: 2px solid #ccc;
+  @include clearfix();
+
+  &.bottom {
+    margin: 40px 0;
+    border-top: 2px solid #ccc;
   }
 
-  #profile {
-    width: 180px;
-    margin-right: 12px;
+  .avatar {
     float: left;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    img {
+      border-radius: 50px;
+    }
+  }
 
-    hr {
-      margin: 10px 0;
+  .info {
+    float: left;
+    width: 768px - 140px - 100px - 20px;
+
+    h1 {
+      line-height: 160%;
+      margin: 0;
+    }
+  }
+
+  .description {
+    p {
+      margin-bottom: none;
+    }
+  }
+}
+
+#book {
+  padding: 40px 0;
+  border-bottom: 2px solid #ccc;
+
+  h1 {
+    line-height: 160%;
+    margin: 0;
+  }
+
+  .info {
+    color: #999;
+  }
+
+  .description {
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+#articles {
+  article {
+    margin: 40px 0;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #ddd;
+
+    h1 {
+      line-height: 160%;
+      margin: 0;
     }
 
-    .avatar {
-      img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50px;
+    .info {
+      color: #999;
+      margin-bottom: 1em;
+    }
+
+
+    h1, .summary {
+      a {
+        display: block;
+        color: #333;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
 
+    h1 a:hover {
+      color: $linkColor;
+    }
+  }
+}
+
+#books {
+  section {
+    padding: 40px 0;
+    border-bottom: 1px solid #ddd;
+
     h1 {
-      font-size: 1.5em;
-      margin: 20px 0;
+      margin: 0;
+      line-height: 160%;
     }
 
-    h2 {
-      font-size: 1.2em;
+    .info {
+      color: #999;
     }
 
     .description {
-      color: #555;
-      margin-bottom: 20px;
-    }
-
-    nav {
-      color: #555;
-
-      li {
-        display: block;
-        margin-bottom: 10px;
-      }
-
-      a {
-        color: #555;
-
-        &:hover {
-          text-decoration: none;
-          color: $linkColor;
-        }
+      p {
+        margin-bottom: 0;
       }
     }
   }
+}
 
-  #main-content {
-    width: 768px;
-    padding: 0 70px;
-    @include box-sizing(border-box);
+#paginator {
+  margin: 40px 0;
+  font-size: 1.5em;
+  @include clearfix();
+
+  a {
+    color: #555;
+
+    &:hover {
+      color: $linkColor;
+      text-decoration: none;
+    }
+  }
+
+  .next {
     float: left;
-
-    header {
-      margin-bottom: 10px;
-
-      a {
-        font-size: 1.5em;
-        color: #999;
-        font-weight: bold;
-
-        &:hover {
-          text-decoration: none;
-          color: #555;
-        }
-      }
-    }
-
-    article {
-      padding-bottom: 70px;
-      margin-bottom: 70px;
-      border-bottom: 1px solid #ccc;
-
-      &:first-child {
-        padding-top: 0;
-      }
-
-    }
   }
 
-  #paginator {
-    padding: 70px 0;
-    @include clearfix();
-
-    a {
-      font-size: 1.5em;
-      color: #999;
-
-      &:hover {
-        color: #555;
-        text-decoration: none;
-      }
-    }
-
-    .prev {
-      float: left;
-    }
-
-    .next {
-      float: right;
-    }
-  }
-
-  #books {
-    .book {
-      padding-bottom: 20px;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #ccc;
-
-      .title {
-        h1 {
-          font-size: 1.5em;
-          margin: 0;
-        }
-      }
-
-      .description {
-        margin-bottom: 10px;
-      }
-
-      nav {
-        li {
-          display: inline-block;
-          margin-right: 20px;
-        }
-      }
-    }
+  .prev {
+    float: right;
   }
 }

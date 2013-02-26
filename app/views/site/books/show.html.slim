@@ -2,32 +2,19 @@
 
 #main
   .container
-    #profile
-      .avatar
-        = link_to image_tag(@user.gravatar_url), site_root_path
-      .name
-        h1
+    .inner
+      #book
+        .name
+          h1
+            a href=(site_book_path(@book))
+              = @book.name
+        .info
+          = 'by '
           = link_to @user.display_name, site_root_path
-      .description
-        = simple_format @user.profile.description
-      hr
-      .name
-        h2
-          a href=(site_book_path(@book))
-            i.icon-bookmark
-            = ' '
-            = @book.name
-      .description
-        = @book.description
-    #main-content
+          = ', '
+          = "#{@book.articles.count} Articles."
+        .description
+          = simple_format @book.description
       #articles
-        - @articles.each do |article|
-          secton
-            header
-              = link_to site_article_path(article, :urlname => article.urlname) do
-                i.icon-time
-                = ' '
-                = article.created_at.to_date.to_s
-            article
-              = article_format_body article.body
+        = render :partial => 'site/articles/article', :collection => @articles
       = paginate @articles, :theme => 'site'

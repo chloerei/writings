@@ -121,6 +121,7 @@ GEM
     net-ssh (2.6.3)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
+    nokogiri (1.5.6)
     origin (1.0.11)
     polyglot (0.3.3)
     pry (0.9.11.4)
@@ -216,6 +217,7 @@ DEPENDENCIES
   kaminari
   mongoid
   mousetrap-rails
+  nokogiri
   quiet_assets
   qunit-rails
   rack-livereload
