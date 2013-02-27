@@ -39,7 +39,7 @@ Publish::Application.routes.draw do
     scope :module => 'site', :as => 'site' do
       root :to => 'articles#index'
       get 'feed', :to => 'articles#feed', :as => :feed
-      get 'articles/:id(-:urlname)', :to => 'articles#show', :as => :article, :constraints => { :id => /\d+/ }
+      get 'articles/:id(-:urlname)', :to => 'articles#show', :as => :article, :constraints => { :id => /[0-9a-z]{8}/ }
       resources :books, :only => [:index, :show] do
         member do
           get :feed

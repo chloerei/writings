@@ -54,7 +54,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     @article = current_user.articles.new article_params
     if @article.save
       respond_to do |format|
-        format.json { render :json => @article.as_json(:only => [:urlname, :title, :status, :number_id]).merge(:url => site_article_url(@article, :urlname => @article.urlname, :host => current_user.host)) }
+        format.json { render :json => @article.as_json(:only => [:urlname, :title, :status, :token]).merge(:url => site_article_url(@article, :urlname => @article.urlname, :host => current_user.host)) }
       end
     else
       respond_to do |format|
@@ -64,15 +64,15 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def edit
-    @article = current_user.articles.find_by(:number_id => params[:id])
+    @article = current_user.articles.find_by(:token => params[:id])
     render :layout => false
   end
 
   def update
-    @article = current_user.articles.find_by(:number_id => params[:id])
+    @article = current_user.articles.find_by(:token => params[:id])
     if @article.update_attributes article_params
       respond_to do |format|
-        format.json { render :json => @article.as_json(:only => [:urlname, :title, :status, :number_id]).merge(:url => site_article_url(@article, :urlname => @article.urlname, :host => current_user.host)) }
+        format.json { render :json => @article.as_json(:only => [:urlname, :title, :status, :token]).merge(:url => site_article_url(@article, :urlname => @article.urlname, :host => current_user.host)) }
       end
     else
       respond_to do |format|
@@ -82,7 +82,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def bulk
-    @articles = current_user.articles.where(:number_id.in => params.require(:ids))
+    @articles = current_user.articles.where(:token.in => params.require(:ids))
 
     case params[:type]
     when 'move'
@@ -99,7 +99,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     end
 
     respond_to do |format|
-      format.json { render :json => @articles.includes(:book).as_json(:only => [:title, :urlname, :status, :number_id], :methods => [:book_name, :book_urlname]) }
+      format.json { render :json => @articles.includes(:book).as_json(:only => [:title, :urlname, :status, :token], :methods => [:book_name, :book_urlname]) }
     end
   end
 

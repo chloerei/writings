@@ -28,7 +28,7 @@
         #disqus_thread
         javascript:
           var disqus_shortname = '#{@user.disqus_shortname}';
-          var disqus_identifier = '#{@article.number_id}';
+          var disqus_identifier = '#{@article.token}';
           var disqus_url = '#{site_article_url(@article, :urlname => @article.urlname, :host => @user.host)}';
 
           (function() {

@@ -77,23 +77,23 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
     article2 = create :article, :user => @user
     create :article, :user => @user
     assert_difference "@book.articles.count", 2 do
-      post :bulk, :ids => [article1.number_id, article2.number_id], :type => 'move', :book_id => @book.urlname, :format => :json
+      post :bulk, :ids => [article1.token, article2.token], :type => 'move', :book_id => @book.urlname, :format => :json
     end
 
     assert_difference "@book.articles.publish.count", 2 do
-      post :bulk, :ids => [article1.number_id, article2.number_id], :type => 'publish', :book_id => @book.urlname, :format => :json
+      post :bulk, :ids => [article1.token, article2.token], :type => 'publish', :book_id => @book.urlname, :format => :json
     end
 
     assert_difference "@book.articles.publish.count", -2 do
-      post :bulk, :ids => [article1.number_id, article2.number_id], :type => 'draft', :book_id => @book.urlname, :format => :json
+      post :bulk, :ids => [article1.token, article2.token], :type => 'draft', :book_id => @book.urlname, :format => :json
     end
 
     assert_difference "@book.articles.trash.count", 2 do
-      post :bulk, :ids => [article1.number_id, article2.number_id], :type => 'trash', :book_id => @book.urlname, :format => :json
+      post :bulk, :ids => [article1.token, article2.token], :type => 'trash', :book_id => @book.urlname, :format => :json
     end
 
     assert_difference "@book.articles.count", -2 do
-      post :bulk, :ids => [article1.number_id, article2.number_id], :type => 'delete', :book_id => @book.urlname, :format => :json
+      post :bulk, :ids => [article1.token, article2.token], :type => 'delete', :book_id => @book.urlname, :format => :json
     end
   end
 

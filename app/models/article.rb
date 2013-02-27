@@ -8,8 +8,8 @@ class Article
   field :urlname
   field :status, :default => 'draft'
 
-  field :number_id, :type => Integer
-  index({ :user_id => 1, :number_id => 1 },  { :unique => true })
+  field :token
+  index({ :user_id => 1, :token => 1 },  { :unique => true })
 
   belongs_to :user
   belongs_to :book
@@ -53,13 +53,13 @@ class Article
     read_attribute(:title).blank? ? 'Untitle' : read_attribute(:title)
   end
 
-  before_create :set_number_id
+  before_create :set_token
 
-  def set_number_id
-    self.number_id = user.inc(:next_topic_id, 1)
+  def set_token
+    self.token = SecureRandom.hex(4)
   end
 
   def to_param
-    self.number_id.to_s
+    self.token.to_s
   end
 end

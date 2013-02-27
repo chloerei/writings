@@ -4,7 +4,7 @@ class Site::ArticlesController < Site::BaseController
   end
 
   def show
-    @article = @user.articles.publish.find_by :number_id => params[:id]
+    @article = @user.articles.publish.find_by :token => params[:id]
   end
 
   def feed

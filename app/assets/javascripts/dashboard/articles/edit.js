@@ -213,9 +213,9 @@ ArticleEdit.prototype = {
       dataType: 'json'
     }).success(function(data) {
       AlertMessage.clear();
-      _this.article.data('id', data.number_id);
+      _this.article.data('id', data.token);
       _this.updateViewButton(data);
-      history.replaceState(null, null, '/articles/' + data.number_id + '/edit');
+      history.replaceState(null, null, '/articles/' + data.token + '/edit');
     }).error(function() {
       AlertMessage.error('Save Failed.');
     });
