@@ -134,7 +134,7 @@ textarea {
   @include box-sizing(border-box);
 
   &:focus {
-    @include box-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+    @include box-shadow(0 0 1px rgba(0, 0, 0, 0.3));
     @include transition(box-shadow 0.15s ease);
   }
 }
@@ -204,19 +204,19 @@ fieldset {
 @mixin button-color($color, $textColor) {
   color: $textColor;
   border: 1px solid darken($color, 15%);
-  @include linear-gradient($color, darken($color, 10%));
+  @include linear-gradient($color, darken($color, 3%));
 
   &:hover,
   &:focus {
     color: $textColor;
     text-decoration: none;
-    @include linear-gradient(darken($color, 5%), darken($color, 10%));
+    @include linear-gradient(darken($color, 3%), darken($color, 6%));
+    @include box-shadow(0 0 1px rgba(0, 0, 0, 0.3));
   }
 
   &.button-actived,
   &:active {
-    @include box-shadow(inset 0 1px 3px darken($color, 20%));
-    @include linear-gradient(darken($color, 10%), darken($color, 15%));
+    @include linear-gradient(darken($color, 6%), darken($color, 9%));
   }
 
   &.button-disabled {
@@ -318,7 +318,7 @@ a.button:hover {
     margin: 0;
     padding: 0;
     z-index: 1000;
-    width: 147px;
+    width: 150px;
     position: absolute;
     top: 32px;
     left: 0;
@@ -343,6 +343,7 @@ a.button:hover {
       a {
         display: block;
         padding: 6px 10px;
+        @include transition(none);
 
         &:hover {
           background-color: $linkColor;
@@ -358,8 +359,7 @@ a.button:hover {
 
   &.actived {
     .dropdown-toggle.button {
-      @include box-shadow(inset 0 1px 2px darken(#fff, 25%));
-      @include linear-gradient(darken(#fff, 10%), darken(#fff, 25%));
+      @include linear-gradient(darken(#fff, 6%), darken(#fff, 9%));
     }
 
     .dropdown-toggle:after {
