@@ -20,6 +20,11 @@ zh-CN:
       login: "登录"
       signup: "注册"
 
+  user_sessions:
+    new:
+      username_or_email: "用户名或邮箱"
+      password: "密码"
+      login: "登录"
   dashboard:
     accounts:
       show:

@@ -3,10 +3,10 @@
     .signup
       = form_tag user_sessions_path do |f|
         .field
-          = label_tag :login
+          = label_tag :login, t('.username_or_email')
           = text_field_tag :login
         .field
-          = label_tag :password
+          = label_tag :password, t('.password')
           = password_field_tag :password
         .field
-          = submit_tag 'Login'
+          = submit_tag t('.login')
