@@ -18,6 +18,7 @@ en:
       profile: "Profile"
       logout: "Logout"
       login: "Login"
+      signup: "Signup"
 
   dashboard:
     accounts:
