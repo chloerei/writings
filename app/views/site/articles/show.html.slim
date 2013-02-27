@@ -7,9 +7,9 @@
         = link_to @user.display_name, site_root_path
         = ' wrote on '
         = @article.created_at.to_date.to_s
-        - if @article.book
+        - if @article.category
           = ', in '
-          = link_to @article.book.name, site_book_path(@article.book)
+          = link_to @article.category.name, site_category_path(@article.category)
 
 #main
   .container

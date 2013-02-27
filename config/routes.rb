@@ -17,7 +17,7 @@ Publish::Application.routes.draw do
     scope :module => 'dashboard', :as => 'dashboard' do
       root :to => 'articles#index'
       get '(:status)', :to => 'articles#index', :constraints => { :status => /publish|draft|trash/ }, :as => :all_articles
-      get 'books/:book_id(/:status)', :to => 'articles#book', :constraints => { :status => /publish|draft|trash/ }, :as => :book_articles
+      get 'categories/:category_id(/:status)', :to => 'articles#category', :constraints => { :status => /publish|draft|trash/ }, :as => :category_articles
       get 'not_collected(/:status)', :to => 'articles#not_collected', :constraints => { :status => /publish|draft|trash/ }, :as => :not_collected_articles
 
       delete 'trash', :to => 'articles#empty_trash'
@@ -25,8 +25,8 @@ Publish::Application.routes.draw do
       resource :profile, :only => [:show, :update]
       resource :account, :only => [:show, :update, :destroy]
 
-      resources :books, :only => [:create, :edit, :update, :destroy], :path_names => { :edit => :settings }
-      get 'new_book', :to => 'books#new', :as => :new_book
+      resources :categories, :only => [:create, :edit, :update, :destroy], :path_names => { :edit => :settings }
+      get 'new_category', :to => 'categories#new', :as => :new_category
       resources :articles, :only => [:new, :create, :edit, :update, :destroy] do
         collection do
           post :bulk
@@ -40,7 +40,7 @@ Publish::Application.routes.draw do
       root :to => 'articles#index'
       get 'feed', :to => 'articles#feed', :as => :feed
       get 'articles/:id(-:urlname)', :to => 'articles#show', :as => :article, :constraints => { :id => /[0-9a-z]{8}/ }
-      resources :books, :only => [:index, :show] do
+      resources :categories, :only => [:index, :show] do
         member do
           get :feed
         end

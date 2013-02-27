@@ -53,11 +53,11 @@ var ArticleEdit = function() {
   this.connect('#save-button', 'click', this.saveArticle);
   this.connect('#publish-button', 'click', this.publishArticle);
   this.connect('#draft-button', 'click', this.draftArticle);
-  this.connect('#book-form', 'submit', this.saveBook);
-  this.connect('#new-book-form', 'submit', this.createBook);
+  this.connect('#category-form', 'submit', this.saveCategory);
+  this.connect('#new-category-form', 'submit', this.createCategory);
   this.connect('#pick-up-button', 'click', this.pickUpTopbar);
 
-  $('#book-form .dropdown').on('click', '.dropdown-menu li a', this.selectBook);
+  $('#category-form .dropdown').on('click', '.dropdown-menu li a', this.selectCategory);
 
   var _this = this;
 
@@ -133,46 +133,46 @@ ArticleEdit.prototype = {
     }
   },
 
-  saveBook: function(event) {
+  saveCategory: function(event) {
     event.preventDefault();
-    var bookId = $('#article-book-id').val();
-    var bookName = $('#book-form .dropdown-toggle').text();
+    var categoryId = $('#article-category-id').val();
+    var categoryName = $('#category-form .dropdown-toggle').text();
     var _this = this;
     if (this.isPersisted()) {
-      this.updateArticle($('#book-form').serializeArray(), function(data) {
-        _this.article.data('book-id', bookId);
-        $('#topbar .book-name').text(bookId ? bookName : '');
-        Dialog.hide('#select-book-modal');
+      this.updateArticle($('#category-form').serializeArray(), function(data) {
+        _this.article.data('category-id', categoryId);
+        $('#topbar .category-name').text(categoryId ? categoryName : '');
+        Dialog.hide('#select-category-modal');
       });
     } else {
-      this.article.data('book-id', bookId);
-      $('#topbar .book-name').text(bookId ? bookName : '');
-      Dialog.hide('#select-book-modal');
+      this.article.data('category-id', categoryId);
+      $('#topbar .category-name').text(categoryId ? categoryName : '');
+      Dialog.hide('#select-category-modal');
     }
   },
 
-  createBook: function(event) {
+  createCategory: function(event) {
     event.preventDefault();
     $.ajax({
-      url: '/books/',
-      data: $('#new-book-form').serializeArray(),
+      url: '/categories/',
+      data: $('#new-category-form').serializeArray(),
       type: 'post',
       dataType: 'json'
     }).success(function(data) {
       var $li = $('<li><a href="#">');
-      $li.find('a').text(data.name).data('book-id', data.urlname);
-      $('#book-form .dropdown-menu').prepend($li);
-      $('#book-form .dropdown-toggle').text(data.name);
-      $('#article-book-id').val(data.urlname);
-      Dialog.hide('#new-book-modal');
+      $li.find('a').text(data.name).data('category-id', data.urlname);
+      $('#category-form .dropdown-menu').prepend($li);
+      $('#category-form .dropdown-toggle').text(data.name);
+      $('#article-category-id').val(data.urlname);
+      Dialog.hide('#new-category-modal');
     });
   },
 
-  selectBook: function(event) {
+  selectCategory: function(event) {
     event.preventDefault();
     var $item = $(this);
     $item.closest('.dropdown').find('.dropdown-toggle').text($item.text());
-    $('#article-book-id').val($item.data('book-id'));
+    $('#article-category-id').val($item.data('category-id'));
   },
 
   saveArticle: function(event) {
@@ -205,7 +205,7 @@ ArticleEdit.prototype = {
           title: this.editor.editable.find('h1').text(),
           body: this.editor.editable.html(),
           urlname: this.article.data('urlname'),
-          book_id : this.article.data('book-id'),
+          category_id : this.article.data('category-id'),
           status: this.article.data('status')
         }
       },

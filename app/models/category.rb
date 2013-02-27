@@ -1,4 +1,4 @@
-class Book
+class Category
   include Mongoid::Document
   include ActiveModel::ForbiddenAttributesProtection
 

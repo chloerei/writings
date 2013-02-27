@@ -18,12 +18,12 @@
           i.icon-trash.trash-icon
           = ' '
           = t '.trash'
-      - if @book
-        a.button href=(edit_dashboard_book_path(@book))
+      - if @category
+        a.button href=(edit_dashboard_category_path(@category))
           i.icon-wrench
 
     .pull-right
-      a.button.button-primary.no-margin href=(new_dashboard_article_path(:book_id => @book)) target='_blank'
+      a.button.button-primary.no-margin href=(new_dashboard_article_path(:category_id => @category)) target='_blank'
         i.icon-pencil
         = ' '
         = t '.new_article'

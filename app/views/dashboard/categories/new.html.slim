@@ -1,4 +1,4 @@
-- append_title t('.new_book')
+- append_title t('.new_category')
 
 #main
   .container
@@ -8,8 +8,8 @@
         .tabs
           .tabs-inner
             .label
-              =  t '.new_book'
-        section.tabs-margin= form_for @book, :url => dashboard_books_path, :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
+              =  t '.new_category'
+        section.tabs-margin= form_for @category, :url => dashboard_categories_path, :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
           .field
             = f.label :name
             = f.text_field :name

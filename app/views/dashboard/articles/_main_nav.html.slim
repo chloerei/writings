@@ -18,11 +18,11 @@
           .pull-right
             i.icon-chevron-right
       li
-        a.clearfix href=(dashboard_new_book_path) class=(action_name == 'new' ? 'actived' : nil)
+        a.clearfix href=(dashboard_new_category_path) class=(action_name == 'new' ? 'actived' : nil)
           .pull-left
             i.icon-plus-sign
             = ' '
-            = t '.new_book'
+            = t '.new_category'
           .pull-right
             i.icon-chevron-right
       li
@@ -30,12 +30,12 @@
   .scroll-nav
     nav
       ul
-        - current_user.books(true).each do |book|
+        - current_user.categories(true).each do |category|
           li
-            a.clearfix href=(dashboard_book_articles_path(:book_id => book)) class=(@book == book ? 'actived' : nil)
+            a.clearfix href=(dashboard_category_articles_path(:category_id => category)) class=(@category == category ? 'actived' : nil)
               .pull-left
                 i.icon-bookmark
                 = ' '
-                = book.name
+                = category.name
               .pull-right
                 i.icon-chevron-right

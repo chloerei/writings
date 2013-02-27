@@ -1,7 +1,7 @@
-#new-book-modal.modal-dialog
+#new-category-modal.modal-dialog
   span.modal-close data-close='modal'
     i.icon-remove
-  = form_for current_user.books.new, :url => dashboard_books_path, :validate => true, :html => { :id => 'new-book-form' } do |f|
+  = form_for current_user.categories.new, :url => dashboard_categories_path, :validate => true, :html => { :id => 'new-category-form' } do |f|
     .field
       = f.label :name
       = f.text_field :name

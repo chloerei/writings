@@ -5,7 +5,7 @@
       #main-content
         = render 'tabs'
         = render 'bulkbar'
-        #articles.tabs-margin data-skip=(@articles.options[:skip].to_i + @articles.to_a.count) data-url=(url_for(params.slice(:book_id, :status))) data-book-id=(@book.try(:urlname)) data-status=(params[:status]) data-not-collected=(action_name == 'not_collected') data-is-end=(articles_is_end?(@articles))
+        #articles.tabs-margin data-skip=(@articles.options[:skip].to_i + @articles.to_a.count) data-url=(url_for(params.slice(:category_id, :status))) data-category-id=(@category.try(:urlname)) data-status=(params[:status]) data-not-collected=(action_name == 'not_collected') data-is-end=(articles_is_end?(@articles))
           table
             tbody
               = render :partial => 'article', :collection => @articles
@@ -20,8 +20,8 @@
             = ' '
             = t '.is_end'
 
-= render 'move_book_modal'
-= render 'new_book_modal'
+= render 'move_category_modal'
+= render 'new_category_modal'
 - if params[:status] == 'trash'
   = render 'delete_modal'
   = render 'empty_trash_modal'

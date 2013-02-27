@@ -1,20 +1,20 @@
-- append_title @book.name
+- append_title @category.name
 
 #main
   .container
     .inner
-      #book
+      #category
         .name
           h1
-            a href=(site_book_path(@book))
-              = @book.name
+            a href=(site_category_path(@category))
+              = @category.name
         .info
           = 'by '
           = link_to @user.display_name, site_root_path
           = ', '
-          = "#{@book.articles.count} Articles."
+          = "#{@category.articles.count} Articles."
         .description
-          = simple_format @book.description
+          = simple_format @category.description
       #articles
         = render :partial => 'site/articles/article', :collection => @articles
       = paginate @articles, :theme => 'site'

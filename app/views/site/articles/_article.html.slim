@@ -3,7 +3,7 @@ article
   .info
     = ' wrote on '
     = article.created_at.to_date.to_s
-    - if article.book
+    - if article.category
       = ', in '
-      = link_to article.book.name, site_book_path(article.book)
+      = link_to article.category.name, site_category_path(article.category)
   .summary = link_to article_summary_body(article.body), site_article_path(article, :urlname => article.urlname)

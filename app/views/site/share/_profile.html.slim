@@ -9,9 +9,9 @@
   nav
     ul
       li
-        = link_to site_books_path, :class => (controller_name == 'books' ? 'actived' : nil) do
+        = link_to site_categories_path, :class => (controller_name == 'categories' ? 'actived' : nil) do
           i.icon-book
-          = ' Books'
+          = ' Categories'
       li
         = link_to site_feed_path(:format => :rss) do
           i.icon-rss

@@ -48,17 +48,17 @@ zh-CN:
         url: "URL 地址"
         create_link: "创建链接"
         unlink: "去掉链接"
-      move_book_modal:
-        select_book: "选择本子"
-        new_book: "新建本子"
-      select_book_modal:
-        select_book: "选择本子"
-        new_book: "新建本子"
+      move_category_modal:
+        select_category: "选择分类"
+        new_category: "新建分类"
+      select_category_modal:
+        select_category: "选择分类"
+        new_category: "新建分类"
 
       main_nav:
         all_articles: "所有文章"
         not_collected: "未归类"
-        new_book: "新建本子"
+        new_category: "新建分类"
       tabs:
         index: "索引"
         publish: "已发布"
@@ -107,13 +107,13 @@ zh-CN:
         code_tip: "代码 Ctrl+k"
         blockquote_tip: "引用 Ctrl+q"
 
-    books:
+    categories:
       new:
-        new_book: "新建本子"
+        new_category: "新建分类"
       edit:
         page_title: "设置 %{name}"
-        delete_book: "删除本子"
-        delete_book_confirm: "删除本子 %{name}？本子的文章会被标记为未归类。"
+        delete_category: "删除分类"
+        delete_category_confirm: "删除分类 %{name}？分类的文章会被标记为未归类。"
       tabs:
         index: "索引"
         publish: "已发布"
@@ -135,7 +135,7 @@ zh-CN:
       profile:
         name: "名称"
         description: "描述"
-      book:
+      category:
         name: "名字"
         urlname: "URL 标识"
         description: "描述"

@@ -12,7 +12,7 @@ html
         header#site-header.clearfix
           ul.top-nav.pull-left
             li
-              a href=(dashboard_root_path) class=(%w(articles books).include?(controller_name) ? 'actived' : nil)
+              a href=(dashboard_root_path) class=(%w(articles categories).include?(controller_name) ? 'actived' : nil)
                 i.icon-home
                 = ' '
                 = t '.home'

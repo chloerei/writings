@@ -1,0 +1,11 @@
+#main-nav
+  nav
+    ul
+      li
+        = link_to 'Index', dashboard_category_articles_path(:category_id => @category.urlname, :status => nil)
+      li
+        = link_to 'Publish', dashboard_category_articles_path(:category_id => @category.urlname, :status => 'publish')
+      li
+        = link_to 'Draft', dashboard_category_articles_path(:category_id => @category.urlname, :status => 'draft')
+      li
+        = link_to 'Trash', dashboard_category_articles_path(:category_id => @category.urlname, :status => 'trash')

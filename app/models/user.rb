@@ -17,7 +17,7 @@ class User
 
   embeds_one :profile
 
-  has_many :books, :dependent => :delete
+  has_many :categories, :dependent => :delete
   has_many :articles, :dependent => :delete
 
   has_secure_password

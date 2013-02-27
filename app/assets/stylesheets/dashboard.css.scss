@@ -181,7 +181,7 @@ body {
       }
     }
 
-    #book-selector.dropdown {
+    #category-selector.dropdown {
       .dropdown-toggle {
         width: 100px;
       }
@@ -302,14 +302,14 @@ body {
           }
         }
 
-        &.book,
+        &.category,
         &.date {
           width: 1%;
           white-space: nowrap;
           text-align: right;
         }
 
-        .book_name {
+        .category_name {
           font-size: 0.9em;
           color: #fff;
           padding: 3px 5px;

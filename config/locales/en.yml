@@ -48,17 +48,17 @@ en:
         url: "URL"
         create_link: "Create link"
         unlink: "Unlink"
-      move_book_modal:
-        select_book: "Select book"
-        new_book: "New book"
-      select_book_modal:
-        select_book: "Select book"
-        new_book: "New book"
+      move_category_modal:
+        select_category: "Select category"
+        new_category: "New category"
+      select_category_modal:
+        select_category: "Select category"
+        new_category: "New category"
 
       main_nav:
         all_articles: "All articles"
         not_collected: "Not collected"
-        new_book: "New book"
+        new_category: "New category"
       tabs:
         index: "Index"
         publish: "Publish"
@@ -107,13 +107,13 @@ en:
         code_tip: "Code Ctrl+k"
         blockquote_tip: "Blockquote Ctrl+q"
 
-    books:
+    categories:
       new:
-        new_book: "New book"
+        new_category: "New category"
       edit:
         page_title: "Setting %{name}"
-        delete_book: "Delete book"
-        delete_book_confirm: "Delete book %{name}? All articles in this book will mark not collected."
+        delete_category: "Delete category"
+        delete_category_confirm: "Delete category %{name}? All articles in this category will mark not collected."
       tabs:
         index: "Index"
         publish: "Publish"
@@ -135,7 +135,7 @@ en:
       profile:
         name: "Name"
         description: "Description"
-      book:
+      category:
         name: "Name"
         urlname: "URL"
         description: "Description"

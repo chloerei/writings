@@ -4,7 +4,7 @@ var ArticleIndex = function() {
   this.fetching = false;
   this.$articles = $('#articles');
   this.$bulkbar = $('#bulkbar');
-  this.$newBookForm = $('#new-book-form');
+  this.$newCategoryForm = $('#new-category-form');
 
   this.connect(window, 'scroll.ArticleIndex', this.onScroll);
   this.$articles.on('click', '.article .title a', function(event) {
@@ -14,7 +14,7 @@ var ArticleIndex = function() {
     _this.bulkSelect(event, this);
   });
 
-  this.connect(this.$newBookForm, 'submit', this.createBook);
+  this.connect(this.$newCategoryForm, 'submit', this.createCategory);
   this.connect(this.$bulkbar.find('.cancel-button'), 'click', this.bulkCancel);
   this.connect(this.$bulkbar.find('.view-button'), 'click', this.view);
   this.connect(this.$bulkbar.find('.edit-button'), 'click', this.edit);
@@ -24,10 +24,10 @@ var ArticleIndex = function() {
   this.connect(('#delete-modal .confirm-delete-button'), 'click', this.bulkDelete);
   this.connect(('#empty-trash-modal .confirm-empty-trash-button'), 'click', this.emptyTrash);
 
-  this.$moveBookForm = $('#move-book-form');
-  this.connect(this.$moveBookForm, 'submit', this.bulkMove);
-  this.$moveBookForm.find('.dropdown').on('click', '.dropdown-menu li a', function(event) {
-    _this.selectMoveBook(event, this);
+  this.$moveCategoryForm = $('#move-category-form');
+  this.connect(this.$moveCategoryForm, 'submit', this.bulkMove);
+  this.$moveCategoryForm.find('.dropdown').on('click', '.dropdown-menu li a', function(event) {
+    _this.selectMoveCategory(event, this);
   });
 };
 
@@ -75,30 +75,30 @@ ArticleIndex.prototype = {
     window.open($(element).attr('href'), '_blank');
   },
 
-  createBook: function(event) {
+  createCategory: function(event) {
     event.preventDefault();
     var _this = this;
 
     $.ajax({
-      url: '/books',
-      data: this.$newBookForm.serializeArray(),
+      url: '/categories',
+      data: this.$newCategoryForm.serializeArray(),
       type: 'post',
       dataType: 'json'
     }).success(function(data) {
       var $li = $('<li><a href="#">');
-      $li.find('a').text(data.name).data('book-id', data.urlname);
-      _this.$moveBookForm.find('.dropdown-menu').prepend($li);
-      _this.$moveBookForm.find('.dropdown-toggle').text(data.name);
-      _this.$moveBookForm.find('[name*=book_id]').val(data.urlname);
-      Dialog.hide('#new-book-modal');
+      $li.find('a').text(data.name).data('category-id', data.urlname);
+      _this.$moveCategoryForm.find('.dropdown-menu').prepend($li);
+      _this.$moveCategoryForm.find('.dropdown-toggle').text(data.name);
+      _this.$moveCategoryForm.find('[name*=category_id]').val(data.urlname);
+      Dialog.hide('#new-category-modal');
     });
   },
 
-  selectMoveBook: function(event, element) {
+  selectMoveCategory: function(event, element) {
     event.preventDefault();
     var $item = $(element);
     $item.closest('.dropdown').find('.dropdown-toggle').text($item.text());
-    this.$moveBookForm.find('[name*=book_id]').val($item.data('book-id'));
+    this.$moveCategoryForm.find('[name*=category_id]').val($item.data('category-id'));
   },
 
   updateBulkbar: function() {
@@ -326,8 +326,8 @@ ArticleIndex.prototype = {
     var _this = this;
     var data;
 
-    if (this.$articles.data('book-id')) {
-      data = { book_id: this.$articles.data('book-id') };
+    if (this.$articles.data('category-id')) {
+      data = { category_id: this.$articles.data('category-id') };
     } else if (this.$articles.data('not-collected')) {
       data = { not_collected: true };
     } else {
@@ -357,7 +357,7 @@ ArticleIndex.prototype = {
       data: {
         type: 'move',
         ids: this.selectedArticleIds().get(),
-        book_id: this.$moveBookForm.find('[name*=book_id]').val()
+        category_id: this.$moveCategoryForm.find('[name*=category_id]').val()
       },
       dataType: 'json',
       type: 'post'
@@ -368,10 +368,10 @@ ArticleIndex.prototype = {
         if (moveOut) {
           $article.remove();
         } else {
-          if (this.book_name) {
-            $article.find('.book').html($('<span class="book_name">').text(this.book_name));
+          if (this.category_name) {
+            $article.find('.category').html($('<span class="category_name">').text(this.category_name));
           } else {
-            $article.find('.book').html('');
+            $article.find('.category').html('');
           }
         }
       });
@@ -383,7 +383,7 @@ ArticleIndex.prototype = {
         _this.emptyMessage();
       }
 
-      Dialog.hide('#move-book-modal');
+      Dialog.hide('#move-category-modal');
     });
   }
 };
@@ -391,7 +391,7 @@ ArticleIndex.prototype = {
 var count = 0;
 
 page_ready(function() {
-  if ($('#articles-index, #articles-book, #articles-not_collected').length) {
+  if ($('#articles-index, #articles-category, #articles-not_collected').length) {
     window.articleIndex = new ArticleIndex();
 
     $(document).one('page:change', function() {

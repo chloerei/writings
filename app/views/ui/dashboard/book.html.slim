@@ -7,7 +7,7 @@
           span.divider
             | /
         li
-          | Book Name
+          | Category Name
         li.pull-right
           = link_to 'Quit', '#'
 #mainarea
@@ -36,7 +36,7 @@
               = " New Article"
         table.articles
           tbody
-            - @book.articles.each do |article|
+            - @category.articles.each do |article|
               tr
                 td.article-title
                   = link_to 'Article title example', editor_ui_path

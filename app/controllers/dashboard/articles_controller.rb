@@ -3,7 +3,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def index
     if logined?
-      @articles = current_user.articles.desc(:created_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:book)
+      @articles = current_user.articles.desc(:created_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
 
       append_title I18n.t('all_articles')
       append_title I18n.t(params[:status]) if params[:status].present?
@@ -17,11 +17,11 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     end
   end
 
-  def book
-    @book = current_user.books.find_by :urlname => params[:book_id]
-    @articles = current_user.articles.where(:book_id => @book).desc(:created_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:book)
+  def category
+    @category = current_user.categories.find_by :urlname => params[:category_id]
+    @articles = current_user.articles.where(:category_id => @category).desc(:created_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
 
-    append_title @book.name
+    append_title @category.name
     append_title I18n.t(params[:status]) if params[:status].present?
 
     respond_to do |format|
@@ -31,7 +31,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def not_collected
-    @articles = current_user.articles.where(:book_id => nil).desc(:created_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:book)
+    @articles = current_user.articles.where(:category_id => nil).desc(:created_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
 
     append_title t('not_collected')
     append_title I18n.t(params[:status]) if params[:status].present?
@@ -44,8 +44,8 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def new
     @article = Article.new
-    if params[:book_id]
-      @article.book = current_user.books.where(:urlname => params[:book_id]).first
+    if params[:category_id]
+      @article.category = current_user.categories.where(:urlname => params[:category_id]).first
     end
     render :edit, :layout => false
   end
@@ -86,8 +86,8 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
     case params[:type]
     when 'move'
-      book = current_user.books.where(:urlname => params[:book_id]).first
-      @articles.update_all :book_id => book.try(:id)
+      category = current_user.categories.where(:urlname => params[:category_id]).first
+      @articles.update_all :category_id => category.try(:id)
     when 'publish'
       @articles.update_all :status => 'publish'
     when 'draft'
@@ -99,15 +99,15 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     end
 
     respond_to do |format|
-      format.json { render :json => @articles.includes(:book).as_json(:only => [:title, :urlname, :status, :token], :methods => [:book_name, :book_urlname]) }
+      format.json { render :json => @articles.includes(:category).as_json(:only => [:title, :urlname, :status, :token], :methods => [:category_name, :category_urlname]) }
     end
   end
 
   def empty_trash
-    if params[:book_id]
-      current_user.articles.where(:book_id => current_user.books.find_by(:urlname => params[:book_id])).trash.delete_all
+    if params[:category_id]
+      current_user.articles.where(:category_id => current_user.categories.find_by(:urlname => params[:category_id])).trash.delete_all
     elsif params[:not_collected]
-      current_user.articles.where(:book_id => nil).trash.delete_all
+      current_user.articles.where(:category_id => nil).trash.delete_all
     else
       current_user.articles.trash.delete_all
     end
@@ -122,8 +122,8 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   def article_params
     base_params = params.require(:article).permit(:title, :body, :urlname, :status)
 
-    if params[:article][:book_id]
-      base_params.merge!(:book => current_user.books.where(:urlname => params[:article][:book_id]).first)
+    if params[:article][:category_id]
+      base_params.merge!(:category => current_user.categories.where(:urlname => params[:article][:category_id]).first)
     end
 
     base_params

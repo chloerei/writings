@@ -3,8 +3,8 @@ require 'test_helper'
 class Dashboard::ArticlesControllerTest < ActionController::TestCase
   def setup
     @user = create(:user)
-    @book = create(:book, :user => @user)
-    @article = create(:article, :user => @user, :book => @book)
+    @category = create(:category, :user => @user)
+    @article = create(:article, :user => @user, :category => @category)
     login_as @user
   end
 
@@ -24,11 +24,11 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
     assert_response :success, @response.body
   end
 
-  test "should get book articles" do
-    get :book, :book_id => @book
+  test "should get category articles" do
+    get :category, :category_id => @category
     assert_response :success, @response.body
 
-    get :book, :book_id => @book, :format => :js
+    get :category, :category_id => @category, :format => :js
     assert_response :success, @response.body
   end
 
@@ -46,8 +46,8 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
       assert_response :success, @response.body
     end
 
-    assert_difference ["@user.articles.count", "@book.articles.count"] do
-      post :create, :format => :json, :article => attributes_for(:article).merge(:book_id => @book.urlname)
+    assert_difference ["@user.articles.count", "@category.articles.count"] do
+      post :create, :format => :json, :article => attributes_for(:article).merge(:category_id => @category.urlname)
       assert_response :success, @response.body
     end
 
@@ -76,24 +76,24 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
     article1 = create :article, :user => @user
     article2 = create :article, :user => @user
     create :article, :user => @user
-    assert_difference "@book.articles.count", 2 do
-      post :bulk, :ids => [article1.token, article2.token], :type => 'move', :book_id => @book.urlname, :format => :json
+    assert_difference "@category.articles.count", 2 do
+      post :bulk, :ids => [article1.token, article2.token], :type => 'move', :category_id => @category.urlname, :format => :json
     end
 
-    assert_difference "@book.articles.publish.count", 2 do
-      post :bulk, :ids => [article1.token, article2.token], :type => 'publish', :book_id => @book.urlname, :format => :json
+    assert_difference "@category.articles.publish.count", 2 do
+      post :bulk, :ids => [article1.token, article2.token], :type => 'publish', :category_id => @category.urlname, :format => :json
     end
 
-    assert_difference "@book.articles.publish.count", -2 do
-      post :bulk, :ids => [article1.token, article2.token], :type => 'draft', :book_id => @book.urlname, :format => :json
+    assert_difference "@category.articles.publish.count", -2 do
+      post :bulk, :ids => [article1.token, article2.token], :type => 'draft', :category_id => @category.urlname, :format => :json
     end
 
-    assert_difference "@book.articles.trash.count", 2 do
-      post :bulk, :ids => [article1.token, article2.token], :type => 'trash', :book_id => @book.urlname, :format => :json
+    assert_difference "@category.articles.trash.count", 2 do
+      post :bulk, :ids => [article1.token, article2.token], :type => 'trash', :category_id => @category.urlname, :format => :json
     end
 
-    assert_difference "@book.articles.count", -2 do
-      post :bulk, :ids => [article1.token, article2.token], :type => 'delete', :book_id => @book.urlname, :format => :json
+    assert_difference "@category.articles.count", -2 do
+      post :bulk, :ids => [article1.token, article2.token], :type => 'delete', :category_id => @category.urlname, :format => :json
     end
   end
 
@@ -103,10 +103,10 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
       delete :empty_trash, :format => :json
     end
 
-    2.times { create :article, :user => @user, :status => 'trash', :book => @book }
+    2.times { create :article, :user => @user, :status => 'trash', :category => @category }
     create :article, :user => @user, :status => 'trash'
     assert_difference "@user.articles.count", -2 do
-      delete :empty_trash, :format => :json, :book_id => @book.urlname
+      delete :empty_trash, :format => :json, :category_id => @category.urlname
     end
 
     assert_difference "@user.articles.count", -1 do

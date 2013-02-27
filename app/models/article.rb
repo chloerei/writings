@@ -12,7 +12,7 @@ class Article
   index({ :user_id => 1, :token => 1 },  { :unique => true })
 
   belongs_to :user
-  belongs_to :book
+  belongs_to :category
 
   scope :publish, -> { where(:status => 'publish') }
   scope :draft, -> { where(:status => 'draft') }
@@ -31,7 +31,7 @@ class Article
     end
   }
 
-  delegate :name, :urlname, :to => :book, :prefix => true, :allow_nil => true
+  delegate :name, :urlname, :to => :category, :prefix => true, :allow_nil => true
 
   def urlname
     read_attribute(:urlname).present? ? read_attribute(:urlname) : nil

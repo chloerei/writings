@@ -12,10 +12,10 @@ html
           .pull-left
             ul.top-nav
               li
-                = link_to '#select-book-modal', :data => { :toggle => :modal }, :title => t('.collect') do
+                = link_to '#select-category-modal', :data => { :toggle => :modal }, :title => t('.collect') do
                   i.icon-bookmark
                   = ' '
-                  span.book-name= @article.book.try(:name)
+                  span.category-name= @article.category.try(:name)
               li
                 = link_to '#urlname-modal', :data => { :toggle => :modal }, :title => t('.urlname') do
                   i.icon-link
@@ -82,12 +82,12 @@ html
             a#pick-up-button.toolbar-button.icon-double-angle-up href="#"
     #editarea
       .editor-container
-        article contentEditable="true" data-id=(@article.token) data-book-id=(@article.book.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status)
+        article contentEditable="true" data-id=(@article.token) data-category-id=(@article.category.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status)
           = sanitize @article.body
         = render 'layouts/alert_messages'
 
     = render 'urlname_modal'
     = render 'link_modal'
     = render 'image_modal'
-    = render 'select_book_modal'
-    = render 'new_book_modal'
+    = render 'select_category_modal'
+    = render 'new_category_modal'
