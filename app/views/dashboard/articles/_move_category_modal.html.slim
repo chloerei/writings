@@ -11,7 +11,7 @@
             li
               a href="#" data-category-id=(category.urlname) = category.name
           li
-            a href="#" data-category-id=('null') Not Collected
+            a href="#" data-category-id=('null') = t('not_collected')
       = link_to t('.new_category'), '#new-category-modal', :data => { :toggle => :modal }
       = f.hidden_field :category_id
     .field
