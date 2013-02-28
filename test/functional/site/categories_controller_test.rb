@@ -8,11 +8,6 @@ class Site::CategoriesControllerTest < ActionController::TestCase
     @request.host = "#{@user.name}.#{APP_CONFIG["host"]}"
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success, @response.body
-  end
-
   test "should get show" do
     get :show, :id => @category.urlname
     assert_response :success, @response.body

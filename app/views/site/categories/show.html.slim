@@ -1,5 +1,8 @@
 - append_title @category.name
 
+- content_for :head do
+  link href=(feed_site_category_path(@category, :format => :rss)) rel='alternate' type='application/rss+xml'
+
 #main
   .container
     .inner
@@ -18,3 +21,13 @@
       #articles
         = render :partial => 'site/articles/article', :collection => @articles
       = paginate @articles, :theme => 'site'
+
+#footer
+  .container
+    .inner
+      .column
+        .title
+          = "Subscribe #{@category.name}"
+        a.button.button-rss href=(feed_site_category_path(@category, :format => :rss))
+          = 'RSS feed '
+          i.icon-rss
