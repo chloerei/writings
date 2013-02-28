@@ -9,6 +9,6 @@ module ArticlesHelper
 
   def article_summary_body(text)
     doc = Nokogiri::HTML(text)
-    truncate doc.css('p').first.try(:text).to_s, :length => 140
+    simple_format truncate(doc.css('p').map(&:text).join("\n\n").to_s, :length => 140)
   end
 end
