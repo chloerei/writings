@@ -20,7 +20,7 @@
     .inner
       .column
         .title Subscribe
-        a.button.button-rss href=(site_feed_path)
+        a.button.button-rss href=(site_feed_path(:format => :rss))
           = 'RSS feed '
           i.icon-rss
       - if @user.categories.any?

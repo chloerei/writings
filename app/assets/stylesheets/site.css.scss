@@ -25,7 +25,8 @@
   @include clearfix();
 
   &.bottom {
-    margin: 20px 0;
+    margin: 40px 0;
+    padding: 20px 0;
     border-bottom: 1px solid #ccc;
     border-top: 1px solid #ccc;
   }
