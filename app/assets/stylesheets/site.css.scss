@@ -6,7 +6,7 @@
 }
 
 .inner {
-  padding: 0 70px;
+  margin: 0 70px;
 }
 
 #header {
@@ -25,8 +25,9 @@
   @include clearfix();
 
   &.bottom {
-    margin: 40px 0;
-    border-top: 2px solid #ccc;
+    margin: 20px 0;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
   }
 
   .avatar {
@@ -77,6 +78,8 @@
 }
 
 #articles {
+  min-height: 400px;
+
   article {
     margin: 40px 0;
     padding-bottom: 40px;
@@ -144,5 +147,34 @@
 
   .prev {
     float: left;
+  }
+}
+
+#footer {
+  .inner {
+    margin-top: 40px;
+    padding: 40px 0;
+    border-top: 2px solid #ccc;
+    @include clearfix();
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .title {
+      margin: 0 0 20px;
+      font-weight: bold;
+    }
+
+    .column {
+      width: 45%;
+      margin-right: 5%;
+      float: left;
+
+    }
+
+    .button-rss {
+      @include button-color(#EF8B22, #fff);
+    }
   }
 }

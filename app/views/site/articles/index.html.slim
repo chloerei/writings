@@ -14,3 +14,19 @@
       #articles
         = render :partial => 'article', :collection => @articles
       = paginate @articles, :theme => 'site'
+
+#footer
+  .container
+    .inner
+      .column
+        .title Subscribe
+        a.button.button-rss href=(site_feed_path)
+          = 'RSS feed '
+          i.icon-rss
+      - if @user.categories.any?
+        nav.column
+          .title Categories
+          ul
+            - @user.categories.each do |category|
+              li
+                a href=(site_category_path(category)) = category.name
