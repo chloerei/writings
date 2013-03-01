@@ -29,12 +29,14 @@ en:
   dashboard:
     accounts:
       show:
+        account_setting: "Account setting"
         login_id: "Login ID"
         custom: "Custom"
         change_password: "Change password"
         confirm_change: "Confirm change"
     profiles:
       show:
+        profile_setting: "Profile setting"
         publish_profile: "Published profile"
     share:
       settings_main_nav:

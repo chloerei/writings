@@ -22,11 +22,13 @@
 // signup, login
 .signup,
 .login {
-  margin: 150px auto;
-  width: 350px;
+  margin: 100px auto;
+  width: 90%;
+  max-width: 350px;
   padding: 40px;
   background-color: #fff;
   @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+  @include box-sizing(border-box);
 
   .field {
     width: 100%;
@@ -169,13 +171,14 @@ body {
         padding: 10px 20px;
 
         .label {
-          padding: 7px 7px 7px 0;
+          padding: 7px 0;
           display: inline-block;
-          color: #999;
+          color: #555;
           font-weight: bold;
         }
 
         a.cancel-button {
+          padding: 7px 0 7px 7px;
           color: #999;
 
           &:hover {
@@ -314,6 +317,11 @@ body {
       margin-left: 199px;
       width: 960px - 200px - 1px;
 
+      #{$all-text-inputs},
+      textarea {
+        width: 50%;
+      }
+
       @media (max-width: 960px) {
         width: 760 / 960 * 100%;
         margin-left: 200 / 960 * 100%;
@@ -322,6 +330,14 @@ body {
       @media (max-width: 640px) {
         width: 100%;
         margin-left: 0;
+      }
+
+      @media (max-width: 480px) {
+        #{$all-text-inputs},
+        textarea {
+          width: 100%;
+        }
+
       }
     }
   }
@@ -404,8 +420,7 @@ body {
   #empty-message {
     text-align: center;
     margin: 20px;
-    padding: 20px;
-    font-size: 1.5em;
+    padding: 10px;
     border: 2px dashed #ccc;
     color: #999;
   }
@@ -413,15 +428,13 @@ body {
   #end-message {
     text-align: center;
     margin: 20px;
-    padding: 20px;
-    font-size: 1.5em;
+    padding: 10px;
     color: #999;
   }
 
   #articles-spinner {
     text-align: center;
-    padding: 20px;
-    font-size: 1.5em;
+    padding: 10px;
     color: #999;
   }
 }

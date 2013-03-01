@@ -151,6 +151,7 @@ textarea {
   outline: 0;
   border-radius: 3px;
   width: 300px;
+  max-width: 100%;
   @include box-sizing(border-box);
 
   &:focus {
@@ -204,8 +205,8 @@ select {
 fieldset {
   border: 0;
   border-bottom: 1px solid #ccc;
-  padding-bottom: 34px;
-  margin-bottom: 34px;
+  padding: 0 0 34px;
+  margin: 0 0 34px;
   @include clearfix();
 
   &:last-child {
@@ -213,7 +214,8 @@ fieldset {
   }
 
   legend {
-    font-size: 1.2em;
+    font-weight: bold;
+    color: #555;
     margin-bottom: 20px;
   }
 }

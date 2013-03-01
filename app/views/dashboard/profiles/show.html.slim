@@ -1,11 +1,18 @@
-- append_title 'Profile'
+- append_title t('.profile_setting')
 
 #main
   .container
     .inner.inner-full-height
       = render 'dashboard/share/settings_main_nav'
       #main-content
-        section
+        #tabs.tabs
+          .tabs-inner.clearfix
+            .pull-left
+              span
+                a.button.hide.show-on-mobile#show-nav-button href='#'
+                  i.icon-double-angle-left.index-icon
+              .label = t '.profile_setting'
+        section.tabs-margin
           = form_for current_user.profile, :url => dashboard_profile_path, :html => { :data => { :remote => true, :type => :json } } do |f|
             fieldset
               legend = t '.publish_profile'

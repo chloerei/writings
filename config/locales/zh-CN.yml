@@ -29,12 +29,14 @@ zh-CN:
   dashboard:
     accounts:
       show:
+        account_setting: "账户设置"
         login_id: "登录 ID"
         custom: "个性化"
         change_password: "更换密码"
         confirm_change: "确认修改"
     profiles:
       show:
+        profile_setting: "个人资料设置"
         publish_profile: "公开的个人资料"
     share:
       settings_main_nav:

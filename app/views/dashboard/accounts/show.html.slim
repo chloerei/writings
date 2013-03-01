@@ -1,11 +1,18 @@
-- append_title 'Account'
+- append_title 'account_setting'
 
 #main
   .container
     .inner.inner-full-height
       = render 'dashboard/share/settings_main_nav'
       #main-content
-        section
+        #tabs.tabs
+          .tabs-inner.clearfix
+            .pull-left
+              span
+                a.button.hide.show-on-mobile#show-nav-button href='#'
+                  i.icon-double-angle-left.index-icon
+              .label = t '.account_setting'
+        section.tabs-margin
           = form_for current_user, :url => dashboard_account_path, :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
             fieldset
               legend = t '.login_id'
