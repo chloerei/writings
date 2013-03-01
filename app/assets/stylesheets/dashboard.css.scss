@@ -159,7 +159,7 @@ body {
         width: 760 / 960 * 100%;
       }
 
-      @media (max-width: 480px) {
+      @media (max-width: 640px) {
         width: 100%;
       }
 
@@ -230,7 +230,7 @@ body {
         width: 200 / 960 * 100%;
       }
 
-      @media (max-width: 480px) {
+      @media (max-width: 640px) {
         width: 200px;
         z-index: 10;
         left: -209px;
@@ -256,17 +256,15 @@ body {
         top: 0;
         padding-top: 164px;
         height: 100%;
-        width: 200px - 1px;
+        width: 200px - 2px;
         z-index: -1;
-        border-right: 1px solid #ccc;
-        @include box-sizing(border-box);
 
         @media (max-width: 960px) {
           width: 200 / 960 * 100%;
         }
 
-        @media (max-width: 480px) {
-          width: 200px;
+        @media (max-width: 640px) {
+          width: 199px;
         }
 
         nav {
@@ -321,7 +319,7 @@ body {
         margin-left: 200 / 960 * 100%;
       }
 
-      @media (max-width: 480px) {
+      @media (max-width: 640px) {
         width: 100%;
         margin-left: 0;
       }
