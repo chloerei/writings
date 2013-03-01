@@ -15,11 +15,9 @@ html
               li
                 = link_to '#select-category-modal', :data => { :toggle => :modal }, :title => t('.collect') do
                   i.icon-bookmark
-                  = ' '
               li
                 = link_to '#urlname-modal', :data => { :toggle => :modal }, :title => t('.urlname') do
                   i.icon-link
-                  = ' '
               li class=(@article.persisted? && @article.publish? ? nil : 'hide')
                 a#view-button target='_blank' href=(@article.persisted? ? site_article_url(@article, :urlname => @article.urlname, :host => current_user.host) : site_root_url(:host => current_user.host))
                   i.icon-external-link
