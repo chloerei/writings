@@ -6,6 +6,16 @@ var ArticleIndex = function() {
   this.$bulkbar = $('#bulkbar');
   this.$newCategoryForm = $('#new-category-form');
 
+  $('#show-nav-button').on('click', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    $('#main-nav').addClass('appear');
+  });
+
+  $('#main-nav-background').on('click', function(event) {
+    $('#main-nav').removeClass('appear');
+  });
+
   this.connect(window, 'scroll.ArticleIndex', this.onScroll);
   this.$articles.on('click', '.article .title a', function(event) {
     _this.editArticle(event, this);

@@ -121,6 +121,27 @@ nav ul {
   display: none !important;
 }
 
+
+@media (max-width: 480px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  .show-on-mobile {
+    display: inherit !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hide-on-tablet {
+    display: none !important;
+  }
+
+  .show-on-tablet {
+    display: inherit !important;
+  }
+}
+
 // form
 
 #{$all-text-inputs},

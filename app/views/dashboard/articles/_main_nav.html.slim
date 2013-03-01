@@ -3,28 +3,22 @@
     ul
       li
         a.clearfix href=(dashboard_root_path) class=(action_name == 'index' ? 'actived' : nil)
-          .pull-left
+          .label
             i.icon-folder-open-alt
             = ' '
             = t '.all_articles'
-          .pull-right
-            i.icon-chevron-right
       li
         a.clearfix href=(dashboard_not_collected_articles_path) class=(action_name == 'not_collected' ? 'actived' : nil)
-          .pull-left
+          .label
             i.icon-bookmark-empty
             = ' '
             = t '.not_collected'
-          .pull-right
-            i.icon-chevron-right
       li
         a.clearfix href=(dashboard_new_category_path) class=(action_name == 'new' ? 'actived' : nil)
-          .pull-left
+          .label
             i.icon-plus-sign
             = ' '
             = t '.new_category'
-          .pull-right
-            i.icon-chevron-right
       li
         hr
   .scroll-nav
@@ -33,9 +27,8 @@
         - current_user.categories(true).each do |category|
           li
             a.clearfix href=(dashboard_category_articles_path(:category_id => category)) class=(@category == category ? 'actived' : nil)
-              .pull-left
+              .label
                 i.icon-bookmark
                 = ' '
                 = category.name
-              .pull-right
-                i.icon-chevron-right
+  #main-nav-background

@@ -4,41 +4,50 @@
       - if params[:status] != 'trash'
         a.button.view-button href='#'
           i.icon-external-link
-          = ' '
-          = t '.view'
+          span.hide-on-tablet
+            = ' '
+            = t '.view'
         a.button.edit-button href='#'
           i.icon-edit
-          = ' '
-          = t '.edit'
+          span.hide-on-tablet
+            = ' '
+            = t '.edit'
         a.button.move-button href='#move-category-modal' data-toggle='modal'
           i.icon-bookmark
-          = ' '
-          = t '.collect'
+          span.hide-on-tablet
+            = ' '
+            = t '.collect'
       a.button.publish-button href='#'
         i.icon-file-alt
-        = ' '
-        = t '.publish'
+        span.hide-on-tablet
+          = ' '
+          = t '.publish'
       a.button.draft-button href='#'
         i.icon-file
-        = ' '
-        = t '.draft'
+        span.hide-on-tablet
+          = ' '
+          = t '.draft'
       - if params[:status] == 'trash'
         a.button.delete-button href='#delete-modal' data-toggle='modal'
           i.icon-remove-sign
-          = ' '
-          = t '.delete_selected'
+          span.hide-on-tablet
+            = ' '
+            = t '.delete_selected'
         a.button.delete-button href='#empty-trash-modal' data-toggle='modal'
           i.icon-trash
-          = ' '
-          = t '.empty_trash'
+          span.hide-on-tablet
+            = ' '
+            = t '.empty_trash'
       - else
         a.button.trash-button href='#'
           i.icon-trash
-          = ' '
-          = t '.trash'
+          span.hide-on-tablet
+            = ' '
+            = t '.trash'
     .pull-right
       span.label
         span.selected-count 10
         = t '.items'
-      a.button.no-margin.cancel-button href='#'
-        = t '.cancel'
+      a.cancel-button href='#'
+        .label
+        i.icon-remove
