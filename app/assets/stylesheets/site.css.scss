@@ -3,10 +3,18 @@
 .container {
   width: 768px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .inner {
   margin: 0 70px;
+
+  @media (max-width: 768px) {
+    margin: 0 (70 / 768) * 100%;
+  }
 }
 
 #header {
@@ -39,11 +47,22 @@
     img {
       border-radius: 50px;
     }
+
+    @media (max-width: 768px) {
+      float: none;
+      width: 100%;
+      margin-bottom: 20px;
+    }
   }
 
   .info {
     float: left;
     width: 768px - 140px - 100px - 20px;
+
+    @media (max-width: 768px) {
+      float: none;
+      width: 100%;
+    }
 
     h1 {
       line-height: 160%;
