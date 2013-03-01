@@ -71,7 +71,7 @@
       float: left;
 
       > a {
-        padding: 15px 20px;
+        padding: 15px;
         display: block;
         color: #555;
         @include transition(all 0.15s ease);
@@ -457,6 +457,12 @@ body {
   .button {
     display: inline;
   }
+
+  @media (max-width: 768px) {
+    .no-margin {
+      margin-right: 10px;
+    }
+  }
 }
 
 #toolbar {
@@ -576,6 +582,7 @@ body {
 
     @media (max-width: 768px) {
       border: none;
+      padding: 70 / 768 * 100%;
     }
   }
 }
