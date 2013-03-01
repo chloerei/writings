@@ -123,12 +123,10 @@ ArticleEdit.prototype = {
     var urlname = $('#article-urlname').val();
     if (this.isPersisted()) {
       this.updateArticle($('#urlname-form').serializeArray(), function(data) {
-        $('#topbar .urlname').text(data.urlname);
         Dialog.hide('#urlname-modal');
       });
     } else {
       this.article.data('urlname', urlname);
-      $('#topbar .urlname').text(urlname);
       Dialog.hide('#urlname-modal');
     }
   },
@@ -141,12 +139,10 @@ ArticleEdit.prototype = {
     if (this.isPersisted()) {
       this.updateArticle($('#category-form').serializeArray(), function(data) {
         _this.article.data('category-id', categoryId);
-        $('#topbar .category-name').text(categoryId ? categoryName : '');
         Dialog.hide('#select-category-modal');
       });
     } else {
       this.article.data('category-id', categoryId);
-      $('#topbar .category-name').text(categoryId ? categoryName : '');
       Dialog.hide('#select-category-modal');
     }
   },

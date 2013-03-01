@@ -13,6 +13,10 @@
   margin: 0 auto;
   width: $editor-container-width;
 
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
   .alert-message {
     margin-right: -364px;
     top: 102px;
@@ -442,6 +446,10 @@ body {
 // editor
 
 #editor-header {
+  .pull-left {
+    width: 50%;
+  }
+
   .pull-right {
     padding: 15px 0;
   }
@@ -565,6 +573,10 @@ body {
     min-height: 1024px;
     margin-bottom: 60px;
     border: 1px solid #ccc;
+
+    @media (max-width: 768px) {
+      border: none;
+    }
   }
 }
 
