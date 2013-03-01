@@ -52,6 +52,7 @@
       float: none;
       width: 100%;
       margin-bottom: 20px;
+      text-align: center;
     }
   }
 
@@ -62,6 +63,7 @@
     @media (max-width: 768px) {
       float: none;
       width: 100%;
+      text-align: center;
     }
 
     h1 {
@@ -187,8 +189,14 @@
     .column {
       width: 45%;
       margin-right: 5%;
+      margin-bottom: 20px;
       float: left;
 
+      @media (max-width: 480px) {
+        width: 100%;
+        margin-left: 0;
+        float: none;
+      }
     }
 
     .button-rss {
