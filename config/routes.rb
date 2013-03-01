@@ -26,7 +26,6 @@ Publish::Application.routes.draw do
       resource :account, :only => [:show, :update, :destroy]
 
       resources :categories, :only => [:create, :edit, :update, :destroy], :path_names => { :edit => :settings }
-      get 'new_category', :to => 'categories#new', :as => :new_category
       resources :articles, :only => [:new, :create, :edit, :update, :destroy] do
         collection do
           post :bulk

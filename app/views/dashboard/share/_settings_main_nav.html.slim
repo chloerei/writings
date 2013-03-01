@@ -3,17 +3,13 @@
     ul
       li
         a.clearfix href=(dashboard_account_path) class=(controller_name == 'accounts' ? 'actived' : nil)
-          .pull-left
+          .label
             i.icon-user
             = ' '
             = t '.account'
-          .pull-right
-            i.icon-chevron-right
       li
         a.clearfix href=(dashboard_profile_path) class=(controller_name == 'profiles' ? 'actived' : nil)
-          .pull-left
+          .label
             i.icon-credit-card
             = ' '
             = t '.profile'
-          .pull-right
-            i.icon-chevron-right

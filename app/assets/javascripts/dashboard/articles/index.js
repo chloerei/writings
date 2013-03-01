@@ -95,12 +95,16 @@ ArticleIndex.prototype = {
       type: 'post',
       dataType: 'json'
     }).success(function(data) {
-      var $li = $('<li><a href="#">');
-      $li.find('a').text(data.name).data('category-id', data.urlname);
-      _this.$moveCategoryForm.find('.dropdown-menu').prepend($li);
-      _this.$moveCategoryForm.find('.dropdown-toggle').text(data.name);
-      _this.$moveCategoryForm.find('[name*=category_id]').val(data.urlname);
-      Dialog.hide('#new-category-modal');
+      if (_this.$moveCategoryForm.is(':visible')) {
+        var $li = $('<li><a href="#">');
+        $li.find('a').text(data.name).data('category-id', data.urlname);
+        _this.$moveCategoryForm.find('.dropdown-menu').prepend($li);
+        _this.$moveCategoryForm.find('.dropdown-toggle').text(data.name);
+        _this.$moveCategoryForm.find('[name*=category_id]').val(data.urlname);
+        Dialog.hide('#new-category-modal');
+      } else {
+        Turbolinks.visit('/categories/' + data.urlname);
+      }
     });
   },
 

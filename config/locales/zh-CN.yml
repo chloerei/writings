@@ -13,6 +13,7 @@ zh-CN:
   layouts:
     dashboard:
       home: "首页"
+      personal_page: "个人页面"
       settings: "设置"
       account: "账户"
       profile: "个人资料"
