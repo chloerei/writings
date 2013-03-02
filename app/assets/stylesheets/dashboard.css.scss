@@ -62,6 +62,10 @@
     margin-top: 0;
   }
 
+  .quiet {
+    color: #999;
+  }
+
   .pic {
     float: left;
     width: 60%;
@@ -150,6 +154,22 @@
     }
   }
 
+}
+
+#upto-top {
+  margin: 70px 0;
+
+  a {
+    padding: 10;
+    font-size: 1.5em;
+    color: #999;
+    display: block;
+    text-align: center;
+
+    &:hover {
+      color: #555;
+    }
+  }
 }
 
 // topbar
