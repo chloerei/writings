@@ -44,6 +44,114 @@
   }
 }
 
+// guest index
+
+#masthead {
+  padding: 70px;
+
+  @media (max-width: 960px) {
+    padding: (70 / 960) * 100%;
+  }
+
+  section {
+    min-height: 320px;
+    @include clearfix();
+  }
+
+  h1 {
+    margin-top: 0;
+  }
+
+  .pic {
+    float: left;
+    width: 60%;
+    margin-right: 5%;
+
+    img {
+      max-width: 100%;
+      @include box-shadow(0 3px 8px rgba(0, 0, 0, 0.5));
+    }
+  }
+
+  .info {
+    float: left;
+    width: 35%;
+
+  }
+
+  @media (max-width: 640px) {
+    .pic,
+    .info {
+      float: none;
+      width: 100%;
+    }
+
+    h1 {
+      margin-top: 1.6em;
+    }
+  }
+}
+
+#features {
+  padding: 0 70px;
+
+  @media (max-width: 960px) {
+    padding: 0 (70 / 960) * 100%;
+  }
+
+  section {
+    margin-bottom: 70px;
+    min-height: 240px;
+    @include clearfix();
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+
+  .pic {
+    float: left;
+    width: 45%;
+
+    img {
+      width: 100%;
+      @include box-shadow(0 3px 8px rgba(0, 0, 0, 0.5));
+    }
+  }
+
+  .info {
+    float: right;
+    width: 45%;
+  }
+
+  .reverse {
+    .pic {
+      float: right;
+    }
+
+    .info {
+      float: left;
+    }
+  }
+
+  @media (max-width: 640px) {
+    section {
+      margin-bottom: 50px;
+    }
+
+    .pic,
+    .info {
+      width: 100%;
+      float: none;
+    }
+
+    h3 {
+      margin-top: 1.6em;
+    }
+  }
+
+}
+
 // topbar
 
 #topbar {
@@ -149,10 +257,6 @@ body {
 
     @media (max-width: 960px) {
       border: 0;
-    }
-
-    section {
-      padding: 20px;
     }
 
     .tabs {
@@ -343,6 +447,11 @@ body {
         }
 
       }
+
+      section {
+        padding: 20px;
+      }
+
     }
   }
 

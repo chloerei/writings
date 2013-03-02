@@ -275,6 +275,11 @@ button,
   &.button-danger {
     @include button-color($red, #fff);
   }
+
+  &.button-large {
+    font-size: 1.2em;
+    padding: 7px 28px;
+  }
 }
 
 a.button:hover {
