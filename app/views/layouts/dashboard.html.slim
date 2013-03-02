@@ -52,7 +52,7 @@ html
                         = t '.logout'
             - else
               li
-                = link_to login_path do
+                a href=(login_path) class=(controller_name == 'user_sessions' ? 'actived' : nil)
                   i.icon-signin
                   = ' '
                   = t '.login'
