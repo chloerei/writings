@@ -204,10 +204,13 @@
         color: #555;
         @include transition(all 0.15s ease);
 
-        &.actived,
+        &.actived {
+          padding-bottom: 10px;
+          border-bottom: 5px solid $linkColor;
+        }
+
         &:hover {
-          background-color: #eee;
-          text-decoration: none;
+          background-color: #f9f9f9;
         }
       }
     }
@@ -223,9 +226,13 @@
         padding: 2px 20px;
       }
 
-      &.actived,
+      &.actived {
+        padding-bottom: 10px;
+        border-bottom: 5px solid $linkColor;
+      }
+
       &:hover {
-        background-color: #eee;
+        background-color: #f9f9f9;
       }
     }
 
@@ -243,7 +250,7 @@
 
     &.actived {
       .dropdown-toggle {
-        background-color: #eee;
+        background-color: #f9f9f9;
       }
     }
   }
@@ -425,8 +432,7 @@ body {
 
             &.actived,
             &:hover {
-              background-color: #eee;
-
+              background-color: #f9f9f9;
               &:after {
                 content: "\f054";
                 font-family: FontAwesome;
@@ -482,13 +488,13 @@ body {
       tr {
         border-bottom: 1px solid #ddd;
 
-        &.selected {
-          background-color: #eee;
+        &:hover {
+          background-color: #f9f9f9;
+          cursor: pointer;
         }
 
-        &:hover {
+        &.selected {
           background-color: #eee;
-          cursor: pointer;
         }
 
         &.publish {
