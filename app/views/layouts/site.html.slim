@@ -3,6 +3,7 @@ html
   head
     title = page_title
     meta content='width=device-width, initial-scale=1.0' name='viewport'
+    link rel="shortcut icon" href=(@user.gravatar_url)
     = javascript_include_tag "site"
     = stylesheet_link_tag "site"
     = yield :head
