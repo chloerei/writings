@@ -243,13 +243,16 @@ fieldset {
 
   &.button-disabled {
     color: #999;
-    cursor: normal;
+    background-color: darken($color, 5%);
+    background-image: none;
 
     &:hover,
     &:focus,
     &:active {
+      cursor: default;
+      background-color: darken($color, 5%);
+      background-image: none;
       @include box-shadow(none);
-      @include linear-gradient($color, darken($color, 10%));
     }
   }
 }
