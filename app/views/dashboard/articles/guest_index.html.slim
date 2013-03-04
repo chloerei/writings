@@ -7,12 +7,11 @@
             = image_tag "masthead.png"
           .info
             h1
-              i.icon-pencil
-              = ' '
-              | 立即获取
-            p 前所未有的舒适写作环境。
+              = APP_CONFIG['site_name']
             p
-              a.button.button-green.button-large href=(signup_path) 注册
+              a.button.button-green.button-large href=(signup_path)
+                | 立即获取
+            p 前所未有的舒适写作环境。
             p.quiet * 支持 Chrome，Safari，Firefox 较新版本，以及其他基于 webkit 内核的浏览器。
       #features
         h2 特色功能
@@ -20,15 +19,16 @@
           .pic
             = image_tag "feature-1.png"
           .info
-            h3 让你专注写作的编辑器
-            p 所见即所得，无需学习立即上手。编辑效果和阅读效果完全一致，告别预览模式。
+            h3 让你心无旁骛的编辑器
+            p 所见即所得，无需学习立即上手。
+            p 粘贴时自动清理 HTML 标签，带来标签级别的干净整齐。
         section.reverse
           .pic
             = image_tag "feature-2.png"
           .info
             h3 精心优化的排版
-            p 剔除花哨的格式，保留最精简耐用的排版，让你专注于内容。
-            p 粘贴时自动清理 HTML 标签，带来标签级别的干净整齐。
+            p 剔除花哨的格式，保留最精简耐用的排版，专注内容。
+            p 编辑效果和阅读效果完全一致，告别预览苦恼。
         section
           .pic
             = image_tag "feature-3.png"
