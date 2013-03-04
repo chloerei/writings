@@ -10,6 +10,12 @@ en:
   draft: "Draft"
   trash: "Trash"
 
+  wrote_on: "Wrote on"
+  category: "Category"
+  subscribe: "Subscribe"
+  author: "Author"
+  articles_count: "%{count} Articles"
+
   layouts:
     dashboard:
       home: "Home"

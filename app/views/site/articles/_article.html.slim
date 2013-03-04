@@ -1,9 +1,12 @@
 article
   h1 = link_to article.title, site_article_path(article, :urlname => article.urlname)
   .info
-    = ' wrote on '
+    = t 'wrote_on'
+    = ' '
     = article.created_at.to_date.to_s
     - if article.category
-      = ', in '
+      = ' '
+      = t 'category'
+      = ' '
       = link_to article.category.name, site_category_path(article.category)
   .summary = link_to article_summary_body(article.body), site_article_path(article, :urlname => article.urlname)

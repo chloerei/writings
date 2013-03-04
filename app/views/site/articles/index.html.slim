@@ -3,7 +3,6 @@
 - content_for :head do
   link href=(site_feed_path(:format => :rss)) rel='alternate' type='application/rss+xml'
 
-
 #main
   .container
     .inner
@@ -23,13 +22,13 @@
   .container
     .inner
       .column
-        .title Subscribe
+        .title = t 'subscribe'
         a.button.button-rss href=(site_feed_path(:format => :rss))
-          = 'RSS feed '
+          = 'RSS Feed '
           i.icon-rss
       - if @user.categories.any?
         nav.column
-          .title Categories
+          .title = t 'category'
           ul
             - @user.categories.each do |category|
               li

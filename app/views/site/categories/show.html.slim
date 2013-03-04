@@ -12,10 +12,11 @@
             a href=(site_category_path(@category))
               = @category.name
         .info
-          = 'by '
+          = t 'author'
+          = ' '
           = link_to @user.display_name, site_root_path
-          = ', '
-          = "#{@category.articles.count} Articles."
+          = ' '
+          = t 'articles_count', :count => @category.articles.count
         .description
           = simple_format @category.description
       #articles
@@ -27,7 +28,9 @@
     .inner
       .column
         .title
-          = "Subscribe #{@category.name}"
+          = t 'subscribe'
+          = ' '
+          = @category.name
         a.button.button-rss href=(feed_site_category_path(@category, :format => :rss))
-          = 'RSS feed '
+          = 'RSS Feed '
           i.icon-rss
