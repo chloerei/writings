@@ -269,6 +269,10 @@ button,
   }
 
   &.button-primary {
+    @include button-color($linkColor, #fff);
+  }
+
+  &.button-green {
     @include button-color($green, #fff);
   }
 
