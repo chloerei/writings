@@ -14,7 +14,7 @@ class Article
   belongs_to :user
   belongs_to :category
 
-  validates :urlname, :format => { :with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('urlname_valid_message') }
+  validates :urlname, :format => { :with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('urlname_valid_message'), :allow_blank => true }
 
   scope :publish, -> { where(:status => 'publish') }
   scope :draft, -> { where(:status => 'draft') }
