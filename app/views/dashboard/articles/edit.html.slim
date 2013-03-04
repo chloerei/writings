@@ -13,6 +13,9 @@ html
           .pull-left
             ul.top-nav
               li
+                a href=(dashboard_root_path) target="_blank" title=(t '.return')
+                  i.icon-home
+              li
                 = link_to '#select-category-modal', :data => { :toggle => :modal }, :title => t('.collect') do
                   i.icon-folder-close-alt
               li

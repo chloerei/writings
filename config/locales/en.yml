@@ -97,6 +97,7 @@ en:
         no_articles: "No articles"
         is_end: "is end"
       edit:
+        return: "Return to article list"
         urlname: "URL"
         collect: "Collect"
         publish: "publish"

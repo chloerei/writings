@@ -97,6 +97,7 @@ zh-CN:
         no_articles: "没有文章"
         is_end: "到达尾部"
       edit:
+        return: "返回文章列表"
         urlname: "URL 标识"
         collect: "归类"
         publish: "发布"
