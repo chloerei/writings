@@ -175,10 +175,11 @@ ArticleIndex.prototype = {
       }
 
     } else {
-      this.$articles.find('.article.selected').removeClass('selected');
+      this.$articles.find('.article.selected').not($element).removeClass('selected');
       this.$articles.find('.last-clicked').removeClass('last-clicked');
       this.$articles.find('.last-shift-clicked').removeClass('last-shift-clicked');
-      $element.addClass('selected last-clicked');
+      $element.toggleClass('selected');
+      $element.addClass('last-clicked');
     }
     this.updateBulkbar();
   },
