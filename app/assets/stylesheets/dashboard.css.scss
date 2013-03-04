@@ -719,6 +719,13 @@ body {
       border: none;
       padding: 70 / 768 * 100%;
     }
+
+    &.init {
+      h1:after {
+        content: "Title here";
+        color: #ccc;
+      }
+    }
   }
 }
 

@@ -79,8 +79,11 @@ html
             a#pick-up-button.toolbar-button.icon-double-angle-up href="#"
     #editarea
       .editor-container
-        article contentEditable="true" data-id=(@article.token) data-category-id=(@article.category.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status)
-          = sanitize @article.body
+        article contentEditable="true" data-id=(@article.token) data-category-id=(@article.category.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil)
+          - if @article.new_record?
+            h1
+          - else
+            = sanitize @article.body
         = render 'layouts/alert_messages'
 
     = render 'urlname_modal'

@@ -61,6 +61,12 @@ var ArticleEdit = function() {
 
   var _this = this;
 
+  if (this.article.hasClass('init')) {
+    this.article.one('input', function() {
+      _this.article.removeClass('init');
+    });
+  }
+
   $('#link-form').on('submit', function(event) {
     event.preventDefault();
     _this.editor.formator.link($(this).find('input[name=url]').val());
