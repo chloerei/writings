@@ -149,7 +149,11 @@ ArticleIndex.prototype = {
 
     var $element = $(element);
 
-    if (event.ctrlKey) {
+    if (event.ctrlKey ||
+        event.keyCode === 224 || // Command in Firefox
+        event.keyCode === 17 ||  //            Opera
+        event.keyCode === 91 ||  //            Webkit(Left Apple)
+        event.keyCode === 93) {  //            Webkit(Right Apple)
       this.$articles.find('.last-shift-clicked').removeClass('last-shift-clicked');
       this.$articles.find('.last-clicked').removeClass('last-clicked');
       $element.toggleClass('selected').addClass('last-clicked');
