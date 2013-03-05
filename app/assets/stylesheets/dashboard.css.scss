@@ -718,9 +718,17 @@ body {
     }
 
     &.init {
-      h1:after {
-        content: "Title here";
-        color: #ccc;
+      h1 {
+        position: relative;
+
+        &:after {
+          content: "Title here";
+          color: #ccc;
+          float: left;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
       }
     }
   }

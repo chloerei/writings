@@ -62,6 +62,7 @@ var ArticleEdit = function() {
   var _this = this;
 
   if (this.article.hasClass('init')) {
+    this.editor.formator.h1();
     this.article.one('input', function() {
       _this.article.removeClass('init');
     });
