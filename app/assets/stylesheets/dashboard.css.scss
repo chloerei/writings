@@ -199,10 +199,25 @@
       float: left;
 
       > a {
-        padding: 15px;
+        padding: 15px 20px;
         display: block;
         color: #555;
         @include transition(all 0.15s ease);
+
+        &.logo {
+          padding: 12px 20px;
+
+          img {
+            height: 24px;
+            width: 24px;
+            margin-right: 5px;
+            vertical-align: middle;
+          }
+
+          &.actived {
+            padding-bottom: 7px;
+          }
+        }
 
         &.actived {
           padding-bottom: 10px;
