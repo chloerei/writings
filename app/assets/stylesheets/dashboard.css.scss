@@ -197,6 +197,7 @@
     > li {
       display: inline-block;
       float: left;
+      height: 48px;
 
       > a {
         padding: 15px 20px;
@@ -217,6 +218,8 @@
   }
 
   .dropdown {
+    height: 48px;
+
     .dropdown-toggle {
       padding: 15px 35px 15px 20px;
       color: #555;
@@ -615,6 +618,7 @@ body {
     li {
       display: inline-block;
       float: left;
+      height: 34px;
 
       a {
       }
@@ -652,6 +656,7 @@ body {
 
     .dropdown {
       position: relative;
+      height: 34px;
 
       .dropdown-toggle {
         width: 80px;
