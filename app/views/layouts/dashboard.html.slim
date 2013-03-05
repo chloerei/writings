@@ -14,8 +14,9 @@ html
         header#site-header.clearfix
           ul.top-nav.pull-left
             li
-              a.logo href=(dashboard_root_path) class=(%w(articles categories).include?(controller_name) ? 'actived' : nil)
-                = image_tag 'favicon.png'
+              a href=(dashboard_root_path) class=(%w(articles categories).include?(controller_name) ? 'actived' : nil)
+                i.icon-home
+                = ' '
                 - if logined?
                   = t '.dashboard'
                 - else
