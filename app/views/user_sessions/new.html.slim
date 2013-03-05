@@ -7,9 +7,14 @@
       = form_tag user_sessions_path do |f|
         .field
           = label_tag :login, t('.username_or_email')
-          = text_field_tag :login
+          = text_field_tag :login, '', :tabindex => 1, :autofocus => 'autofocus'
         .field
           = label_tag :password, t('.password')
-          = password_field_tag :password
+          = password_field_tag :password, '', :tabindex => 2
         .field
-          = submit_tag t('.login')
+          label
+            = check_box_tag :remember_me, nil ,false, :tabindex => 3
+            = ' '
+            = t 'remember_me'
+        .field
+          = submit_tag t('.login'), :tabindex => 4

@@ -15,6 +15,7 @@ zh-CN:
   subscribe: "订阅"
   author: "作者"
   articles_count: "%{count} 篇文章"
+  remember_me: "记住我"
 
   urlname_valid_message: "只能使用字母、数字和 '-' 号"
 

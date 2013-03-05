@@ -7,15 +7,15 @@
       = form_for @user, :validate => true do |f|
         .field
           = f.label :name
-          = f.text_field :name
+          = f.text_field :name, :tabindex => 1, :autofocus => 'autofocus'
         .field
           = f.label :email
-          = f.text_field :email
+          = f.text_field :email, :tabindex => 2
         .field
           = f.label :password
-          = f.password_field :password
+          = f.password_field :password, :tabindex => 3
         .field
           = f.label :password_confirmation
-          = f.password_field :password_confirmation
+          = f.password_field :password_confirmation, :tabindex => 4
         .field
-          = f.submit t('submit'), :class => 'button-primary'
+          = f.submit t('submit'), :class => 'button-primary', :tabindex => 5

@@ -15,6 +15,7 @@ en:
   subscribe: "Subscribe"
   author: "Author"
   articles_count: "%{count} Articles"
+  remember_me: "Remember me"
 
   urlname_valid_message: "Allow character, number and '-'"
 

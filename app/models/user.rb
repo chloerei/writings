@@ -49,7 +49,7 @@ class User
   end
 
   def self.find_by_remember_token(token)
-    user = first :conditions => {:_id => token.split('$').first}
+    user = where(:_id => token.split('$').first).first
     (user && user.remember_token == token) ? user : nil
   end
 
