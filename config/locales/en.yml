@@ -29,6 +29,9 @@ en:
       login: "Login"
       signup: "Signup"
 
+  users:
+    new:
+      signup: "Singup"
   user_sessions:
     new:
       username_or_email: "Username or Email"

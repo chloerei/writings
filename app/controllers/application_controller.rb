@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def page_title
-    @page_title.reverse.join(' - ')
+    @page_title.to_a.reverse.join(' - ')
   end
 
   def set_locale

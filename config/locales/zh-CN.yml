@@ -29,6 +29,9 @@ zh-CN:
       login: "登录"
       signup: "注册"
 
+  users:
+    new:
+      signup: "注册"
   user_sessions:
     new:
       username_or_email: "用户名或邮箱"
