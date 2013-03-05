@@ -47,6 +47,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     if params[:category_id]
       @article.category = current_user.categories.where(:urlname => params[:category_id]).first
     end
+    append_title @article.title
     render :edit, :layout => false
   end
 
@@ -65,6 +66,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def edit
     @article = current_user.articles.find_by(:token => params[:id])
+    append_title @article.title
     render :layout => false
   end
 

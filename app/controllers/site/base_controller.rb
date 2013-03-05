@@ -1,6 +1,6 @@
 class Site::BaseController < ApplicationController
   layout 'site'
-  before_filter :require_site
+  before_filter :require_site, :set_title
 
   private
 
@@ -12,5 +12,9 @@ class Site::BaseController < ApplicationController
     else
       @user = User.find_by(:domain => request.host)
     end
+  end
+
+  def set_title
+    append_title @user.display_name
   end
 end

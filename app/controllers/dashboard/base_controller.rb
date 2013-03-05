@@ -6,8 +6,6 @@ class Dashboard::BaseController < ApplicationController
   private
 
   def set_base_title
-    if logined?
-      append_title current_user.name
-    end
+    append_title APP_CONFIG['site_name']
   end
 end
