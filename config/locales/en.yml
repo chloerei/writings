@@ -22,7 +22,6 @@ en:
     dashboard:
       home: "Home"
       dashboard: "Dashboard"
-      personal_page: "Personal page"
       settings: "Settings"
       account: "Account"
       profile: "Profile"

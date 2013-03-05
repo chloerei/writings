@@ -21,15 +21,14 @@ html
                   = t '.dashboard'
                 - else
                   = t '.home'
+            = yield :top_nav
+          ul.top-nav.pull-right
             - if logined?
               li
                 a href=(site_root_url(:host => current_user.host)) target='_blank'
                   i.icon-external-link
                   = ' '
-                  = t '.personal_page'
-            = yield :top_nav
-          ul.top-nav.pull-right
-            - if logined?
+                  = current_user.display_name
               li
                 .dropdown
                   a.dropdown-toggle href=(dashboard_account_path) class=(%w(accounts profiles).include?(controller_name) ? 'actived' : nil)
