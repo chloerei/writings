@@ -4,6 +4,13 @@
 @import "variables";
 @import "highlight_js/tomorrow-night-eighties";
 
+// mixin
+
+@mixin calc($property, $expression) {
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
 // base
 
 body {
@@ -426,15 +433,18 @@ a.button:hover {
 .modal-dialog {
   position: fixed;
   display: none;
-  top: 30%;
+
+  width: 340px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+  top: 50%;
   left: 50%;
   background: white;
   border: 1px solid #ccc;
   padding: 30px;
   @include box-shadow(0 4px 16px rgba(0, 0, 0, 0.5));
-
-  width: 340px;
-  margin-left: -186px;
+  @include box-sizing(border-box);
 
   span.modal-close {
     position: absolute;

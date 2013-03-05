@@ -11,6 +11,10 @@ var Dialog = {
     var zIndex = Dialog.zIndex + Dialog.zIndexStep * Dialog.level;
     $('#modal-background').css('z-index', zIndex);
     $modal.css('z-index', zIndex + 1).show();
+
+    $modal.css('margin-left', '-' + ($modal.outerWidth() / 2) + 'px')
+      .css('margin-top', '-' + $modal.outerHeight() / 2 + 'px');
+
     $modal.find(ClientSideValidations.selectors.forms).resetClientSideValidations();
 
     Dialog.level += 1;
