@@ -47,28 +47,28 @@ var Editor = function(options) {
 
 Editor.prototype = {
   shortcuts: {
-    'ctrl+b': 'bold',
-    'ctrl+i': 'italic',
-    'ctrl+g': 'image',
-    'ctrl+d': 'strikeThrough',
-    'ctrl+u': 'underline',
-    'ctrl+l': 'link',
-    'ctrl+shift+l': 'unorderedList',
-    'ctrl+shift+o': 'orderedList',
-    'ctrl+p': 'p',
-    'ctrl+1': 'h1',
-    'ctrl+2': 'h2',
-    'ctrl+3': 'h3',
-    'ctrl+4': 'h4',
-    'ctrl+k': 'code',
-    'ctrl+q': 'blockquote',
-    'ctrl+z': 'undo',
-    'ctrl+y': 'redo'
+    'bold' : ['ctrl+b', 'command+b'],
+    'italic' : ['ctrl+i', 'command+i'],
+    'image' : ['ctrl+g', 'command+g'],
+    'strikeThrough' : ['ctrl+d', 'command+d'],
+    'underline' : ['ctrl+u', 'command+u'],
+    'link' : ['ctrl+l', 'command+l'],
+    'unorderedList' : ['ctrl+shift+l', 'command+shift+l'],
+    'orderedList' : ['ctrl+shift+o', 'command+shift+o'],
+    'p' : ['ctrl+p', 'command+p'],
+    'h1' : ['ctrl+1', 'command+1'],
+    'h2' : ['ctrl+2', 'command+2'],
+    'h3' : ['ctrl+3', 'command+3'],
+    'h4' : ['ctrl+4', 'command+4'],
+    'code' : ['ctrl+k', 'command+k'],
+    'blockquote' : ['ctrl+q', 'command+q'],
+    'undo' : ['ctrl+z', 'command+z'],
+    'redo' : ['ctrl+y', 'command+y']
   },
 
   connectShortcuts: function() {
     var _this = this;
-    $.each(this.shortcuts, function(key, method) {
+    $.each(this.shortcuts, function(method, key) {
       if (_this.formator[method]) {
         Mousetrap.bind(key, function(event) {
           event.preventDefault();

@@ -83,11 +83,8 @@ var ArticleEdit = function() {
     _this.editor.formator.image($(this).find('input[name=url]').val());
   });
 
-  Mousetrap.bind('ctrl+s', function(event) {
+  Mousetrap.bind(['ctrl+s', 'command+s'], function(event) {
     _this.saveArticle(event);
-  });
-  Mousetrap.bind('alt+p', function(event) {
-    _this.pickUpTopbar();
   });
 };
 
