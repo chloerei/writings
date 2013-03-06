@@ -5,6 +5,10 @@ class Site::ArticlesController < Site::BaseController
 
   def show
     @article = @user.articles.publish.find_by :token => params[:id]
+
+    if params[:urlname].to_s != @article.urlname.to_s
+      redirect_to site_article_path(@article, :urlname => @article.urlname)
+    end
   end
 
   def feed
