@@ -437,14 +437,18 @@ a.button:hover {
   width: 340px;
   max-width: 90%;
   max-height: 90%;
-  overflow: auto;
   top: 50%;
   left: 50%;
   background: white;
   border: 1px solid #ccc;
   padding: 30px;
+  overflow: auto;
   @include box-shadow(0 4px 16px rgba(0, 0, 0, 0.5));
   @include box-sizing(border-box);
+
+  &.no-scroll {
+    overflow: visible;
+  }
 
   span.modal-close {
     position: absolute;
@@ -457,6 +461,11 @@ a.button:hover {
     &:hover {
       color: #444;
     }
+  }
+
+  .dropdown-menu {
+    max-height: 200px;
+    overflow: auto;
   }
 
   .field {
