@@ -4,7 +4,7 @@
   = form_tag nil, :id => 'image-form' do
     .field
       = label_tag :url, t('.url')
-      = text_field_tag :url
+      = text_field_tag :url, nil, :placeholder => 'http://'
     .field.clearfix
       .pull-left
         = submit_tag t('.insert_image')
