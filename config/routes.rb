@@ -1,6 +1,6 @@
 class Sitedomain
   def matches?(request)
-    request.host =~ /^\w+\.#{APP_CONFIG["host"]}$/ or request.host !~ /#{APP_CONFIG["host"]}$/
+    request.host =~ /^\w+\.#{Regexp.escape APP_CONFIG["host"]}$/ or request.host !~ /#{Regexp.escape APP_CONFIG["host"]}$/
   end
 end
 

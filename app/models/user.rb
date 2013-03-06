@@ -29,7 +29,14 @@ class User
   validates :password, :length => {:minimum => 6, :allow_blank => true}
   validates :locale, :inclusion => {:in => ALLOW_LOCALE}
   validates :current_password, :presence => true, :on => :update
-  validates :domain, :format => {:with => /(\w+\.)+\w+/}, :uniqueness => {:case_sensitive => false}, :allow_blank => true
+  validates :domain, :format => {:with => /\A[a-zA-Z0-9_\-.]+\z/}, :uniqueness => {:case_sensitive => false}, :allow_blank => true
+  validate :except_host
+
+  def except_host
+    if domain =~ /#{Regexp.escape APP_CONFIG["host"]}/
+      errors.add(:domain, I18n.t('errors.messages.invalid'))
+    end
+  end
 
   attr_accessor :current_password
 

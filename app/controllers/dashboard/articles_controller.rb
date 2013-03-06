@@ -59,7 +59,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
       end
     else
       respond_to do |format|
-        format.json { render :json => { :message => 'Validation Failed', :errors => @article.errors }, :status => 400 }
+        format.json { render :json => { :message => @article.errors.full_messages.join }, :status => 400 }
       end
     end
   end
@@ -78,7 +78,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
       end
     else
       respond_to do |format|
-        format.json { render :json => { :message => 'Validation Failed', :errors => @article.errors }, :status => 400 }
+        format.json { render :json => { :message => @article.errors.full_messages.join }, :status => 400 }
       end
     end
   end

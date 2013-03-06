@@ -9,7 +9,7 @@ class Dashboard::AccountsController < Dashboard::BaseController
       end
     else
       respond_to do |format|
-        format.json { render :json => { :message => 'Validation Failed', :errors => current_user.errors }, :status => 400}
+        format.json { render :json => { :message => current_user.errors.full_messages.join }, :status => 400}
       end
     end
   end

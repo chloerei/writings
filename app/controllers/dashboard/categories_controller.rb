@@ -14,7 +14,7 @@ class Dashboard::CategoriesController < Dashboard::BaseController
       end
     else
       respond_to do |format|
-        format.json { render :json => { :message => 'Validation Failed', :errors => @category.errors }, :status => 400 }
+        format.json { render :json => { :message => @category.errors.full_messages.join }, :status => 400 }
       end
     end
   end
