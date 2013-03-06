@@ -30,57 +30,7 @@ html
               = link_to t('.publish'), '#', :class => ['button', (@article.publish? ? 'button-actived' : nil)], :id => 'publish-button'
               = link_to t('.draft'), '#', :class => ['button', (@article.draft? ? 'button-actived' : nil)], :id => 'draft-button'
             = link_to t('save'), '#', :class => 'button no-margin', :id => 'save-button'
-    #toolbar
-      .editor-container.clearfix
-        ul.toolbar-buttons.pull-left
-          li
-            a class='toolbar-button icon-bold' href='#' data-command='bold' title=(t '.bold_tip')
-          li
-            a class='toolbar-button icon-italic' href='#' data-command='italic' title=(t '.italic_tip')
-          li
-            a class='toolbar-button icon-strikethrough' href='#' data-command='strikeThrough' title=(t '.strike_tip')
-          li
-            a class='toolbar-button icon-underline' href='#' data-command='underline' title=(t '.underline_tip')
-          li
-            a class='toolbar-button icon-link' href='#' data-command='link' title=(t '.link_tip')
-          li
-            a class='toolbar-button icon-picture' href='#' data-command='image' title=(t '.image_tip')
-          li
-            a class='toolbar-button icon-list-ol' href='#' data-command='orderedList' title=(t '.orderList_tip')
-          li
-            a class='toolbar-button icon-list-ul' href='#' data-command='unorderedList' title=(t '.unorderList_tip')
-          li
-            #format-block.dropdown
-              a.dropdown-toggle.toolbar-button href="#" = t '.normal_text'
-              ul.dropdown-menu
-                li
-                  a href="#" data-command="p" title=(t '.normal_text_tip')
-                    p = t '.normal_text'
-                li
-                  hr
-                li
-                  a href="#" data-command="h1" title=(t '.h1_tip')
-                    h1 = t '.h1'
-                li
-                  a href="#" data-command="h2" title=(t '.h2_tip')
-                    h2 = t '.h2'
-                li
-                  a href="#" data-command="h3" title=(t '.h3_tip')
-                    h3 = t '.h3'
-                li
-                  a href="#" data-command="h4" title=(t '.h4_tip')
-                    h4 = t '.h4'
-                li
-                  hr
-                li
-                  a href="#" data-command="code" title=(t '.code_tip')
-                    code = t '.code'
-                li
-                  a href="#" data-command="blockquote" title=(t '.blockquote_tip')
-                    blockquote = t '.blockquote'
-        ul.toolbar-buttons.pull-right
-          li
-            a#pick-up-button.toolbar-button.icon-double-angle-up href="#"
+    = render :partial => 'toolbar'
     #editarea
       .editor-container
         article contentEditable="true" spellcheck="false" data-id=(@article.token) data-category-id=(@article.category.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil)
@@ -92,3 +42,4 @@ html
     = render 'image_modal'
     = render 'select_category_modal'
     = render 'new_category_modal'
+    = render 'help_modal'

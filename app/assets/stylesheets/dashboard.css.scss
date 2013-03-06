@@ -755,3 +755,26 @@ body {
     top: 57px;
   }
 }
+
+.shortcut-menu {
+  width: 500px;
+
+  table {
+    width: 100%;
+
+    tr {
+      &:nth-child(odd) {
+        background-color: #eee;
+      }
+    }
+
+    th, td {
+      padding: 10px;
+      vertical-align: top;
+    }
+
+    th {
+      text-align: left;
+    }
+  }
+}

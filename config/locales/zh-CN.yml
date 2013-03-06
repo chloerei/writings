@@ -106,6 +106,7 @@ zh-CN:
         collect: "归类"
         publish: "发布"
         draft: "草稿"
+      toolbar:
         bold_tip: "加粗 Ctrl+b"
         italic_tip: "斜体 Ctrl+i"
         strike_tip: "删除线 Ctrl+d"
@@ -128,6 +129,30 @@ zh-CN:
         h4_tip: "四级标题 Ctrl+4"
         code_tip: "代码 Ctrl+k"
         blockquote_tip: "引用 Ctrl+q"
+        help_tip: "帮助 Ctrl+m"
+      help_modal:
+        function: "功能"
+        win_keyboard: "Win 键盘"
+        mac_keyboard: "Mac 键盘"
+        help: "功能菜单"
+        bold: "加粗"
+        italic: "斜体"
+        strike: "删除线"
+        underline: "下划线"
+        link: "插入超链接"
+        image: "插入图片"
+        orderList: "有序列表"
+        unorderList: "无序列表"
+        p: "普通文本"
+        h1: "文章标题"
+        h2: "二级标题"
+        h3: "三级标题"
+        h4: "四级标题"
+        code: "代码"
+        blockquote: "引用"
+        save: "保存"
+        undo: "撤销"
+        redo: "重做"
 
     categories:
       new:

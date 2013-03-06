@@ -86,6 +86,14 @@ var ArticleEdit = function() {
   Mousetrap.bind(['ctrl+s', 'command+s'], function(event) {
     _this.saveArticle(event);
   });
+  Mousetrap.bind(['ctrl+m', 'command+m'], function(event) {
+    event.preventDefault();
+    if ($('#help-modal').is(':hidden')) {
+      Dialog.show('#help-modal');
+    } else {
+      Dialog.hide('#help-modal');
+    }
+  });
 };
 
 ArticleEdit.prototype = {

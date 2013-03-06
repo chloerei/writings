@@ -106,6 +106,7 @@ en:
         collect: "Collect"
         publish: "publish"
         draft: "draft"
+      toolbar:
         bold_tip: "Bold Ctrl+b"
         italic_tip: "Italic Ctrl+i"
         strike_tip: "StrikeThrough Ctrl+d"
@@ -128,6 +129,30 @@ en:
         h4_tip: "Header 4 Ctrl+4"
         code_tip: "Code Ctrl+k"
         blockquote_tip: "Blockquote Ctrl+q"
+        help_tip: "Help Ctrl+m"
+      help_modal:
+        function: "Function"
+        win_keyboard: "Win keyboard"
+        mac_keyboard: "Mac keyboard"
+        help: "Function menu"
+        bold: "Bold"
+        italic: "Italic"
+        strike: "Strke"
+        underline: "Underline"
+        link: "Create link"
+        image: "Insert image"
+        orderList: "Order list"
+        unorderList: "Unorder list"
+        p: "Normal text"
+        h1: "Article header"
+        h2: "Header 2"
+        h3: "Header 3"
+        h4: "Header 4"
+        code: "Code"
+        blockquote: "Blockquote"
+        save: "Save"
+        undo: "Undo"
+        redo: "Redo"
 
     categories:
       new:
