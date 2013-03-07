@@ -13,5 +13,11 @@ class Dashboard::AccountsControllerTest < ActionController::TestCase
     put :update, :user => { :name => 'change', :current_password => password }, :format => :json
     assert_response :success, @response.body
     assert_equal 'change', current_user.reload.name
+
+    # remmove domain
+    current_user.update_attribute :domain, 'old'
+    put :update, :user => { :domain => '', :current_password => password }, :format => :json
+    assert_response :success, @response.body
+    assert_equal '', current_user.reload.domain
   end
 end
