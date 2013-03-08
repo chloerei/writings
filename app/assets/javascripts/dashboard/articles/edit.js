@@ -17,11 +17,12 @@ Editor.Formator.prototype.link = function(url) {
     }
     Dialog.hide('#link-modal');
   } else {
+    var link = '';
     if (this.isWraped('a')) {
       link = $(this.commonAncestorContainer()).closest('a').attr('href');
     }
     Dialog.show('#link-modal');
-    $('#link-modal').find('input[name=url]').focus();
+    $('#link-modal').find('input[name=url]').val(link).focus();
   }
 };
 
@@ -36,7 +37,7 @@ Editor.Formator.prototype.image = function(url) {
     Dialog.hide('#image-modal');
   } else {
     Dialog.show('#image-modal');
-    $('#image-modal').find('input[name=url]').focus();
+    $('#image-modal').find('input[name=url]').val('').focus();
   }
 };
 
