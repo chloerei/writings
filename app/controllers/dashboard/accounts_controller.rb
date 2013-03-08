@@ -5,7 +5,7 @@ class Dashboard::AccountsController < Dashboard::BaseController
   def update
     if current_user.check_current_password(user_params[:current_password]) && current_user.update_attributes(user_params)
       respond_to do |format|
-        format.json { render :json => current_user.as_json(:only => [:name, :email]) }
+        format.json { render :json => current_user.as_json(:only => [:name, :email], :methods => [:host]) }
       end
     else
       respond_to do |format|

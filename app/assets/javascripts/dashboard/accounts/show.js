@@ -9,5 +9,9 @@ page_ready(function() {
     $('#main-nav-background').on('click', function(event) {
       $('#main-nav').removeClass('appear');
     });
+
+    $('#account_form').on('ajax:success', function(event, data) {
+      $('#user-link').attr('href', 'http://' + data.host);
+    });
   }
 });

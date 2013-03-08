@@ -25,7 +25,7 @@ html
           ul.top-nav.pull-right
             - if logined?
               li
-                a href=(site_root_url(:host => current_user.host)) target='_blank'
+                a#user-link href=(site_root_url(:host => current_user.host)) target='_blank'
                   i.icon-external-link
                   = ' '
                   = current_user.display_name

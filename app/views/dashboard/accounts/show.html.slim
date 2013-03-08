@@ -13,7 +13,7 @@
                   i.icon-double-angle-left.index-icon
               .label = t '.account_setting'
         section.tabs-margin
-          = form_for current_user, :url => dashboard_account_path, :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
+          = form_for current_user, :url => dashboard_account_path, :validate => true, :html => { :data => { :remote => true, :type => :json }, :id => 'account_form' } do |f|
             fieldset
               legend = t '.login_id'
               .field
