@@ -139,6 +139,7 @@ ArticleEdit.prototype = {
       });
     } else {
       this.article.data('urlname', urlname);
+      this.createArticle();
       Dialog.hide('#urlname-modal');
     }
   },
@@ -155,6 +156,7 @@ ArticleEdit.prototype = {
       });
     } else {
       this.article.data('category-id', categoryId);
+      this.createArticle();
       Dialog.hide('#select-category-modal');
     }
   },
@@ -252,7 +254,7 @@ ArticleEdit.prototype = {
     var _this = this;
     this.setPbulishClass(true);
     event.preventDefault();
-      if (this.isPersisted()) {
+    if (this.isPersisted()) {
       this.updateArticle({
         article: {
           status: 'publish'
@@ -263,6 +265,7 @@ ArticleEdit.prototype = {
       });
     } else {
       this.article.data('status', 'publish');
+      this.createArticle();
     }
   },
 
@@ -281,6 +284,7 @@ ArticleEdit.prototype = {
       });
     } else {
       this.article.data('status', 'draft');
+      this.createArticle();
     }
   },
 
