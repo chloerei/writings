@@ -710,10 +710,9 @@ body {
     outline: 0;
     min-height: 1024px;
     margin-bottom: 60px;
-    border: 1px solid #ccc;
+    @include box-shadow(0 0 0 1px #ccc);
 
     @media (max-width: 768px) {
-      border: none;
       padding: 70 / 768 * 100%;
     }
 
