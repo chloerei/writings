@@ -22,6 +22,7 @@ zh-CN:
   layouts:
     dashboard:
       home: "首页"
+      feedback: "问题反馈"
       dashboard: "面板"
       settings: "设置"
       account: "账户"

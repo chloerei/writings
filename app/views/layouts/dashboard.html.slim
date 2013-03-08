@@ -21,6 +21,11 @@ html
                   = t '.dashboard'
                 - else
                   = t '.home'
+            li
+              a href='https://github.com/writings-io/writings-io/issues' target='_blank'
+                i.icon-comment
+                = ' '
+                = t '.feedback'
             = yield :top_nav
           ul.top-nav.pull-right
             - if logined?
