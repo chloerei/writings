@@ -4,13 +4,6 @@
 @import "variables";
 @import "highlight_js/tomorrow-night-eighties";
 
-// mixin
-
-@mixin calc($property, $expression) {
-  #{$property}: -webkit-calc(#{$expression});
-  #{$property}: calc(#{$expression});
-}
-
 // base
 
 body {

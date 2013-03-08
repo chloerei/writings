@@ -4,7 +4,18 @@ class ApplicationController < ActionController::Base
   helper_method :logined?, :current_user, :append_title, :page_title
   before_filter :set_locale
 
+  rescue_from Exception, :with => :render_500
+  rescue_from Mongoid::Errors::DocumentNotFound, :with => :render_404
+
   protected
+
+  def render_404
+    render 'errors/404', :layout => 'error', :status => 404
+  end
+
+  def render_500
+    render 'errors/500', :layout => 'error', :status => 500
+  end
 
   def append_title(title)
     @page_title ||= []

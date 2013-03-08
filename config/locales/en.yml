@@ -19,6 +19,9 @@ en:
 
   urlname_valid_message: "Allow character, number and '-'"
 
+  page_not_found: "找不到该页面"
+  server_error: "Server error"
+
   layouts:
     dashboard:
       home: "Home"
@@ -30,6 +33,8 @@ en:
       logout: "Logout"
       login: "Login"
       signup: "Signup"
+    error:
+      feedback: "Feedback"
 
   users:
     new:

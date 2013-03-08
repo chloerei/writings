@@ -1,0 +1,17 @@
+doctype 5
+html
+  head
+    title = page_title
+    meta content='width=device-width, initial-scale=1.0' name='viewport'
+    link rel="shortcut icon" href=(asset_path("favicon.png"))
+    = stylesheet_link_tag "error"
+  body
+    #dialog
+      #header
+        a href='/'
+          = image_tag 'favicon.png'
+      #content
+        = yield
+      #footer
+        a href='https://github.com/writings-io/writings-io/issues' = t '.feedback'
+        a href='https://twitter.com/writingsio' @writingsio

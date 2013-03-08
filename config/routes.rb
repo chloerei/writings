@@ -53,4 +53,6 @@ Publish::Application.routes.draw do
       get 'site/:action', :controller => 'site'
     end
   end
+
+  match '*a', :to => 'errors#not_found'
 end

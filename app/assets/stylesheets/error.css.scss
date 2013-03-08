@@ -1,0 +1,38 @@
+@import "normalize";
+@import "variables";
+
+body {
+  color: #333;
+  background-color: #f9f9f9;
+  font-size: 14px;
+}
+
+a {
+  color: $linkColor;
+  text-decoration: none;
+}
+
+#dialog {
+  margin: 100px auto 0;
+  width: 480px;
+  max-width: 100%;
+  text-align: center;
+
+  h1 {
+    color: #555;
+  }
+
+  #content {
+    margin: 20px 0;
+  }
+
+  #footer {
+    border-top: 1px solid #ccc;
+    padding: 20px;
+
+    a {
+      margin: 0 10px;
+      font-size: 1.2em;
+    }
+  }
+}
