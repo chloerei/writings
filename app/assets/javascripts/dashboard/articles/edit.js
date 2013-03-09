@@ -68,7 +68,7 @@ var ArticleEdit = function() {
     });
   }
 
-  this.article.on('input', function() {
+  this.article.on('input undo redo', function() {
     _this.autoSaveArticle();
   });
 

@@ -19,6 +19,7 @@ Editor.UndoManager.prototype = {
       this.stashContents = $contents.clone();
       this.applyContents($contents);
     }
+    this.editable.trigger('undo');
   },
 
   redo: function() {
@@ -28,6 +29,7 @@ Editor.UndoManager.prototype = {
       this.stashContents = $contents.clone();
       this.applyContents($contents);
     }
+    this.editable.trigger('redo');
   },
 
   hasUndo: function() {
