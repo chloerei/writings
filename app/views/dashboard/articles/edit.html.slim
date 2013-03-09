@@ -26,10 +26,19 @@ html
                 a#view-button target='_blank' href=(@article.persisted? ? site_article_url(@article, :urlname => @article.urlname, :host => current_user.host) : site_root_url(:host => current_user.host))
                   i.icon-external-link
           .pull-right
+            #save-status
+              span.saving
+                i.icon-refresh
+                = ' '
+              span.saved class=(@article.persisted? ? 'show' : nil) title=(@article.persisted? ? @article.updated_at : nil)
+                = t '.saved'
+              span.retry
+                = t '.save_error'
+                = ' '
+                a href='#' = t '.retry'
             .button-group
               = link_to t('.publish'), '#', :class => ['button', (@article.publish? ? 'button-actived' : nil)], :id => 'publish-button'
               = link_to t('.draft'), '#', :class => ['button', (@article.draft? ? 'button-actived' : nil)], :id => 'draft-button'
-            = link_to t('save'), '#', :class => 'button no-margin', :id => 'save-button'
     = render :partial => 'toolbar'
     #editarea
       .editor-container
