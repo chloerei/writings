@@ -30,7 +30,7 @@ html
               span.saving
                 i.icon-refresh
                 = ' '
-              span.saved class=(@article.persisted? ? 'show' : nil) title=(@article.persisted? ? @article.updated_at.to_s(:db) : nil)
+              span.saved class=(@article.persisted? ? 'show' : nil) title=(@article.persisted? ? @article.updated_at : nil)
                 = t '.saved'
               span.retry
                 = t '.save_error'

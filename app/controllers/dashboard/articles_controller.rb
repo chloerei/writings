@@ -55,7 +55,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     @article = current_user.articles.new article_params
     if @article.save
       respond_to do |format|
-        format.json { render :json => @article.as_json(:only => [:urlname, :title, :status, :token]).merge(:url => site_article_url(@article, :urlname => @article.urlname, :host => current_user.host), :updated_at => @article.updated_at.to_s(:db)) }
+        format.json { render :json => @article.as_json(:only => [:urlname, :title, :status, :token]).merge(:url => site_article_url(@article, :urlname => @article.urlname, :host => current_user.host), :updated_at => @article.updated_at.to_s) }
       end
     else
       respond_to do |format|
@@ -74,7 +74,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     @article = current_user.articles.find_by(:token => params[:id])
     if @article.update_attributes article_params
       respond_to do |format|
-        format.json { render :json => @article.as_json(:only => [:urlname, :title, :status, :token]).merge(:url => site_article_url(@article, :urlname => @article.urlname, :host => current_user.host), :updated_at => @article.updated_at.to_s(:db)) }
+        format.json { render :json => @article.as_json(:only => [:urlname, :title, :status, :token]).merge(:url => site_article_url(@article, :urlname => @article.urlname, :host => current_user.host), :updated_at => @article.updated_at.to_s) }
       end
     else
       respond_to do |format|
