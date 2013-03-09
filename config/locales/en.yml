@@ -26,6 +26,7 @@ en:
     dashboard:
       home: "Home"
       feedback: "Feedback"
+      about: "About"
       dashboard: "Dashboard"
       settings: "Settings"
       account: "Account"

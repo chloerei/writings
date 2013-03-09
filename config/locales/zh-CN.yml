@@ -26,6 +26,7 @@ zh-CN:
     dashboard:
       home: "首页"
       feedback: "问题反馈"
+      about: "关于"
       dashboard: "面板"
       settings: "设置"
       account: "账户"

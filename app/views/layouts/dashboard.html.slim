@@ -21,11 +21,18 @@ html
                   = t '.dashboard'
                 - else
                   = t '.home'
-            li
-              a href='https://github.com/writings-io/writings-io/issues' target='_blank'
-                i.icon-comment
-                = ' '
-                = t '.feedback'
+            - if logined?
+              li
+                a href='https://github.com/writings-io/writings-io/issues' target='_blank'
+                  i.icon-github-alt
+                  = ' '
+                  = t '.feedback'
+            - else
+              li
+                a href='http://blog.chloerei.com/articles/7db48376-what-is-writings-io'
+                  i.icon-info-sign
+                  = ' '
+                  = t '.about'
             = yield :top_nav
           ul.top-nav.pull-right
             - if logined?
