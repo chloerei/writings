@@ -30,51 +30,45 @@
 #profile {
   padding: 40px 0;
   border-bottom: 2px solid #ccc;
+  text-align: center;
   @include clearfix();
 
-  &.bottom {
-    margin: 40px 0;
-    padding: 20px 0;
-    border-bottom: 1px solid #ccc;
-    border-top: 1px solid #ccc;
-  }
-
   .avatar {
-    float: left;
-    width: 100px;
-    height: 100px;
-    margin-right: 20px;
-    img {
-      border-radius: 50px;
-    }
+    width: 100%;
+    margin-bottom: 20px;
 
-    @media (max-width: 768px) {
-      float: none;
-      width: 100%;
-      margin-bottom: 20px;
-      text-align: center;
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50px;
     }
   }
 
   .info {
-    float: left;
-    width: 768px - 140px - 100px - 20px;
-
-    @media (max-width: 768px) {
-      float: none;
-      width: 100%;
-      text-align: center;
-    }
-
     h1 {
       line-height: 160%;
       margin: 0;
     }
   }
 
-  .description {
-    p {
-      margin-bottom: none;
+  &.bottom {
+    border-top: 2px solid #ccc;
+    margin-bottom: 40px;
+
+    @media (min-width: 769px) {
+      text-align: left;
+
+      .avatar {
+        width: 100px;
+        float: left;
+        margin-right: 20px;
+        margin-bottom: 0;
+      }
+
+      .info {
+        width: 768px - 120px - 140px;
+        float: left;
+      }
     }
   }
 }

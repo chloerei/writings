@@ -10,8 +10,7 @@
         .info
           h1.name
             = link_to @user.display_name, site_root_path
-          .description
-            = simple_format @user.profile.description
+          = simple_format @user.profile.description
       #articles
         = render :partial => 'article', :collection => @articles
       = paginate @articles, :theme => 'site'
