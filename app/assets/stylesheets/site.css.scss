@@ -17,6 +17,23 @@
   }
 }
 
+#logo {
+  @include clearfix();
+
+  a {
+    float: right;
+    margin: 5px 5px;
+    padding: 3px 10px;
+    color: #fff;
+    background-color: #999;
+    @include border-radius(3px);
+
+    &:hover {
+      background-color: $linkColor;
+    }
+  }
+}
+
 #header {
   margin-bottom: 20px;
   color: #999;
@@ -53,7 +70,7 @@
 
   &.bottom {
     border-top: 2px solid #ccc;
-    margin-bottom: 40px;
+    margin: 40px 0;
 
     @media (min-width: 769px) {
       text-align: left;
