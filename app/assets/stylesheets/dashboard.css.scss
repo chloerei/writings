@@ -576,16 +576,32 @@ body {
 // editor
 
 #editor-header {
-  .pull-left {
-    width: 50%;
-  }
-
   .pull-right {
     padding: 15px 0;
   }
 
   .button {
     display: inline;
+  }
+
+  .button-group {
+    margin-right: 0;
+  }
+
+  #save-status {
+    display: inline;
+    margin-right: 10px;
+    color: #999;
+
+    .saving,
+    .saved,
+    .retry {
+      display: none;
+    }
+
+    .show {
+      display: inherit;
+    }
   }
 
   @media (max-width: 768px) {

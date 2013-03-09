@@ -113,6 +113,9 @@ en:
         collect: "Collect"
         publish: "publish"
         draft: "draft"
+        saved: 'Saved'
+        save_error: 'Save error'
+        retry: 'retry'
       toolbar:
         bold_tip: "Bold Ctrl+b"
         italic_tip: "Italic Ctrl+i"

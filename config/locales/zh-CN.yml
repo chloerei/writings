@@ -113,6 +113,9 @@ zh-CN:
         collect: "归类"
         publish: "发布"
         draft: "草稿"
+        saved: '已保存'
+        save_error: '保存出错'
+        retry: '重试'
       toolbar:
         bold_tip: "加粗 Ctrl+b"
         italic_tip: "斜体 Ctrl+i"

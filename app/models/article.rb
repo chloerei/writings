@@ -1,6 +1,6 @@
 class Article
   include Mongoid::Document
-  include Mongoid::Timestamps::Created
+  include Mongoid::Timestamps
   include ActiveModel::ForbiddenAttributesProtection
 
   field :title

@@ -50,7 +50,7 @@ var ArticleEdit = function() {
   this.article = $('#editarea article');
 
   this.connect('#urlname-form', 'submit', this.saveUrlname);
-  this.connect('#save-button', 'click', this.saveArticle);
+  this.connect('#save-status .retry a', 'click', this.saveArticle);
   this.connect('#publish-button', 'click', this.publishArticle);
   this.connect('#draft-button', 'click', this.draftArticle);
   this.connect('#category-form', 'submit', this.saveCategory);
@@ -67,6 +67,10 @@ var ArticleEdit = function() {
       _this.article.removeClass('init');
     });
   }
+
+  this.article.on('input', function() {
+    _this.autoSaveArticle();
+  });
 
   $('#link-form').on('submit', function(event) {
     event.preventDefault();
@@ -110,7 +114,7 @@ ArticleEdit.prototype = {
 
   updateArticle: function(data, success_callback, error_callback) {
     var _this = this;
-    AlertMessage.loading('Saving...');
+    $('#save-status .saving').show();
     $.ajax({
       url: '/articles/' + this.article.data('id'),
       data: data,
@@ -118,12 +122,14 @@ ArticleEdit.prototype = {
       dataType: 'json'
     }).success(function(data) {
       AlertMessage.clear();
+      $('#save-status .saved').attr('title', data.updated_at).show().siblings().hide();
+      _this.updateViewButton(data);
       if (success_callback) {
         success_callback(data);
       }
-      _this.updateViewButton(data);
     }).error(function() {
       AlertMessage.error('Save Failed.');
+      $('#save-status .retry').show().siblings().hide();
       if (error_callback) {
         error_callback();
       }
@@ -187,6 +193,21 @@ ArticleEdit.prototype = {
 
   saveArticle: function(event) {
     event.preventDefault();
+    if (this.isPersisted()) {
+      this.updateArticle({
+        article: {
+          title: this.extractTitle(),
+          body: this.editor.editable.html()
+        }
+      });
+    } else {
+      this.createArticle();
+    }
+
+    document.title = this.extractTitle() || 'Untitle';
+  },
+
+  autoSaveArticle: function() {
     if (this.isPersisted()) {
       this.updateArticle({
         article: {
