@@ -69,7 +69,7 @@ var ArticleEdit = function() {
   }
 
   this.article.on('input undo redo', function() {
-    _this.autoSaveArticle();
+    _this.saveArticle();
   });
 
   $('#link-form').on('submit', function(event) {
@@ -112,24 +112,44 @@ ArticleEdit.prototype = {
     return !!this.article.data('id');
   },
 
+  saveCount: 0,
+
+  saveStart: function() {
+    this.saveCount = this.saveCount + 1;
+    $('#save-status .saving').show();
+  },
+
+  saveCompelete: function(data) {
+    console.log(data.saveCount);
+    console.log(this.saveCount);
+    if (data.saveCount === this.saveCount) {
+      AlertMessage.clear();
+      $('#save-status .saved').attr('title', data.updated_at).show().siblings().hide();
+    }
+  },
+
+  saveError: function() {
+    AlertMessage.error('Save Failed.');
+    $('#save-status .retry').show().siblings().hide();
+  },
+
   updateArticle: function(data, success_callback, error_callback) {
     var _this = this;
-    $('#save-status .saving').show();
+    _this.saveStart();
+    data.saveCount = _this.saveCount;
     $.ajax({
       url: '/articles/' + this.article.data('id'),
       data: data,
       type: 'put',
       dataType: 'json'
     }).success(function(data) {
-      AlertMessage.clear();
-      $('#save-status .saved').attr('title', data.updated_at).show().siblings().hide();
+      _this.saveCompelete(data);
       _this.updateViewButton(data);
       if (success_callback) {
         success_callback(data);
       }
     }).error(function() {
-      AlertMessage.error('Save Failed.');
-      $('#save-status .retry').show().siblings().hide();
+      _this.saveError();
       if (error_callback) {
         error_callback();
       }
@@ -140,7 +160,11 @@ ArticleEdit.prototype = {
     event.preventDefault();
     var urlname = $('#article-urlname').val();
     if (this.isPersisted()) {
-      this.updateArticle($('#urlname-form').serializeArray(), function(data) {
+      this.updateArticle({
+        article: {
+          urlname: urlname
+        }
+      }, function(data) {
         Dialog.hide('#urlname-modal');
       });
     } else {
@@ -156,7 +180,11 @@ ArticleEdit.prototype = {
     var categoryName = $('#category-form .dropdown-toggle').text();
     var _this = this;
     if (this.isPersisted()) {
-      this.updateArticle($('#category-form').serializeArray(), function(data) {
+      this.updateArticle({
+        article: {
+          category_id: categoryId
+        }
+      }, function(data) {
         _this.article.data('category-id', categoryId);
         Dialog.hide('#select-category-modal');
       });
@@ -192,22 +220,9 @@ ArticleEdit.prototype = {
   },
 
   saveArticle: function(event) {
-    event.preventDefault();
-    if (this.isPersisted()) {
-      this.updateArticle({
-        article: {
-          title: this.extractTitle(),
-          body: this.editor.editable.html()
-        }
-      });
-    } else {
-      this.createArticle();
+    if (event) {
+      event.preventDefault();
     }
-
-    document.title = this.extractTitle() || 'Untitle';
-  },
-
-  autoSaveArticle: function() {
     if (this.isPersisted()) {
       this.updateArticle({
         article: {
@@ -228,7 +243,7 @@ ArticleEdit.prototype = {
 
   createArticle: function() {
     var _this = this;
-    $('#save-status .saving').show();
+    _this.saveStart();
     $.ajax({
       url: '/articles',
       data: {
@@ -237,19 +252,19 @@ ArticleEdit.prototype = {
           body: this.editor.editable.html(),
           urlname: this.article.data('urlname'),
           category_id : this.article.data('category-id'),
-          status: this.article.data('status')
+          status: this.article.data('status'),
+          saveCount: _this.saveCount
         }
       },
       type: 'post',
       dataType: 'json'
     }).success(function(data) {
-      AlertMessage.clear();
-      $('#save-status .saved').attr('title', data.updated_at).show().siblings().hide();
+      _this.saveCompelete(data);
       _this.article.data('id', data.token);
       _this.updateViewButton(data);
       history.replaceState(null, null, '/articles/' + data.token + '/edit');
     }).error(function() {
-      AlertMessage.error('Save Failed.');
+      _this.saveError();
       $('#save-status .retry').show().siblings().hide();
     });
   },
