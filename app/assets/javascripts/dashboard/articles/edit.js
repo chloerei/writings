@@ -228,7 +228,7 @@ ArticleEdit.prototype = {
 
   createArticle: function() {
     var _this = this;
-    AlertMessage.loading('Saving...');
+    $('#save-status .saving').show();
     $.ajax({
       url: '/articles',
       data: {
@@ -244,11 +244,13 @@ ArticleEdit.prototype = {
       dataType: 'json'
     }).success(function(data) {
       AlertMessage.clear();
+      $('#save-status .saved').attr('title', data.updated_at).show().siblings().hide();
       _this.article.data('id', data.token);
       _this.updateViewButton(data);
       history.replaceState(null, null, '/articles/' + data.token + '/edit');
     }).error(function() {
       AlertMessage.error('Save Failed.');
+      $('#save-status .retry').show().siblings().hide();
     });
   },
 
