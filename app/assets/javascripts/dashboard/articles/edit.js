@@ -120,8 +120,6 @@ ArticleEdit.prototype = {
   },
 
   saveCompelete: function(data) {
-    console.log(data.saveCount);
-    console.log(this.saveCount);
     if (data.saveCount === this.saveCount) {
       AlertMessage.clear();
       $('#save-status .saved').attr('title', data.updated_at).show().siblings().hide();
@@ -252,9 +250,9 @@ ArticleEdit.prototype = {
           body: this.editor.editable.html(),
           urlname: this.article.data('urlname'),
           category_id : this.article.data('category-id'),
-          status: this.article.data('status'),
-          saveCount: _this.saveCount
-        }
+          status: this.article.data('status')
+        },
+        saveCount: _this.saveCount
       },
       type: 'post',
       dataType: 'json'
