@@ -282,6 +282,7 @@ ArticleEdit.prototype = {
       _this.article.data('id', data.token);
       _this.updateViewButton(data);
       history.replaceState(null, null, '/articles/' + data.token + '/edit');
+      _this.saveArticle(); // save change between ajax response
     }).fail(function() {
       _this.saveError();
       $('#save-status .retry').show().siblings().hide();
