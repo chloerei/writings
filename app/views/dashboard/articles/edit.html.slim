@@ -43,7 +43,7 @@ html
     #editarea
       .editor-container
         article contentEditable="true" spellcheck="false" data-id=(@article.token) data-category-id=(@article.category.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil)
-          = sanitize @article.body
+          = article_format_body @article.body
         = render 'layouts/alert_messages'
 
     = render 'urlname_modal'
