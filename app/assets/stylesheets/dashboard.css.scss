@@ -192,6 +192,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    line-height: 18px;
     @include clearfix();
 
     > li {
@@ -292,6 +293,7 @@ body {
     .tabs {
       position: fixed;
       top: 49px;
+      line-height: 18px;
       z-index: 9;
       width: 960px - 200px - 1px;
 
