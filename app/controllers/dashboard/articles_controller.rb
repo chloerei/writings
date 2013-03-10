@@ -72,13 +72,19 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def update
     @article = current_user.articles.find_by(:token => params[:id])
-    if @article.update_attributes article_params
-      respond_to do |format|
-        format.json { render :json => article_as_json(@article) }
+    if article_params[:save_count].to_i > @article.save_count
+      if @article.update_attributes article_params
+        respond_to do |format|
+          format.json { render :json => article_as_json(@article) }
+        end
+      else
+        respond_to do |format|
+          format.json { render :json => { :message => @article.errors.full_messages.join }, :status => 400 }
+        end
       end
     else
       respond_to do |format|
-        format.json { render :json => { :message => @article.errors.full_messages.join }, :status => 400 }
+        format.json { render :json => article_as_json(@article) }
       end
     end
   end
@@ -122,7 +128,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   private
 
   def article_params
-    base_params = params.require(:article).permit(:title, :body, :urlname, :status)
+    base_params = params.require(:article).permit(:title, :body, :urlname, :status, :save_count)
 
     if params[:article][:category_id]
       base_params.merge!(:category => current_user.categories.where(:urlname => params[:article][:category_id]).first)
@@ -132,6 +138,6 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def article_as_json(article)
-    article.as_json(:only => [:urlname, :title, :status, :token]).merge(:url => site_article_url(article, :urlname => article.urlname, :host => current_user.host), :updated_at => article.updated_at.to_s, :saveCount => params[:saveCount].to_i)
+    article.as_json(:only => [:urlname, :title, :status, :token, :save_count]).merge(:url => site_article_url(article, :urlname => article.urlname, :host => current_user.host), :updated_at => article.updated_at.to_s)
   end
 end

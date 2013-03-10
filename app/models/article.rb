@@ -7,6 +7,7 @@ class Article
   field :body
   field :urlname
   field :status, :default => 'draft'
+  field :save_count, :type => Integer, :default => 0
 
   field :token
   index({ :user_id => 1, :token => 1 },  { :unique => true })

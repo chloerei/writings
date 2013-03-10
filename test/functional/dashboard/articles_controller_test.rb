@@ -67,7 +67,7 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should update article" do
-    put :update, :id => @article, :article => { :title => 'change' }, :format => :json
+    put :update, :id => @article, :article => { :title => 'change', :save_count => @article.save_count + 1 }, :format => :json
     assert_response :success, @response.body
     assert_equal 'change', @article.reload.title
   end

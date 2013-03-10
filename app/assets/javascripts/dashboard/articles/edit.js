@@ -49,6 +49,8 @@ var ArticleEdit = function() {
 
   this.article = $('#editarea article');
 
+  this.saveCount = this.article.data('saveCount');
+
   this.connect('#urlname-form', 'submit', this.saveUrlname);
   this.connect('#save-status .retry a', 'click', this.saveArticle);
   this.connect('#publish-button', 'click', this.publishArticle);
@@ -131,15 +133,13 @@ ArticleEdit.prototype = {
     return !!this.article.data('id');
   },
 
-  saveCount: 0,
-
   saveStart: function() {
     this.saveCount = this.saveCount + 1;
     $('#save-status .saving').show();
   },
 
   saveCompelete: function(data) {
-    if (data.saveCount === this.saveCount) {
+    if (data.save_count === this.saveCount) {
       AlertMessage.clear();
       $('#save-status .saved').attr('title', data.updated_at).show().siblings().hide();
     }
@@ -153,7 +153,7 @@ ArticleEdit.prototype = {
   updateArticle: function(data, success_callback, error_callback) {
     var _this = this;
     _this.saveStart();
-    data.saveCount = _this.saveCount;
+    data.article.save_count = _this.saveCount;
     $.ajax({
       url: '/articles/' + this.article.data('id'),
       data: data,
