@@ -76,7 +76,9 @@ Editor.Formator.prototype = {
       } else {
         this.exec('insertOrderedList');
         if ($(this.commonAncestorContainer()).closest('p').length) {
+          this.editor.storeRange();
           $(this.commonAncestorContainer()).closest('ol').unwrap('p');
+          this.editor.restoreRange();
         }
       }
     }
@@ -98,7 +100,9 @@ Editor.Formator.prototype = {
       } else {
         this.exec('insertUnorderedList');
         if ($(this.commonAncestorContainer()).closest('p').length) {
+          this.editor.storeRange();
           $(this.commonAncestorContainer()).closest('ul').unwrap('p');
+          this.editor.restoreRange();
         }
       }
     }

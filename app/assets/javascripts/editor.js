@@ -188,13 +188,23 @@ Editor.prototype = {
   },
 
   storeRange: function() {
-    this.storedRange = document.getSelection().getRangeAt(0).cloneRange();
+    var selection = document.getSelection();
+    var range = selection.getRangeAt(0);
+    this.storedRange = {
+      startContainer: range.startContainer,
+      startOffset: range.startOffset,
+      endContainer: range.endContainer,
+      endOffset: range.endOffset
+    };
   },
 
   restoreRange: function() {
     var selection = document.getSelection();
+    var range = selection.getRangeAt(0);
+    range.setStart(this.storedRange.startContainer, this.storedRange.startOffset);
+    range.setEnd(this.storedRange.endContainer, this.storedRange.endOffset);
     selection.removeAllRanges();
-    selection.addRange(this.storedRange);
+    selection.addRange(range);
   },
 
   hasRange: function() {
