@@ -257,6 +257,12 @@ ArticleEdit.prototype = {
   createArticle: function() {
     var _this = this;
     _this.saveStart();
+
+    if (_this.creating === true) {
+      return;
+    }
+
+    _this.creating = true;
     $.ajax({
       url: '/articles',
       data: {
@@ -271,14 +277,16 @@ ArticleEdit.prototype = {
       },
       type: 'post',
       dataType: 'json'
-    }).success(function(data) {
+    }).done(function(data) {
       _this.saveCompelete(data);
       _this.article.data('id', data.token);
       _this.updateViewButton(data);
       history.replaceState(null, null, '/articles/' + data.token + '/edit');
-    }).error(function() {
+    }).fail(function() {
       _this.saveError();
       $('#save-status .retry').show().siblings().hide();
+    }).always(function() {
+      _this.creating = false;
     });
   },
 
