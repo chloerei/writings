@@ -44,15 +44,22 @@ var Editor = function(options) {
   var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
   var is_safari = navigator.userAgent.indexOf("Safari") > -1;
 
+  this.editable.on('input', function(event) {
+    if (_this.dirty) {
+      _this.sanitize.run();
+      _this.dirty = false;
+    }
+  });
+
   // In mac, chrome in safari trigger input event when typing pinyin,
   // so use textInput event.
   if (is_chrome || is_safari) {
-    this.editable.on('textInput', function(event) {
-      _this.input(event);
+    this.editable.on('textInput', function() {
+      _this.undoManagerSave();
     });
   } else {
-    this.editable.on('input', function(event) {
-      _this.input(event);
+    this.editable.on('input', function() {
+      _this.undoManagerSave();
     });
   }
 };
@@ -134,12 +141,8 @@ Editor.prototype = {
     }
   },
 
-  input: function(event) {
+  undoManagerSave: function() {
     var _this = this;
-    if (this.dirty) {
-      this.sanitize.run();
-      this.dirty = false;
-    }
     setTimeout(function() {
       _this.undoManager.save();
     }, 0); // webkit don't get right range offset, so setTimout to fix
