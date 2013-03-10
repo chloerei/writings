@@ -36,6 +36,9 @@ var Editor = function(options) {
     keydown: function(event) {
       _this.keydown(event);
     },
+    input: function(event) {
+      _this.input(event);
+    },
     paste: function(event) {
       _this.paste(event);
     }
@@ -43,13 +46,6 @@ var Editor = function(options) {
 
   var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
   var is_safari = navigator.userAgent.indexOf("Safari") > -1;
-
-  this.editable.on('input', function(event) {
-    if (_this.dirty) {
-      _this.sanitize.run();
-      _this.dirty = false;
-    }
-  });
 
   // In mac, chrome in safari trigger input event when typing pinyin,
   // so use textInput event.
@@ -107,6 +103,14 @@ Editor.prototype = {
 
   paste: function(event) {
     this.dirty = true;
+  },
+
+  input: function(event) {
+    var _this = this;
+    if (_this.dirty) {
+      _this.sanitize.run();
+      _this.dirty = false;
+    }
   },
 
   selectContents: function(contents) {
