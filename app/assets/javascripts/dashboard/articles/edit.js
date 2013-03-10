@@ -79,11 +79,15 @@ var ArticleEdit = function() {
   // so use textInput event.
   if (is_chrome || is_safari) {
     this.article.on('textInput', function(event) {
-      _this.saveArticle();
+      setTimeout(function() {
+        _this.saveArticle();
+      }, 0);
     });
   } else {
     this.article.on('input', function(event) {
-      _this.saveArticle();
+      setTimeout(function() {
+        _this.saveArticle();
+      }, 0);
     });
   }
 
