@@ -68,9 +68,24 @@ var ArticleEdit = function() {
     });
   }
 
-  this.article.on('input undo redo', function() {
+  this.article.on('undo redo', function() {
     _this.saveArticle();
   });
+
+  var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
+  var is_safari = navigator.userAgent.indexOf("Safari") > -1;
+
+  // In mac, chrome in safari trigger input event when typing pinyin,
+  // so use textInput event.
+  if (is_chrome || is_safari) {
+    this.article.on('textInput', function(event) {
+      _this.saveArticle();
+    });
+  } else {
+    this.article.on('input', function(event) {
+      _this.saveArticle();
+    });
+  }
 
   $('#link-form').on('submit', function(event) {
     event.preventDefault();

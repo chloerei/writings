@@ -29,9 +29,6 @@ var Editor = function(options) {
     _this.storeRange();
   });
 
-  var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
-  var is_safari = navigator.userAgent.indexOf("Safari") > -1;
-
   this.editable.on({
     keyup: function(event) {
       _this.keyup(event);
@@ -43,6 +40,9 @@ var Editor = function(options) {
       _this.paste(event);
     }
   });
+
+  var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
+  var is_safari = navigator.userAgent.indexOf("Safari") > -1;
 
   // In mac, chrome in safari trigger input event when typing pinyin,
   // so use textInput event.
