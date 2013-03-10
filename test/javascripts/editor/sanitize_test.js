@@ -69,7 +69,7 @@ test("sanitize div to p", function() {
 test("sanitize stript not allow tags", function() {
   sanitizeTest(
     this,
-    '<p>text<table></table></p>',
+    '<p>text</p><table>tex</table>',
     '<p>text</p>'
   );
 });
