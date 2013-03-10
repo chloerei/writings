@@ -115,6 +115,12 @@ Editor.prototype = {
 
   keyup: function() {
     this.initParagraph();
+    switch (event.keyCode) {
+      case 8: // Backspace
+      case 46: // Delete
+        this.undoManager.save();
+        break;
+    }
   },
 
   keydown: function(event) {

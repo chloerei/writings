@@ -72,6 +72,13 @@ var ArticleEdit = function() {
 
   this.article.on('undo redo', function() {
     _this.saveArticle();
+  }).on('keyup', function(event) {
+    switch (event.keyCode) {
+      case 8: // Backspace
+      case 46: // Delete
+        _this.saveArticle();
+        break;
+    }
   });
 
   var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
