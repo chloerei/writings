@@ -142,7 +142,7 @@ ArticleEdit.prototype = {
 
   saveStart: function() {
     this.saveCount = this.saveCount + 1;
-    $('#save-status .saving').show();
+    $('#save-status .saving').show().siblings().hide();
   },
 
   saveCompelete: function(data) {

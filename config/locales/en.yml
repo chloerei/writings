@@ -116,6 +116,7 @@ en:
         collect: "Collect"
         publish: "publish"
         draft: "draft"
+        saving: "Saving"
         saved: 'Saved'
         save_error: 'Save error'
         retry: 'retry'
