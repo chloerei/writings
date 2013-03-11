@@ -5,7 +5,9 @@ Editor.Formator = function(editor) {
 
 Editor.Formator.prototype = {
   isBold: function() {
-    return this.canBold() && document.queryCommandValue('bold') === 'true';
+    return this.canBold() &&
+      (document.queryCommandValue('bold') === 'true' ||
+       document.queryCommandState('bold'));
   },
 
   canBold: function() {
@@ -19,7 +21,9 @@ Editor.Formator.prototype = {
   },
 
   isItalic: function() {
-    return this.canItalic() && document.queryCommandValue('italic') === 'true';
+    return this.canItalic() &&
+      (document.queryCommandValue('italic') === 'true' ||
+       document.queryCommandState('italic'));
   },
 
   canItalic: function() {
@@ -33,7 +37,9 @@ Editor.Formator.prototype = {
   },
 
   isStrikeThrough: function() {
-    return this.canItalic() && document.queryCommandValue('strikeThrough') === 'true';
+    return this.canStrikeThrough() &&
+      (document.queryCommandValue('strikeThrough') === 'true' ||
+       document.queryCommandState('strikeThrough'));
   },
 
   canStrikeThrough: function() {
@@ -47,7 +53,9 @@ Editor.Formator.prototype = {
   },
 
   isUnderline: function() {
-    return this.canUnderline() && document.queryCommandValue('underline') === 'true';
+    return this.canUnorderedList() &&
+      (document.queryCommandValue('underline') === 'true' ||
+       document.queryCommandState('underline'));
   },
 
   canUnderline: function() {
