@@ -10,6 +10,7 @@ module("Editor.Sanitize", {
 
 var sanitizeTest = function(_this, html, expected) {
   _this.sanitize.editable.html(html);
+  console.log(_this.sanitize.editable.html());
   _this.sanitize.run();
   equal(_this.sanitize.editable.html(), expected);
 };
@@ -69,7 +70,12 @@ test("sanitize div to p", function() {
 test("sanitize stript not allow tags", function() {
   sanitizeTest(
     this,
-    '<p>text</p><table>tex</table>',
+    '<p>text</p><table></table>',
+    '<p>text</p>'
+  );
+  sanitizeTest(
+    this,
+    '<p>text</p><table><tbody></tbody></table>',
     '<p>text</p>'
   );
 });

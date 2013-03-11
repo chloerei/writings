@@ -30,7 +30,12 @@ Editor.Sanitize.prototype = {
   sanitizeTag: function() {
     // stript not allow tags
     this.editable.find(':not(' + this.tagWhiteList.join() + ')').each(function() {
-      $(this).replaceWith($(this).contents());
+      var $element = $(this);
+      if ($element.contents().length) {
+        $element.replaceWith($element.contents());
+      } else {
+        $element.remove();
+      }
     });
   },
 
