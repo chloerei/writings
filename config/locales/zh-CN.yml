@@ -22,6 +22,9 @@ zh-CN:
   page_not_found: "找不到该页面"
   server_error: "服务器错误"
 
+  older: "过往"
+  newer: "较新"
+
   layouts:
     dashboard:
       home: "首页"

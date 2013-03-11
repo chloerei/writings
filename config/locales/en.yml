@@ -22,6 +22,9 @@ en:
   page_not_found: "找不到该页面"
   server_error: "Server error"
 
+  older: "Older"
+  newer: "Newer"
+
   layouts:
     dashboard:
       home: "Home"

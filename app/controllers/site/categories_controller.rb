@@ -1,7 +1,7 @@
 class Site::CategoriesController < Site::BaseController
   def show
     @category = @user.categories.find_by :urlname => params[:id]
-    @articles = @category.articles.publish.desc(:created_at).page(params[:page]).per(10)
+    @articles = @category.articles.publish.desc(:created_at).page(params[:page]).per(5)
   end
 
   def feed

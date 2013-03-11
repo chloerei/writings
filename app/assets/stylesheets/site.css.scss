@@ -172,12 +172,12 @@
   font-size: 1.5em;
   @include clearfix();
 
-  .next {
-    float: right;
+  .older {
+    float: left;
   }
 
-  .prev {
-    float: left;
+  .newer {
+    float: right;
   }
 }
 
