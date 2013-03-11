@@ -774,7 +774,7 @@ body {
 }
 
 #help-modal {
-  width: 500px;
+  width: 400px;
 
   table {
     width: 100%;
@@ -788,10 +788,10 @@ body {
     th, td {
       padding: 10px;
       vertical-align: top;
+      text-align: center;
     }
 
     th {
-      text-align: left;
     }
   }
 }

@@ -62,23 +62,23 @@ var Editor = function(options) {
 
 Editor.prototype = {
   shortcuts: {
-    'bold' : ['ctrl+b', 'command+b'],
-    'italic' : ['ctrl+i', 'command+i'],
-    'image' : ['ctrl+g', 'command+g'],
-    'strikeThrough' : ['ctrl+d', 'command+d'],
-    'underline' : ['ctrl+u', 'command+u'],
-    'link' : ['ctrl+l', 'command+l'],
-    'unorderedList' : ['ctrl+shift+l', 'command+shift+l'],
-    'orderedList' : ['ctrl+shift+o', 'command+shift+o'],
-    'p' : ['ctrl+p', 'command+p'],
-    'h1' : ['ctrl+1', 'command+1'],
-    'h2' : ['ctrl+2', 'command+2'],
-    'h3' : ['ctrl+3', 'command+3'],
-    'h4' : ['ctrl+4', 'command+4'],
-    'code' : ['ctrl+k', 'command+k'],
-    'blockquote' : ['ctrl+q', 'command+q'],
-    'undo' : ['ctrl+z', 'command+z'],
-    'redo' : ['ctrl+y', 'command+y']
+    'bold' : ['ctrl+b'],
+    'italic' : ['ctrl+i'],
+    'image' : ['ctrl+g'],
+    'strikeThrough' : ['ctrl+d'],
+    'underline' : ['ctrl+shift+l'],
+    'link' : ['ctrl+l'],
+    'unorderedList' : ['ctrl+u'],
+    'orderedList' : ['ctrl+o'],
+    'p' : ['ctrl+p'],
+    'h1' : ['ctrl+1'],
+    'h2' : ['ctrl+2'],
+    'h3' : ['ctrl+3'],
+    'h4' : ['ctrl+4'],
+    'code' : ['ctrl+k'],
+    'blockquote' : ['ctrl+q'],
+    'undo' : ['ctrl+z'],
+    'redo' : ['ctrl+y', 'ctrl+shift+z']
   },
 
   connectShortcuts: function() {
