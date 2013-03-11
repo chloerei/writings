@@ -124,7 +124,7 @@ Editor.prototype = {
     selection.addRange(range);
   },
 
-  keyup: function() {
+  keyup: function(event) {
     this.initParagraph();
     switch (event.keyCode) {
       case 8: // Backspace
