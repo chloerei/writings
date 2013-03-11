@@ -213,7 +213,7 @@ Editor.prototype = {
 
   restoreRange: function() {
     var selection = document.getSelection();
-    var range = selection.getRangeAt(0);
+    var range = document.createRange();
     range.setStart(this.storedRange.startContainer, this.storedRange.startOffset);
     range.setEnd(this.storedRange.endContainer, this.storedRange.endOffset);
     selection.removeAllRanges();
