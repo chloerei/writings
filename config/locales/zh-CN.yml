@@ -117,9 +117,9 @@ zh-CN:
         publish: "发布"
         draft: "草稿"
         saving: "保存中"
-        saved: '已保存'
-        save_error: '保存出错'
-        retry: '重试'
+        saved: "已保存"
+        save_error: "保存出错"
+        retry: "重试"
       toolbar:
         bold_tip: "加粗 Ctrl + B"
         italic_tip: "斜体 Ctrl + I"

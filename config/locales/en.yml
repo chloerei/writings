@@ -117,7 +117,7 @@ en:
         publish: "publish"
         draft: "draft"
         saving: "Saving"
-        saved: 'Saved'
+        saved: "Saved."
         save_error: 'Save error'
         retry: 'retry'
       toolbar:
