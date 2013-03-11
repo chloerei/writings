@@ -130,6 +130,7 @@ Editor.prototype = {
       case 8: // Backspace
       case 46: // Delete
         this.undoManager.save();
+        this.editable.trigger('editor:change');
         break;
     }
   },
