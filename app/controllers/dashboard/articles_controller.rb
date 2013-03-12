@@ -3,7 +3,8 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def index
     if logined?
-      @articles = current_user.articles.desc(params[:status] == 'publish' ? :publishd_at : :updated_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
+      @order_column = (params[:status] == 'publish' ? :published_at : :updated_at)
+      @articles = current_user.articles.desc(@order_column).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
 
       append_title I18n.t('all_articles')
       append_title I18n.t(params[:status]) if params[:status].present?
@@ -19,7 +20,8 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def category
     @category = current_user.categories.find_by :urlname => params[:category_id]
-    @articles = current_user.articles.where(:category_id => @category).desc(:created_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
+    @order_column = (params[:status] == 'publish' ? :published_at : :updated_at)
+    @articles = current_user.articles.where(:category_id => @category).desc(@order_column).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
 
     append_title @category.name
     append_title I18n.t(params[:status]) if params[:status].present?

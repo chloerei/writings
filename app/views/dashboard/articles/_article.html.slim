@@ -6,4 +6,4 @@ tr.article data-id=(article.token) data-title=(article.title) data-category-id=(
     - if article.category
       span.category_name = article.category.name
   td.date
-    = l article.created_at.to_date, :format => :short
+    = l article[@order_column].to_date, :format => :short
