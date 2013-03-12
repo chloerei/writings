@@ -74,25 +74,6 @@ var ArticleEdit = function() {
     _this.saveArticle();
   });
 
-  var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
-  var is_safari = navigator.userAgent.indexOf("Safari") > -1;
-
-  // In mac, chrome in safari trigger input event when typing pinyin,
-  // so use textInput event.
-  if (is_chrome || is_safari) {
-    this.article.on('textInput', function(event) {
-      setTimeout(function() {
-        _this.saveArticle();
-      }, 0);
-    });
-  } else {
-    this.article.on('input', function(event) {
-      setTimeout(function() {
-        _this.saveArticle();
-      }, 0);
-    });
-  }
-
   $('#link-form').on('submit', function(event) {
     event.preventDefault();
     _this.editor.formator.link($(this).find('input[name=url]').val());

@@ -344,6 +344,6 @@ Editor.Formator.prototype = {
 
   exec: function(command, arg) {
     document.execCommand(command, false, arg);
-    this.editable.trigger('editor:change');
+    this.editable.trigger('editor:format');
   }
 };

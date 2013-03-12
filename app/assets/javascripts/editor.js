@@ -50,12 +50,18 @@ var Editor = function(options) {
   // In mac, chrome in safari trigger input event when typing pinyin,
   // so use textInput event.
   if (is_chrome || is_safari) {
-    this.editable.on('textInput', function() {
-      _this.undoManagerSave();
+    this.editable.on('textInput editor:format', function() {
+      setTimeout(function() {
+        _this.undoManager.save();
+        _this.editable.trigger('editor:change');
+      }, 0); // webkit don't get right range offset, so setTimout to fix
     });
   } else {
-    this.editable.on('input', function() {
-      _this.undoManagerSave();
+    this.editable.on('input editor:format', function() {
+      setTimeout(function() {
+        _this.undoManager.save();
+        _this.editable.trigger('editor:change');
+      }, 0); // webkit don't get right range offset, so setTimout to fix
     });
   }
 };
@@ -144,13 +150,6 @@ Editor.prototype = {
         this.enter(event);
         break;
     }
-  },
-
-  undoManagerSave: function() {
-    var _this = this;
-    setTimeout(function() {
-      _this.undoManager.save();
-    }, 0); // webkit don't get right range offset, so setTimout to fix
   },
 
   backspcae: function(event) {
