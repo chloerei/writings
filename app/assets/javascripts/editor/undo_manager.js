@@ -6,6 +6,8 @@ Editor.UndoManager = function(editable) {
 };
 
 Editor.UndoManager.prototype = {
+
+  // call **after** content change
   save: function() {
     this.undoStack.push(this.stashContents);
     this.stashContents = this.currentContents();
