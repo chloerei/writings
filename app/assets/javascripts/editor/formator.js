@@ -4,6 +4,13 @@ Editor.Formator = function(editor) {
 };
 
 Editor.Formator.prototype = {
+  // inline format do nothing when is Collapsed,
+  // so skip afterForamt() by checking isCollapsed,
+  // and keep format state;
+  isCollapsed: function() {
+    return document.getSelection().isCollapsed;
+  },
+
   isBold: function() {
     return this.canBold() &&
       (document.queryCommandValue('bold') === 'true' ||
@@ -17,6 +24,10 @@ Editor.Formator.prototype = {
   bold: function() {
     if (this.canBold()) {
       this.exec('bold');
+
+      if (!this.isCollapsed) {
+        this.afterFormat();
+      }
     }
   },
 
@@ -33,6 +44,10 @@ Editor.Formator.prototype = {
   italic: function() {
     if (this.canItalic()) {
       this.exec('italic');
+
+      if (!this.isCollapsed) {
+        this.afterFormat();
+      }
     }
   },
 
@@ -49,6 +64,10 @@ Editor.Formator.prototype = {
   strikeThrough: function() {
     if (this.canStrikeThrough()) {
       this.exec('strikeThrough');
+
+      if (!this.isCollapsed) {
+        this.afterFormat();
+      }
     }
   },
 
@@ -65,6 +84,10 @@ Editor.Formator.prototype = {
   underline: function() {
     if (this.canUnderline()) {
       this.exec('underline');
+
+      if (!this.isCollapsed) {
+        this.afterFormat();
+      }
     }
   },
 
@@ -89,6 +112,8 @@ Editor.Formator.prototype = {
           this.editor.restoreRange();
         }
       }
+
+      this.afterFormat();
     }
   },
 
@@ -113,6 +138,8 @@ Editor.Formator.prototype = {
           this.editor.restoreRange();
         }
       }
+
+      this.afterFormat();
     }
   },
 
@@ -132,6 +159,8 @@ Editor.Formator.prototype = {
     } else {
       this.exec('unlink');
     }
+
+    this.afterFormat();
   },
 
   image: function() {
@@ -208,6 +237,7 @@ Editor.Formator.prototype = {
 
   p: function() {
     this.exec('formatBlock', 'p');
+    this.afterFormat();
   },
 
   formatHeader: function(type) {
@@ -218,6 +248,8 @@ Editor.Formator.prototype = {
       $(this.commonAncestorContainer()).closest(type).find(':not(i, strike, u, a, br)').each(function() {
         $(this).replaceWith($(this).contents());
       });
+
+      this.afterFormat();
     }
   },
 
@@ -279,6 +311,8 @@ Editor.Formator.prototype = {
       this.editor.sanitize.striptCode($code);
       selection.selectAllChildren($code[0]);
     }
+
+    this.afterFormat();
   },
 
   splitCode: function(code) {
@@ -325,6 +359,8 @@ Editor.Formator.prototype = {
         $blockquote.after('<p><br></p>');
       }
     }
+
+    this.afterFormat();
   },
 
   isWraped: function(selector) {
@@ -344,6 +380,10 @@ Editor.Formator.prototype = {
 
   exec: function(command, arg) {
     document.execCommand(command, false, arg);
-    this.editable.trigger('editor:format');
+  },
+
+  afterFormat: function() {
+    this.editor.undoManager.save();
+    this.editable.trigger('editor:change');
   }
 };

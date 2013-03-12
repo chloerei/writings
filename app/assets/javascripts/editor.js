@@ -50,14 +50,14 @@ var Editor = function(options) {
   // In mac, chrome in safari trigger input event when typing pinyin,
   // so use textInput event.
   if (is_chrome || is_safari) {
-    this.editable.on('textInput editor:format', function() {
+    this.editable.on('textInput', function() {
       setTimeout(function() {
         _this.undoManager.save();
         _this.editable.trigger('editor:change');
       }, 0); // webkit don't get right range offset, so setTimout to fix
     });
   } else {
-    this.editable.on('input editor:format', function() {
+    this.editable.on('input', function() {
       setTimeout(function() {
         _this.undoManager.save();
         _this.editable.trigger('editor:change');

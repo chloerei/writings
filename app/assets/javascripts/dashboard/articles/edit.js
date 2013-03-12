@@ -15,6 +15,8 @@ Editor.Formator.prototype.link = function(url) {
     } else {
       this.exec('unlink');
     }
+
+    this.afterFormat();
     Dialog.hide('#link-modal');
   } else {
     var link = '';
@@ -34,6 +36,8 @@ Editor.Formator.prototype.image = function(url) {
       url = 'http://' + url;
     }
     this.exec('insertImage', url);
+
+    this.afterFormat();
     Dialog.hide('#image-modal');
   } else {
     Dialog.show('#image-modal');
