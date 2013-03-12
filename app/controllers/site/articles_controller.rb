@@ -1,6 +1,6 @@
 class Site::ArticlesController < Site::BaseController
   def index
-    @articles = @user.articles.publish.desc(:published).page(params[:page]).per(5)
+    @articles = @user.articles.publish.desc(:published_at).page(params[:page]).per(5)
   end
 
   def show
@@ -12,7 +12,7 @@ class Site::ArticlesController < Site::BaseController
   end
 
   def feed
-    @articles = @user.articles.publish.desc(:created_at).limit(20)
+    @articles = @user.articles.publish.desc(:published_at).limit(20)
     @feed_title = @user.profile.name.present? ? @user.profile.name : @user.name
     @feed_link = site_root_url
 
