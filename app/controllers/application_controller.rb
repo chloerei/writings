@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :logined?, :current_user, :append_title, :page_title
   before_filter :set_locale
 
-  #rescue_from Exception, :with => :render_500
+  rescue_from Exception, :with => :render_500
   rescue_from Mongoid::Errors::DocumentNotFound, :with => :render_404
 
   protected

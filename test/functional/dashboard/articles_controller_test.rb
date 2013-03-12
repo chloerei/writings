@@ -24,6 +24,15 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
     assert_response :success, @response.body
   end
 
+  test "should get not_collected" do
+    get :not_collected
+    assert_response :success, @response.body
+
+    create(:article, :status => 'publish', :user => @user)
+    get :not_collected, :status => :publish
+    assert_response :success, @response.body
+  end
+
   test "should get category articles" do
     get :category, :category_id => @category
     assert_response :success, @response.body
