@@ -1,9 +1,9 @@
 article
   h1 = link_to article.title, site_article_path(article, :urlname => article.urlname)
   .info
-    = t 'wrote_on'
+    = t 'published_at'
     = ' '
-    = article.created_at.to_date.to_s
+    = article.published_at.to_date.to_s
     - if article.category
       = ' '
       = t 'category'

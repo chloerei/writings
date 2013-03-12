@@ -6,9 +6,9 @@
       .info
         = link_to @user.display_name, site_root_path
         = ' '
-        = t 'wrote_on'
+        = t 'published_at'
         = ' '
-        = @article.created_at.to_date.to_s
+        = @article.published_at.to_date.to_s
         - if @article.category
           = ' '
           = t 'category'

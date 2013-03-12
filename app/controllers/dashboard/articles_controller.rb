@@ -3,7 +3,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def index
     if logined?
-      @articles = current_user.articles.desc(:created_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
+      @articles = current_user.articles.desc(params[:status] == 'publish' ? :publishd_at : :updated_at).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
 
       append_title I18n.t('all_articles')
       append_title I18n.t(params[:status]) if params[:status].present?

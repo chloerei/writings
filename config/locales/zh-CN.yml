@@ -10,7 +10,7 @@ zh-CN:
   draft: "草稿箱"
   trash: "垃圾桶"
 
-  wrote_on: "写于"
+  published_at: "发布于"
   category: "分类"
   subscribe: "订阅"
   author: "作者"

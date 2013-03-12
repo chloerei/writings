@@ -8,6 +8,7 @@ class Article
   field :urlname
   field :status, :default => 'draft'
   field :save_count, :type => Integer, :default => 0
+  field :published_at
 
   field :token
   index({ :user_id => 1, :token => 1 },  { :unique => true })
@@ -35,6 +36,14 @@ class Article
   }
 
   delegate :name, :urlname, :to => :category, :prefix => true, :allow_nil => true
+
+  before_save :set_published_at
+
+  def set_published_at
+    if status_changed? && publish?
+      self.published_at = Time.now.utc
+    end
+  end
 
   def urlname
     read_attribute(:urlname).present? ? read_attribute(:urlname) : nil
