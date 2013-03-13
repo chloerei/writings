@@ -44,12 +44,12 @@ var Editor = function(options) {
     }
   });
 
-  var is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
-  var is_safari = navigator.userAgent.indexOf("Safari") > -1;
+  this.is_chrome = navigator.userAgent.indexOf('Chrome') > -1;
+  this.is_safari = navigator.userAgent.indexOf("Safari") > -1 && !this.is_chrome;
 
   // In mac, chrome in safari trigger input event when typing pinyin,
   // so use textInput event.
-  if (is_chrome || is_safari) {
+  if (this.is_chrome || this.is_safari) {
     this.editable.on('textInput', function() {
       setTimeout(function() {
         _this.undoManager.save();
@@ -131,12 +131,16 @@ Editor.prototype = {
   },
 
   keyup: function(event) {
-    this.initParagraph();
     switch (event.keyCode) {
       case 8: // Backspace
       case 46: // Delete
-        this.undoManager.save();
-        this.editable.trigger('editor:change');
+        this.initParagraph();
+
+        // bugfix https://github.com/writings-io/writings-io/issues/3#issuecomment-14832829
+        if (!this.is_safari) {
+          this.undoManager.save();
+          this.editable.trigger('editor:change');
+        }
         break;
     }
   },
