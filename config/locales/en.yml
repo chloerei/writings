@@ -9,6 +9,7 @@ en:
   publish: "Publish"
   draft: "Draft"
   trash: "Trash"
+  untitled: "Untitled"
 
   published_at: "Published at"
   category: "Category"

@@ -62,7 +62,7 @@ class Article
   end
 
   def title
-    read_attribute(:title).blank? ? 'Untitle' : read_attribute(:title)
+    read_attribute(:title).blank? ? I18n.t(:untitled) : read_attribute(:title)
   end
 
   before_create :set_token
