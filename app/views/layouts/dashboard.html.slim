@@ -21,13 +21,29 @@ html
                   = t '.dashboard'
                 - else
                   = t '.home'
-            - if logined?
-              li
-                a href='https://github.com/writings-io/writings-io/issues' target='_blank'
-                  i.icon-github-alt
+            li
+              .dropdown
+                a.dropdown-toggle href="#"
+                  i.icon-comments-alt
                   = ' '
                   = t '.feedback'
-            - else
+                ul.dropdown-menu
+                  li
+                    a href='https://twitter.com/writingsio' target='_blank'
+                      i.icon-twitter
+                      = ' '
+                      = t '.twitter'
+                  li
+                    a href='https://plus.google.com/communities/118240447023703524479' target='_blank'
+                      i.icon-google-plus
+                      = ' '
+                      = t '.google_plus'
+                  li
+                    a href='https://github.com/writings-io/writings-io/issues' target='_blank'
+                      i.icon-github-alt
+                      = ' '
+                      = t '.github_issues'
+            - unless logined?
               li
                 a href='http://blog.chloerei.com/articles/7db48376-what-is-writings-io'
                   i.icon-info-sign

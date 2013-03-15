@@ -30,6 +30,9 @@ en:
     dashboard:
       home: "Home"
       feedback: "Feedback"
+      twitter: "Twitter"
+      google_plus: "Google+"
+      github_issues: "Github Issues"
       about: "About"
       dashboard: "Dashboard"
       settings: "Settings"

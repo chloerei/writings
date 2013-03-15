@@ -30,6 +30,9 @@ zh-CN:
     dashboard:
       home: "首页"
       feedback: "问题反馈"
+      twitter: "Twitter"
+      google_plus: "Google+"
+      github_issues: "Github Issues"
       about: "关于"
       dashboard: "面板"
       settings: "设置"
