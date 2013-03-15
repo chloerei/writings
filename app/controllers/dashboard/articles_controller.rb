@@ -100,7 +100,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
       category = current_user.categories.where(:urlname => params[:category_id]).first
       @articles.update_all :category_id => category.try(:id)
     when 'publish'
-      @articles.update_all :status => 'publish'
+      @articles.update_all :status => 'publish', :published_at => Time.now.utc
     when 'draft'
       @articles.update_all :status => 'draft'
     when 'trash'

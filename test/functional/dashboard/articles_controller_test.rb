@@ -92,6 +92,7 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
     assert_difference "@category.articles.publish.count", 2 do
       post :bulk, :ids => [article1.token, article2.token], :type => 'publish', :category_id => @category.urlname, :format => :json
     end
+    assert_not_nil article1.reload.published_at
 
     assert_difference "@category.articles.publish.count", -2 do
       post :bulk, :ids => [article1.token, article2.token], :type => 'draft', :category_id => @category.urlname, :format => :json
