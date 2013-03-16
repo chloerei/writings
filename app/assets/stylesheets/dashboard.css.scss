@@ -776,14 +776,14 @@ body {
 }
 
 #help-modal {
-  width: 400px;
+  width: 450px;
 
   table {
     width: 100%;
 
     tr {
       &:nth-child(odd) {
-        background-color: #eee;
+        background-color: #f9f9f9;
       }
     }
 
@@ -794,6 +794,28 @@ body {
     }
 
     th {
+    }
+  }
+}
+
+#image-modal {
+  width: 450px;
+
+  .field-content {
+    height: 150px;
+  }
+
+  .button-fileinput {
+    position: relative;
+    overflow: hidden;
+
+    input {
+      opacity: 0;
+      position: absolute;
+      top: -1px;
+      right: -1px;
+      cursor: pointer;
+      height: 34px;
     }
   }
 }

@@ -71,6 +71,7 @@ zh-CN:
 
     articles:
       delete_modal:
+        delete_selected: "删除所选"
         label_message: "确定删除所选文章？"
         delete_forever: "永久删除"
       empty_trash_modal:
@@ -79,15 +80,21 @@ zh-CN:
       image_modal:
         url: "URL 地址"
         insert_image: "插入图片"
+        select_file: "选择文件"
+        upload: "上传图片"
       link_modal:
         url: "URL 地址"
         create_link: "创建链接"
         unlink: "去掉链接"
+      urlname_modal:
+        urlname: "URL 标识"
       move_category_modal:
         select_category: "选择分类"
         new_category: "新建分类"
       select_category_modal:
         select_category: "选择分类"
+        new_category: "新建分类"
+      new_category_modal:
         new_category: "新建分类"
 
       main_nav:

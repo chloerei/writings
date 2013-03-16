@@ -407,6 +407,19 @@ a.button:hover {
   }
 }
 
+// tabs
+
+.tabs {
+}
+
+.tab-pane {
+  display: none;
+
+  &.actived {
+    display: block;
+  }
+}
+
 // modal
 
 #modal-background {
@@ -427,14 +440,13 @@ a.button:hover {
   position: fixed;
   display: none;
 
-  width: 340px;
+  width: 400px;
   max-width: 90%;
   max-height: 90%;
   top: 50%;
   left: 50%;
   background: white;
   border: 1px solid #ccc;
-  padding: 30px;
   overflow: auto;
   @include box-shadow(0 4px 16px rgba(0, 0, 0, 0.5));
   @include box-sizing(border-box);
@@ -443,17 +455,36 @@ a.button:hover {
     overflow: visible;
   }
 
-  span.modal-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 10px;
-    cursor: pointer;
-    color: #999;
+  .modal-header {
+    @include clearfix();
 
-    &:hover {
-      color: #444;
+    .title {
+      padding: 10px 15px;
+      float: left;
+      font-weight: bold;
+      color: #555;
     }
+
+    .modal-close {
+      display: inline-block;
+      cursor: pointer;
+      float: right;
+      padding: 10px 15px;
+      color: #999;
+
+      i {
+        vertical-align: top;
+      }
+
+      &:hover {
+        color: #444;
+      }
+    }
+  }
+
+  .modal-content {
+    padding: 10px 15px 15px;
+    @include clearfix();
   }
 
   .dropdown-menu {
@@ -470,6 +501,47 @@ a.button:hover {
       width: 100%;
       height: 120px;
     }
+  }
+
+  .tabs {
+    float: left;
+    width: 25%;
+
+    nav {
+      li {
+        a {
+          display: block;
+          color: #555;
+          padding: 10px 20px 10px 0;
+          position: relative;
+          @include transition(none);
+
+          .label {
+            overflow: hidden;
+            white-space: nowrap;
+            margin-right: 10px;
+          }
+
+          &.actived,
+          &:hover {
+            color: $linkColor;
+
+            &:after {
+              content: "\f054";
+              font-family: FontAwesome;
+              position: absolute;
+              right: 10px;
+              top: 13px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    float: right;
+    width: 70%;
   }
 }
 

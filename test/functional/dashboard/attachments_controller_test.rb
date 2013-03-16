@@ -10,7 +10,6 @@ class Dashboard::AttachmentsControllerTest < ActionController::TestCase
     assert_difference "Attachment.count" do
       post :create, :format => :json, :attachment => { :file => File.open('app/assets/images/rails.png') }
       assert_response :success, @response.body
-      puts @response.body
     end
   end
 end

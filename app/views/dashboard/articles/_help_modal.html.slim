@@ -1,65 +1,66 @@
 #help-modal.modal-dialog
-  span.modal-close
-    i.icon-remove data-close='modal'
-  table
-    tbody
-      tr
-        th = t '.function'
-        th = t '.shortcut'
-      tr
-        td = t '.help'
-        td Ctrl + M
-      tr
-        td = t '.bold'
-        td Ctrl + B
-      tr
-        td = t '.italic'
-        td Ctrl + I
-      tr
-        td = t '.strike'
-        td Ctrl + D
-      tr
-        td = t '.underline'
-        td Ctrl + Shift + U
-      tr
-        td = t '.link'
-        td Ctrl + L
-      tr
-        td = t '.image'
-        td Ctrl + G
-      tr
-        td = t '.orderList'
-        td Ctrl + O
-      tr
-        td = t '.unorderList'
-        td Ctrl + U
-      tr
-        td = t '.p'
-        td Ctrl + P
-      tr
-        td = t '.h1'
-        td Ctrl + 1
-      tr
-        td = t '.h2'
-        td Ctrl + 2
-      tr
-        td = t '.h3'
-        td Ctrl + 3
-      tr
-        td = t '.h4'
-        td Ctrl + 4
-      tr
-        td = t '.code'
-        td Ctrl + K
-      tr
-        td = t '.blockquote'
-        td Ctrl + Q
-      tr
-        td = t '.save'
-        td Ctrl + S
-      tr
-        td = t '.undo'
-        td Ctrl + Z
-      tr
-        td = t '.redo'
-        td Ctrl + Shift + Z
+  .modal-header
+    .title
+      = t '.shortcut'
+    a.modal-close data-close='modal'
+      i.icon-remove
+  .modal-content
+    table
+      tbody
+        tr
+          td = t '.help'
+          td Ctrl + M
+        tr
+          td = t '.bold'
+          td Ctrl + B
+        tr
+          td = t '.italic'
+          td Ctrl + I
+        tr
+          td = t '.strike'
+          td Ctrl + D
+        tr
+          td = t '.underline'
+          td Ctrl + Shift + U
+        tr
+          td = t '.link'
+          td Ctrl + L
+        tr
+          td = t '.image'
+          td Ctrl + G
+        tr
+          td = t '.orderList'
+          td Ctrl + O
+        tr
+          td = t '.unorderList'
+          td Ctrl + U
+        tr
+          td = t '.p'
+          td Ctrl + P
+        tr
+          td = t '.h1'
+          td Ctrl + 1
+        tr
+          td = t '.h2'
+          td Ctrl + 2
+        tr
+          td = t '.h3'
+          td Ctrl + 3
+        tr
+          td = t '.h4'
+          td Ctrl + 4
+        tr
+          td = t '.code'
+          td Ctrl + K
+        tr
+          td = t '.blockquote'
+          td Ctrl + Q
+        tr
+          td = t '.save'
+          td Ctrl + S
+        tr
+          td = t '.undo'
+          td Ctrl + Z
+        tr
+          td = t '.redo'
+          td Ctrl + Shift + Z

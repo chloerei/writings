@@ -1,16 +1,20 @@
 #new-category-modal.modal-dialog
-  span.modal-close data-close='modal'
-    i.icon-remove
-  = form_for current_user.categories.new, :url => dashboard_categories_path, :validate => true, :html => { :id => 'new-category-form' } do |f|
-    .field
-      = f.label :name
-      = f.text_field :name
-    .field
-      = f.label :urlname
-      = f.text_field :urlname
-    .field
-      = f.label :description
-      = f.text_area :description
-    .field
-      = f.submit t('submit')
-      = f.submit t('cancel'), :data => { :close => :modal }
+  .modal-header
+    .title
+      = t '.new_category'
+    a.modal-close data-close='modal'
+      i.icon-remove
+  .modal-content
+    = form_for current_user.categories.new, :url => dashboard_categories_path, :validate => true, :html => { :id => 'new-category-form' } do |f|
+      .field
+        = f.label :name
+        = f.text_field :name
+      .field
+        = f.label :urlname
+        = f.text_field :urlname
+      .field
+        = f.label :description
+        = f.text_area :description
+      .field
+        = f.submit t('submit')
+        = f.submit t('cancel'), :data => { :close => :modal }

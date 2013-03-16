@@ -1,11 +1,31 @@
 #image-modal.modal-dialog
-  span.modal-close data-close='modal'
-    i.icon-remove
-  = form_tag nil, :id => 'image-form' do
-    .field
-      = label_tag :url, t('.url')
-      = text_field_tag :url, nil, :placeholder => 'http://'
-    .field.clearfix
-      .pull-left
-        = submit_tag t('.insert_image')
-        = button_tag t('cancel'), :data => { :close => 'modal' }
+  .modal-header
+    .title
+      = t '.insert_image'
+    a.modal-close data-close='modal'
+      i.icon-remove
+  .modal-content
+    .tabs
+      nav
+        ul
+          li
+            a.actived href='#image-upload' data-toggle='tab' = t '.upload'
+          li
+            a href='#image-link' data-toggle='tab' = t '.url'
+    .tab-content
+      #image-upload.tab-pane.actived
+        = form_for Attachment.new, :url => dashboard_attachments_path do |f|
+          .field.field-content
+            span.button.button-primary.button-fileinput
+              = t '.select_file'
+              = f.file_field :file
+          .field
+            = f.submit t('.upload')
+            = button_tag t('cancel'), :data => { :close => 'modal' }
+      #image-link.tab-pane
+        = form_tag nil, :id => 'image-form' do
+          .field.field-content
+            = text_field_tag :url, nil, :placeholder => 'http://'
+          .field
+            = submit_tag t('.insert_image')
+            = button_tag t('cancel'), :data => { :close => 'modal' }
