@@ -818,4 +818,12 @@ body {
       height: 34px;
     }
   }
+
+  .filename {
+    width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+  }
 }

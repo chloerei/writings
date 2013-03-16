@@ -1,4 +1,9 @@
 class Dashboard::AttachmentsController < Dashboard::BaseController
+  def show
+    @attachment = Attachment.find params[:id]
+    redirect_to @attachment.file.url
+  end
+
   def create
     @attachment = Attachment.new attachment_params
 
@@ -9,7 +14,7 @@ class Dashboard::AttachmentsController < Dashboard::BaseController
             :files => [
               {
                 :name => @attachment.read_attribute(:file),
-                :url  => dashboard_attachment_path(@attachment)
+                :url  => dashboard_attachment_url(@attachment)
               }
             ]
           }

@@ -41,7 +41,6 @@ Editor.Formator.prototype.image = function(url) {
     Dialog.hide('#image-modal');
   } else {
     Dialog.show('#image-modal');
-    $('#image-modal').find('input[name=url]').val('').focus();
   }
 };
 
@@ -88,9 +87,26 @@ var ArticleEdit = function() {
     _this.editor.formator.link('');
   });
 
-  $('#image-form').on('submit', function(event) {
+  $('#image-link-form').on('submit', function(event) {
     event.preventDefault();
     _this.editor.formator.image($(this).find('input[name=url]').val());
+    $(this).find('input[name=url]').val('');
+  });
+
+  $('#image-upload-form').fileupload({
+    dataType: 'json',
+    add: function(e, data) {
+      $('#image-upload .filename').text(data.files[0].name);
+      $('#image-upload-submit').on('click', function(e) {
+        e.preventDefault();
+        data.submit();
+      });
+    },
+    done: function(e, data) {
+      _this.editor.formator.image(data.result.files[0].url);
+      $('#image-upload .filename').text('');
+      $('#image-upload-submit').off('click');
+    }
   });
 
   Mousetrap.bind(['ctrl+s', 'command+s'], function(event) {

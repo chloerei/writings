@@ -2,6 +2,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require mousetrap
+//= require jquery-fileupload/vendor/jquery.ui.widget
+//= require jquery-fileupload/jquery.iframe-transport
+//= require jquery-fileupload/jquery.fileupload
 //= require_tree ./sitewide
 //= require_tree ./dashboard
 

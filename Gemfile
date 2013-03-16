@@ -27,6 +27,7 @@ group :assets do
   gem 'jquery-rails'
   gem 'mousetrap-rails'
   gem 'turbolinks'
+  gem "jquery-fileupload-rails"
 end
 
 group :development do

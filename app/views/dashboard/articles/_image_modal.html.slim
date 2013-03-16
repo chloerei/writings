@@ -14,16 +14,17 @@
             a href='#image-link' data-toggle='tab' = t '.url'
     .tab-content
       #image-upload.tab-pane.actived
-        = form_for Attachment.new, :url => dashboard_attachments_path do |f|
+        = form_for Attachment.new, :url => dashboard_attachments_path, :html => { :id => 'image-upload-form' } do |f|
           .field.field-content
             span.button.button-primary.button-fileinput
               = t '.select_file'
               = f.file_field :file
+            span.filename
           .field
-            = f.submit t('.upload')
+            = f.submit t('.upload'), :id => 'image-upload-submit'
             = button_tag t('cancel'), :data => { :close => 'modal' }
       #image-link.tab-pane
-        = form_tag nil, :id => 'image-form' do
+        = form_tag nil, :id => 'image-link-form' do
           .field.field-content
             = text_field_tag :url, nil, :placeholder => 'http://'
           .field
