@@ -22,3 +22,14 @@ class ActionController::TestCase
     yield
   end
 end
+
+Fog.mock!
+
+connection = Fog::Storage.new(
+  :provider               => 'AWS',
+  :aws_access_key_id      => APP_CONFIG['s3']['aws_access_key_id'],
+  :aws_secret_access_key  => APP_CONFIG['s3']['aws_secret_access_key'],
+  :region                 => APP_CONFIG['s3']['region']
+)
+
+connection.directories.create(:key => APP_CONFIG['s3']['fog_directory'])
