@@ -2,6 +2,12 @@ defaults: &defaults
   host: 'localhost'
   site_name: 'Site Name'
 
+  s3:
+    aws_access_key_id: ''
+    aws_secret_access_key: ''
+    region: 'ap-northeast-1'
+    fog_directory: 'writingsiotest' # bucket
+
 development:
   <<: *defaults
 

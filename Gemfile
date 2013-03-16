@@ -14,6 +14,8 @@ gem 'http_accept_language'
 gem 'rails-i18n'
 gem 'strong_parameters'
 gem 'nokogiri'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'fog', '~> 1.3.1'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
