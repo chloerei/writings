@@ -31,6 +31,7 @@ Publish::Application.routes.draw do
           post :bulk
         end
       end
+      resources :attachments, :only => [:show, :create]
     end
   end
 
