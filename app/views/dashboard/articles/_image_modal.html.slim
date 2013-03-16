@@ -20,6 +20,8 @@
               = t '.select_file'
               = f.file_field :file
             span.filename
+            .progress
+              .bar
           .field
             = f.submit t('.upload'), :id => 'image-upload-submit'
             = button_tag t('cancel'), :data => { :close => 'modal' }

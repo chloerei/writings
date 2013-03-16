@@ -1,7 +1,7 @@
 class Dashboard::AttachmentsController < Dashboard::BaseController
   def show
     @attachment = Attachment.find params[:id]
-    redirect_to @attachment.file.url
+    redirect_to URI.escape(@attachment.file.url)
   end
 
   def create
