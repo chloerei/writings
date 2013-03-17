@@ -1,5 +1,5 @@
 require "rvm/capistrano"
-set :rvm_type, :system
+set :rvm_type, :user
 
 require 'bundler/capistrano'
 
@@ -9,13 +9,13 @@ set :scm, "git"
 set :branch, "master"
 set :deploy_via, :remote_cache
 
-set :user, "webuser"
-set :deploy_to, "/home/webuser/#{application}"
+set :user, "ubuntu"
+set :deploy_to, "/home/ubuntu/#{application}"
 set :use_sudo, false
 
-role :web, "chloerei.com"
-role :app, "chloerei.com"
-role :db,  "chloerei.com", :primary => true
+role :web, "writings.io"
+role :app, "writings.io"
+role :db,  "writings.io", :primary => true
 
 namespace :deploy do
   task :start do ; end
