@@ -6,10 +6,21 @@ class Dashboard::AttachmentsControllerTest < ActionController::TestCase
     login_as @user
   end
 
-  test "should create attachements" do
+  test "should create attachments" do
     assert_difference "Attachment.count" do
       post :create, :format => :json, :attachment => { :file => File.open('app/assets/images/rails.png') }
       assert_response :success, @response.body
+    end
+  end
+
+  test "should show current_user attachment" do
+    attachment = create :attachment, :user => @user
+    get :show, :id => attachment.id
+    assert_response 302
+
+    login_as create(:user)
+    assert_raise(Mongoid::Errors::DocumentNotFound) do
+      get :show, :id => attachment.id
     end
   end
 end

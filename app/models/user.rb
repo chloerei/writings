@@ -19,6 +19,7 @@ class User
 
   has_many :categories, :dependent => :delete
   has_many :articles, :dependent => :delete
+  has_many :attachments, :dependent => :destroy
 
   has_secure_password
 
