@@ -115,11 +115,11 @@ var ArticleEdit = function() {
     done: function(e, data) {
       _this.editor.formator.image(data.result.files[0].url);
       $('#image-upload .filename').text('');
-      $('#image-upload .progress').hide();
-      $('#image-upload .progress .bar').css('width', '0%');
     },
     always: function(e, data) {
       $('#image-upload-submit').off('click');
+      $('#image-upload .progress').hide();
+      $('#image-upload .progress .bar').css('width', '0%');
     }
   });
 

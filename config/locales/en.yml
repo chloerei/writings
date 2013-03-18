@@ -214,3 +214,5 @@ en:
         title: "Title"
         body: "Body"
         urlname: "URL"
+      attachment:
+        file: "File"

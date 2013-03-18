@@ -214,3 +214,9 @@ zh-CN:
         title: "标题"
         body: "内容"
         urlname: "URL 标识"
+      attachment:
+        file: "文件"
+
+  errors:
+    messages:
+      extension_white_list_error: "不能上传 %{extension} 文件，允许类型：%{allowed_types}"
