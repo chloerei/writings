@@ -8,7 +8,7 @@ module ArticlesHelper
   end
 
   def article_summary_body(text)
-    doc = Nokogiri::HTML(text)
+    doc = Nokogiri::HTML::DocumentFragment.parse(text)
     simple_format truncate(doc.css('p').map(&:text).join("\n\n").to_s, :length => 140)
   end
 
@@ -17,7 +17,6 @@ module ArticlesHelper
     doc.css('img').each do |img|
       if r = %r|http://#{APP_CONFIG['host']}(?::\d+)?/attachments/(\w+)|.match(img['src'])
         if attachment = Attachment.where(:id => r[1]).first
-          attachment.file.fog_authenticated_url_expiration = 10 * 60
           img['src'] = attachment.file.url
         end
       end

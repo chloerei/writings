@@ -5,7 +5,6 @@ class ArticlesHelperTest < ActionView::TestCase
     attachment = create :attachment
     body = %Q[<img src="#{dashboard_attachment_url(attachment, :host => APP_CONFIG['host'])}">]
     result = convert_attachment_url(body)
-    puts result
     assert (result =~ /aws/)
   end
 end

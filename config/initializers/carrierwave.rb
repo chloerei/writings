@@ -7,7 +7,7 @@ CarrierWave.configure do |config|
   }
   config.fog_directory = APP_CONFIG['s3']['fog_directory']
   config.fog_public = false
-  config.fog_authenticated_url_expiration = 10
+  #config.fog_authenticated_url_expiration = 10
   config.cache_dir = "#{Rails.root}/tmp/uploads"
 end
 
