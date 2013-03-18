@@ -8,9 +8,6 @@ Editor.Formator.prototype.link = function(url) {
       document.getSelection().selectAllChildren($(this.commonAncestorContainer()).closest('a')[0]);
     }
     if (url !== '') {
-      if (!/^http/.test(url)) {
-        url = 'http://' + url;
-      }
       this.exec('createLink', url);
     } else {
       this.exec('unlink');
@@ -32,9 +29,6 @@ Editor.Formator.prototype.image = function(url) {
   this.editor.restoreRange();
 
   if (url !== undefined) {
-    if (!/^http/.test(url)) {
-      url = 'http://' + url;
-    }
     this.exec('insertImage', url);
 
     this.afterFormat();
