@@ -5,7 +5,7 @@ class Dashboard::AttachmentsController < Dashboard::BaseController
   end
 
   def create
-    @attachment = Attachment.new attachment_params
+    @attachment = current_user.attachments.new attachment_params
 
     if @attachment.save
       respond_to do |format|
