@@ -104,6 +104,7 @@ var ArticleEdit = function() {
       });
     },
     start: function(e) {
+      $('#image-upload .message').hide();
       $('#image-upload .progress').show();
     },
     progressall: function(e, data) {
@@ -121,6 +122,7 @@ var ArticleEdit = function() {
       $('#image-upload-form').off('submit');
       $('#image-upload .progress').hide();
       $('#image-upload .progress .bar').css('width', '0%');
+      $('#image-upload .message').show();
     }
   });
 

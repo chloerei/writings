@@ -15,13 +15,19 @@
     .tab-content
       #image-upload.tab-pane.actived
         = form_for Attachment.new, :url => dashboard_attachments_path, :html => { :id => 'image-upload-form' } do |f|
-          .field.field-content
+          .field
             span.button.button-primary.button-fileinput
               = t '.select_file'
               = f.file_field :file
             span.filename
-            .progress
-              .bar
+          .field.dropable
+            .center
+              .progress
+                .bar
+              .message
+                h2 = t '.drag_here'
+                .store-status
+                  = "#{number_to_human_size current_user.store_used} / #{number_to_human_size current_user.store_limit}"
           .field
             = f.submit t('.upload'), :id => 'image-upload-submit'
             = button_tag t('cancel'), :data => { :close => 'modal' }

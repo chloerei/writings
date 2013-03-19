@@ -801,8 +801,23 @@ body {
 #image-modal {
   width: 450px;
 
-  .field-content {
-    height: 150px;
+  .dropable {
+    height: 180px;
+    width: 100%;
+    border: 2px dashed #ccc;
+    display: table;
+
+    .center {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      color: #999;
+    }
   }
 
   .button-fileinput {
@@ -829,7 +844,6 @@ body {
 
   .progress {
     display: none;
-    width: 100%;
     height: 5px;
     margin-top: 20px;
     border: 1px solid #ccc;

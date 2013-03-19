@@ -29,7 +29,7 @@ class Attachment
   end
 
   def check_user_store_limit
-    if user.store_used + file.file.size > user.store_limit
+    if file.present? && (user.store_used + file.file.size > user.store_limit)
       errors.add(:file, I18n.t('errors.messages.store_limit'))
     end
   end
