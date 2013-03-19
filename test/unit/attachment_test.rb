@@ -5,5 +5,6 @@ class AttachmentTest < ActiveSupport::TestCase
     attachment = Attachment.create :file => File.open("#{Rails.root}/app/assets/images/rails.png")
     assert attachment.persisted?
     assert_not_nil attachment.file
+    assert_not_nil attachment.file_size
   end
 end
