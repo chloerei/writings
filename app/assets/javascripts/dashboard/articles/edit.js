@@ -99,12 +99,17 @@ var ArticleEdit = function() {
       $('#image-upload .filename').text(data.files[0].name);
 
       if (window.FileReader) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-          $('#image-upload .message').hide();
-          $('#image-upload-form .dropable').css('background-image', 'url(' + e.target.result + ')');
-        };
-        reader.readAsDataURL(data.files[0]);
+        if (/(jpg|jpeg|gif|png)/i.test(data.files[0].name)) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $('#image-upload .message').hide();
+            $('#image-upload-form .dropable').css('background-image', 'url(' + e.target.result + ')');
+          };
+          reader.readAsDataURL(data.files[0]);
+        } else {
+          $('#image-upload-form .dropable').css('background-image', 'none');
+          $('#image-upload .message').show();
+        }
       }
 
       $('#image-upload-form').off('submit');
