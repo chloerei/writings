@@ -15,6 +15,7 @@ class User
   field :domain
   field :disqus_shortname
   field :plan, :type => Symbol, :default => :free
+  field :store_used, :default => 0
 
   embeds_one :profile
 
