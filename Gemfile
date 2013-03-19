@@ -16,6 +16,7 @@ gem 'strong_parameters'
 gem 'nokogiri'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'fog', '~> 1.3.1'
+gem 'jbuilder'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

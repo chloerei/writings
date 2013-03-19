@@ -9,16 +9,7 @@ class Dashboard::AttachmentsController < Dashboard::BaseController
 
     if @attachment.save
       respond_to do |format|
-        format.json do
-          render :json => {
-            :files => [
-              {
-                :name => @attachment.read_attribute(:file),
-                :url  => dashboard_attachment_url(@attachment)
-              }
-            ]
-          }
-        end
+        format.json
       end
     else
       respond_to do |format|

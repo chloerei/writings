@@ -131,6 +131,8 @@ var ArticleEdit = function() {
     },
     done: function(e, data) {
       _this.editor.formator.image(data.result.files[0].url);
+      $('#image-upload .storage-status .used').text(data.result.storage_status.used_human_size);
+      $('#image-upload .storage-status .limit').text(data.result.storage_status.limit_human_size);
     },
     always: function(e, data) {
       $('#image-upload .filename').text('');

@@ -109,6 +109,8 @@ GEM
     http_accept_language (1.0.2)
     http_parser.rb (0.5.3)
     i18n (0.6.1)
+    jbuilder (1.0.2)
+      activesupport (>= 3.0.0)
     journey (1.0.4)
     jquery-fileupload-rails (0.4.1)
       actionpack (>= 3.1)
@@ -241,6 +243,7 @@ DEPENDENCIES
   guard-livereload
   highlight_js-rails
   http_accept_language
+  jbuilder
   jquery-fileupload-rails
   jquery-rails
   kaminari
