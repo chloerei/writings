@@ -18,4 +18,11 @@ class AttachmentTest < ActiveSupport::TestCase
       user.attachments.last.destroy
     end
   end
+
+  test "should valid false if touch user sotre limit" do
+    user = create :user
+    assert build(:attachment, :user => user).valid?
+    user.update_attribute :store_used, user.store_limit
+    assert !build(:attachment, :user => user).valid?
+  end
 end

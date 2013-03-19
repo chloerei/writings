@@ -215,8 +215,9 @@ zh-CN:
         body: "内容"
         urlname: "URL 标识"
       attachment:
-        file: "文件"
+        file: "附件"
 
   errors:
     messages:
       extension_white_list_error: "不能上传 %{extension} 文件，允许类型：%{allowed_types}"
+      store_limit: "剩余容量不足"

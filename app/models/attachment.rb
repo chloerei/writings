@@ -12,6 +12,8 @@ class Attachment
   after_create :inc_user_store_used
   after_destroy :dec_user_store_used
 
+  validate :check_user_store_limit, :on => :create
+
   def set_file_size
     if file.present? && file_changed?
       self.file_size = file.file.size
@@ -24,5 +26,11 @@ class Attachment
 
   def dec_user_store_used
     user.inc(:store_used, -file_size)
+  end
+
+  def check_user_store_limit
+    if user.store_used + file.file.size > user.store_limit
+      errors.add(:file, I18n.t('errors.messages.store_limit'))
+    end
   end
 end

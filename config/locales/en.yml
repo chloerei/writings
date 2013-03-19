@@ -215,4 +215,8 @@ en:
         body: "Body"
         urlname: "URL"
       attachment:
-        file: "File"
+        file: "Attachment"
+
+  errors:
+    messages:
+      store_limit: "not enough attachment space"
