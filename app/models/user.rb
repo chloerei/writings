@@ -14,6 +14,7 @@ class User
   field :locale, :default => I18n.locale.to_s
   field :domain
   field :disqus_shortname
+  field :plan, :type => Symbol, :default => :free
 
   embeds_one :profile
 
@@ -87,5 +88,14 @@ class User
 
   def display_name
     profile.name.present? ? profile.name : name
+  end
+
+  def store_limit
+    case plan
+    when :free
+      100.megabytes
+    else
+      0
+    end
   end
 end

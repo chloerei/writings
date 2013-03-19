@@ -22,4 +22,10 @@ class UserTest < ActiveSupport::TestCase
     user.domain = "domain.com"
     assert user.valid?
   end
+
+  test "test user plan store limit" do
+    user = create :user
+    assert_equal :free, user.plan
+    assert_equal 100.megabytes, user.store_limit
+  end
 end
