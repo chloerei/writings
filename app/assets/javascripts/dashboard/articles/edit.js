@@ -87,11 +87,18 @@ var ArticleEdit = function() {
     $(this).find('input[name=url]').val('');
   });
 
+  $('#image-upload-submit').on('click', function(e) {
+    if ($('#image-upload .filename').text() === '') {
+      e.preventDefault();
+    }
+  });
+
   $('#image-upload-form').fileupload({
     dataType: 'json',
     add: function(e, data) {
       $('#image-upload .filename').text(data.files[0].name);
-      $('#image-upload-submit').on('click', function(e) {
+      $('#image-upload-form').off('submit');
+      $('#image-upload-form').on('submit', function(e) {
         e.preventDefault();
         data.submit();
       });
@@ -108,10 +115,10 @@ var ArticleEdit = function() {
     },
     done: function(e, data) {
       _this.editor.formator.image(data.result.files[0].url);
-      $('#image-upload .filename').text('');
     },
     always: function(e, data) {
-      $('#image-upload-submit').off('click');
+      $('#image-upload .filename').text('');
+      $('#image-upload-form').off('submit');
       $('#image-upload .progress').hide();
       $('#image-upload .progress .bar').css('width', '0%');
     }
