@@ -97,6 +97,16 @@ var ArticleEdit = function() {
     dataType: 'json',
     add: function(e, data) {
       $('#image-upload .filename').text(data.files[0].name);
+
+      if (window.FileReader) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          $('#image-upload .message').hide();
+          $('#image-upload-form .dropable').css('background-image', 'url(' + e.target.result + ')');
+        };
+        reader.readAsDataURL(data.files[0]);
+      }
+
       $('#image-upload-form').off('submit');
       $('#image-upload-form').on('submit', function(e) {
         e.preventDefault();
@@ -122,6 +132,9 @@ var ArticleEdit = function() {
       $('#image-upload-form').off('submit');
       $('#image-upload .progress').hide();
       $('#image-upload .progress .bar').css('width', '0%');
+      if (window.FileReader) {
+        $('#image-upload-form .dropable').css('background-image', 'none');
+      }
       $('#image-upload .message').show();
     }
   });

@@ -806,6 +806,9 @@ body {
     width: 100%;
     border: 2px dashed #ccc;
     display: table;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
 
     .center {
       display: table-cell;
