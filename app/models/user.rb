@@ -15,7 +15,7 @@ class User
   field :domain
   field :disqus_shortname
   field :plan, :type => Symbol, :default => :free
-  field :store_used, :default => 0
+  field :storage_used, :default => 0
 
   embeds_one :profile
 
@@ -91,7 +91,7 @@ class User
     profile.name.present? ? profile.name : name
   end
 
-  def store_limit
+  def storage_limit
     case plan
     when :free
       100.megabytes

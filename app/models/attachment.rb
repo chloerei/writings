@@ -9,10 +9,10 @@ class Attachment
   mount_uploader :file, FileUploader
 
   before_create :set_file_size
-  after_create :inc_user_store_used
-  after_destroy :dec_user_store_used
+  after_create :inc_user_storage_used
+  after_destroy :dec_user_storage_used
 
-  validate :check_user_store_limit, :on => :create
+  validate :check_user_storage_limit, :on => :create
 
   def set_file_size
     if file.present? && file_changed?
@@ -20,17 +20,17 @@ class Attachment
     end
   end
 
-  def inc_user_store_used
-    user.inc(:store_used, file_size)
+  def inc_user_storage_used
+    user.inc(:storage_used, file_size)
   end
 
-  def dec_user_store_used
-    user.inc(:store_used, -file_size)
+  def dec_user_storage_used
+    user.inc(:storage_used, -file_size)
   end
 
-  def check_user_store_limit
-    if file.present? && (user.store_used + file.file.size > user.store_limit)
-      errors.add(:file, I18n.t('errors.messages.store_limit'))
+  def check_user_storage_limit
+    if file.present? && (user.storage_used + file.file.size > user.storage_limit)
+      errors.add(:file, I18n.t('errors.messages.storage_limit'))
     end
   end
 end

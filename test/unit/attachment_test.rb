@@ -8,13 +8,13 @@ class AttachmentTest < ActiveSupport::TestCase
     assert_not_nil attachment.file_size
   end
 
-  test "should change user store_used" do
+  test "should change user storage_used" do
     file = File.open("#{Rails.root}/app/assets/images/rails.png")
     user = create :user
-    assert_difference "user.store_used", file.size do
+    assert_difference "user.storage_used", file.size do
       user.attachments.create :file => file
     end
-    assert_difference "user.store_used", -file.size do
+    assert_difference "user.storage_used", -file.size do
       user.attachments.last.destroy
     end
   end
@@ -22,7 +22,7 @@ class AttachmentTest < ActiveSupport::TestCase
   test "should valid false if touch user sotre limit" do
     user = create :user
     assert build(:attachment, :user => user).valid?
-    user.update_attribute :store_used, user.store_limit
+    user.update_attribute :storage_used, user.storage_limit
     assert !build(:attachment, :user => user).valid?
   end
 end

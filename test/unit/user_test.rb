@@ -23,9 +23,9 @@ class UserTest < ActiveSupport::TestCase
     assert user.valid?
   end
 
-  test "test user plan store limit" do
+  test "test user plan storage limit" do
     user = create :user
     assert_equal :free, user.plan
-    assert_equal 100.megabytes, user.store_limit
+    assert_equal 100.megabytes, user.storage_limit
   end
 end

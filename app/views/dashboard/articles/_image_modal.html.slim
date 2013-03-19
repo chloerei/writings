@@ -26,8 +26,10 @@
                 .bar
               .message
                 h2 = t '.drag_here'
-                .store-status
-                  = "#{number_to_human_size current_user.store_used} / #{number_to_human_size current_user.store_limit}"
+                .storage
+                  span.used= number_to_human_size current_user.storage_used
+                  = ' / '
+                  span.limit= number_to_human_size current_user.storage_limit
           .field
             = f.submit t('.upload'), :id => 'image-upload-submit'
             = button_tag t('cancel'), :data => { :close => 'modal' }
