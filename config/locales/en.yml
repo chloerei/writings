@@ -222,3 +222,4 @@ en:
   errors:
     messages:
       store_limit: "not enough attachment space"
+      fetch_error: "Fetch error, can't access resource, please use local upload."

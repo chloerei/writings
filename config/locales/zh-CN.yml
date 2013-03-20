@@ -223,3 +223,4 @@ zh-CN:
     messages:
       extension_white_list_error: "不能上传 %{extension} 文件，允许类型：%{allowed_types}"
       store_limit: "剩余容量不足"
+      fetch_error: "抓取失败，也许没有权限访问该资源，请改由本地上传"

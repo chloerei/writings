@@ -12,6 +12,7 @@ class Attachment
   after_create :inc_user_storage_used
   after_destroy :dec_user_storage_used
 
+  validates_presence_of :file, :user
   validate :check_user_storage_limit, :on => :create
 
   def set_file_size

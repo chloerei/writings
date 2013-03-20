@@ -16,6 +16,10 @@ class Dashboard::AttachmentsController < Dashboard::BaseController
         format.json { render :json => { :message => @attachment.errors.full_messages.join }, :status => 400 }
       end
     end
+  rescue CarrierWave::DownloadError
+    respond_to do |format|
+      format.json { render :json => { :message => I18n.t('errors.messages.fetch_error') }, :status => 400 }
+    end
   end
 
   private
