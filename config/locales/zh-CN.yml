@@ -78,10 +78,12 @@ zh-CN:
         label_message: "确定清空垃圾桶？"
         empty_trash: "清空垃圾桶"
       image_modal:
-        url: "URL 地址"
         insert_image: "插入图片"
+        url: "URL 地址"
+        link: "外链"
+        fetch: "抓取"
         select_file: "选择文件"
-        upload: "上传图片"
+        upload: "上传"
       link_modal:
         url: "URL 地址"
         create_link: "创建链接"

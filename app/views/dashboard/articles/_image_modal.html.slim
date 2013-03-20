@@ -34,9 +34,20 @@
             = f.submit t('.upload'), :id => 'image-upload-submit'
             = button_tag t('cancel'), :data => { :close => 'modal' }
       #image-link.tab-pane
-        = form_tag nil, :id => 'image-link-form' do
+        = form_for Attachment.new, :url => dashboard_attachments_path, :html => { :id => 'image-link-form' } do |f|
           .field.field-content
-            = text_field_tag :url, nil, :placeholder => 'http://'
-          .field
-            = submit_tag t('.insert_image')
-            = button_tag t('cancel'), :data => { :close => 'modal' }
+            = f.text_field :remote_file_url, :placeholder => 'http://'
+          .field.preview
+            .center
+              .message
+                h2 = t '.preview'
+                .storage-status
+                  span.used= number_to_human_size current_user.storage_used
+                  = ' / '
+                  span.limit= number_to_human_size current_user.storage_limit
+          .field.clearfix
+            .pull-left
+              = f.submit t('.fetch'), :id => 'image-fetch-submit'
+              = button_tag t('cancel'), :data => { :close => 'modal' }
+            .pull-right
+              = button_tag t('.link'), :class => 'no-margin', :id => 'image-link-button'

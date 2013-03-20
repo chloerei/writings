@@ -78,10 +78,12 @@ en:
         label_message: "Are you sure empty trash?"
         empty_trash: "Empty trash"
       image_modal:
-        url: "URL"
         insert_image: "Insert image"
+        url: "URL"
+        link: "Link"
+        fetch: "Fetch"
         select_file: "Select file"
-        upload: "Upload image"
+        upload: "Upload"
       link_modal:
         url: "URL"
         create_link: "Create link"
