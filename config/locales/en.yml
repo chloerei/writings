@@ -29,6 +29,8 @@ en:
   layouts:
     dashboard:
       home: "Home"
+      articles: "Articles"
+      pictures: "Pictures"
       feedback: "Feedback"
       twitter: "Twitter"
       google_plus: "Google+"

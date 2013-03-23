@@ -29,6 +29,8 @@ zh-CN:
   layouts:
     dashboard:
       home: "首页"
+      articles: "文章"
+      pictures: "图片"
       feedback: "问题反馈"
       twitter: "Twitter"
       google_plus: "Google+"

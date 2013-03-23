@@ -34,4 +34,8 @@ class Attachment
       errors.add(:file, I18n.t('errors.messages.storage_limit'))
     end
   end
+
+  def file_name
+    read_attribute :file
+  end
 end

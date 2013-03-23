@@ -1,0 +1,13 @@
+#main
+  .container
+    .inner.inner-full-height
+      #pictures
+        ul
+          - current_user.attachments.limit(50).each do |attachment|
+            li
+              = image_tag attachment.file.url
+              a.delete href='#' data-method='delete'
+                i.icon-remove
+              .info
+                .name
+                  = attachment.file_name

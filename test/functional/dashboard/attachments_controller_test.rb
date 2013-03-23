@@ -6,6 +6,10 @@ class Dashboard::AttachmentsControllerTest < ActionController::TestCase
     login_as @user
   end
 
+  test "should get index" do
+    get :index
+  end
+
   test "should create attachments" do
     assert_difference "current_user.attachments.count" do
       post :create, :format => :json, :attachment => { :file => File.open('app/assets/images/rails.png') }

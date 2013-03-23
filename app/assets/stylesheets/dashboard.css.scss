@@ -573,6 +573,73 @@ body {
     padding: 10px;
     color: #999;
   }
+
+  #pictures {
+    padding: 20px 0 20px 20px;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      @include clearfix();
+
+      li {
+        float: left;
+        width: 18%;
+        margin-right: 2%;
+        padding-bottom: 18%;
+        margin-bottom: 2%;
+        position: relative;
+        background-color: #f9f9f9;
+        @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+
+        &:hover {
+          @include box-shadow(0 1px 3px 1px rgba(0, 0, 0, 0.3));
+        }
+
+        img {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+          max-height: 100%;
+          max-width: 100%;
+        }
+
+        .delete {
+          display: none;
+          position: absolute;
+          right: 0;
+          top: 0;
+          color: #ccc;
+
+          &:hover {
+            color: #555;
+          }
+        }
+
+        &:hover .delete {
+          display: inline-block;
+        }
+
+        .info {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #fff;
+          padding: 10px;
+
+          .name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+  }
 }
 
 // editor
