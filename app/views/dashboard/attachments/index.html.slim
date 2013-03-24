@@ -5,9 +5,10 @@
         ul
           - current_user.attachments.limit(50).each do |attachment|
             li
-              = image_tag attachment.file.url
+              a.pic-link href=(dashboard_attachment_path(attachment)) target='_blank' title=(attachment.file_name)
+                = image_tag attachment.file.url
+                .info
+                  .name
+                    = attachment.file_name
               a.delete href='#' data-method='delete'
                 i.icon-remove
-              .info
-                .name
-                  = attachment.file_name
