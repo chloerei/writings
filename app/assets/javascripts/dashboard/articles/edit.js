@@ -112,6 +112,7 @@ var ImageUploader = function(editor) {
     start: function(e) {
       $('#image-upload .message').hide();
       $('#image-upload .progress').show();
+      $('#image-upload .dropable').addClass('start');
       AlertMessage.loading('Uploading...');
     },
     progressall: function(e, data) {
@@ -176,6 +177,7 @@ ImageUploader.prototype = {
       $('#image-upload-form .dropable').css('background-image', 'none');
     }
     $('#image-upload .message').show();
+    $('#image-upload .dropable').removeClass('start');
   }
 };
 

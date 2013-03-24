@@ -913,6 +913,10 @@ body {
       padding: 20px;
     }
 
+    &.start .center {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
     h2 {
       margin: 0 0 10px;
       color: #999;
