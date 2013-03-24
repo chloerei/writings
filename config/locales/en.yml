@@ -76,6 +76,7 @@ en:
     attachments:
       index:
         confirm_delete: "Confirm delete?"
+        no_picture: "No picture"
     articles:
       delete_modal:
         delete_selected: "Delete selected"

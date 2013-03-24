@@ -13,3 +13,6 @@
               a.delete href=(dashboard_attachment_path(attachment)) data-remote='true' data-method='delete' data-confirm=(t '.confirm_delete')
                 i.icon-remove
         = paginate @attachments, :theme => :dashboard
+      - if @attachments.empty?
+        #empty-message
+          = t '.no_picture'
