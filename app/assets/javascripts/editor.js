@@ -9,15 +9,16 @@ var Editor = function(options) {
   this.editable_selector = options.editable;
   this.editable = $(options.editable);
 
+  this.selectEnd();
   this.sanitize = new Editor.Sanitize(this.editable);
   this.formator = new Editor.Formator(this);
   this.formator.exec('defaultParagraphSeparator', 'p');
 
-  this.editable.focus();
   this.undoManager = new Editor.UndoManager(this.editable);
 
   if (options.toolbar) {
     this.toolbar = new Editor.Toolbar(this, options.toolbar);
+    this.toolbar.detectState();
   }
 
   this.connectShortcuts();
@@ -204,6 +205,12 @@ Editor.prototype = {
     }
   },
 
+  selectEnd: function() {
+    var selection = document.getSelection();
+    selection.selectAllChildren(this.editable[0]);
+    selection.collapseToEnd();
+  },
+
   storeRange: function() {
     var selection = document.getSelection();
     var range = selection.getRangeAt(0);
@@ -218,10 +225,14 @@ Editor.prototype = {
   restoreRange: function() {
     var selection = document.getSelection();
     var range = document.createRange();
-    range.setStart(this.storedRange.startContainer, this.storedRange.startOffset);
-    range.setEnd(this.storedRange.endContainer, this.storedRange.endOffset);
-    selection.removeAllRanges();
-    selection.addRange(range);
+    if (this.storedRange) {
+      range.setStart(this.storedRange.startContainer, this.storedRange.startOffset);
+      range.setEnd(this.storedRange.endContainer, this.storedRange.endOffset);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    } else {
+      this.selectEnd();
+    }
   },
 
   hasRange: function() {
