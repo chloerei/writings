@@ -576,6 +576,7 @@ body {
 
   #pictures {
     padding: 20px 0 20px 20px;
+    margin-bottom: 20px;
 
     ul {
       list-style: none;
@@ -594,6 +595,20 @@ body {
 
         &:hover {
           @include box-shadow(0 1px 3px 1px rgba(0, 0, 0, 0.3));
+        }
+
+        @media (max-width: 768px) {
+          & {
+            width: 23%;
+            padding-bottom: 23%;
+          }
+        }
+
+        @media (max-width: 480px) {
+          & {
+            width: 31%;
+            padding-bottom: 31%;
+          }
         }
 
         .pic-link {
@@ -640,7 +655,7 @@ body {
           right: 0;
           bottom: 0;
           background-color: #fff;
-          padding: 10px;
+          padding: 5px;
 
           .name {
             overflow: hidden;
@@ -937,5 +952,27 @@ body {
       height: 100%;
       background-color: #ccc;
     }
+  }
+}
+
+#paginator {
+  margin-right: 20px;
+  font-size: 1.2em;
+  @include clearfix();
+
+  a {
+    color: #999;
+
+    &:hover {
+      color: #555;
+    }
+  }
+
+  .next {
+    float: right;
+  }
+
+  .prev {
+    float: left;
   }
 }

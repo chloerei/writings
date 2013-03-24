@@ -1,5 +1,6 @@
 class Dashboard::AttachmentsController < Dashboard::BaseController
   def index
+    @attachments = current_user.attachments.desc(:created_at).page(params[:page]).per(50)
   end
 
   def show

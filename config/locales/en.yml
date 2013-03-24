@@ -25,6 +25,8 @@ en:
 
   older: "Older"
   newer: "Newer"
+  next_page: "Next page"
+  prev_page: "Prev page"
 
   layouts:
     dashboard:

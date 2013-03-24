@@ -3,7 +3,7 @@
     .inner.inner-full-height
       #pictures
         ul
-          - current_user.attachments.each do |attachment|
+          - @attachments.each do |attachment|
             li
               a.pic-link href=(dashboard_attachment_path(attachment)) target='_blank' title=(attachment.file_name)
                 = image_tag attachment.file.thumb.url
@@ -12,3 +12,4 @@
                     = attachment.file_name
               a.delete href='#' data-method='delete'
                 i.icon-remove
+        = paginate @attachments, :theme => :dashboard

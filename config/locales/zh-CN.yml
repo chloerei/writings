@@ -25,6 +25,8 @@ zh-CN:
 
   older: "过往"
   newer: "较新"
+  next_page: "下一页"
+  prev_page: "上一页"
 
   layouts:
     dashboard:
