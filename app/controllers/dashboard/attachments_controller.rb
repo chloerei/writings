@@ -26,6 +26,15 @@ class Dashboard::AttachmentsController < Dashboard::BaseController
     end
   end
 
+  def destroy
+    @attachment = current_user.attachments.find params[:id]
+    @attachment.destroy
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def attachment_params

@@ -73,6 +73,9 @@ en:
         account: "Account"
         profile: "Profile"
 
+    attachments:
+      index:
+        confirm_delete: "Confirm delete?"
     articles:
       delete_modal:
         delete_selected: "Delete selected"

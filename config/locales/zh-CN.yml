@@ -73,6 +73,9 @@ zh-CN:
         account: "账户"
         profile: "个人资料"
 
+    attachments:
+      index:
+        confirm_delete: "确认删除？"
     articles:
       delete_modal:
         delete_selected: "删除所选"
