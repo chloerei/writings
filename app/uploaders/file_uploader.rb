@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class FileUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
+
   if Rails.env.development?
     storage :file
 
@@ -17,5 +19,9 @@ class FileUploader < CarrierWave::Uploader::Base
 
   def extension_white_list
     %w(jpg jpeg gif png)
+  end
+
+  version :thumb do
+    process :resize_to_limit => [200, 200]
   end
 end
