@@ -917,6 +917,17 @@ body {
       margin: 0 0 10px;
       color: #999;
     }
+
+  }
+
+  .dropable.start {
+    .message {
+      display: none;
+    }
+
+    .progress {
+      display: block;
+    }
   }
 
   .button-fileinput {

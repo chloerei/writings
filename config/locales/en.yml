@@ -91,6 +91,8 @@ en:
         fetch: "Fetch"
         select_file: "Select file"
         upload: "Upload"
+        drop_here: "Drop here"
+        preview: "Preview"
       link_modal:
         url: "URL"
         create_link: "Create link"

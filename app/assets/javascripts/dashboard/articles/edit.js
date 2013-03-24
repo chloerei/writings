@@ -89,20 +89,30 @@ var ImageUploader = function(editor) {
     }
   });
 
+  $(document).bind('drop dragover', function (e) {
+    e.preventDefault();
+  });
+
   $('#image-upload-form').fileupload({
     dataType: 'json',
+    dropZone: $('#image-upload-form .dropable, #editarea article'),
     add: function(e, data) {
       _this.uploadPreview(data);
       $('#image-upload .filename').text(data.files[0].name);
       $('#image-upload-form').off('submit');
-      $('#image-upload-form').on('submit', function(e) {
-        e.preventDefault();
+      if ($('#image-modal').is(':hidden')) {
         data.submit();
-      });
+      } else {
+        $('#image-upload-form').on('submit', function(e) {
+          e.preventDefault();
+          data.submit();
+        });
+      }
     },
     start: function(e) {
       $('#image-upload .message').hide();
       $('#image-upload .progress').show();
+      AlertMessage.loading('Uploading...');
     },
     progressall: function(e, data) {
       var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -114,6 +124,7 @@ var ImageUploader = function(editor) {
     done: function(e, data) {
       _this.editor.formator.image(data.result.files[0].url);
       _this.updateStrageStatus(data.result);
+      AlertMessage.success('Success');
     },
     always: function(e, data) {
       _this.resetUploadForm();

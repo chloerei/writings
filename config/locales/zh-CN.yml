@@ -91,6 +91,8 @@ zh-CN:
         fetch: "抓取"
         select_file: "选择文件"
         upload: "上传"
+        drop_here: "拖到此处"
+        preview: "预览"
       link_modal:
         url: "URL 地址"
         create_link: "创建链接"
