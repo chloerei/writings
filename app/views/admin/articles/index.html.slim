@@ -3,9 +3,12 @@
 #tabs
   .button-group
     a.button href=(url_for(params.slice(:name).merge(:tab => nil))) class=(params[:tab].nil? ? 'button-actived' : nil)
-      = "已发布 #{Article.publish.count}"
+      = "已发布 #{@articles_scope.publish.count}"
     a.button href=(url_for(params.slice(:name).merge(:tab => :all))) class=(params[:tab] == 'all' ? 'button-actived' : nil)
-      = "全部 #{Article.count}"
+      = "全部 #{@articles_scope.count}"
+  - if @user
+    | 用户：
+    = link_to @user.name, admin_user_path(@user.id)
 
 table.item-table
   tbody
