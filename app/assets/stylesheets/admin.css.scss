@@ -49,6 +49,19 @@ article.article {
   @include box-sizing(border-box);
 }
 
+#user-info {
+  padding: 20px;
+
+  img {
+    height: 100px;
+    width: 100px;
+  }
+
+  label {
+    font-weight: bold;
+  }
+}
+
 #paginator {
   margin: 20px;
 }

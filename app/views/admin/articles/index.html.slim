@@ -12,7 +12,7 @@ table.item-table
     - @articles.each do |article|
       tr
         td = link_to article.title, admin_article_path(article.id)
-        td = article.user.name
+        td = link_to article.user.name, admin_user_path(article.user.id)
         td
           - case params[:tab]
           - when 'publish'

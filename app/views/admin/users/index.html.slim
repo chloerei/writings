@@ -11,7 +11,7 @@ table.item-table
   tbody
     - @users.each do |user|
       tr
-        td = user.name
+        td = link_to user.name, admin_user_path(user.id)
         td = user.email
         td = user.profile.name
         td = user.created_at.to_s :db
