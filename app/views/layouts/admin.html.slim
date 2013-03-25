@@ -1,0 +1,26 @@
+doctype 5
+html
+  head
+    title = page_title
+    meta content='width=device-width, initial-scale=1.0' name='viewport'
+    link rel="shortcut icon" href=(asset_path("favicon.png"))
+    = javascript_include_tag "dashboard"
+    = stylesheet_link_tag "admin"
+    = yield :head
+    = csrf_meta_tags
+  body id=("#{controller_name}-#{action_name}")
+    #topbar
+      .container
+        header#site-header.clearfix
+          ul.top-nav.pull-left
+            li
+              a href=(admin_articles_path) class=(controller_name == 'articles' ? 'actived' : nil)
+                i.icon-pencil
+                = ' 文章'
+    #main
+      .container
+        .inner.inner-full-height
+          = yield
+    #spinner
+      i.icon-spinner.icon-spin
+    = render 'layouts/alert_messages'

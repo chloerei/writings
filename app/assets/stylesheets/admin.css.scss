@@ -1,0 +1,46 @@
+@import "dashboard";
+
+#tabs {
+  margin: 20px;
+}
+
+table.item-table {
+  width: 100%;
+
+  tr {
+    border-bottom: 1px solid #ddd;
+
+    &:hover {
+      background-color: #f9f9f9;
+    }
+
+    &:first-child {
+      border-top: 1px solid #ddd;
+    }
+  }
+
+  th {
+    text-align: left;
+    background-color: #f9f9f9;
+  }
+
+  th, td {
+    padding: 15px 20px;
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  a {
+    color: #555;
+
+    &:hover {
+      color: $linkColor;
+    }
+  }
+}
+
+#paginator {
+  margin: 20px;
+}

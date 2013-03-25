@@ -1,0 +1,20 @@
+#tabs
+  .button-group
+    a.button href=(url_for(:tab => :publish)) class=(params[:tab] == 'publish' ? 'button-actived' : nil)
+      = "已发布 #{Article.publish.count}"
+    a.button href=(url_for(:tab => :all)) class=(params[:tab] == 'all' ? 'button-actived' : nil)
+      = "全部 #{Article.count}"
+
+table.item-table
+  tbody
+    - @articles.each do |article|
+      tr
+        td = article.title
+        td = article.user.name
+        td
+          - case params[:tab]
+          - when 'publish'
+            = l article.published_at, :format => :short
+          - when 'all'
+            = l article.updated_at, :format => :short
+= paginate @articles, :theme => :dashboard

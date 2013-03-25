@@ -33,6 +33,10 @@ Publish::Application.routes.draw do
       end
       resources :attachments, :only => [:index, :show, :create, :destroy]
     end
+
+    namespace :admin do
+      resources :articles, :only => [:index]
+    end
   end
 
   constraints(Sitedomain) do

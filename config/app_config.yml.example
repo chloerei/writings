@@ -2,6 +2,9 @@ defaults: &defaults
   host: 'localhost'
   site_name: 'Site Name'
 
+  admin_emails:
+    - 'chloerei@gmail.com'
+
   s3:
     aws_access_key_id: ''
     aws_secret_access_key: ''
