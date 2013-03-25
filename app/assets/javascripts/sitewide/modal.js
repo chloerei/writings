@@ -2,11 +2,16 @@ var Dialog = {
   level: 0,
   zIndex: 1000,
   zIndexStep: 10,
-  show: function(id) {
+  show: function(el) {
+    var $modal = $(el);
+
+    if ($modal.is(':visible')) {
+      return;
+    }
+
     if ($('#modal-background').length === 0) {
       $('body').append($('<div id="modal-background"></div>'));
     }
-    var $modal = $(id);
 
     var zIndex = Dialog.zIndex + Dialog.zIndexStep * Dialog.level;
     $('#modal-background').css('z-index', zIndex);
@@ -23,6 +28,11 @@ var Dialog = {
 
   hide: function(el) {
     $modal = $(el);
+
+    if ($modal.is(':hidden')) {
+      return;
+    }
+
     $modal.hide();
     Dialog.level -= 1;
 
