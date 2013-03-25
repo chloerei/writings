@@ -2,9 +2,9 @@
 
 #tabs
   .button-group
-    a.button href=(url_for(:tab => nil)) class=(params[:tab].nil? ? 'button-actived' : nil)
+    a.button href=(url_for(params.slice(:name).merge(:tab => nil))) class=(params[:tab].nil? ? 'button-actived' : nil)
       = "已发布 #{Article.publish.count}"
-    a.button href=(url_for(:tab => :all)) class=(params[:tab] == 'all' ? 'button-actived' : nil)
+    a.button href=(url_for(params.slice(:name).merge(:tab => :all))) class=(params[:tab] == 'all' ? 'button-actived' : nil)
       = "全部 #{Article.count}"
 
 table.item-table

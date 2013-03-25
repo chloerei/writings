@@ -18,7 +18,9 @@
     label 套餐
     = @user.plan
   .field
-    label 文章数（全部/发表/草稿/回收）
+    label
+      | 文章数（全部/发表/草稿/回收）
+      = link_to '查看全部', admin_articles_path(:name => @user.name)
     = @user.articles.count
     | /
     = @user.articles.publish.count
