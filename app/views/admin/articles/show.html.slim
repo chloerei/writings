@@ -1,3 +1,6 @@
+- append_title '文章'
+- append_title @article.title
+
 #tabs
   p
     = "作者 #{@article.user.name}"
@@ -7,7 +10,7 @@
     = "更新时间 #{l @article.updated_at, :format => :long}"
   - if @article.publish?
     p
-      = "更新时间 #{l @article.published_at, :format => :long}"
+      = "发布时间 #{l @article.published_at, :format => :long}"
     p
       a href=(site_article_url(@article, :host => @article.user.host)) target='_blank'
         i.icon-external-link
