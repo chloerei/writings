@@ -13,9 +13,9 @@ set :user, "rei"
 set :deploy_to, "/home/rei/#{application}"
 set :use_sudo, false
 
-role :web, "66.228.49.5"
-role :app, "66.228.49.5"
-role :db,  "66.228.49.5", :primary => true
+role :web, "writings.io"
+role :app, "writings.io"
+role :db,  "writings.io", :primary => true
 
 namespace :deploy do
   task :start do ; end
