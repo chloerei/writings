@@ -17,7 +17,7 @@ table.item-table
           - case params[:tab]
           - when 'publish'
             = article.published_at.to_s :db
-          - when 'all'
+          - else
             = article.updated_at.to_s :db
 
 = paginate @articles, :theme => :dashboard
