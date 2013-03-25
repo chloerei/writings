@@ -35,7 +35,7 @@ Publish::Application.routes.draw do
     end
 
     namespace :admin do
-      resources :articles, :only => [:index]
+      resources :articles, :only => [:index, :show]
     end
   end
 

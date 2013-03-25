@@ -9,7 +9,7 @@ table.item-table
   tbody
     - @articles.each do |article|
       tr
-        td = article.title
+        td = link_to article.title, admin_article_path(article.id)
         td = article.user.name
         td
           - case params[:tab]

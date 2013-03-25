@@ -9,4 +9,8 @@ class Admin::ArticlesController < Admin::BaseController
       @articles = Article.desc(:updated_at).includes(:user).page(params[:page]).per(25)
     end
   end
+
+  def show
+    @article = Article.find params[:id]
+  end
 end
