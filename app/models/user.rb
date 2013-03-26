@@ -93,7 +93,7 @@ class User
 
   def storage_limit
     case plan
-    when :small
+    when :base
       3.gigabytes
     else
       100.megabytes
