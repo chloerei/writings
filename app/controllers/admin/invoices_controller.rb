@@ -24,6 +24,12 @@ class Admin::InvoicesController < Admin::BaseController
     redirect_to admin_user_path(@invoice.user)
   end
 
+  def approve
+    @invoice = Invoice.find params[:id]
+    @invoice.approve
+    redirect_to admin_invoice_url(@invoice)
+  end
+
   private
 
   def invoice_params

@@ -15,6 +15,7 @@ class User
   field :domain
   field :disqus_shortname
   field :plan, :type => Symbol, :default => :free
+  field :plan_expired_at, :type => DateTime
   field :storage_used, :default => 0
 
   PLANS = %w(free base)

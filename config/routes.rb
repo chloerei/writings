@@ -37,7 +37,11 @@ Publish::Application.routes.draw do
     namespace :admin do
       resources :articles, :only => [:index, :show]
       resources :users, :only => [:index, :show]
-      resources :invoices, :only => [:index, :show, :new, :create, :destroy]
+      resources :invoices, :only => [:index, :show, :new, :create, :destroy] do
+        member do
+          put :approve
+        end
+      end
     end
   end
 

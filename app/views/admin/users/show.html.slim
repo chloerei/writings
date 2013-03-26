@@ -19,6 +19,9 @@ section#user-info
     label 套餐
     = @user.plan
   .field
+    label 到期
+    = @user.plan_expired_at || '无'
+  .field
     label
       | 文章数（全部/发表/草稿/回收）
       = link_to '查看全部', admin_articles_path(:name => @user.name)
@@ -43,19 +46,21 @@ section
         th 金额
         th 折扣
         th 结算金额
-        th 付款时间
+        th 生效时间
         th 有效期
         th 操作
       - @user.invoices.desc(:created_at).each do |invoice|
         tr
-          td = invoice.created_at.to_s :db
+          td = invoice.created_at
           td = invoice.plan
           td = invoice.quantity
           td = invoice.price
           td = invoice.balance
           td = invoice.total_price
-          td = invoice.paid_at.to_s :db if invoice.paid_at
+          td = invoice.approved_at.to_date if invoice.approved?
           td
-            - if invoice.start_at && invoice.end_at
-              = "#{invoice.start_at.to_s :db} - #{invoice.end_at.to_s :db}"
+            - if invoice.approved?
+              = invoice.start_at.to_date
+              br
+              = invoice.end_at.to_date
           td = link_to '查看', admin_invoice_path(invoice)
