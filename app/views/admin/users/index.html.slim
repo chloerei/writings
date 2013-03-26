@@ -6,6 +6,8 @@
       = "全部 #{User.count}"
     a.button href=(url_for(:tab => :free)) class=(params[:tab] == 'free' ? 'button-actived' : nil)
       = "Free #{User.where(:plan => :free).count}"
+    a.button href=(url_for(:tab => :small)) class=(params[:tab] == 'small' ? 'button-actived' : nil)
+      = "Small #{User.where(:plan => :small).count}"
 
 table.item-table
   tbody
@@ -14,6 +16,7 @@ table.item-table
         td = link_to user.name, admin_user_path(user.id)
         td = user.email
         td = user.profile.name
-        td = user.created_at.to_s :db
+        td.min = user.plan
+        td.min = user.created_at.to_s :db
 
 = paginate @users, :theme => :dashboard

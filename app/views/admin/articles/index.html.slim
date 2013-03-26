@@ -14,9 +14,10 @@ table.item-table
   tbody
     - @articles.each do |article|
       tr
-        td = link_to article.title, admin_article_path(article.id)
-        td = link_to article.user.name, admin_user_path(article.user.id)
-        td
+        td.max = link_to article.title, admin_article_path(article.id)
+        td.min = article.status
+        td.min = link_to article.user.name, admin_user_path(article.user.id)
+        td.min
           - case params[:tab]
           - when 'publish'
             = article.published_at.to_s :db

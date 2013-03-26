@@ -31,6 +31,18 @@ table.item-table {
     &:last-child {
       text-align: right;
     }
+
+    &.max {
+      width: 99%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &.min {
+      width: 1%;
+      white-space: nowrap;
+    }
   }
 
   a {
