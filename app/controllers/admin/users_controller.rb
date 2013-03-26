@@ -8,6 +8,6 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def show
-    @user = User.find params[:id]
+    @user = User.find_by :name => /\A#{params[:id]}\z/i
   end
 end

@@ -16,7 +16,7 @@ table.item-table
       tr
         td.max = link_to article.title, admin_article_path(article.id)
         td.min = article.status
-        td.min = link_to article.user.name, admin_user_path(article.user.id)
+        td.min = link_to article.user.name, admin_user_path(article.user)
         td.min
           - case params[:tab]
           - when 'publish'

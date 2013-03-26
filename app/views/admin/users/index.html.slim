@@ -13,7 +13,7 @@ table.item-table
   tbody
     - @users.each do |user|
       tr
-        td = link_to user.name, admin_user_path(user.id)
+        td = link_to user.name, admin_user_path(user)
         td = user.email
         td = user.profile.name
         td.min = user.plan

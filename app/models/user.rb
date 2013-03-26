@@ -99,4 +99,8 @@ class User
       100.megabytes
     end
   end
+
+  def to_param
+    name.to_s
+  end
 end
