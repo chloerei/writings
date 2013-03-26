@@ -18,6 +18,6 @@ class Invoice
   validates_presence_of :plan, :quantity, :price, :balance
 
   def total_price
-    price - balance
+    price + balance
   end
 end
