@@ -1,0 +1,21 @@
+- append_title '文章'
+
+#tabs
+  .button-group
+    a.button href=(url_for(:tab => nil)) class=(params[:tab].nil? ? 'button-actived' : nil)
+      = "全部 #{User.count}"
+    - %w(free base).each do |plan|
+      a.button href=(url_for(:tab => plan)) class=(params[:tab] == plan ? 'button-actived' : nil)
+        = "#{plan} #{User.where(:plan => plan).count}"
+
+table.item-table
+  tbody
+    - @users.each do |user|
+      tr
+        td = link_to user.name, admin_user_path(user)
+        td = user.email
+        td = user.profile.name
+        td.min = user.plan
+        td.min = user.created_at.to_s :db
+
+= paginate @users, :theme => :dashboard

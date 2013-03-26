@@ -93,10 +93,14 @@ class User
 
   def storage_limit
     case plan
-    when :free
-      100.megabytes
+    when :base
+      3.gigabytes
     else
-      0
+      100.megabytes
     end
+  end
+
+  def to_param
+    name.to_s
   end
 end
