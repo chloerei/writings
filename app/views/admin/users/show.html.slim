@@ -1,4 +1,5 @@
-#user-info
+section#user-info
+  h2 基本信息
   .field
     label 头像
     = image_tag @user.gravatar_url
@@ -28,3 +29,33 @@
     = @user.articles.draft.count
     | /
     = @user.articles.trash.count
+
+section
+  h2 账单
+  p
+    = link_to '新建', new_admin_invoice_path(:name => @user.name), :class => 'button'
+  table.item-table
+    tbody
+      tr
+        th 创建时间
+        th 套餐
+        th 数量
+        th 金额
+        th 折扣
+        th 结算金额
+        th 付款时间
+        th 有效期
+        th 操作
+      - @user.invoices.desc(:created_at).each do |invoice|
+        tr
+          td = invoice.created_at.to_s :db
+          td = invoice.plan
+          td = invoice.quantity
+          td = invoice.price
+          td = invoice.balance
+          td = invoice.total_price
+          td = invoice.paid_at.to_s :db if invoice.paid_at
+          td
+            - if invoice.start_at && invoice.end_at
+              = "#{invoice.start_at.to_s :db} - #{invoice.end_at.to_s :db}"
+          td = link_to '查看', admin_invoice_path(invoice)

@@ -61,16 +61,14 @@ article.article {
   @include box-sizing(border-box);
 }
 
-#user-info {
+section {
   padding: 20px;
+}
 
+#user-info {
   img {
     height: 100px;
     width: 100px;
-  }
-
-  label {
-    font-weight: bold;
   }
 }
 

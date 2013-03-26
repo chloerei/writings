@@ -4,7 +4,7 @@ class Invoice
 
   field :paid_at
   field :plan, :type => Symbol
-  field :months, :type => Integer
+  field :quantity, :type => Integer
   field :price, :type => Integer, :default => 0
   field :balance, :type => Integer, :default => 0
 
@@ -14,6 +14,8 @@ class Invoice
   field :remark
 
   belongs_to :user
+
+  validates_presence_of :plan, :quantity, :price, :balance
 
   def total_price
     price - balance

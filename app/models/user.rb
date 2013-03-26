@@ -17,11 +17,14 @@ class User
   field :plan, :type => Symbol, :default => :free
   field :storage_used, :default => 0
 
+  PLANS = %w(free base)
+
   embeds_one :profile
 
   has_many :categories, :dependent => :delete
   has_many :articles, :dependent => :delete
   has_many :attachments, :dependent => :destroy
+  has_many :invoices, :dependent => :delete
 
   has_secure_password
 

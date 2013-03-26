@@ -1,0 +1,21 @@
+section
+  h2 创建账单
+  = form_for @invoice, :url => admin_invoices_path do |f|
+    .field
+      label 用户
+      = text_field_tag '', @invoice.user.name, :disabled => true
+      = f.hidden_field :user_id
+    .field
+      = f.label :plan
+      = f.select :plan, User::PLANS - %w(free)
+    .field
+      = f.label :quantity
+      = f.select :quantity, 1..12
+    .field
+      = f.label :price
+      = f.text_field :price
+    .field
+      = f.label :balance
+      = f.text_field :balance
+    .field
+      = f.submit '创建'

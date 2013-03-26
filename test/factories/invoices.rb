@@ -2,5 +2,10 @@
 
 FactoryGirl.define do
   factory :invoice do
+    user
+    plan :base
+    quantity 1
+    price 20
+    balance 0
   end
 end
