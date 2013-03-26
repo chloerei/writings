@@ -1,0 +1,21 @@
+section
+  h2
+    | 账单
+    = @invoice.id
+  = form_for @invoice, :url => admin_invoices_path do |f|
+    .field
+      label 用户
+      = text_field_tag '', @invoice.user.name, :disabled => true
+    - %w(plan quantity price balance total_price paid_at start_at end_at).each do |column|
+      .field
+        = f.label column
+        = f.text_field column, :disabled => true
+    .field
+      = f.label :remark
+      = f.text_area :remark, :disabled => true
+
+section
+  .field.clearfix
+    .pull-left
+    .pull-right
+      = link_to '删除', admin_invoice_path(@invoice), :method => :delete, :class => 'button button-danger', :confirm => '确定删除？'

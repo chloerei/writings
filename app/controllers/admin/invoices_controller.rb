@@ -14,6 +14,16 @@ class Admin::InvoicesController < Admin::BaseController
     end
   end
 
+  def show
+    @invoice = Invoice.find params[:id]
+  end
+
+  def destroy
+    @invoice = Invoice.find params[:id]
+    @invoice.destroy
+    redirect_to admin_user_path(@invoice.user)
+  end
+
   private
 
   def invoice_params
