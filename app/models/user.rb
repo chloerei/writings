@@ -97,14 +97,14 @@ class User
 
   def in_plan?(plan)
     if plan == :free
-      self.plan == plan || plan_expired_at < Time.now
+      self.plan == plan || (plan_expired_at.present? &&plan_expired_at < Time.now)
     else
-      self.plan == plan && plan_expired_at > Time.now
+      self.plan == plan && (plan_expired_at.present? && plan_expired_at > Time.now)
     end
   end
 
   def storage_limit
-    if plan_expired_at > Time.now
+    if plan_expired_at.present? && plan_expired_at > Time.now
       case plan
       when :base
         3.gigabytes
