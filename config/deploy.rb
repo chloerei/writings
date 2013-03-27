@@ -3,10 +3,10 @@ set :rvm_type, :user
 
 require 'bundler/capistrano'
 
-set :application, "pre.writings.io"
+set :application, "writings.io"
 set :repository,  "rei@chloerei.com:git/publish-design"
 set :scm, "git"
-set :branch, "upload"
+set :branch, "master"
 #set :deploy_via, :remote_cache
 
 set :user, "rei"
