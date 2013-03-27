@@ -32,7 +32,7 @@ section
       | 其他疑问可 Email 或 Gtalk 联系：
       = mail_to 'chloerei@gmail.com', nil, :target => '_blank'
 
-- if current_user.invoices.any?
+- if @invoices.any?
   section
     header
       p 账单记录
@@ -43,7 +43,7 @@ section
           th 套餐
           th 数量（月）
           th.min 有效期
-        - current_user.invoices.each do |invoice|
+        - @invoices.each do |invoice|
           tr
             td = invoice.created_at.to_date
             td = t "plan.#{invoice.plan}"
