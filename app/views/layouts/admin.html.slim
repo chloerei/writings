@@ -21,6 +21,10 @@ html
               a href=(admin_users_path) class=(controller_name == 'users' ? 'actived' : nil)
                 i.icon-user
                 = ' 用户'
+            li
+              a href=(admin_invoices_path) class=(controller_name == 'invoices' ? 'actived' : nil)
+                i.icon-money
+                = ' 账单'
     #main
       .container
         .inner.inner-full-height

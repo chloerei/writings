@@ -1,4 +1,8 @@
 class Admin::InvoicesController < Admin::BaseController
+  def index
+    @invoices = Invoice.desc(:created_at).page(params[:page]).per(25)
+  end
+
   def new
     @user = User.find_by :name => params[:name]
     @invoice = @user.invoices.new

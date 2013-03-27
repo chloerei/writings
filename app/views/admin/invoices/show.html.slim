@@ -1,7 +1,8 @@
+#tabs
+  | 账单
+  = @invoice.id
+
 section
-  h2
-    | 账单
-    = @invoice.id
   = form_for @invoice, :url => admin_invoices_path do |f|
     .field
       label 用户
