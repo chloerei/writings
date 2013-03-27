@@ -35,6 +35,7 @@ Publish::Application.routes.draw do
     end
 
     namespace :admin do
+      root :to => 'dashboard#show'
       resources :articles, :only => [:index, :show]
       resources :users, :only => [:index, :show]
       resources :invoices, :only => [:index, :show, :new, :create, :destroy] do

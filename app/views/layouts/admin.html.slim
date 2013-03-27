@@ -14,6 +14,10 @@ html
         header#site-header.clearfix
           ul.top-nav.pull-left
             li
+              a href=(admin_root_path) class=(controller_name == 'dashboard' ? 'actived' : nil)
+                i.icon-dashboard
+                = ' 面板'
+            li
               a href=(admin_articles_path) class=(controller_name == 'articles' ? 'actived' : nil)
                 i.icon-pencil
                 = ' 文章'

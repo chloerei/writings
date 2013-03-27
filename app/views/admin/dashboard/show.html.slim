@@ -1,0 +1,30 @@
+#tabs
+  | 概览
+
+table.item-table
+  tbody
+    tr
+      th 时间段
+      th 文章
+      th 用户
+      th 账单
+    tr
+      td 24小时前
+      td = Article.where(:created_at.gt => 1.day.ago).count
+      td = User.where(:created_at.gt => 1.day.ago).count
+      td = Invoice.where(:created_at.gt => 1.day.ago).count
+    tr
+      td 48小时～24小时前
+      td = Article.where(:created_at.gt => 2.day.ago, :created_at.lt => 1.day.ago).count
+      td = User.where(:created_at.gt => 2.day.ago, :created_at.lt => 1.day.ago).count
+      td = Invoice.where(:created_at.gt => 2.day.ago, :created_at.lt => 1.day.ago).count
+    tr
+      td 72小时～48小时前
+      td = Article.where(:created_at.gt => 3.day.ago, :created_at.lt => 2.day.ago).count
+      td = User.where(:created_at.gt => 3.day.ago, :created_at.lt => 2.day.ago).count
+      td = Invoice.where(:created_at.gt => 3.day.ago, :created_at.lt => 2.day.ago).count
+    tr
+      td 总数
+      td = Article.count
+      td = User.count
+      td = Invoice.count
