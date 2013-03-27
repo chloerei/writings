@@ -47,7 +47,7 @@ Publish::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += %w( dashboard.js site.js )
-  config.assets.precompile += %w( dashboard.css site.css error.css )
+  config.assets.precompile += %w( dashboard.css site.css admin.css error.css )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
