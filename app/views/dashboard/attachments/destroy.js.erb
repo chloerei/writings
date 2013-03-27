@@ -1,2 +1,3 @@
 $("#attachment-<%= @attachment.id %>").remove();
+$('#storage-status .used').text('<%= j number_to_human_size(current_user.storage_used) %>');
 AlertMessage.success('Success', 1500);

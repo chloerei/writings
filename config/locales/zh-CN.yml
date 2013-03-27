@@ -28,6 +28,7 @@ zh-CN:
   next_page: "下一页"
   prev_page: "上一页"
 
+  need_more_storage: "需要更多空间？"
   upgrade: "升级"
   plan:
     free: "免费版"

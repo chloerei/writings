@@ -30,6 +30,8 @@
                   span.used= number_to_human_size current_user.storage_used
                   = ' / '
                   span.limit= number_to_human_size current_user.storage_limit
+                - if current_user.in_plan? :free
+                  = link_to t('need_more_storage'), dashboard_billing_path, :target => '_blank'
           .field
             = f.submit t('.upload'), :id => 'image-upload-submit'
             = button_tag t('cancel'), :data => { :close => 'modal' }
@@ -45,6 +47,8 @@
                   span.used= number_to_human_size current_user.storage_used
                   = ' / '
                   span.limit= number_to_human_size current_user.storage_limit
+                - if current_user.in_plan? :free
+                  = link_to t('need_more_storage'), dashboard_billing_path, :target => '_blank'
           .field.clearfix
             .pull-left
               = f.submit t('.fetch'), :id => 'image-fetch-submit'

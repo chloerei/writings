@@ -28,6 +28,12 @@ en:
   next_page: "Next page"
   prev_page: "Prev page"
 
+  need_more_storage: "Need more storage？"
+  upgrade: "Upgrade"
+  plan:
+    free: "Free"
+    base: "Base"
+
   layouts:
     dashboard:
       home: "Home"
