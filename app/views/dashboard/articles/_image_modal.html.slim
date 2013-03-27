@@ -25,7 +25,10 @@
               .progress
                 .bar
               .message
-                h2 = t '.drop_here'
+                h2
+                  i.icon-cloud-upload
+                  = ' '
+                  = t '.drop_here'
                 .storage-status
                   span.used= number_to_human_size current_user.storage_used
                   = ' / '
@@ -42,7 +45,10 @@
           .field.preview
             .center
               .message
-                h2 = t '.preview'
+                h2
+                  i.icon-cloud
+                  = ' '
+                  = t '.preview'
                 .storage-status
                   span.used= number_to_human_size current_user.storage_used
                   = ' / '
