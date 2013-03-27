@@ -12,8 +12,10 @@ section
       td.min
         - if current_user.in_plan? :base
           = "当前套餐（#{current_user.plan_expired_at.to_date} 到期）"
+        - elsif current_user.plan_expired_at.nil?
+          = link_to '升级', dashboard_billing_path(:plan => :base), :method => :post, :confirm => '确认开启基础版7天试用？', :class => 'button button-green no-margin'
         - else
-          = link_to '升级', '#', :class => 'button button-green'
+          | 试用期结束
     tr
       td 免费版
       td -
