@@ -82,6 +82,11 @@ html
                         = ' '
                         = t '.profile'
                     li
+                      = link_to dashboard_billing_path do
+                        i.icon-shopping-cart
+                        = ' '
+                        = t 'upgrade'
+                    li
                       hr
                     li
                       = link_to logout_path, :method => :delete do

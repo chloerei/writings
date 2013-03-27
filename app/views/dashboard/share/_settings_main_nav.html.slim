@@ -13,4 +13,10 @@
             i.icon-credit-card
             = ' '
             = t '.profile'
+      li
+        a.clearfix href=(dashboard_billing_path) class=(controller_name == 'billings' ? 'actived' : nil)
+          .label
+            i.icon-shopping-cart
+            = ' '
+            = t 'upgrade'
   #main-nav-background

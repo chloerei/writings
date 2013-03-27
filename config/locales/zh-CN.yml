@@ -28,6 +28,11 @@ zh-CN:
   next_page: "下一页"
   prev_page: "上一页"
 
+  upgrade: "升级"
+  plan:
+    free: "免费版"
+    base: "基础版"
+
   layouts:
     dashboard:
       home: "首页"

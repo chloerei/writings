@@ -1,5 +1,46 @@
 @import "common";
 
+.nice-list {
+  line-height: 1.6em;
+}
+
+table.nice-table {
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  @include box-sizing(border-box);
+
+  tr {
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    text-align: left;
+    @include linear-gradient(#fff, #eee);
+  }
+
+  th, td {
+    padding: 10px;
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  &.max {
+    width: 99%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+
+  .min {
+    width: 1%;
+    white-space: nowrap;
+  }
+}
+
 .container {
   margin: 0 auto;
   width: $container-width;

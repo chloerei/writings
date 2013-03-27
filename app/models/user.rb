@@ -95,10 +95,22 @@ class User
     profile.name.present? ? profile.name : name
   end
 
+  def in_plan?(plan)
+    if plan == :free
+      self.plan == plan || plan_expired_at < Time.now
+    else
+      self.plan == plan && plan_expired_at > Time.now
+    end
+  end
+
   def storage_limit
-    case plan
-    when :base
-      3.gigabytes
+    if plan_expired_at > Time.now
+      case plan
+      when :base
+        3.gigabytes
+      else
+        100.megabytes
+      end
     else
       100.megabytes
     end
