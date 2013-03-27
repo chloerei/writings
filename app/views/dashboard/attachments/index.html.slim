@@ -14,9 +14,6 @@
             li id=("attachment-#{attachment.id}")
               a.pic-link href=(dashboard_attachment_path(attachment)) target='_blank' title=(attachment.file_name)
                 = image_tag attachment.file.thumb.url
-                .info
-                  .name
-                    = attachment.file_name
               a.delete href=(dashboard_attachment_path(attachment)) data-remote='true' data-method='delete' data-confirm=(t '.confirm_delete')
                 i.icon-remove
         = paginate @attachments, :theme => :dashboard
