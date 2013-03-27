@@ -25,10 +25,20 @@ en:
 
   older: "Older"
   newer: "Newer"
+  next_page: "Next page"
+  prev_page: "Prev page"
+
+  need_more_storage: "Need more storage？"
+  upgrade: "Upgrade"
+  plan:
+    free: "Free"
+    base: "Base"
 
   layouts:
     dashboard:
       home: "Home"
+      articles: "Articles"
+      pictures: "Pictures"
       feedback: "Feedback"
       twitter: "Twitter"
       google_plus: "Google+"
@@ -69,25 +79,40 @@ en:
         account: "Account"
         profile: "Profile"
 
+    attachments:
+      index:
+        confirm_delete: "Confirm delete?"
+        no_picture: "No picture"
     articles:
       delete_modal:
+        delete_selected: "Delete selected"
         label_message: "Are you sure delete selelcted articles?"
         delete_forever: "Delete forever"
       empty_trash_modal:
         label_message: "Are you sure empty trash?"
         empty_trash: "Empty trash"
       image_modal:
-        url: "URL"
         insert_image: "Insert image"
+        url: "URL"
+        link: "Link"
+        fetch: "Fetch"
+        select_file: "Select file"
+        upload: "Upload"
+        drop_here: "Drop here"
+        preview: "Preview"
       link_modal:
         url: "URL"
         create_link: "Create link"
         unlink: "Unlink"
+      urlname_modal:
+        urlname: "URL"
       move_category_modal:
         select_category: "Select category"
         new_category: "New category"
       select_category_modal:
         select_category: "Select category"
+        new_category: "New category"
+      new_category_modal:
         new_category: "New category"
 
       main_nav:
@@ -207,3 +232,10 @@ en:
         title: "Title"
         body: "Body"
         urlname: "URL"
+      attachment:
+        file: "Attachment"
+
+  errors:
+    messages:
+      store_limit: "not enough attachment space"
+      fetch_error: "Fetch error, can't access resource, please use local upload."

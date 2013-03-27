@@ -1,19 +1,22 @@
 #move-category-modal.modal-dialog.no-scroll
-  span.modal-close data-close='modal'
-    i.icon-remove
-  = form_for :article, :html => { :id => 'move-category-form' } do |f|
-    .field
-      label = t('.select_category')
-      .dropdown
-        a.dropdown-toggle.button href="#" = t('.select_category')
-        ul.dropdown-menu
-          - current_user.categories.each do |category|
+  .modal-header
+    .title
+      = t '.select_category'
+    a.modal-close data-close='modal'
+      i.icon-remove
+  .modal-content
+    = form_for :article, :html => { :id => 'move-category-form' } do |f|
+      .field
+        .dropdown
+          a.dropdown-toggle.button href="#" = t('.select_category')
+          ul.dropdown-menu
+            - current_user.categories.each do |category|
+              li
+                a href="#" data-category-id=(category.urlname) = category.name
             li
-              a href="#" data-category-id=(category.urlname) = category.name
-          li
-            a href="#" data-category-id=('null') = t('not_collected')
-      = link_to t('.new_category'), '#new-category-modal', :data => { :toggle => :modal }
-      = f.hidden_field :category_id
-    .field
-      = f.submit t('save')
-      = f.submit t('cancel'), :data => { :close => :modal }
+              a href="#" data-category-id=('null') = t('not_collected')
+        = link_to t('.new_category'), '#new-category-modal', :data => { :toggle => :modal }
+        = f.hidden_field :category_id
+      .field
+        = f.submit t('save')
+        = f.submit t('cancel'), :data => { :close => :modal }

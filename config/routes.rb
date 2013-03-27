@@ -24,11 +24,24 @@ Publish::Application.routes.draw do
 
       resource :profile, :only => [:show, :update]
       resource :account, :only => [:show, :update, :destroy]
+      resource :billing, :only => [:show, :create]
 
       resources :categories, :only => [:create, :edit, :update, :destroy], :path_names => { :edit => :settings }
       resources :articles, :only => [:new, :create, :edit, :update, :destroy] do
         collection do
           post :bulk
+        end
+      end
+      resources :attachments, :only => [:index, :show, :create, :destroy]
+    end
+
+    namespace :admin do
+      root :to => 'dashboard#show'
+      resources :articles, :only => [:index, :show]
+      resources :users, :only => [:index, :show]
+      resources :invoices, :only => [:index, :show, :new, :create, :destroy] do
+        member do
+          put :approve
         end
       end
     end

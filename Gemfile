@@ -14,6 +14,10 @@ gem 'http_accept_language'
 gem 'rails-i18n'
 gem 'strong_parameters'
 gem 'nokogiri'
+gem 'mini_magick'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'fog', '~> 1.3.1'
+gem 'jbuilder'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -25,6 +29,7 @@ group :assets do
   gem 'jquery-rails'
   gem 'mousetrap-rails'
   gem 'turbolinks'
+  gem "jquery-fileupload-rails"
 end
 
 group :development do

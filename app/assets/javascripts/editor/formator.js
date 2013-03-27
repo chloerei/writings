@@ -163,6 +163,10 @@ Editor.Formator.prototype = {
     this.afterFormat();
   },
 
+  canImage: function() {
+    return !this.isWraped('h1, h2, h3, h4, code');
+  },
+
   image: function() {
     var url = prompt('Link url:', 'http://');
 

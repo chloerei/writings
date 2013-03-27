@@ -1,0 +1,77 @@
+@import "dashboard";
+
+#tabs {
+  padding: 10px 20px;
+  background-color: #f9f9f9;
+}
+
+table.item-table {
+  width: 100%;
+
+  tr {
+    border-bottom: 1px solid #ddd;
+
+    &:hover {
+      background-color: #f9f9f9;
+    }
+
+    &:first-child {
+      border-top: 1px solid #ddd;
+    }
+  }
+
+  th {
+    text-align: left;
+    background-color: #f9f9f9;
+  }
+
+  th, td {
+    padding: 15px 20px;
+
+    &:last-child {
+      text-align: right;
+    }
+
+    &.max {
+      width: 99%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &.min {
+      width: 1%;
+      white-space: nowrap;
+    }
+  }
+
+  a {
+    color: #555;
+
+    &:hover {
+      color: $linkColor;
+    }
+  }
+}
+
+article.article {
+  width: 768px;
+  padding: 70px;
+  margin: 0 auto;
+  @include box-sizing(border-box);
+}
+
+section {
+  padding: 20px;
+}
+
+#user-info {
+  img {
+    height: 100px;
+    width: 100px;
+  }
+}
+
+#paginator {
+  margin: 20px;
+}

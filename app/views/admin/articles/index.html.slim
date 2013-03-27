@@ -1,0 +1,27 @@
+- append_title '文章'
+
+#tabs
+  .button-group
+    a.button href=(url_for(params.slice(:name).merge(:tab => nil))) class=(params[:tab].nil? ? 'button-actived' : nil)
+      = "已发布 #{@articles_scope.publish.count}"
+    a.button href=(url_for(params.slice(:name).merge(:tab => :all))) class=(params[:tab] == 'all' ? 'button-actived' : nil)
+      = "全部 #{@articles_scope.count}"
+  - if @user
+    | 用户：
+    = link_to @user.name, admin_user_path(@user.id)
+
+table.item-table
+  tbody
+    - @articles.each do |article|
+      tr
+        td.max = link_to article.title, admin_article_path(article.id)
+        td.min = article.status
+        td.min = link_to article.user.name, admin_user_path(article.user)
+        td.min
+          - case params[:tab]
+          - when 'publish'
+            = article.published_at.to_s :db
+          - else
+            = article.updated_at.to_s :db
+
+= paginate @articles, :theme => :dashboard

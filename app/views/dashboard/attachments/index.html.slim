@@ -1,0 +1,22 @@
+#main
+  .container
+    .inner.inner-full-height
+      #pictures
+        #storage-status
+          span.used= number_to_human_size current_user.storage_used
+          = ' / '
+          span.limit= number_to_human_size current_user.storage_limit
+          - if current_user.in_plan? :free
+            = ' '
+            = link_to t('need_more_storage'), dashboard_billing_path
+        ul
+          - @attachments.each do |attachment|
+            li id=("attachment-#{attachment.id}")
+              a.pic-link href=(dashboard_attachment_path(attachment)) target='_blank' title=(attachment.file_name)
+                = image_tag attachment.file.thumb.url
+              a.delete href=(dashboard_attachment_path(attachment)) data-remote='true' data-method='delete' data-confirm=(t '.confirm_delete')
+                i.icon-remove
+        = paginate @attachments, :theme => :dashboard
+      - if @attachments.empty?
+        #empty-message
+          = t '.no_picture'

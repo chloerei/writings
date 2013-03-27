@@ -1,9 +1,14 @@
 #delete-modal.modal-dialog
-  span.modal-close data-close='modal'
-    i.icon-remove
-  form
-    .field
-      label
-        = t '.label_message'
-      a.button.button-danger class='confirm-delete-button' href='#' = t '.delete_forever'
-      a.button href='#' data-close='modal' = t 'cancel'
+  .modal-header
+    .title
+      = t '.delete_selected'
+    a.modal-close data-close='modal'
+      i.icon-remove
+  .modal-content
+    form
+      .field
+        label
+          = t '.label_message'
+      .field
+        a.button.button-danger class='confirm-delete-button' href='#' = t '.delete_forever'
+        a.button href='#' data-close='modal' = t 'cancel'

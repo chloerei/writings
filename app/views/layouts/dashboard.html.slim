@@ -15,12 +15,19 @@ html
           ul.top-nav.pull-left
             li
               a href=(dashboard_root_path) class=(%w(articles categories).include?(controller_name) ? 'actived' : nil)
-                i.icon-home
-                = ' '
                 - if logined?
-                  = t '.dashboard'
+                  i.icon-pencil
+                  = ' '
+                  = t '.articles'
                 - else
+                  i.icon-home
+                  = ' '
                   = t '.home'
+            li
+              a href=(dashboard_attachments_path) class=(controller_name == 'attachments' ? 'actived' : nil)
+                i.icon-picture
+                = ' '
+                = t '.pictures'
             li
               .dropdown
                 a.dropdown-toggle href="#"
@@ -74,6 +81,11 @@ html
                         i.icon-credit-card
                         = ' '
                         = t '.profile'
+                    li
+                      = link_to dashboard_billing_path do
+                        i.icon-shopping-cart
+                        = ' '
+                        = t 'upgrade'
                     li
                       hr
                     li

@@ -1,0 +1,24 @@
+#tabs
+  | 账单
+  = @invoice.id
+
+section
+  = form_for @invoice, :url => admin_invoices_path do |f|
+    .field
+      label 用户
+      = link_to @invoice.user.name, admin_user_path(@invoice.user)
+    - %w(created_at plan quantity price balance total_price approved_at start_at end_at).each do |column|
+      .field
+        = f.label column
+        = f.text_field column, :disabled => true
+    .field
+      = f.label :remark
+      = f.text_area :remark, :disabled => true
+
+section
+  .clearfix
+    .pull-left
+      - unless @invoice.approved?
+        = link_to '生效', approve_admin_invoice_path(@invoice), :method => :put, :confirm => '确认生效？', :class => ['button button-primary']
+    .pull-right
+      = link_to '删除', admin_invoice_path(@invoice), :method => :delete, :class => 'button button-danger', :confirm => '确定删除？'

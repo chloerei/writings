@@ -14,11 +14,18 @@ class User
   field :locale, :default => I18n.locale.to_s
   field :domain
   field :disqus_shortname
+  field :plan, :type => Symbol, :default => :free
+  field :plan_expired_at, :type => DateTime
+  field :storage_used, :default => 0
+
+  PLANS = %w(free base)
 
   embeds_one :profile
 
   has_many :categories, :dependent => :delete
   has_many :articles, :dependent => :delete
+  has_many :attachments, :dependent => :destroy
+  has_many :invoices, :dependent => :delete
 
   has_secure_password
 
@@ -86,5 +93,30 @@ class User
 
   def display_name
     profile.name.present? ? profile.name : name
+  end
+
+  def in_plan?(plan)
+    if plan == :free
+      self.plan == plan || (plan_expired_at.present? &&plan_expired_at < Time.now)
+    else
+      self.plan == plan && (plan_expired_at.present? && plan_expired_at > Time.now)
+    end
+  end
+
+  def storage_limit
+    if plan_expired_at.present? && plan_expired_at > Time.now
+      case plan
+      when :base
+        3.gigabytes
+      else
+        100.megabytes
+      end
+    else
+      100.megabytes
+    end
+  end
+
+  def to_param
+    name.to_s
   end
 end

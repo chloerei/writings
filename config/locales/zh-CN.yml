@@ -25,10 +25,20 @@ zh-CN:
 
   older: "过往"
   newer: "较新"
+  next_page: "下一页"
+  prev_page: "上一页"
+
+  need_more_storage: "需要更多空间？"
+  upgrade: "升级"
+  plan:
+    free: "免费版"
+    base: "基础版"
 
   layouts:
     dashboard:
       home: "首页"
+      articles: "文章"
+      pictures: "图片"
       feedback: "问题反馈"
       twitter: "Twitter"
       google_plus: "Google+"
@@ -69,25 +79,40 @@ zh-CN:
         account: "账户"
         profile: "个人资料"
 
+    attachments:
+      index:
+        confirm_delete: "确认删除？"
+        no_picture: "没有图片"
     articles:
       delete_modal:
+        delete_selected: "删除所选"
         label_message: "确定删除所选文章？"
         delete_forever: "永久删除"
       empty_trash_modal:
         label_message: "确定清空垃圾桶？"
         empty_trash: "清空垃圾桶"
       image_modal:
-        url: "URL 地址"
         insert_image: "插入图片"
+        url: "URL 地址"
+        link: "外链"
+        fetch: "抓取"
+        select_file: "选择文件"
+        upload: "上传"
+        drop_here: "拖到此处"
+        preview: "预览"
       link_modal:
         url: "URL 地址"
         create_link: "创建链接"
         unlink: "去掉链接"
+      urlname_modal:
+        urlname: "URL 标识"
       move_category_modal:
         select_category: "选择分类"
         new_category: "新建分类"
       select_category_modal:
         select_category: "选择分类"
+        new_category: "新建分类"
+      new_category_modal:
         new_category: "新建分类"
 
       main_nav:
@@ -207,3 +232,11 @@ zh-CN:
         title: "标题"
         body: "内容"
         urlname: "URL 标识"
+      attachment:
+        file: "附件"
+
+  errors:
+    messages:
+      extension_white_list_error: "不能上传 %{extension} 文件，允许类型：%{allowed_types}"
+      store_limit: "剩余容量不足"
+      fetch_error: "抓取失败，也许没有权限访问该资源，请改由本地上传"
