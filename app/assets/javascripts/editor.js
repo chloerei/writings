@@ -137,8 +137,10 @@ Editor.prototype = {
       case 46: // Delete
         this.initParagraph();
 
+        // chrome and safari bind textInput, so here trigger editor:change.
+        // no support safari:
         // bugfix https://github.com/writings-io/writings-io/issues/3#issuecomment-14832829
-        if (!this.is_safari) {
+        if (this.is_chrome) {
           this.undoManager.save();
           this.editable.trigger('editor:change');
         }
@@ -149,8 +151,6 @@ Editor.prototype = {
   triggerInput: function() {
     if (this.is_chrome || this.is_safari) {
       this.editable.trigger('textInput');
-    } else {
-      this.editable.trigger('input');
     }
   },
 
