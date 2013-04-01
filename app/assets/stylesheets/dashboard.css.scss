@@ -522,6 +522,7 @@ body {
   #articles {
     table {
       width: 100%;
+      line-height: 18px;
 
       tr {
         border-bottom: 1px solid #ddd;
@@ -563,8 +564,10 @@ body {
         &.title {
           width: 99%;
 
-          i {
-            margin-right: 5px;
+          a {
+            overflow: hidden;
+            height: 18px;
+            display: inline-block;
           }
         }
 

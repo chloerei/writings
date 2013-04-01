@@ -34,9 +34,11 @@ table.item-table {
 
     &.max {
       width: 99%;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+      a {
+        overflow: hidden;
+        height: 18px;
+        display: inline-block;
+      }
     }
 
     &.min {

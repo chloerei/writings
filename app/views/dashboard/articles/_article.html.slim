@@ -1,7 +1,9 @@
 tr.article data-id=(article.token) data-title=(article.title) data-category-id=(article.category.try(:urlname)) data-category-name=(article.category.try(:name)) class=(article.status) data-link=(site_article_url(article, :urlname => article.urlname, :host => current_user.host)) data-status=(article.status)
   td.title
-    i.icon-status
-    = link_to article.title, edit_dashboard_article_path(article), :target => '_blank'
+    = link_to edit_dashboard_article_path(article), :target => '_blank' do
+      i.icon-status
+      = ' '
+      = article.title
   td.category
     - if article.category
       span.category_name = article.category.name
