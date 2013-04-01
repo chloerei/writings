@@ -2,7 +2,7 @@
 @import "bourbon";
 @import "font-awesome";
 @import "variables";
-@import "highlight_js/tomorrow-night-eighties";
+@import "highlight_js/github";
 
 // base
 
@@ -73,7 +73,13 @@ article {
   p code {
     margin: 0 5px;
     padding: 0 5px;
-    background-color: #eee;
+    background-color: #efefef;
+  }
+
+  pre code {
+    background-color: #efefef;
+    border: 1px solid #ccc;
+    @include border-radius(5px);
   }
 
   img {
