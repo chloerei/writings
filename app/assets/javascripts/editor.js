@@ -146,6 +146,14 @@ Editor.prototype = {
     }
   },
 
+  triggerInput: function() {
+    if (this.is_chrome || this.is_safari) {
+      this.editable.trigger('textInput');
+    } else {
+      this.editable.trigger('input');
+    }
+  },
+
   keydown: function(event) {
     switch (event.keyCode) {
       case 8: // Backspace
@@ -154,7 +162,7 @@ Editor.prototype = {
       case 9: // Tab
         event.preventDefault();
         this.formator.exec('insertText', '  ');
-        this.editable.trigger('editor:change');
+        this.triggerInput();
         break;
       case 13: // Enter
         this.enter(event);
@@ -192,7 +200,7 @@ Editor.prototype = {
       range.setEndAfter(node);
       selection.removeAllRanges();
       selection.addRange(range);
-      this.editable.trigger('editor:change');
+      this.triggerInput();
     }
   },
 
