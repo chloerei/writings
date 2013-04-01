@@ -151,6 +151,11 @@ Editor.prototype = {
       case 8: // Backspace
         this.backspcae(event);
         break;
+      case 9: // Tab
+        event.preventDefault();
+        this.formator.exec('insertText', '  ');
+        this.editable.trigger('editor:change');
+        break;
       case 13: // Enter
         this.enter(event);
         break;
@@ -187,6 +192,7 @@ Editor.prototype = {
       range.setEndAfter(node);
       selection.removeAllRanges();
       selection.addRange(range);
+      this.editable.trigger('editor:change');
     }
   },
 
