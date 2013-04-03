@@ -15,15 +15,19 @@ Attachment.each do |attachment|
   begin
     puts "parsing #{attachment.file.url}"
     attachment.save
+    file = open(attachment.file.url)
     directory.files.create(
       :key => "attachments/#{attachment.id}/#{attachment.token}/#{attachment.file_name}",
-      :body => open(attachment.file.url),
-        :public => true
+      :body => file,
+      :content_type => file.content_type,
+      :public => true
     )
+    file = open(attachment.file.thumb.url)
     directory.files.create(
       :key => "attachments/#{attachment.id}/#{attachment.token}/thumb_#{attachment.file_name}",
-      :body => open(attachment.file.thumb.url),
-        :public => true
+      :body => file,
+      :content_type => file.content_type,
+      :public => true
     )
   rescue => e
     puts e
