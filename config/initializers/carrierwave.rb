@@ -6,7 +6,7 @@ CarrierWave.configure do |config|
     :region                 => APP_CONFIG['s3']['region']
   }
   config.fog_directory = APP_CONFIG['s3']['fog_directory']
-  config.fog_public = false
+  config.fog_public = true
   config.cache_dir = "#{Rails.root}/tmp/uploads"
   config.ignore_download_errors = false
 end

@@ -7,13 +7,13 @@ class FileUploader < CarrierWave::Uploader::Base
     storage :file
 
     def store_dir
-      "uploads/#{model.class.to_s.underscore.pluralize}/#{model.id}"
+      "uploads/#{model.class.to_s.underscore.pluralize}/#{model.id}/#{model.token}"
     end
   else
     storage :fog
 
     def store_dir
-      "#{model.class.to_s.underscore.pluralize}/#{model.id}"
+      "#{model.class.to_s.underscore.pluralize}/#{model.id}/#{model.token}"
     end
   end
 
