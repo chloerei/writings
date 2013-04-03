@@ -4,6 +4,11 @@ class Attachment
 
   field :file
   field :file_size
+  field :token
+
+  after_initialize do |user|
+    self.token ||= SecureRandom.hex(16)
+  end
 
   belongs_to :user
 
