@@ -12,6 +12,12 @@ module ArticlesHelper
     simple_format truncate(doc.css('p').map(&:text).join("\n\n").to_s, :length => 140)
   end
 
+  def article_remove_h1(text)
+    doc = Nokogiri::HTML::DocumentFragment.parse(text)
+    doc.css('h1').first.try(:remove)
+    doc.to_s
+  end
+
   def convert_attachment_url(text, user)
     doc = Nokogiri::HTML::DocumentFragment.parse(text)
     doc.css('img').each do |img|
