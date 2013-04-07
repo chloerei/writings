@@ -1,4 +1,7 @@
 = paginator.render do
   nav#paginator
-    == prev_page_tag unless current_page.first?
-    == next_page_tag unless current_page.last?
+    ul
+      li
+        == next_page_tag unless current_page.last?
+      li
+        == prev_page_tag unless current_page.first?

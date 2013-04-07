@@ -9,11 +9,10 @@ html
     = yield :head
     = csrf_meta_tags
   body id=("#{controller_name}-#{action_name}")
-    #logo
-      a href='http://writings.io'
-        i.icon-home
-        = ' '
-        | Writings.io
     = yield
-    #spinner
-      i.icon-spinner.icon-spin
+    #footer
+      #logo
+        a href="http://writings.io"
+          | writings
+          small
+            | .io
