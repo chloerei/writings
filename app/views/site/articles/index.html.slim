@@ -4,29 +4,8 @@
 #main
   .container
     .inner
-      #profile
-        .avatar
-          = link_to image_tag(@user.gravatar_url), site_root_path
-        .info
-          h1.name
-            = link_to @user.display_name, site_root_path
-          = simple_format @user.profile.description
-      #articles
-        = render :partial => 'article', :collection => @articles
-      = paginate @articles, :theme => 'site'
-
-#footer
-  .container
-    .inner
-      .column
-        .title = t 'subscribe'
-        a.button.button-rss href=(site_feed_path(:format => :rss))
-          = 'RSS Feed '
-          i.icon-rss
-      - if @user.categories.any?
-        nav.column
-          .title = t 'category'
-          ul
-            - @user.categories.each do |category|
-              li
-                a href=(site_category_path(category)) = category.name
+      #page
+        = render :partial => 'site/share/page_header'
+        section#articles.page-contents
+          = render :partial => 'article', :collection => @articles
+        = paginate @articles, :theme => 'site'

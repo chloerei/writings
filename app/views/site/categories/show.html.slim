@@ -6,31 +6,10 @@
 #main
   .container
     .inner
-      #category
-        .name
-          h1
-            a href=(site_category_path(@category))
-              = @category.name
-        .info
-          = t 'author'
-          = ' '
-          = link_to @user.display_name, site_root_path
-          = ' '
-          = t 'articles_count', :count => @category.articles.count
-        .description
-          = simple_format @category.description
-      #articles
-        = render :partial => 'site/articles/article', :collection => @articles
-      = paginate @articles, :theme => 'site'
-
-#footer
-  .container
-    .inner
-      .column
-        .title
-          = t 'subscribe'
-          = ' '
+      #page
+        = render :partial => 'site/share/page_header'
+        #category-header
           = @category.name
-        a.button.button-rss href=(feed_site_category_path(@category, :format => :rss))
-          = 'RSS Feed '
-          i.icon-rss
+        section#articles.page-contents
+          = render :partial => 'site/articles/article', :collection => @articles
+        = paginate @articles, :theme => 'site'

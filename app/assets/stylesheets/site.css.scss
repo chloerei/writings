@@ -1,217 +1,233 @@
 @import "common";
 
-.container {
-  width: 768px;
-  margin: 0 auto;
+body {
+  background-color: #f9f9f9;
 
-  @media (max-width: 768px) {
+  &#articles-show {
+    background-color: #fff;
+  }
+}
+
+#topbar {
+  nav ul {
+    display: table;
     width: 100%;
-  }
-}
-
-.inner {
-  margin: 0 70px;
-
-  @media (max-width: 768px) {
-    margin: 0 (70 / 768) * 100%;
-  }
-}
-
-#logo {
-  @include clearfix();
-
-  a {
-    float: right;
-    margin: 5px 5px;
-    padding: 3px 10px;
-    color: #fff;
-    background-color: #ccc;
-    @include border-radius(3px);
-
-    &:hover {
-      background-color: $linkColor;
-    }
-  }
-}
-
-#header {
-  margin-bottom: 20px;
-  color: #999;
-
-  .info {
-    padding: 20px 0;
-    border-bottom: 2px solid #ccc;
-  }
-}
-
-#profile {
-  padding: 40px 0;
-  border-bottom: 2px solid #ccc;
-  text-align: center;
-  @include clearfix();
-
-  .avatar {
-    width: 100%;
-    margin-bottom: 20px;
-
-    img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50px;
-    }
-  }
-
-  .info {
-    h1 {
-      line-height: 160%;
-      margin: 0;
-    }
-  }
-
-  &.bottom {
-    border-top: 2px solid #ccc;
-    margin: 40px 0;
-
-    @media (min-width: 769px) {
-      text-align: left;
-
-      .avatar {
-        width: 100px;
-        float: left;
-        margin-right: 20px;
-        margin-bottom: 0;
-      }
-
-      .info {
-        width: 768px - 120px - 140px;
-        float: left;
-      }
-    }
-  }
-}
-
-#category {
-  padding: 40px 0;
-  border-bottom: 2px solid #ccc;
-
-  h1 {
-    line-height: 160%;
-    margin: 0;
-  }
-
-  .info {
-    color: #999;
-  }
-
-  .description {
-    p {
-      margin-bottom: 0;
-    }
-  }
-}
-
-#articles {
-  article {
-    margin: 40px 0;
-    padding-bottom: 40px;
     border-bottom: 1px solid #ddd;
 
-    h1 {
-      line-height: 160%;
-      margin: 0;
-    }
+    li {
+      display: table-cell;
+      width: 1%;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 1px solid #ddd;
 
-    .info {
-      color: #999;
-      margin-bottom: 1em;
-
-      a:hover {
-        text-decoration: none;
+      &.host {
+        width: 99%;
       }
-    }
 
+      &:last-child {
+        border-right: none;
+      }
 
-    h1, .summary {
       a {
+        padding: 15px 20px;
+        color: #999;
         display: block;
-        color: #333;
 
         &:hover {
-          color: #555;
-          text-decoration: none;
+          color: #333;
         }
       }
     }
   }
 }
 
-#categories {
-  section {
-    padding: 40px 0;
-    border-bottom: 1px solid #ddd;
+#main {
+  .container {
+    max-width: 768px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  section,
+  article {
+    margin: (70px / 768px) * 100%;
+  }
+
+  #page {
+    margin: 40px 0;
+    border: 1px solid #ccc;
+    background-color: #fff;
+
+    @media (max-width: 768px) {
+      margin: 0;
+      border: none;
+    }
+  }
+
+  #main-nav {
+    ul {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+      background-color: #555;
+
+      li {
+        display: table-cell;
+        text-align: center;
+        border-right: 1px solid #999;
+
+        &:last-child {
+          border-right: none;
+        }
+
+        a {
+          display: block;
+          color: #ccc;
+          padding: 15px 20px;
+
+          &.actived,
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  #category-header {
+    padding: 15px 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    font-weight: bold;
+    color: #555;
+  }
+
+  .page-contents {
+    padding: 0;
+    margin: 0;
+
+    section,
+    article {
+      margin: 0;
+      padding: (70px / 768px) * 100%;
+      border-bottom: 1px solid #ddd;
+    }
 
     h1 {
-      margin: 0;
-      line-height: 160%;
+      margin-top: 0;
+    }
+
+    a {
+      color: #555;
+      display: block;
+
+      &:hover {
+        color: #333;
+        text-decoration: none;
+      }
     }
 
     .info {
       color: #999;
     }
+  }
 
-    .description {
-      p {
-        margin-bottom: 0;
+  #paginator {
+    ul {
+      width: 100%;
+      display: table;
+      table-layout: fixed;
+
+      li {
+        display: table-cell;
+
+        a {
+          display: block;
+          padding: 15px 20px;
+          font-size: 1.5em;
+          color: #999;
+
+          &:hover {
+            color: #555;
+          }
+        }
+      }
+
+      .newer {
+        text-align: right;
       }
     }
   }
-}
 
-#paginator {
-  margin: 40px 0;
-  font-size: 1.5em;
-  @include clearfix();
+  #profile {
+    padding: 40px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    @include clearfix();
 
-  .older {
-    float: left;
-  }
+    &.header {
+      border: none;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
 
-  .newer {
-    float: right;
+    h1 {
+      margin-top: 0;
+    }
+
+    .avatar {
+      float: left;
+      width: 100px;
+
+      img {
+        width: 100px;
+        height: 100px;
+        max-width: 100%;
+        @include border-radius(50px);
+      }
+    }
+
+    .info {
+      float: right;
+      width: 768 - 120px - 140px;
+    }
+
+    @media (max-width: 768px) {
+      .avatar,
+      .info {
+        float: none;
+        text-align: center;
+        width: 100%;
+      }
+    }
   }
 }
 
 #footer {
-  .inner {
-    margin-top: 40px;
-    padding: 40px 0;
-    border-top: 2px solid #ccc;
-    @include clearfix();
+  text-align: center;
+  border-top: 1px solid #ddd;
 
-    li {
-      margin-bottom: 10px;
-    }
+  #logo {
+    font-size: 1.5em;
+    font-weight: bold;
 
-    .title {
-      margin: 0 0 20px;
-      font-weight: bold;
-    }
+    a {
+      padding: 20px 0;
+      color: #777;
+      display: block;
 
-    .column {
-      width: 45%;
-      margin-right: 5%;
-      margin-bottom: 20px;
-      float: left;
-
-      @media (max-width: 480px) {
-        width: 100%;
-        margin-left: 0;
-        float: none;
+      small {
+        color: #aaa;
       }
-    }
 
-    .button-rss {
-      @include button-color(#EF8B22, #fff);
+      &:hover {
+        color: #555;
+
+        small {
+          color: #888;
+        }
+      }
     }
   }
 }

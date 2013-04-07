@@ -1,4 +1,8 @@
 class Site::CategoriesController < Site::BaseController
+  def index
+    @categories = @user.categories
+  end
+
   def show
     @category = @user.categories.find_by :urlname => params[:id]
     @articles = @category.articles.publish.desc(:created_at).page(params[:page]).per(5)

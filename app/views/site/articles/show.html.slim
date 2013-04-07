@@ -1,26 +1,26 @@
 - append_title @article.title
 
-#header
-  .container
-    .inner
-      .info
-        = link_to @user.display_name, site_root_path
-        = ' '
-        = t 'published_at'
-        = ' '
-        = @article.published_at.to_date.to_s
-        - if @article.category
-          = ' '
-          = t 'category'
-          = ' '
-          = link_to @article.category.name, site_category_path(@article.category)
+#topbar
+  nav
+    ul
+      li.host = link_to @user.host, root_path
+      - if @article.category
+        li
+          a href=(site_category_path(@article.category))
+            i.icon-folder-close-alt
+            = ' '
+            = @article.category.name
+      - if @user.disqus_shortname.present?
+        li
+          a href="#disqus_thread"
+            i.icon-comment
 
 #main
   .container
     .inner
       article
         = article_format_body(convert_attachment_url(@article.body, @user))
-      #profile.bottom
+      section#profile
         .avatar
           = link_to image_tag(@user.gravatar_url), site_root_path
         .info
@@ -29,7 +29,7 @@
           .description
             = simple_format @user.profile.description
       - if @user.disqus_shortname.present?
-        #disqus_thread
+        section#disqus_thread
         javascript:
           var disqus_shortname = '#{@user.disqus_shortname}';
           var disqus_identifier = '#{@article.token}';

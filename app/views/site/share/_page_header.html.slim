@@ -1,0 +1,15 @@
+section#profile.header
+  .avatar
+    = link_to image_tag(@user.gravatar_url), site_root_path
+  .info
+    h1.name
+      = link_to @user.display_name, site_root_path
+    = simple_format @user.profile.description
+nav#main-nav
+  ul
+    li
+      a href=(site_root_path) class=(controller_name == 'articles' ? 'actived' : nil) = t 'articles'
+    li
+      a href=(site_categories_path) class=(controller_name == 'categories' ? 'actived' : nil) = t 'category'
+    li
+      a href=(site_feed_path(:format => :rss)) RSS
