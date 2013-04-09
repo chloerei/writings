@@ -1,7 +1,7 @@
 #main
   .container
     .inner.inner-full-height
-      section
+      section style="padding: 20px;"
         form
           .field
             label Text
@@ -9,6 +9,32 @@
           .field
             label Password
             = password_field_tag ''
+          .field.field_with_errors
+            label Text error
+            = text_field_tag ''
+            label.message message
+          .field
+            label prepend
+            .input-prepend
+              .add-on
+                | prepend
+              .input
+                = text_field_tag ''
+          .field
+            label append
+            .input-append
+              .input
+                = text_field_tag ''
+              .add-on
+                | append
+          .field.field_with_errors
+            label prepend with error
+            .input-prepend
+              .add-on
+                | prepend
+              .input
+                = text_field_tag ''
+            label.message message
           .field
             label File Input
             = file_field_tag ''
