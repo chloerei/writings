@@ -239,7 +239,7 @@ select {
     margin-bottom: 5px;
   }
 
-  &.field_with_errors {
+  &.field-error {
     label {
       color: $red;
     }

@@ -9,7 +9,7 @@
           .field
             label Password
             = password_field_tag ''
-          .field.field_with_errors
+          .field.field-error
             label Text error
             = text_field_tag ''
             label.message message
@@ -27,7 +27,7 @@
                 = text_field_tag ''
               .add-on
                 | append
-          .field.field_with_errors
+          .field.field-error
             label prepend with error
             .input-prepend
               .add-on
