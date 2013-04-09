@@ -46,7 +46,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def new
-    @article = Article.new
+    @article = current_user.articles.new
     if params[:category_id]
       @article.category = current_user.categories.where(:urlname => params[:category_id]).first
     end

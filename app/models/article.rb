@@ -17,7 +17,7 @@ class Article
   belongs_to :user
   belongs_to :category
 
-  validates :urlname, :presence => true, :format => { :with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('urlname_valid_message') },:uniqueness => { :scope => :user_id, :case_sensitive => false }
+  validates :urlname, :presence => true, :format => { :with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('urlname_valid_message'), :allow_blank => true }, :uniqueness => { :scope => :user_id, :case_sensitive => false }
 
   scope :publish, -> { where(:status => 'publish') }
   scope :draft, -> { where(:status => 'draft') }
@@ -66,11 +66,12 @@ class Article
     read_attribute(:title).blank? ? I18n.t(:untitled) : read_attribute(:title)
   end
 
-  after_initialize :set_token
+  before_validation :set_token
 
   def set_token
-    if self.new_record?
-      self.urlname = self.token = SecureRandom.hex(4)
+    if new_record?
+      self.token ||= SecureRandom.hex(4)
+      self.urlname ||= self.token
     end
   end
 
