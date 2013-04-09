@@ -5,7 +5,7 @@
     ul
       li.host = link_to @user.host, root_path
       li.hide-on-mobile
-        a href=(site_article_path(@article, :urlname => @article.urlname))
+        a href=(site_article_path(:urlname => @article.urlname))
           i.icon-time
           = ' '
           = l @article.published_at.to_date, :format => :long
@@ -39,7 +39,7 @@
         javascript:
           var disqus_shortname = '#{@user.disqus_shortname}';
           var disqus_identifier = '#{@article.token}';
-          var disqus_url = '#{site_article_url(@article, :urlname => @article.urlname, :host => @user.host)}';
+          var disqus_url = '#{site_article_url(:urlname => @article.urlname, :host => @user.host)}';
 
           (function() {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -181,6 +181,52 @@ select {
   border-radius: 3px;
 }
 
+.input-prepend,
+.input-append{
+  display: table;
+  width: 300px;
+
+  #{$all-text-inputs} {
+    width: 100%;
+  }
+
+  .input {
+    width: 99%;
+    display: table-cell;
+    margin: 0;
+  }
+
+  .add-on {
+    width: 1%;
+    display: table-cell;
+    background-color: #eee;
+    padding: 7px;
+    border: 1px solid #ccc;
+  }
+}
+
+.input-prepend {
+  .add-on {
+    border-radius: 3px 0 0 3px;
+    border-right: 0;
+  }
+
+  #{$all-text-inputs} {
+    border-radius: 0 3px 3px 0;
+  }
+}
+
+.input-append {
+  .add-on {
+    border-radius: 0 3px 3px 0;
+    border-left: 0;
+  }
+
+  #{$all-text-inputs} {
+    border-radius: 3px 0 0 3px;
+  }
+}
+
 .field {
   margin-bottom: 20px;
 
@@ -193,13 +239,18 @@ select {
     margin-bottom: 5px;
   }
 
-  label.message {
-    margin: 5px 0 0;
-  }
-
-  .field_with_errors {
-    label.message {
+  &.field-error {
+    label {
       color: $red;
+    }
+
+    textarea,
+    #{$all-text-inputs} {
+      border-color: $red;
+    }
+
+    label.message {
+      margin: 5px 0 0;
 
       &::before {
         font-family: FontAwesome;
@@ -501,6 +552,8 @@ a.button:hover {
   }
 
   .field {
+    .input-prepend,
+    .input-append,
     #{$all-text-inputs} {
       width: 100%;
     }

@@ -7,7 +7,11 @@
   .modal-content
     = form_for @article, :url => dashboard_article_path(@article), :html => { :id => 'urlname-form' }, :validate => true do |f|
       .field
-        = f.text_field :urlname, :id => 'article-urlname', :placeholder => 'url-title'
+        .input-prepend
+          .add-on
+            = "#{current_user.host}/articles/"
+          .input
+            = f.text_field :urlname, :id => 'article-urlname', :placeholder => 'urlname'
       .field
         = f.submit t('save')
         = f.submit t('cancel'), :data => { :close => 'modal' }

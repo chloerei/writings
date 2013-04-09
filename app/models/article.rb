@@ -12,11 +12,12 @@ class Article
 
   field :token
   index({ :user_id => 1, :token => 1 },  { :unique => true })
+  index({ :user_id => 1, :urlname => 1 },  { :unique => true })
 
   belongs_to :user
   belongs_to :category
 
-  validates :urlname, :format => { :with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('urlname_valid_message'), :allow_blank => true }
+  validates :urlname, :presence => true, :format => { :with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('urlname_valid_message'), :allow_blank => true }, :uniqueness => { :scope => :user_id, :case_sensitive => false }
 
   scope :publish, -> { where(:status => 'publish') }
   scope :draft, -> { where(:status => 'draft') }
@@ -65,10 +66,13 @@ class Article
     read_attribute(:title).blank? ? I18n.t(:untitled) : read_attribute(:title)
   end
 
-  before_create :set_token
+  before_validation :set_token
 
   def set_token
-    self.token = SecureRandom.hex(4)
+    if new_record?
+      self.token ||= SecureRandom.hex(4)
+      self.urlname ||= self.token
+    end
   end
 
   def to_param
