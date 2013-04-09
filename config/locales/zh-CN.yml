@@ -107,7 +107,7 @@ zh-CN:
         create_link: "创建链接"
         unlink: "去掉链接"
       urlname_modal:
-        urlname: "URL 标识"
+        urlname: "URL"
       move_category_modal:
         select_category: "选择分类"
         new_category: "新建分类"
@@ -143,7 +143,7 @@ zh-CN:
         is_end: "到达尾部"
       edit:
         return: "返回文章列表"
-        urlname: "URL 标识"
+        urlname: "URL"
         collect: "归类"
         publish: "发布"
         draft: "草稿"
@@ -228,12 +228,12 @@ zh-CN:
         description: "描述"
       category:
         name: "名字"
-        urlname: "URL 标识"
+        urlname: "URL"
         description: "描述"
       article:
         title: "标题"
         body: "内容"
-        urlname: "URL 标识"
+        urlname: "URL"
       attachment:
         file: "附件"
 
