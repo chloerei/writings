@@ -26,14 +26,8 @@ class Site::ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should get show" do
-    get :show, :id => @article
+    get :show, :urlname => @article.urlname
     assert_response :success, @response.body
-  end
-
-  test "should redirect when urlname not match" do
-    @article.update_attribute :urlname, 'change'
-    get :show, :id => @article, :urlname => 'some'
-    assert_redirected_to site_article_path(@article, :urlname => 'change')
   end
 
   test "should get feed" do

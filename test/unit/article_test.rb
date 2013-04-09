@@ -2,7 +2,10 @@ require 'test_helper'
 
 class ArticleTest < ActiveSupport::TestCase
   test "should generate token" do
-    assert_not_nil create(:article).token
+    article = create :article
+    assert_not_nil article.token
+    assert_not_nil article.urlname
+    assert_equal article.token, article.urlname
   end
 
   test "should set published_at" do

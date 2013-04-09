@@ -4,7 +4,7 @@ class Site::ArticlesController < Site::BaseController
   end
 
   def show
-    @article = @user.articles.publish.find_by :token => params[:id]
+    @article = @user.articles.publish.find_by :urlname => params[:urlname]
 
     if params[:urlname].to_s != @article.urlname.to_s
       redirect_to site_article_path(@article, :urlname => @article.urlname)
