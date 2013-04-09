@@ -69,8 +69,9 @@ class Article
   after_initialize :set_token
 
   def set_token
-    self.token ||= SecureRandom.hex(4)
-    self.urlname ||= self.token
+    if self.new_record?
+      self.urlname = self.token = SecureRandom.hex(4)
+    end
   end
 
   def to_param
