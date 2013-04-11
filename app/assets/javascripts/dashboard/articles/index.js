@@ -24,7 +24,19 @@ var ArticleIndex = function() {
     _this.bulkSelect(event, this);
   });
 
-  this.connect(this.$newCategoryForm, 'submit', this.createCategory);
+  this.$newCategoryForm.on('ajax:success', function(event, data) {
+    if (_this.$moveCategoryForm.is(':visible')) {
+      var $li = $('<li><a href="#">');
+      $li.find('a').text(data.name).data('category-id', data.urlname);
+      _this.$moveCategoryForm.find('.dropdown-menu').prepend($li);
+      _this.$moveCategoryForm.find('.dropdown-toggle').text(data.name);
+      _this.$moveCategoryForm.find('[name*=category_id]').val(data.urlname);
+      Dialog.hide('#new-category-modal');
+    } else {
+      Turbolinks.visit('/categories/' + data.urlname);
+    }
+  });
+
   this.connect(this.$bulkbar.find('.cancel-button'), 'click', this.bulkCancel);
   this.connect(this.$bulkbar.find('.view-button'), 'click', this.view);
   this.connect(this.$bulkbar.find('.edit-button'), 'click', this.edit);
@@ -83,29 +95,6 @@ ArticleIndex.prototype = {
     event.preventDefault();
     event.stopPropagation();
     window.open($(element).attr('href'), '_blank');
-  },
-
-  createCategory: function(event) {
-    event.preventDefault();
-    var _this = this;
-
-    $.ajax({
-      url: '/categories',
-      data: this.$newCategoryForm.serializeArray(),
-      type: 'post',
-      dataType: 'json'
-    }).success(function(data) {
-      if (_this.$moveCategoryForm.is(':visible')) {
-        var $li = $('<li><a href="#">');
-        $li.find('a').text(data.name).data('category-id', data.urlname);
-        _this.$moveCategoryForm.find('.dropdown-menu').prepend($li);
-        _this.$moveCategoryForm.find('.dropdown-toggle').text(data.name);
-        _this.$moveCategoryForm.find('[name*=category_id]').val(data.urlname);
-        Dialog.hide('#new-category-modal');
-      } else {
-        Turbolinks.visit('/categories/' + data.urlname);
-      }
-    });
   },
 
   selectMoveCategory: function(event, element) {
