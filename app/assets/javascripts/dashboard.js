@@ -25,8 +25,12 @@ $(function() {
   }).on('ajax:success', function() {
     AlertMessage.success('Success', 1500);
   }).on('ajax:error', function(xhr, status, error) {
-    var data = $.parseJSON(status.responseText);
-    AlertMessage.error(data.message || 'Error');
+    try {
+      var data = $.parseJSON(status.responseText);
+      AlertMessage.error(data.message || 'Error');
+    } catch(err) {
+      AlertMessage.error(data.message || 'Server Error');
+    }
   });
 
   $(document).on('click', '.alert-message', function() {

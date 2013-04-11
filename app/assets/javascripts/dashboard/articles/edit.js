@@ -262,8 +262,12 @@ ArticleEdit.prototype = {
     }
   },
 
-  saveError: function() {
-    AlertMessage.error('Save Failed.');
+  saveError: function(xhr) {
+    try {
+      AlertMessage.error($.parseJSON(xhr.responseText).message || 'Save Failed');
+    } catch(err) {
+      AlertMessage.error('Server Error');
+    }
     $('#save-status .retry').show().siblings().hide();
   },
 
@@ -282,8 +286,8 @@ ArticleEdit.prototype = {
       if (success_callback) {
         success_callback(data);
       }
-    }).error(function() {
-      _this.saveError();
+    }).error(function(xhr) {
+      _this.saveError(xhr);
       if (error_callback) {
         error_callback();
       }
@@ -404,8 +408,8 @@ ArticleEdit.prototype = {
       _this.updateViewButton(data);
       history.replaceState(null, null, '/articles/' + data.token + '/edit');
       _this.saveArticle(); // save change between ajax response
-    }).fail(function() {
-      _this.saveError();
+    }).fail(function(xhr) {
+      _this.saveError(xhr);
       $('#save-status .retry').show().siblings().hide();
     }).always(function() {
       _this.creating = false;
