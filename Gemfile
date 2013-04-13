@@ -19,6 +19,7 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'fog', '~> 1.3.1'
 gem 'jbuilder'
 gem 'cache_digests'
+gem 'memcache-client'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
