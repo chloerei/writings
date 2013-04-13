@@ -141,7 +141,7 @@ en:
       index:
         no_articles: "No articles"
         is_end: "is end"
-      edit:
+      edit_topbar:
         return: "Return to article list"
         urlname: "URL"
         collect: "Collect"

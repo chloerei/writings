@@ -726,10 +726,6 @@ body {
     display: inline;
   }
 
-  .button-group {
-    margin-right: 0;
-  }
-
   #save-status {
     display: inline-block;
     margin-right: 10px;
@@ -753,15 +749,125 @@ body {
   }
 }
 
+#articles-edit {
+  #topbar {
+    position: relative;
+  }
+}
+
+#editwrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-top: 49px;
+  @include transition(margin-top 0.15s ease);
+
+  .main,
+  .sidebar {
+    height: 100%;
+    position: relative;
+  }
+
+  .scrollable {
+    overflow: auto;
+    height: 100%;
+  }
+
+  .sidebar {
+    display: none;
+
+    .header {
+      background-color: #555;
+      line-height: 14px;
+      padding: 10px;
+      color: #fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9;
+      height: 34px;
+      @include box-sizing(border-box);
+      @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+    }
+
+    .content {
+      padding-top: 36px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  &.show-sidebar {
+    @include clearfix();
+
+    .main {
+      width: 80%;
+      float: left;
+    }
+
+    .sidebar {
+      display: block;
+      float: left;
+      width: 20%;
+      background-color: #fff;
+    }
+  }
+}
+
+#history {
+  height: 100%;
+
+  nav ul {
+    li {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+
+      &:hover {
+        cursor: pointer;
+        background: #f9f9f9;
+      }
+
+      .title {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .user {
+        color: #999;
+        margin-bottom: 5px;
+      }
+
+      .button {
+        padding: 3px 5px;
+      }
+
+      .action {
+        display: none;
+      }
+
+      &.actived {
+        .action {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
 #toolbar {
   background-color: #555;
-  position: fixed;
-  top: 49px;
+  position: absolute;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 9;
   @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
-  @include transition(top 0.15s ease);
 
   ul.toolbar-buttons {
     margin: 0;
@@ -859,14 +965,19 @@ body {
 }
 
 #editarea {
-  margin-top: 86px;
-  @include transition(margin-top 0.15s ease);
+  padding-top: 36px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 
   article {
     background: #FFF;
     padding: 70px;
     outline: 0;
     min-height: 1024px;
+    margin-top: 3px;
     margin-bottom: 60px;
     @include box-shadow(0 0 0 1px #ccc);
 
@@ -900,8 +1011,8 @@ body {
     top: 0;
   }
 
-  #editarea {
-    margin-top: 37px;
+  #editwrap {
+    margin-top: 0;
   }
 
   #pick-up-button.icon-double-angle-up:before {

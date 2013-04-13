@@ -1,0 +1,33 @@
+#topbar.no-shadow
+  #editor-header.clearfix
+    .pull-left
+      ul.top-nav
+        li
+          a href=(dashboard_root_path) title=(t '.return')
+            i.icon-home
+        li
+          = link_to '#select-category-modal', :data => { :toggle => :modal }, :title => t('.collect') do
+            i.icon-folder-close-alt
+        li
+          = link_to '#urlname-modal', :data => { :toggle => :modal }, :title => t('.urlname') do
+            i.icon-flag
+        li class=(@article.persisted? && @article.publish? ? nil : 'hide')
+          a#view-button target='_blank' href=(@article.persisted? ? site_article_url(:urlname => @article.urlname, :host => current_user.host) : site_root_url(:host => current_user.host))
+            i.icon-external-link
+    .pull-right
+      #save-status
+        span.saving
+          i.icon-refresh
+          = ' '
+          = t '.saving'
+        span.saved class=(@article.persisted? ? 'show' : nil) title=(@article.persisted? ? @article.updated_at : nil)
+          i.icon-ok
+          = ' '
+          = t '.saved'
+        span.retry
+          = t '.save_error'
+          = ' '
+          a href='#' = t '.retry'
+      .button-group
+        = link_to t('.publish'), '#', :class => ['button', (@article.publish? ? 'button-actived' : nil)], :id => 'publish-button'
+        = link_to t('.draft'), '#', :class => ['button', (@article.draft? ? 'button-actived' : nil)], :id => 'draft-button'

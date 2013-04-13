@@ -141,7 +141,7 @@ zh-CN:
       index:
         no_articles: "没有文章"
         is_end: "到达尾部"
-      edit:
+      edit_topbar:
         return: "返回文章列表"
         urlname: "URL"
         collect: "归类"
