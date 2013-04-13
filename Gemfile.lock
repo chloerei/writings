@@ -42,6 +42,8 @@ GEM
       sass (>= 3.2.0)
       thor
     builder (3.0.4)
+    cache_digests (0.2.0)
+      actionpack (>= 3.2)
     capistrano (2.14.1)
       highline
       net-scp (>= 1.0.0)
@@ -234,6 +236,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby
   bourbon
+  cache_digests
   capistrano
   carrierwave-mongoid
   client_side_validations

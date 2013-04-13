@@ -18,6 +18,7 @@ gem 'mini_magick'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'fog', '~> 1.3.1'
 gem 'jbuilder'
+gem 'cache_digests'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
