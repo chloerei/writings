@@ -778,21 +778,6 @@ body {
   .sidebar {
     display: none;
 
-    .header {
-      background-color: #555;
-      line-height: 14px;
-      padding: 10px;
-      color: #fff;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 9;
-      height: 34px;
-      @include box-sizing(border-box);
-      @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
-    }
-
     .content {
       padding-top: 36px;
       position: absolute;
@@ -860,7 +845,7 @@ body {
   }
 }
 
-#toolbar {
+.toolbar {
   background-color: #555;
   position: absolute;
   top: 0;
@@ -868,6 +853,15 @@ body {
   right: 0;
   z-index: 9;
   @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+
+  .label {
+    line-height: 14px;
+    padding: 10px;
+    color: #fff;
+    display: inline-block;
+    height: 34px;
+    @include box-sizing(border-box);
+  }
 
   ul.toolbar-buttons {
     margin: 0;
