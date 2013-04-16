@@ -17,7 +17,7 @@ class Article
   belongs_to :user
   belongs_to :category
 
-  has_many :versions
+  has_many :versions, :order => [:created_at, :desc]
 
   validates :urlname, :presence => true, :format => { :with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('urlname_valid_message'), :allow_blank => true }, :uniqueness => { :scope => :user_id, :case_sensitive => false }
 

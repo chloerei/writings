@@ -30,11 +30,11 @@ html
           .content
             .scrollable
               nav
-                ul
-                  - 20.times do |n|
-                    li class=(n == 2 ? 'actived' : nil)
-                      .title = l Time.now, :format => :long
-                      .user Rei
+                ul#versions
+                  - @article.versions.includes(:user).each do |version|
+                    li
+                      .title = l version.created_at, :format => :long
+                      .user = version.user.name
                       .action
                         a.button href='#' Restore
 

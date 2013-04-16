@@ -1,16 +1,16 @@
 @import "common";
 
 ::-webkit-scrollbar {
-    width: 6px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    border-radius: 3px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 3px;
-    background-color: #ccc;
+  border-radius: 3px;
+  background-color: #ccc;
 }
 
 .nice-list {
@@ -790,6 +790,7 @@ body {
 
   .sidebar {
     display: none;
+    @include box-shadow(-1px 0 1px #ccc);
 
     .content {
       padding-top: 36px;
@@ -798,6 +799,42 @@ body {
       left: 0;
       right: 0;
       bottom: 0;
+    }
+
+    nav ul {
+      li {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+
+        &:hover {
+          cursor: pointer;
+          background: #f9f9f9;
+        }
+
+        .title {
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+
+        .user {
+          color: #999;
+          margin-bottom: 5px;
+        }
+
+        .button {
+          padding: 3px 5px;
+        }
+
+        .action {
+          display: none;
+        }
+
+        &.actived {
+          .action {
+            display: block;
+          }
+        }
+      }
     }
   }
 
@@ -814,46 +851,6 @@ body {
       float: left;
       width: 20%;
       background-color: #fff;
-    }
-  }
-}
-
-#history {
-  height: 100%;
-
-  nav ul {
-    li {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-
-      &:hover {
-        cursor: pointer;
-        background: #f9f9f9;
-      }
-
-      .title {
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
-
-      .user {
-        color: #999;
-        margin-bottom: 5px;
-      }
-
-      .button {
-        padding: 3px 5px;
-      }
-
-      .action {
-        display: none;
-      }
-
-      &.actived {
-        .action {
-          display: block;
-        }
-      }
     }
   }
 }
