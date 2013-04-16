@@ -17,6 +17,8 @@ class Article
   belongs_to :user
   belongs_to :category
 
+  has_many :versions
+
   validates :urlname, :presence => true, :format => { :with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('urlname_valid_message'), :allow_blank => true }, :uniqueness => { :scope => :user_id, :case_sensitive => false }
 
   scope :publish, -> { where(:status => 'publish') }
@@ -44,6 +46,14 @@ class Article
     if status_changed? && publish?
       self.published_at = Time.now.utc
     end
+  end
+
+  def create_version(options = {})
+    user = options[:user] || self.user
+
+    versions.create :title => title,
+                    :body  => body,
+                    :user  => user
   end
 
   def urlname
