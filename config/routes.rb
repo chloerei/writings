@@ -32,7 +32,11 @@ Publish::Application.routes.draw do
           post :bulk
         end
 
-        resources :versions, :only => [:index]
+        resources :versions, :only => [:index, :show] do
+          member do
+            put :restore
+          end
+        end
       end
       resources :attachments, :only => [:index, :show, :create, :destroy]
     end

@@ -5,34 +5,38 @@ class ArticleEdit.Version
     @versions = $('#versions')
 
     $('#save-status').on 'click', =>
-      $('#editwrap').toggleClass('show-sidebar')
       if $('#editwrap').hasClass('show-sidebar')
-        @init()
+        @close()
       else
-        @clear()
+        @open()
 
     $('#history .close-button').on 'click', =>
-      $('#editwrap').removeClass('show-sidebar')
-      @clear()
+      @close()
 
-    @versions.on 'click', 'li', ->
-      $(this).addClass('actived').siblings().removeClass('actived')
+    @versions.on 'click', '.version:not(".actived")', ->
+      _this.preview($(this).data('id'))
+
+    @versions.on 'click', '.version .restore-button', ->
+      _this.restore($(this).closest('.version').data('id'))
 
     @scrollable = $('#history .scrollable')
     @scrollable.on 'scroll', (event) =>
       if @scrollable.prop('scrollHeight') - @scrollable.scrollTop() - @scrollable.height() < 200 and !@fetching
         @nextPage()
 
-  init: ->
+  open: ->
+    $('#editwrap').addClass('show-sidebar')
     @storeBody = @article.html()
     @article.prop('contentEditable', false)
 
     @page = 1
     @fetch()
 
-  clear: ->
+  close: ->
+    $('#editwrap').removeClass('show-sidebar')
     if @storeBody
       @article.html(@storeBody)
+    @storeBody = null
     @article.prop('contentEditable', true)
 
     @versions.html('').data('isEnd', false)
@@ -55,3 +59,20 @@ class ArticleEdit.Version
         dataType: 'script'
         complete: =>
           @fetching = false
+
+  preview: (id) ->
+    $.ajax
+      url: "/articles/#{@article.data('id')}/versions/#{id}"
+      dataType: 'json'
+      success: (data) =>
+        @article.html(data.body)
+        @versions.find("[data-id='#{id}']").addClass('actived').siblings().removeClass('actived')
+
+  restore: (id) ->
+    $.ajax
+      url: "/articles/#{@article.data('id')}/versions/#{id}/restore"
+      dataType: 'script'
+      type: 'PUT'
+      success: =>
+        @storeBody = null
+        @close()
