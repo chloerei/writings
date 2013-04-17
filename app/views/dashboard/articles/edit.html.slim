@@ -9,7 +9,7 @@ html
     = csrf_meta_tags
   body#articles-edit data-no-turbolink="true" class=(cookies[:pick_up_topbar] ? 'pick-up-topbar' : nil)
     = render :partial => 'edit_topbar'
-    #editwrap.show-sidebar
+    #editwrap
       .main
         = render :partial => 'toolbar'
         #editarea
@@ -31,12 +31,6 @@ html
             .scrollable
               nav
                 ul#versions
-                  - @article.versions.includes(:user).each do |version|
-                    li
-                      .title = l version.created_at, :format => :long
-                      .user = version.user.name
-                      .action
-                        a.button href='#' Restore
 
     = render 'urlname_modal'
     = render 'link_modal'

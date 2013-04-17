@@ -1,4 +1,6 @@
 //= require editor
+//= require_self
+//= require_tree ./edit
 
 Editor.Formator.prototype.link = function(url) {
   this.editor.restoreRange();
@@ -187,6 +189,7 @@ var ArticleEdit = function() {
     editable: '#editarea article'
   });
   this.imageUploader = new ImageUploader(this.editor);
+  this.version = new ArticleEdit.Version();
 
   this.article = $('#editarea article');
 
