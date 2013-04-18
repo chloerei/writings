@@ -5,10 +5,10 @@
         li
           a href=(dashboard_root_path) title=(t '.return')
             i.icon-home
-        li
+        li.hide-on-mobile
           = link_to '#select-category-modal', :data => { :toggle => :modal }, :title => t('.collect') do
             i.icon-folder-close-alt
-        li
+        li.hide-on-mobile
           = link_to '#urlname-modal', :data => { :toggle => :modal }, :title => t('.urlname') do
             i.icon-flag
         li class=(@article.persisted? && @article.publish? ? nil : 'hide')

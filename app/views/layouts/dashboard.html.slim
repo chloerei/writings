@@ -17,23 +17,27 @@ html
               a href=(dashboard_root_path) class=(%w(articles categories).include?(controller_name) ? 'actived' : nil)
                 - if logined?
                   i.icon-pencil
-                  = ' '
-                  = t '.articles'
+                  span.hide-on-mobile
+                    = ' '
+                    = t '.articles'
                 - else
                   i.icon-home
-                  = ' '
-                  = t '.home'
+                  span.hide-on-mobile
+                    = ' '
+                    = t '.home'
             li
               a href=(dashboard_attachments_path) class=(controller_name == 'attachments' ? 'actived' : nil)
                 i.icon-picture
-                = ' '
-                = t '.pictures'
+                span.hide-on-mobile
+                  = ' '
+                  = t '.pictures'
             li
               .dropdown
                 a.dropdown-toggle href="#"
                   i.icon-comments-alt
-                  = ' '
-                  = t '.feedback'
+                  span.hide-on-mobile
+                    = ' '
+                    = t '.feedback'
                 ul.dropdown-menu
                   li
                     a href='https://twitter.com/writingsio' target='_blank'
@@ -67,14 +71,16 @@ html
               li
                 a#user-link href=(site_root_url(:host => current_user.host)) target='_blank'
                   i.icon-external-link
-                  = ' '
-                  = current_user.display_name
+                  span.hide-on-mobile
+                    = ' '
+                    = current_user.display_name
               li
                 .dropdown
                   a.dropdown-toggle href=(dashboard_account_path) class=(%w(accounts profiles).include?(controller_name) ? 'actived' : nil)
                     i.icon-cog
-                    = ' '
-                    = t '.settings'
+                    span.hide-on-mobile
+                      = ' '
+                      = t '.settings'
                   ul.dropdown-menu.align-right
                     li
                       = link_to dashboard_account_path do
