@@ -9,7 +9,7 @@ html
     = csrf_meta_tags
   body#articles-edit data-no-turbolink="true" class=(cookies[:pick_up_topbar] ? 'pick-up-topbar' : nil)
     = render :partial => 'edit_topbar'
-    #editwrap
+    #editwrap.show-sidebar
       .main
         = render :partial => 'toolbar'
         #editarea
@@ -25,8 +25,7 @@ html
           .toolbar.clearfix
             .label.pull-left
               i.icon-time
-              span.hide-on-mobile
-                = ' History'
+              = ' History'
             ul.toolbar-buttons.pull-right
               li
                 a.close-button.toolbar-button.icon-remove href="#close-history"
