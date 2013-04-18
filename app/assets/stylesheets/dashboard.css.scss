@@ -862,7 +862,7 @@ body {
       }
 
       .hide-on-mobile {
-        display: none;
+        display: none !important;
       }
     }
 
