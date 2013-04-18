@@ -9,7 +9,7 @@ html
     = csrf_meta_tags
   body#articles-edit data-no-turbolink="true" class=(cookies[:pick_up_topbar] ? 'pick-up-topbar' : nil)
     = render :partial => 'edit_topbar'
-    #editwrap.show-sidebar
+    #editwrap
       .main
         = render :partial => 'toolbar'
         #editarea

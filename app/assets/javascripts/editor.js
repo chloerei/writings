@@ -94,15 +94,19 @@ Editor.prototype = {
       if (_this.formator[method]) {
         Mousetrap.bind(key, function(event) {
           event.preventDefault();
-          if (!_this.hasRange()) {
-            _this.restoreRange();
+          if (!$('#editwrap').hasClass('readonly')) {
+            if (!_this.hasRange()) {
+              _this.restoreRange();
+            }
+            _this.formator[method]();
           }
-          _this.formator[method]();
         });
       } else if (_this[method]) {
         Mousetrap.bind(key, function(event) {
           event.preventDefault();
-          _this[method]();
+          if (!$('#editwrap').hasClass('readonly')) {
+            _this[method]();
+          }
         });
       }
     });

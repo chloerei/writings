@@ -25,8 +25,7 @@ class ArticleEdit.Version
         @nextPage()
 
   open: ->
-    $('#editwrap').addClass('show-sidebar')
-    $('#editarea').addClass('readonly')
+    $('#editwrap').addClass('show-sidebar readonly')
     @storeBody = @article.html()
     @article.prop('contentEditable', false)
 
@@ -34,7 +33,7 @@ class ArticleEdit.Version
     @fetch()
 
   close: ->
-    $('#editwrap').removeClass('show-sidebar')
+    $('#editwrap').removeClass('show-sidebar readonly')
     $('#editarea').removeClass('readonly')
     if @storeBody
       @article.html(@storeBody)
