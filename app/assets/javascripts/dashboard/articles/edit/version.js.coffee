@@ -4,7 +4,7 @@ class ArticleEdit.Version
     @fetchUrl = "/articles/#{@article.data('id')}/versions"
     @versions = $('#versions')
 
-    $('#save-status').on 'click', =>
+    $('#save-status .saved').on 'click', =>
       if $('#editwrap').hasClass('show-sidebar')
         @close()
       else
