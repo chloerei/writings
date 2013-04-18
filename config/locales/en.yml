@@ -18,6 +18,7 @@ en:
   author: "Author"
   articles_count: "%{count} Articles"
   remember_me: "Remember me"
+  readonly_mode: "Readonly Mode"
 
   urlname_valid_message: "Allow character, number and '-'"
 

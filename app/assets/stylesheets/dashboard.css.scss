@@ -2,6 +2,7 @@
 
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -976,6 +977,24 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
+
+  #readonly-message {
+    display: none;
+  }
+
+  &.readonly {
+    #readonly-message {
+      padding: 10px 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      display: inline-block;
+      position: fixed;
+      left: 20px;
+      top: 102px;
+      font-size: 1.5em;
+      border-radius: 5px;
+    }
+  }
 
   article {
     background: #FFF;

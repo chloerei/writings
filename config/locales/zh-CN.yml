@@ -18,6 +18,7 @@ zh-CN:
   author: "作者"
   articles_count: "%{count} 篇文章"
   remember_me: "记住我"
+  readonly_mode: "只读模式"
 
   urlname_valid_message: "只能使用字母、数字和 '-' 号"
 
