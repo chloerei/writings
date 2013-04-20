@@ -4,6 +4,7 @@ zh-CN:
   submit: "提交"
   save: "保存"
   cancel: "取消"
+  restore: "恢复"
   all_articles: "所有文章"
   not_collected: "未归类"
   publish: "已发布"
@@ -18,6 +19,9 @@ zh-CN:
   author: "作者"
   articles_count: "%{count} 篇文章"
   remember_me: "记住我"
+  readonly_mode: "只读模式"
+  history_versions: "历史版本"
+  return_newest_version: "回到最新版本"
 
   urlname_valid_message: "只能使用字母、数字和 '-' 号"
 
@@ -29,6 +33,8 @@ zh-CN:
   next_page: "下一页"
   prev_page: "上一页"
 
+  version_limit: "当前帐号可以查看最近5个版本。"
+  need_more_version: "需要查看更多？"
   need_more_storage: "需要更多空间？"
   upgrade: "升级"
   plan:
@@ -141,7 +147,7 @@ zh-CN:
       index:
         no_articles: "没有文章"
         is_end: "到达尾部"
-      edit:
+      edit_topbar:
         return: "返回文章列表"
         urlname: "URL"
         collect: "归类"

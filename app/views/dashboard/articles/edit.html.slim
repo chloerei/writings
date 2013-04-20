@@ -8,46 +8,36 @@ html
     = stylesheet_link_tag "dashboard"
     = csrf_meta_tags
   body#articles-edit data-no-turbolink="true" class=(cookies[:pick_up_topbar] ? 'pick-up-topbar' : nil)
-    #topbar.no-shadow
-      .editor-container
-        header#editor-header.clearfix
-          .pull-left
-            ul.top-nav
+    = render :partial => 'edit_topbar'
+    #editwrap
+      .main
+        = render :partial => 'toolbar'
+        #editarea
+          .scrollable
+            .editor-container
+              article contentEditable="true" spellcheck="false" data-id=(@article.token) data-save-count=(@article.save_count) data-category-id=(@article.category.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil)
+                = article_format_body @article.body
+              = render 'layouts/alert_messages'
+          #readonly-message
+            = t 'readonly_mode'
+      .sidebar
+        #history
+          .toolbar.clearfix
+            .label.pull-left
+              i.icon-time
+              = ' '
+              = t 'history_versions'
+            ul.toolbar-buttons.pull-right
               li
-                a href=(dashboard_root_path) title=(t '.return')
-                  i.icon-home
-              li
-                = link_to '#select-category-modal', :data => { :toggle => :modal }, :title => t('.collect') do
-                  i.icon-folder-close-alt
-              li
-                = link_to '#urlname-modal', :data => { :toggle => :modal }, :title => t('.urlname') do
-                  i.icon-flag
-              li class=(@article.persisted? && @article.publish? ? nil : 'hide')
-                a#view-button target='_blank' href=(@article.persisted? ? site_article_url(:urlname => @article.urlname, :host => current_user.host) : site_root_url(:host => current_user.host))
-                  i.icon-external-link
-          .pull-right
-            #save-status
-              span.saving
-                i.icon-refresh
-                = ' '
-                = t '.saving'
-              span.saved class=(@article.persisted? ? 'show' : nil) title=(@article.persisted? ? @article.updated_at : nil)
-                i.icon-ok
-                = ' '
-                = t '.saved'
-              span.retry
-                = t '.save_error'
-                = ' '
-                a href='#' = t '.retry'
-            .button-group
-              = link_to t('.publish'), '#', :class => ['button', (@article.publish? ? 'button-actived' : nil)], :id => 'publish-button'
-              = link_to t('.draft'), '#', :class => ['button', (@article.draft? ? 'button-actived' : nil)], :id => 'draft-button'
-    = render :partial => 'toolbar'
-    #editarea
-      .editor-container
-        article contentEditable="true" spellcheck="false" data-id=(@article.token) data-save-count=(@article.save_count) data-category-id=(@article.category.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil)
-          = article_format_body @article.body
-        = render 'layouts/alert_messages'
+                a.close-button.toolbar-button.icon-remove href="#close-history" title=(t 'return_newest_version')
+          .content
+            .scrollable
+              nav
+                ul#versions
+              - if current_user.in_plan?(:free)
+                .message
+                  = t 'version_limit'
+                  = link_to t('need_more_version'), dashboard_billing_path
 
     = render 'urlname_modal'
     = render 'link_modal'

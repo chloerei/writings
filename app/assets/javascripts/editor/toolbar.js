@@ -8,7 +8,9 @@ Editor.Toolbar = function(editor, toolbar) {
   });
   this.toolbar.on('click', '[data-command]', function(event) {
     event.preventDefault();
-    _this.command(this);
+    if (!$(this).closest('.readonly').length) {
+      _this.command(this);
+    }
   });
 };
 

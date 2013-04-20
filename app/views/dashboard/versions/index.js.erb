@@ -1,0 +1,9 @@
+<% page = params[:page].to_i %>
+<% if page == 0 or page == 1 %>
+  $('#versions').html('<%= j render @versions %>');
+<% else %>
+  $('#versions').append('<%= j render @versions %>');
+  <% if page >= current_user.version_limit / @versions.limit_value %>
+    $('#versions').data('isEnd', true);
+  <% end %>
+<% end %>

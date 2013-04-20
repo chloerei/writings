@@ -57,6 +57,8 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   def create
     @article = current_user.articles.new article_params
     if @article.save
+      @article.create_version
+
       respond_to do |format|
         format.json { render :json => article_as_json(@article) }
       end
@@ -77,6 +79,11 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     @article = current_user.articles.find_by(:token => params[:id])
     if article_params[:save_count].to_i > @article.save_count
       if @article.update_attributes article_params
+
+        if @article.save_count - @article.last_version_save_count >= 100
+          @article.create_version
+        end
+
         respond_to do |format|
           format.json { render :json => article_as_json(@article) }
         end

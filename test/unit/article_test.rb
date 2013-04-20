@@ -19,4 +19,18 @@ class ArticleTest < ActiveSupport::TestCase
     article.update_attributes :body => 'change'
     assert old_time.to_i == article.published_at.to_i
   end
+
+  test "should create version" do
+    article = create :article
+    assert_difference "article.versions.count" do
+      article.create_version
+    end
+    assert_equal article.user, article.versions.asc(:created_at).last.user
+
+    other_user = create :user
+    assert_difference "article.versions.count" do
+      article.create_version :user => other_user
+    end
+    assert_equal other_user, article.versions.asc(:created_at).last.user
+  end
 end

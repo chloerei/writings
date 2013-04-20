@@ -4,6 +4,7 @@ en:
   submit: "Submit"
   save: "Save"
   cancel: "Cancel"
+  restore: "Restore"
   all_articles: "All Articles"
   not_collected: "Not Collected"
   publish: "Publish"
@@ -18,6 +19,9 @@ en:
   author: "Author"
   articles_count: "%{count} Articles"
   remember_me: "Remember me"
+  readonly_mode: "Readonly Mode"
+  history_versions: "History versions"
+  return_newest_version: "Return newest version"
 
   urlname_valid_message: "Allow character, number and '-'"
 
@@ -29,6 +33,8 @@ en:
   next_page: "Next page"
   prev_page: "Prev page"
 
+  version_limit: "Current account can visit last 5 versions. "
+  need_more_version: "Need more versions?"
   need_more_storage: "Need more storage？"
   upgrade: "Upgrade"
   plan:
@@ -141,7 +147,7 @@ en:
       index:
         no_articles: "No articles"
         is_end: "is end"
-      edit:
+      edit_topbar:
         return: "Return to article list"
         urlname: "URL"
         collect: "Collect"

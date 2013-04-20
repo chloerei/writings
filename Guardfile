@@ -7,7 +7,7 @@ guard 'livereload' do
   watch(%r{public/.+\.(css|js|html)$})
   watch(%r{config/locales/.+\.yml$})
   # Rails Assets Pipeline
-  watch(%r{(app|vendor)/assets/.+\.(scss|css|js|html)$})
-  watch(%r{test/javascripts/.+\.js$})
+  watch(%r{(app|vendor)/assets/.+\.(scss|css|js|coffee|html)$})
+  watch(%r{test/javascripts/.+\.(js|coffee)$})
   watch(%r{test/stylesheets/.+\.css$})
 end

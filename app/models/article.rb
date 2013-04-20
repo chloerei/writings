@@ -8,6 +8,7 @@ class Article
   field :urlname
   field :status, :default => 'draft'
   field :save_count, :type => Integer, :default => 0
+  field :last_version_save_count, :type => Integer, :default => 0
   field :published_at
 
   field :token
@@ -16,6 +17,8 @@ class Article
 
   belongs_to :user
   belongs_to :category
+
+  has_many :versions, :order => [:created_at, :desc]
 
   validates :urlname, :presence => true, :format => { :with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('urlname_valid_message'), :allow_blank => true }, :uniqueness => { :scope => :user_id, :case_sensitive => false }
 
@@ -44,6 +47,15 @@ class Article
     if status_changed? && publish?
       self.published_at = Time.now.utc
     end
+  end
+
+  def create_version(options = {})
+    user = options[:user] || self.user
+
+    versions.create :title => title,
+                    :body  => body,
+                    :user  => user
+    update_attribute :last_version_save_count, self.save_count
   end
 
   def urlname

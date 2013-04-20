@@ -116,6 +116,19 @@ class User
     end
   end
 
+  def version_limit
+    if plan_expired_at.present? && plan_expired_at > Time.now
+      case plan
+      when :base
+        100
+      else
+        5
+      end
+    else
+      5
+    end
+  end
+
   def to_param
     name.to_s
   end

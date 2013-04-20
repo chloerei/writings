@@ -1,0 +1,5 @@
+li.version data-id=(version.id)
+  .title = l version.created_at, :format => :long
+  .user = version.user.name
+  .action
+    a.button.restore-button href='#' = t 'restore'

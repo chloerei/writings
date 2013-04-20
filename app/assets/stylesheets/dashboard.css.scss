@@ -1,5 +1,19 @@
 @import "common";
 
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: #ccc;
+}
+
 .nice-list {
   line-height: 1.6em;
 }
@@ -726,19 +740,20 @@ body {
     display: inline;
   }
 
-  .button-group {
-    margin-right: 0;
-  }
-
   #save-status {
     display: inline-block;
     margin-right: 10px;
     color: #999;
+    cursor: pointer;
 
     .saving,
     .saved,
     .retry {
       display: none;
+    }
+
+    .saved:hover {
+      color: #555;
     }
 
     .show {
@@ -753,142 +768,307 @@ body {
   }
 }
 
-#toolbar {
-  background-color: #555;
-  position: fixed;
-  top: 49px;
+#editwrap {
+  position: absolute;
+  top: 0;
   left: 0;
   right: 0;
-  z-index: 9;
-  @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
-  @include transition(top 0.15s ease);
+  bottom: 0;
+  margin-top: 49px;
+  @include transition(margin-top 0.15s ease);
 
-  ul.toolbar-buttons {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    @include clearfix();
+  .main,
+  .sidebar {
+    height: 100%;
+    position: relative;
+  }
 
-    [class^="icon-"], [class*=" icon-"] {
-      line-height: 14px;
+  .scrollable {
+    overflow: auto;
+    height: 100%;
+  }
+
+  .sidebar {
+    display: none;
+    @include box-shadow(-1px 0 1px #ccc);
+    .content {
+      padding-top: 36px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
 
-    > li {
-      display: inline-block;
-      float: left;
-      height: 34px;
+    .message {
+      padding: 10px;
+      color: #999;
+    }
 
-      a {
-      }
-
-      .toolbar-button {
+    nav ul {
+      li {
         padding: 10px;
-        display: block;
-        color: #fff;
-
-        &:hover {
-          text-decoration: none;
-          color: #555;
-          background-color: #f9f9f9;
-        }
+        border-bottom: 1px solid #ddd;
 
         &.actived,
-        &:active {
-          color: #555;
-          background-color: #f9f9f9;
+        &:hover {
+          cursor: pointer;
+          background: #f9f9f9;
         }
 
-        &.disabled,
-        &.disabled:hover,
-        &.disabled:focus {
+        .title {
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+
+        .user {
           color: #999;
-          background-color: #555;
+          margin-bottom: 5px;
+        }
+
+        .button {
+          padding: 3px 5px;
+        }
+
+        .action {
+          display: none;
+        }
+
+        &.actived {
+          .action {
+            display: block;
+          }
         }
       }
     }
+  }
 
-    p, h1, h2, h3, h4, pre, blockquote {
-      padding: 0;
-      margin: 0;
+  &.show-sidebar {
+    @include clearfix();
+
+    .main {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 350px;
+      border: 0;
     }
 
-    .dropdown {
-      position: relative;
+    .sidebar {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 350px;
+      background-color: #fff;
+    }
+
+    @media (max-width: 1118px) {
+      .editor-container {
+        width: 100%;
+      }
+
+      #editarea article {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .hide-on-mobile {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .main,
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: 50%;
+      }
+    }
+  }
+
+  .toolbar {
+    background-color: #555;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+
+    .label {
+      line-height: 14px;
+      padding: 10px;
+      color: #fff;
+      display: inline-block;
       height: 34px;
+      @include box-sizing(border-box);
+    }
 
-      .dropdown-toggle {
-        width: 80px;
-        padding-right: 20px;
-        font-weight: bold;
+    ul.toolbar-buttons {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      @include clearfix();
+
+      [class^="icon-"], [class*=" icon-"] {
         line-height: 14px;
-
-        &:after {
-          right: 0;
-          padding: 2px 10px;
-        }
       }
 
-      .dropdown-menu {
-        top: 36px;
-        left: 0;
+      > li {
+        display: inline-block;
+        float: left;
+        height: 34px;
 
-        li {
+        a {
+        }
+
+        .toolbar-button {
+          padding: 10px;
           display: block;
-          float: none;
+          color: #fff;
 
-          a {
-            padding: 10px;
+          &:hover {
+            text-decoration: none;
+            color: #555;
+            background-color: #f9f9f9;
+          }
 
-            &:hover {
-              h1, h2, h3, h4 {
-                color: #fff;
-              }
-            }
+          &.actived,
+          &:active {
+            color: #555;
+            background-color: #f9f9f9;
+          }
+
+          &.disabled,
+          &.disabled:hover,
+          &.disabled:focus {
+            color: #999;
+            background-color: #555;
           }
         }
       }
 
-      &.actived {
-        .dropdown-toggle {
-          color: #555;
-          background-color: #f9f9f9;
-        }
+      p, h1, h2, h3, h4, pre, blockquote {
+        padding: 0;
+        margin: 0;
       }
-    }
-  }
-}
 
-#editarea {
-  margin-top: 86px;
-  @include transition(margin-top 0.15s ease);
-
-  article {
-    background: #FFF;
-    padding: 70px;
-    outline: 0;
-    min-height: 1024px;
-    margin-bottom: 60px;
-    @include box-shadow(0 0 0 1px #ccc);
-
-    @media (max-width: 768px) {
-      padding: 70 / 768 * 100%;
-    }
-
-    &.init {
-      h1 {
+      .dropdown {
         position: relative;
+        height: 34px;
 
-        &:after {
-          content: "Title here";
-          color: #ccc;
-          float: left;
-          position: absolute;
-          top: 0;
+        .dropdown-toggle {
+          width: 80px;
+          padding-right: 20px;
+          font-weight: bold;
+          line-height: 14px;
+
+          &:after {
+            right: 0;
+            padding: 2px 10px;
+          }
+        }
+
+        .dropdown-menu {
+          top: 36px;
           left: 0;
+
+          li {
+            display: block;
+            float: none;
+
+            a {
+              padding: 10px;
+
+              &:hover {
+                h1, h2, h3, h4 {
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
+
+        &.actived {
+          .dropdown-toggle {
+            color: #555;
+            background-color: #f9f9f9;
+          }
         }
       }
     }
   }
+
+  #editarea {
+    padding-top: 36px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    article {
+      background: #FFF;
+      padding: 70 / 768 * 100%;
+      outline: 0;
+      min-height: 1024px;
+      margin-top: 3px;
+      margin-bottom: 60px;
+      @include box-shadow(0 0 0 1px #ccc);
+
+      @media (max-width: 768px) {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      &.init {
+        h1 {
+          position: relative;
+
+          &:after {
+            content: "Title here";
+            color: #ccc;
+            float: left;
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  #readonly-message {
+    display: none;
+  }
+
+  &.readonly {
+    #readonly-message {
+      padding: 10px 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      display: inline-block;
+      position: fixed;
+      left: 20px;
+      top: 102px;
+      font-size: 1.5em;
+      border-radius: 5px;
+    }
+
+    #formator-buttons {
+      .toolbar-button {
+        color: #999;
+        background-color: #555;
+        cursor: default;
+      }
+    }
+  }
+
 }
 
 .pick-up-topbar {
@@ -900,8 +1080,8 @@ body {
     top: 0;
   }
 
-  #editarea {
-    margin-top: 37px;
+  #editwrap {
+    margin-top: 0;
   }
 
   #pick-up-button.icon-double-angle-up:before {
