@@ -25,12 +25,12 @@ class ArticleTest < ActiveSupport::TestCase
     assert_difference "article.versions.count" do
       article.create_version
     end
-    assert_equal article.user, article.versions.last.user
+    assert_equal article.user, article.versions.asc(:created_at).last.user
 
     other_user = create :user
     assert_difference "article.versions.count" do
       article.create_version :user => other_user
     end
-    assert_equal other_user, article.versions.last.user
+    assert_equal other_user, article.versions.asc(:created_at).last.user
   end
 end
