@@ -33,6 +33,8 @@ en:
   next_page: "Next page"
   prev_page: "Prev page"
 
+  version_limit: "Current account can visit last 5 versions. "
+  need_more_version: "Need more versions?"
   need_more_storage: "Need more storage？"
   upgrade: "Upgrade"
   plan:

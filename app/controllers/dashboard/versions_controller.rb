@@ -1,7 +1,11 @@
 class Dashboard::VersionsController < Dashboard::BaseController
   def index
     @article = current_user.articles.find_by :token => params[:article_id]
-    @versions = @article.versions.includes(:user).page(params[:page]).per(20)
+    if current_user.in_plan?(:free)
+      @versions = @article.versions.includes(:user).page(1).limit(5)
+    else
+      @versions = @article.versions.includes(:user).page(params[:page]).per(20)
+    end
     respond_to do |format|
       format.js
     end

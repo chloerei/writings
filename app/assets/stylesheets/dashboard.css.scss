@@ -752,6 +752,10 @@ body {
       display: none;
     }
 
+    .saved:hover {
+      color: #555;
+    }
+
     .show {
       display: inherit;
     }
@@ -787,7 +791,6 @@ body {
   .sidebar {
     display: none;
     @include box-shadow(-1px 0 1px #ccc);
-
     .content {
       padding-top: 36px;
       position: absolute;
@@ -795,6 +798,11 @@ body {
       left: 0;
       right: 0;
       bottom: 0;
+    }
+
+    .message {
+      padding: 10px;
+      color: #999;
     }
 
     nav ul {

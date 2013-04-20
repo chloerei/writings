@@ -34,6 +34,10 @@ html
             .scrollable
               nav
                 ul#versions
+              - if current_user.in_plan?(:free)
+                .message
+                  = t 'version_limit'
+                  = link_to t('need_more_version'), dashboard_billing_path
 
     = render 'urlname_modal'
     = render 'link_modal'
