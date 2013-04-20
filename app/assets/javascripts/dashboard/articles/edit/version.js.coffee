@@ -52,23 +52,29 @@ class ArticleEdit.Version
   fetch: ->
     if !@fetching and !@isEnd()
       @fetching = true
+      AlertMessage.loading('Loading...')
       $.ajax
         url: "/articles/#{@article.data('id')}/versions"
         data:
           page: @page
         dataType: 'script'
         complete: =>
+          AlertMessage.clear()
           @fetching = false
 
   preview: (id) ->
+    AlertMessage.loading('Loading...')
     $.ajax
       url: "/articles/#{@article.data('id')}/versions/#{id}"
       dataType: 'json'
       success: (data) =>
         @article.html(data.body)
         @versions.find("[data-id='#{id}']").addClass('actived').siblings().removeClass('actived')
+      complete: =>
+        AlertMessage.clear()
 
   restore: (id) ->
+    AlertMessage.loading('Loading...')
     $.ajax
       url: "/articles/#{@article.data('id')}/versions/#{id}/restore"
       dataType: 'script'
@@ -76,3 +82,5 @@ class ArticleEdit.Version
       success: =>
         @storeBody = null
         @close()
+      complete: =>
+        AlertMessage.clear()
