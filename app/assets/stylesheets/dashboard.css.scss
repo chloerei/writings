@@ -856,11 +856,18 @@ body {
       background-color: #fff;
     }
 
-    @media (max-width: 960px) {
+    @media (max-width: 1118px) {
       .editor-container {
         width: 100%;
       }
 
+      #editarea article {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 960px) {
       .hide-on-mobile {
         display: none !important;
       }
