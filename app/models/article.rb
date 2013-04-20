@@ -8,6 +8,7 @@ class Article
   field :urlname
   field :status, :default => 'draft'
   field :save_count, :type => Integer, :default => 0
+  field :last_version_save_count, :type => Integer, :default => 0
   field :published_at
 
   field :token
@@ -54,6 +55,7 @@ class Article
     versions.create :title => title,
                     :body  => body,
                     :user  => user
+    update_attribute :last_version_save_count, self.save_count
   end
 
   def urlname

@@ -1,7 +1,6 @@
 class ArticleEdit.Version
   constructor: ->
     @article = $('article')
-    @fetchUrl = "/articles/#{@article.data('id')}/versions"
     @versions = $('#versions')
 
     $('#save-status .saved').on 'click', =>
@@ -54,7 +53,7 @@ class ArticleEdit.Version
     if !@fetching and !@isEnd()
       @fetching = true
       $.ajax
-        url: @fetchUrl
+        url: "/articles/#{@article.data('id')}/versions"
         data:
           page: @page
         dataType: 'script'
