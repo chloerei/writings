@@ -1,19 +1,5 @@
 @import "common";
 
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 3px;
-  background-color: #ccc;
-}
-
 .nice-list {
   line-height: 1.6em;
 }
