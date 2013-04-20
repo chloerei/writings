@@ -4,6 +4,7 @@ zh-CN:
   submit: "提交"
   save: "保存"
   cancel: "取消"
+  restore: "恢复"
   all_articles: "所有文章"
   not_collected: "未归类"
   publish: "已发布"
@@ -19,6 +20,8 @@ zh-CN:
   articles_count: "%{count} 篇文章"
   remember_me: "记住我"
   readonly_mode: "只读模式"
+  history_versions: "历史版本"
+  return_newest_version: "回到最新版本"
 
   urlname_valid_message: "只能使用字母、数字和 '-' 号"
 

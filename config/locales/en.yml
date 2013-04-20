@@ -4,6 +4,7 @@ en:
   submit: "Submit"
   save: "Save"
   cancel: "Cancel"
+  restore: "Restore"
   all_articles: "All Articles"
   not_collected: "Not Collected"
   publish: "Publish"
@@ -19,6 +20,8 @@ en:
   articles_count: "%{count} Articles"
   remember_me: "Remember me"
   readonly_mode: "Readonly Mode"
+  history_versions: "History versions"
+  return_newest_version: "Return newest version"
 
   urlname_valid_message: "Allow character, number and '-'"
 

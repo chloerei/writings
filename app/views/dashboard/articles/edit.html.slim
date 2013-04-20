@@ -25,10 +25,11 @@ html
           .toolbar.clearfix
             .label.pull-left
               i.icon-time
-              = ' History'
+              = ' '
+              = t 'history_versions'
             ul.toolbar-buttons.pull-right
               li
-                a.close-button.toolbar-button.icon-remove href="#close-history"
+                a.close-button.toolbar-button.icon-remove href="#close-history" title=(t 'return_newest_version')
           .content
             .scrollable
               nav
