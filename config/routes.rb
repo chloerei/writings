@@ -24,7 +24,7 @@ Publish::Application.routes.draw do
 
       resource :profile, :only => [:show, :update]
       resource :account, :only => [:show, :update, :destroy]
-      resource :billing, :only => [:show, :create]
+      resource :billing, :only => [:show]
 
       resources :categories, :only => [:create, :edit, :update, :destroy], :path_names => { :edit => :settings }
       resources :articles, :only => [:new, :create, :edit, :update, :destroy] do
