@@ -56,6 +56,25 @@ var Editor = function(options) {
         _this.undoManager.save();
         _this.editable.trigger('editor:change');
       }, 0); // webkit don't get right range offset, so setTimout to fix
+    }).on('keydown', function() {
+      // cache word count, detect delete action
+      switch (event.keyCode) {
+        case 8: // Backspace
+        case 46: // Delete
+          _this.wordCount = _this.editable.text().length;
+          break;
+      }
+    }).on('keyup', function() {
+      // when delete action, trigger change event
+      switch (event.keyCode) {
+        case 8: // Backspace
+        case 46: // Delete
+          if (_this.editable.text().length < _this.wordCount) {
+            _this.undoManager.save();
+            _this.editable.trigger('editor:change');
+          }
+          break;
+      }
     });
   } else {
     this.editable.on('input', function() {
