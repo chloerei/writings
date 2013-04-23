@@ -427,20 +427,12 @@ body {
       }
 
       .scroll-nav {
-        position: fixed;
-        top: 0;
-        padding-top: 164px;
-        height: 100%;
-        width: 200px - 2px;
+        position: absolute;
+        top: 164px;
+        bottom: 0;
+        left: 0;
+        right: 0;
         @include box-sizing(border-box);
-
-        @media (max-width: 960px) {
-          width: 200 / 960 * 100%;
-        }
-
-        @media (max-width: 640px) {
-          width: 199px;
-        }
 
         nav {
           overflow-y: auto;
