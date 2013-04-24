@@ -15,14 +15,14 @@ table.item-table
       td = Invoice.where(:created_at.gt => Time.now.beginning_of_day).count
     tr
       td 昨天
+      td = Article.where(:created_at.gt => 1.day.ago.beginning_of_day, :created_at.lt => Time.now.beginning_of_day).count
+      td = User.where(:created_at.gt => 1.day.ago.beginning_of_day, :created_at.lt => Time.now.beginning_of_day).count
+      td = Invoice.where(:created_at.gt => 1.day.ago.beginning_of_day, :created_at.lt => Time.now.beginning_of_day).count
+    tr
+      td 前天
       td = Article.where(:created_at.gt => 2.day.ago.beginning_of_day, :created_at.lt => 1.day.ago.beginning_of_day).count
       td = User.where(:created_at.gt => 2.day.ago.beginning_of_day, :created_at.lt => 1.day.ago.beginning_of_day).count
       td = Invoice.where(:created_at.gt => 2.day.ago.beginning_of_day, :created_at.lt => 1.day.ago.beginning_of_day).count
-    tr
-      td 前天
-      td = Article.where(:created_at.gt => 3.day.ago.beginning_of_day, :created_at.lt => 2.day.ago.beginning_of_day).count
-      td = User.where(:created_at.gt => 3.day.ago.beginning_of_day, :created_at.lt => 2.day.ago.beginning_of_day).count
-      td = Invoice.where(:created_at.gt => 3.day.ago.beginning_of_day, :created_at.lt => 2.day.ago.beginning_of_day).count
     tr
       td 总数
       td = Article.count
