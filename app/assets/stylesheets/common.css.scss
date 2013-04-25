@@ -357,6 +357,10 @@ a.button:hover {
   display: inline-block;
   margin-right: 10px;
 
+  &.no-margin {
+    margin: 0;
+  }
+
   input[type=submit],
   button,
   .button {

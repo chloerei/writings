@@ -1,0 +1,28 @@
+#main
+  .container
+    .inner
+      .header
+        h1 = "#{current_user.display_name}'s Workspace"
+      section
+        header.clearfix
+          .pull-left
+            h2
+              a href=(dashboard_articles_path)
+                | Articles
+          .pull-right
+            a.button.no-margin href=(new_dashboard_article_path)
+              i.icon-plus
+              = ' New Article'
+        .articles
+          table
+            tbody
+              = render :partial => 'dashboard/articles/article', :collection => @articles
+      section
+        header
+          h2 Pictures
+        .pictures
+          ul
+            - current_user.attachments.limit(5).each do |attachment|
+              li
+                a.pic-link href=(dashboard_attachment_path(attachment)) target='_blank' title=(attachment.file_name)
+                  = image_tag attachment.file.thumb.url

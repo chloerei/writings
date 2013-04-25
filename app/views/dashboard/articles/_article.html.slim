@@ -1,11 +1,16 @@
-tr.article data-id=(article.token) data-title=(article.title) data-category-id=(article.category.try(:urlname)) data-category-name=(article.category.try(:name)) class=(article.status) data-link=(site_article_url(:urlname => article.urlname, :host => current_user.host)) data-status=(article.status)
+tr
+  td.icon
+    a href=(edit_dashboard_article_path(article))
+      - if article.publish?
+        i.icon-file-alt
+      - else
+        i.icon-file
   td.title
-    = link_to edit_dashboard_article_path(article), :target => '_blank' do
-      i.icon-status
-      = ' '
+    a href=(edit_dashboard_article_path(article))
       = article.title
   td.category
     - if article.category
       span.category_name = article.category.name
   td.date
-    = l article[@order_column].to_date, :format => :short
+    a href=(edit_dashboard_article_path(article))
+      = l article.updated_at.to_date, :format => :short

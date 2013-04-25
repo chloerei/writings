@@ -1,27 +1,29 @@
 #main
   .container
-    .inner.inner-full-height
-      = render 'main_nav'
-      #main-content
-        = render 'tabs'
-        = render 'bulkbar'
-        #articles.tabs-margin data-skip=(@articles.options[:skip].to_i + @articles.to_a.count) data-url=(url_for(params.slice(:category_id, :status))) data-category-id=(@category.try(:urlname)) data-status=(params[:status]) data-not-collected=(action_name == 'not_collected') data-is-end=(articles_is_end?(@articles))
+    .inner
+      .header
+        h1
+          a href=(dashboard_root_path)
+            = "#{current_user.display_name}'s Workspace"
+          = " / Articles"
+      section
+        header.clearfix
+          .pull-left
+            .dropdown
+              a.dropdown-toggle.button href='#' Category
+              ul.dropdown-menu
+                li
+                  a Category one
+                li
+                  a Category Two
+            .button-group
+              a.button.button-actived href='#' Publish
+              a.button href='#' Draf
+          .pull-right
+            a.button.no-margin href=(new_dashboard_article_path)
+              i.icon-plus
+              = ' New Article'
+        .articles
           table
             tbody
               = render :partial => 'article', :collection => @articles
-          #empty-message class=(@articles.empty? ? nil : 'hide')
-            i.icon-folder-close-alt
-            = ' '
-            = t '.no_articles'
-          #articles-spinner.hide
-            i.icon-spinner.icon-spin
-          #end-message.hide
-            i.icon-folder-close-alt
-            = ' '
-            = t '.is_end'
-
-= render 'move_category_modal'
-= render 'new_category_modal'
-- if params[:status] == 'trash'
-  = render 'delete_modal'
-  = render 'empty_trash_modal'

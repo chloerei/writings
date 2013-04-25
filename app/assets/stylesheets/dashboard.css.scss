@@ -216,18 +216,7 @@ table.nice-table {
 // topbar
 
 #topbar {
-  background-color: #fff;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 20;
-  border-bottom: 1px solid #ccc;
-  @include transition(top 0.15s ease);
-
-  &.no-shadow {
-    @include box-shadow(none);
-  }
+  line-height: 18px;
 
   ul.top-nav {
     margin: 0;
@@ -247,13 +236,8 @@ table.nice-table {
         color: #555;
         @include transition(all 0.15s ease);
 
-        &.actived {
-          padding-bottom: 10px;
-          border-bottom: 5px solid $linkColor;
-        }
-
         &:hover {
-          background-color: #f9f9f9;
+          color: $linkColor;
         }
       }
     }
@@ -272,12 +256,11 @@ table.nice-table {
       }
 
       &.actived {
-        padding-bottom: 10px;
-        border-bottom: 5px solid $linkColor;
+        color: $linkColor;
       }
 
       &:hover {
-        background-color: #f9f9f9;
+        color: $linkColor;
       }
     }
 
@@ -295,7 +278,7 @@ table.nice-table {
 
     &.actived {
       .dropdown-toggle {
-        background-color: #f9f9f9;
+        color: $linkColor;
       }
     }
   }
@@ -303,314 +286,105 @@ table.nice-table {
 
 // main
 
-html,
-body {
-  height: 100%;
-}
-
 #main {
-  height: 100%;
-
-  .container {
-    height: 100%;
-  }
-
   .inner {
     background-color: #fff;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-    @include clearfix();
+    margin: 10px 0;
+    padding: 20px;
+    @include box-shadow(0 1px 3px 1px rgba(0, 0, 0, 0.3));
+  }
 
-    &.inner-full-height {
-      padding-top: 49px;
-      min-height: 100%;
-      @include box-sizing(border-box);
-    }
+  .header {
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ddd;
 
-    @media (max-width: 960px) {
-      border: 0;
-    }
-
-    .tabs {
-      position: fixed;
-      top: 49px;
-      line-height: 18px;
-      z-index: 9;
-      width: 960px - 200px - 1px;
-
-      @media (max-width: 960px) {
-        width: 760 / 960 * 100%;
-      }
-
-      @media (max-width: 640px) {
-        width: 100%;
-      }
-
-      .tabs-inner {
-        background-color: #f9f9f9;
-        border-bottom: 1px solid #ccc;
-        padding: 10px 20px;
-
-        .label {
-          padding: 7px 0;
-          display: inline-block;
-          color: #555;
-          font-weight: bold;
-        }
-      }
-    }
-
-    .tabs-margin {
-      margin-top: 55px;
-    }
-
-    #bulkbar {
-      visibility: visible;
-      opacity: 1;
-      @include transition(opacity 0.15s ease);
-
-      .inner {
-        @include box-shadow(none);
-      }
-
-      &.bulkbar-hide {
-        visibility: hidden;
-        opacity: 0;
-        @include transition(visibility 0s ease 0.15s, opacity 0.15s ease);
-      }
-    }
-
-    #category-selector.dropdown {
-      .dropdown-toggle {
-        width: 100px;
-      }
-
-      .dropdown-menu {
-        width: 137px;
-      }
-    }
-
-    #main-nav {
-      position: fixed;
-      width: 200px - 1px;
-      height: 100%;
-      background-color: #fff;
-      height: 100%;
-      top: 0;
-      padding-top: 49px;
-      border-right: 1px solid #ccc;
-      @include box-sizing(border-box);
-
-      @media (max-width: 960px) {
-        width: 200 / 960 * 100%;
-      }
-
-      @media (max-width: 640px) {
-        width: 200px;
-        z-index: 10;
-        left: -209px;
-        @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
-        @include transition(left 0.15s ease);
-
-        &.appear {
-          left: 0;
-
-          #main-nav-background {
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -2;
-          }
-        }
-      }
-
-      .scroll-nav {
-        position: absolute;
-        top: 164px;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        @include box-sizing(border-box);
-
-        nav {
-          overflow-y: auto;
-          height: 100%;
-        }
-      }
-
-      nav {
-        li {
-          hr {
-            margin: 0;
-          }
-
-          a {
-            display: block;
-            color: #555;
-            padding: 10px 20px;
-            position: relative;
-            @include transition(none);
-
-            .label {
-              overflow: hidden;
-              white-space: nowrap;
-              margin-right: 10px;
-            }
-
-            &.actived,
-            &:hover {
-              background-color: #f9f9f9;
-              &:after {
-                content: "\f054";
-                font-family: FontAwesome;
-                position: absolute;
-                right: 10px;
-                top: 13px;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    #main-content {
-      float: left;
-      margin-left: 199px;
-      width: 960px - 200px - 1px;
-
-      #{$all-text-inputs},
-      textarea {
-        width: 50%;
-      }
-
-      @media (max-width: 960px) {
-        width: 760 / 960 * 100%;
-        margin-left: 200 / 960 * 100%;
-      }
-
-      @media (max-width: 640px) {
-        width: 100%;
-        margin-left: 0;
-      }
-
-      @media (max-width: 480px) {
-        #{$all-text-inputs},
-        textarea {
-          width: 100%;
-        }
-
-      }
-
-      section {
-        padding: 20px;
-      }
-
+    h1 {
+      margin: 0;
     }
   }
 
-  #articles {
+  section {
+    margin-bottom: 40px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    header {
+      margin-bottom: 20px;
+
+      h2 {
+        color: $linkColor;
+        margin: 0;
+        display: inline-block;
+        margin-right: 20px;
+        line-height: 34px;
+        vertical-align: top;
+      }
+    }
+  }
+
+  .articles {
     table {
       width: 100%;
-      line-height: 18px;
 
       tr {
-        border-bottom: 1px solid #ddd;
-
         &:hover {
-          background-color: #f9f9f9;
-          cursor: pointer;
-        }
-
-        &.selected {
-          background-color: #eee;
-        }
-
-        &.publish {
-          .icon-status:before {
-            color: gray;
-            content: "\f0f6";
-          }
-        }
-
-        &.draft {
-          .icon-status:before {
-            color: gray;
-            content: "\f016";
-          }
-        }
-
-        &.trash {
-          .icon-status:before {
-            color: gray;
-            content: "\f014";
+          .title a {
+            color: $linkColor;
           }
         }
       }
 
       td {
-        padding: 15px 20px;
+        width: 1%;
+        white-space: nowrap;
+        padding: 0;
 
-        &.title {
-          width: 99%;
-
+        &.icon {
+          font-size: 2em;
           a {
-            overflow: hidden;
-            height: 18px;
-            display: inline-block;
+            color: #555;
+            padding: 8px;
           }
         }
 
-        &.category,
+        &.title {
+          width: 99%;
+          white-space: normal;
+        }
+
         &.date {
-          width: 1%;
-          white-space: nowrap;
-          text-align: right;
+          a {
+            color: #999;
+          }
         }
 
-        .category_name {
-          font-size: 0.9em;
-          color: #fff;
-          padding: 3px 5px;
-          background-color: #999;
-          border-radius: 3px;
+        a {
+          color: #333;
+          padding: 16px;
+          display: block;
         }
-      }
 
-      a {
-        color: #555;
-
-        &:hover {
-          color: $linkColor;
+        &:first-child {
+          a {
+            padding-left: 0;
+          }
         }
+
+        &:last-child {
+          a {
+            padding-right: 0;
+          }
+        }
+
       }
     }
   }
 
-  #empty-message {
-    text-align: center;
-    margin: 20px;
-    padding: 10px;
-    border: 2px dashed #ccc;
-    color: #999;
-  }
-
-  #end-message {
-    text-align: center;
-    margin: 20px;
-    padding: 10px;
-    color: #999;
-  }
-
-  #articles-spinner {
-    text-align: center;
-    padding: 10px;
-    color: #999;
-  }
-
-  #pictures {
-    padding: 20px 0 20px 20px;
+  .pictures {
+    margin-right: -20px;
     margin-bottom: 20px;
 
     ul {
@@ -706,8 +480,41 @@ body {
 
 // editor
 
-#editor-header {
+#editor-topbar {
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  border-bottom: 1px solid #ccc;
   line-height: 18px;
+  @include transition(top 0.15s ease);
+
+  ul.top-nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    line-height: 18px;
+    @include clearfix();
+
+    > li {
+      display: inline-block;
+      float: left;
+      height: 48px;
+
+      > a {
+        padding: 15px 20px;
+        display: block;
+        color: #555;
+        @include transition(all 0.15s ease);
+
+        &:hover {
+          background-color: #f9f9f9;
+        }
+      }
+    }
+  }
 
   .pull-right {
     padding: 15px 0;
@@ -1049,7 +856,7 @@ body {
 }
 
 .pick-up-topbar {
-  #topbar {
+  #editor-topbar {
     top: -49px;
   }
 
