@@ -19,7 +19,9 @@
               = render :partial => 'dashboard/articles/article', :collection => @articles
       section
         header
-          h2 Pictures
+          h2
+            a href=(dashboard_attachments_path)
+              | Pictures
         .pictures
           ul
             - current_user.attachments.limit(5).each do |attachment|
