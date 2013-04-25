@@ -1,20 +1,15 @@
 class Dashboard::ArticlesController < Dashboard::BaseController
-  skip_filter :require_logined, :only => :index
 
   def index
-    if logined?
-      @order_column = (params[:status] == 'publish' ? :published_at : :updated_at)
-      @articles = current_user.articles.desc(@order_column).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
+    @order_column = (params[:status] == 'publish' ? :published_at : :updated_at)
+    @articles = current_user.articles.desc(@order_column).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
 
-      append_title I18n.t('all_articles')
-      append_title I18n.t(params[:status]) if params[:status].present?
+    append_title I18n.t('all_articles')
+    append_title I18n.t(params[:status]) if params[:status].present?
 
-      respond_to do |format|
-        format.html
-        format.js
-      end
-    else
-      render :guest_index
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 

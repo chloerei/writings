@@ -11,26 +11,31 @@ html
   body id=("#{controller_name}-#{action_name}")
     #topbar
       .container
-        header#site-header.clearfix
-          ul.top-nav.pull-left
-            li
-              a href=(dashboard_root_path) class=(%w(articles categories).include?(controller_name) ? 'actived' : nil)
-                - if logined?
-                  i.icon-pencil
-                  span.hide-on-mobile
-                    = ' '
-                    = t '.articles'
-                - else
+        #site-header.clearfix
+          - if logined?
+            ul.top-nav.pull-left
+              li
+                a href=(dashboard_root_path)
+                  i.icon-home
+                  = ' '
+                  = current_user.display_name
+              li
+                a#user-link href=(site_root_url(:host => current_user.host)) target='_blank'
+                  i.icon-external-link
+          - else
+            ul.top-nav.pull-left
+              li
+                a href=(dashboard_root_path)
                   i.icon-home
                   span.hide-on-mobile
                     = ' '
                     = t '.home'
-            li
-              a href=(dashboard_attachments_path) class=(controller_name == 'attachments' ? 'actived' : nil)
-                i.icon-picture
-                span.hide-on-mobile
+              li
+                a href='http://blog.chloerei.com/articles/7db48376-what-is-writings-io'
+                  i.icon-info-sign
                   = ' '
-                  = t '.pictures'
+                  = t '.about'
+          ul.top-nav.pull-right
             li
               .dropdown
                 a.dropdown-toggle href="#"
@@ -59,24 +64,10 @@ html
                       i.icon-sign-blank
                       = ' '
                       = t '.douban'
-            - unless logined?
-              li
-                a href='http://blog.chloerei.com/articles/7db48376-what-is-writings-io'
-                  i.icon-info-sign
-                  = ' '
-                  = t '.about'
-            = yield :top_nav
-          ul.top-nav.pull-right
             - if logined?
               li
-                a#user-link href=(site_root_url(:host => current_user.host)) target='_blank'
-                  i.icon-external-link
-                  span.hide-on-mobile
-                    = ' '
-                    = current_user.display_name
-              li
                 .dropdown
-                  a.dropdown-toggle href=(dashboard_account_path) class=(%w(accounts profiles).include?(controller_name) ? 'actived' : nil)
+                  a.dropdown-toggle href=(dashboard_account_path)
                     i.icon-cog
                     span.hide-on-mobile
                       = ' '
@@ -106,12 +97,12 @@ html
                         = t '.logout'
             - else
               li
-                a href=(signup_path) class=(controller_name == 'users' ? 'actived' : nil)
+                a href=(signup_path)
                   i.icon-plus-sign
                   = ' '
                   = t '.signup'
               li
-                a href=(login_path) class=(controller_name == 'user_sessions' ? 'actived' : nil)
+                a href=(login_path)
                   i.icon-signin
                   = ' '
                   = t '.login'
