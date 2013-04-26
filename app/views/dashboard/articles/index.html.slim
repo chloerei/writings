@@ -9,16 +9,20 @@
       section
         header.clearfix
           .pull-left
-            .dropdown
-              a.dropdown-toggle.button href='#' Category
-              ul.dropdown-menu
-                li
-                  a Category one
-                li
-                  a Category Two
+            = render :partial => 'category_menu'
             .button-group
-              a.button.button-actived href='#' Publish
-              a.button href='#' Draf
+              a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category => params[:category]))
+                i.icon-inbox
+                = ' '
+                = t 'inbox'
+              a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category => params[:category], :status => 'publish'))
+                i.icon-file-alt
+                = ' '
+                | Publish
+              a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category => params[:category], :status => 'draft'))
+                i.icon-file
+                = ' '
+                | Draft
           .pull-right
             a.button.no-margin href=(new_dashboard_article_path)
               i.icon-plus
@@ -27,3 +31,4 @@
           table
             tbody
               = render :partial => 'article', :collection => @articles
+          = paginate @articles, :theme => :dashboard

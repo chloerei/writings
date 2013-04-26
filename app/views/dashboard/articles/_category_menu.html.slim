@@ -1,0 +1,22 @@
+.dropdown
+  a.dropdown-toggle.button href='#'
+    - if @category
+      = @category.name
+    - else
+      | All articles
+  ul.dropdown-menu
+    li
+      a href=(dashboard_articles_path)
+        | All articles
+    - if current_user.categories.any?
+      li
+        hr
+    - current_user.categories.each do |category|
+      li
+        a href=(index_dashboard_articles_path(:category => category.urlname))
+          = category.name
+    li
+      hr
+    li
+      a href=(trash_dashboard_articles_path)
+        | Trash

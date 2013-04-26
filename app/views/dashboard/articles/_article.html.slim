@@ -1,10 +1,13 @@
 tr
   td.icon
     a href=(edit_dashboard_article_path(article))
-      - if article.publish?
+      - case article.status
+      - when 'publish'
         i.icon-file-alt
-      - else
+      - when 'draft'
         i.icon-file
+      - when 'trash'
+        i.icon-trash
   td.title
     a href=(edit_dashboard_article_path(article))
       = article.title

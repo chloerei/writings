@@ -1,43 +1,14 @@
 class Dashboard::ArticlesController < Dashboard::BaseController
 
   def index
-    @order_column = (params[:status] == 'publish' ? :published_at : :updated_at)
-    @articles = current_user.articles.desc(@order_column).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
+    @articles = current_user.articles.desc(:updated_at).page(params[:page]).status(params[:status]).includes(:category)
+
+    if params[:category] && @category = current_user.categories.where(:urlname => params[:category]).first
+      @articles = @articles.where(:category_id => @category.id)
+    end
 
     append_title I18n.t('all_articles')
     append_title I18n.t(params[:status]) if params[:status].present?
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
-  end
-
-  def category
-    @category = current_user.categories.find_by :urlname => params[:category_id]
-    @order_column = (params[:status] == 'publish' ? :published_at : :updated_at)
-    @articles = current_user.articles.where(:category_id => @category).desc(@order_column).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
-
-    append_title @category.name
-    append_title I18n.t(params[:status]) if params[:status].present?
-
-    respond_to do |format|
-      format.html { render :index }
-      format.js { render :index }
-    end
-  end
-
-  def not_collected
-    @order_column = (params[:status] == 'publish' ? :published_at : :updated_at)
-    @articles = current_user.articles.where(:category_id => nil).desc(@order_column).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
-
-    append_title t('not_collected')
-    append_title I18n.t(params[:status]) if params[:status].present?
-
-    respond_to do |format|
-      format.html { render :index }
-      format.js { render :index }
-    end
   end
 
   def new
@@ -116,17 +87,15 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     end
   end
 
+  def trash
+    @articles = current_user.articles.desc(:updated_at).page(params[:page]).status('trash').includes(:category)
+  end
+
   def empty_trash
-    if params[:category_id]
-      current_user.articles.where(:category_id => current_user.categories.find_by(:urlname => params[:category_id])).trash.delete_all
-    elsif params[:not_collected]
-      current_user.articles.where(:category_id => nil).trash.delete_all
-    else
-      current_user.articles.trash.delete_all
-    end
+    current_user.articles.trash.delete_all
 
     respond_to do |format|
-      format.json { render :json => [] }
+      format.js
     end
   end
 
