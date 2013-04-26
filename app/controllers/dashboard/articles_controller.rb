@@ -65,28 +65,6 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     end
   end
 
-  def bulk
-    @articles = current_user.articles.where(:token.in => params.require(:ids))
-
-    case params[:type]
-    when 'move'
-      category = current_user.categories.where(:urlname => params[:category_id]).first
-      @articles.update_all :category_id => category.try(:id)
-    when 'publish'
-      @articles.update_all :status => 'publish', :published_at => Time.now.utc
-    when 'draft'
-      @articles.update_all :status => 'draft'
-    when 'trash'
-      @articles.update_all :status => 'trash'
-    when 'delete'
-      @articles.trash.delete_all
-    end
-
-    respond_to do |format|
-      format.json { render :json => @articles.includes(:category).as_json(:only => [:title, :urlname, :status, :token], :methods => [:category_name, :category_urlname]) }
-    end
-  end
-
   def trash
     @articles = current_user.articles.desc(:updated_at).page(params[:page]).status('trash').includes(:category)
   end

@@ -32,3 +32,8 @@
             tbody
               = render :partial => 'article', :collection => @articles
           = paginate @articles, :theme => :dashboard
+          - if @articles.empty?
+            .empty-message
+              | no articles
+
+= render 'new_category_modal'

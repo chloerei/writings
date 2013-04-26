@@ -476,6 +476,13 @@ table.nice-table {
       }
     }
   }
+
+  .empty-message {
+    padding: 20px;
+    border: 2px dashed #ddd;
+    text-align: center;
+    color: #999;
+  }
 }
 
 // editor

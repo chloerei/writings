@@ -8,10 +8,10 @@ html
     = stylesheet_link_tag "dashboard"
     = csrf_meta_tags
   body#articles-edit data-no-turbolink="true" class=(cookies[:pick_up_topbar] ? 'pick-up-topbar' : nil)
-    = render :partial => 'edit_topbar'
+    = render :partial => 'dashboard/articles/edit/edit_topbar'
     #editwrap
       .main
-        = render :partial => 'toolbar'
+        = render :partial => 'dashboard/articles/edit/toolbar'
         #editarea
           .scrollable
             .editor-container
@@ -39,9 +39,9 @@ html
                   = t 'version_limit'
                   = link_to t('need_more_version'), dashboard_billing_path
 
-    = render 'urlname_modal'
-    = render 'link_modal'
-    = render 'image_modal'
-    = render 'select_category_modal'
+    = render 'dashboard/articles/edit/urlname_modal'
+    = render 'dashboard/articles/edit/link_modal'
+    = render 'dashboard/articles/edit/image_modal'
+    = render 'dashboard/articles/edit/select_category_modal'
     = render 'new_category_modal'
-    = render 'help_modal'
+    = render 'dashboard/articles/edit/help_modal'

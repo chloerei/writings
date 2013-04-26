@@ -10,10 +10,14 @@
         header.clearfix
           .pull-left
             = render :partial => 'category_menu'
-            a.button href=(trash_dashboard_articles_path) data-remote=(true) data-method='delete' data-confirm=('sure')
-              | Empty trash
+            - if @articles.any?
+              a.button href=(trash_dashboard_articles_path) data-remote=(true) data-method='delete' data-confirm=('sure')
+                | Empty trash
         .articles
           table
             tbody
               = render :partial => 'article', :collection => @articles
           = paginate @articles, :theme => :dashboard
+          - if @articles.empty?
+            .empty-message
+              | no articles

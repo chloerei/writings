@@ -8,6 +8,9 @@
     li
       a href=(dashboard_articles_path)
         | All articles
+    li
+      a href='#new-category-modal' data-toggle='modal'
+        | New category
     - if current_user.categories.any?
       li
         hr
