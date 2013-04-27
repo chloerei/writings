@@ -331,6 +331,8 @@ table.nice-table {
 
       tr {
         &:hover {
+          background-color: #f9f9f9;
+
           .title a {
             color: $linkColor;
           }
@@ -365,6 +367,9 @@ table.nice-table {
           color: #333;
           padding: 16px;
           display: block;
+        }
+
+        .category-name {
         }
 
         &:first-child {

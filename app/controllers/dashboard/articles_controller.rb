@@ -1,4 +1,5 @@
 class Dashboard::ArticlesController < Dashboard::BaseController
+  before_filter :find_article, :only => [:edit, :update, :trash, :restore]
 
   def index
     @articles = current_user.articles.desc(:updated_at).page(params[:page]).status(params[:status]).includes(:category)
@@ -36,13 +37,11 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def edit
-    @article = current_user.articles.find_by(:token => params[:id])
     append_title @article.title
     render :layout => false
   end
 
   def update
-    @article = current_user.articles.find_by(:token => params[:id])
     if article_params[:save_count].to_i > @article.save_count
       if @article.update_attributes article_params
 
@@ -65,7 +64,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     end
   end
 
-  def trash
+  def trash_index
     @articles = current_user.articles.desc(:updated_at).page(params[:page]).status('trash').includes(:category)
   end
 
@@ -77,7 +76,21 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     end
   end
 
+  def trash
+    @article.update_attribute :status, 'trash'
+    redirect_to dashboard_articles_url
+  end
+
+  def restore
+    @article.update_attribute :status, 'draft'
+    redirect_to edit_dashboard_article_url(@article)
+  end
+
   private
+
+  def find_article
+    @article = current_user.articles.find_by(:token => params[:id])
+  end
 
   def article_params
     base_params = params.require(:article).permit(:title, :body, :urlname, :status, :save_count)
