@@ -5,7 +5,14 @@
         h1
           a href=(dashboard_root_path)
             = "#{current_user.display_name}'s Workspace"
-          = " / Articles"
+          = ' / '
+          - if @category
+            a href=(dashboard_articles_path)
+              | Articles
+            = ' / '
+            = @category.name
+          - else
+            | Articles
       section
         header.clearfix
           .pull-left
@@ -23,6 +30,9 @@
                 i.icon-file
                 = ' '
                 | Draft
+            - if @category
+              a.button href=(edit_dashboard_category_path(@category))
+                i.icon-wrench
           .pull-right
             a.button.no-margin href=(new_dashboard_article_path)
               i.icon-plus

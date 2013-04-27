@@ -2,21 +2,30 @@
 
 #main
   .container
-    .inner.inner-full-height
-      = render 'dashboard/articles/main_nav'
-      #main-content
-        = render 'tabs'
-        section.tabs-margin= form_for @category, :url => dashboard_category_path(@category), :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
-          .field
-            = f.label :name
-            = f.text_field :name
-          .field
-            = f.label :urlname
-            = f.text_field :urlname
-          .field
-            = f.label :description
-            = f.text_area :description
-          .field
-            = f.submit t('submit')
-          hr
-          = link_to t('.delete_category'), dashboard_category_path(@category), :method => :delete, :confirm => t('.delete_category_confirm', :name => @category.name), :class => 'button button-danger'
+    .inner
+      .header
+        h1
+          a href=(dashboard_root_path)
+            = "#{current_user.display_name}'s Workspace"
+          = ' / '
+          a href=(dashboard_articles_path)
+            | Articles
+          = ' / '
+          a href=(index_dashboard_articles_path(:category => @category.urlname))
+            = @category.name
+          = ' / '
+          | Settings
+      section.tabs-margin= form_for @category, :url => dashboard_category_path(@category), :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
+        .field
+          = f.label :name
+          = f.text_field :name
+        .field
+          = f.label :urlname
+          = f.text_field :urlname
+        .field
+          = f.label :description
+          = f.text_area :description
+        .field
+          = f.submit t('submit')
+        hr
+        = link_to t('.delete_category'), dashboard_category_path(@category), :method => :delete, :confirm => t('.delete_category_confirm', :name => @category.name), :class => 'button button-danger'
