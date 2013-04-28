@@ -345,7 +345,9 @@ table.nice-table {
         padding: 0;
 
         &.icon {
-          font-size: 2em;
+          font-size: 1.5em;
+          line-height: 22px;
+
           a {
             color: #555;
             padding: 8px;
@@ -365,7 +367,7 @@ table.nice-table {
 
         a {
           color: #333;
-          padding: 16px;
+          padding: 12px 8px;
           display: block;
         }
 
