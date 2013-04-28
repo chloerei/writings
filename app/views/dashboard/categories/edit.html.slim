@@ -6,15 +6,15 @@
       .header
         h1
           a href=(dashboard_root_path)
-            = "#{current_user.display_name}'s Workspace"
+            = t 'workspace_header', :name => current_user.display_name
           = ' / '
           a href=(dashboard_articles_path)
-            | Articles
+            = t 'articles'
           = ' / '
           a href=(index_dashboard_articles_path(:category => @category.urlname))
             = @category.name
           = ' / '
-          | Settings
+          = t '.settings'
       section.tabs-margin= form_for @category, :url => dashboard_category_path(@category), :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
         .field
           = f.label :name

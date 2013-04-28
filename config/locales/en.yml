@@ -1,249 +1,320 @@
-en:
-  en: "English"
-  zh-CN: "Chinese(Simplified)"
-  submit: "Submit"
-  save: "Save"
-  cancel: "Cancel"
-  restore: "Restore"
-  all_articles: "All Articles"
-  not_collected: "Not Collected"
-  publish: "Publish"
-  draft: "Draft"
-  trash: "Trash"
-  untitled: "Untitled"
-  articles: "Articles"
-
-  published_at: "Published at"
-  category: "Category"
-  subscribe: "Subscribe"
-  author: "Author"
-  articles_count: "%{count} Articles"
-  remember_me: "Remember me"
-  readonly_mode: "Readonly Mode"
-  history_versions: "History versions"
-  return_newest_version: "Return newest version"
-
-  urlname_valid_message: "Allow character, number and '-'"
-
-  page_not_found: "找不到该页面"
-  server_error: "Server error"
-
-  older: "Older"
-  newer: "Newer"
-  next_page: "Next page"
-  prev_page: "Prev page"
-
-  version_limit: "Current account can visit last 5 versions. "
-  need_more_version: "Need more versions?"
-  need_more_storage: "Need more storage？"
-  upgrade: "Upgrade"
+---
+:en:
+  en: English
+  zh-CN: Chinese(Simplified)
+  submit: Submit
+  save: Save
+  cancel: Cancel
+  restore: Restore
+  all_articles: All Articles
+  not_collected: Not Collected
+  publish: Publish
+  draft: Draft
+  trash: Trash
+  untitled: Untitled
+  articles: Articles
+  published_at: Published at
+  category: Category
+  subscribe: Subscribe
+  author: Author
+  articles_count: '%{count} Articles'
+  remember_me: Remember me
+  readonly_mode: Readonly Mode
+  history_versions: History versions
+  return_newest_version: Return newest version
+  urlname_valid_message: Allow character, number and '-'
+  page_not_found: 找不到该页面
+  server_error: Server error
+  older: Older
+  newer: Newer
+  next_page: Next page
+  prev_page: Prev page
+  version_limit: 'Current account can visit last 5 versions. '
+  need_more_version: Need more versions?
+  need_more_storage: Need more storage？
+  upgrade: Upgrade
   plan:
-    free: "Free"
-    base: "Base"
-
+    free: Free
+    base: Base
   layouts:
     dashboard:
-      home: "Home"
-      articles: "Articles"
-      pictures: "Pictures"
-      feedback: "Feedback"
-      twitter: "Twitter"
-      google_plus: "Google+"
-      github_issues: "Github"
-      douban: "Douban"
-      about: "About"
-      dashboard: "Dashboard"
-      settings: "Settings"
-      account: "Account"
-      profile: "Profile"
-      logout: "Logout"
-      login: "Login"
-      signup: "Signup"
+      home: Home
+      articles: Articles
+      pictures: Pictures
+      feedback: Feedback
+      twitter: Twitter
+      google_plus: Google+
+      github_issues: Github
+      douban: Douban
+      about: About
+      dashboard: Dashboard
+      settings: Settings
+      account: Account
+      profile: Profile
+      logout: Logout
+      login: Login
+      signup: Signup
     error:
-      feedback: "Feedback"
-
+      feedback: Feedback
   users:
     new:
-      signup: "Singup"
+      signup: Singup
   user_sessions:
     new:
-      username_or_email: "Username or Email"
-      password: "Password"
-      login: "Login"
+      username_or_email: Username or Email
+      password: Password
+      login: Login
   dashboard:
     accounts:
       show:
-        account_setting: "Account setting"
-        login_id: "Login ID"
-        custom: "Custom"
-        change_password: "Change password"
-        confirm_change: "Confirm change"
+        account_setting: Account setting
+        login_id: Login ID
+        custom: Custom
+        change_password: Change password
+        confirm_change: Confirm change
     profiles:
       show:
-        profile_setting: "Profile setting"
-        publish_profile: "Published profile"
+        profile_setting: Profile setting
+        publish_profile: Published profile
     share:
       settings_main_nav:
-        account: "Account"
-        profile: "Profile"
-
+        account: Account
+        profile: Profile
     attachments:
       index:
-        confirm_delete: "Confirm delete?"
-        no_picture: "No picture"
+        confirm_delete: Confirm delete?
+        no_picture: No picture
     articles:
+      edit:
+        image_modal:
+          insert_image: 插入图片
+          url: URL 地址
+          link: 外链
+          fetch: 抓取
+          select_file: 选择文件
+          upload: 上传
+          drop_here: 拖到此处
+          preview: 预览
+        link_modal:
+          url: URL 地址
+          create_link: 创建链接
+          unlink: 去掉链接
+        urlname_modal:
+          urlname: URL
+        move_category_modal:
+          select_category: 选择分类
+          new_category: 新建分类
+        select_category_modal:
+          select_category: 选择分类
+          new_category: 新建分类
+        new_category_modal:
+          new_category: 新建分类
+        edit_topbar:
+          return: 返回文章列表
+          urlname: URL
+          collect: 归类
+          publish: 发布
+          draft: 草稿
+          saving: 保存中
+          saved: 已保存
+          save_error: 保存出错
+          retry: 重试
+        toolbar:
+          bold_tip: 加粗 Ctrl + B
+          italic_tip: 斜体 Ctrl + I
+          strike_tip: 删除线 Ctrl + D
+          underline_tip: 下划线 Ctrl + Shift + L
+          link_tip: 插入超链接 Ctrl + L
+          image_tip: 插入图片 Ctrl + G
+          orderList_tip: 有序列表 Ctrl + O
+          unorderList_tip: 无序列表 Ctrl + U
+          normal_text: 普通文本
+          h1: 文章标题
+          h2: 二级标题
+          h3: 三级标题
+          h4: 四级标题
+          code: 代码
+          blockquote: 引用
+          normal_text_tip: 普通文本 Ctrl+p
+          h1_tip: 文章标题 Ctrl + 1
+          h2_tip: 二级标题 Ctrl + 2
+          h3_tip: 三级标题 Ctrl + 3
+          h4_tip: 四级标题 Ctrl + 4
+          code_tip: 代码 Ctrl + K
+          blockquote_tip: 引用 Ctrl + Q
+          help_tip: 帮助 Ctrl + M
+        help_modal:
+          function: 功能
+          shortcut: 快捷键
+          help: 功能菜单
+          bold: 加粗
+          italic: 斜体
+          strike: 删除线
+          underline: 下划线
+          link: 插入超链接
+          image: 插入图片
+          orderList: 有序列表
+          unorderList: 无序列表
+          p: 普通文本
+          h1: 文章标题
+          h2: 二级标题
+          h3: 三级标题
+          h4: 四级标题
+          code: 代码
+          blockquote: 引用
+          save: 保存
+          undo: 撤销
+          redo: 重做
       delete_modal:
-        delete_selected: "Delete selected"
-        label_message: "Are you sure delete selelcted articles?"
-        delete_forever: "Delete forever"
+        delete_selected: Delete selected
+        label_message: Are you sure delete selelcted articles?
+        delete_forever: Delete forever
       empty_trash_modal:
-        label_message: "Are you sure empty trash?"
-        empty_trash: "Empty trash"
+        label_message: Are you sure empty trash?
+        empty_trash: Empty trash
       image_modal:
-        insert_image: "Insert image"
-        url: "URL"
-        link: "Link"
-        fetch: "Fetch"
-        select_file: "Select file"
-        upload: "Upload"
-        drop_here: "Drop here"
-        preview: "Preview"
+        insert_image: Insert image
+        url: URL
+        link: Link
+        fetch: Fetch
+        select_file: Select file
+        upload: Upload
+        drop_here: Drop here
+        preview: Preview
       link_modal:
-        url: "URL"
-        create_link: "Create link"
-        unlink: "Unlink"
+        url: URL
+        create_link: Create link
+        unlink: Unlink
       urlname_modal:
-        urlname: "URL"
+        urlname: URL
       move_category_modal:
-        select_category: "Select category"
-        new_category: "New category"
+        select_category: Select category
+        new_category: New category
       select_category_modal:
-        select_category: "Select category"
-        new_category: "New category"
+        select_category: Select category
+        new_category: New category
       new_category_modal:
-        new_category: "New category"
-
+        new_category: New category
       main_nav:
-        all_articles: "All articles"
-        not_collected: "Not collected"
-        new_category: "New category"
+        all_articles: All articles
+        not_collected: Not collected
+        new_category: New category
       tabs:
-        index: "Index"
-        publish: "Publish"
-        draft: "Draft"
-        trash: "Trash"
-        new_article: "New article"
+        index: Index
+        publish: Publish
+        draft: Draft
+        trash: Trash
+        new_article: New article
       bulkbar:
-        view: "View"
-        edit: "Edit"
-        collect: "Collect"
-        publish: "Publish"
-        draft: "Draft"
-        trash: "Trash"
-        delete_selected: "Delete selected"
-        empty_trash: "Empty trash"
-        items: " Items "
-        cancel: "Cancel"
+        view: View
+        edit: Edit
+        collect: Collect
+        publish: Publish
+        draft: Draft
+        trash: Trash
+        delete_selected: Delete selected
+        empty_trash: Empty trash
+        items: ' Items '
+        cancel: Cancel
       index:
-        no_articles: "No articles"
-        is_end: "is end"
+        no_articles: No articles
+        is_end: is end
       edit_topbar:
-        return: "Return to article list"
-        urlname: "URL"
-        collect: "Collect"
-        publish: "publish"
-        draft: "draft"
-        saving: "Saving"
-        saved: "Saved."
-        save_error: 'Save error'
-        retry: 'retry'
+        return: Return to article list
+        urlname: URL
+        collect: Collect
+        publish: publish
+        draft: draft
+        saving: Saving
+        saved: Saved.
+        save_error: Save error
+        retry: retry
       toolbar:
-        bold_tip: "Bold Ctrl + B"
-        italic_tip: "Italic Ctrl + I"
-        strike_tip: "StrikeThrough Ctrl + D"
-        underline_tip: "Underline Ctrl + Shift + L"
-        link_tip: "Link Ctrl + L"
-        image_tip: "Image Ctrl + G"
-        orderList_tip: "Order list Ctrl + O"
-        unorderList_tip: "Unorder list Ctrl + L"
-        normal_text: "Normal text"
-        h1: "Article Header"
-        h2: "Header 2"
-        h3: "Header 3"
-        h4: "Header 4"
-        code: "Code"
-        blockquote: "Blockquote"
-        normal_text_tip: "Normal text Ctrl + P"
-        h1_tip: "Article Header Ctrl + 1"
-        h2_tip: "Header 2 Ctrl + 2"
-        h3_tip: "Header 3 Ctrl + 3"
-        h4_tip: "Header 4 Ctrl + 4"
-        code_tip: "Code Ctrl + K"
-        blockquote_tip: "Blockquote Ctrl + Q"
-        help_tip: "Help Ctrl + M"
+        bold_tip: Bold Ctrl + B
+        italic_tip: Italic Ctrl + I
+        strike_tip: StrikeThrough Ctrl + D
+        underline_tip: Underline Ctrl + Shift + L
+        link_tip: Link Ctrl + L
+        image_tip: Image Ctrl + G
+        orderList_tip: Order list Ctrl + O
+        unorderList_tip: Unorder list Ctrl + L
+        normal_text: Normal text
+        h1: Article Header
+        h2: Header 2
+        h3: Header 3
+        h4: Header 4
+        code: Code
+        blockquote: Blockquote
+        normal_text_tip: Normal text Ctrl + P
+        h1_tip: Article Header Ctrl + 1
+        h2_tip: Header 2 Ctrl + 2
+        h3_tip: Header 3 Ctrl + 3
+        h4_tip: Header 4 Ctrl + 4
+        code_tip: Code Ctrl + K
+        blockquote_tip: Blockquote Ctrl + Q
+        help_tip: Help Ctrl + M
       help_modal:
-        function: "Function"
-        shortcut: "Shortcut"
-        help: "Function menu"
-        bold: "Bold"
-        italic: "Italic"
-        strike: "Strke"
-        underline: "Underline"
-        link: "Create link"
-        image: "Insert image"
-        orderList: "Order list"
-        unorderList: "Unorder list"
-        p: "Normal text"
-        h1: "Article header"
-        h2: "Header 2"
-        h3: "Header 3"
-        h4: "Header 4"
-        code: "Code"
-        blockquote: "Blockquote"
-        save: "Save"
-        undo: "Undo"
-        redo: "Redo"
-
+        function: Function
+        shortcut: Shortcut
+        help: Function menu
+        bold: Bold
+        italic: Italic
+        strike: Strke
+        underline: Underline
+        link: Create link
+        image: Insert image
+        orderList: Order list
+        unorderList: Unorder list
+        p: Normal text
+        h1: Article header
+        h2: Header 2
+        h3: Header 3
+        h4: Header 4
+        code: Code
+        blockquote: Blockquote
+        save: Save
+        undo: Undo
+        redo: Redo
     categories:
       new:
-        new_category: "New category"
+        new_category: New category
       edit:
-        page_title: "Setting %{name}"
-        delete_category: "Delete category"
-        delete_category_confirm: "Delete category %{name}? All articles in this category will mark not collected."
+        page_title: Setting %{name}
+        delete_category: Delete category
+        delete_category_confirm: Delete category %{name}? All articles in this category
+          will mark not collected.
       tabs:
-        index: "Index"
-        publish: "Publish"
-        draft: "Draft"
-        trash: "Trash"
-        new_article: "New article"
-
+        index: Index
+        publish: Publish
+        draft: Draft
+        trash: Trash
+        new_article: New article
   mongoid:
     attributes:
       user:
-        name: "User name"
-        email: "Email"
-        domain: "Domain"
-        disqus_shortname: "Disqus shortname"
-        locale: "Locale"
-        password: "Password"
-        password_confirmation: "Password confirmation"
-        current_password: "Current password"
+        name: User name
+        email: Email
+        domain: Domain
+        disqus_shortname: Disqus shortname
+        locale: Locale
+        password: Password
+        password_confirmation: Password confirmation
+        current_password: Current password
       profile:
-        name: "Name"
-        description: "Description"
+        name: Name
+        description: Description
       category:
-        name: "Name"
-        urlname: "URL"
-        description: "Description"
+        name: Name
+        urlname: URL
+        description: Description
       article:
-        title: "Title"
-        body: "Body"
-        urlname: "URL"
+        title: Title
+        body: Body
+        urlname: URL
       attachment:
-        file: "Attachment"
-
+        file: Attachment
   errors:
     messages:
-      store_limit: "not enough attachment space"
-      fetch_error: "Fetch error, can't access resource, please use local upload."
+      extension_white_list_error: 不能上传 %{extension} 文件，允许类型：%{allowed_types}
+      store_limit: not enough attachment space
+      fetch_error: Fetch error, can't access resource, please use local upload.

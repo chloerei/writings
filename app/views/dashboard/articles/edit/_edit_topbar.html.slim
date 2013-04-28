@@ -9,7 +9,7 @@
           a href=(restore_dashboard_article_path(@article)) data-method='put'
             i.icon-undo
             = ' '
-            | Restore
+            = t '.restore'
   - else
     .pull-left
       ul.top-nav
@@ -23,7 +23,7 @@
           = link_to '#urlname-modal', :data => { :toggle => :modal }, :title => t('.urlname') do
             i.icon-flag
         li.hide-on-mobile
-          a href=(trash_dashboard_article_path(@article)) data-confirm='sure?' data-method='put'
+          a href=(trash_dashboard_article_path(@article)) data-confirm=(t '.trash_confirm') data-method='put' title=(t '.trash')
             i.icon-trash
         li class=(@article.persisted? && @article.publish? ? nil : 'hide')
           a#view-button target='_blank' href=(@article.persisted? ? site_article_url(:urlname => @article.urlname, :host => current_user.host) : site_root_url(:host => current_user.host))

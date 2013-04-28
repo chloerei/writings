@@ -4,15 +4,15 @@
       .header
         h1
           a href=(dashboard_root_path)
-            = "#{current_user.display_name}'s Workspace"
+            = t 'workspace_header', :name => current_user.display_name
           = ' / '
           - if @category
             a href=(dashboard_articles_path)
-              | Articles
+              = t 'articles'
             = ' / '
             = @category.name
           - else
-            | Articles
+            = t 'articles'
       section
         header.clearfix
           .pull-left
@@ -21,22 +21,23 @@
               a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category => params[:category]))
                 i.icon-inbox
                 = ' '
-                = t 'inbox'
+                = t '.inbox'
               a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category => params[:category], :status => 'publish'))
                 i.icon-file-alt
                 = ' '
-                | Publish
+                = t '.publish'
               a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category => params[:category], :status => 'draft'))
                 i.icon-file
                 = ' '
-                | Draft
+                = t '.draft'
             - if @category
               a.button href=(edit_dashboard_category_path(@category))
                 i.icon-wrench
           .pull-right
             a.button.no-margin href=(new_dashboard_article_path)
               i.icon-plus
-              = ' New Article'
+              = ' '
+              = t '.new_article'
         .articles
           table
             tbody
@@ -44,6 +45,6 @@
           = paginate @articles, :theme => :dashboard
           - if @articles.empty?
             .empty-message
-              | no articles
+              = t '.no_articles'
 
 = render 'new_category_modal'

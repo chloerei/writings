@@ -2,17 +2,18 @@
   .container
     .inner
       .header
-        h1 = "#{current_user.display_name}'s Workspace"
+        h1 = t 'workspace_header', :name => current_user.display_name
       section
         header.clearfix
           .pull-left
             h2
               a href=(dashboard_articles_path)
-                | Articles
+                = t '.articles'
           .pull-right
             a.button.no-margin href=(new_dashboard_article_path)
               i.icon-plus
-              = ' New Article'
+              = ' '
+              = t '.new_article'
         .articles
           table
             tbody
@@ -21,7 +22,7 @@
         header
           h2
             a href=(dashboard_attachments_path)
-              | Pictures
+              = t '.pictures'
         .pictures
           ul
             - @attachments.each do |attachment|

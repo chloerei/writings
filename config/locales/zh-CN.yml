@@ -12,6 +12,7 @@ zh-CN:
   trash: "垃圾桶"
   untitled: "无标题"
   articles: "文章"
+  workspace_header: "%{name} 的工作区"
 
   published_at: "发布于"
   category: "分类"
@@ -19,9 +20,6 @@ zh-CN:
   author: "作者"
   articles_count: "%{count} 篇文章"
   remember_me: "记住我"
-  readonly_mode: "只读模式"
-  history_versions: "历史版本"
-  return_newest_version: "回到最新版本"
 
   urlname_valid_message: "只能使用字母、数字和 '-' 号"
 
@@ -33,8 +31,6 @@ zh-CN:
   next_page: "下一页"
   prev_page: "上一页"
 
-  version_limit: "当前帐号可以查看最近5个版本。"
-  need_more_version: "需要查看更多？"
   need_more_storage: "需要更多空间？"
   upgrade: "升级"
   plan:
@@ -87,67 +83,62 @@ zh-CN:
         account: "账户"
         profile: "个人资料"
 
+    dashboard:
+      show:
+        articles: "文章"
+        pictures: "图片"
+        new_article: "新文章"
+
     attachments:
       index:
+        pictures: "图片"
         confirm_delete: "确认删除？"
         no_picture: "没有图片"
     articles:
-      delete_modal:
-        delete_selected: "删除所选"
-        label_message: "确定删除所选文章？"
-        delete_forever: "永久删除"
-      empty_trash_modal:
-        label_message: "确定清空垃圾桶？"
+      index:
+        inbox: "索引"
+        publish: "已发布"
+        draft: "草稿箱"
+        new_article: "新文章"
+        no_articles: "没有文章"
+
+      trash_index:
         empty_trash: "清空垃圾桶"
-      image_modal:
-        insert_image: "插入图片"
-        url: "URL 地址"
-        link: "外链"
-        fetch: "抓取"
-        select_file: "选择文件"
-        upload: "上传"
-        drop_here: "拖到此处"
-        preview: "预览"
-      link_modal:
-        url: "URL 地址"
-        create_link: "创建链接"
-        unlink: "去掉链接"
-      urlname_modal:
-        urlname: "URL"
-      move_category_modal:
-        select_category: "选择分类"
+        empty_trash_confirm: "确认清空垃圾桶？"
+        no_articles: "没有文章"
+
+      category_menu:
+        all: "全部"
         new_category: "新建分类"
-      select_category_modal:
-        select_category: "选择分类"
-        new_category: "新建分类"
+        trash: "垃圾桶"
+
       new_category_modal:
         new_category: "新建分类"
 
-      main_nav:
-        all_articles: "所有文章"
-        not_collected: "未归类"
-        new_category: "新建分类"
-      tabs:
-        index: "索引"
-        publish: "已发布"
-        draft: "草稿箱"
-        trash: "垃圾桶"
-        new_article: "新文章"
-      bulkbar:
-        view: "查看"
-        edit: "编辑"
-        collect: "归类"
-        publish: "发布"
-        draft: "草稿"
-        trash: "丢弃"
-        delete_selected: "删除所选"
-        empty_trash: "清空垃圾桶"
-        items: " 项 "
-        cancel: "取消"
-      index:
-        no_articles: "没有文章"
-        is_end: "到达尾部"
       edit:
+        readonly_mode: "只读模式"
+        history_versions: "历史版本"
+        return_newest_version: "回到最新版本"
+        version_limit: "当前帐号可以查看最近5个版本。"
+        need_more_version: "需要查看更多？"
+        image_modal:
+          insert_image: "插入图片"
+          url: "URL 地址"
+          link: "外链"
+          fetch: "抓取"
+          select_file: "选择文件"
+          upload: "上传"
+          drop_here: "拖到此处"
+          preview: "预览"
+        link_modal:
+          url: "URL 地址"
+          create_link: "创建链接"
+          unlink: "去掉链接"
+        urlname_modal:
+          urlname: "URL"
+        select_category_modal:
+          select_category: "选择分类"
+          new_category: "新建分类"
         edit_topbar:
           return: "返回文章列表"
           urlname: "URL"
@@ -158,6 +149,9 @@ zh-CN:
           saved: "已保存"
           save_error: "保存出错"
           retry: "重试"
+          restore: "还原文章"
+          trash: "移至垃圾桶"
+          trash_confirm: "确定移动到垃圾桶？"
         toolbar:
           bold_tip: "加粗 Ctrl + B"
           italic_tip: "斜体 Ctrl + I"

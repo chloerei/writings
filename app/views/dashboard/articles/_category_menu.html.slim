@@ -1,16 +1,19 @@
 .dropdown
   a.dropdown-toggle.button href='#'
-    - if @category
-      = @category.name
-    - else
-      | All articles
+    - if action_name == 'index'
+      - if @category
+        = @category.name
+      - else
+        = t '.all'
+    - elsif action_name == 'trash_index'
+      = t 'trash'
   ul.dropdown-menu
     li
       a href=(dashboard_articles_path)
-        | All articles
+        = t '.all'
     li
       a href='#new-category-modal' data-toggle='modal'
-        | New category
+        = t '.new_category'
     - if current_user.categories.any?
       li
         hr
@@ -22,4 +25,4 @@
       hr
     li
       a href=(trash_dashboard_articles_path)
-        | Trash
+        = t '.trash'

@@ -4,8 +4,9 @@
       .header
         h1
           a href=(dashboard_root_path)
-            = "#{current_user.display_name}'s Workspace"
-          = " / Pictures"
+            = t 'workspace_header', :name => current_user.display_name
+          = ' / '
+          = t '.pictures'
       section
         .pictures
           #storage-status

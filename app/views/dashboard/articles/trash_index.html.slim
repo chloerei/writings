@@ -4,15 +4,19 @@
       .header
         h1
           a href=(dashboard_root_path)
-            = "#{current_user.display_name}'s Workspace"
-          = " / Articles / Trash"
+            = t 'workspace_header', :name => current_user.display_name
+          = ' / '
+          a href=(dashboard_articles_path)
+            = t 'articles'
+          = ' / '
+          = t 'trash'
       section
         header.clearfix
           .pull-left
             = render :partial => 'category_menu'
             - if @articles.any?
-              a.button href=(trash_dashboard_articles_path) data-remote=(true) data-method='delete' data-confirm=('sure')
-                | Empty trash
+              a.button href=(trash_dashboard_articles_path) data-remote=(true) data-method='delete' data-confirm=(t '.empty_trash_confirm')
+                = t '.empty_trash'
         .articles
           table
             tbody
@@ -20,4 +24,4 @@
           = paginate @articles, :theme => :dashboard
           - if @articles.empty?
             .empty-message
-              | no articles
+              = t '.no_articles'

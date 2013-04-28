@@ -19,25 +19,25 @@ html
                 = article_format_body @article.body
               = render 'layouts/alert_messages'
           #readonly-message
-            = t 'readonly_mode'
+            = t '.readonly_mode'
       .sidebar
         #history
           .toolbar.clearfix
             .label.pull-left
               i.icon-time
               = ' '
-              = t 'history_versions'
+              = t '.history_versions'
             ul.toolbar-buttons.pull-right
               li
-                a.close-button.toolbar-button.icon-remove href="#close-history" title=(t 'return_newest_version')
+                a.close-button.toolbar-button.icon-remove href="#close-history" title=(t '.return_newest_version')
           .content
             .scrollable
               nav
                 ul#versions
               - if current_user.in_plan?(:free)
                 .message
-                  = t 'version_limit'
-                  = link_to t('need_more_version'), dashboard_billing_path
+                  = t '.version_limit'
+                  = link_to t('.need_more_version'), dashboard_billing_path
 
     = render 'dashboard/articles/edit/urlname_modal'
     = render 'dashboard/articles/edit/link_modal'
