@@ -4,7 +4,7 @@
       ul.top-nav
         li
           a href=(dashboard_articles_path) title=(t '.return')
-            i.icon-home
+            i.icon-reorder
         li
           a href=(restore_dashboard_article_path(@article)) data-method='put'
             i.icon-undo
@@ -15,19 +15,19 @@
       ul.top-nav
         li
           a href=(dashboard_articles_path) title=(t '.return')
-            i.icon-home
+            i.icon-reorder
         li.hide-on-mobile
           = link_to '#select-category-modal', :data => { :toggle => :modal }, :title => t('.collect') do
             i.icon-folder-close-alt
         li.hide-on-mobile
           = link_to '#urlname-modal', :data => { :toggle => :modal }, :title => t('.urlname') do
             i.icon-flag
-        li.hide-on-mobile
-          a href=(trash_dashboard_article_path(@article)) data-confirm=(t '.trash_confirm') data-method='put' title=(t '.trash')
-            i.icon-trash
         li class=(@article.persisted? && @article.publish? ? nil : 'hide')
           a#view-button target='_blank' href=(@article.persisted? ? site_article_url(:urlname => @article.urlname, :host => current_user.host) : site_root_url(:host => current_user.host))
             i.icon-external-link
+        li.hide-on-mobile
+          a href=(trash_dashboard_article_path(@article)) data-confirm=(t '.trash_confirm') data-method='put' title=(t '.trash')
+            i.icon-trash
     .pull-right
       #save-status
         span.saving
