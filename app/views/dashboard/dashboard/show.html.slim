@@ -21,14 +21,15 @@
           - if @articles.empty?
             .empty-message
               = t '.no_articles'
-      section
-        header
-          h2
-            a href=(dashboard_attachments_path)
-              = t '.pictures'
-        .pictures
-          ul
-            - @attachments.each do |attachment|
-              li
-                a.pic-link href=(dashboard_attachment_path(attachment)) target='_blank' title=(attachment.file_name)
-                  = image_tag attachment.file.thumb.url
+      - if @attachments.any?
+        section
+          header
+            h2
+              a href=(dashboard_attachments_path)
+                = t '.pictures'
+          .pictures
+            ul
+              - @attachments.each do |attachment|
+                li
+                  a.pic-link href=(dashboard_attachment_path(attachment)) target='_blank' title=(attachment.file_name)
+                    = image_tag attachment.file.thumb.url
