@@ -186,7 +186,7 @@ class ArticleEdit
     else
       $("#view-button").closest("li").addClass "hide"
 
-  setPbulishClass: (isPublish) ->
+  setPublishClass: (isPublish) ->
     if isPublish
       $("#draft-button").removeClass "button-actived"
       $("#publish-button").addClass "button-actived"
@@ -195,14 +195,14 @@ class ArticleEdit
       $("#draft-button").addClass "button-actived"
 
   publishArticle: (event) ->
-    @setPbulishClass true
+    @setPublishClass true
     event.preventDefault()
     if @isPersisted()
       @updateArticle
         article:
           status: "publish"
       , null, (data) =>
-        @setPbulishClass false
+        @setPublishClass false
         @article.data "status", "draft"
 
     else
@@ -211,20 +211,21 @@ class ArticleEdit
 
   draftArticle: (event) ->
     event.preventDefault()
-    @setPbulishClass false
+    @setPublishClass false
     if @isPersisted()
       @updateArticle
         article:
           status: "draft"
       , null, (data) =>
-        @setPbulishClass true
+        @setPublishClass true
         @article.data "status", "publish"
 
     else
       @article.data "status", "draft"
       @createArticle()
 
-  pickUpTopbar: ->
+  pickUpTopbar: (event) ->
+    event.preventDefault()
     $("body").toggleClass "pick-up-topbar"
 
     if $("body").hasClass("pick-up-topbar")
