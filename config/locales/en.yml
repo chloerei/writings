@@ -81,6 +81,7 @@ en:
         articles: Articles
         pictures: Pictures
         new_article: New article
+        no_articles: No articles
     attachments:
       index:
         pictures: Pictures

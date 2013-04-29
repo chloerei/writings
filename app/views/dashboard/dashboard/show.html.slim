@@ -18,6 +18,9 @@
           table
             tbody
               = render :partial => 'dashboard/articles/article', :collection => @articles
+          - if @articles.empty?
+            .empty-message
+              = t '.no_articles'
       section
         header
           h2

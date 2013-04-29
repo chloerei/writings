@@ -88,6 +88,7 @@ zh-CN:
         articles: "文章"
         pictures: "图片"
         new_article: "新文章"
+        no_articles: "没有文章"
 
     attachments:
       index:
