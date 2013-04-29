@@ -11,7 +11,7 @@
           a href=(dashboard_articles_path)
             = t 'articles'
           = ' / '
-          a href=(index_dashboard_articles_path(:category => @category.urlname))
+          a href=(index_dashboard_articles_path(:category_id => @category.urlname))
             = @category.name
           = ' / '
           = t '.settings'

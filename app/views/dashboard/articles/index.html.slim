@@ -17,7 +17,7 @@
         header.clearfix
           .pull-left
             = render :partial => 'category_menu'
-            .button-group
+            .button-group.hide-on-mobile
               a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category_id => params[:category_id]))
                 i.icon-inbox
                 = ' '
@@ -36,8 +36,9 @@
           .pull-right
             a.button.button-primary.no-margin href=(new_dashboard_article_path)
               i.icon-pencil
-              = ' '
-              = t '.new_article'
+              span.hide-on-mobile
+                = ' '
+                = t '.new_article'
         .articles
           table
             tbody

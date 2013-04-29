@@ -33,8 +33,9 @@ html
               li
                 a href='http://blog.chloerei.com/articles/7db48376-what-is-writings-io'
                   i.icon-info-sign
-                  = ' '
-                  = t '.about'
+                  span.hide-on-mobile
+                    = ' '
+                    = t '.about'
           ul.top-nav.pull-right
             li
               .dropdown
@@ -43,7 +44,7 @@ html
                   span.hide-on-mobile
                     = ' '
                     = t '.feedback'
-                ul.dropdown-menu
+                ul.dropdown-menu.align-right
                   li
                     a href='https://twitter.com/writingsio' target='_blank'
                       i.icon-twitter
@@ -96,7 +97,7 @@ html
                         = ' '
                         = t '.logout'
             - else
-              li
+              li.hide-on-mobile
                 a href=(signup_path)
                   i.icon-plus-sign
                   = ' '
@@ -104,8 +105,9 @@ html
               li
                 a href=(login_path)
                   i.icon-signin
-                  = ' '
-                  = t '.login'
+                  span.hide-on-mobile
+                    = ' '
+                    = t '.login'
     = yield
     #spinner
       i.icon-spinner.icon-spin

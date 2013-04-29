@@ -11,7 +11,7 @@ tr
   td.title
     a href=(edit_dashboard_article_path(article))
       = article.title
-  td.category
+  td.category.hide-on-mobile
     - if article.category
       a href=(edit_dashboard_article_path(article))
         span.category-name = article.category.name
