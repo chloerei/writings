@@ -4,9 +4,6 @@
   .container
     .inner
       .header
-        h1
-          = current_user.display_name
-          = ' / '
-          = t 'upgrade'
+        = render 'dashboard/share/settings_nav'
       #main-content
         = render :partial => 'plan_content'

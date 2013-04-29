@@ -4,10 +4,7 @@
   .container
     .inner
       .header
-        h1
-          = current_user.display_name
-          = ' / '
-          = t '.profile_setting'
+        = render 'dashboard/share/settings_nav'
       section
         = form_for current_user.profile, :url => dashboard_profile_path, :html => { :data => { :remote => true, :type => :json } } do |f|
           fieldset

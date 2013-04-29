@@ -73,9 +73,10 @@ en:
         profile_setting: Profile setting
         publish_profile: Published profile
     share:
-      settings_main_nav:
+      settings_nav:
         account: Account
         profile: Profile
+        billing: Billing
     dashboard:
       show:
         articles: Articles
@@ -233,6 +234,7 @@ en:
         file: Attachment
   errors:
     messages:
-      extension_white_list_error: 'Can not uplaod %{extension} file，allow extension: %{allowed_types}'
+      extension_white_list_error: 'Can not uplaod %{extension} file，allow extension:
+        %{allowed_types}'
       store_limit: not enough attachment space
       fetch_error: Fetch error, can't access resource, please use local upload.

@@ -303,6 +303,17 @@ table.nice-table {
     h1 {
       margin: 0;
     }
+
+    nav ul {
+      @include clearfix();
+
+      li {
+        display: inline-block;
+        float: left;
+        margin-right: 20px;
+        font-weight: bold;
+      }
+    }
   }
 
   section {

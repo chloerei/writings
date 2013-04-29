@@ -79,9 +79,10 @@ zh-CN:
         profile_setting: "个人资料设置"
         publish_profile: "公开的个人资料"
     share:
-      settings_main_nav:
+      settings_nav:
         account: "账户"
-        profile: "个人资料"
+        profile: "个人信息"
+        billing: "升级"
 
     dashboard:
       show:

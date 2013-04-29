@@ -4,10 +4,7 @@
   .container
     .inner
       .header
-        h1
-          = current_user.display_name
-          = ' / '
-          = t '.account_setting'
+        = render 'dashboard/share/settings_nav'
       section
         = form_for current_user, :url => dashboard_account_path, :validate => true, :html => { :data => { :remote => true, :type => :json }, :id => 'account_form' } do |f|
           fieldset
