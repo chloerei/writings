@@ -29,7 +29,7 @@
         hr
     - current_user.categories.each do |category|
       li
-        a href=(index_dashboard_articles_path(:category => category.urlname))
+        a href=(index_dashboard_articles_path(:category_id => category.urlname))
           i.icon-folder-close-alt
           = ' '
           = category.name

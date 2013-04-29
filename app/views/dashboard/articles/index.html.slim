@@ -18,15 +18,15 @@
           .pull-left
             = render :partial => 'category_menu'
             .button-group
-              a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category => params[:category]))
+              a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category_id => params[:category_id]))
                 i.icon-inbox
                 = ' '
                 = t '.inbox'
-              a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category => params[:category], :status => 'publish'))
+              a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category_id => params[:category_id], :status => 'publish'))
                 i.icon-file-alt
                 = ' '
                 = t '.publish'
-              a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category => params[:category], :status => 'draft'))
+              a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category_id => params[:category_id], :status => 'draft'))
                 i.icon-file
                 = ' '
                 = t '.draft'

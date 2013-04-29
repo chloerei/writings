@@ -4,7 +4,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   def index
     @articles = current_user.articles.desc(:updated_at).page(params[:page]).status(params[:status]).includes(:category)
 
-    if params[:category] && @category = current_user.categories.where(:urlname => params[:category]).first
+    if params[:category_id] && @category = current_user.categories.where(:urlname => params[:category_id]).first
       @articles = @articles.where(:category_id => @category.id)
     end
 
