@@ -37,8 +37,12 @@ class Site::ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should redirect old_url" do
-    @article.update_attribute :old_url, 'old_url'
-    get :show, :id => @article.old_url
+    @article.update_attribute :old_url, 'old-url'
+    get :show, :id => 'old', :urlname => 'url'
+    assert_redirected_to site_article_url(@article, :urlname => @article.urlname)
+
+    @article.update_attribute :old_url, 'old'
+    get :show, :id => 'old'
     assert_redirected_to site_article_url(@article, :urlname => @article.urlname)
   end
 

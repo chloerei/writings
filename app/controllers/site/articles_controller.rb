@@ -13,7 +13,8 @@ class Site::ArticlesController < Site::BaseController
       end
     else
       # old url redirect
-      @article = @user.articles.publish.find_by(:old_url => params[:id])
+      old_url = params[:urlname].present? ? "#{params[:id]}-#{params[:urlname]}" : params[:id]
+      @article = @user.articles.publish.find_by(:old_url => old_url)
       redirect_to site_article_path(@article, :urlname => @article.urlname), :status => 301
     end
   end
