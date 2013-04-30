@@ -6,13 +6,15 @@ class Article
   field :title
   field :body
   field :urlname
+  field :old_url
   field :status, :default => 'draft'
   field :save_count, :type => Integer, :default => 0
   field :last_version_save_count, :type => Integer, :default => 0
   field :published_at
 
   field :token
-  index({ :user_id => 1, :token => 1 },  { :unique => true })
+  index({ :user_id => 1, :token => 1 }, { :unique => true })
+  index({ :user_id => 1, :old_url => 1 }, { :sparse => true })
 
   belongs_to :user
   belongs_to :category

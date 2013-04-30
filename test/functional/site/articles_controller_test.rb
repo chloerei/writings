@@ -31,11 +31,16 @@ class Site::ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should redirect when urlname wrong" do
-    article = create(:article, :user => @user, :urlname => 'test2', :status => 'publish')
-    get :show, :id => article
-    assert_redirected_to site_article_url(article, :urlname => article.urlname)
+    @article.update_attribute :urlname, 'urlname'
+    get :show, :id => @article
+    assert_redirected_to site_article_url(@article, :urlname => @article.urlname)
   end
 
+  test "should redirect old_url" do
+    @article.update_attribute :old_url, 'old_url'
+    get :show, :id => @article.old_url
+    assert_redirected_to site_article_url(@article, :urlname => @article.urlname)
+  end
 
   test "should get feed" do
     get :feed, :format => :rss
