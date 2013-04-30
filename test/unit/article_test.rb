@@ -4,8 +4,10 @@ class ArticleTest < ActiveSupport::TestCase
   test "should generate token" do
     article = create :article
     assert_not_nil article.token
-    assert_not_nil article.urlname
-    assert_equal article.token, article.urlname
+    assert_nil article.urlname
+    assert_equal 1, article.token.to_i
+
+    assert_equal 2, create(:article, :user => article.user).token.to_i
   end
 
   test "should set published_at" do

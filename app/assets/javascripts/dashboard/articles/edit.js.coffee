@@ -172,6 +172,7 @@ class ArticleEdit
       @article.data "id", data.token
       @updateViewButton data
       history.replaceState null, null, "/articles/" + data.token + "/edit"
+      $('#urlname-modal .article-id').text(data.token)
       @saveArticle()
     ).fail((xhr) =>
       @saveError xhr

@@ -15,8 +15,8 @@ xml.rss :version => "2.0" do
           end
           xml.pubDate article.published_at.to_s(:rfc822)
           xml.author @user.profile.name.present? ? @user.profile.name : @user.name
-          xml.link site_article_url(:urlname => article.urlname)
-          xml.guid site_article_url(:urlname => article.urlname)
+          xml.link site_article_url(article, :urlname => article.urlname)
+          xml.guid site_article_url(article)
           if article.category.present?
             xml.category article.category.name
           end

@@ -103,6 +103,6 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def article_as_json(article)
-    article.as_json(:only => [:urlname, :title, :status, :token, :save_count]).merge(:url => site_article_url(:urlname => article.urlname, :host => current_user.host), :updated_at => article.updated_at.to_s)
+    article.as_json(:only => [:urlname, :title, :status, :token, :save_count]).merge(:url => site_article_url(article, :urlname => article.urlname, :host => current_user.host), :updated_at => article.updated_at.to_s)
   end
 end

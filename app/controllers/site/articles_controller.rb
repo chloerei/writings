@@ -4,10 +4,17 @@ class Site::ArticlesController < Site::BaseController
   end
 
   def show
-    @article = @user.articles.publish.find_by :urlname => params[:urlname]
+    @article = @user.articles.publish.where(:token => params[:id]).first
 
-    if params[:urlname].to_s != @article.urlname.to_s
-      redirect_to site_article_path(@article, :urlname => @article.urlname)
+    if @article
+      # urlname not match redirect
+      if params[:urlname].to_s != @article.urlname.to_s
+        redirect_to site_article_path(@article, :urlname => @article.urlname), :status => 301
+      end
+    else
+      # old url redirect
+      @article = @user.articles.publish.find_by(:old_url => params[:id])
+      redirect_to site_article_path(@article, :urlname => @article.urlname), :status => 301
     end
   end
 

@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :article do
+    user
     sequence(:title){|n| "title #{n}" }
     body '<p>body</p>'
   end
