@@ -1,48 +1,15 @@
 class Dashboard::ArticlesController < Dashboard::BaseController
-  skip_filter :require_logined, :only => :index
+  before_filter :find_article, :only => [:edit, :update, :trash, :restore]
 
   def index
-    if logined?
-      @order_column = (params[:status] == 'publish' ? :published_at : :updated_at)
-      @articles = current_user.articles.desc(@order_column).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
+    @articles = current_user.articles.desc(:updated_at).page(params[:page]).status(params[:status]).includes(:category)
 
-      append_title I18n.t('all_articles')
-      append_title I18n.t(params[:status]) if params[:status].present?
-
-      respond_to do |format|
-        format.html
-        format.js
-      end
-    else
-      render :guest_index
+    if params[:category_id] && @category = current_user.categories.where(:urlname => params[:category_id]).first
+      @articles = @articles.where(:category_id => @category.id)
     end
-  end
 
-  def category
-    @category = current_user.categories.find_by :urlname => params[:category_id]
-    @order_column = (params[:status] == 'publish' ? :published_at : :updated_at)
-    @articles = current_user.articles.where(:category_id => @category).desc(@order_column).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
-
-    append_title @category.name
+    append_title I18n.t('all_articles')
     append_title I18n.t(params[:status]) if params[:status].present?
-
-    respond_to do |format|
-      format.html { render :index }
-      format.js { render :index }
-    end
-  end
-
-  def not_collected
-    @order_column = (params[:status] == 'publish' ? :published_at : :updated_at)
-    @articles = current_user.articles.where(:category_id => nil).desc(@order_column).limit(25).skip(params[:skip]).status(params[:status]).includes(:category)
-
-    append_title t('not_collected')
-    append_title I18n.t(params[:status]) if params[:status].present?
-
-    respond_to do |format|
-      format.html { render :index }
-      format.js { render :index }
-    end
   end
 
   def new
@@ -70,13 +37,11 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def edit
-    @article = current_user.articles.find_by(:token => params[:id])
     append_title @article.title
     render :layout => false
   end
 
   def update
-    @article = current_user.articles.find_by(:token => params[:id])
     if article_params[:save_count].to_i > @article.save_count
       if @article.update_attributes article_params
 
@@ -99,43 +64,33 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     end
   end
 
-  def bulk
-    @articles = current_user.articles.where(:token.in => params.require(:ids))
-
-    case params[:type]
-    when 'move'
-      category = current_user.categories.where(:urlname => params[:category_id]).first
-      @articles.update_all :category_id => category.try(:id)
-    when 'publish'
-      @articles.update_all :status => 'publish', :published_at => Time.now.utc
-    when 'draft'
-      @articles.update_all :status => 'draft'
-    when 'trash'
-      @articles.update_all :status => 'trash'
-    when 'delete'
-      @articles.trash.delete_all
-    end
-
-    respond_to do |format|
-      format.json { render :json => @articles.includes(:category).as_json(:only => [:title, :urlname, :status, :token], :methods => [:category_name, :category_urlname]) }
-    end
+  def trash_index
+    @articles = current_user.articles.desc(:updated_at).page(params[:page]).status('trash').includes(:category)
   end
 
   def empty_trash
-    if params[:category_id]
-      current_user.articles.where(:category_id => current_user.categories.find_by(:urlname => params[:category_id])).trash.delete_all
-    elsif params[:not_collected]
-      current_user.articles.where(:category_id => nil).trash.delete_all
-    else
-      current_user.articles.trash.delete_all
-    end
+    current_user.articles.trash.delete_all
 
     respond_to do |format|
-      format.json { render :json => [] }
+      format.js
     end
   end
 
+  def trash
+    @article.update_attribute :status, 'trash'
+    redirect_to dashboard_articles_url
+  end
+
+  def restore
+    @article.update_attribute :status, 'draft'
+    redirect_to edit_dashboard_article_url(@article)
+  end
+
   private
+
+  def find_article
+    @article = current_user.articles.find_by(:token => params[:id])
+  end
 
   def article_params
     base_params = params.require(:article).permit(:title, :body, :urlname, :status, :save_count)

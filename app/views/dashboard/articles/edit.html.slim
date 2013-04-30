@@ -7,11 +7,11 @@ html
     = javascript_include_tag "dashboard"
     = stylesheet_link_tag "dashboard"
     = csrf_meta_tags
-  body#articles-edit data-no-turbolink="true" class=(cookies[:pick_up_topbar] ? 'pick-up-topbar' : nil)
-    = render :partial => 'edit_topbar'
-    #editwrap
+  body#articles-edit class=(cookies[:pick_up_topbar] ? 'pick-up-topbar' : nil)
+    = render :partial => 'dashboard/articles/edit/edit_topbar'
+    #editwrap class=(@article.trash? ? 'readonly' : nil)
       .main
-        = render :partial => 'toolbar'
+        = render :partial => 'dashboard/articles/edit/toolbar'
         #editarea
           .scrollable
             .editor-container
@@ -19,29 +19,29 @@ html
                 = article_format_body @article.body
               = render 'layouts/alert_messages'
           #readonly-message
-            = t 'readonly_mode'
+            = t '.readonly_mode'
       .sidebar
         #history
           .toolbar.clearfix
             .label.pull-left
               i.icon-time
               = ' '
-              = t 'history_versions'
+              = t '.history_versions'
             ul.toolbar-buttons.pull-right
               li
-                a.close-button.toolbar-button.icon-remove href="#close-history" title=(t 'return_newest_version')
+                a.close-button.toolbar-button.icon-remove href="#close-history" title=(t '.return_newest_version')
           .content
             .scrollable
               nav
                 ul#versions
               - if current_user.in_plan?(:free)
                 .message
-                  = t 'version_limit'
-                  = link_to t('need_more_version'), dashboard_billing_path
+                  = t '.version_limit'
+                  = link_to t('.need_more_version'), dashboard_billing_path
 
-    = render 'urlname_modal'
-    = render 'link_modal'
-    = render 'image_modal'
-    = render 'select_category_modal'
+    = render 'dashboard/articles/edit/urlname_modal'
+    = render 'dashboard/articles/edit/link_modal'
+    = render 'dashboard/articles/edit/image_modal'
+    = render 'dashboard/articles/edit/select_category_modal'
     = render 'new_category_modal'
-    = render 'help_modal'
+    = render 'dashboard/articles/edit/help_modal'

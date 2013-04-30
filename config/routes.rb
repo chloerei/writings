@@ -6,7 +6,7 @@ end
 
 Publish::Application.routes.draw do
   constraints :host => APP_CONFIG["host"] do
-    root :to => 'dashboard/articles#index'
+    root :to => 'dashboard/dashboard#show'
     get 'signup' => 'users#new', :as => :signup
     get 'login' => 'user_sessions#new', :as => :login
     delete 'logout' => 'user_sessions#destroy', :as => :logout
@@ -15,21 +15,24 @@ Publish::Application.routes.draw do
     resources :user_sessions, :only => [:create]
 
     scope :module => 'dashboard', :as => 'dashboard' do
-      root :to => 'articles#index'
-      get '(:status)', :to => 'articles#index', :constraints => { :status => /publish|draft|trash/ }, :as => :all_articles
-      get 'categories/:category_id(/:status)', :to => 'articles#category', :constraints => { :status => /publish|draft|trash/ }, :as => :category_articles
-      get 'not_collected(/:status)', :to => 'articles#not_collected', :constraints => { :status => /publish|draft|trash/ }, :as => :not_collected_articles
-
-      delete 'trash', :to => 'articles#empty_trash'
+      root :to => 'dashboard/dashboard#show'
 
       resource :profile, :only => [:show, :update]
       resource :account, :only => [:show, :update, :destroy]
       resource :billing, :only => [:show]
 
       resources :categories, :only => [:create, :edit, :update, :destroy], :path_names => { :edit => :settings }
-      resources :articles, :only => [:new, :create, :edit, :update, :destroy] do
+      resources :articles, :only => [:index, :new, :create, :edit, :update, :destroy] do
         collection do
+          get '(/category/:category_id)(/:status)', :as => 'index', :action => 'index', :constraints => { :status => /publish|draft/ }
           post :bulk
+          get 'trash', :to => 'articles#trash_index'
+          delete 'trash', :to => 'articles#empty_trash'
+        end
+
+        member do
+          put :trash
+          put :restore
         end
 
         resources :versions, :only => [:index, :show] do

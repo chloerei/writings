@@ -8,7 +8,7 @@
     = form_for @article, :url => dashboard_article_path(@article), :html => { :id => 'category-form' } do |f|
       .field
         .dropdown
-          a.dropdown-toggle.button href="#" = @article.category.try(:urlname) || t('not_collected')
+          a.dropdown-toggle.button href="#" = @article.category.try(:name) || t('not_collected')
           ul.dropdown-menu
             - current_user.categories.each do |category|
               li

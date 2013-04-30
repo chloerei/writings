@@ -1,0 +1,42 @@
+.dropdown
+  a.dropdown-toggle.button href='#'
+    - if action_name == 'index'
+      - if @category
+        i.icon-folder-close-alt
+        = ' '
+        = @category.name
+      - else
+        i.icon-folder-open-alt
+        = ' '
+        = t '.all'
+    - elsif action_name == 'trash_index'
+      i.icon-trash
+      = ' '
+      = t 'trash'
+  ul.dropdown-menu
+    li
+      a href=(dashboard_articles_path)
+        i.icon-folder-open-alt
+        = ' '
+        = t '.all'
+    li
+      a href='#new-category-modal' data-toggle='modal'
+        i.icon-plus
+        = ' '
+        = t '.new_category'
+    - if current_user.categories.any?
+      li
+        hr
+    - current_user.categories.each do |category|
+      li
+        a href=(index_dashboard_articles_path(:category_id => category.urlname))
+          i.icon-folder-close-alt
+          = ' '
+          = category.name
+    li
+      hr
+    li
+      a href=(trash_dashboard_articles_path)
+        i.icon-trash
+        = ' '
+        = t '.trash'

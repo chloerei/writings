@@ -2,7 +2,8 @@
 
 #main
   .container
-    .inner.inner-full-height
-      = render 'dashboard/share/settings_main_nav'
+    .inner
+      .header
+        = render 'dashboard/share/settings_nav'
       #main-content
         = render :partial => 'plan_content'

@@ -271,6 +271,8 @@ fieldset {
 
   &:last-child {
     border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
   legend {
@@ -285,7 +287,7 @@ fieldset {
 
 @mixin button-color($color, $textColor) {
   color: $textColor;
-  border: 1px solid darken($color, 15%);
+  border: 1px solid darken($color, 20%);
   @include linear-gradient($color, darken($color, 3%));
 
   &:hover,
@@ -293,12 +295,12 @@ fieldset {
     color: $textColor;
     text-decoration: none;
     @include linear-gradient(darken($color, 3%), darken($color, 6%));
-    @include box-shadow(0 0 1px rgba(0, 0, 0, 0.3));
+    @include box-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
   }
 
   &.button-actived,
   &:active {
-    @include linear-gradient(darken($color, 6%), darken($color, 9%));
+    @include linear-gradient(darken($color, 9%), darken($color, 12%));
   }
 
   &.button-disabled {
@@ -324,7 +326,7 @@ button,
   margin-right: 10px;
   font-weight: normal;
   display: inline-block;
-  border-radius: 3px;
+  border-radius: 2px;
   @include button-color(#fefefe, #333);
 
   &.no-margin {
@@ -357,6 +359,10 @@ a.button:hover {
   display: inline-block;
   margin-right: 10px;
 
+  &.no-margin {
+    margin: 0;
+  }
+
   input[type=submit],
   button,
   .button {
@@ -365,12 +371,12 @@ a.button:hover {
     border-radius: 0;
 
     &:first-child {
-      border-radius: 3px 0 0 3px;
+      border-radius: 2px 0 0 2px;
     }
 
     &:last-child {
       border-right-width: 1px;
-      border-radius: 0 3px 3px 0;
+      border-radius: 0 2px 2px 0;
     }
   }
 }
@@ -414,7 +420,7 @@ a.button:hover {
     z-index: 1000;
     width: 150px;
     position: absolute;
-    top: 32px;
+    top: 36px;
     left: 0;
     background: #fff;
     border: 1px solid #ccc;

@@ -29,7 +29,7 @@ $(function() {
       var data = $.parseJSON(status.responseText);
       AlertMessage.error(data.message || 'Error');
     } catch(err) {
-      AlertMessage.error(data.message || 'Server Error');
+      AlertMessage.error('Server Error');
     }
   });
 
