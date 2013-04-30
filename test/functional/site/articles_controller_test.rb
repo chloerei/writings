@@ -26,7 +26,7 @@ class Site::ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should get show" do
-    get :show, :urlname => @article.urlname
+    get :show, :id => @article
     assert_response :success, @response.body
   end
 
