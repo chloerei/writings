@@ -9,12 +9,12 @@ class Site::ArticlesController < Site::BaseController
     if @article
       # urlname not match redirect
       if params[:urlname].to_s != @article.urlname.to_s
-        redirect_to site_article_path(@article, :urlname => @article.urlname)
+        redirect_to site_article_path(@article, :urlname => @article.urlname), :status => 301
       end
     else
       # old url redirect
       @article = @user.articles.publish.find_by(:old_url => params[:id])
-      redirect_to site_article_path(@article, :urlname => @article.urlname)
+      redirect_to site_article_path(@article, :urlname => @article.urlname), :status => 301
     end
   end
 
