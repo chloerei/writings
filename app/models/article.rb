@@ -57,10 +57,6 @@ class Article
     update_attribute :last_version_save_count, self.save_count
   end
 
-  def urlname
-    read_attribute(:urlname).present? ? read_attribute(:urlname) : nil
-  end
-
   def publish?
     self.status == 'publish'
   end

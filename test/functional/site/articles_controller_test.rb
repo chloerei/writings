@@ -30,6 +30,13 @@ class Site::ArticlesControllerTest < ActionController::TestCase
     assert_response :success, @response.body
   end
 
+  test "should redirect when urlname wrong" do
+    article = create(:article, :user => @user, :urlname => 'test2', :status => 'publish')
+    get :show, :id => article
+    assert_redirected_to site_article_url(article, :urlname => article.urlname)
+  end
+
+
   test "should get feed" do
     get :feed, :format => :rss
     assert_response :success, @response.body
