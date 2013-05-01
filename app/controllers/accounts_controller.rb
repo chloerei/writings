@@ -1,4 +1,7 @@
-class Dashboard::AccountsController < Dashboard::BaseController
+class AccountsController < ApplicationController
+  before_filter :require_logined
+  layout 'dashboard'
+
   def edit
   end
 

@@ -14,12 +14,12 @@ Publish::Application.routes.draw do
     resources :users, :only => [:create]
     resources :user_sessions, :only => [:create]
 
+    resource :profile, :only => [:show, :update]
+    resource :account, :only => [:show, :update, :destroy]
+    resource :billing, :only => [:show]
+
     scope '/~:space_id', :module => 'dashboard', :as => 'dashboard' do
       root :to => 'dashboard#show'
-
-      resource :profile, :only => [:show, :update]
-      resource :account, :only => [:show, :update, :destroy]
-      resource :billing, :only => [:show]
 
       resources :categories, :only => [:create, :edit, :update, :destroy], :path_names => { :edit => :settings }
       resources :articles, :only => [:index, :new, :create, :edit, :update, :destroy] do

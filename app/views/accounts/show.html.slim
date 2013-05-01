@@ -6,7 +6,7 @@
       .header
         = render 'dashboard/share/settings_nav'
       section
-        = form_for current_user, :url => dashboard_account_path, :validate => true, :html => { :data => { :remote => true, :type => :json }, :id => 'account_form' } do |f|
+        = form_for current_user, :url => account_path, :validate => true, :html => { :data => { :remote => true, :type => :json }, :id => 'account_form' } do |f|
           fieldset
             legend = t '.login_id'
             .field

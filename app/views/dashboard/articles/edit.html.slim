@@ -37,7 +37,7 @@ html
               - if current_user.in_plan?(:free)
                 .message
                   = t '.version_limit'
-                  = link_to t('.need_more_version'), dashboard_billing_path
+                  = link_to t('.need_more_version'), billing_path
 
     = render 'dashboard/articles/edit/urlname_modal'
     = render 'dashboard/articles/edit/link_modal'

@@ -68,24 +68,24 @@ html
             - if logined?
               li
                 .dropdown
-                  a.dropdown-toggle href=(dashboard_account_path(:space_id => current_user))
+                  a.dropdown-toggle href=(account_path)
                     i.icon-cog
                     span.hide-on-mobile
                       = ' '
                       = t '.settings'
                   ul.dropdown-menu.align-right
                     li
-                      = link_to dashboard_account_path(:space_id => current_user) do
+                      = link_to account_path do
                         i.icon-user
                         = ' '
                         = t '.account'
                     li
-                      = link_to dashboard_profile_path(:space_id => current_user) do
+                      = link_to profile_path do
                         i.icon-credit-card
                         = ' '
                         = t '.profile'
                     li
-                      = link_to dashboard_billing_path(:space_id => current_user) do
+                      = link_to billing_path do
                         i.icon-shopping-cart
                         = ' '
                         = t 'upgrade'

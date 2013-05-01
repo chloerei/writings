@@ -1,4 +1,7 @@
-class Dashboard::ProfilesController < Dashboard::BaseController
+class ProfilesController < ApplicationController
+  before_filter :require_logined
+  layout 'dashboard'
+
   def show
   end
 

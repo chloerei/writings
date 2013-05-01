@@ -15,7 +15,7 @@
             span.limit= number_to_human_size current_user.storage_limit
             - if current_user.in_plan? :free
               = ' '
-              = link_to t('need_more_storage'), dashboard_billing_path
+              = link_to t('need_more_storage'), billing_path
           ul
             - @attachments.each do |attachment|
               li id=("attachment-#{attachment.id}")
