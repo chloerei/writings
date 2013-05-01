@@ -7,7 +7,7 @@ class ArticleTest < ActiveSupport::TestCase
     assert_nil article.urlname
     assert_equal 1, article.token.to_i
 
-    assert_equal 2, create(:article, :user => article.user).token.to_i
+    assert_equal 2, create(:article, :space => article.space).token.to_i
   end
 
   test "should set published_at" do
@@ -25,9 +25,9 @@ class ArticleTest < ActiveSupport::TestCase
   test "should create version" do
     article = create :article
     assert_difference "article.versions.count" do
-      article.create_version
+      article.create_version :user => article.space
     end
-    assert_equal article.user, article.versions.asc(:created_at).last.user
+    assert_equal article.space, article.versions.asc(:created_at).last.user
 
     other_user = create :user
     assert_difference "article.versions.count" do

@@ -3,8 +3,8 @@ require 'test_helper'
 class Dashboard::ArticlesControllerTest < ActionController::TestCase
   def setup
     @user = create(:user)
-    @category = create(:category, :user => @user)
-    @article = create(:article, :user => @user, :category => @category)
+    @category = create(:category, :space => @user)
+    @article = create(:article, :space => @user, :category => @category)
     login_as @user
   end
 
@@ -42,7 +42,7 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
     other = create(:user)
     assert_no_difference "other.articles.count" do
       assert_difference "@user.articles.count" do
-        post :create, :format => :json, :article => attributes_for(:article).merge(:user_id => other.id)
+        post :create, :format => :json, :article => attributes_for(:article).merge(:space_id => other.id)
         assert_response :success, @response.body
       end
     end
@@ -60,7 +60,7 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should empty trash" do
-    2.times { create :article, :user => @user, :status => 'trash' }
+    2.times { create :article, :space => @user, :status => 'trash' }
     assert_difference "@user.articles.count", -2 do
       delete :empty_trash, :format => :json
     end

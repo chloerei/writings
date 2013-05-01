@@ -18,7 +18,7 @@ class Dashboard::AttachmentsControllerTest < ActionController::TestCase
   end
 
   test "should show current_user attachment" do
-    attachment = create :attachment, :user => @user
+    attachment = create :attachment, :space => @user, :user => @user
     get :show, :id => attachment.id
     assert_response 302
 

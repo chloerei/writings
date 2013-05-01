@@ -3,7 +3,7 @@ require 'test_helper'
 class Site::ArticlesControllerTest < ActionController::TestCase
   def setup
     @user = create :user
-    @article = create :article, :user => @user, :status => 'publish'
+    @article = create :article, :space => @user, :status => 'publish'
     @request.host = "#{@user.name}.#{APP_CONFIG["host"]}"
   end
 

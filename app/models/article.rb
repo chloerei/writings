@@ -13,10 +13,10 @@ class Article
   field :published_at
 
   field :token
-  index({ :user_id => 1, :token => 1 }, { :unique => true })
-  index({ :user_id => 1, :old_url => 1 }, { :sparse => true })
+  index({ :space_id => 1, :token => 1 }, { :unique => true })
+  index({ :space_id => 1, :old_url => 1 }, { :sparse => true })
 
-  belongs_to :user
+  belongs_to :space
   belongs_to :category
 
   has_many :versions, :order => [:created_at, :desc]
@@ -51,7 +51,7 @@ class Article
   end
 
   def create_version(options = {})
-    user = options[:user] || self.user
+    user = options[:user] || self.space
 
     versions.create :title => title,
                     :body  => body,
@@ -79,7 +79,7 @@ class Article
 
   def set_token
     if new_record?
-      self.token ||= user.inc(:article_next_id, 1).to_s
+      self.token ||= space.inc(:article_next_id, 1).to_s
     end
   end
 

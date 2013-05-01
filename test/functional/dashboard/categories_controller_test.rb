@@ -3,7 +3,7 @@ require 'test_helper'
 class Dashboard::CategoriesControllerTest < ActionController::TestCase
   def setup
     @user = create :user
-    @category = create :category, :user => @user
+    @category = create :category, :space => @user
     login_as @user
   end
 

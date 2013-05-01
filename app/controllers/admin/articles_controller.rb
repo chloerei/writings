@@ -7,9 +7,9 @@ class Admin::ArticlesController < Admin::BaseController
 
     @articles = case params[:tab]
                 when 'all'
-                  @articles_scope.desc(:updated_at).includes(:user).page(params[:page]).per(25)
+                  @articles_scope.desc(:updated_at).includes(:space).page(params[:page]).per(25)
                 else
-                  @articles_scope.publish.desc(:published_at).includes(:user).page(params[:page]).per(25)
+                  @articles_scope.publish.desc(:published_at).includes(:space).page(params[:page]).per(25)
                 end
   end
 

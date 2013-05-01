@@ -9,7 +9,7 @@ class Dashboard::AttachmentsController < Dashboard::BaseController
   end
 
   def create
-    @attachment = current_user.attachments.new attachment_params
+    @attachment = current_user.attachments.new attachment_params.merge(:user => current_user)
 
     if @attachment.save
       respond_to do |format|
