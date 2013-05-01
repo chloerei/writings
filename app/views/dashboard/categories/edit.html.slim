@@ -15,7 +15,7 @@
             = @category.name
           = ' / '
           = t '.settings'
-      section.tabs-margin= form_for @category, :url => dashboard_category_path(@category), :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
+      section.tabs-margin= form_for @category, :url => dashboard_category_path(:id => @category), :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
         .field
           = f.label :name
           = f.text_field :name
@@ -28,4 +28,4 @@
         .field
           = f.submit t('submit')
         hr
-        = link_to t('.delete_category'), dashboard_category_path(@category), :method => :delete, :confirm => t('.delete_category_confirm', :name => @category.name), :class => 'button button-danger'
+        = link_to t('.delete_category'), dashboard_category_path(:id => @category), :method => :delete, :confirm => t('.delete_category_confirm', :name => @category.name), :class => 'button button-danger'

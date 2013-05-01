@@ -6,7 +6,7 @@ end
 
 Publish::Application.routes.draw do
   constraints :host => APP_CONFIG["host"] do
-    root :to => 'dashboard/dashboard#show'
+    root :to => 'home#index'
     get 'signup' => 'users#new', :as => :signup
     get 'login' => 'user_sessions#new', :as => :login
     delete 'logout' => 'user_sessions#destroy', :as => :logout
@@ -14,8 +14,8 @@ Publish::Application.routes.draw do
     resources :users, :only => [:create]
     resources :user_sessions, :only => [:create]
 
-    scope :module => 'dashboard', :as => 'dashboard' do
-      root :to => 'dashboard/dashboard#show'
+    scope '/~:space_id', :module => 'dashboard', :as => 'dashboard' do
+      root :to => 'dashboard#show'
 
       resource :profile, :only => [:show, :update]
       resource :account, :only => [:show, :update, :destroy]

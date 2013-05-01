@@ -6,7 +6,7 @@
           a href=(dashboard_articles_path) title=(t '.return')
             i.icon-reorder
         li
-          a href=(restore_dashboard_article_path(@article)) data-method='put'
+          a href=(restore_dashboard_article_path(:id => @article)) data-method='put'
             i.icon-undo
             = ' '
             = t '.restore'
@@ -26,7 +26,7 @@
           a#view-button target='_blank' href=(@article.persisted? ? site_article_url(@article, :urlname => @article.urlname, :host => current_user.host) : site_root_url(:host => current_user.host))
             i.icon-external-link
         li.hide-on-mobile
-          a href=(trash_dashboard_article_path(@article)) data-confirm=(t '.trash_confirm') data-method='put' title=(t '.trash')
+          a href=(trash_dashboard_article_path(:id => @article)) data-confirm=(t '.trash_confirm') data-method='put' title=(t '.trash')
             i.icon-trash
     .pull-right
       #save-status

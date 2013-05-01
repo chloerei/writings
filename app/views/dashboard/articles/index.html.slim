@@ -31,7 +31,7 @@
                 = ' '
                 = t '.draft'
             - if @category
-              a.button href=(edit_dashboard_category_path(@category))
+              a.button href=(edit_dashboard_category_path(:id => @category))
                 i.icon-wrench
           .pull-right
             a.button.button-primary.no-margin href=(new_dashboard_article_path)

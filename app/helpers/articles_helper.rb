@@ -21,8 +21,8 @@ module ArticlesHelper
   def convert_attachment_url(text, user)
     doc = Nokogiri::HTML::DocumentFragment.parse(text)
     doc.css('img').each do |img|
-      if r = %r|http://#{APP_CONFIG['host']}(?::\d+)?/attachments/(\w+)|.match(img['src'])
-        if attachment = user.attachments.where(:id => r[1]).first
+      if r = %r|http://#{APP_CONFIG['host']}(?::\d+)?/~(\w+)/attachments/(\w+)|.match(img['src'])
+        if attachment = user.attachments.where(:id => r[2]).first
           img['src'] = attachment.file.url
         end
       end

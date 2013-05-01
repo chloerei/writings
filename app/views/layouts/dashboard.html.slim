@@ -15,7 +15,7 @@ html
           - if logined?
             ul.top-nav.pull-left
               li
-                a href=(dashboard_root_path)
+                a href=(dashboard_root_path(:space_id => current_user))
                   i.icon-home
                   = ' '
                   = current_user.display_name
@@ -25,7 +25,7 @@ html
           - else
             ul.top-nav.pull-left
               li
-                a href=(dashboard_root_path)
+                a href=(root_path)
                   i.icon-home
                   span.hide-on-mobile
                     = ' '
@@ -68,24 +68,24 @@ html
             - if logined?
               li
                 .dropdown
-                  a.dropdown-toggle href=(dashboard_account_path)
+                  a.dropdown-toggle href=(dashboard_account_path(:space_id => current_user))
                     i.icon-cog
                     span.hide-on-mobile
                       = ' '
                       = t '.settings'
                   ul.dropdown-menu.align-right
                     li
-                      = link_to dashboard_account_path do
+                      = link_to dashboard_account_path(:space_id => current_user) do
                         i.icon-user
                         = ' '
                         = t '.account'
                     li
-                      = link_to dashboard_profile_path do
+                      = link_to dashboard_profile_path(:space_id => current_user) do
                         i.icon-credit-card
                         = ' '
                         = t '.profile'
                     li
-                      = link_to dashboard_billing_path do
+                      = link_to dashboard_billing_path(:space_id => current_user) do
                         i.icon-shopping-cart
                         = ' '
                         = t 'upgrade'

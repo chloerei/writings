@@ -9,32 +9,32 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should get new page" do
-    get :new
+    get :new, :space_id => @user
     assert_response :success, @response.body
   end
 
   test "should get index" do
-    get :index
+    get :index, :space_id => @user
     assert_response :success, @response.body
 
-    get :index, :status => 'publish'
+    get :index, :space_id => @user, :status => 'publish'
     assert_response :success, @response.body
 
-    get :index, :category_id => @category.urlname, :status => 'publish'
+    get :index, :space_id => @user, :category_id => @category.urlname, :status => 'publish'
     assert_response :success, @response.body
 
-    get :index, :format => :js
+    get :index, :space_id => @user, :format => :js
     assert_response :success, @response.body
   end
 
   test "should create article" do
     assert_difference "@user.articles.count" do
-      post :create, :format => :json, :article => attributes_for(:article)
+      post :create, :space_id => @user, :format => :json, :article => attributes_for(:article)
       assert_response :success, @response.body
     end
 
     assert_difference ["@user.articles.count", "@category.articles.count"] do
-      post :create, :format => :json, :article => attributes_for(:article).merge(:category_id => @category.urlname)
+      post :create, :space_id => @user, :format => :json, :article => attributes_for(:article).merge(:category_id => @category.urlname)
       assert_response :success, @response.body
     end
 
@@ -42,19 +42,19 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
     other = create(:user)
     assert_no_difference "other.articles.count" do
       assert_difference "@user.articles.count" do
-        post :create, :format => :json, :article => attributes_for(:article).merge(:space_id => other.id)
+        post :create, :space_id => @user, :format => :json, :article => attributes_for(:article).merge(:space_id => other.id)
         assert_response :success, @response.body
       end
     end
   end
 
   test "should edit article" do
-    get :edit, :id => @article
+    get :edit, :space_id => @user, :id => @article
     assert_response :success, @response.body
   end
 
   test "should update article" do
-    put :update, :id => @article, :article => { :title => 'change', :save_count => @article.save_count + 1 }, :format => :json
+    put :update, :space_id => @user, :id => @article, :article => { :title => 'change', :save_count => @article.save_count + 1 }, :format => :json
     assert_response :success, @response.body
     assert_equal 'change', @article.reload.title
   end
@@ -62,7 +62,7 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
   test "should empty trash" do
     2.times { create :article, :space => @user, :status => 'trash' }
     assert_difference "@user.articles.count", -2 do
-      delete :empty_trash, :format => :json
+      delete :empty_trash, :space_id => @user, :format => :json
     end
   end
 end
