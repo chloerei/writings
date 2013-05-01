@@ -1,10 +1,10 @@
 section#profile.header
   .avatar
-    = link_to image_tag(@user.gravatar_url), site_root_path
+    = link_to image_tag(@space.gravatar_url), site_root_path
   .info
     h1.name
-      = link_to @user.display_name, site_root_path
-    = simple_format @user.profile.description
+      = link_to @space.display_name, site_root_path
+    = simple_format @space.profile.description
 nav#main-nav
   ul
     li

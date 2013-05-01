@@ -1,10 +1,10 @@
 class Site::ArticlesController < Site::BaseController
   def index
-    @articles = @user.articles.publish.desc(:published_at).page(params[:page]).per(5)
+    @articles = @space.articles.publish.desc(:published_at).page(params[:page]).per(5)
   end
 
   def show
-    @article = @user.articles.publish.where(:token => params[:id]).first
+    @article = @space.articles.publish.where(:token => params[:id]).first
 
     if @article
       # urlname not match redirect
@@ -14,14 +14,14 @@ class Site::ArticlesController < Site::BaseController
     else
       # old url redirect
       old_url = params[:urlname].present? ? "#{params[:id]}-#{params[:urlname]}" : params[:id]
-      @article = @user.articles.publish.find_by(:old_url => old_url)
+      @article = @space.articles.publish.find_by(:old_url => old_url)
       redirect_to site_article_path(@article, :urlname => @article.urlname), :status => 301
     end
   end
 
   def feed
-    @articles = @user.articles.publish.desc(:published_at).limit(20)
-    @feed_title = @user.profile.name.present? ? @user.profile.name : @user.name
+    @articles = @space.articles.publish.desc(:published_at).limit(20)
+    @feed_title = @space.profile.name.present? ? @space.profile.name : @space.name
     @feed_link = site_root_url
 
     respond_to do |format|

@@ -23,7 +23,7 @@ class Dashboard::AttachmentsControllerTest < ActionController::TestCase
     assert_response 302
 
     login_as create(:user)
-    assert_raise(Mongoid::Errors::DocumentNotFound) do
+    assert_raise(Dashboard::BaseController::AccessDenied) do
       get :show, :space_id => @user, :id => attachment.id
     end
   end

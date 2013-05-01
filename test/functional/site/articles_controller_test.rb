@@ -9,7 +9,7 @@ class Site::ArticlesControllerTest < ActionController::TestCase
 
   test "should get index" do
     get :index
-    assert_equal @user, assigns(:user)
+    assert_equal @user, assigns(:space)
     assert_response :success, @response.body
   end
 
@@ -21,7 +21,7 @@ class Site::ArticlesControllerTest < ActionController::TestCase
 
     @request.host = 'custom.domain'
     get :index
-    assert_equal @user, assigns(:user)
+    assert_equal @user, assigns(:space)
     assert_response :success, @response.body
   end
 

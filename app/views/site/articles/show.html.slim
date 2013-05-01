@@ -3,7 +3,7 @@
 #topbar
   nav
     ul
-      li.host = link_to @user.host, root_path
+      li.host = link_to @space.host, root_path
       li.hide-on-mobile
         a href=(site_article_path(@article, :urlname => @article.urlname))
           i.icon-time
@@ -16,7 +16,7 @@
             span.hide-on-mobile
               = ' '
               = @article.category.name
-      - if @user.disqus_shortname.present?
+      - if @space.disqus_shortname.present?
         li
           a href="#disqus_thread"
             i.icon-comment
@@ -25,21 +25,21 @@
   .container
     .inner
       article
-        = article_format_body(convert_attachment_url(@article.body, @user))
+        = article_format_body(convert_attachment_url(@article.body, @space))
       section#profile
         .avatar
-          = link_to image_tag(@user.gravatar_url), site_root_path
+          = link_to image_tag(@space.gravatar_url), site_root_path
         .info
           h1
-            = link_to @user.display_name, site_root_path
+            = link_to @space.display_name, site_root_path
           .description
-            = simple_format @user.profile.description
-      - if @user.disqus_shortname.present?
+            = simple_format @space.profile.description
+      - if @space.disqus_shortname.present?
         section#disqus_thread
         javascript:
-          var disqus_shortname = '#{@user.disqus_shortname}';
+          var disqus_shortname = '#{@space.disqus_shortname}';
           var disqus_identifier = '#{@article.token}';
-          var disqus_url = '#{site_article_url(@article, :urlname => @article.urlname, :host => @user.host)}';
+          var disqus_url = '#{site_article_url(@article, :urlname => @article.urlname, :host => @space.host)}';
 
           (function() {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

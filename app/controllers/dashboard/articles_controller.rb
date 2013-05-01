@@ -2,9 +2,9 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   before_filter :find_article, :only => [:edit, :update, :trash, :restore]
 
   def index
-    @articles = current_user.articles.desc(:updated_at).page(params[:page]).status(params[:status]).includes(:category)
+    @articles = @space.articles.desc(:updated_at).page(params[:page]).status(params[:status]).includes(:category)
 
-    if params[:category_id] && @category = current_user.categories.where(:urlname => params[:category_id]).first
+    if params[:category_id] && @category = @space.categories.where(:urlname => params[:category_id]).first
       @articles = @articles.where(:category_id => @category.id)
     end
 
@@ -13,16 +13,16 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def new
-    @article = current_user.articles.new
+    @article = @space.articles.new
     if params[:category_id]
-      @article.category = current_user.categories.where(:urlname => params[:category_id]).first
+      @article.category = @space.categories.where(:urlname => params[:category_id]).first
     end
     append_title @article.title
     render :edit, :layout => false
   end
 
   def create
-    @article = current_user.articles.new article_params
+    @article = @space.articles.new article_params
     if @article.save
       @article.create_version
 
@@ -65,11 +65,11 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def trash_index
-    @articles = current_user.articles.desc(:updated_at).page(params[:page]).status('trash').includes(:category)
+    @articles = @space.articles.desc(:updated_at).page(params[:page]).status('trash').includes(:category)
   end
 
   def empty_trash
-    current_user.articles.trash.delete_all
+    @space.articles.trash.delete_all
 
     respond_to do |format|
       format.js
@@ -89,20 +89,20 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   private
 
   def find_article
-    @article = current_user.articles.find_by(:token => params[:id])
+    @article = @space.articles.find_by(:token => params[:id])
   end
 
   def article_params
     base_params = params.require(:article).permit(:title, :body, :urlname, :status, :save_count)
 
     if params[:article][:category_id]
-      base_params.merge!(:category => current_user.categories.where(:urlname => params[:article][:category_id]).first)
+      base_params.merge!(:category => @space.categories.where(:urlname => params[:article][:category_id]).first)
     end
 
     base_params
   end
 
   def article_as_json(article)
-    article.as_json(:only => [:urlname, :title, :status, :token, :save_count]).merge(:url => site_article_url(article, :urlname => article.urlname, :host => current_user.host), :updated_at => article.updated_at.to_s)
+    article.as_json(:only => [:urlname, :title, :status, :token, :save_count]).merge(:url => site_article_url(article, :urlname => article.urlname, :host => @space.host), :updated_at => article.updated_at.to_s)
   end
 end

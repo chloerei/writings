@@ -6,8 +6,15 @@ class Dashboard::BaseController < ApplicationController
 
   private
 
+  class AccessDenied < Exception
+  end
+
   def find_space
     @space = Space.find_by :name => /^#{params[:space_id]}$/i
+
+    if @space != current_user
+      raise AccessDenied
+    end
   end
 
   def set_base_title

@@ -1,7 +1,7 @@
 class Dashboard::VersionsController < Dashboard::BaseController
   def index
-    @article = current_user.articles.find_by :token => params[:article_id]
-    if current_user.in_plan?(:free)
+    @article = @space.articles.find_by :token => params[:article_id]
+    if @space.in_plan?(:free)
       @versions = @article.versions.includes(:user).page(1).limit(5)
     else
       @versions = @article.versions.includes(:user).page(params[:page]).per(20)
@@ -12,7 +12,7 @@ class Dashboard::VersionsController < Dashboard::BaseController
   end
 
   def show
-    @article = current_user.articles.find_by :token => params[:article_id]
+    @article = @space.articles.find_by :token => params[:article_id]
     @version = @article.versions.find params[:id]
     respond_to do |format|
       format.json { render :json => @version.as_json(:only => [:title, :body, :created_at]) }
@@ -20,7 +20,7 @@ class Dashboard::VersionsController < Dashboard::BaseController
   end
 
   def restore
-    @article = current_user.articles.find_by :token => params[:article_id]
+    @article = @space.articles.find_by :token => params[:article_id]
     @version = @article.versions.find params[:id]
 
     @article.create_version
