@@ -6,7 +6,7 @@
       .header
         h1
           a href=(dashboard_root_path)
-            = t 'workspace_header', :name => current_user.display_name
+            = t 'workspace_header', :name => @space.display_name
           = ' / '
           a href=(dashboard_articles_path)
             = t 'articles'

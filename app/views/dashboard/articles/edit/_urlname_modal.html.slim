@@ -9,7 +9,7 @@
       .field
         .input-prepend
           .add-on
-            = "#{current_user.host}/articles/"
+            = "#{@space.host}/articles/"
             span.article-id = @article.token || 'id'
             = '-'
           .input

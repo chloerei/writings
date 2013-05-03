@@ -10,7 +10,7 @@
         .dropdown
           a.dropdown-toggle.button href="#" = @article.category.try(:name) || t('not_collected')
           ul.dropdown-menu
-            - current_user.categories.each do |category|
+            - @space.categories.each do |category|
               li
                 a href="#" data-category-id=(category.urlname) = category.name
             li

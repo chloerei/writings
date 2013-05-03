@@ -23,7 +23,7 @@
           = link_to '#urlname-modal', :data => { :toggle => :modal }, :title => t('.urlname') do
             i.icon-flag
         li class=(@article.persisted? && @article.publish? ? nil : 'hide')
-          a#view-button target='_blank' href=(@article.persisted? ? site_article_url(@article, :urlname => @article.urlname, :host => current_user.host) : site_root_url(:host => current_user.host))
+          a#view-button target='_blank' href=(@article.persisted? ? site_article_url(@article, :urlname => @article.urlname, :host => @space.host) : site_root_url(:host => @space.host))
             i.icon-external-link
         li.hide-on-mobile
           a href=(trash_dashboard_article_path(:id => @article)) data-confirm=(t '.trash_confirm') data-method='put' title=(t '.trash')

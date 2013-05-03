@@ -24,10 +24,10 @@
         i.icon-plus
         = ' '
         = t '.new_category'
-    - if current_user.categories.any?
+    - if @space.categories.any?
       li
         hr
-    - current_user.categories.each do |category|
+    - @space.categories.each do |category|
       li
         a href=(index_dashboard_articles_path(:category_id => category.urlname))
           i.icon-folder-close-alt

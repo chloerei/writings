@@ -5,7 +5,7 @@
     a.modal-close data-close='modal'
       i.icon-remove
   .modal-content
-    = form_for current_user.categories.new, :remote => true, :url => dashboard_categories_path, :validate => true, :html => { :id => 'new-category-form', 'data-type' => 'json' } do |f|
+    = form_for @space.categories.new, :remote => true, :url => dashboard_categories_path, :validate => true, :html => { :id => 'new-category-form', 'data-type' => 'json' } do |f|
       .field
         = f.label :name
         = f.text_field :name
@@ -13,7 +13,7 @@
         = f.label :urlname
         .input-prepend
           .add-on
-            = "#{current_user.host}/categories/"
+            = "#{@space.host}/categories/"
           .input
             = f.text_field :urlname, :placeholder => 'urlname'
       .field

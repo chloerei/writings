@@ -4,8 +4,8 @@ json.files [@attachment] do |attachment|
 end
 
 json.storage_status do
-  json.limit current_user.storage_limit
-  json.used current_user.storage_used
-  json.limit_human_size number_to_human_size(current_user.storage_limit)
-  json.used_human_size number_to_human_size(current_user.storage_used)
+  json.limit @space.storage_limit
+  json.used @space.storage_used
+  json.limit_human_size number_to_human_size(@space.storage_limit)
+  json.used_human_size number_to_human_size(@space.storage_used)
 end

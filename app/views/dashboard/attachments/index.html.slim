@@ -4,16 +4,16 @@
       .header
         h1
           a href=(dashboard_root_path)
-            = t 'workspace_header', :name => current_user.display_name
+            = t 'workspace_header', :name => @space.display_name
           = ' / '
           = t '.pictures'
       section
         .pictures
           #storage-status
-            span.used= number_to_human_size current_user.storage_used
+            span.used= number_to_human_size @space.storage_used
             = ' / '
-            span.limit= number_to_human_size current_user.storage_limit
-            - if current_user.in_plan? :free
+            span.limit= number_to_human_size @space.storage_limit
+            - if @space.in_plan? :free
               = ' '
               = link_to t('need_more_storage'), billing_path
           ul

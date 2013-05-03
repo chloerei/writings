@@ -3,7 +3,7 @@
   $('#versions').html('<%= j render @versions %>');
 <% else %>
   $('#versions').append('<%= j render @versions %>');
-  <% if page >= current_user.version_limit / @versions.limit_value %>
+  <% if page >= @space.version_limit / @versions.limit_value %>
     $('#versions').data('isEnd', true);
   <% end %>
 <% end %>

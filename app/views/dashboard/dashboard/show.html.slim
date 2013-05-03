@@ -4,7 +4,7 @@
       .header
         h1.clearfix
           .pull-left
-            = t 'workspace_header', :name => current_user.display_name
+            = t 'workspace_header', :name => @space.display_name
           .pull-right
             small
               a href=(dashboard_settings_path)
