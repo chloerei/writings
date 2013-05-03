@@ -15,10 +15,30 @@ html
           - if logined?
             ul.top-nav.pull-left
               li
-                a href=(dashboard_root_path(:space_id => current_user))
-                  i.icon-home
-                  = ' '
-                  = current_user.display_name
+                .dropdown
+                  a.dropdown-toggle href=(dashboard_root_path(:space_id => current_user))
+                    i.icon-user
+                    = ' '
+                    = current_user.display_name
+                  ul.dropdown-menu
+                    li
+                      a href=(dashboard_root_path(current_user))
+                        i.icon-user
+                        = ' '
+                        = current_user.display_name
+                    - current_user.own_workspaces.each do |workspace|
+                      li
+                        a href=(dashboard_root_path(workspace))
+                          i.icon-group
+                          = ' '
+                          = workspace.display_name
+                    li
+                      hr
+                    li
+                      a href=(new_workspace_path)
+                        i.icon-plus
+                        = ' '
+                        = t '.new_workspace'
               li
                 a#user-link href=(site_root_url(:host => current_user.host)) target='_blank'
                   i.icon-external-link

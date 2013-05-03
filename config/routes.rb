@@ -18,6 +18,8 @@ Publish::Application.routes.draw do
     resource :account, :only => [:show, :update, :destroy]
     resource :billing, :only => [:show]
 
+    resources :workspaces, :only => [:new, :create]
+
     scope '/~:space_id', :module => 'dashboard', :as => 'dashboard' do
       root :to => 'dashboard#show'
 

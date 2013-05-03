@@ -15,6 +15,7 @@ class User < Space
   PLANS = %w(free base)
 
   embeds_one :profile
+  has_many :own_workspaces, :class_name => 'Workspace', :inverse_of => :owner
 
   has_secure_password
 

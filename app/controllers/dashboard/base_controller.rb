@@ -12,7 +12,16 @@ class Dashboard::BaseController < ApplicationController
   def find_space
     @space = Space.find_by :name => /^#{params[:space_id]}$/i
 
-    if @space != current_user
+    case @space
+    when User
+      unless @space == current_user
+        raise AccessDenied
+      end
+    when Workspace
+      unless @space.owner == current_user or @space.members.include?(current_user)
+        raise AccessDenied
+      end
+    else
       raise AccessDenied
     end
   end
