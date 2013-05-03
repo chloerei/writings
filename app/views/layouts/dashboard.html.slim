@@ -16,10 +16,10 @@ html
             ul.top-nav.pull-left
               li
                 .dropdown
-                  a.dropdown-toggle href=(dashboard_root_path(:space_id => current_user))
+                  a.dropdown-toggle href=(dashboard_root_path(@space || current_user))
                     i.icon-user
                     = ' '
-                    = current_user.display_name
+                    = (@space || current_user).display_name
                   ul.dropdown-menu
                     li
                       a href=(dashboard_root_path(current_user))
@@ -40,7 +40,7 @@ html
                         = ' '
                         = t '.new_workspace'
               li
-                a#user-link href=(site_root_url(:host => current_user.host)) target='_blank'
+                a#user-link href=(site_root_url(:host => (@space || current_user).host)) target='_blank'
                   i.icon-external-link
           - else
             ul.top-nav.pull-left
