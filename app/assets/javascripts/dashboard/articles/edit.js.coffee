@@ -22,8 +22,15 @@ class ArticleEdit
     $("#publish-button").on "click", (event) => @publishArticle(event)
     $("#draft-button").on "click", (event) => @draftArticle(event)
     $("#category-form").on "submit", (event) => @saveCategory(event)
-    $("#new-category-form").on "submit", (event) => @createCategory(event)
     $("#pick-up-button").on "click", (event) => @pickUpTopbar(event)
+
+    $("#new-category-form").on "ajax:success", (event, data) ->
+      $li = $("<li><a href=\"#\">")
+      $li.find("a").text(data.name).data "category-id", data.urlname
+      $("#category-form .dropdown-menu").prepend $li
+      $("#category-form .dropdown-toggle").text data.name
+      $("#article-category-id").val data.urlname
+      Dialog.hide "#new-category-modal"
 
     $("#category-form .dropdown").on "click", ".dropdown-menu li a", (event) ->
       event.preventDefault()
@@ -118,21 +125,6 @@ class ArticleEdit
       @article.data "category-id", categoryId
       @createArticle()
       Dialog.hide "#select-category-modal"
-
-  createCategory: (event) ->
-    event.preventDefault()
-    $.ajax(
-      url: "/~#{@space}/categories/"
-      data: $("#new-category-form").serializeArray()
-      type: "post"
-      dataType: "json"
-    ).success (data) ->
-      $li = $("<li><a href=\"#\">")
-      $li.find("a").text(data.name).data "category-id", data.urlname
-      $("#category-form .dropdown-menu").prepend $li
-      $("#category-form .dropdown-toggle").text data.name
-      $("#article-category-id").val data.urlname
-      Dialog.hide "#new-category-modal"
 
   saveArticle: (event) ->
     event.preventDefault() if event
