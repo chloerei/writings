@@ -10,10 +10,12 @@ class Dashboard::CategoriesController < Dashboard::BaseController
 
     if @category.save
       respond_to do |format|
+        format.js
         format.json { render :json => @category.as_json(:only => [:urlname, :name]) }
       end
     else
       respond_to do |format|
+        format.js
         format.json { render :json => { :message => @category.errors.full_messages.join }, :status => 400 }
       end
     end

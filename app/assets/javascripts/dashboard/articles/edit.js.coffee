@@ -11,6 +11,7 @@ class ArticleEdit
     @imageUploader = new ArticleEdit.ImageUploader(@editor)
     @version = new ArticleEdit.Version()
     @article = $("#editarea article")
+    @space = @article.data('space')
     @saveCount = @article.data("saveCount")
 
     @bindActions()
@@ -89,7 +90,7 @@ class ArticleEdit
     @saveStart()
     data.article.save_count = @saveCount
     $.ajax(
-      url: "/articles/" + @article.data("id")
+      url: "/~#{@space}/articles/" + @article.data("id")
       data: data
       type: "put"
       dataType: "json"
@@ -121,7 +122,7 @@ class ArticleEdit
   createCategory: (event) ->
     event.preventDefault()
     $.ajax(
-      url: "/categories/"
+      url: "/~#{@space}/categories/"
       data: $("#new-category-form").serializeArray()
       type: "post"
       dataType: "json"
@@ -156,7 +157,7 @@ class ArticleEdit
 
     # save change between ajax response
     $.ajax(
-      url: "/articles"
+      url: "/~#{@space}/articles"
       data:
         article:
           title: @editor.editable.find("h1").text()
@@ -171,7 +172,7 @@ class ArticleEdit
       @saveCompelete data
       @article.data "id", data.token
       @updateViewButton data
-      history.replaceState null, null, "/articles/" + data.token + "/edit"
+      history.replaceState null, null, "/~#{@space}/articles/" + data.token + "/edit"
       $('#urlname-modal .article-id').text(data.token)
       @saveArticle()
     ).fail((xhr) =>
@@ -231,11 +232,11 @@ class ArticleEdit
 
     if $("body").hasClass("pick-up-topbar")
       $.cookie "pick_up_topbar", true,
-        path: "/articles"
+        path: "/"
         expires: 14
     else
       $.removeCookie "pick_up_topbar",
-        path: "/articles"
+        path: "/"
 
 @ArticleEdit = ArticleEdit
 

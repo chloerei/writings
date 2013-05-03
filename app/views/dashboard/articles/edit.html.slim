@@ -15,7 +15,7 @@ html
         #editarea
           .scrollable
             .editor-container
-              article contentEditable="true" spellcheck="false" data-id=(@article.token) data-save-count=(@article.save_count) data-category-id=(@article.category.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil)
+              article contentEditable="true" spellcheck="false" data-id=(@article.token) data-save-count=(@article.save_count) data-category-id=(@article.category.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil) data-space=(@space.to_param)
                 = article_format_body @article.body
               = render 'layouts/alert_messages'
           #readonly-message
@@ -43,5 +43,5 @@ html
     = render 'dashboard/articles/edit/link_modal'
     = render 'dashboard/articles/edit/image_modal'
     = render 'dashboard/articles/edit/select_category_modal'
-    = render 'new_category_modal'
+    = render 'dashboard/articles/edit/new_category_modal'
     = render 'dashboard/articles/edit/help_modal'
