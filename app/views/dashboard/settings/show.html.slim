@@ -1,0 +1,21 @@
+#main
+  .container
+    .inner
+      .header
+        h1
+          a href=(dashboard_root_path)
+            = t 'workspace_header', :name => @space.display_name
+          = ' / '
+          = t '.settings'
+      section
+        = form_for @space, :url => dashboard_settings_path, :html => { :data => { :remote => true, :type => :json } } do |f|
+          fieldset
+            legend = t '.custom'
+            .field
+              = f.label :domain
+              = f.text_field :domain
+            .field
+              = f.label :disqus_shortname
+              = f.text_field :disqus_shortname
+            .field
+              = f.submit t('submit')

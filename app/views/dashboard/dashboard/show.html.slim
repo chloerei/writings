@@ -2,7 +2,13 @@
   .container
     .inner
       .header
-        h1 = t 'workspace_header', :name => current_user.display_name
+        h1.clearfix
+          .pull-left
+            = t 'workspace_header', :name => current_user.display_name
+          .pull-right
+            small
+              a href=(dashboard_settings_path)
+                = t '.settings'
       section
         header.clearfix
           .pull-left

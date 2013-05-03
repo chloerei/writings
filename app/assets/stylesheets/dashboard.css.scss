@@ -302,6 +302,18 @@ table.nice-table {
 
     h1 {
       margin: 0;
+
+      small {
+        font-size: 0.5em;
+
+        a {
+          color: #999;
+
+          &:hover {
+            color: #555;
+          }
+        }
+      }
     }
 
     nav ul {

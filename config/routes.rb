@@ -21,6 +21,8 @@ Publish::Application.routes.draw do
     scope '/~:space_id', :module => 'dashboard', :as => 'dashboard' do
       root :to => 'dashboard#show'
 
+      resource :settings, :only => [:show, :update]
+
       resources :categories, :only => [:create, :edit, :update, :destroy], :path_names => { :edit => :settings }
       resources :articles, :only => [:index, :new, :create, :edit, :update, :destroy] do
         collection do

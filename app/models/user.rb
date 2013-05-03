@@ -22,18 +22,20 @@ class User < Space
   validates :password, :password_confirmation, :presence => true, :on => :create
   validates :password, :length => {:minimum => 6, :allow_blank => true}
   validates :locale, :inclusion => {:in => ALLOW_LOCALE}
-  validates :current_password, :presence => true, :on => :update
+  validates :current_password, :presence => true, :if => :need_current_password?
+  validate :check_current_password, :if => :need_current_password?
 
-  attr_accessor :current_password
+  attr_accessor :current_password, :need_current_password
 
   before_create :build_profile
 
-  def check_current_password(password)
-    if authenticate(password)
-      true
-    else
+  def need_current_password?
+    !!@need_current_password
+  end
+
+  def check_current_password
+    unless authenticate(current_password)
       errors.add(:current_password, "is not match")
-      false
     end
   end
 
