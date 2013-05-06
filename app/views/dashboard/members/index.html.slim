@@ -1,0 +1,17 @@
+#main
+  .container
+    .inner
+      .header
+        h1
+          a href=(dashboard_root_path)
+            = t 'workspace_header', :name => @space.display_name
+          = ' / '
+          = t '.members'
+      section.two-columns
+        .column
+          | text
+        .column
+          #members.members
+            ul
+              = render :partial => 'member', :object => @space.owner
+              = render :partial => 'member', :collection => @members

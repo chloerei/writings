@@ -29,4 +29,16 @@ class Dashboard::BaseController < ApplicationController
   def set_base_title
     append_title APP_CONFIG['site_name']
   end
+
+  def require_workspace
+    unless @space.is_a?(Workspace)
+      redirect_to dashboard_root_path
+    end
+  end
+
+  def require_owner
+    unless @space.is_a?(Workspace) && @space.owner == current_user
+      raise AccessDenied
+    end
+  end
 end

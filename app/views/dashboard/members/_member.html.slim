@@ -1,0 +1,10 @@
+li.member
+  .avatar = image_tag member.gravatar_url
+  .info
+    .name = member.name
+    .email = member.email
+    .action
+      - if @space.owner != member
+        a href='#' = t '.remove'
+      - else
+        = t '.is_owner'

@@ -4,6 +4,15 @@
   line-height: 1.6em;
 }
 
+.two-columns {
+  @include clearfix();
+
+  .column {
+    float: left;
+    width: 50%;
+  }
+}
+
 table.nice-table {
   width: 100%;
   margin: 0 auto;
@@ -414,6 +423,44 @@ table.nice-table {
           }
         }
 
+      }
+    }
+  }
+
+  .members {
+    ul {
+      list-style: none;
+    }
+
+    .member {
+      margin-bottom: 20px;
+      @include clearfix();
+
+      .avatar {
+        float: left;
+        width: 30%;
+
+        img {
+          width: 100px;
+          height: 100px;
+          border-radius: 50px;
+        }
+      }
+
+      .info {
+        float: left;
+        width: 70%;
+
+        .name {
+          font-size: 1.2em;
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+
+        .action,
+        .email {
+          margin-bottom: 10px;
+        }
       }
     }
   }
