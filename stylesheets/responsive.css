@@ -1,0 +1,20 @@
+@media (max-width: 480px) {
+  body {
+    padding: 0 10px; }
+    body #container ul.posts .datetime {
+      float: none;
+      display: block;
+      width: auto;
+      text-align: left; }
+    body #container #ind-instagram, body #container #ind-linkedin {
+      display: none; }
+    body #container .links, body #container .content {
+      padding: 15px; }
+      body #container .links section.post, body #container .content section.post {
+        margin: 0 -15px; }
+        body #container .links section.post > p, body #container .links section.post h1, body #container .content section.post > p, body #container .content section.post h1 {
+          padding: 0 15px; }
+        body #container .links section.post > ul, body #container .links section.post > ol, body #container .content section.post > ul, body #container .content section.post > ol {
+          padding: 0 30px; }
+    body #container .content blockquote {
+      padding: 0 15px; } }

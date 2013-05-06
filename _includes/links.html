@@ -1,0 +1,6 @@
+<div class="block">
+  <a target="_top" class="main" href="/about">About</a>
+  {% for link in site.links %}
+    <a target="_blank" class="main" href="{{ link.url }}">{{ link.name }}</a>
+  {% endfor %}
+</div>
