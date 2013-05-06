@@ -1,0 +1,10 @@
+#main
+  .container
+    .inner
+      .header
+        h1
+          = t '.new_workspace'
+      section
+        = t '.workspace_limit'
+        = ' '
+        = link_to t('.see_plan'), billing_path

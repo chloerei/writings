@@ -2,7 +2,7 @@ require 'test_helper'
 
 class WorkspacesControllerTest < ActionController::TestCase
   def setup
-    @user = create :user
+    @user = create :user, :plan => 'base', :plan_expired_at => 1.day.from_now
     login_as @user
   end
 
@@ -15,5 +15,14 @@ class WorkspacesControllerTest < ActionController::TestCase
     assert_difference "@user.own_workspaces.count" do
       post :create, :workspace => attributes_for(:workspace)
     end
+  end
+
+  test "should show limit page when over limit" do
+    @user.update_attribute :plan, 'free'
+    get :new
+    assert_template :limit
+
+    post :create, :workspace => attributes_for(:workspace)
+    assert_template :limit
   end
 end

@@ -106,4 +106,17 @@ class User < Space
       5
     end
   end
+
+  def workspace_limit
+    if plan_expired_at.present? && plan_expired_at > Time.now
+      case plan
+      when :base
+        1
+      else
+        0
+      end
+    else
+      0
+    end
+  end
 end
