@@ -25,7 +25,7 @@ Publish::Application.routes.draw do
 
       resource :settings, :only => [:show, :update]
       resources :members, :only => [:index]
-      resources :invitations, :only => [:create]
+      resources :invitations, :only => [:create, :destroy]
 
       resources :categories, :only => [:create, :edit, :update, :destroy], :path_names => { :edit => :settings }
       resources :articles, :only => [:index, :new, :create, :edit, :update, :destroy] do

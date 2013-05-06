@@ -1,6 +1,6 @@
 class Dashboard::InvitationsController < Dashboard::BaseController
   before_filter :require_workspace
-  before_filter :require_owner, :only => [:create]
+  before_filter :require_owner, :only => [:create, :destroy]
 
   def create
     exists_emails = [@space.owner.email]
@@ -12,7 +12,14 @@ class Dashboard::InvitationsController < Dashboard::BaseController
       end
     }.compact.find_all { |invitation| invitation.persisted? }
 
-    logger.info @invitation.inspect
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def destroy
+    @invitation = @space.invitations.find params[:id]
+    @invitation.destroy
 
     respond_to do |format|
       format.js

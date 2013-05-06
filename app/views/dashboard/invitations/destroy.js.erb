@@ -1,0 +1,5 @@
+$('#invitation-<%= @invitation.id %>').remove()
+
+$('#invitation-form').replaceWith('<%= j render(:partial => 'dashboard/members/form') %>');
+
+AlertMessage.success('Success', 1500);

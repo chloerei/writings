@@ -1,4 +1,4 @@
-li.member
+li.member id=("invitation-#{invitation.id}")
   .avatar = image_tag invitation.gravatar_url
   .info
     .email = invitation.email
@@ -6,4 +6,4 @@ li.member
     .action
       a href='#' = t '.resend'
       = ' / '
-      a href='#' = t '.remove'
+      = link_to t('.remove'), dashboard_invitation_path(:id => invitation), :remote => true, :method => :delete, :confirm => '.remove_confirm'

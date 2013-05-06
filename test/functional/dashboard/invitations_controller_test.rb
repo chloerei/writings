@@ -17,4 +17,12 @@ class Dashboard::InvitationsControllerTest < ActionController::TestCase
       post :create, :emails => emails, :space_id => @workspace
     end
   end
+
+  test "should destroy invitation" do
+    invitation = create :invitation, :workspace => @workspace
+
+    assert_difference "@workspace.invitations.count", -1 do
+      delete :destroy, :id => invitation, :space_id => @workspace
+    end
+  end
 end
