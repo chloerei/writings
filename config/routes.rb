@@ -24,7 +24,8 @@ Publish::Application.routes.draw do
       root :to => 'dashboard#show'
 
       resource :settings, :only => [:show, :update]
-      resources :members, :only => [:index, :new, :create, :destroy]
+      resources :members, :only => [:index]
+      resources :invitations, :only => [:create]
 
       resources :categories, :only => [:create, :edit, :update, :destroy], :path_names => { :edit => :settings }
       resources :articles, :only => [:index, :new, :create, :edit, :update, :destroy] do
