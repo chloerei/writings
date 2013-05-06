@@ -15,10 +15,15 @@ The theme is mobile optimised but I did not check browser compatibility. It look
 
 ### Get started
 
-1. `gem install jekyll`
-2. [Fork the repository](https://github.com/muan/scribble/fork).
-3. Clone the repository to your computer.<br /> `git clone https://github.com/username/scribble`
-4. Build and run jekyll using `jekyll --server`.
+1. [Fork the repository](https://github.com/muan/scribble/fork).
+2. Clone the repository to your computer.<br /> `git clone https://github.com/username/scribble`
+3. `bundle install`
+4. **If using older versions of Jekyll**<br />
+  Build and run jekyll using `jekyll --server --auto`.<br />
+  **If using [Jekyll 1.0](http://blog.parkermoore.de/2013/05/06/jekyll-1-dot-0-released/)**<br />
+  Build Jekyll using `jekyll build`.<br />
+  Then run Jekyll using `jekyll serve --watch`<br />
+5. Go to http://localhost:4000 for your site.
 
 ---
 
