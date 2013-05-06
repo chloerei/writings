@@ -1,0 +1,10 @@
+= form_tag dashboard_invitations_path, :remote => true, :id => 'invitation-form' do
+  - left_count = 5 - (@space.members.count + @space.invitations.count)
+  - if left_count > 0
+    - (left_count).times do
+      .field
+        = text_field_tag 'emails[]', nil, :placeholder => 'Email'
+    .field
+      = submit_tag 'send_invitation'
+  - else
+    = t '.upto_members_limit'

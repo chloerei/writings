@@ -1,0 +1,9 @@
+li.member
+  .avatar = image_tag invitation.gravatar_url
+  .info
+    .email = invitation.email
+    p = t '.waiting_for_accept'
+    .action
+      a href='#' = t '.resend'
+      = ' / '
+      a href='#' = t '.remove'

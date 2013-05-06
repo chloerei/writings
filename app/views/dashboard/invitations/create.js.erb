@@ -1,0 +1,5 @@
+$('#invitations ul').append('<%= j render(:partial => 'dashboard/members/invitation', :collection => @invitations) %>');
+
+$('#invitation-form').replaceWith('<%= j render(:partial => 'dashboard/members/form') %>');
+
+AlertMessage.success('Success', 1500);

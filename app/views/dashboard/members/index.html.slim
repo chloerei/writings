@@ -9,9 +9,17 @@
           = t '.members'
       section.two-columns
         .column
-          | text
+          h3.title = t '.invite_members'
+          - if @space.owner == current_user
+            = render 'form'
+          - else
+            = t '.contact_workspace_owner_to_invite_members'
         .column
           #members.members
+            h3.title = t '.members'
             ul
               = render :partial => 'member', :object => @space.owner
-              = render :partial => 'member', :collection => @members
+              = render :partial => 'member', :collection => @space.members
+          #invitations.members
+            ul
+              = render :partial => 'invitation', :collection => @space.invitations

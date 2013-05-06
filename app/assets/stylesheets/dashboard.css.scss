@@ -11,6 +11,10 @@
     float: left;
     width: 50%;
   }
+
+  .title {
+    margin-top: 0;
+  }
 }
 
 table.nice-table {
@@ -430,6 +434,7 @@ table.nice-table {
   .members {
     ul {
       list-style: none;
+      margin-bottom: 30px;
     }
 
     .member {
