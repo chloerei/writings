@@ -1,6 +1,11 @@
 class Dashboard::InvitationsController < Dashboard::BaseController
   before_filter :require_workspace
   before_filter :require_owner, :only => [:create, :destroy]
+  skip_filter :require_logined, :require_space_access, :only => [:show]
+
+  def show
+    @invitation = @space.invitations.find_by :token => params[:id]
+  end
 
   def create
     exists_emails = [@space.owner.email]

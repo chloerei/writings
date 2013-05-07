@@ -6,7 +6,7 @@ Writings.io is a website to write, manage and publish articles.
 
 Accept this invitation to get started:
 
-# TODO url
+<%= dashboard_invitation_url(:space_id => @workspace, :id => @invitation.token, :host => APP_CONFIG['host']) %>
 
 <% if @workspace.members.any? %>
 Other members on the workspace are:

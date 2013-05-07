@@ -1,6 +1,6 @@
 class Dashboard::BaseController < ApplicationController
   before_filter :require_logined
-  before_filter :find_space
+  before_filter :find_space, :require_space_access
   before_filter :set_base_title
   helper_method :is_workspace_owner?
   layout 'dashboard'
@@ -12,7 +12,9 @@ class Dashboard::BaseController < ApplicationController
 
   def find_space
     @space = Space.find_by :name => /^#{params[:space_id]}$/i
+  end
 
+  def require_space_access
     case @space
     when User
       unless @space == current_user

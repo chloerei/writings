@@ -7,6 +7,12 @@ class Dashboard::InvitationsControllerTest < ActionController::TestCase
     login_as @user
   end
 
+  test "should show invitation by token" do
+    invitation = create :invitation, :workspace => @workspace
+    get :show, :space_id => @workspace, :id => invitation.token
+    assert_response :success, @response.body
+  end
+
   test "should create invitation" do
     assert_difference "@workspace.invitations.count" do
       post :create, :emails => [attributes_for(:invitation)[:email]], :space_id => @workspace

@@ -3,7 +3,8 @@ class UserSessionsController < ApplicationController
   before_filter :require_no_logined, :except => :destroy
 
   def new
-    store_location request.referrer if request.referrer.present?
+    referrer = request.headers['X-XHR-Referer'] || request.referrer
+    store_location referrer if referrer.present?
   end
 
   def create

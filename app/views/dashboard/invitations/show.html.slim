@@ -1,0 +1,52 @@
+#main
+  .container
+    .inner
+      .header
+        h1
+          = t 'workspace_header', :name => @space.display_name
+          = ' / '
+          = t '.invitation'
+      section.two-columns
+        .column
+          h3.title = t '.review_invitation'
+          p
+            b = @space.owner.display_name
+            = ' '
+            = t '.invite_you_to_join_this_workspace'
+          blockquote
+            | text
+          - if logined?
+            p
+              = t '.you_are_login_as'
+              = ' '
+              b = current_user.display_name
+              = ' '
+              = link_to t('.change_another_account'), logout_path, :method => :delete
+            p
+              = link_to 'Join workspace', '#', :class => 'button button-green'
+          - else
+            p
+              = t '.you_need_sign_up_for_continue'
+              = ' '
+              = link_to t('.already_have_account'), login_path
+            = form_for User.new, :validate => true do |f|
+              .field
+                = f.label :name
+                = f.text_field :name, :tabindex => 1, :autofocus => 'autofocus'
+              .field
+                = f.label :email
+                = f.text_field :email, :tabindex => 2
+              .field
+                = f.label :password
+                = f.password_field :password, :tabindex => 3
+              .field
+                = f.label :password_confirmation
+                = f.password_field :password_confirmation, :tabindex => 4
+              .field
+                = f.submit '.signup_and_join', :class => 'button-green', :tabindex => 5
+        .column
+          #members.members
+            h3.title = t '.members'
+            ul
+              = render :partial => 'dashboard/members/member', :object => @space.owner
+              = render :partial => 'dashboard/members/member', :collection => @space.members
