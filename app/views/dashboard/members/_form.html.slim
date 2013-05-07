@@ -3,7 +3,7 @@
   - if left_count > 0
     - (left_count).times do
       .field
-        = text_field_tag 'emails[]', nil, :placeholder => 'Email'
+        = text_field_tag 'emails[]', nil, :placeholder => 'Email', :id => nil
     .field
       = submit_tag 'send_invitation'
   - else
