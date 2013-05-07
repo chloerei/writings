@@ -1,0 +1,15 @@
+<%= @workspace.owner.display_name %> invite you to a workspace:
+
+<%= @workspace.name %>
+
+Writings.io is a website to write, manage and publish articles.
+
+Accept this invitation to get started:
+
+# TODO url
+
+<% if @workspace.members.any? %>
+Other members on the workspace are:
+
+<%= @workspace.members.map(&:display_name).join(', ') %>
+<% end %>

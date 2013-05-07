@@ -17,4 +17,10 @@ class Invitation
   def set_token
     self.token = SecureRandom.hex(16)
   end
+
+  after_create :send_mail
+
+  def send_mail
+    InvitationMailer.invite(self).deliver
+  end
 end
