@@ -1,10 +1,10 @@
-li.member
+li.member id=("member-#{member.id}")
   .avatar = image_tag member.gravatar_url
   .info
     .name = member.name
     .email = member.email
     .action
       - if @space.owner != member
-        a href='#' = t '.remove'
+        = link_to t('.remove'), dashboard_member_path(:id => member), :remote => true, :method => :delete, :confirm => '.remove_confirm'
       - else
         = t '.is_owner'

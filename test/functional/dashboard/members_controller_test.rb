@@ -14,4 +14,12 @@ class Dashboard::MembersControllerTest < ActionController::TestCase
     get :index, :space_id => @workspace
     assert_response :success, @response.body
   end
+
+  test "should destroy member" do
+    member = create :user
+    @workspace.members << member
+    assert_difference "@workspace.reload.members.count", -1 do
+      delete :destroy, :space_id => @workspace, :id => member
+    end
+  end
 end
