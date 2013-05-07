@@ -10,7 +10,7 @@
       section.two-columns
         .column
           h3.title = t '.invite_members'
-          - if @space.owner == current_user
+          - if is_workspace_owner?
             = render 'form'
           - else
             = t '.contact_workspace_owner_to_invite_members'

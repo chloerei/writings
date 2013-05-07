@@ -3,7 +3,8 @@ li.member id=("invitation-#{invitation.id}")
   .info
     .email = invitation.email
     p = t '.waiting_for_accept'
-    .action
-      a href='#' = t '.resend'
-      = ' / '
-      = link_to t('.remove'), dashboard_invitation_path(:id => invitation), :remote => true, :method => :delete, :confirm => '.remove_confirm'
+    - if is_workspace_owner?
+      .action
+        a href='#' = t '.resend'
+        = ' / '
+        = link_to t('.remove'), dashboard_invitation_path(:id => invitation), :remote => true, :method => :delete, :confirm => '.remove_confirm'

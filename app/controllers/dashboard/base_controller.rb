@@ -2,6 +2,7 @@ class Dashboard::BaseController < ApplicationController
   before_filter :require_logined
   before_filter :find_space
   before_filter :set_base_title
+  helper_method :is_workspace_owner?
   layout 'dashboard'
 
   private
@@ -40,5 +41,9 @@ class Dashboard::BaseController < ApplicationController
     unless @space.is_a?(Workspace) && @space.owner == current_user
       raise AccessDenied
     end
+  end
+
+  def is_workspace_owner?
+    @space.is_a?(Workspace) && @space.owner == current_user
   end
 end
