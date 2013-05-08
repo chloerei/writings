@@ -31,4 +31,12 @@ class Dashboard::InvitationsControllerTest < ActionController::TestCase
       delete :destroy, :id => invitation, :space_id => @workspace
     end
   end
+
+  test "should resend inivtation" do
+    invitation = create :invitation, :workspace => @workspace
+
+    assert_difference "ActionMailer::Base.deliveries.count" do
+      put :resend, :id => invitation, :space_id => @workspace
+    end
+  end
 end

@@ -1,6 +1,6 @@
 class Dashboard::InvitationsController < Dashboard::BaseController
   before_filter :require_workspace
-  before_filter :require_owner, :only => [:create, :destroy]
+  before_filter :require_owner, :only => [:create, :destroy, :resend]
   skip_filter :require_logined, :require_space_access, :only => [:show]
 
   def show
@@ -25,6 +25,15 @@ class Dashboard::InvitationsController < Dashboard::BaseController
   def destroy
     @invitation = @space.invitations.find params[:id]
     @invitation.destroy
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def resend
+    @invitation = @space.invitations.find params[:id]
+    @invitation.send_mail
 
     respond_to do |format|
       format.js
