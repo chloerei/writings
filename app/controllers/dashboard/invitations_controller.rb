@@ -1,6 +1,6 @@
 class Dashboard::InvitationsController < Dashboard::BaseController
   before_filter :require_workspace
-  before_filter :require_owner, :only => [:create, :destroy, :resend]
+  before_filter :require_creator, :only => [:create, :destroy, :resend]
   skip_filter :require_logined, :require_space_access, :only => [:show, :accept]
 
   def show
@@ -8,7 +8,7 @@ class Dashboard::InvitationsController < Dashboard::BaseController
   end
 
   def create
-    exists_emails = [@space.owner.email]
+    exists_emails = [@space.creator.email]
     exists_emails += @space.members.map(&:email).map(&:downcase)
 
     @invitations = params[:emails].map { |email|

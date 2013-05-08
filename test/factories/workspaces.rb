@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :workspace, :parent => :space, :class => 'Workspace' do
-    owner :factory => :user
+    creator :factory => :user
   end
 end

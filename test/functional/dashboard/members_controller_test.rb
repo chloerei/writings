@@ -3,7 +3,7 @@ require 'test_helper'
 class Dashboard::MembersControllerTest < ActionController::TestCase
   def setup
     @user = create :user
-    @workspace = create :workspace, :owner => @user
+    @workspace = create :workspace, :creator => @user
     login_as @user
   end
 

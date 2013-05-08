@@ -8,7 +8,7 @@ class WorkspacesController < ApplicationController
   end
 
   def create
-    @workspace = current_user.own_workspaces.new workspace_params
+    @workspace = current_user.created_workspaces.new workspace_params
     @workspace.save
     respond_to do |format|
       format.js
@@ -18,7 +18,7 @@ class WorkspacesController < ApplicationController
   private
 
   def check_workspace_limit
-    unless current_user.own_workspaces.count < current_user.workspace_limit
+    unless current_user.created_workspaces.count < current_user.workspace_limit
       render :limit
     end
   end

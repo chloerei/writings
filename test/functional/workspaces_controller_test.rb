@@ -12,7 +12,7 @@ class WorkspacesControllerTest < ActionController::TestCase
   end
 
   test "should create new workspace" do
-    assert_difference "@user.own_workspaces.count" do
+    assert_difference "@user.created_workspaces.count" do
       post :create, :workspace => attributes_for(:workspace)
     end
   end

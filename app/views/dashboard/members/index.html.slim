@@ -10,15 +10,15 @@
       section.two-columns
         .column
           h3.title = t '.invite_members'
-          - if is_workspace_owner?
+          - if is_workspace_creator?
             = render 'form'
           - else
-            = t '.contact_workspace_owner_to_invite_members'
+            = t '.contact_workspace_creator_to_invite_members'
         .column
           #members.members
             h3.title = t '.members'
             ul
-              = render :partial => 'member', :object => @space.owner
+              = render :partial => 'member', :object => @space.creator
               = render :partial => 'member', :collection => @space.members
           #invitations.members
             ul
