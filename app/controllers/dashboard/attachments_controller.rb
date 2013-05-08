@@ -29,10 +29,6 @@ class Dashboard::AttachmentsController < Dashboard::BaseController
   def destroy
     @attachment = @space.attachments.find params[:id]
     @attachment.destroy
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   private

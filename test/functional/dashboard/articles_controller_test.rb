@@ -62,7 +62,7 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
   test "should empty trash" do
     2.times { create :article, :space => @user, :status => 'trash' }
     assert_difference "@user.articles.count", -2 do
-      delete :empty_trash, :space_id => @user, :format => :json
+      delete :empty_trash, :space_id => @user, :format => :js
     end
   end
 end

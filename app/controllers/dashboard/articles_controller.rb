@@ -70,10 +70,6 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def empty_trash
     @space.articles.trash.delete_all
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   def trash

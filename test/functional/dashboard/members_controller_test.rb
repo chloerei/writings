@@ -19,7 +19,7 @@ class Dashboard::MembersControllerTest < ActionController::TestCase
     member = create :user
     @workspace.members << member
     assert_difference "@workspace.reload.members.count", -1 do
-      delete :destroy, :space_id => @workspace, :id => member
+      delete :destroy, :space_id => @workspace, :id => member, :format => :js
     end
   end
 end

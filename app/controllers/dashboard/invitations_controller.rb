@@ -19,28 +19,16 @@ class Dashboard::InvitationsController < Dashboard::BaseController
         @space.invitations.create :email => email
       end
     }.compact.find_all { |invitation| invitation.persisted? }
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   def destroy
     @invitation = @space.invitations.find params[:id]
     @invitation.destroy
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   def resend
     @invitation = @space.invitations.find params[:id]
     @invitation.send_mail
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   def accept
@@ -49,29 +37,19 @@ class Dashboard::InvitationsController < Dashboard::BaseController
       @space.members << current_user
       @invitation.destroy
     end
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   def join
     @invitation = @space.invitations.find_by :token => params[:id]
 
     if logined?
-      respond_to do |format|
-        format.js { render :js => "Turbolinks.visit('#{dashboard_invitation_url(@space, @invitation)}');" }
-      end
+      render :js => "Turbolinks.visit('#{dashboard_invitation_url(@space, @invitation)}');"
     else
       @user = User.new user_params
       if @user.save
         login_as @user
         @space.members << current_user
         @invitation.destroy
-      end
-
-      respond_to do |format|
-        format.js
       end
     end
   end

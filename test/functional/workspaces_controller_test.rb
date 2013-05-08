@@ -13,7 +13,7 @@ class WorkspacesControllerTest < ActionController::TestCase
 
   test "should create new workspace" do
     assert_difference "@user.creator_workspaces.count" do
-      post :create, :workspace => attributes_for(:workspace)
+      post :create, :workspace => attributes_for(:workspace), :format => :js
     end
   end
 
@@ -22,7 +22,8 @@ class WorkspacesControllerTest < ActionController::TestCase
     get :new
     assert_template :limit
 
-    post :create, :workspace => attributes_for(:workspace)
-    assert_template :limit
+    assert_no_difference "Workspace.count" do
+      post :create, :workspace => attributes_for(:workspace), :format => :js
+    end
   end
 end

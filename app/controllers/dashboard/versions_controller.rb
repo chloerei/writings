@@ -6,9 +6,6 @@ class Dashboard::VersionsController < Dashboard::BaseController
     else
       @versions = @article.versions.includes(:user).page(params[:page]).per(20)
     end
-    respond_to do |format|
-      format.js
-    end
   end
 
   def show
@@ -26,8 +23,5 @@ class Dashboard::VersionsController < Dashboard::BaseController
     @article.create_version
     @article.update_attributes(:title => @version.title,
                                :body  => @version.body)
-    respond_to do |format|
-      format.js { render :nothing => true }
-    end
   end
 end
