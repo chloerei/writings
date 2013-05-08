@@ -21,7 +21,7 @@ class Dashboard::BaseController < ApplicationController
         raise AccessDenied
       end
     when Workspace
-      unless @space.creator == current_user or @space.members.include?(current_user)
+      unless @space.members.include?(current_user)
         raise AccessDenied
       end
     else

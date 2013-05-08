@@ -10,4 +10,10 @@ class Workspace < Space
   def display_name
     full_name.present? ? full_name : name
   end
+
+  before_create :add_creator_to_members
+
+  def add_creator_to_members
+    self.members << creator
+  end
 end

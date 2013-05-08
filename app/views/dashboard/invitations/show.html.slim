@@ -48,5 +48,4 @@
           #members.members
             h3.title = t '.members'
             ul
-              = render :partial => 'dashboard/members/member', :object => @space.creator
               = render :partial => 'dashboard/members/member', :collection => @space.members

@@ -1,5 +1,5 @@
 = form_tag dashboard_invitations_path, :remote => true, :id => 'invitation-form' do
-  - left_count = 5 - (@space.members.count + @space.invitations.count)
+  - left_count = 5 + 1 - (@space.members.count + @space.invitations.count)
   - if left_count > 0
     - (left_count).times do
       .field
