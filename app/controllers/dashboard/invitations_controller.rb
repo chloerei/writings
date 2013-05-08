@@ -5,6 +5,10 @@ class Dashboard::InvitationsController < Dashboard::BaseController
 
   def show
     @invitation = @space.invitations.find_by :token => params[:id]
+
+    if logined? and @space.members.include?(current_user)
+      redirect_to dashboard_root_path
+    end
   end
 
   def create
@@ -42,8 +46,10 @@ class Dashboard::InvitationsController < Dashboard::BaseController
 
   def accept
     @invitation = @space.invitations.find_by :token => params[:id]
-    @space.members << current_user
-    @invitation.destroy
+    unless @space.members.include? current_user
+      @space.members << current_user
+      @invitation.destroy
+    end
 
     respond_to do |format|
       format.js

@@ -10,6 +10,15 @@ class Dashboard::InvitationsControllerTest < ActionController::TestCase
 
   test "should show invitation by token" do
     get :show, :space_id => @workspace, :id => @invitation.token
+    assert_redirected_to dashboard_root_url(@workspace)
+
+
+    logout
+    get :show, :space_id => @workspace, :id => @invitation.token
+    assert_response :success, @response.body
+
+    login_as create(:user)
+    get :show, :space_id => @workspace, :id => @invitation.token
     assert_response :success, @response.body
   end
 
@@ -40,6 +49,14 @@ class Dashboard::InvitationsControllerTest < ActionController::TestCase
     login_as create(:user)
     assert_difference "@workspace.invitations.count", -1 do
       assert_difference "@workspace.reload.members.count" do
+        put :accept, :id => @invitation.token, :space_id => @workspace
+      end
+    end
+  end
+
+  test "members should not accept invitation" do
+    assert_no_difference "@workspace.invitations.count" do
+      assert_no_difference "@workspace.reload.members.count" do
         put :accept, :id => @invitation.token, :space_id => @workspace
       end
     end
