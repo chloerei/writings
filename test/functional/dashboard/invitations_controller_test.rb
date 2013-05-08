@@ -55,9 +55,20 @@ class Dashboard::InvitationsControllerTest < ActionController::TestCase
   end
 
   test "members should not accept invitation" do
-    assert_no_difference "@workspace.invitations.count" do
-      assert_no_difference "@workspace.reload.members.count" do
-        put :accept, :id => @invitation.token, :space_id => @workspace
+    assert_no_difference ["@workspace.reload.invitations.count", "@workspace.reload.members.count"] do
+      put :accept, :id => @invitation.token, :space_id => @workspace
+    end
+  end
+
+  test "should signup and join by invitation" do
+    assert_no_difference ["@workspace.reload.invitations.count", "User.count", "@workspace.reload.members.count"] do
+      post :join, :id => @invitation.token, :space_id => @workspace, :user => attributes_for(:user)
+    end
+
+    logout
+    assert_difference "@workspace.reload.invitations.count", -1 do
+      assert_difference ["User.count", "@workspace.reload.members.count"] do
+        post :join, :id => @invitation.token, :space_id => @workspace, :user => attributes_for(:user)
       end
     end
   end

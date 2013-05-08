@@ -29,7 +29,7 @@
               = t '.you_need_sign_up_for_continue'
               = ' '
               = link_to t('.already_have_account'), login_path
-            = form_for User.new, :validate => true do |f|
+            = form_for User.new(:name => @invitation.email.split('@').first, :email => @invitation.email), :url => join_dashboard_invitation_path, :remote => true, :validate => true do |f|
               .field
                 = f.label :name
                 = f.text_field :name, :tabindex => 1, :autofocus => 'autofocus'

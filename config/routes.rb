@@ -29,6 +29,7 @@ Publish::Application.routes.draw do
         member do
           put :resend
           put :accept
+          post :join
         end
       end
 
