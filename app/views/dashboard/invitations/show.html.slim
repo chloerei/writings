@@ -23,7 +23,7 @@
               = ' '
               = link_to t('.change_another_account'), logout_path, :method => :delete
             p
-              = link_to 'Join workspace', '#', :class => 'button button-green'
+              = link_to 'Join workspace', accept_dashboard_invitation_path(:id => @invitation.token), :class => 'button button-green', :remote => true, :method => :put
           - else
             p
               = t '.you_need_sign_up_for_continue'

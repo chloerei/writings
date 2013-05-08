@@ -28,6 +28,7 @@ Publish::Application.routes.draw do
       resources :invitations, :only => [:show, :accept, :create, :destroy] do
         member do
           put :resend
+          put :accept
         end
       end
 
