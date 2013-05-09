@@ -43,6 +43,13 @@ class ArticleEdit
       @article.one "input", =>
         @article.removeClass "init"
 
+    if @article.data('is-workspace')
+      @updateStatus()
+
+      setInterval =>
+        @updateStatus()
+      , 20 * 1000
+
     @article.on "editor:change", =>
       @saveArticle()
 
@@ -118,13 +125,29 @@ class ArticleEdit
         @showRetryButton()
       error_callback() if error_callback
 
-  lockArticle: () ->
+  lockArticle: ->
     $('#editwrap').addClass('readonly')
     @article.prop('contentEditable', false)
 
-  unlockArticle: () ->
+  unlockArticle: ->
     $('#editwrap').removeClass('readonly')
     @article.prop('contentEditable', true)
+
+  updateStatus: ->
+    $.ajax
+      url: "/~#{@space}/articles/#{@article.data("id")}/edit"
+      dataType: "json"
+      success: (data) =>
+        console.log(data)
+        if data.save_count > @saveCount
+          @saveCount = data.save_count
+          @article.html(data.body)
+
+        if data.locked_user and (data.locked_user.name isnt @article.data('current-user-name'))
+          @lockArticle()
+          AlertMessage.error("#{data.locked_user.name} is editing")
+        else
+          @unlockArticle()
 
   showRetryButton: ->
     $("#save-status .retry").show().siblings().hide()

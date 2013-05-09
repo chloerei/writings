@@ -27,7 +27,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     if @article.save
       @article.create_version
 
-      render :json => article_as_json(@article)
+      render :article
     else
       render :json => { :message => @article.errors.full_messages.join }, :status => 400
     end
@@ -35,7 +35,11 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def edit
     append_title @article.title
-    render :layout => false
+
+    respond_to do |format|
+      format.html { render :layout => false }
+      format.json { render :article }
+    end
   end
 
   def update
@@ -46,7 +50,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
           @article.create_version
         end
 
-        render :json => article_as_json(@article)
+        render :article
       else
         render :json => { :message => @article.errors.full_messages.join }, :status => 400
       end
@@ -87,10 +91,6 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     end
 
     base_params
-  end
-
-  def article_as_json(article)
-    article.as_json(:only => [:urlname, :title, :status, :token, :save_count]).merge(:url => site_article_url(article, :urlname => article.urlname, :host => @space.host), :updated_at => article.updated_at.to_s)
   end
 
   def check_lock_status
