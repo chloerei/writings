@@ -86,4 +86,27 @@ class Article
   def to_param
     self.token.to_s
   end
+
+  def lock_by(user)
+    Rails.cache.write "/articles/#{id}/locked_by", user.id, :expires_in => 10.seconds
+  end
+
+  def locked_by
+    @locked_by = Rails.cache.read("/articles/#{id}/locked_by") if !defined?(@locked_by)
+    @locked_by
+  end
+
+  def locked_by_user
+    if locked_by
+      User.where(:id => locked_by).first
+    end
+  end
+
+  def locked?
+    !!locked_by
+  end
+
+  def locked_by?(user)
+    locked_by == user.id
+  end
 end

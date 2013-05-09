@@ -65,4 +65,20 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
       delete :empty_trash, :space_id => @user, :format => :js
     end
   end
+
+  test "should lock article when someone editing" do
+    workspace = create :workspace, :creator => @user
+    member = create :user
+    workspace.members << member
+    article = create :article, :space => workspace
+
+    put :update, :space_id => workspace, :id => article, :article => { :title => 'change', :save_count => article.reload.save_count + 1 }
+    assert_response :success, @response.body
+    assert article.locked?
+    assert article.locked_by?(@user)
+
+    login_as member
+    put :update, :space_id => workspace, :id => article, :article => { :title => 'change', :save_count => article.reload.save_count + 1 }
+    assert_response 400, @response.body
+  end
 end

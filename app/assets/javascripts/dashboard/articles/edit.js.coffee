@@ -103,10 +103,13 @@ class ArticleEdit
         data = $.parseJSON(xhr.responseText)
         if xhr.status is 400
           switch data.code
-            when 'save_count_expired'
-            else
+            when 'article_locked'
               AlertMessage.error data.message
-              @showRetryButton()
+              @lockArticle()
+
+          if data.code isnt 'save_count_expired'
+            AlertMessage.error data.message
+            @showRetryButton()
         else
           AlertMessage.error data.message
           @showRetryButton()
@@ -114,6 +117,14 @@ class ArticleEdit
         AlertMessage.error "Server Error"
         @showRetryButton()
       error_callback() if error_callback
+
+  lockArticle: () ->
+    $('#editwrap').addClass('readonly')
+    @article.prop('contentEditable', false)
+
+  unlockArticle: () ->
+    $('#editwrap').removeClass('readonly')
+    @article.prop('contentEditable', true)
 
   showRetryButton: ->
     $("#save-status .retry").show().siblings().hide()

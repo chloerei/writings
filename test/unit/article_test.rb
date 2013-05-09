@@ -35,4 +35,12 @@ class ArticleTest < ActiveSupport::TestCase
     end
     assert_equal other_user, article.versions.asc(:created_at).last.user
   end
+
+  test "should lock article" do
+    user = create :user
+    article = create :article, :space_id => user
+    article.lock_by user
+    assert article.locked?
+    assert article.locked_by?(user)
+  end
 end

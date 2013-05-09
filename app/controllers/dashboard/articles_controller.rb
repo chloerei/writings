@@ -1,5 +1,6 @@
 class Dashboard::ArticlesController < Dashboard::BaseController
   before_filter :find_article, :only => [:edit, :update, :trash, :restore]
+  before_filter :check_lock_status, :only => [:update]
 
   def index
     @articles = @space.articles.desc(:updated_at).page(params[:page]).status(params[:status]).includes(:category)
@@ -90,5 +91,13 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def article_as_json(article)
     article.as_json(:only => [:urlname, :title, :status, :token, :save_count]).merge(:url => site_article_url(article, :urlname => article.urlname, :host => @space.host), :updated_at => article.updated_at.to_s)
+  end
+
+  def check_lock_status
+    if @article.locked? and !@article.locked_by?(current_user)
+      render :json => { :message => I18n.t('is_editing', :name => @article.locked_by_user.name ), :code => 'article_locked' }, :status => 400
+    else
+      @article.lock_by(current_user)
+    end
   end
 end
