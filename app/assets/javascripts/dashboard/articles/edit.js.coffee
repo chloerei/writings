@@ -76,13 +76,6 @@ class ArticleEdit
       AlertMessage.clear()
       $("#save-status .saved").attr("title", data.updated_at).show().siblings().hide()
 
-  saveError: (xhr) ->
-    try
-      AlertMessage.error $.parseJSON(xhr.responseText).message or "Save Failed"
-    catch err
-      AlertMessage.error "Server Error"
-    $("#save-status .retry").show().siblings().hide()
-
   saveUrlname: (event) ->
     event.preventDefault()
     urlname = $("#article-urlname").val()
@@ -106,8 +99,24 @@ class ArticleEdit
       @updateViewButton data
       success_callback data if success_callback
     ).error (xhr) =>
-      @saveError xhr
+      try
+        data = $.parseJSON(xhr.responseText)
+        if xhr.status is 400
+          switch data.code
+            when 'save_count_expired'
+            else
+              AlertMessage.error data.message
+              @showRetryButton()
+        else
+          AlertMessage.error data.message
+          @showRetryButton()
+      catch err
+        AlertMessage.error "Server Error"
+        @showRetryButton()
       error_callback() if error_callback
+
+  showRetryButton: ->
+    $("#save-status .retry").show().siblings().hide()
 
   saveCategory: (event) ->
     event.preventDefault()
@@ -168,8 +177,11 @@ class ArticleEdit
       $('#urlname-modal .article-id').text(data.token)
       @saveArticle()
     ).fail((xhr) =>
-      @saveError xhr
-      $("#save-status .retry").show().siblings().hide()
+      try
+        AlertMessage.error $.parseJSON(xhr.responseText).message or "Save Failed"
+      catch err
+        AlertMessage.error "Server Error"
+      @showRetryButton()
     ).always =>
       @creating = false
 

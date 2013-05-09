@@ -50,7 +50,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
         render :json => { :message => @article.errors.full_messages.join }, :status => 400
       end
     else
-      render :json => article_as_json(@article)
+      render :json => { :message => I18n.t('save_count_expired'), :code => 'save_count_expired' }, :status => 400
     end
   end
 
