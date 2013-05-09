@@ -26,13 +26,9 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     if @article.save
       @article.create_version
 
-      respond_to do |format|
-        format.json { render :json => article_as_json(@article) }
-      end
+      render :json => article_as_json(@article)
     else
-      respond_to do |format|
-        format.json { render :json => { :message => @article.errors.full_messages.join }, :status => 400 }
-      end
+      render :json => { :message => @article.errors.full_messages.join }, :status => 400
     end
   end
 
@@ -49,18 +45,12 @@ class Dashboard::ArticlesController < Dashboard::BaseController
           @article.create_version
         end
 
-        respond_to do |format|
-          format.json { render :json => article_as_json(@article) }
-        end
+        render :json => article_as_json(@article)
       else
-        respond_to do |format|
-          format.json { render :json => { :message => @article.errors.full_messages.join }, :status => 400 }
-        end
+        render :json => { :message => @article.errors.full_messages.join }, :status => 400
       end
     else
-      respond_to do |format|
-        format.json { render :json => article_as_json(@article) }
-      end
+      render :json => article_as_json(@article)
     end
   end
 
