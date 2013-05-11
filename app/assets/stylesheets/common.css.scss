@@ -614,41 +614,41 @@ a.button:hover {
 
 // alert message
 
-.alert-message {
+#alert-messages {
   position: fixed;
   top: 102px;
   right: 50%;
   margin-right: -460px;
-  padding: 5px 10px;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 3px;
-  color: #fff;
   z-index: 2000;
-  cursor: pointer;
-  opacity: 1;
-  visibility: visible;
-  @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.3));
-  @include transition(top 0.15s ease, opacity 0.15s ease);
 
-  &.alert-hide {
-    opacity: 0;
-    visibility: hidden;
-    @include transition(top 0.15s ease, visibility 0s ease 0.15s, opacity 0.15s ease);
-  }
+  .alert-message {
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    color: #fff;
+    @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.3));
 
-  i {
-    margin-right: 5px;
-  }
+    i {
+      margin-right: 5px;
+    }
 
-  &.loading {
-  }
+    .icon-remove {
+      cursor: pointer;
+      margin-left: 10px;
+      margin-right: 0;
+    }
 
-  &.error {
-    background-color: $red;
-  }
+    &.alert-notice {
+      background-color: $blue;
+    }
 
-  &.success {
-    background-color: $green;
+    &.alert-error {
+      background-color: $red;
+    }
+
+    &.alert-success {
+      background-color: $green;
+    }
   }
 }
 
