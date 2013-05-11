@@ -72,8 +72,9 @@ table.nice-table {
   }
 
   #alert-messages {
+    position: absolute;
     margin-right: -364px;
-    top: 102px;
+    top: 50px;
   }
 }
 
@@ -964,10 +965,6 @@ table.nice-table {
 
   #pick-up-button.icon-double-angle-up:before {
     content: "\f103";
-  }
-
-  #alert-messages {
-    top: 57px;
   }
 }
 

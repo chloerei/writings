@@ -1,5 +1,5 @@
 class ArticleEdit.Version
-  constructor: ->
+  constructor: (@manager) ->
     @article = $('article')
     @versions = $('#versions')
 
@@ -24,20 +24,19 @@ class ArticleEdit.Version
         @nextPage()
 
   open: ->
-    $('#editwrap').addClass('show-sidebar readonly')
+    @manager.lockArticle('article-versions')
+    $('#editwrap').addClass('show-sidebar')
     @storeBody = @article.html()
-    @article.prop('contentEditable', false)
 
     @page = 1
     @fetch()
 
   close: ->
-    $('#editwrap').removeClass('show-sidebar readonly')
-    $('#editarea').removeClass('readonly')
+    @manager.unlockArticle('article-versions')
+    $('#editwrap').removeClass('show-sidebar')
     if @storeBody
       @article.html(@storeBody)
     @storeBody = null
-    @article.prop('contentEditable', true)
 
     @versions.html('').data('isEnd', false)
     @fetching = false
@@ -52,18 +51,24 @@ class ArticleEdit.Version
   fetch: ->
     if !@fetching and !@isEnd()
       @fetching = true
-      AlertMessage.loading('Loading...')
+      AlertMessage.show
+        type: 'loading'
+        text: 'Loading...'
+        scope: 'article-version-loading'
       $.ajax
         url: "/articles/#{@article.data('id')}/versions"
         data:
           page: @page
         dataType: 'script'
         complete: =>
-          AlertMessage.clear()
+          AlertMessage.remove('article-version-loading')
           @fetching = false
 
   preview: (id) ->
-    AlertMessage.loading('Loading...')
+    AlertMessage.show
+      type: 'loading'
+      text: 'Loading...'
+      scope: 'article-version-preview'
     $.ajax
       url: "/articles/#{@article.data('id')}/versions/#{id}"
       dataType: 'json'
@@ -71,10 +76,13 @@ class ArticleEdit.Version
         @article.html(data.body)
         @versions.find("[data-id='#{id}']").addClass('actived').siblings().removeClass('actived')
       complete: =>
-        AlertMessage.clear()
+        AlertMessage.remove('article-version-preview')
 
   restore: (id) ->
-    AlertMessage.loading('Loading...')
+    AlertMessage.show
+      type: 'loading'
+      text: 'Loading...'
+      scope: 'article-version-restore'
     $.ajax
       url: "/articles/#{@article.data('id')}/versions/#{id}/restore"
       dataType: 'script'
@@ -83,4 +91,4 @@ class ArticleEdit.Version
         @storeBody = null
         @close()
       complete: =>
-        AlertMessage.clear()
+        AlertMessage.remove('article-version-restore')

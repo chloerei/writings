@@ -31,7 +31,9 @@ class ArticleEdit.ImageUploader
         @editor.formator.image(data.files[0].url)
         @updateStrageStatus(data)
       ).fail( (xhr) =>
-        AlertMessage.error(JSON.parse(xhr.responseText).message)
+        AlertMessage.show
+          type: 'error'
+          text: JSON.parse(xhr.responseText).message
       ).always( =>
         @resetLinkForm()
       )
@@ -55,21 +57,30 @@ class ArticleEdit.ImageUploader
         $('#image-upload .message').hide()
         $('#image-upload .progress').show()
         $('#image-upload .dropable').addClass('start')
-        AlertMessage.loading('Uploading...')
+        AlertMessage.show
+          type: 'loading'
+          text: 'Loading...'
+          scope: 'image-upload'
 
       progressall: (event, data) ->
         progress = parseInt(data.loaded / data.total * 100, 10)
         $('#image-upload .progress .bar').css('width', progress + '%')
 
       fail: (event, data) ->
-        AlertMessage.error(JSON.parse(data.jqXHR.responseText).message)
+        AlertMessage.show
+          type: 'error'
+          text: JSON.parse(xhr.responseText).message
 
       done: (event, data) =>
         @editor.formator.image(data.result.files[0].url)
         @updateStrageStatus(data.result)
-        AlertMessage.success('Success')
+        AlertMessage.show
+          type: 'success'
+          text: 'Success'
+          timeout: 1500
 
       always: (event, data) =>
+        AlertMessage.remove('image-upload')
         @resetUploadForm()
 
   updateStrageStatus: (data) ->

@@ -9,10 +9,12 @@ class ArticleEdit
       editable: "#editarea article"
     )
     @imageUploader = new ArticleEdit.ImageUploader(@editor)
-    @version = new ArticleEdit.Version()
+    @version = new ArticleEdit.Version(this)
     @article = $("#editarea article")
     @space = @article.data('space')
     @saveCount = @article.data("saveCount")
+
+    @lockScopes = []
 
     @bindActions()
 
@@ -48,7 +50,7 @@ class ArticleEdit
 
       setInterval =>
         @updateStatus()
-      , 20 * 1000
+      , 10 * 1000
 
     @article.on "editor:change", =>
       @saveArticle()
@@ -112,7 +114,7 @@ class ArticleEdit
           switch data.code
             when 'article_locked'
               AlertMessage.error data.message
-              @lockArticle()
+              @lockArticle('article-locked')
 
           if data.code isnt 'save_count_expired'
             AlertMessage.error data.message
@@ -125,29 +127,42 @@ class ArticleEdit
         @showRetryButton()
       error_callback() if error_callback
 
-  lockArticle: ->
-    $('#editwrap').addClass('readonly')
-    @article.prop('contentEditable', false)
+  lockArticle: (scope) ->
+    if !(scope in @lockScopes)
+      @lockScopes.push scope
 
-  unlockArticle: ->
-    $('#editwrap').removeClass('readonly')
-    @article.prop('contentEditable', true)
+      $('#editwrap').addClass('readonly')
+      @article.prop('contentEditable', false)
+
+  unlockArticle: (scope) ->
+    if scope in @lockScopes
+      @lockScopes.splice(@lockScopes.indexOf(scope), 1)
+
+      if @lockScopes.length is 0
+        $('#editwrap').removeClass('readonly')
+        @article.prop('contentEditable', true)
 
   updateStatus: ->
     $.ajax
       url: "/~#{@space}/articles/#{@article.data("id")}/edit"
       dataType: "json"
       success: (data) =>
-        console.log(data)
         if data.save_count > @saveCount
           @saveCount = data.save_count
           @article.html(data.body)
 
         if data.locked_user and (data.locked_user.name isnt @article.data('current-user-name'))
-          @lockArticle()
-          AlertMessage.error("#{data.locked_user.name} is editing")
+          @lockArticle('article-locked')
+
+          AlertMessage.remove('article-locked')
+          AlertMessage.show
+            type: 'notice'
+            text: "#{data.locked_user.name} is editing"
+            keep: true
+            scope: 'article-locked'
         else
-          @unlockArticle()
+          @unlockArticle('article-locked')
+          AlertMessage.remove('article-locked')
 
   showRetryButton: ->
     $("#save-status .retry").show().siblings().hide()
@@ -212,9 +227,13 @@ class ArticleEdit
       @saveArticle()
     ).fail((xhr) =>
       try
-        AlertMessage.error $.parseJSON(xhr.responseText).message or "Save Failed"
+        AlertMessage.show
+          type: 'error'
+          text: $.parseJSON(xhr.responseText).message or "Save Failed"
       catch err
-        AlertMessage.error "Server Error"
+        AlertMessage.show
+          type: 'error'
+          text: 'server Error'
       @showRetryButton()
     ).always =>
       @creating = false
