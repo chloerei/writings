@@ -24,18 +24,7 @@ $ ->
       text: 'Loading...'
       keep: true
       id: 'ajax_loading'
-  ).on("ajax:success", ->
-    AlertMessage.show
-      type: 'success'
-      text: "Success"
-      timeout: 1500
   ).on("ajax:error", (xhr, status, error) ->
-    try
-      data = $.parseJSON(status.responseText)
-      AlertMessage.show
-        type: 'error'
-        text: data.message or "Error"
-    catch err
       AlertMessage.show
         type: 'error'
         text: "Server Error"

@@ -2,7 +2,7 @@ AlertMessage =
   show: (options = {}) ->
     @messageBox = $('#alert-messages')
     if !@messageBox.length
-      @messageBox = $('<div id="alert-messages">').appendTo($('body'))
+      @messageBox = $('<div id="alert-messages"></div>').appendTo($('body'))
 
     icon_type = switch options.type
       when 'loading'
@@ -26,7 +26,7 @@ AlertMessage =
       closeButton = $("<i class='icon-remove'></i>").appendTo(message).on 'click', ->
         message.remove()
 
-    @messageBox.append(message)
+    @messageBox.append($('<div class="alert-line" />').append(message))
 
     if options.timeout
       setTimeout ->

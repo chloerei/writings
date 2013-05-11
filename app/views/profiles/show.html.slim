@@ -6,7 +6,7 @@
       .header
         = render 'dashboard/share/settings_nav'
       section
-        = form_for current_user.profile, :url => profile_path, :html => { :data => { :remote => true, :type => :json } } do |f|
+        = form_for current_user.profile, :url => profile_path, :remote => true do |f|
           fieldset
             legend = t '.publish_profile'
             .field

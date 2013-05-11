@@ -6,15 +6,7 @@ class AccountsController < ApplicationController
   end
 
   def update
-    if current_user.update_attributes(user_params)
-      respond_to do |format|
-        format.json { render :json => current_user.as_json(:only => [:name, :email], :methods => [:host]) }
-      end
-    else
-      respond_to do |format|
-        format.json { render :json => { :message => current_user.errors.full_messages.join }, :status => 400}
-      end
-    end
+    current_user.update_attributes(user_params)
   end
 
   private

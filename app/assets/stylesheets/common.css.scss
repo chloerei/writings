@@ -621,18 +621,24 @@ a.button:hover {
   margin-right: -460px;
   z-index: 2000;
 
+  .alert-line {
+    @include clearfix();
+  }
+
   .alert-message {
     padding: 5px 10px;
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 3px;
     color: #fff;
+    margin-bottom: 5px;
+    float: right;
     @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.3));
 
     i {
       margin-right: 5px;
     }
 
-    .icon-remove {
+    i.icon-remove {
       cursor: pointer;
       margin-left: 10px;
       margin-right: 0;
