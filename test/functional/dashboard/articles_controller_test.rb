@@ -72,7 +72,7 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
     workspace.members << member
     article = create :article, :space => workspace
 
-    put :update, :space_id => workspace, :id => article, :article => { :title => 'change', :save_count => article.reload.save_count + 1 }
+    put :update, :space_id => workspace, :id => article, :article => { :title => 'change', :save_count => article.reload.save_count + 1 }, :format => :json
     assert_response :success, @response.body
     assert article.locked?
     assert article.locked_by?(@user)

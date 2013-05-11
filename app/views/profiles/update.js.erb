@@ -1,5 +1,5 @@
 <% if current_user.profile.valid? %>
-  AlertMessage.clearAll();
+  AlertMessage.removeAll();
   AlertMessage.show({ type: 'success', text: '<%= t('success') %>', timeout: 1500 });
 <% else %>
   AlertMessage.show({ type: 'error', text: '<%= j current_user.profile.errors.full_messages.join %>' });

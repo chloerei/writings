@@ -13,22 +13,22 @@ class AccountsControllerTest < ActionController::TestCase
   end
 
   test "should update account" do
-    put :update, :user => { :name => 'change', :current_password => @password }, :format => :json
+    put :update, :user => { :name => 'change', :current_password => @password }, :format => :js
     assert_response :success, @response.body
     assert_equal 'change', @user.reload.name
 
     # remmove domain
     @user.update_attribute :domain, 'old'
-    put :update, :user => { :domain => '', :current_password => @password }, :format => :json
+    put :update, :user => { :domain => '', :current_password => @password }, :format => :js
     assert_response :success, @response.body
     assert_equal '', @user.reload.domain
   end
 
   test "should not update if current_password error" do
-    put :update, :user => { :name => 'change' }, :format => :json
-    assert_response 400, @response.body
+    put :update, :user => { :name => 'change' }, :format => :js
+    assert_not_equal 'change', @user.reload.name
 
-    put :update, :user => { :name => 'change', :password => 'wrong' }, :format => :json
-    assert_response 400, @response.body
+    put :update, :user => { :name => 'change', :password => 'wrong' }, :format => :js
+    assert_not_equal 'change', @user.reload.name
   end
 end

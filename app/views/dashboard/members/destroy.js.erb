@@ -2,4 +2,4 @@ $('#member-<%= @member.id %>').remove();
 
 $('#invitation-form').replaceWith('<%= j render(:partial => 'form') %>');
 
-AlertMessage.success('Success', 1500);
+AlertMessage.show({ type: 'success', text: '<%= t('success') %>', timeout: 1500 });

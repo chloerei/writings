@@ -36,7 +36,7 @@ AlertMessage =
   remove: (id) ->
     $("##{id}").remove()
 
-  clearAll: ->
+  removeAll: ->
     $(".alert-message").remove()
 
 @AlertMessage = AlertMessage

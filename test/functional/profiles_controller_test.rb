@@ -12,7 +12,7 @@ class ProfilesControllerTest < ActionController::TestCase
   end
 
   test "should update profile" do
-    put :update, :profile => { :name => 'change' }, :format => :json
+    put :update, :profile => { :name => 'change' }, :format => :js
     assert_response :success, @response.body
     assert_equal 'change', @user.reload.profile.name
   end
