@@ -23,11 +23,11 @@ $ ->
       type: 'loading'
       text: 'Loading...'
       keep: true
-      id: 'ajax_loading'
+      scope: 'ajax-loading'
   ).on("ajax:error", (xhr, status, error) ->
       AlertMessage.show
         type: 'error'
         text: "Server Error"
   ).on("ajax:complete", ->
-    AlertMessage.remove('ajax_loading')
+    AlertMessage.remove('ajax-loading')
   )

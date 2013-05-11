@@ -80,10 +80,9 @@ class ArticleEdit
     @saveCount = @saveCount + 1
     $("#save-status .saving").show().siblings().hide()
 
-  saveCompelete: (data) ->
-    if data.save_count is @saveCount
-      AlertMessage.clear()
-      $("#save-status .saved").attr("title", data.updated_at).show().siblings().hide()
+  saveCompelete: ->
+    AlertMessage.remove('article-save')
+    $("#save-status .saved").show().siblings().hide()
 
   saveUrlname: (event) ->
     event.preventDefault()
@@ -104,7 +103,8 @@ class ArticleEdit
       type: "put"
       dataType: "json"
     ).success((data) =>
-      @saveCompelete data
+      if data.save_count is @saveCount
+        @saveCompelete()
       @updateViewButton data
       success_callback data if success_callback
     ).error (xhr) =>
@@ -113,17 +113,31 @@ class ArticleEdit
         if xhr.status is 400
           switch data.code
             when 'article_locked'
-              AlertMessage.error data.message
+              AlertMessage.show
+                type: 'notice'
+                text: data.message
+                scope: 'article-locked'
               @lockArticle('article-locked')
-
-          if data.code isnt 'save_count_expired'
-            AlertMessage.error data.message
-            @showRetryButton()
+              @saveCompelete()
+            when 'save_count_expired'
+              # do nothing
+            else
+              AlertMessage.show
+                type: 'error'
+                text: data.message
+                scope: 'article-save'
+              @showRetryButton()
         else
-          AlertMessage.error data.message
+          AlertMessage.show
+            type: 'error'
+            text: data.message
+            scope: 'article-save'
           @showRetryButton()
       catch err
-        AlertMessage.error "Server Error"
+        AlertMessage.show
+          type: 'error'
+          text: 'Server Error'
+          scope: 'article-save'
         @showRetryButton()
       error_callback() if error_callback
 
@@ -219,7 +233,8 @@ class ArticleEdit
       type: "post"
       dataType: "json"
     ).done((data) =>
-      @saveCompelete data
+      if data.save_count is @saveCount
+        @saveCompelete()
       @article.data "id", data.token
       @updateViewButton data
       history.replaceState null, null, "/~#{@space}/articles/" + data.token + "/edit"
@@ -230,10 +245,12 @@ class ArticleEdit
         AlertMessage.show
           type: 'error'
           text: $.parseJSON(xhr.responseText).message or "Save Failed"
+          scope: 'article-save'
       catch err
         AlertMessage.show
           type: 'error'
           text: 'server Error'
+          scope: 'article-save'
       @showRetryButton()
     ).always =>
       @creating = false

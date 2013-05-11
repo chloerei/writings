@@ -21,6 +21,7 @@ AlertMessage =
 
     if options.scope
       message.addClass(options.scope)
+      @remove(options.scope)
 
     if !options.timeout and !options.keep
       closeButton = $("<i class='icon-remove'></i>").appendTo(message).on 'click', ->
@@ -34,7 +35,7 @@ AlertMessage =
       , options.timeout
 
   remove: (scope) ->
-    $("#alert-messages .alert-message.#{scope}").remove()
+    $("#alert-messages .alert-message.#{scope}").closest('.alert-line').remove()
 
   hasScope: (scope) ->
     $("#alert-messages .alert-message.#{scope}").length > 0
