@@ -114,9 +114,10 @@ class ArticleEdit
           switch data.code
             when 'article_locked'
               AlertMessage.show
-                type: 'notice'
+                type: 'info'
                 text: data.message
                 scope: 'article-locked'
+                keep: true
               @lockArticle('article-locked')
               @saveCompelete()
             when 'save_count_expired'
@@ -170,7 +171,7 @@ class ArticleEdit
 
           AlertMessage.remove('article-locked')
           AlertMessage.show
-            type: 'notice'
+            type: 'info'
             text: "#{data.locked_user.name} is editing"
             keep: true
             scope: 'article-locked'

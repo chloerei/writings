@@ -616,22 +616,19 @@ a.button:hover {
 
 #alert-messages {
   position: fixed;
-  top: 102px;
+  top: 78px;
   right: 50%;
   margin-right: -460px;
   z-index: 2000;
 
-  .alert-line {
-    @include clearfix();
-  }
-
   .alert-message {
+    float: right;
+    clear: both;
     padding: 5px 10px;
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 3px;
     color: #fff;
     margin-bottom: 5px;
-    float: right;
     @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.3));
 
     i {
@@ -644,7 +641,7 @@ a.button:hover {
       margin-right: 0;
     }
 
-    &.alert-notice {
+    &.alert-info {
       background-color: $blue;
     }
 
