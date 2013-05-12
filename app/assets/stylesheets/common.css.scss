@@ -621,6 +621,11 @@ a.button:hover {
   margin-right: -460px;
   z-index: 2000;
 
+  @media (max-width: 960px) {
+      right: 20px;
+      margin-right: 0;
+  }
+
   .alert-message {
     float: right;
     clear: both;
