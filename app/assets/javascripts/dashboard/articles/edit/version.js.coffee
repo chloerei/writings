@@ -1,10 +1,11 @@
 class ArticleEdit.Version
   constructor: (@manager) ->
-    @article = $('article')
+    @article = @manager.article
+    @space = @manager.space
     @versions = $('#versions')
 
     $('#save-status .saved').on 'click', =>
-      if $('#editwrap').hasClass('show-sidebar')
+      if @opening
         @close()
       else
         @open()
@@ -28,6 +29,7 @@ class ArticleEdit.Version
     $('#editwrap').addClass('show-sidebar')
     @storeBody = @article.html()
 
+    @opening = true
     @page = 1
     @fetch()
 
@@ -40,6 +42,7 @@ class ArticleEdit.Version
 
     @versions.html('').data('isEnd', false)
     @fetching = false
+    @opening = false
 
   nextPage: ->
     @page += 1
@@ -56,7 +59,7 @@ class ArticleEdit.Version
         text: 'Loading...'
         scope: 'article-version-loading'
       $.ajax
-        url: "/articles/#{@article.data('id')}/versions"
+        url: "/~#{@space}/articles/#{@article.data('id')}/versions"
         data:
           page: @page
         dataType: 'script'
@@ -70,7 +73,7 @@ class ArticleEdit.Version
       text: 'Loading...'
       scope: 'article-version-preview'
     $.ajax
-      url: "/articles/#{@article.data('id')}/versions/#{id}"
+      url: "/~#{@space}/articles/#{@article.data('id')}/versions/#{id}"
       dataType: 'json'
       success: (data) =>
         @article.html(data.body)
@@ -84,7 +87,7 @@ class ArticleEdit.Version
       text: 'Loading...'
       scope: 'article-version-restore'
     $.ajax
-      url: "/articles/#{@article.data('id')}/versions/#{id}/restore"
+      url: "/~#{@space}/articles/#{@article.data('id')}/versions/#{id}/restore"
       dataType: 'script'
       type: 'PUT'
       success: =>

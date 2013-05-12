@@ -4,17 +4,17 @@
 
 class ArticleEdit
   constructor: ->
+    @article = $("#editarea article")
+    @space = @article.data('space')
+    @saveCount = @article.data("saveCount")
+    @lockScopes = []
+
     @editor = new Editor(
       toolbar: "#toolbar"
       editable: "#editarea article"
     )
     @imageUploader = new ArticleEdit.ImageUploader(@editor)
     @version = new ArticleEdit.Version(this)
-    @article = $("#editarea article")
-    @space = @article.data('space')
-    @saveCount = @article.data("saveCount")
-
-    @lockScopes = []
 
     @bindActions()
 
