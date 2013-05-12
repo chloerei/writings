@@ -130,7 +130,7 @@ class ArticleEdit
       catch err
         AlertMessage.show
           type: 'error'
-          text: 'Server Error'
+          text: I18n.t('server_error')
           scope: 'article-save'
         @showRetryButton()
       error_callback() if error_callback
@@ -165,7 +165,7 @@ class ArticleEdit
 
           AlertMessage.show
             type: 'info'
-            text: "#{data.locked_user.name} is editing"
+            text: I18n.t('is_editing', data.locked_user.name)
             keep: true
             scope: 'article-locked'
         else
@@ -242,9 +242,9 @@ class ArticleEdit
       @saveArticle()
     ).fail((xhr) =>
       try
-        message = $.parseJSON(xhr.responseText).message or "Save Failed"
+        message = $.parseJSON(xhr.responseText).message
       catch err
-        message = 'Server Error'
+        message = I18n.t('server_error')
       AlertMessage.show
         type: 'error'
         text: message

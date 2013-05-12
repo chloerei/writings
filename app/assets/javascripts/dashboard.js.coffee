@@ -5,10 +5,12 @@
 #= require jquery-fileupload/vendor/jquery.ui.widget
 #= require jquery-fileupload/jquery.iframe-transport
 #= require jquery-fileupload/jquery.fileupload
+#= require locales
 #= require_tree ./sitewide
 #= require_tree ./dashboard
 
 $ ->
+  I18n.setLocale($('html').attr('lang'))
   # Client Side Validations - Turbolinks
   $(document).on "page:change", ->
     $("form[data-validate]").validate()
@@ -21,13 +23,13 @@ $ ->
   $(document).on("ajax:before", ->
     AlertMessage.show
       type: 'loading'
-      text: 'Loading...'
+      text: I18n.t('loading')
       keep: true
       scope: 'ajax-loading'
   ).on("ajax:error", (xhr, status, error) ->
-      AlertMessage.show
-        type: 'error'
-        text: "Server Error"
+    AlertMessage.show
+      type: 'error'
+      text: I18n.t('server_error')
   ).on("ajax:complete", ->
     AlertMessage.remove('ajax-loading')
   )

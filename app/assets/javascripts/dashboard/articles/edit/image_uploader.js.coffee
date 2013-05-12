@@ -59,7 +59,7 @@ class ArticleEdit.ImageUploader
         $('#image-upload .dropable').addClass('start')
         AlertMessage.show
           type: 'loading'
-          text: 'Loading...'
+          text: I18n.t('loading')
           scope: 'image-upload'
 
       progressall: (event, data) ->
@@ -76,7 +76,7 @@ class ArticleEdit.ImageUploader
         @updateStrageStatus(data.result)
         AlertMessage.show
           type: 'success'
-          text: 'Success'
+          text: I18n.t('success')
           timeout: 1500
 
       always: (event, data) =>

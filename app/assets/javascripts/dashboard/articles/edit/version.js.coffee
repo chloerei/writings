@@ -58,7 +58,7 @@ class ArticleEdit.Version
       @fetching = true
       AlertMessage.show
         type: 'loading'
-        text: 'Loading...'
+        text: I18n.t('loading')
         scope: 'article-version-fetch'
         keep: true
       $.ajax
@@ -75,7 +75,7 @@ class ArticleEdit.Version
   preview: (id) ->
     AlertMessage.show
       type: 'loading'
-      text: 'Loading...'
+      text: I18n.t('loading')
       scope: 'article-version-preview'
       keep: true
     $.ajax
@@ -95,7 +95,7 @@ class ArticleEdit.Version
   restore: (id) ->
     AlertMessage.show
       type: 'loading'
-      text: 'Loading...'
+      text: I18n.t('loading')
       scope: 'article-version-restore'
       keep: true
     $.ajax
@@ -113,7 +113,7 @@ class ArticleEdit.Version
     try
       message = $.parseJSON(xhr.responseText).message
     catch err
-      message = 'Server Error'
+      message = I18n.t('server_error')
     AlertMessage.show
       type: 'error'
       text: message
