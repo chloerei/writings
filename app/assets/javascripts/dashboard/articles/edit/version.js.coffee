@@ -60,6 +60,7 @@ class ArticleEdit.Version
         type: 'loading'
         text: 'Loading...'
         scope: 'article-version-fetch'
+        keep: true
       $.ajax
         url: "/~#{@space}/articles/#{@article.data('id')}/versions"
         data:
@@ -96,6 +97,7 @@ class ArticleEdit.Version
       type: 'loading'
       text: 'Loading...'
       scope: 'article-version-restore'
+      keep: true
     $.ajax
       url: "/~#{@space}/articles/#{@article.data('id')}/versions/#{id}/restore"
       dataType: 'json'

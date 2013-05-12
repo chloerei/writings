@@ -110,30 +110,23 @@ class ArticleEdit
     ).error (xhr) =>
       try
         data = $.parseJSON(xhr.responseText)
-        if xhr.status is 400
-          switch data.code
-            when 'article_locked'
-              AlertMessage.show
-                type: 'info'
-                text: data.message
-                scope: 'article-locked'
-                keep: true
-              @lockArticle('article-locked')
-              @saveCompelete()
-            when 'save_count_expired'
-              # do nothing
-            else
-              AlertMessage.show
-                type: 'error'
-                text: data.message
-                scope: 'article-save'
-              @showRetryButton()
-        else
-          AlertMessage.show
-            type: 'error'
-            text: data.message
-            scope: 'article-save'
-          @showRetryButton()
+        switch data.code
+          when 'article_locked'
+            AlertMessage.show
+              type: 'info'
+              text: data.message
+              scope: 'article-locked'
+              keep: true
+            @lockArticle('article-locked')
+            @saveCompelete()
+          when 'save_count_expired'
+            # do nothing
+          else
+            AlertMessage.show
+              type: 'error'
+              text: data.message
+              scope: 'article-save'
+            @showRetryButton()
       catch err
         AlertMessage.show
           type: 'error'
@@ -249,15 +242,13 @@ class ArticleEdit
       @saveArticle()
     ).fail((xhr) =>
       try
-        AlertMessage.show
-          type: 'error'
-          text: $.parseJSON(xhr.responseText).message or "Save Failed"
-          scope: 'article-save'
+        message = $.parseJSON(xhr.responseText).message or "Save Failed"
       catch err
-        AlertMessage.show
-          type: 'error'
-          text: 'server Error'
-          scope: 'article-save'
+        message = 'Server Error'
+      AlertMessage.show
+        type: 'error'
+        text: message
+        scope: 'article-save'
       @showRetryButton()
     ).always =>
       @creating = false
