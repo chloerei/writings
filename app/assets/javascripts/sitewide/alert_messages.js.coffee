@@ -11,7 +11,7 @@ AlertMessage =
         'icon-minus-sign'
       when 'success'
         'icon-ok-sign'
-      when 'notice'
+      when 'info'
         'icon-info-sign'
 
     message = $("<div class='alert-message alert-#{options.type}'>
@@ -21,13 +21,15 @@ AlertMessage =
 
     if options.scope
       message.addClass(options.scope)
-      @remove(options.scope)
 
     if !options.timeout and !options.keep
       closeButton = $("<i class='icon-remove'></i>").appendTo(message).on 'click', ->
         message.remove()
 
-    @messageBox.append(message)
+    if options.scope and @hasScope(options.scope)
+      $("#alert-messages .alert-message.#{options.scope}").replaceWith(message)
+    else
+      @messageBox.append(message)
 
     if options.timeout
       setTimeout ->

@@ -16,7 +16,8 @@ class ArticleEdit.Version
     @versions.on 'click', '.version:not(".actived")', ->
       _this.preview($(this).data('id'))
 
-    @versions.on 'click', '.version .restore-button', ->
+    @versions.on 'click', '.version .restore-button', (event) ->
+      event.preventDefault()
       _this.restore($(this).closest('.version').data('id'))
 
     @scrollable = $('#history .scrollable')
@@ -40,6 +41,7 @@ class ArticleEdit.Version
       @article.html(@storeBody)
     @storeBody = null
 
+    AlertMessage.remove 'article-version-preview'
     @versions.html('').data('isEnd', false)
     @fetching = false
     @opening = false
@@ -57,29 +59,37 @@ class ArticleEdit.Version
       AlertMessage.show
         type: 'loading'
         text: 'Loading...'
-        scope: 'article-version-loading'
+        scope: 'article-version-fetch'
       $.ajax
         url: "/~#{@space}/articles/#{@article.data('id')}/versions"
         data:
           page: @page
         dataType: 'script'
         complete: =>
-          AlertMessage.remove('article-version-loading')
+          AlertMessage.remove('article-version-fetch')
           @fetching = false
+        error: (xhr) =>
+          @onError(xhr, 'article-version-fetch')
 
   preview: (id) ->
     AlertMessage.show
       type: 'loading'
       text: 'Loading...'
       scope: 'article-version-preview'
+      keep: true
     $.ajax
       url: "/~#{@space}/articles/#{@article.data('id')}/versions/#{id}"
       dataType: 'json'
       success: (data) =>
         @article.html(data.body)
         @versions.find("[data-id='#{id}']").addClass('actived').siblings().removeClass('actived')
-      complete: =>
-        AlertMessage.remove('article-version-preview')
+        AlertMessage.show
+          type: 'info'
+          text: data.created_at
+          scope: 'article-version-preview'
+          keep: true
+      error: (xhr) =>
+        @onError(xhr, 'article-version-preview')
 
   restore: (id) ->
     AlertMessage.show
@@ -88,10 +98,21 @@ class ArticleEdit.Version
       scope: 'article-version-restore'
     $.ajax
       url: "/~#{@space}/articles/#{@article.data('id')}/versions/#{id}/restore"
-      dataType: 'script'
+      dataType: 'json'
       type: 'PUT'
       success: =>
+        AlertMessage.remove 'article-version-restore'
         @storeBody = null
         @close()
-      complete: =>
-        AlertMessage.remove('article-version-restore')
+      error: (xhr) =>
+        @onError(xhr, 'article-version-restore')
+
+  onError: (xhr, scope) ->
+    try
+      message = $.parseJSON(xhr.responseText).message
+    catch err
+      message = 'Server Error'
+    AlertMessage.show
+      type: 'error'
+      text: message
+      scope: scope

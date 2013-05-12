@@ -164,12 +164,12 @@ class ArticleEdit
       success: (data) =>
         if data.save_count > @saveCount
           @saveCount = data.save_count
-          @article.html(data.body)
+          @updateBody(data.body)
 
         if data.locked_user and (data.locked_user.name isnt @article.data('current-user-name'))
           @lockArticle('article-locked')
+          @updateBody(data.body)
 
-          AlertMessage.remove('article-locked')
           AlertMessage.show
             type: 'info'
             text: "#{data.locked_user.name} is editing"
@@ -178,6 +178,12 @@ class ArticleEdit
         else
           @unlockArticle('article-locked')
           AlertMessage.remove('article-locked')
+
+  updateBody: (body) ->
+    if @version.opening
+      @version.storeBody = body
+    else
+      @article.html(body)
 
   showRetryButton: ->
     $("#save-status .retry").show().siblings().hide()
