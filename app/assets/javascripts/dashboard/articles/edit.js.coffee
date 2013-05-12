@@ -48,9 +48,12 @@ class ArticleEdit
     if @article.data('is-workspace')
       @updateStatus()
 
-      setInterval =>
+      @updateStatusInterval = setInterval =>
         @updateStatus()
       , 10 * 1000
+
+      $(document).one 'page:change', =>
+        clearInterval @updateStatusInterval
 
     @article.on "editor:change", =>
       @saveArticle()
