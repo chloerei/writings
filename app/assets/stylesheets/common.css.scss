@@ -162,11 +162,6 @@ textarea {
   width: 300px;
   max-width: 100%;
   @include box-sizing(border-box);
-
-  &:focus {
-    @include box-shadow(0 0 1px rgba(0, 0, 0, 0.3));
-    @include transition(box-shadow 0.15s ease);
-  }
 }
 
 textarea {
@@ -285,34 +280,33 @@ fieldset {
 
 // button
 
-@mixin button-color($color, $textColor) {
+@mixin button-color($color, $textColor, $borderColor) {
   color: $textColor;
-  border: 1px solid darken($color, 20%);
-  @include linear-gradient($color, darken($color, 3%));
+  border: 1px solid $borderColor;
+  background-color: $color;
+  @include box-shadow(0 1px 0 #ddd);
 
   &:hover,
   &:focus {
     color: $textColor;
+    background-color: darken($color, 2%);
     text-decoration: none;
-    @include linear-gradient(darken($color, 3%), darken($color, 6%));
-    @include box-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
   }
 
   &.button-actived,
   &:active {
-    @include linear-gradient(darken($color, 9%), darken($color, 12%));
+    background-color: darken($color, 6%);
+    @include box-shadow(none);
   }
 
   &.button-disabled {
     color: #999;
-    background-color: darken($color, 5%);
-    background-image: none;
 
     &:hover,
     &:focus,
     &:active {
       cursor: default;
-      background-color: darken($color, 5%);
+      background-color: darken($color, 10%);
       background-image: none;
       @include box-shadow(none);
     }
@@ -327,22 +321,22 @@ button,
   font-weight: normal;
   display: inline-block;
   border-radius: 2px;
-  @include button-color(#fefefe, #333);
+  @include button-color(#fefefe, #333, #ccc);
 
   &.no-margin {
     margin: 0;
   }
 
   &.button-primary {
-    @include button-color($linkColor, #fff);
+    @include button-color($linkColor, #fff, darken($linkColor, 10%));
   }
 
   &.button-green {
-    @include button-color($green, #fff);
+    @include button-color($green, #fff, darken($green, 10%));
   }
 
   &.button-danger {
-    @include button-color($red, #fff);
+    @include button-color($red, #fff, darken($red, 10%));
   }
 
   &.button-large {

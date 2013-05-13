@@ -366,11 +366,18 @@ table.nice-table {
           display: block;
           padding-right: 20px;
           position: relative;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
           color: #999;
 
           &:hover {
             background-color: #999;
             color: white;
+
+            &:after {
+              border-left: 17px solid #999;
+            }
           }
 
           &:after {
@@ -383,7 +390,7 @@ table.nice-table {
             display: block;
             border-top: 17px solid white;
             border-bottom: 17px solid white;
-            border-left: 17px solid transparent;
+            border-left: 17px solid white;
           }
         }
 
@@ -391,6 +398,10 @@ table.nice-table {
           a {
             color: white;
             background-color: $linkColor;
+
+            &:after {
+              border-left: 17px solid $linkColor;
+            }
           }
         }
       }
@@ -399,6 +410,10 @@ table.nice-table {
     .main-content {
       width: 80%;
       float: left;
+
+      .main-header {
+        margin-bottom: 20px;
+      }
     }
   }
 

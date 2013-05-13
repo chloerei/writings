@@ -37,7 +37,7 @@
                   = 'Trash'
 
         .main-content
-          .clearfix
+          .main-header.clearfix
             .pull-left
               .button-group.hide-on-mobile
                 a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category_id => params[:category_id]))
@@ -56,7 +56,7 @@
                 a.button href=(edit_dashboard_category_path(:id => @category))
                   i.icon-wrench
             .pull-right
-              a.button.button-primary.no-margin href=(new_dashboard_article_path)
+              a.button.no-margin href=(new_dashboard_article_path)
                 i.icon-pencil
                 span.hide-on-mobile
                   = ' '
