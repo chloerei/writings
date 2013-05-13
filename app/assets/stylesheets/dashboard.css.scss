@@ -316,56 +316,89 @@ table.nice-table {
   }
 
   .header {
-    padding-bottom: 15px;
-    margin-bottom: 30px;
-    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
 
     h1 {
       margin: 0;
+    }
+  }
 
-      small {
-        font-size: 0.5em;
+  .main-nav {
+    margin-bottom: 20px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
 
-        a {
-          color: #999;
-
-          &:hover {
-            color: #555;
-          }
-        }
-      }
+    ul {
+      @include clearfix();
     }
 
-    nav ul {
-      @include clearfix();
+    li {
+      float: left;
 
-      li {
+      a {
+        padding: 10px;
         display: inline-block;
-        float: left;
-        margin-right: 20px;
-        font-weight: bold;
       }
     }
   }
 
   section {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    @include clearfix();
 
     &:last-child {
       margin-bottom: 0;
     }
 
-    header {
-      margin-bottom: 20px;
+    .main-sidebar {
+      width: 20%;
+      float: left;
 
-      h2 {
-        color: $linkColor;
-        margin: 0;
-        display: inline-block;
-        margin-right: 20px;
-        line-height: 34px;
-        vertical-align: top;
+      nav {
+        padding-right: 20px;
       }
+
+      li {
+        margin-bottom: 5px;
+
+        a {
+          padding: 8px 10px;
+          display: block;
+          padding-right: 20px;
+          position: relative;
+          color: #999;
+
+          &:hover {
+            background-color: #999;
+            color: white;
+          }
+
+          &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            display: block;
+            border-top: 17px solid white;
+            border-bottom: 17px solid white;
+            border-left: 17px solid transparent;
+          }
+        }
+
+        &.actived {
+          a {
+            color: white;
+            background-color: $linkColor;
+          }
+        }
+      }
+    }
+
+    .main-content {
+      width: 80%;
+      float: left;
     }
   }
 
