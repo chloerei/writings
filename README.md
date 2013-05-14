@@ -45,7 +45,7 @@ When writing a post, there are 3 options you can add to the header.
   An option for showing tweet and like button under a post.
 
 3. **date**: 2013-05-06 18:07:17<br />
-  Date is not a required header since Jekyll reads the file name for date, this was added in only for the **signoff time**. (as shown at the end of this post) If you don't want the signoff time, go into `/includes/signoff.html` and remove the `<span>`.
+  Date is not a required header since Jekyll reads the file name for date, this was added in only for the **signoff time**. (as shown at the end of this post) If you don't want the signoff time, go into `/includes/signoff.html` remove the `<span>`, and remove `{% include signoff.html %}` from `/layouts/post.html`.
 
 ---
 
