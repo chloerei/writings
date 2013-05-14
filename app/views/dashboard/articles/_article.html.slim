@@ -1,20 +1,35 @@
-tr
-  td.icon
-    a href=(edit_dashboard_article_path(:id => article))
-      - case article.status
-      - when 'publish'
-        i.icon-file-alt
-      - when 'draft'
-        i.icon-file
-      - when 'trash'
-        i.icon-trash
-  td.title
-    a href=(edit_dashboard_article_path(:id => article))
-      = article.title
-  td.category.hide-on-mobile
+li
+  h3
+    = link_to article.title, edit_dashboard_article_path(:id => article)
+    .dropdown
+      a.dropdown-toggle href='#' options
+      ul.dropdown-menu.align-right
+        li
+          a href='#'
+            i.icon-ok
+            '
+            | Publish
+        li
+          a href='#'
+            i.icon-folder-close-alt
+            '
+            | Category
+        li
+          hr
+        li
+          a href='#'
+            i.icon-remove
+            '
+            | Delete
+  .info
     - if article.category
-      a href=(edit_dashboard_article_path(:id => article))
-        span.category-name = article.category.name
-  td.date
-    a href=(edit_dashboard_article_path(:id => article))
-      = l article.updated_at.to_date, :format => :short
+      span.category-name
+        = article.category.name
+      = ' • '
+    = 'created_at'
+    = l article.created_at, :format => :short
+    = ' • '
+    = 'updated_at'
+    = l article.updated_at, :format => :short
+    = ' • '
+    = article.status

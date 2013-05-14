@@ -412,8 +412,8 @@ a.button:hover {
     margin: 0;
     padding: 0;
     z-index: 1000;
-    width: 150px;
     position: absolute;
+    width: 150px;
     top: 36px;
     left: 0;
     background: #fff;
@@ -440,8 +440,7 @@ a.button:hover {
         @include transition(none);
 
         &:hover {
-          background-color: $linkColor;
-          color: #fff;
+          background-color: #eee;
         }
       }
 

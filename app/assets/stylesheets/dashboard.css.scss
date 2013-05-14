@@ -427,71 +427,59 @@ table.nice-table {
   }
 
   .articles {
-    table {
-      width: 100%;
+    > ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
 
-      tr {
+      > li {
+        padding: 7px 14px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 2px;
+        @include box-shadow(0 1px 0 #ddd);
+
         &:hover {
-          background-color: #f9f9f9;
+          border-color: #ccc;
+        }
+      }
+    }
 
-          .title a {
-            color: $linkColor;
-          }
+    h3 {
+      padding-right:100px;
+      margin: 0 0 10px;
+      font-size: 1em;
+      position: relative;
+      @include clearfix();
+
+      > a {
+        color: #333;
+        display: block;
+
+        &:hover {
+          color: $linkColor;
         }
       }
 
-      td {
-        width: 1%;
-        white-space: nowrap;
-        padding: 0;
+      .dropdown {
+        position: absolute;
+        right: 0;
+        top: 0;
 
-        &.icon {
-          font-size: 1.5em;
-          line-height: 22px;
-
-          a {
-            color: #555;
-            padding: 8px;
-          }
+        .dropdown-toggle {
+          padding-left: 0;
+          padding-top: 0;
+          padding-bottom: 0;
         }
 
-        &.title {
-          width: 99%;
-          white-space: normal;
+        .dropdown-menu {
+          top: 20px;
         }
-
-        &.date {
-          a {
-            color: #999;
-          }
-        }
-
-        a {
-          color: #333;
-          padding: 12px 8px;
-          display: block;
-        }
-
-        .category-name {
-          padding: 2px 12px;
-          background: #999;
-          color: #fff;
-          border-radius: 3px;
-        }
-
-        &:first-child {
-          a {
-            padding-left: 0;
-          }
-        }
-
-        &:last-child {
-          a {
-            padding-right: 0;
-          }
-        }
-
       }
+    }
+
+    .info {
+      color: #999;
     }
   }
 
