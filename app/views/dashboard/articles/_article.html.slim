@@ -2,7 +2,9 @@ li
   h3
     = link_to article.title, edit_dashboard_article_path(:id => article)
     .dropdown
-      a.dropdown-toggle href='#' options
+      a.dropdown-toggle href='#'
+        i.icon-chevron-sign-down
+        i.icon-chevron-sign-up
       ul.dropdown-menu.align-right
         li
           a href='#'
@@ -22,14 +24,16 @@ li
             '
             | Delete
   .info
-    - if article.category
-      span.category-name
-        = article.category.name
+    a href=(edit_dashboard_article_path(:id => article))
+      - if article.category
+        span.category-name
+          = article.category.name
+        = ' • '
+      = 'created_at'
+      = l article.created_at, :format => :short
       = ' • '
-    = 'created_at'
-    = l article.created_at, :format => :short
-    = ' • '
-    = 'updated_at'
-    = l article.updated_at, :format => :short
-    = ' • '
-    = article.status
+      = 'updated_at'
+      = l article.updated_at, :format => :short
+      - if article.publish?
+        = ' • '
+        i.icon-ok

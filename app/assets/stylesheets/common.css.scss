@@ -79,7 +79,7 @@ article {
   pre code {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
-    @include border-radius(5px);
+    border-radius: 5px;
   }
 
   img {

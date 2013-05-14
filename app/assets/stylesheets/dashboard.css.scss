@@ -4,6 +4,7 @@
   line-height: 1.6em;
 }
 
+
 .two-columns {
   @include clearfix();
 
@@ -433,7 +434,6 @@ table.nice-table {
       padding: 0;
 
       > li {
-        padding: 7px 14px;
         margin-bottom: 10px;
         border: 1px solid #ddd;
         border-radius: 2px;
@@ -446,8 +446,8 @@ table.nice-table {
     }
 
     h3 {
-      padding-right:100px;
-      margin: 0 0 10px;
+      padding-right: 26px;
+      margin: 0;
       font-size: 1em;
       position: relative;
       @include clearfix();
@@ -455,10 +455,7 @@ table.nice-table {
       > a {
         color: #333;
         display: block;
-
-        &:hover {
-          color: $linkColor;
-        }
+        padding: 7px 14px;
       }
 
       .dropdown {
@@ -466,20 +463,47 @@ table.nice-table {
         right: 0;
         top: 0;
 
+        .icon-chevron-sign-up {
+          display: none;
+        }
+
+        &.actived {
+          .icon-chevron-sign-up {
+            display: inline;
+          }
+
+          .icon-chevron-sign-down {
+            display: none;
+          }
+        }
+
         .dropdown-toggle {
-          padding-left: 0;
-          padding-top: 0;
-          padding-bottom: 0;
+          color: #999;
+          padding: 7px;
+
+          &:after {
+            content: none;
+          }
+
+          &:hover {
+            color: #555;
+          }
         }
 
         .dropdown-menu {
-          top: 20px;
+          top: 30px;
         }
       }
     }
 
     .info {
       color: #999;
+
+      a {
+        display: block;
+        color: #999;
+        padding: 7px 14px;
+      }
     }
   }
 
