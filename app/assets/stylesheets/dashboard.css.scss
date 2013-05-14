@@ -320,6 +320,10 @@ table.nice-table {
 
     h1 {
       margin: 0;
+
+      a {
+        color: #333;
+      }
     }
   }
 
@@ -338,6 +342,12 @@ table.nice-table {
       a {
         padding: 10px;
         display: inline-block;
+      }
+
+      &.actived {
+        a {
+          color: #333;
+        }
       }
     }
   }
@@ -369,14 +379,13 @@ table.nice-table {
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
-          color: #999;
+          color: #333;
 
           &:hover {
-            background-color: #999;
-            color: white;
+            background-color: #eee;
 
             &:after {
-              border-left: 17px solid #999;
+              border-left: 17px solid #eee;
             }
           }
 
