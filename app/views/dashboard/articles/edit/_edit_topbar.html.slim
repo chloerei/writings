@@ -3,7 +3,7 @@
     .pull-left
       ul.top-nav
         li
-          a href=(dashboard_articles_path) title=(t '.return')
+          a href=(dashboard_articles_index_path) title=(t '.return')
             i.icon-reorder
         li
           a href=(restore_dashboard_article_path(:id => @article)) data-method='put'
@@ -14,7 +14,7 @@
     .pull-left
       ul.top-nav
         li
-          a href=(dashboard_articles_path) title=(t '.return')
+          a href=(dashboard_articles_index_path) title=(t '.return')
             i.icon-reorder
         li.hide-on-mobile
           = link_to '#select-category-modal', :data => { :toggle => :modal }, :title => t('.collect') do

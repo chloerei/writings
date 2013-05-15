@@ -3,18 +3,7 @@
 #main
   .container
     .inner
-      .header
-        h1
-          a href=(dashboard_root_path)
-            = t 'workspace_header', :name => @space.display_name
-          = ' / '
-          a href=(dashboard_articles_path)
-            = t 'articles'
-          = ' / '
-          a href=(index_dashboard_articles_path(:category_id => @category.urlname))
-            = @category.name
-          = ' / '
-          = t '.settings'
+      = render 'dashboard/share/main_header'
       section.tabs-margin= form_for @category, :url => dashboard_category_path(:id => @category), :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
         .field
           = f.label :name

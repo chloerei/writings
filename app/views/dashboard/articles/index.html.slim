@@ -26,15 +26,15 @@
           .main-header.clearfix
             .pull-left
               .button-group.hide-on-mobile
-                a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category_id => params[:category_id]))
+                a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id]))
                   i.icon-inbox
                   = ' '
                   = t '.inbox'
-                a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category_id => params[:category_id], :status => 'publish'))
+                a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'publish'))
                   i.icon-file-alt
                   = ' '
                   = t '.publish'
-                a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(index_dashboard_articles_path(:category_id => params[:category_id], :status => 'draft'))
+                a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'draft'))
                   i.icon-file
                   = ' '
                   = t '.draft'

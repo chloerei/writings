@@ -15,7 +15,7 @@
       = t 'trash'
   ul.dropdown-menu
     li
-      a href=(dashboard_articles_path)
+      a href=(dashboard_articles_index_path)
         i.icon-folder-open-alt
         = ' '
         = t '.all'
@@ -29,7 +29,7 @@
         hr
     - @space.categories.each do |category|
       li
-        a href=(index_dashboard_articles_path(:category_id => category.urlname))
+        a href=(dashboard_articles_index_path(:category_id => category.urlname))
           i.icon-folder-close-alt
           = ' '
           = category.name

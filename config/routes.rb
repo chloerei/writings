@@ -21,7 +21,7 @@ Publish::Application.routes.draw do
     resources :workspaces, :only => [:new, :create]
 
     scope '/~:space_id', :module => 'dashboard', :as => 'dashboard' do
-      root :to => 'dashboard#show'
+      root :to => 'articles#index'
 
       resource :settings, :only => [:show, :update]
       resources :members, :only => [:index, :destroy]
@@ -34,9 +34,9 @@ Publish::Application.routes.draw do
       end
 
       resources :categories, :only => [:create, :edit, :update, :destroy], :path_names => { :edit => :settings }
-      resources :articles, :only => [:index, :new, :create, :edit, :update, :destroy] do
+      get '(/category/:category_id)(/:status)', :as => 'articles_index', :to => 'articles#index', :constraints => { :status => /publish|draft/ }
+      resources :articles, :only => [:new, :create, :edit, :update, :destroy] do
         collection do
-          get '(/category/:category_id)(/:status)', :as => 'index', :action => 'index', :constraints => { :status => /publish|draft/ }
           post :bulk
           get 'trash', :to => 'articles#trash_index'
           delete 'trash', :to => 'articles#empty_trash'
