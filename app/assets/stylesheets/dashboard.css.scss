@@ -446,7 +446,7 @@ table.nice-table {
     }
 
     h3 {
-      padding-right: 26px;
+      padding-right: 40px;
       margin: 0;
       font-size: 1em;
       position: relative;
@@ -456,6 +456,9 @@ table.nice-table {
         color: #333;
         display: block;
         padding: 7px 14px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       }
 
       .dropdown {
@@ -479,7 +482,7 @@ table.nice-table {
 
         .dropdown-toggle {
           color: #999;
-          padding: 7px;
+          padding: 7px 14px;
 
           &:after {
             content: none;
@@ -1152,7 +1155,6 @@ table.nice-table {
 
 #paginator {
   margin-top: 20px;
-  font-size: 1.2em;
   @include clearfix();
 
   a {

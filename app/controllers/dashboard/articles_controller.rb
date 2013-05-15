@@ -3,7 +3,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   before_filter :check_lock_status, :only => [:update]
 
   def index
-    @articles = @space.articles.desc(:updated_at).page(params[:page]).status(params[:status]).includes(:category)
+    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status]).includes(:category)
 
     if params[:category_id] && @category = @space.categories.where(:urlname => params[:category_id]).first
       @articles = @articles.where(:category_id => @category.id)
