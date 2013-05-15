@@ -10,12 +10,12 @@
         a href=(dashboard_articles_index_path(:category_id => 'none'))
           i.icon-minus
           '
-          = 'Not Category'
+          = t '.no_category'
       li class=(action_name == 'trash_index' ? 'actived' : nil)
         a href=(dashboard_articles_trash_path)
           i.icon-trash
           '
-          = 'Trash'
+          = t '.trash'
   nav
     ul
       li

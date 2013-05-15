@@ -50,17 +50,15 @@ li.article id=("article-#{article.token}") data-id=(article.token) data-category
               = t '.move_to_trash'
   .info
     a href=(edit_dashboard_article_path(:id => article))
-      - if article.category
-        span.category-name
-          = article.category.name
-        = ' • '
       = t '.created_at'
       = l article.created_at, :format => :short
       = ' • '
       = t '.updated_at'
       = l article.updated_at, :format => :short
       = ' • '
+      - if article.category
+        span.category-name
+          = article.category.name
+        = ' • '
       - if article.publish?
-        = t '.publish'
-      - elsif article.draft?
-        = t '.draft'
+        = t '.published'

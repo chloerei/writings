@@ -79,17 +79,16 @@ zh-CN:
         profile_setting: "个人资料设置"
         publish_profile: "公开的个人资料"
     share:
+      main_header:
+        articles: "文章"
+        pictures: "图片"
+        members: "成员"
+        settings: "设置"
+
       settings_nav:
         account: "账户"
         profile: "个人信息"
         billing: "升级"
-
-    dashboard:
-      show:
-        articles: "文章"
-        pictures: "图片"
-        new_article: "新文章"
-        no_articles: "没有文章"
 
     attachments:
       index:
@@ -98,24 +97,42 @@ zh-CN:
         no_picture: "没有图片"
     articles:
       index:
-        inbox: "索引"
+        all: "全部"
         publish: "已发布"
         draft: "草稿箱"
         new_article: "新文章"
         no_articles: "没有文章"
+
+      main_sidebar:
+        all_articles: "全部文章"
+        no_category: "未分类"
+        trash: "回收站"
+        new_category: "添加分类"
+
+      select_category_modal:
+        select_category: "选择分类"
+        new_category: "添加分类"
+
+      add_category_modal:
+        new_category: "添加分类"
+
+      article:
+        link: "链接"
+        draft: "草稿"
+        publish: "发布"
+        published: "已发布"
+        category: "分类"
+        move_to_trash: "移到回收站"
+        created_at: "创建于"
+        updated_at: "更新于"
 
       trash_index:
         empty_trash: "清空垃圾桶"
         empty_trash_confirm: "确认清空垃圾桶？"
         no_articles: "没有文章"
 
-      category_menu:
-        all: "全部"
-        new_category: "新建分类"
-        trash: "垃圾桶"
-
       new_category_modal:
-        new_category: "新建分类"
+        new_category: "添加分类"
 
       edit:
         readonly_mode: "只读模式"
@@ -140,7 +157,7 @@ zh-CN:
           urlname: "URL"
         select_category_modal:
           select_category: "选择分类"
-          new_category: "新建分类"
+          new_category: "添加分类"
         edit_topbar:
           return: "返回文章列表"
           urlname: "URL"
@@ -203,9 +220,13 @@ zh-CN:
 
     categories:
       new:
-        new_category: "新建分类"
+        new_category: "添加分类"
       edit:
         page_title: "设置 %{name}"
+        all: "全部"
+        publish: "已发布"
+        draft: "草稿箱"
+        new_article: "新文章"
         delete_category: "删除分类"
         delete_category_confirm: "删除分类 %{name}？分类的文章会被标记为未归类。"
       tabs:
