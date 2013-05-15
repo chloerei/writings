@@ -1,27 +1,18 @@
 #main
   .container
     .inner
-      .header
-        h1
-          a href=(dashboard_root_path)
-            = t 'workspace_header', :name => @space.display_name
-          = ' / '
-          a href=(dashboard_articles_index_path)
-            = t 'articles'
-          = ' / '
-          = t 'trash'
+      = render 'dashboard/share/main_header'
       section
-        header.clearfix
-          .pull-left
-            = render :partial => 'category_menu'
-            - if @articles.any?
+        = render 'main_sidebar'
+        .main-content
+          .main-header.clearfix
+            .pull-left
               a.button href=(trash_dashboard_articles_path) data-remote=(true) data-method='delete' data-confirm=(t '.empty_trash_confirm')
                 = t '.empty_trash'
-        .articles
-          table
-            tbody
+          .articles
+            ul
               = render :partial => 'article', :collection => @articles
-          = paginate @articles, :theme => :dashboard
-          - if @articles.empty?
-            .empty-message
-              = t '.no_articles'
+            = paginate @articles, :theme => :dashboard
+            - if @articles.empty?
+              .empty-message
+                = t '.no_articles'

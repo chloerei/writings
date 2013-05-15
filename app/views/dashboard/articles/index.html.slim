@@ -3,39 +3,18 @@
     .inner
       = render 'dashboard/share/main_header'
       section
-        .main-sidebar
-          nav
-            ul
-              li.actived
-                a href='#'
-                  i.icon-inbox
-                  '
-                  = 'All'
-              li
-                a href='#'
-                  i.icon-inbox
-                  '
-                  = 'Not Category'
-              li
-                a href='#'
-                  i.icon-trash
-                  '
-                  = 'Trash'
-
+        = render 'main_sidebar'
         .main-content
           .main-header.clearfix
             .pull-left
               .button-group.hide-on-mobile
                 a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id]))
-                  i.icon-inbox
                   = ' '
-                  = t '.inbox'
+                  = t '.all'
                 a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'publish'))
-                  i.icon-file-alt
                   = ' '
                   = t '.publish'
                 a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'draft'))
-                  i.icon-file
                   = ' '
                   = t '.draft'
               - if @category

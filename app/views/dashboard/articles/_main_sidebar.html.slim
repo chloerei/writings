@@ -1,0 +1,31 @@
+.main-sidebar
+  nav
+    ul
+      li class=(action_name == 'index' && params[:category_id].blank? ? 'actived' : nil)
+        a href=(dashboard_articles_index_path)
+          i.icon-folder-open-alt
+          '
+          = t ('.all_articles')
+      li class=(action_name == 'index' && params[:category_id] == 'none' ? 'actived' : nil)
+        a href=(dashboard_articles_index_path(:category_id => 'none'))
+          i.icon-minus
+          '
+          = 'Not Category'
+      li class=(action_name == 'trash_index' ? 'actived' : nil)
+        a href=(dashboard_articles_trash_path)
+          i.icon-trash
+          '
+          = 'Trash'
+  nav
+    ul
+      li
+        a href='#new-category-modal' data-toggle='modal'
+          i.icon-plus
+          '
+          = t '.new_category'
+      - @space.categories.each do |category|
+        li class=(category == @category ? 'actived' : nil)
+          a href=(dashboard_articles_index_path(:category_id => category))
+            i.icon-folder-close-alt
+            '
+            = category.name

@@ -18,6 +18,6 @@
                   = image_tag attachment.file.thumb.url
                 a.delete href=(dashboard_attachment_path(:id => attachment)) data-remote='true' data-method='delete' data-confirm=(t '.confirm_delete')
                   i.icon-remove
-          = paginate @attachments, :theme => :dashboard
+        = paginate @attachments, :theme => :dashboard
         - if @attachments.empty?
           = t '.no_picture'

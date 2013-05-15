@@ -35,10 +35,9 @@ Publish::Application.routes.draw do
 
       resources :categories, :only => [:create, :edit, :update, :destroy], :path_names => { :edit => :settings }
       get '(/category/:category_id)(/:status)', :as => 'articles_index', :to => 'articles#index', :constraints => { :status => /publish|draft/ }
+      get '/trash', :as => 'articles_trash', :to => 'articles#trash_index'
       resources :articles, :only => [:new, :create, :edit, :update, :destroy] do
         collection do
-          post :bulk
-          get 'trash', :to => 'articles#trash_index'
           delete 'trash', :to => 'articles#empty_trash'
         end
 

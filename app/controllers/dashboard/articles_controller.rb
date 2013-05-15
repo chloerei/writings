@@ -5,8 +5,13 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   def index
     @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status]).includes(:category)
 
-    if params[:category_id] && @category = @space.categories.where(:urlname => params[:category_id]).first
-      @articles = @articles.where(:category_id => @category.id)
+    if params[:category_id]
+      if params[:category_id] == 'none'
+        @articles = @articles.where(:category_id => nil)
+      else
+        @category = @space.categories.where(:urlname => params[:category_id]).first
+        @articles = @articles.where(:category_id => @category.try(:id) || -1)
+      end
     end
 
     append_title I18n.t('all_articles')

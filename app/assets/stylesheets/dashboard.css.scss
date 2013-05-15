@@ -367,6 +367,7 @@ table.nice-table {
 
       nav {
         padding-right: 20px;
+        margin-bottom: 20px;
       }
 
       li {
@@ -566,10 +567,10 @@ table.nice-table {
         margin-bottom: 2%;
         position: relative;
         background-color: #f9f9f9;
-        @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+        @include box-shadow(0 2px 0px #ddd);
 
         &:hover {
-          @include box-shadow(0 1px 3px 1px rgba(0, 0, 0, 0.3));
+          @include box-shadow(0 2px 0px #ccc);
         }
 
         @media (max-width: 768px) {
@@ -613,6 +614,8 @@ table.nice-table {
           position: absolute;
           right: 0;
           top: 0;
+          padding: 7px;
+          line-height: 1em;
           color: #ccc;
 
           &:hover {
@@ -623,21 +626,6 @@ table.nice-table {
         &:hover .delete {
           display: inline-block;
           font-size: 1.2em;
-        }
-
-        .info {
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: #fff;
-          padding: 5px;
-
-          .name {
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-          }
         }
       }
     }
@@ -1156,14 +1144,6 @@ table.nice-table {
 #paginator {
   margin-top: 20px;
   @include clearfix();
-
-  a {
-    color: #999;
-
-    &:hover {
-      color: #555;
-    }
-  }
 
   .next {
     float: right;
