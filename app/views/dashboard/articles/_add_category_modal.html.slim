@@ -1,11 +1,11 @@
-#new-category-modal.modal-dialog
+#add-category-modal.modal-dialog
   .modal-header
     .title
       = t '.new_category'
     a.modal-close data-close='modal'
       i.icon-remove
   .modal-content
-    = form_for Category.new, :remote => true, :url => dashboard_categories_path, :validate => true do |f|
+    = form_for @space.categories.new, :remote => true, :url => dashboard_categories_path, :validate => true, :html => { :id => 'add-category-form', 'data-type' => 'json' } do |f|
       .field
         = f.label :name
         = f.text_field :name

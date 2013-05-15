@@ -1,5 +1,5 @@
 class Dashboard::ArticlesController < Dashboard::BaseController
-  before_filter :find_article, :only => [:edit, :update, :trash, :restore, :publish, :draft]
+  before_filter :find_article, :only => [:edit, :update, :trash, :restore, :publish, :draft, :category]
   before_filter :check_lock_status, :only => [:update]
 
   def index
@@ -55,9 +55,14 @@ class Dashboard::ArticlesController < Dashboard::BaseController
           @article.create_version
         end
 
-        render :article
+        respond_to do |format|
+          format.json { render :article }
+        end
       else
-        render :json => { :message => @article.errors.full_messages.join }, :status => 400
+        respond_to do |format|
+          format.json { render :json => { :message => @article.errors.full_messages.join }, :status => 400 }
+        end
+
       end
     else
       render :json => { :message => I18n.t('save_count_expired'), :code => 'save_count_expired' }, :status => 400
@@ -70,6 +75,12 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def empty_trash
     @space.articles.trash.delete_all
+  end
+
+  def category
+    @article.category = @space.categories.find_by(:urlname => params[:article][:category_id])
+    @article.save
+    render :update
   end
 
   def trash

@@ -1,0 +1,22 @@
+#select-category-modal.modal-dialog.no-scroll
+  .modal-header
+    .title
+      = t '.select_category'
+    a.modal-close data-close='modal'
+      i.icon-remove
+  .modal-content
+    = form_for :article, :remote => true, :method => :put, :html => { :id => 'select-category-form', :data => {'space' => @space.name } } do |f|
+      .field
+        .dropdown
+          a.dropdown-toggle.button href="#" = t('not_collected')
+          ul.dropdown-menu
+            - @space.categories.each do |category|
+              li
+                a href="#" data-category-id=(category.urlname) = category.name
+            li
+              a href="#" data-category-id=('null') = t('not_collected')
+        = link_to t('.new_category'), '#add-category-modal', :data => { :toggle => :modal }
+        = f.hidden_field :category_id, :id => 'select-category-id-input'
+      .field
+        = f.submit t('save')
+        = button_tag t('cancel'), :data => { :close => :modal }
