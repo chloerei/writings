@@ -14,13 +14,13 @@ li.article id=("article-#{article.token}") data-id=(article.token) data-category
               = t '.link'
           li
             a href=(draft_dashboard_article_path(:id => article)) data-remote=(true) data-method='put'
-              i.icon-minus
+              i.icon-check-minus
               '
               = t '.draft'
         - elsif article.draft?
           li
             a href=(publish_dashboard_article_path(:id => article)) data-remote=(true) data-method='put'
-              i.icon-ok
+              i.icon-check
               '
               = t '.publish'
         - if article.trash?
@@ -54,11 +54,13 @@ li.article id=("article-#{article.token}") data-id=(article.token) data-category
         span.category-name
           = article.category.name
         = ' • '
-      = 'created_at'
+      = t '.created_at'
       = l article.created_at, :format => :short
       = ' • '
-      = 'updated_at'
+      = t '.updated_at'
       = l article.updated_at, :format => :short
+      = ' • '
       - if article.publish?
-        = ' • '
-        i.icon-ok
+        = t '.publish'
+      - elsif article.draft?
+        = t '.draft'

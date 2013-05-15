@@ -48,6 +48,13 @@ a {
   }
 }
 
+li a [class^="icon-"],
+li a [class*=" icon-"] {
+  width: 1.2em;
+  text-align: left;
+  display: inline-block;
+}
+
 article {
   font-size: 1em;
   line-height: 160%;
