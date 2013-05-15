@@ -42,8 +42,11 @@ Publish::Application.routes.draw do
         end
 
         member do
+          put :publish
+          put :draft
           put :trash
           put :restore
+          delete :destroy
         end
 
         resources :versions, :only => [:index, :show] do

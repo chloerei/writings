@@ -81,4 +81,12 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
     put :update, :space_id => workspace, :id => article, :article => { :title => 'change', :save_count => article.reload.save_count + 1 }
     assert_response 400, @response.body
   end
+
+  test "should publish article" do
+    put :publish, :space_id => @user, :id => @article, :format => :js
+    assert @article.reload.publish?
+
+    put :draft, :space_id => @user, :id => @article, :format => :js
+    assert @article.reload.draft?
+  end
 end

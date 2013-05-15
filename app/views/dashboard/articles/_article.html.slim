@@ -1,4 +1,4 @@
-li
+li id=("article-#{article.token}")
   h3
     = link_to article.title, edit_dashboard_article_path(:id => article)
     .dropdown
@@ -6,23 +6,48 @@ li
         i.icon-chevron-sign-down
         i.icon-chevron-sign-up
       ul.dropdown-menu.align-right
-        li
-          a href='#'
-            i.icon-ok
-            '
-            | Publish
-        li
-          a href='#'
-            i.icon-folder-close-alt
-            '
-            | Category
-        li
-          hr
-        li
-          a href='#'
-            i.icon-remove
-            '
-            | Delete
+        - if article.publish?
+          li
+            a href=(site_article_url(:host => @space.host, :id => article)) target='_blank'
+              i.icon-external-link
+              '
+              = t '.link'
+          li
+            a href=(draft_dashboard_article_path(:id => article)) data-remote=(true) data-method='put'
+              i.icon-minus
+              '
+              = t '.draft'
+        - elsif article.draft?
+          li
+            a href=(publish_dashboard_article_path(:id => article)) data-remote=(true) data-method='put'
+              i.icon-ok
+              '
+              = t '.publish'
+        - if article.trash?
+          li
+            a href=(restore_dashboard_article_path(:id => article)) data-remote=(true) data-method='put'
+              i.icon-trash
+              '
+              = t '.restore'
+            hr
+          li
+            a href=(dashboard_article_path(:id => article)) data-remote=(true) data-method='delete' data-confirm=('.delete_confirm')
+              i.icon-remove
+              '
+              = t '.delete'
+        - else
+          li
+            a href='#'
+              i.icon-folder-close-alt
+              '
+              = t '.category'
+          li
+            hr
+          li
+            a href=(trash_dashboard_article_path(:id => article)) data-remote=(true) data-method='put'
+              i.icon-trash
+              '
+              = t '.move_to_trash'
   .info
     a href=(edit_dashboard_article_path(:id => article))
       - if article.category

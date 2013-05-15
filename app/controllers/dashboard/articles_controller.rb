@@ -1,5 +1,5 @@
 class Dashboard::ArticlesController < Dashboard::BaseController
-  before_filter :find_article, :only => [:edit, :update, :trash, :restore]
+  before_filter :find_article, :only => [:edit, :update, :trash, :restore, :publish, :draft]
   before_filter :check_lock_status, :only => [:update]
 
   def index
@@ -74,12 +74,34 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def trash
     @article.update_attribute :status, 'trash'
-    redirect_to dashboard_articles_url
+    respond_to do |format|
+      format.html { redirect_to dashboard_articles_url }
+      format.js { render :remove }
+    end
   end
 
   def restore
     @article.update_attribute :status, 'draft'
-    redirect_to edit_dashboard_article_url(@article)
+    respond_to do |format|
+      format.html { redirect_to edit_dashboard_article_url(@article) }
+      format.js { render :remove }
+    end
+  end
+
+  def publish
+    @article.update_attribute :status, 'publish'
+    render :update
+  end
+
+  def draft
+    @article.update_attribute :status, 'draft'
+    render :update
+  end
+
+  def destroy
+    @article = @space.articles.trash.find_by(:token => params[:id])
+    @article.destroy
+    render :remove
   end
 
   private

@@ -184,7 +184,7 @@ body {
         width: 100px;
         height: 100px;
         max-width: 100%;
-        @include border-radius(50px);
+        border-radius: 50px;
       }
     }
 
