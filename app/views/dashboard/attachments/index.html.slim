@@ -1,12 +1,7 @@
 #main
   .container
     .inner
-      .header
-        h1
-          a href=(dashboard_root_path)
-            = t 'workspace_header', :name => @space.display_name
-          = ' / '
-          = t '.pictures'
+      = render 'dashboard/share/main_header'
       section
         .pictures
           #storage-status

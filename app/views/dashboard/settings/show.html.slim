@@ -1,12 +1,7 @@
 #main
   .container
     .inner
-      .header
-        h1
-          a href=(dashboard_root_path)
-            = t 'workspace_header', :name => @space.display_name
-          = ' / '
-          = t '.settings'
+      = render 'dashboard/share/main_header'
       section
         = form_for @space, :url => dashboard_settings_path, :html => { :data => { :remote => true, :type => :json } } do |f|
           fieldset

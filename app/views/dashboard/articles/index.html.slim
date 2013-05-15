@@ -1,21 +1,7 @@
 #main
   .container
     .inner
-      .header
-        h1
-          a href=(dashboard_root_path)
-            = t 'workspace_header', :name => @space.display_name
-      nav.main-nav.clearfix
-        ul.pull-left
-          li.actived
-            = link_to 'Article', '#'
-          li
-            = link_to 'Picture', '#'
-        ul.pull-right
-          li
-            = link_to 'Members', '#'
-          li
-            = link_to 'Settings', '#'
+      = render 'dashboard/share/main_header'
       section
         .main-sidebar
           nav
