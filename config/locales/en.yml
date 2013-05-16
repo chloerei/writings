@@ -1,4 +1,3 @@
----
 en:
   en: English
   zh-CN: Chinese(Simplified)
@@ -6,13 +5,13 @@ en:
   save: Save
   cancel: Cancel
   restore: Restore
-  all_articles: All Articles
-  not_collected: Not Collected
+  success: Success
+  untitled: Untitled
+  articles: Articles
+  not_category: Not category
   publish: Publish
   draft: Draft
   trash: Trash
-  untitled: Untitled
-  articles: Articles
   workspace_header: '%{name}''s Workspace'
   published_at: Published at
   category: Category
@@ -73,16 +72,15 @@ en:
         profile_setting: Profile setting
         publish_profile: Published profile
     share:
+      main_header:
+        articles: Articles
+        pictures: Pictures
+        members: Members
+        settings: Space settings
       settings_nav:
         account: Account
         profile: Profile
         billing: Billing
-    dashboard:
-      show:
-        articles: Articles
-        pictures: Pictures
-        new_article: New article
-        no_articles: No articles
     attachments:
       index:
         pictures: Pictures
@@ -90,20 +88,39 @@ en:
         no_picture: No picture
     articles:
       index:
-        inbox: Inbox
+        all: All
         publish: Publish
         draft: Draft
         new_article: New article
         no_articles: No articles
+        inbox: Inbox
         is_end: is end
+      main_sidebar:
+        all_articles: All articles
+        no_category: Not category
+        trash: Trash
+        new_category: New category
+      select_category_modal:
+        select_category: Select category
+        new_category: New category
+      add_category_modal:
+        new_category: New category
+      article:
+        link: Link
+        draft: Draft
+        publish: Publish
+        published: Published
+        category: Category
+        move_to_trash: Move to trash
+        restore: Restore
+        delete: Delete
+        delete_confirm: Sure to delete this article?
+        created_at: Created at
+        updated_at: Updated at
       trash_index:
         empty_trash: Empty trash
         empty_trash_confirm: Are you sure empty trash？
         no_articles: No articles
-      category_menu:
-        all: All
-        new_category: New category
-        trash: Trash
       new_category_modal:
         new_category: New category
       edit:
@@ -199,15 +216,24 @@ en:
         new_category: New category
       edit:
         page_title: Setting %{name}
+        all: All
+        publish: Publish
+        draft: Draft
+        new_article: New article
         delete_category: Delete category
-        delete_category_confirm: Delete category %{name}? All articles in this category
-          will mark not collected.
+        delete_category_confirm: Delete category %{name}? All articles in this category will mark not collected.
       tabs:
         index: Index
         publish: Publish
         draft: Draft
-        trash: Trash
         new_article: New article
+        trash: Trash
+    dashboard:
+      show:
+        articles: Articles
+        pictures: Pictures
+        new_article: New article
+        no_articles: No articles
   mongoid:
     attributes:
       user:
