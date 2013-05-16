@@ -40,6 +40,7 @@ zh-CN:
   layouts:
     dashboard:
       home: "首页"
+      new_workspace: "创建工作区"
       articles: "文章"
       pictures: "图片"
       feedback: "问题反馈"
@@ -58,6 +59,13 @@ zh-CN:
     error:
       feedback: "问题反馈"
 
+  workspaces:
+    limit:
+      new_workspace: "创建工作区"
+      workspace_limit: "工作区额度不足"
+      see_plan: "查看套餐"
+    new:
+      new_workspace: "创建工作区"
   users:
     new:
       signup: "注册"
@@ -260,6 +268,9 @@ zh-CN:
         urlname: "URL"
       attachment:
         file: "附件"
+      workspace:
+        name: "域名"
+        full_name: "全称"
 
   errors:
     messages:
