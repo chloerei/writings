@@ -1,1 +1,6 @@
-Turbolinks.visit('<%= trash_dashboard_articles_url %>');
+$('.articles .article').remove();
+AlertMessage.show({
+  text: '<%= t 'success' %>',
+  type: 'success',
+  timeout: 1500
+});

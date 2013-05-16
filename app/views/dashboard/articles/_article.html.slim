@@ -8,15 +8,15 @@ li.article id=("article-#{article.token}") data-id=(article.token) data-category
       ul.dropdown-menu.align-right
         - if article.publish?
           li
-            a href=(site_article_url(:host => @space.host, :id => article)) target='_blank'
-              i.icon-external-link
-              '
-              = t '.link'
-          li
             a href=(draft_dashboard_article_path(:id => article)) data-remote=(true) data-method='put'
               i.icon-check-minus
               '
               = t '.draft'
+          li
+            a href=(site_article_url(:host => @space.host, :id => article)) target='_blank'
+              i.icon-external-link
+              '
+              = t '.link'
         - elsif article.draft?
           li
             a href=(publish_dashboard_article_path(:id => article)) data-remote=(true) data-method='put'
@@ -26,12 +26,12 @@ li.article id=("article-#{article.token}") data-id=(article.token) data-category
         - if article.trash?
           li
             a href=(restore_dashboard_article_path(:id => article)) data-remote=(true) data-method='put'
-              i.icon-trash
+              i.icon-undo
               '
               = t '.restore'
             hr
           li
-            a href=(dashboard_article_path(:id => article)) data-remote=(true) data-method='delete' data-confirm=('.delete_confirm')
+            a href=(dashboard_article_path(:id => article)) data-remote=(true) data-method='delete' data-confirm=(t '.delete_confirm')
               i.icon-remove
               '
               = t '.delete'
@@ -55,10 +55,10 @@ li.article id=("article-#{article.token}") data-id=(article.token) data-category
       = ' • '
       = t '.updated_at'
       = l article.updated_at, :format => :short
-      = ' • '
       - if article.category
+        = ' • '
         span.category-name
           = article.category.name
-        = ' • '
       - if article.publish?
+        = ' • '
         = t '.published'

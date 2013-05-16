@@ -663,6 +663,16 @@ table.nice-table {
     line-height: 18px;
     @include clearfix();
 
+    li a [class^="icon-"],
+    li a [class*=" icon-"] {
+      width: 1em;
+      text-align: left;
+    }
+
+    .icon-level-up:before {
+      display: inline-block;
+    }
+
     > li {
       display: inline-block;
       float: left;

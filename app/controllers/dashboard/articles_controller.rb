@@ -5,16 +5,21 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   def index
     @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status]).includes(:category)
 
+    append_title I18n.t('articles')
+
     if params[:category_id]
       if params[:category_id] == 'none'
         @articles = @articles.where(:category_id => nil)
+
+        append_title I18n.t('not_category')
       else
         @category = @space.categories.where(:urlname => params[:category_id]).first
         @articles = @articles.where(:category_id => @category.try(:id) || -1)
+
+        append_title @category.name if @category
       end
     end
 
-    append_title I18n.t('all_articles')
     append_title I18n.t(params[:status]) if params[:status].present?
   end
 
@@ -94,7 +99,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   def restore
     @article.update_attribute :status, 'draft'
     respond_to do |format|
-      format.html { redirect_to edit_dashboard_article_url(@article) }
+      format.html { redirect_to edit_dashboard_article_url(@space, @article) }
       format.js { render :remove }
     end
   end

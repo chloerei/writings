@@ -5,13 +5,13 @@ zh-CN:
   save: "保存"
   cancel: "取消"
   restore: "恢复"
-  all_articles: "所有文章"
-  not_collected: "未归类"
-  publish: "已发布"
-  draft: "草稿箱"
-  trash: "垃圾桶"
+  success: "成功"
   untitled: "无标题"
   articles: "文章"
+  not_category: "未归类"
+  publish: "已发布"
+  draft: "草稿箱"
+  trash: "回收站"
   workspace_header: "%{name} 的工作区"
 
   published_at: "发布于"
@@ -49,7 +49,7 @@ zh-CN:
       douban: "豆瓣"
       about: "关于"
       dashboard: "面板"
-      settings: "设置"
+      settings: "个人设置"
       account: "账户"
       profile: "个人资料"
       logout: "登出"
@@ -83,7 +83,7 @@ zh-CN:
         articles: "文章"
         pictures: "图片"
         members: "成员"
-        settings: "设置"
+        settings: "工作区设置"
 
       settings_nav:
         account: "账户"
@@ -123,12 +123,15 @@ zh-CN:
         published: "已发布"
         category: "分类"
         move_to_trash: "移到回收站"
+        restore: "还原"
+        delete: "彻底删除"
+        delete_confirm: "确定彻底删除这篇文章？"
         created_at: "创建于"
         updated_at: "更新于"
 
       trash_index:
-        empty_trash: "清空垃圾桶"
-        empty_trash_confirm: "确认清空垃圾桶？"
+        empty_trash: "清空回收站"
+        empty_trash_confirm: "确认清空回收站？"
         no_articles: "没有文章"
 
       new_category_modal:
@@ -169,8 +172,6 @@ zh-CN:
           save_error: "保存出错"
           retry: "重试"
           restore: "还原文章"
-          trash: "移至垃圾桶"
-          trash_confirm: "确定移动到垃圾桶？"
         toolbar:
           bold_tip: "加粗 Ctrl + B"
           italic_tip: "斜体 Ctrl + I"
@@ -233,7 +234,6 @@ zh-CN:
         index: "索引"
         publish: "已发布"
         draft: "草稿箱"
-        trash: "垃圾桶"
         new_article: "新文章"
 
   mongoid:

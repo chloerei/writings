@@ -9,13 +9,10 @@
             .pull-left
               .button-group.hide-on-mobile
                 a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id]))
-                  = ' '
                   = t '.all'
                 a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'publish'))
-                  = ' '
                   = t '.publish'
                 a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'draft'))
-                  = ' '
                   = t '.draft'
               - if @category
                 a.button href=(edit_dashboard_category_path(:id => @category))
