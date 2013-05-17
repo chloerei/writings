@@ -13,10 +13,10 @@
                 a.button href=(dashboard_articles_index_path(:category_id => @category))
                   = ' '
                   = t '.all'
-                a.button href=(dashboard_articles_index_path(:category_id => @category))
+                a.button href=(dashboard_articles_index_path(:category_id => @category, :status => 'publish'))
                   = ' '
                   = t '.publish'
-                a.button href=(dashboard_articles_index_path(:category_id => @category))
+                a.button href=(dashboard_articles_index_path(:category_id => @category, :status => 'draft'))
                   = ' '
                   = t '.draft'
               a.button.button-actived href=(edit_dashboard_category_path(:id => @category))
