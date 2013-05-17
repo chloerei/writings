@@ -99,6 +99,7 @@ table.nice-table {
   .field {
     width: 100%;
 
+    .input-append,
     #{$all-text-inputs},
     textarea {
       width: 100%;

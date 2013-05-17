@@ -11,7 +11,9 @@
             legend = t '.login_id'
             .field
               = f.label :name
-              = f.text_field :name
+              .input-append
+                = f.text_field :name
+                .add-on = ".#{APP_CONFIG['host']}"
             .field
               = f.label :email
               = f.text_field :email

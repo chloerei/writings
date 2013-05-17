@@ -75,18 +75,20 @@ zh-CN:
       username_or_email: "用户名或邮箱"
       password: "密码"
       login: "登录"
+
+  accounts:
+    show:
+      account_setting: "账户设置"
+      login_id: "登录 ID"
+      custom: "个性化"
+      change_password: "更换密码"
+      confirm_change: "确认修改"
+  profiles:
+    show:
+      profile_setting: "个人资料设置"
+      publish_profile: "公开的个人资料"
+
   dashboard:
-    accounts:
-      show:
-        account_setting: "账户设置"
-        login_id: "登录 ID"
-        custom: "个性化"
-        change_password: "更换密码"
-        confirm_change: "确认修改"
-    profiles:
-      show:
-        profile_setting: "个人资料设置"
-        publish_profile: "公开的个人资料"
     share:
       main_header:
         articles: "文章"
@@ -95,9 +97,14 @@ zh-CN:
         settings: "工作区设置"
 
       settings_nav:
+        personal_settings: "个人设置"
         account: "账户"
         profile: "个人信息"
         billing: "升级"
+
+    settings:
+      show:
+        workspace_settings: "工作区设置"
 
     members:
       index:
@@ -277,11 +284,12 @@ zh-CN:
 
   mongoid:
     attributes:
+      space:
+        domain: "域名"
+        disqus_shortname: "Disqus 帐号"
       user:
         name: "用户名"
         email: "邮箱"
-        domain: "域名"
-        disqus_shortname: "Disqus 帐号"
         locale: "语言"
         password: "密码"
         password_confirmation: "密码确认"

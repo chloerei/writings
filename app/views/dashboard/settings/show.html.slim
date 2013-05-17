@@ -1,3 +1,4 @@
+- append_title t('.workspace_settings')
 #main
   .container
     .inner
@@ -6,9 +7,9 @@
         = form_for @space, :url => dashboard_settings_path, :html => { :data => { :remote => true, :type => :json } } do |f|
           .field
             = f.label :domain
-            = f.text_field :domain
+            = f.text_field :domain, :placeholder => 'your-domain.com'
           .field
             = f.label :disqus_shortname
-            = f.text_field :disqus_shortname
+            = f.text_field :disqus_shortname, :placeholder => 'shortname'
           .field
             = f.submit t('submit')

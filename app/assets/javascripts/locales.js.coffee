@@ -7,8 +7,12 @@
   defaultLocale: 'zh-CN'
 
   t: (key, params...) ->
-    locale = I18n[@locale or @defaultLocale][key]
-    if typeof locale is 'function'
-      locale(params)
+    translator = I18n[@locale] || I18n[@defaultLocale]
+    translate = translator[key]
+    if translate
+      if typeof value is 'function'
+        translate(params)
+      else
+        translate
     else
-      locale
+      key
