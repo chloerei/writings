@@ -1,0 +1,15 @@
+<%= @workspace.creator.display_name %> 邀请你加入工作区 <%= @workspace.display_name %>：
+
+<%= @invitation.message %>
+
+Writings.io 是一个提供文章编辑、管理和发布的服务。
+
+接受邀请并开始协作：
+
+<%= dashboard_invitation_url(:space_id => @workspace, :id => @invitation.token, :host => APP_CONFIG['host']) %>
+
+<% if @workspace.members.any? %>
+该工作区的其他成员：
+
+<%= @workspace.members.map(&:display_name).join(', ') %>
+<% end %>

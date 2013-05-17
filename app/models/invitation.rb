@@ -7,6 +7,7 @@ class Invitation
 
   field :token
   field :email
+  field :message
 
   belongs_to :workspace
 

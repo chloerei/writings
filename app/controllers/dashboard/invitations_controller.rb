@@ -16,7 +16,7 @@ class Dashboard::InvitationsController < Dashboard::BaseController
 
     @invitations = params[:emails].map { |email|
       if email.present? && !exists_emails.include?(email.downcase)
-        @space.invitations.create :email => email
+        @space.invitations.create :email => email, :message => params[:message]
       end
     }.compact.find_all { |invitation| invitation.persisted? }
   end
@@ -55,10 +55,6 @@ class Dashboard::InvitationsController < Dashboard::BaseController
   end
 
   private
-
-  def invitation_params
-    params.require(:emails)
-  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)

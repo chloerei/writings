@@ -13,6 +13,7 @@ zh-CN:
   draft: "草稿箱"
   trash: "回收站"
   workspace_header: "%{name} 的工作区"
+  invitation_email_subject: "邀请你加入工作区 %{name}"
 
   published_at: "发布于"
   category: "分类"
@@ -106,6 +107,7 @@ zh-CN:
       form:
         send_invitation: "发送邀请"
         up_to_members_limit: "达到成员上限"
+        message_with_email_invitation: "给邀请邮件附上信息"
       member:
         creator: "创建者"
         remove: "移除"

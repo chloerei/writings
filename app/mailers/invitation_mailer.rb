@@ -5,6 +5,7 @@ class InvitationMailer < ActionMailer::Base
     @invitation = invitation
     @workspace = invitation.workspace
 
-    mail(:to => invitation.email, :subject => "You're invited to the #{@workspace.name} workspace")
+    mail(:to => invitation.email,
+         :subject => I18n.t('invitation_email_subject', :name => @workspace.name))
   end
 end
