@@ -72,6 +72,9 @@ blockquote {
   margin: 0;
   font-style: normal !important; }
 
+header {
+  text-align: center; }
+
 footer {
   width: 100%;
   max-width: 600px;
