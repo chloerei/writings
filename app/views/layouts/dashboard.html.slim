@@ -25,7 +25,7 @@ html lang=(logined? ? current_user.locale : 'zh-CN')
                         i.icon-user
                         = ' '
                         = current_user.display_name
-                    - current_user.creator_workspaces.each do |workspace|
+                    - current_user.workspaces.each do |workspace|
                       li
                         a href=(dashboard_root_path(workspace))
                           i.icon-group

@@ -40,7 +40,7 @@ class Dashboard::BaseController < ApplicationController
   end
 
   def require_creator
-    unless @space.is_a?(Workspace) && @space.creator == current_user
+    if @space.is_a?(Workspace) && @space.creator != current_user
       raise AccessDenied
     end
   end

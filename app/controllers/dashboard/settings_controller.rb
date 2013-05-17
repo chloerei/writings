@@ -1,4 +1,6 @@
 class Dashboard::SettingsController < Dashboard::BaseController
+  before_filter :require_creator
+
   def show
   end
 

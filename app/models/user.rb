@@ -30,6 +30,10 @@ class User < Space
 
   before_create :build_profile
 
+  def workspaces
+    Workspace.where(:member_ids => self.id)
+  end
+
   def need_current_password?
     !!@need_current_password
   end

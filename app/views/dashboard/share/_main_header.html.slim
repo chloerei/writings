@@ -12,5 +12,6 @@ nav.main-nav.clearfix
     - if @space.is_a? Workspace
       li class=(controller_name == 'members' ? 'actived' : nil)
         = link_to t('.members'), dashboard_members_path
-    li class=(controller_name == 'settings' ? 'actived' : nil)
-      = link_to t('.settings.'), dashboard_settings_path
+    - if @space.is_a?(User) || @space.creator == current_user
+      li class=(controller_name == 'settings' ? 'actived' : nil)
+        = link_to t('.settings.'), dashboard_settings_path
