@@ -1,14 +1,12 @@
 #main
   .container
     .inner
-      .header
+      .header.margin
         h1
           = t 'workspace_header', :name => @space.display_name
-          = ' / '
-          = t '.invitation'
       section.two-columns
         .column
-          h3.title = t '.review_invitation'
+          h3.title = t '.invitation_detail'
           p
             b = @space.creator.display_name
             = ' '
@@ -20,14 +18,14 @@
               = t '.you_are_login_as'
               = ' '
               b = current_user.display_name
-              = ' '
-              = link_to t('.change_another_account'), logout_path, :method => :delete
+              = ' • '
+              = link_to t('.change_account'), logout_path, :method => :delete
             p
-              = link_to 'Join workspace', accept_dashboard_invitation_path(:id => @invitation.token), :class => 'button button-green', :remote => true, :method => :put
+              = link_to t('.join_workspace'), accept_dashboard_invitation_path(:id => @invitation.token), :class => 'button button-green', :remote => true, :method => :put
           - else
             p
-              = t '.you_need_sign_up_for_continue'
-              = ' '
+              = t '.you_need_an_account'
+              = ' • '
               = link_to t('.already_have_account'), login_path
             = form_for User.new(:name => @invitation.email.split('@').first, :email => @invitation.email), :url => join_dashboard_invitation_path, :remote => true, :validate => true do |f|
               .field
@@ -43,7 +41,7 @@
                 = f.label :password_confirmation
                 = f.password_field :password_confirmation, :tabindex => 4
               .field
-                = f.submit '.signup_and_join', :class => 'button-green', :tabindex => 5
+                = f.submit t('.signup_and_join'), :class => 'button-green', :tabindex => 5
         .column
           #members.members
             h3.title = t '.members'

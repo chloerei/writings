@@ -5,6 +5,6 @@
       .field
         = text_field_tag 'emails[]', nil, :placeholder => 'Email', :id => nil
     .field
-      = submit_tag 'send_invitation'
+      = submit_tag t('.send_invitation')
   - else
     = t '.upto_members_limit'

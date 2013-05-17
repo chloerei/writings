@@ -7,4 +7,4 @@ li.member id=("invitation-#{invitation.id}")
       .action
         = link_to t('.resend'), resend_dashboard_invitation_path(:id => invitation), :remote => true, :method => :put
         = ' / '
-        = link_to t('.remove'), dashboard_invitation_path(:id => invitation), :remote => true, :method => :delete, :confirm => '.remove_confirm'
+        = link_to t('.remove'), dashboard_invitation_path(:id => invitation), :remote => true, :method => :delete, :confirm => t('.remove_confirm')

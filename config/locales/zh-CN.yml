@@ -98,6 +98,35 @@ zh-CN:
         profile: "个人信息"
         billing: "升级"
 
+    members:
+      index:
+        invite_members: "邀请成员"
+        members: "成员"
+        contact_workspace_creator_to_invite_members: "联系工作区创建者添加成员"
+      form:
+        send_invitation: "发送邀请"
+        up_to_members_limit: "达到成员上限"
+      member:
+        creator: "创建者"
+        remove: "移除"
+        remove_confirm: "确认移除"
+      invitation:
+        waiting_for_accept: "等待确认"
+        remove: "移除"
+        remove_confirm: "确认移除"
+        resend: "再次发送"
+    invitations:
+      show:
+        invitation_detail: "邀请详情"
+        invite_you_to_join_this_workspace: "邀请你加入工作区"
+        you_need_an_account: "你需要一个帐号"
+        already_have_account: "已有帐号？"
+        signup_and_join: "注册并加入"
+        you_are_login_as: "你的帐号是"
+        change_account: "使用另一个帐号？"
+        join_workspace: "加入工作区"
+        members: "成员"
+
     attachments:
       index:
         pictures: "图片"
