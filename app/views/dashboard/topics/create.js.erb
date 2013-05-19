@@ -1,0 +1,8 @@
+<% if @topic.errors.any? %>
+  AlertMessage.show({
+    type: 'error',
+    text: @topic.errors.full_messages.join
+  });
+<% else %>
+  Turbolinks.visit('<%= dashboard_topic_path(:id => @topic) %>');
+<% end %>

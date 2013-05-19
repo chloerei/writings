@@ -6,6 +6,8 @@ nav.main-nav.clearfix
   ul.pull-left
     li class=(controller_name == 'articles' ? 'actived' : nil)
       = link_to t('.articles'), dashboard_articles_index_path
+    li class=(%w(discussions topics).include?(controller_name) ? 'actived' : nil)
+      = link_to t('.discussions'), dashboard_discussions_path
     li class=(controller_name == 'attachments' ? 'actived' : nil)
       = link_to t('.pictures'), dashboard_attachments_path
   ul.pull-right

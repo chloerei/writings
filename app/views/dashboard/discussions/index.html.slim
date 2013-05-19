@@ -1,0 +1,21 @@
+#main
+  .container
+    .inner
+      = render 'dashboard/share/main_header'
+      section
+        .header.clearfix
+          .pull-left
+            .button-group
+              a.button href='#' class=(action_name == 'index' ? 'button-actived' : nil)
+                = t '.open'
+              a.button href='#' class=(action_name == 'archived' ? 'button-actived' : nil)
+                = t '.archived'
+          .pull-right
+            a.button.no-margin href=(new_dashboard_topic_path)
+              = t '.new_discussion'
+        .discussions
+          ul
+            - @discussions.each do |discussion|
+              li.discussion
+                .avatar
+                  = image_tag discussion.user.gravatar_url

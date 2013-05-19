@@ -3,7 +3,9 @@ class Workspace < Space
 
   belongs_to :creator, :class_name => 'User'
   has_and_belongs_to_many :members, :inverse_of => nil, :class_name => 'User'
-  has_many :invitations
+  has_many :invitations, :dependent => :destroy
+  has_many :discussions, :dependent => :destroy
+  has_many :topics
 
   delegate :storage_limit, :storage_used, :in_plan?, :version_limit, :to => :creator
 

@@ -57,6 +57,9 @@ Publish::Application.routes.draw do
         end
       end
       resources :attachments, :only => [:index, :show, :create, :destroy]
+
+      resources :discussions, :only => [:index]
+      resources :topics, :only => [:show, :new, :create]
     end
 
     namespace :admin do
