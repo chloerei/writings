@@ -293,19 +293,26 @@ section.post, section > p {
       display: block;
       width: 7px !important;
       white-space: normal; }
-  section.post li .CodeMirror, section > p li .CodeMirror {
+  section.post li .highlight, section > p li .highlight {
     margin: 10px 0; }
   section.post li p, section > p li p {
     margin-bottom: 5px; }
-  section.post code, section > p code {
-    font-size: 13px;
-    color: #888;
-    background: #f9f9f9;
-    padding: 0 4px; }
   section.post img, section > p img {
     max-width: 100%; }
     section.post img.half, section > p img.half {
       width: 50%; }
+
+pre {
+  overflow: scroll;
+  padding: 10px 0;
+  width: 100%;
+  line-height: 1.2em; }
+
+code {
+  font-size: 13px;
+  color: #888;
+  background: #f9f9f9;
+  padding: 0 4px; }
 
 .paging a {
   opacity: 0.15; }
