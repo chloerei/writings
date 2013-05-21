@@ -169,6 +169,10 @@ textarea {
   width: 300px;
   max-width: 100%;
   @include box-sizing(border-box);
+
+  &.full-width {
+    width: 100%;
+  }
 }
 
 textarea {

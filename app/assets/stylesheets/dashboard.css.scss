@@ -1173,3 +1173,154 @@ table.nice-table {
     float: left;
   }
 }
+
+.discussion-form {
+  padding: 50px;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  border-radius: 2px;
+  @include box-shadow(0 2px 0 #ddd);
+
+  h1 {
+    margin: 0;
+
+    input {
+      width: 100%;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .toolbar {
+    .button {
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  }
+
+  .body {
+    min-height: 250px;
+    outline: none;
+  }
+}
+
+.discussions {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      @include box-shadow(0 1px 0 #ddd);
+      @include clearfix();
+
+      a {
+        padding: 14px 50px 14px 78px;
+        position: relative;
+        min-height: 50px;
+        display: block;
+      }
+
+      &:hover {
+        border-color: #ccc;
+      }
+
+      .avatar {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        width: 50px;
+
+        img {
+          height: 50px;
+          width: 50px;
+          border-radius: 25px;
+        }
+      }
+
+      .comments-count {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        padding: 0 9px;
+        background-color: #aaa;
+        border-radius: 9px;
+        color: #fff;
+      }
+
+      h3 {
+        margin: 0;
+      }
+
+      .info {
+        color: #999;
+      }
+    }
+  }
+}
+
+ul.comments {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li.comment {
+    position: relative;
+    padding: 20px 0 20px 70px;
+    min-height: 50px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .avatar {
+    position: absolute;
+    left: 0;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+    }
+  }
+
+  .author {
+    font-weight: bold;
+  }
+}
+
+.topic {
+  .topic-header {
+    padding-left: 70px;
+
+    h1 {
+      margin: 0;
+    }
+  }
+}
+
+#new-comment {
+  position: relative;
+  padding: 20px 0 20px 70px;
+
+  .avatar {
+    position: absolute;
+    left: 0;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+    }
+  }
+
+  .discussion-form {
+    padding: 20px;
+
+    .body {
+      min-height: 100px;
+    }
+  }
+}

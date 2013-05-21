@@ -3,3 +3,19 @@
     .inner
       = render 'dashboard/share/main_header'
       section
+        .discussion-form
+          = form_for @topic, :url => dashboard_topics_path, :remote => true do |f|
+            .field
+              h1
+                = f.text_field :title, :placeholder => 'Discussion title'
+            .field
+              .toolbar
+                .button-group
+                  - 5.times do
+                    a class='button' button
+            .field
+              = f.hidden_field :body
+              .body contenteditable="true"
+                = sanitize @topic.body
+            .field
+              = f.submit t('submit')

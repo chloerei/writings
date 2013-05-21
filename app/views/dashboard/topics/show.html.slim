@@ -1,0 +1,34 @@
+#main
+  .container
+    .inner
+      = render 'dashboard/share/main_header'
+      section.topic
+        .topic-header
+          h1 = @topic.title
+        ul.comments
+          li.comment
+            .avatar
+              = image_tag @topic.user.gravatar_url(:size => 50)
+            article
+              header
+                span.author
+                  = @topic.user.name
+                = ' • '
+                span.date
+                  = l @topic.created_at, :format => :short
+              = sanitize @topic.body
+        #new-comment
+          .avatar
+            = image_tag current_user.gravatar_url(:size => 50)
+          .discussion-form
+            = form_for Comment.new, :url => '#', :remote => true do |f|
+              .field
+                .toolbar
+                  .button-group
+                    - 5.times do
+                      a class='button' button
+              .field
+                = f.hidden_field :body
+                .body contenteditable="true"
+              .field
+                = f.submit t('submit')
