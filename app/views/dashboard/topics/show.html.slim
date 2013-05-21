@@ -5,23 +5,14 @@
       section.topic
         .topic-header
           h1 = @topic.title
-        ul.comments
-          li.comment
-            .avatar
-              = image_tag @topic.user.gravatar_url(:size => 50)
-            article
-              header
-                span.author
-                  = @topic.user.name
-                = ' • '
-                span.date
-                  = l @topic.created_at, :format => :short
-              = sanitize @topic.body
+        ul#comments.comments
+          = render :partial => 'dashboard/comments/comment', :object => @topic
+          = render :partial => 'dashboard/comments/comment', :collection => @topic.comments
         #new-comment
-          .avatar
-            = image_tag current_user.gravatar_url(:size => 50)
           .discussion-form
-            = form_for Comment.new, :url => '#', :remote => true do |f|
+            .avatar
+              = image_tag current_user.gravatar_url(:size => 50)
+            = form_for Comment.new, :url => dashboard_comments_path(:discussion_id => @topic), :remote => true do |f|
               .field
                 .toolbar
                   .button-group

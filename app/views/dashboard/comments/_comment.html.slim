@@ -1,0 +1,11 @@
+li.comment
+  .avatar
+    = image_tag comment.user.gravatar_url(:size => 50)
+  article
+    header
+      span.author
+        = comment.user.name
+      = ' • '
+      span.date
+        = l comment.created_at, :format => :short
+    = sanitize comment.body

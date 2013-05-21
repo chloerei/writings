@@ -60,6 +60,7 @@ Publish::Application.routes.draw do
 
       resources :discussions, :only => [:index]
       resources :topics, :only => [:show, :new, :create]
+      resources :comments, :only => [:create]
     end
 
     namespace :admin do

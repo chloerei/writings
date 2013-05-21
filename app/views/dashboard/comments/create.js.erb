@@ -1,0 +1,15 @@
+<% if @comment.errors.empty? %>
+  $('.discussion-form .body').html('');
+  $('#comments').append('<%= j render(:partial => 'comment', :object => @comment) %>');
+
+  AlertMessage.show({
+    type: 'success',
+    text: '<%= t 'success' %>',
+    timeout: 1500
+  });
+<% else %>
+  AlertMessage.show({
+    type: 'error',
+    text: @comment.errors.full_messages.join
+  });
+<% end %>
