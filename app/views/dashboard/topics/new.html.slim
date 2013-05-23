@@ -11,8 +11,8 @@
             .field
               .toolbar
                 .button-group
-                  - 5.times do
-                    a class='button' button
+                  a class='button' data-command='bold'
+                    i.icon-bold
             .field
               = f.hidden_field :body
               .body contenteditable="true"

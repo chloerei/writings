@@ -6,15 +6,18 @@ Mousetrap.stopCallback = (e, element, combo) ->
   element.tagName is "INPUT" or element.tagName is "SELECT" or element.tagName is "TEXTAREA"
 
 class @Editor
-  constructor: (options) ->
-    @editable_selector = options.editable
-    @editable = $(options.editable)
+  # options:
+  #   editable - selector of editable area
+  #   toolbar  - selector of toolbar area
+  constructor: (@options) ->
+    @editable = $(@options.editable)
+    @readonly = @options.readonly
     @selectEnd()
     @sanitize = new Editor.Sanitize(this)
     @formator = new Editor.Formator(this)
     @undoManager = new Editor.UndoManager(this)
-    if options.toolbar
-      @toolbar = new Editor.Toolbar(this, options.toolbar)
+    if @options.toolbar
+      @toolbar = new Editor.Toolbar(this, @options.toolbar)
       @toolbar.detectState()
     @connectShortcuts()
     @initParagraph()
@@ -97,16 +100,17 @@ class @Editor
       if _this.formator[method]
         Mousetrap.bind key, (event) ->
           event.preventDefault()
-          unless $("#editwrap").hasClass("readonly")
-            _this.restoreRange()  unless _this.hasRange()
+          unless @readonly
+            _this.restoreRange() unless _this.hasRange()
             _this.formator[method]()
 
       else if _this[method]
         Mousetrap.bind key, (event) ->
           event.preventDefault()
-          _this[method]()  unless $("#editwrap").hasClass("readonly")
+          _this[method]() unless @readonly
 
-
+  setReadonly: (@readonly) ->
+    @editable.prop('contentEditable', !@readonly)
 
   paste: (event) ->
     @dirty = true
@@ -213,4 +217,4 @@ class @Editor
 
   hasRange: ->
     selection = document.getSelection()
-    selection.rangeCount and $(selection.getRangeAt(0).commonAncestorContainer).closest(@editable_selector).length
+    selection.rangeCount and $(selection.getRangeAt(0).commonAncestorContainer).closest(@options.editable).length

@@ -12,3 +12,10 @@ test "create", ->
   ok @editor
   ok @editor.editable.length
   ok @editor.toolbar
+
+test "readonly", ->
+  ok !@editor.readonly
+  equal @editor.editable.prop('contentEditable'), 'true'
+  @editor.setReadonly(true)
+  ok @editor.readonly
+  equal @editor.editable.prop('contentEditable'), 'false'

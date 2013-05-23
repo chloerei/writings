@@ -142,7 +142,7 @@ class ArticleEdit
       @lockScopes.push scope
 
       $('#editwrap').addClass('readonly')
-      @article.prop('contentEditable', false)
+      @editor.setReadonly(true)
 
   unlockArticle: (scope) ->
     if scope in @lockScopes
@@ -150,7 +150,7 @@ class ArticleEdit
 
       if @lockScopes.length is 0
         $('#editwrap').removeClass('readonly')
-        @article.prop('contentEditable', true)
+        @editor.setReadonly(false)
 
   updateStatus: ->
     $.ajax
