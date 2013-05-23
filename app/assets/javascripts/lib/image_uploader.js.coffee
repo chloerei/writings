@@ -1,5 +1,9 @@
-class ArticleEdit.ImageUploader
+class @ImageUploader
   constructor: (@editor) ->
+    @editor.formator.image = =>
+      @open()
+
+    @modal = $('#image-uploader-modal')
     @linkButton = $('#image-link-button')
     @urlInput = $('#attachment_remote_file_url')
     @linkForm = $('#image-link-form')
@@ -7,11 +11,22 @@ class ArticleEdit.ImageUploader
 
     @bindActions()
 
+  open: ->
+    Dialog.show(@modal)
+
+  close: ->
+    Dialog.hide(@modal)
+
+  insertImage: (url)->
+    @editor.formator.exec 'insertImage', url
+    @editor.formator.afterFormat()
+
   bindActions: ->
     @linkButton.on 'click', (event) =>
       event.preventDefault()
       if @urlInput.val() isnt ''
-        @editor.formator.image(@urlInput.val())
+        @insertImage(@urlInput.val())
+        @close()
         @resetLinkForm()
 
     @urlInput.on 'keyup', =>
@@ -28,7 +43,8 @@ class ArticleEdit.ImageUploader
         type: 'post'
         dataType: 'json'
       ).done( (data) =>
-        @editor.formator.image(data.files[0].url)
+        @insertImage(data.files[0].url)
+        @close()
         @updateStrageStatus(data)
       ).fail( (xhr) =>
         AlertMessage.show
@@ -72,7 +88,8 @@ class ArticleEdit.ImageUploader
           text: JSON.parse(xhr.responseText).message
 
       done: (event, data) =>
-        @editor.formator.image(data.result.files[0].url)
+        @insertImage(data.result.files[0].url)
+        @close()
         @updateStrageStatus(data.result)
         AlertMessage.show
           type: 'success'

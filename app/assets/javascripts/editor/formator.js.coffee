@@ -98,7 +98,7 @@ class @Editor.Formator
     not @isWraped("code")
 
   link: ->
-    url = prompt("Link url:", "http://")
+    url = prompt("Link url:", "")
     if url and url isnt ""
       @exec "createLink", url
     else
@@ -109,8 +109,10 @@ class @Editor.Formator
     not @isWraped("h1, h2, h3, h4, code")
 
   image: ->
-    url = prompt("Link url:", "http://")
-    @exec "insertImage", url
+    url = prompt("Link url:", "")
+    if url and url isnt ""
+      @exec "insertImage", url
+    @afterFormat()
 
   isH1: ->
     @isWraped "h1"

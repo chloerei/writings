@@ -12,7 +12,7 @@ class ArticleEdit
       toolbar: "#toolbar"
       editable: "#editarea article"
     )
-    @imageUploader = new ArticleEdit.ImageUploader(@editor)
+    @imageUploader = new ImageUploader(@editor)
     @version = new ArticleEdit.Version(this)
 
     @bindActions()

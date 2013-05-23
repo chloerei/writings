@@ -102,6 +102,16 @@ zh-CN:
         profile: "个人信息"
         billing: "升级"
 
+      image_uploader_modal:
+        insert_image: "插入图片"
+        url: "URL 地址"
+        link: "外链"
+        fetch: "抓取"
+        select_file: "选择文件"
+        upload: "上传"
+        drop_here: "拖到此处"
+        preview: "预览"
+
     settings:
       show:
         workspace_settings: "工作区设置"
@@ -189,15 +199,6 @@ zh-CN:
         return_newest_version: "回到最新版本"
         version_limit: "当前帐号可以查看最近5个版本。"
         need_more_version: "需要查看更多？"
-        image_modal:
-          insert_image: "插入图片"
-          url: "URL 地址"
-          link: "外链"
-          fetch: "抓取"
-          select_file: "选择文件"
-          upload: "上传"
-          drop_here: "拖到此处"
-          preview: "预览"
         link_modal:
           url: "URL 地址"
           create_link: "创建链接"

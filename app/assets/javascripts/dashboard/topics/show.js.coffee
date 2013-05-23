@@ -3,7 +3,9 @@ page_ready ->
     $('.discussion-form form').on 'ajax:before', ->
       $(this).find('[name*=body]').val($(this).find('.body').html())
 
-    $('#new-comment').data('editor', new Editor(
+    editor = new Editor(
       toolbar: '#new-comment .mini-toolbar',
       editable: '#new-comment article'
-    ))
+    )
+    $('#new-comment').data('editor', editor)
+    new ImageUploader(editor)

@@ -13,12 +13,3 @@ Editor.Formator::link = (url) ->
     link = $(@commonAncestorContainer()).closest("a").attr("href")  if @isWraped("a")
     Dialog.show "#link-modal"
     $("#link-modal").find("input[name=url]").val(link).focus()
-
-Editor.Formator::image = (url) ->
-  @editor.restoreRange()
-  if url
-    @exec "insertImage", url
-    @afterFormat()
-    Dialog.hide "#image-modal"
-  else
-    Dialog.show "#image-modal"

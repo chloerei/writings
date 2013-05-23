@@ -7,7 +7,7 @@
 #= require jquery-fileupload/jquery.fileupload
 #= require editor
 #= require locales
-#= require_tree ./sitewide
+#= require_tree ./lib
 #= require_tree ./dashboard
 
 $ ->
