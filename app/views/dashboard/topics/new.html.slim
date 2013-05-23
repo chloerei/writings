@@ -4,18 +4,15 @@
       = render 'dashboard/share/main_header'
       section
         .discussion-form
-          = form_for @topic, :url => dashboard_topics_path, :remote => true do |f|
+          = form_for @topic, :url => dashboard_topics_path, :remote => true, :html => { :id => 'new-topic' } do |f|
             .field
               h1
                 = f.text_field :title, :placeholder => 'Discussion title'
             .field
-              .toolbar
-                .button-group
-                  a class='button' data-command='bold'
-                    i.icon-bold
+              = render 'dashboard/share/mini_toolbar'
             .field
               = f.hidden_field :body
-              .body contenteditable="true"
+              article.body contenteditable="true"
                 = sanitize @topic.body
             .field
               = f.submit t('submit')

@@ -19,3 +19,8 @@ test "readonly", ->
   @editor.setReadonly(true)
   ok @editor.readonly
   equal @editor.editable.prop('contentEditable'), 'false'
+
+test "reset", ->
+  @editor.editable.html('<p>text</p>')
+  @editor.reset()
+  equal @editor.editable.text(), ''

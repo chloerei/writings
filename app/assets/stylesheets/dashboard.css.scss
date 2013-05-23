@@ -1192,18 +1192,19 @@ table.nice-table {
     }
   }
 
-  .toolbar {
-    .button {
-      padding: 5px 10px;
-      cursor: pointer;
-    }
-  }
-
   .body {
     min-height: 250px;
     outline: none;
   }
 }
+
+.mini-toolbar {
+  .button {
+    padding: 5px 12px;
+    cursor: pointer;
+  }
+}
+
 
 .discussions {
   ul {
@@ -1301,7 +1302,7 @@ ul.comments {
   }
 }
 
-#new-comment {
+.comment-area {
   position: relative;
   padding: 20px 0 20px 70px;
 

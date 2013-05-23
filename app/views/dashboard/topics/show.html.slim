@@ -8,18 +8,15 @@
         ul#comments.comments
           = render :partial => 'dashboard/comments/comment', :object => @topic
           = render :partial => 'dashboard/comments/comment', :collection => @topic.comments
-        #new-comment
+        .comment-area
           .discussion-form
             .avatar
               = image_tag current_user.gravatar_url(:size => 50)
-            = form_for Comment.new, :url => dashboard_comments_path(:discussion_id => @topic), :remote => true do |f|
+            = form_for Comment.new, :url => dashboard_comments_path(:discussion_id => @topic), :remote => true, :html => { :id => 'new-comment'} do |f|
               .field
-                .toolbar
-                  .button-group
-                    - 5.times do
-                      a class='button' button
+                = render 'dashboard/share/mini_toolbar'
               .field
                 = f.hidden_field :body
-                .body contenteditable="true"
+                article.body contenteditable="true"
               .field
                 = f.submit t('submit')

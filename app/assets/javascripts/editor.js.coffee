@@ -152,12 +152,10 @@ class @Editor
         @enter event
 
   backspcae: (event) ->
-
     # Stop Backspace when empty, avoid cursor flash
     event.preventDefault()  if @editable.html() is "<p><br></p>"
 
   enter: (event) ->
-
     # If in pre code, insert \n
     if document.queryCommandValue("formatBlock") is "pre"
       event.preventDefault()
@@ -212,9 +210,15 @@ class @Editor
       range.setEnd @storedRange.endContainer, @storedRange.endOffset
       selection.removeAllRanges()
       selection.addRange range
+      @storedRange = null
     else
       @selectEnd()
 
   hasRange: ->
     selection = document.getSelection()
     selection.rangeCount and $(selection.getRangeAt(0).commonAncestorContainer).closest(@options.editable).length
+
+  reset: ->
+    @editable.html('')
+    @initParagraph()
+    @selectEnd()
