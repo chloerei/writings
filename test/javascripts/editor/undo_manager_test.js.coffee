@@ -1,9 +1,8 @@
 module "Editor.UndoManager",
   setup: ->
-    @undoManager = new Editor.UndoManager("#qunit-fixture .editable")
-
-  teardown: ->
-    @undoManager = null
+    @editor = new Editor(editable: "#qunit-fixture .editable")
+    @undoManager = @editor.undoManager
+    @undoManager.undoStack = [] # clear for formator effect
 
 test "can save, undo, redo state", ->
   equal @undoManager.undoStack.length, 0
@@ -28,7 +27,7 @@ test "can save, undo, redo state", ->
 test "shoud save two text node range.", ->
   textNode1 = document.createTextNode("text1")
   textNode2 = document.createTextNode("text2")
-  @undoManager.editable.append $("<p>").append(textNode1).append(textNode2)
+  @undoManager.editable.html $("<p>").append(textNode1).append(textNode2)
   range = document.createRange()
   range.setStart textNode1, 0
   range.setEnd textNode2, textNode2.length

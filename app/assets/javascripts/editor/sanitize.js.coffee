@@ -1,6 +1,6 @@
 class @Editor.Sanitize
-  constructor: (editable) ->
-    @editable = $(editable)
+  constructor: (@editor) ->
+    @editable = @editor.editable
 
   run: ->
     @sanitizeDiv()

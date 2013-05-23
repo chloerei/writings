@@ -1,7 +1,7 @@
 class @Editor.Formator
-  constructor: (editor) ->
-    @editor = editor
+  constructor: (@editor) ->
     @editable = editor.editable
+    @exec "defaultParagraphSeparator", "p"
 
   # inline format do nothing when is Collapsed,
   # so skip afterForamt() by checking isCollapsed,

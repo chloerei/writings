@@ -1,13 +1,13 @@
 module "Editor.Sanitize",
   setup: ->
-    @sanitize = new Editor.Sanitize("#qunit-fixture .editable")
+    @editor = new Editor(editable: "#qunit-fixture .editable")
+    @sanitize = @editor.sanitize
 
   teardown: ->
     @sanitize = null
 
 sanitizeTest = (_this, html, expected) ->
   _this.sanitize.editable.html html
-  console.log _this.sanitize.editable.html()
   _this.sanitize.run()
   equal _this.sanitize.editable.html(), expected
 

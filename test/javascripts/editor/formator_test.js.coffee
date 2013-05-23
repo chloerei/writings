@@ -1,7 +1,7 @@
 module "Editor.formator",
   setup: ->
     @editor = new Editor(editable: "#qunit-fixture .editable")
-    @formator = new Editor.Formator(@editor)
+    @formator = @editor.formator
 
   teardown: ->
 

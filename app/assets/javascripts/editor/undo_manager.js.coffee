@@ -1,6 +1,6 @@
 class @Editor.UndoManager
-  constructor: (editable) ->
-    @editable = $(editable)
+  constructor: (@editor) ->
+    @editable = @editor.editable
     @stashContents = @currentContents()
     @undoStack = []
     @redoStack = []

@@ -10,10 +10,9 @@ class @Editor
     @editable_selector = options.editable
     @editable = $(options.editable)
     @selectEnd()
-    @sanitize = new Editor.Sanitize(@editable)
+    @sanitize = new Editor.Sanitize(this)
     @formator = new Editor.Formator(this)
-    @formator.exec "defaultParagraphSeparator", "p"
-    @undoManager = new Editor.UndoManager(@editable)
+    @undoManager = new Editor.UndoManager(this)
     if options.toolbar
       @toolbar = new Editor.Toolbar(this, options.toolbar)
       @toolbar.detectState()
