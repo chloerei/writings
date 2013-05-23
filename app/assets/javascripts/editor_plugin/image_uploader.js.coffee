@@ -1,4 +1,4 @@
-class @ImageUploader
+class @Editor.ImageUploader
   constructor: (@editor) ->
     @editor.formator.image = =>
       @open()

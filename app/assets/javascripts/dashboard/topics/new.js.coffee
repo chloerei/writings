@@ -8,5 +8,5 @@ page_ready ->
       editable: '#new-topic .body'
     )
     $('#new-topic').data('editor', editor)
-    new ImageUploader(editor)
-    new LinkCreator(editor)
+    new Editor.ImageUploader(editor)
+    new Editor.LinkCreator(editor)

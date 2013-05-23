@@ -12,8 +12,8 @@ class ArticleEdit
       toolbar: "#toolbar"
       editable: "#editarea article"
     )
-    @imageUploader = new ImageUploader(@editor)
-    @linkCreator = new LinkCreator(@editor)
+    @imageUploader = new Editor.ImageUploader(@editor)
+    @linkCreator = new Editor.LinkCreator(@editor)
     @version = new ArticleEdit.Version(this)
 
     @bindActions()

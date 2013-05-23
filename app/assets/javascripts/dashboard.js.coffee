@@ -5,8 +5,9 @@
 #= require jquery-fileupload/vendor/jquery.ui.widget
 #= require jquery-fileupload/jquery.iframe-transport
 #= require jquery-fileupload/jquery.fileupload
-#= require editor
 #= require locales
+#= require editor
+#= require_tree ./editor_plugin
 #= require_tree ./lib
 #= require_tree ./dashboard
 

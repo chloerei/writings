@@ -1,4 +1,4 @@
-class @LinkCreator
+class @Editor.LinkCreator
   constructor: (@editor) ->
     @editor.formator.link = =>
       @open()
@@ -20,8 +20,10 @@ class @LinkCreator
     $("#unlink-button").on "click", (event) =>
       event.preventDefault()
       @editor.restoreRange()
-      @editor.formator.exec 'unlink'
-      @editor.formator.afterFormat()
+      if @editor.formator.isWraped('a')
+        document.getSelection().selectAllChildren $(@editor.formator.commonAncestorContainer()).closest("a")[0]
+        @editor.formator.exec 'unlink'
+        @editor.formator.afterFormat()
       @close()
 
   open: ->
