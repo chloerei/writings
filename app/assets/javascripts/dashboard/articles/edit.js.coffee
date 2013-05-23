@@ -13,6 +13,7 @@ class ArticleEdit
       editable: "#editarea article"
     )
     @imageUploader = new ImageUploader(@editor)
+    @linkCreator = new LinkCreator(@editor)
     @version = new ArticleEdit.Version(this)
 
     @bindActions()
@@ -56,14 +57,6 @@ class ArticleEdit
 
     @article.on "editor:change", =>
       @saveArticle()
-
-    $("#link-form").on "submit", (event) =>
-      event.preventDefault()
-      @editor.formator.link $("#link-form input[name=url]").val()
-
-    $("#unlink-button").on "click", (event) =>
-      event.preventDefault()
-      @editor.formator.link ""
 
     Mousetrap.bind ["ctrl+s", "command+s"], (event) =>
       @saveArticle event

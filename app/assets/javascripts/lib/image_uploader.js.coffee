@@ -18,6 +18,7 @@ class @ImageUploader
     Dialog.hide(@modal)
 
   insertImage: (url)->
+    @editor.restoreRange()
     @editor.formator.exec 'insertImage', url
     @editor.formator.afterFormat()
 

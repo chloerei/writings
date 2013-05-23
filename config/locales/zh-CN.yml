@@ -112,6 +112,11 @@ zh-CN:
         drop_here: "拖到此处"
         preview: "预览"
 
+      link_creator_modal:
+        url: "URL 地址"
+        create_link: "创建链接"
+        unlink: "去掉链接"
+
     settings:
       show:
         workspace_settings: "工作区设置"
@@ -199,10 +204,6 @@ zh-CN:
         return_newest_version: "回到最新版本"
         version_limit: "当前帐号可以查看最近5个版本。"
         need_more_version: "需要查看更多？"
-        link_modal:
-          url: "URL 地址"
-          create_link: "创建链接"
-          unlink: "去掉链接"
         urlname_modal:
           urlname: "URL"
         select_category_modal:

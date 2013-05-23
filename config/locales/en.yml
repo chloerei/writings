@@ -101,6 +101,10 @@ en:
         upload: Upload
         drop_here: Drop here
         preview: Preview
+      link_modal:
+        url: URL
+        create_link: Create link
+        unlink: Unlink
     settings:
       show:
         workspace_settings: 工作区设置
@@ -182,10 +186,6 @@ en:
         return_newest_version: Return to newest version
         version_limit: 'Current account can visit last 5 versions. '
         need_more_version: Need more versions?
-        link_modal:
-          url: URL
-          create_link: Create link
-          unlink: Unlink
         urlname_modal:
           urlname: URL
         select_category_modal:

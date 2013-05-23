@@ -9,3 +9,4 @@ page_ready ->
     )
     $('#new-comment').data('editor', editor)
     new ImageUploader(editor)
+    new LinkCreator(editor)

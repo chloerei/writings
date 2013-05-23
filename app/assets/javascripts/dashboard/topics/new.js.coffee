@@ -9,3 +9,4 @@ page_ready ->
     )
     $('#new-topic').data('editor', editor)
     new ImageUploader(editor)
+    new LinkCreator(editor)
