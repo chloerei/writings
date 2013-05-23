@@ -6,4 +6,6 @@ class Comment
 
   belongs_to :discussion, :touch => true
   belongs_to :user
+
+  validates_presence_of :body
 end
