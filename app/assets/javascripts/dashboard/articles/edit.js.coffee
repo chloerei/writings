@@ -1,4 +1,3 @@
-#= require editor
 #= require_self
 #= require_tree ./edit
 
