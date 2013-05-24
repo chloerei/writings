@@ -1,6 +1,8 @@
 class @Editor.Toolbar
-  constructor: (@editor, toolbar) ->
+  constructor: (@editor, toolbar, @options = {}) ->
     @toolbar = $(toolbar)
+    @options.activeClass ||= 'actived'
+    @options.disableClass ||= 'disabled'
     _this = this
     @editor.editable.on "keyup mouseup", ->
       _this.detectState()
@@ -21,15 +23,15 @@ class @Editor.Toolbar
         isCommand = "is" + command[0].toUpperCase() + command.substring(1)
         if _this.editor.formator[isCommand]
           if _this.editor.formator[isCommand]()
-            $(element).addClass "actived"
+            $(element).addClass _this.options.activeClass
           else
-            $(element).removeClass "actived"
+            $(element).removeClass _this.options.activeClass
         canCommand = "can" + command[0].toUpperCase() + command.substring(1)
         if _this.editor.formator[canCommand]
           if _this.editor.formator[canCommand]()
-            $(element).removeClass "disabled"
+            $(element).removeClass _this.options.disableClass
           else
-            $(element).addClass "disabled"
+            $(element).addClass _this.options.disableClass
 
 
   detectBlocks: ->

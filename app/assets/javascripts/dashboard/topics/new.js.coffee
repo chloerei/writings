@@ -4,7 +4,10 @@ page_ready ->
       $(this).find('[name*=body]').val($(this).find('.body').html())
 
     editor = new Editor(
-      toolbar: '#new-topic .mini-toolbar',
+      toolbar: '#new-topic .mini-toolbar'
+      toolbarOptions:
+        activeClass: 'button-actived'
+        disableClass: 'button-disabled'
       editable: '#new-topic .body'
     )
     $('#new-topic').data('editor', editor)

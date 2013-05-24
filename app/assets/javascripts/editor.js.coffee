@@ -17,7 +17,7 @@ class @Editor
     @formator = new Editor.Formator(this)
     @undoManager = new Editor.UndoManager(this)
     if @options.toolbar
-      @toolbar = new Editor.Toolbar(this, @options.toolbar)
+      @toolbar = new Editor.Toolbar(this, @options.toolbar, @options.toolbarOptions)
       @toolbar.detectState()
     @connectShortcuts()
     @initParagraph()
