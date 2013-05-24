@@ -12,23 +12,7 @@
                 = t '.archived'
           .pull-right
             a.button.no-margin href=(new_dashboard_topic_path)
-              = t '.new_discussion'
+              = t '.new_topic'
         .discussions
           ul
-            - @discussions.each do |discussion|
-              li.discussion
-                - case discussion
-                - when Topic
-                  a href=(dashboard_topic_path(:id => discussion))
-                    .avatar
-                      = image_tag discussion.user.gravatar_url(:size => 50)
-                    h3
-                      = discussion.title
-                    .comments-count
-                      = discussion.comments.count
-                    .info
-                      = t '.created_at'
-                      = l discussion.created_at, :format => :short
-                      = ' • '
-                      = t '.updated_at'
-                      = l discussion.updated_at, :format => :short
+            = render :partial => 'discussion', :collection => @discussions

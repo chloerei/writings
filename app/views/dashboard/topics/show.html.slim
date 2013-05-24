@@ -3,6 +3,11 @@
     .inner
       = render 'dashboard/share/main_header'
       section.topic
+        .header
+          a href=(dashboard_discussions_path)
+            i.icon-circle-arrow-left
+            '
+            = t '.return_to_discussions_list'
         .topic-header
           h1
             - if @topic.archived?
@@ -16,7 +21,7 @@
               header
                 span.author
                   = @topic.user.name
-                = ' • '
+                '
                 span.date
                   = l @topic.created_at, :format => :short
                 .dropdown
@@ -24,16 +29,34 @@
                     = t '.manage'
                   ul.dropdown-menu
                     - if @topic.archived?
-                      li = link_to t('.open'), open_dashboard_topic_path(:id => @topic), :method => :put, :remote => true
+                      li
+                        = link_to open_dashboard_topic_path(:id => @topic), :method => :put, :remote => true do
+                          i.icon-upload-alt
+                          '
+                          = t('.reopen')
                     - else
-                      li = link_to t('.archive'), archive_dashboard_topic_path(:id => @topic), :method => :put, :remote => true
+                      li
+                        = link_to archive_dashboard_topic_path(:id => @topic), :method => :put, :remote => true do
+                          i.icon-download-alt
+                          '
+                          = t('.archive')
                     - if @topic.user == current_user
-                      li = link_to t('.edit'), edit_dashboard_topic_path(:id => @topic)
+                      li
+                        a href=(edit_dashboard_topic_path(:id => @topic))
+                          i.icon-edit
+                          '
+                          = t('.edit')
                       li
                         hr
-                      li = link_to t('.delete'), dashboard_topic_path(:id => @topic), :method => :delete, :remote => true, :confirm => '.delete_confirm'
+                      li
+                        = link_to dashboard_topic_path(:id => @topic), :method => :delete, :remote => true, :confirm => t('.delete_confirm') do
+                          i.icon-remove
+                          '
+                          = t('.delete')
+
               = sanitize @topic.body
           = render :partial => 'dashboard/comments/comment', :collection => @topic.comments
+      section
         .comment-area
           .discussion-form
             .avatar

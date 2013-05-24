@@ -1,0 +1,16 @@
+li.discussion
+  - case discussion
+  - when Topic
+    a href=(dashboard_topic_path(:id => discussion))
+      .avatar
+        = image_tag discussion.user.gravatar_url(:size => 50)
+      h3
+        = discussion.title
+      .comments-count
+        = discussion.comments.count
+      .info
+        = t '.created_at'
+        = l discussion.created_at, :format => :short
+        = ' • '
+        = t '.updated_at'
+        = l discussion.updated_at, :format => :short

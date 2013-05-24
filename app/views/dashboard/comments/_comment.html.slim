@@ -5,7 +5,7 @@ li.comment id=("comment-#{comment.token}")
     header
       span.author
         = comment.user.name
-      = ' • '
+      '
       span.date
         = l comment.created_at, :format => :short
       - if comment.user == current_user
@@ -13,8 +13,17 @@ li.comment id=("comment-#{comment.token}")
           .dropdown-toggle
             a = t '.manage'
           ul.dropdown-menu
-            li = link_to t('.edit'), edit_dashboard_comment_path(:id => comment)
+            li
+              a href=(edit_dashboard_comment_path(:id => comment))
+                i.icon-edit
+                '
+                = t('.edit')
             li
               hr
-            li = link_to t('.delete'), dashboard_comment_path(:id => comment), :remote => true, :method => :delete, :confirm => '.delete_confirm'
+            li
+              = link_to dashboard_comment_path(:id => comment), :remote => true, :method => :delete, :confirm => t('.delete_confirm') do
+                i.icon-remove
+                '
+                = t('.delete')
+
     = sanitize comment.body

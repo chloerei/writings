@@ -1,6 +1,6 @@
 .field
   h1
-    = form.text_field :title, :placeholder => 'Discussion title'
+    = form.text_field :title, :placeholder => t('.title')
 .field
   = render 'dashboard/share/mini_toolbar'
 .field
@@ -9,5 +9,3 @@
     = sanitize @topic.body
 .field
   = form.submit t('submit')
-= render 'dashboard/share/image_uploader_modal'
-= render 'dashboard/share/link_creator_modal'

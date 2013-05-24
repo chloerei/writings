@@ -2,7 +2,6 @@ class Discussion
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :status, :default => 'open'
   field :archived, :type => Boolean, :default => false
   field :token
 

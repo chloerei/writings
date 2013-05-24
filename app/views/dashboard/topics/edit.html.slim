@@ -3,6 +3,13 @@
     .inner
       = render 'dashboard/share/main_header'
       section
+        .header
+          a href=(dashboard_topic_path(:id => @topic))
+            i.icon-circle-arrow-left
+            '
+            = @topic.title
         .discussion-form
           = form_for @topic, :url => dashboard_topic_path(:id => @topic), :remote => true, :html => { :id => 'edit-topic' } do |f|
             = render :partial => 'form', :object => f
+          = render 'dashboard/share/image_uploader_modal'
+          = render 'dashboard/share/link_creator_modal'

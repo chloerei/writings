@@ -3,11 +3,13 @@
     .inner
       = render 'dashboard/share/main_header'
       section.topic
-        .topic-header
+        .header
           - case @comment.discussion
           - when Topic
-            h1
-              = link_to @comment.discussion.title, dashboard_topic_path(:id => @comment.discussion)
+            a href=(dashboard_topic_path(:id => @comment.discussion))
+              i.icon-circle-arrow-left
+              '
+              = @comment.discussion.title
         .comment-area
           .discussion-form
             .avatar

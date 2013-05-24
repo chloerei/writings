@@ -92,6 +92,7 @@ zh-CN:
     share:
       main_header:
         articles: "文章"
+        discussions: "讨论"
         pictures: "图片"
         members: "成员"
         settings: "工作区设置"
@@ -120,6 +121,37 @@ zh-CN:
     settings:
       show:
         workspace_settings: "工作区设置"
+
+    discussions:
+      index:
+        open: "活动"
+        archived: "已归档"
+        new_topic: "新主题"
+      discussion:
+        created_at: "创建于"
+        updated_at: "更新于"
+
+    topics:
+      new:
+        return_to_discussions_list: "返回讨论列表"
+      form:
+        title: "标题"
+      show:
+        return_to_discussions_list: "返回讨论列表"
+        archived: "已归档"
+        manage: "管理"
+        reopen: "重新开启"
+        archive: "归档"
+        edit: "编辑"
+        delete: "删除"
+        delete_confirm: "确定删除？"
+
+    comments:
+      comment:
+        manage: "管理"
+        edit: "编辑"
+        delete: "删除"
+        delete_confirm: "确定删除？"
 
     members:
       index:
