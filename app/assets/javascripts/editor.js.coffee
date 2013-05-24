@@ -210,7 +210,6 @@ class @Editor
       range.setEnd @storedRange.endContainer, @storedRange.endOffset
       selection.removeAllRanges()
       selection.addRange range
-      @storedRange = null
     else
       @selectEnd()
 

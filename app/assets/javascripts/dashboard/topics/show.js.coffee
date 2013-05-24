@@ -8,5 +8,5 @@ page_ready ->
       editable: '#new-comment article'
     )
     $('#new-comment').data('editor', editor)
-    new ImageUploader(editor)
-    new LinkCreator(editor)
+    new Editor.ImageUploader(editor)
+    new Editor.LinkCreator(editor)
