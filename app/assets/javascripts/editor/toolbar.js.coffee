@@ -1,6 +1,5 @@
 class @Editor.Toolbar
-  constructor: (editor, toolbar) ->
-    @editor = editor
+  constructor: (@editor, toolbar) ->
     @toolbar = $(toolbar)
     _this = this
     @editor.editable.on "keyup mouseup", ->
@@ -8,7 +7,7 @@ class @Editor.Toolbar
 
     @toolbar.on "click", "[data-command]", (event) ->
       event.preventDefault()
-      _this.command this  unless $(this).closest(".readonly").length
+      _this.command this unless _this.editor.readonly
 
   detectState: ->
     @detectButton()
