@@ -44,5 +44,5 @@ class @Editor.Toolbar
   command: (element) ->
     @editor.restoreRange() unless @editor.hasRange()
     @editor.formator[$(element).data("command")]()
-    @editor.storeRange()
+    @editor.storeRange() if @editor.hasRange()
     @detectState()
