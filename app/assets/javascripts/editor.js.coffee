@@ -144,10 +144,6 @@ class @Editor
     switch event.keyCode
       when 8 # Backspace
         @backspcae event
-      when 9 # Tab
-        event.preventDefault()
-        @formator.exec "insertText", "  "
-        @triggerInput()
       when 13 # Enter
         @enter event
 

@@ -16,3 +16,7 @@
         .discussions
           ul
             = render :partial => 'discussion', :collection => @discussions
+          = paginate @discussions, :theme => :dashboard
+          - if @discussions.empty?
+            .empty-message
+              = t '.no_discussion'

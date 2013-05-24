@@ -127,6 +127,7 @@ zh-CN:
         open: "活动"
         archived: "已归档"
         new_topic: "新主题"
+        no_discussion: "没有讨论"
       discussion:
         created_at: "创建于"
         updated_at: "更新于"

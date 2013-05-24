@@ -117,6 +117,7 @@ en:
         open: Open
         archived: Archived
         new_topic: New topic
+        no_discussion: No discussion
       discussion:
         created_at: Created at
         updated_at: Updated at

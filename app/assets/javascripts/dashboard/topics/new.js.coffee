@@ -13,3 +13,4 @@ page_ready ->
     $('#new-topic').data('editor', editor)
     new Editor.ImageUploader(editor)
     new Editor.LinkCreator(editor)
+    $('#topic_title').focus()
