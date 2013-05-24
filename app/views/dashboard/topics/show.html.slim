@@ -27,20 +27,8 @@
                 .dropdown
                   a.dropdown-toggle
                     = t '.manage'
-                  ul.dropdown-menu
-                    - if @topic.archived?
-                      li
-                        = link_to open_dashboard_topic_path(:id => @topic), :method => :put, :remote => true do
-                          i.icon-upload-alt
-                          '
-                          = t('.reopen')
-                    - else
-                      li
-                        = link_to archive_dashboard_topic_path(:id => @topic), :method => :put, :remote => true do
-                          i.icon-download-alt
-                          '
-                          = t('.archive')
-                    - if @topic.user == current_user
+                  - if @topic.user == current_user
+                    ul.dropdown-menu
                       li
                         a href=(edit_dashboard_topic_path(:id => @topic))
                           i.icon-edit
@@ -71,3 +59,15 @@
                 = f.submit t('submit')
             = render 'dashboard/share/image_uploader_modal'
             = render 'dashboard/share/link_creator_modal'
+      section.clearfix
+        .pull-right
+          - if @topic.archived?
+            a.button.no-margin href=(open_dashboard_topic_path(:id => @topic)) data-method='put' data-remote=(true)
+              i.icon-upload-alt
+              '
+              = t('.reopen')
+          - else
+            a.button.no-margin href=(archive_dashboard_topic_path(:id => @topic)) data-method='put' data-remote=(true)
+              i.icon-download-alt
+              '
+              = t('.archive')
