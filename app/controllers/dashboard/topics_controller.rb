@@ -1,5 +1,6 @@
 class Dashboard::TopicsController < Dashboard::BaseController
   before_filter :find_topic, :except => [:new, :create]
+  before_filter :require_author, :only => [:edit, :update, :destroy]
 
   def show
   end
@@ -41,5 +42,11 @@ class Dashboard::TopicsController < Dashboard::BaseController
 
   def find_topic
     @topic = @space.topics.find_by :token => params[:id]
+  end
+
+  def require_author
+    if @topic.user != current_user
+      raise AccessDenied
+    end
   end
 end

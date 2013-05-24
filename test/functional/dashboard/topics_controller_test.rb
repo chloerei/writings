@@ -4,7 +4,7 @@ class Dashboard::TopicsControllerTest < ActionController::TestCase
   def setup
     @user = create :user
     @workspace = create :workspace, :creator => @user
-    @topic = create :topic, :workspace => @workspace
+    @topic = create :topic, :workspace => @workspace, :user => @user
     login_as @user
   end
 
