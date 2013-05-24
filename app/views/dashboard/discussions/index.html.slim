@@ -6,9 +6,9 @@
         .header.clearfix
           .pull-left
             .button-group
-              a.button href='#' class=(action_name == 'index' ? 'button-actived' : nil)
+              a.button href=(dashboard_discussions_path) class=(action_name == 'index' ? 'button-actived' : nil)
                 = t '.open'
-              a.button href='#' class=(action_name == 'archived' ? 'button-actived' : nil)
+              a.button href=(archived_dashboard_discussions_path) class=(action_name == 'archived' ? 'button-actived' : nil)
                 = t '.archived'
           .pull-right
             a.button.no-margin href=(new_dashboard_topic_path)

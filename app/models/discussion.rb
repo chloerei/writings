@@ -10,6 +10,9 @@ class Discussion
   belongs_to :user
   has_many :comments, :dependent => :delete
 
+  scope :opening, where(:archived => false)
+  scope :archived, where(:archived => true)
+
   before_validation :set_token
 
   def set_token
