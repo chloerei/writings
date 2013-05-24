@@ -1,6 +1,6 @@
 class Dashboard::CommentsController < Dashboard::BaseController
   def create
-    @discussion = @space.discussions.find params[:discussion_id]
+    @discussion = @space.discussions.find_by :token => params[:discussion_id]
     @comment = @discussion.comments.create comment_params.merge(:user => current_user)
   end
 

@@ -8,4 +8,13 @@ li.comment
       = ' • '
       span.date
         = l comment.created_at, :format => :short
+      - if comment.user == current_user
+        .dropdown
+          .dropdown-toggle
+            a = t '.manage'
+          ul.dropdown-menu
+            li = link_to t('.edit'), '#'
+            li
+              hr
+            li = link_to t('.delete'), '#'
     = sanitize comment.body

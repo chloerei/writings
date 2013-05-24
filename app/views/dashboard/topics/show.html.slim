@@ -4,9 +4,35 @@
       = render 'dashboard/share/main_header'
       section.topic
         .topic-header
-          h1 = @topic.title
+          h1
+            - if @topic.archived?
+              .label = t '.archived'
+            = @topic.title
         ul#comments.comments
-          = render :partial => 'dashboard/comments/comment', :object => @topic
+          li.comment
+            .avatar
+              = image_tag @topic.user.gravatar_url(:size => 50)
+            article
+              header
+                span.author
+                  = @topic.user.name
+                = ' • '
+                span.date
+                  = l @topic.created_at, :format => :short
+                .dropdown
+                  a.dropdown-toggle
+                    = t '.manage'
+                  ul.dropdown-menu
+                    - if @topic.archived?
+                      li = link_to t('.open'), open_dashboard_topic_path(:id => @topic), :method => :put, :remote => true
+                    - else
+                      li = link_to t('.archive'), archive_dashboard_topic_path(:id => @topic), :method => :put, :remote => true
+                    - if @topic.user == current_user
+                      li = link_to t('.edit'), edit_dashboard_topic_path(:id => @topic)
+                      li
+                        hr
+                      li = link_to t('.delete'), dashboard_topic_path(:id => @topic), :method => :delete, :remote => true, :confirm => '.delete_confirm'
+              = sanitize @topic.body
           = render :partial => 'dashboard/comments/comment', :collection => @topic.comments
         .comment-area
           .discussion-form

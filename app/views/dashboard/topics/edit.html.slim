@@ -4,5 +4,5 @@
       = render 'dashboard/share/main_header'
       section
         .discussion-form
-          = form_for @topic, :url => dashboard_topics_path, :remote => true, :html => { :id => 'new-topic' } do |f|
+          = form_for @topic, :url => dashboard_topic_path(:id => @topic), :remote => true, :html => { :id => 'edit-topic' } do |f|
             = render :partial => 'form', :object => f

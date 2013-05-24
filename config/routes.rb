@@ -59,7 +59,12 @@ Publish::Application.routes.draw do
       resources :attachments, :only => [:index, :show, :create, :destroy]
 
       resources :discussions, :only => [:index]
-      resources :topics, :only => [:show, :new, :create]
+      resources :topics, :only => [:show, :new, :create, :edit, :update ,:destroy] do
+        member do
+          put :archive
+          put :open
+        end
+      end
       resources :comments, :only => [:create]
     end
 

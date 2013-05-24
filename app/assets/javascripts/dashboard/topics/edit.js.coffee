@@ -1,14 +1,14 @@
 page_ready ->
-  if $('#topics-new').length
-    $('#new-topic').on 'ajax:before', ->
+  if $('#topics-edit').length
+    $('#edit-topic').on 'ajax:before', ->
       $(this).find('[name*=body]').val($(this).find('.body').html())
 
     editor = new Editor(
-      toolbar: '#new-topic .mini-toolbar'
+      toolbar: '#edit-topic .mini-toolbar'
       toolbarOptions:
         activeClass: 'button-actived'
         disableClass: 'button-disabled'
-      editable: '#new-topic .body'
+      editable: '#edit-topic .body'
     )
     $('#new-topic').data('editor', editor)
     new Editor.ImageUploader(editor)

@@ -3,8 +3,21 @@ class Discussion
   include Mongoid::Timestamps
 
   field :status, :default => 'open'
-  field :archived, :default => false
+  field :archived, :type => Boolean, :default => false
+  field :token
 
   belongs_to :workspace
-  has_many :comments
+  has_many :comments, :dependent => :delete
+
+  before_validation :set_token
+
+  def set_token
+    if new_record?
+      self.token ||= workspace.inc(:discussion_next_id, 1).to_s
+    end
+  end
+
+  def to_param
+    self.token.to_s
+  end
 end

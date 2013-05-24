@@ -407,6 +407,7 @@ a.button:hover {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    cursor: pointer;
 
     &:after {
       position: absolute;
@@ -675,4 +676,13 @@ a.button:hover {
   display: none;
   font-size: 24px;
   color: #999;
+}
+
+.label {
+  display: inline-block;
+  padding: 0 6px;
+  margin-right: 6px;
+  background-color: #ccc;
+  border-radius: 3px;
+  color: #fff;
 }
