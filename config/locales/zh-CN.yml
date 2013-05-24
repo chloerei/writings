@@ -124,7 +124,7 @@ zh-CN:
 
     discussions:
       index:
-        open: "活动"
+        open: "讨论中"
         archived: "已归档"
         new_topic: "新主题"
         no_discussion: "没有讨论"
