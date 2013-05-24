@@ -1,0 +1,11 @@
+<% if @comment.errors.any? %>
+  AlertMessage.show({
+    type: 'error',
+  text: '<%= @comment.errors.full_messages.join %>'
+  });
+<% else %>
+  <% case @comment.discussion
+     when Topic %>
+    Turbolinks.visit('<%= dashboard_topic_path(:id => @comment.discussion) %>');
+  <% end %>
+<% end %>

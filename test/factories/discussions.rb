@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :discussion do
     workspace
+    user
   end
 end

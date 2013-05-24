@@ -65,7 +65,7 @@ Publish::Application.routes.draw do
           put :open
         end
       end
-      resources :comments, :only => [:create]
+      resources :comments, :only => [:create, :edit, :update, :destroy]
     end
 
     namespace :admin do

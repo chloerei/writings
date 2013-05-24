@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :comment do
+    discussion
+    body 'text'
   end
 end

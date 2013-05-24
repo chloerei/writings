@@ -1,0 +1,25 @@
+#main
+  .container
+    .inner
+      = render 'dashboard/share/main_header'
+      section.topic
+        .topic-header
+          - case @comment.discussion
+          - when Topic
+            h1
+              = link_to @comment.discussion.title, dashboard_topic_path(:id => @comment.discussion)
+        .comment-area
+          .discussion-form
+            .avatar
+              = image_tag current_user.gravatar_url(:size => 50)
+            = form_for @comment, :url => dashboard_comment_path(:id => @comment), :remote => true, :html => { :id => 'edit-comment'} do |f|
+              .field
+                = render 'dashboard/share/mini_toolbar'
+              .field
+                = f.hidden_field :body
+                article.body contenteditable="true"
+                  = sanitize @comment.body
+              .field
+                = f.submit t('submit')
+            = render 'dashboard/share/image_uploader_modal'
+            = render 'dashboard/share/link_creator_modal'

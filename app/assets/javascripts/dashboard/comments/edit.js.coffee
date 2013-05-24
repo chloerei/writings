@@ -1,15 +1,15 @@
 page_ready ->
-  if $('#topics-show').length
-    $('#new-comment').on 'ajax:before', ->
+  if $('#comments-edit').length
+    $('#edit-comment').on 'ajax:before', ->
       $(this).find('[name*=body]').val($(this).find('.body').html())
 
     editor = new Editor(
-      toolbar: '#new-comment .mini-toolbar'
+      toolbar: '#edit-comment .mini-toolbar'
       toolbarOptions:
         activeClass: 'button-actived'
         disableClass: 'button-disabled'
-      editable: '#new-comment article'
+      editable: '#edit-comment article'
     )
-    $('#new-comment').data('editor', editor)
+    $('#edit-comment').data('editor', editor)
     new Editor.ImageUploader(editor)
     new Editor.LinkCreator(editor)

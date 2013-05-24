@@ -7,6 +7,7 @@ class Discussion
   field :token
 
   belongs_to :workspace
+  belongs_to :user
   has_many :comments, :dependent => :delete
 
   before_validation :set_token
