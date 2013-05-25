@@ -9,7 +9,7 @@ html lang=(logined? ? current_user.locale : 'zh-CN')
     = csrf_meta_tags
   body#articles-edit class=(cookies[:pick_up_topbar] ? 'pick-up-topbar' : nil)
     = render :partial => 'dashboard/articles/edit/edit_topbar'
-    #editwrap
+    #editwrap.readonly.show-notes
       .main
         = render :partial => 'dashboard/articles/edit/toolbar'
         #editarea
@@ -20,6 +20,50 @@ html lang=(logined? ? current_user.locale : 'zh-CN')
               #alert-messages
               #readonly-message
                 = t '.readonly_mode'
+            .notes-container
+              .note-context style="top: 73px;"
+                a.add-note-button
+                  i.icon-pushpin
+              .note-context style="top: 131px;"
+                a.add-note-button.hide
+                  i.icon-pushpin
+                .note-context-header.clearfix
+                  .pull-left
+                    i.icon-pushpin
+                    '
+                    | 3 notes
+                  .pull-right
+                    a.close-button
+                      i.icon-remove
+                - 3.times do |n|
+                  .note-card
+                    ul.note-card-comments
+                      - (n + 1).times do
+                        li.note-card-comment
+                          .note-card-avatar
+                            = image_tag current_user.gravatar_url(:size => 50)
+                          .note-card-content
+                            .note-card-header
+                              span.note-author
+                                = current_user.display_name
+                              '
+                              span.note-date
+                                | 2013-4-1
+                            .note-card-body
+                              | text
+                    - if n == 0
+                      .new-note-card-comment
+                        .note-card-comment
+                          .note-card-avatar
+                            = image_tag current_user.gravatar_url(:size => 50)
+                          .note-card-content
+                            form
+                              .field
+                                = text_area_tag :body, nil, :rows => 2
+                              .field
+                                = submit_tag 'submit'
+                                a.button Cancel
+
       .sidebar
         #history
           .toolbar.clearfix

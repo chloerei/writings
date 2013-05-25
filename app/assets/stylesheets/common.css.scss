@@ -332,6 +332,7 @@ button,
   font-weight: normal;
   display: inline-block;
   border-radius: 2px;
+  cursor: pointer;
   @include button-color(#fefefe, #333, #ccc);
 
   &.no-margin {

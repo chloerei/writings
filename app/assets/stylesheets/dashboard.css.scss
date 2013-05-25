@@ -65,13 +65,6 @@ table.nice-table {
 }
 
 .editor-container {
-  margin: 0 auto;
-  width: $editor-container-width;
-
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-
   #alert-messages {
     position: absolute;
     right: 50%;
@@ -749,6 +742,7 @@ table.nice-table {
   }
 
   .scrollable {
+    position: relative;
     overflow: auto;
     height: 100%;
   }
@@ -808,6 +802,115 @@ table.nice-table {
     }
   }
 
+  .notes-container {
+    background-color: #ccc;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: 384px;
+    padding-left: 10px;
+    @include box-sizing(border-box);
+
+    .note-context {
+      position: absolute;
+    }
+
+    .note-context-header {
+      font-weight: bold;
+      padding: 10px;
+      color: #555;
+
+      a.close-button {
+        cursor: pointer;
+        color: #999;
+
+        &:hover {
+          color: #555;
+        }
+      }
+    }
+
+    .note-card {
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      width: 300px;
+      max-width: 100%;
+      background-color: #fff;
+      @include box-shadow(0 1px 0 #ddd);
+    }
+
+    ul.note-card-comments {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .note-card-comment {
+      padding: 10px;
+      position: relative;
+      min-height: 50px;
+      border-bottom: 1px solid #ddd;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    .note-card-avatar {
+      position: absolute;
+      left: 10px;
+
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+      }
+    }
+
+    .note-card-content {
+      padding-left: 60px;
+    }
+
+    .note-card-header {
+      margin-bottom: 10px;
+    }
+
+    .note-author {
+      font-weight: bold;
+    }
+
+    .add-note-button {
+      color: #999;
+      display: inline-block;
+      padding: 10px;
+      cursor: pointer;
+
+      &:hover {
+        color: #555;
+      }
+    }
+  }
+
+  &.show-notes {
+    .editor-container {
+      float: left;
+      width: 60%;
+
+      article {
+        float: right;
+      }
+    }
+
+    .notes-container {
+      width: 40%;
+      float: left;
+      position: relative;
+      margin-left: 0;
+      left: 0;
+    }
+  }
+
   &.show-sidebar {
     @include clearfix();
 
@@ -832,11 +935,6 @@ table.nice-table {
     @media (max-width: 1118px) {
       .editor-container {
         width: 100%;
-      }
-
-      #editarea article {
-        margin-top: 0;
-        margin-bottom: 0;
       }
 
       #alert-messages {
@@ -983,17 +1081,22 @@ table.nice-table {
     bottom: 0;
 
     article {
+      margin: 0 auto;
+      width: $editor-container-width;
       background: #FFF;
-      padding: 70 / 768 * 100%;
+      padding: 70px;
       outline: 0;
       min-height: 1024px;
       margin-top: 3px;
       margin-bottom: 60px;
       @include box-shadow(0 0 0 1px #ccc);
+      @include box-sizing(border-box);
 
       @media (max-width: 768px) {
         margin-top: 0;
         margin-bottom: 0;
+        border: none;
+        padding: 70 / 768 * 100%;
       }
 
       &.init {
@@ -1025,7 +1128,7 @@ table.nice-table {
       display: inline-block;
       position: absolute;
       left: 20px;
-      top: 54px;
+      top: 20px;
       font-size: 1.5em;
       border-radius: 5px;
     }
