@@ -235,7 +235,7 @@ section.post {
   text-align: left;
   border-top: 0;
   padding: 0; }
-  section.post > * {
+  section.post > *:not(.highlight) {
     padding: 0 60px; }
   section.post > ul, section.post > ol {
     padding: 0 80px; }
@@ -302,11 +302,18 @@ section.post, section > p {
     section.post img.half, section > p img.half {
       width: 50%; }
 
+.highlight {
+  margin: 0;
+  padding: 0; }
+
 pre {
-  overflow: scroll;
-  padding: 10px 0;
+  overflow-x: auto;
+  padding: 10px 60px;
   width: 100%;
-  line-height: 1.2em; }
+  line-height: 1.2em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
 
 code {
   font-size: 13px;
