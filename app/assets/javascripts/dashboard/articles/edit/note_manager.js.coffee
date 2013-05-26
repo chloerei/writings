@@ -5,6 +5,7 @@ class ArticleEdit.NoteManager
 
     @notes = $('#notes')
     @ids = []
+    @noteCounts = {}
 
     @updateNoteContext()
     @article.find('img').one 'load', =>
@@ -18,10 +19,6 @@ class ArticleEdit.NoteManager
       @article.find('img').one 'load', =>
         @updateNoteContext()
 
-    @manager.article.on 'mouseover', 'p, h1, h2, h3, h4, pre, li', ->
-      if this.id
-        $("#note-context-#{this.id}").addClass('show-on-mouseover').siblings().removeClass('show-on-mouseover')
-
     @manager.article.on 'click', 'p, h1, h2, h3, h4, pre, li', ->
       if this.id
         $("#note-context-#{this.id}").addClass('show-on-click').siblings().removeClass('show-on-click')
@@ -31,10 +28,16 @@ class ArticleEdit.NoteManager
       _this.openContext($(this).closest('.note-context').data('element-id'))
 
     $('#notes').on 'click', '.close-button', ->
-      $(this).closest('.note-context').html('<a class="add-note-button"><i class="icon-pushpin"></i></a>').removeClass('actived')
+      context = $(this).closest('.note-context')
+      context.html(_this.addNoteButton(context.data('id'))).removeClass('actived')
+
+    @article.on 'updateStatus', (event, data) =>
+      @updateStatus(data)
 
   openContext: (id) ->
-    $("#note-context-#{id}").siblings().html('<a class="add-note-button"><i class="icon-pushpin"></i></a>').removeClass('actived')
+    for oid in @currentIds
+      $("#note-context-#{oid}").html(@addNoteButton(oid)).removeClass('actived')
+
     $.ajax(
       url: "/~#{@space}/notes/new?article_id=#{@article.data('id')}&element_id=#{id}"
       dataType: 'script'
@@ -58,7 +61,7 @@ class ArticleEdit.NoteManager
       context = $("#note-context-#{id}")
       if !context.length
         context = $("<div id='note-context-#{id}' class='note-context'>").data('element-id', id)
-        context.html('<a class="add-note-button"><i class="icon-pushpin"></i></a>')
+        context.html(@addNoteButton(id))
         @notes.append(context)
 
       top = element.position().top + parseInt(element.css('margin-top'))
@@ -70,3 +73,17 @@ class ArticleEdit.NoteManager
       )
 
     @ids = @currentIds
+
+  addNoteButton: (id) ->
+    count = @noteCounts[id]
+    "<a class='add-note-button'>
+      <i class='icon-pushpin'></i>
+      #{ if count then (count + ' notes...') else 'add note...'}
+    </a>"
+
+  updateStatus: (data) ->
+    for note in data.notes
+      @noteCounts[note.element_id] = note.count
+
+    for id in @currentIds
+      $("#note-context-#{id}").html(@addNoteButton(id))

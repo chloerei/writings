@@ -150,9 +150,10 @@ class ArticleEdit
 
   updateStatus: ->
     $.ajax
-      url: "/~#{@space}/articles/#{@article.data("id")}/edit"
+      url: "/~#{@space}/articles/#{@article.data("id")}/status"
       dataType: "json"
       success: (data) =>
+        @article.trigger('updateStatus', data)
         if data.save_count > @saveCount
           @saveCount = data.save_count
           @updateBody(data.body)

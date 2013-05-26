@@ -1,5 +1,5 @@
 class Dashboard::ArticlesController < Dashboard::BaseController
-  before_filter :find_article, :only => [:edit, :update, :trash, :restore, :publish, :draft, :category]
+  before_filter :find_article, :only => [:status, :edit, :update, :trash, :restore, :publish, :draft, :category]
   before_filter :check_lock_status, :only => [:update]
 
   def index
@@ -43,13 +43,13 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     end
   end
 
+  def status
+  end
+
   def edit
     append_title @article.title
 
-    respond_to do |format|
-      format.html { render :layout => false }
-      format.json { render :article }
-    end
+    render :layout => false
   end
 
   def update

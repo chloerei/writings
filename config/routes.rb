@@ -42,6 +42,7 @@ Publish::Application.routes.draw do
         end
 
         member do
+          get :status
           put :category
           put :publish
           put :draft

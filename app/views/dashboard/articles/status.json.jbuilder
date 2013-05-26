@@ -19,3 +19,8 @@ if @article.locked?
     json.name locked_user.try(:name)
   end
 end
+
+json.notes @article.notes.group_by(&:element_id).map {|element_id, notes| [element_id, notes.count] } do |data|
+  json.element_id data[0]
+  json.count data[1]
+end
