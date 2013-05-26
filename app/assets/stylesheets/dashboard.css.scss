@@ -65,6 +65,8 @@ table.nice-table {
 }
 
 .editor-container {
+  position: relative;
+
   #alert-messages {
     position: absolute;
     right: 50%;
@@ -742,7 +744,6 @@ table.nice-table {
   }
 
   .scrollable {
-    position: relative;
     overflow: auto;
     height: 100%;
   }
@@ -883,7 +884,8 @@ table.nice-table {
     .add-note-button {
       color: #999;
       display: inline-block;
-      padding: 10px;
+      line-height: 160%;
+      padding: 0 10px;
       cursor: pointer;
 
       &:hover {
@@ -1089,6 +1091,7 @@ table.nice-table {
       min-height: 1024px;
       margin-top: 3px;
       margin-bottom: 60px;
+      position: relative;
       @include box-shadow(0 0 0 1px #ccc);
       @include box-sizing(border-box);
 
@@ -1128,7 +1131,7 @@ table.nice-table {
       display: inline-block;
       position: absolute;
       left: 20px;
-      top: 20px;
+      top: 54px;
       font-size: 1.5em;
       border-radius: 5px;
     }

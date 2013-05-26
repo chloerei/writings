@@ -13,6 +13,13 @@ class @Editor.Sanitize
 
   tagWhiteList: ["p", "br", "img", "a", "b", "i", "strike", "u", "h1", "h2", "h3", "h4", "pre", "code", "ol", "ul", "li", "blockquote"]
   attrWhiteList:
+    p: ["id"]
+    h1: ["id"]
+    h2: ["id"]
+    h3: ["id"]
+    h4: ["id"]
+    pre: ["id"]
+    li: ["id"]
     a: ["href", "title"]
     img: ["src", "title", "alt"]
 

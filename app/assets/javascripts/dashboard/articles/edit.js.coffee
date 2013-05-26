@@ -16,6 +16,9 @@ class ArticleEdit
     @linkCreator = new Editor.LinkCreator(@editor)
     @version = new ArticleEdit.Version(this)
 
+    if @article.data('is-workspace')
+      @noteManager = new ArticleEdit.NoteManager(this)
+
     @bindActions()
 
   bindActions: ->
