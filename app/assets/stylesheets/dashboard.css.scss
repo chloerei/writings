@@ -816,10 +816,6 @@ table.nice-table {
       width: 300px;
       position: absolute;
 
-      &.actived {
-        z-index: 1;
-      }
-
       .add-note-button {
         color: #999;
         display: none;
@@ -828,6 +824,9 @@ table.nice-table {
 
         &:hover {
           color: #555;
+        }
+        &.show {
+          display: inline-block;
         }
       }
 
@@ -838,6 +837,15 @@ table.nice-table {
           display: inline-block;
         }
       }
+
+      &.actived {
+        z-index: 1;
+
+        .add-note-button {
+          display: none;
+        }
+      }
+
     }
 
     .note-context-header {

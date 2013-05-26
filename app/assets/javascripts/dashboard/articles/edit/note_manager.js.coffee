@@ -28,15 +28,13 @@ class ArticleEdit.NoteManager
       _this.openContext($(this).closest('.note-context').data('element-id'))
 
     $('#notes').on 'click', '.close-button', ->
-      context = $(this).closest('.note-context')
-      context.html(_this.addNoteButton(context.data('id'))).removeClass('actived')
+      $(this).closest('.note-context').removeClass('actived').find('.note-context-content').remove()
 
     @article.on 'updateStatus', (event, data) =>
       @updateStatus(data)
 
   openContext: (id) ->
-    for oid in @currentIds
-      $("#note-context-#{oid}").html(@addNoteButton(oid)).removeClass('actived')
+    $("#note-context-#{id}").siblings().removeClass('actived').find('.note-context-content').remove()
 
     $.ajax(
       url: "/~#{@space}/notes/new?article_id=#{@article.data('id')}&element_id=#{id}"
@@ -76,7 +74,7 @@ class ArticleEdit.NoteManager
 
   addNoteButton: (id) ->
     count = @noteCounts[id]
-    "<a class='add-note-button'>
+    "<a class='add-note-button #{if count then 'show'}'>
       <i class='icon-pushpin'></i>
       #{ if count then (count + ' notes...') else 'add note...'}
     </a>"
@@ -86,4 +84,4 @@ class ArticleEdit.NoteManager
       @noteCounts[note.element_id] = note.count
 
     for id in @currentIds
-      $("#note-context-#{id}").html(@addNoteButton(id))
+      $("#note-context-#{id} .add-note-button").replaceWith(@addNoteButton(id))
