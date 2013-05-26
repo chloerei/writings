@@ -813,12 +813,36 @@ table.nice-table {
     @include box-sizing(border-box);
 
     .note-context {
+      width: 300px;
       position: absolute;
+
+      &.actived {
+        z-index: 1;
+      }
+
+      .add-note-button {
+        color: #999;
+        display: none;
+        padding: 5px 10px 10px 10px;
+        cursor: pointer;
+
+        &:hover {
+          color: #555;
+        }
+      }
+
+      &.show-on-mouseover,
+      &.show-on-click,
+      &:hover {
+        .add-note-button {
+          display: inline-block;
+        }
+      }
     }
 
     .note-context-header {
       font-weight: bold;
-      padding: 10px;
+      padding: 5px 10px 10px 10px;
       color: #555;
 
       a.close-button {
@@ -835,8 +859,6 @@ table.nice-table {
       margin-bottom: 10px;
       border: 1px solid #ddd;
       border-radius: 2px;
-      width: 300px;
-      max-width: 100%;
       background-color: #fff;
       @include box-shadow(0 1px 0 #ddd);
     }
@@ -881,17 +903,6 @@ table.nice-table {
       font-weight: bold;
     }
 
-    .add-note-button {
-      color: #999;
-      display: inline-block;
-      line-height: 160%;
-      padding: 0 10px;
-      cursor: pointer;
-
-      &:hover {
-        color: #555;
-      }
-    }
   }
 
   &.show-notes {

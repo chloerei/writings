@@ -1,0 +1,25 @@
+.note-card
+  ul.note-card-comments
+    li.note-card-comment
+      .note-card-avatar
+        = image_tag note.user.gravatar_url(:size => 50)
+      .note-card-content
+        .note-card-header
+          span.note-author
+            = note.user.display_name
+          span.note-date
+            = l note.created_at, :format => :short
+        .note-card-body
+          = sanitize note.body
+    - note.comments.each do |comment|
+      li.note-card-comment
+        .note-card-avatar
+          = image_tag comment.user.gravatar_url(:size => 50)
+        .note-card-content
+          .note-card-header
+            span.note-author
+              = comment.user.display_name
+            span.note-date
+              = l comment.created_at, :format => :short
+          .note-card-body
+            = sanitize comment.body

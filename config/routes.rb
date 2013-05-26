@@ -69,7 +69,7 @@ Publish::Application.routes.draw do
           put :open
         end
       end
-      resources :notes, :only => [:create]
+      resources :notes, :only => [:new, :create]
       resources :comments, :only => [:create, :edit, :update, :destroy]
     end
 

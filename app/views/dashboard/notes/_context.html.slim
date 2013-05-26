@@ -1,0 +1,23 @@
+.note-context-header.clearfix
+  .pull-left
+    i.icon-pushpin
+    '
+    = "#{@notes.count} notes"
+  .pull-right
+    a.close-button
+      i.icon-remove
+
+.note-cards
+  = render :partial => 'note', :collection => @notes
+
+.new-note-card-comment.note-card
+  .note-card-comment
+    .note-card-avatar
+      = image_tag current_user.gravatar_url(:size => 50)
+    .note-card-content
+      = form_for Note.new(:element_id => params[:element_id]), :url => dashboard_notes_path(:article_id => @article), :remote => true do |f|
+        .field
+          = f.hidden_field :element_id
+          = f.text_area :body
+        .field
+          = f.submit t('submit')

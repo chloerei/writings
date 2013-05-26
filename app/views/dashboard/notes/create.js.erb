@@ -1,4 +1,8 @@
 <% if @note.errors.empty? %>
-
+  $('#note-context-<%= @note.element_id %> .note-cards').append('<%= j render :partial => 'note', :object => @note %>').addClass('actived');
 <% else %>
+  AlertMessage.show({
+    type: 'error',
+    text: @note.errors.full_messages.join
+  });
 <% end %>
