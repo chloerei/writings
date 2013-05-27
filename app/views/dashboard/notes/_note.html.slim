@@ -13,3 +13,14 @@
               = l comment.created_at, :format => :short
           .note-card-body
             = sanitize comment.body
+  .new-note-comment.note-card-comment
+    .note-card-avatar
+      =image_tag current_user.gravatar_url(:size => 50)
+    .note-card-content
+      = form_for Comment.new, :url => dashboard_comments_path(:discussion_id => note), :remote => true do |f|
+        .field
+          = f.hidden_field :body
+          .body contenteditable='true'
+        .field.submit-field
+          = f.submit t('submit')
+          a.button.comment-cancel-button = t 'cancel'

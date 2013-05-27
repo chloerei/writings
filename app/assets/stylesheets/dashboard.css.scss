@@ -880,6 +880,7 @@ table.nice-table {
       border-radius: 2px;
       background-color: #fff;
       @include box-shadow(0 1px 0 #ddd);
+
     }
 
     ul.note-card-comments {
@@ -891,12 +892,34 @@ table.nice-table {
     .note-card-comment {
       padding: 10px;
       position: relative;
-      min-height: 50px;
+      min-height: 25px;
       border-bottom: 1px solid #ddd;
 
       &:last-child {
         border-bottom: none;
       }
+
+      .submit-field {
+        display: none;
+      }
+
+      .body {
+        min-height: 1.2em;
+      }
+
+      &.actived {
+        .body {
+          min-height: 80px;
+        }
+
+        .submit-field {
+          display: block;
+        }
+      }
+    }
+
+    .new-note-comment {
+      border-top: 1px solid #ddd;
     }
 
     .note-card-avatar {
