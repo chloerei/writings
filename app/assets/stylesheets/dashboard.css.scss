@@ -1213,6 +1213,21 @@ table.nice-table {
   #pick-up-button.icon-double-angle-up:before {
     content: "\f103";
   }
+
+  #notes {
+    display: none;
+  }
+
+  #editwrap.show-notes {
+    .editor-container {
+      float: none;
+      width: 100%;
+
+      article {
+        float: none;
+      }
+    }
+  }
 }
 
 #help-modal {
