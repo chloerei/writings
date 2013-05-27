@@ -1,0 +1,9 @@
+= form_for @note, :url => dashboard_note_path(:id => @note), :remote => true do |f|
+  .field
+    = f.hidden_field :element_id
+    = f.hidden_field :body
+    .body contenteditable="true"
+      = sanitize @note.body
+  .field
+    = f.submit t('submit')
+    a.button.note-cancel-button = t('cancel')

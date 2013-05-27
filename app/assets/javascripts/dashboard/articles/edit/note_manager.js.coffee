@@ -38,6 +38,12 @@ class ArticleEdit.NoteManager
     @notes.on 'ajax:before', 'form', ->
       $(this).find('[name*=body]').val($(this).find('.body').html())
 
+    @notes.on 'click', '.note-cancel-button', ->
+      note = $(this).closest('li')
+      note.find('.dropdown').removeClass('hide')
+      note.find('.note-card-body').removeClass('hide')
+      note.find('form').remove()
+
   openContext: (id) ->
     $("#note-context-#{id}").siblings().removeClass('actived').find('.note-context-content').remove()
 

@@ -1,35 +1,6 @@
-.note-card id=("note-#{note.token}")
+.note-card
   ul.note-card-comments
-    li.note-card-comment
-      .note-card-avatar
-        = image_tag note.user.gravatar_url(:size => 50)
-      .note-card-content
-        .note-card-header.clearfix
-          .pull-left
-            span.note-author
-              = note.user.display_name
-            span.note-date
-              = l note.created_at, :format => :short
-          .dropdown.pull-right
-            a.dropdown-toggle.no-arrow href='#'
-              i.icon-chevron-sign-down.hide-on-active
-              i.icon-chevron-sign-up.show-on-active
-            ul.dropdown-menu.align-right
-              li
-                = link_to archive_dashboard_note_path(:id => note), :remote => true, :method => :put do
-                  i.icon-download-alt
-                  '
-                  = t '.archive'
-              - if note.user == current_user
-                li
-                  hr
-                li
-                  = link_to dashboard_note_path(:id => note), :remote => true, :method => :delete, :confirm => '.delete_comfirm' do
-                    i.icon-remove
-                    '
-                    = t '.delete'
-        .note-card-body
-          = sanitize note.body
+    = render :partial => 'note_entry', :locals => { :note => note }
     - note.comments.each do |comment|
       li.note-card-comment
         .note-card-avatar
