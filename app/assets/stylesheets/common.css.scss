@@ -418,6 +418,36 @@ a.button:hover {
       display: inline-block;
       content: "\f0d7";
     }
+
+    &.no-arrow {
+      &:after {
+        content: none;
+      }
+
+      .show-on-active {
+        display: none;
+      }
+
+      .hide-on-active {
+        display: inline;
+      }
+    }
+  }
+
+  &.actived {
+    .dropdown-toggle.no-arrow {
+      &:after {
+        content: none;
+      }
+
+      .show-on-active {
+        display: inline;
+      }
+
+      .hide-on-active {
+        display: none;
+      }
+    }
   }
 
   .dropdown-menu {

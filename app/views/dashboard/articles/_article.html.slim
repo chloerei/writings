@@ -2,9 +2,9 @@ li.article id=("article-#{article.token}") data-id=(article.token) data-category
   h3
     = link_to article.title, edit_dashboard_article_path(:id => article)
     .dropdown
-      a.dropdown-toggle href='#'
-        i.icon-chevron-sign-down
-        i.icon-chevron-sign-up
+      a.dropdown-toggle.no-arrow href='#'
+        i.icon-chevron-sign-down.hide-on-active
+        i.icon-chevron-sign-up.show-on-active
       ul.dropdown-menu.align-right
         - if article.publish?
           li

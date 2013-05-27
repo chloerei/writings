@@ -2,5 +2,10 @@
 
 FactoryGirl.define do
   factory :note do
+    user
+    workspace
+    article
+    body 'text'
+    element_id 'aaaa'
   end
 end

@@ -70,7 +70,12 @@ Publish::Application.routes.draw do
           put :open
         end
       end
-      resources :notes, :only => [:new, :create]
+      resources :notes, :only => [:new, :create, :destroy] do
+        member do
+          put :archive
+          put :open
+        end
+      end
       resources :comments, :only => [:create, :edit, :update, :destroy]
     end
 

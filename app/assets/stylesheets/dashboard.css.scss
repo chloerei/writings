@@ -458,9 +458,9 @@ table.nice-table {
         color: #333;
         display: block;
         padding: 7px 14px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
 
       .dropdown {
@@ -468,31 +468,9 @@ table.nice-table {
         right: 0;
         top: 0;
 
-        .icon-chevron-sign-up {
-          display: none;
-        }
-
-        .icon-chevron-sign-down {
-          display: inline;
-        }
-
-        &.actived {
-          .icon-chevron-sign-up {
-            display: inline;
-          }
-
-          .icon-chevron-sign-down {
-            display: none;
-          }
-        }
-
         .dropdown-toggle {
           color: #999;
           padding: 7px 14px;
-
-          &:after {
-            content: none;
-          }
 
           &:hover {
             color: #555;
@@ -917,6 +895,20 @@ table.nice-table {
 
     .note-card-header {
       margin-bottom: 10px;
+
+      .dropdown-toggle {
+        padding: 0;
+        display: inline;
+        color: #999;
+
+        &:hover {
+          color: #555;
+        }
+      }
+
+      .dropdown-menu {
+        top: 20px;
+      }
     }
 
     .note-author {
