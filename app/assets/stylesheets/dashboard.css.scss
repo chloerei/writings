@@ -812,6 +812,18 @@ table.nice-table {
     padding-left: 10px;
     @include box-sizing(border-box);
 
+    .field {
+      margin-bottom: 10px;
+
+      .body {
+        min-height: 100px;
+        outline: none;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 7px;
+      }
+    }
+
     .note-context {
       width: 300px;
       position: absolute;

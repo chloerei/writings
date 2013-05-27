@@ -33,6 +33,9 @@ class ArticleEdit.NoteManager
     @article.on 'updateStatus', (event, data) =>
       @updateStatus(data)
 
+    @notes.on 'ajax:before', 'form', ->
+      $(this).find('[name*=body]').val($(this).find('.body').html())
+
   openContext: (id) ->
     $("#note-context-#{id}").siblings().removeClass('actived').find('.note-context-content').remove()
 

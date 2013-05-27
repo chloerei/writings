@@ -19,6 +19,7 @@
         = form_for Note.new(:element_id => params[:element_id]), :url => dashboard_notes_path(:article_id => @article), :remote => true do |f|
           .field
             = f.hidden_field :element_id
-            = f.text_area :body
+            = f.hidden_field :body
+            .body contenteditable="true"
           .field
             = f.submit t('submit')
