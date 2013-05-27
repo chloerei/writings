@@ -1,6 +1,13 @@
 <% if @comment.errors.empty? %>
-  $('#new-comment').data('editor').reset()
-  $('#comments').append('<%= j render(:partial => 'comment', :object => @comment) %>');
+  <% case @discussion
+     when Topic %>
+    $('#new-comment').data('editor').reset()
+    $('#comments').append('<%= j render(:partial => 'comment', :object => @comment) %>');
+  <% when Note %>
+    $('#note-card-<%= @discussion.token %> .note-card-comments').append('<%= j render :partial => 'dashboard/notes/comment', :object => @comment %>');
+    $('#note-card-<%= @discussion.token %> .body').html('');
+    $('#note-card-<%= @discussion.token %> .new-note-comment').removeClass('actived');
+  <% end %>
 
   AlertMessage.show({
     type: 'success',

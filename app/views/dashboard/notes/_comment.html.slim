@@ -1,0 +1,11 @@
+li.note-card-comment
+  .note-card-avatar
+    = image_tag comment.user.gravatar_url(:size => 50)
+  .note-card-content
+    .note-card-header
+      span.note-author
+        = comment.user.display_name
+      span.note-date
+        = l comment.created_at, :format => :short
+    .note-card-body
+      = sanitize comment.body

@@ -1,18 +1,7 @@
-.note-card
+.note-card id="note-card-#{note.token}"
   ul.note-card-comments
     = render :partial => 'note_entry', :locals => { :note => note }
-    - note.comments.each do |comment|
-      li.note-card-comment
-        .note-card-avatar
-          = image_tag comment.user.gravatar_url(:size => 50)
-        .note-card-content
-          .note-card-header
-            span.note-author
-              = comment.user.display_name
-            span.note-date
-              = l comment.created_at, :format => :short
-          .note-card-body
-            = sanitize comment.body
+    = render :partial => 'comment', :collection => note.comments
   .new-note-comment.note-card-comment
     .note-card-avatar
       =image_tag current_user.gravatar_url(:size => 50)
