@@ -26,9 +26,11 @@ class ArticleEdit.NoteManager
     _this = this
     $('#notes').on 'click', '.add-note-button', ->
       _this.openContext($(this).closest('.note-context').data('element-id'))
+      $('#editwrap').addClass('show-notes')
 
     $('#notes').on 'click', '.close-button', ->
       $(this).closest('.note-context').removeClass('actived').find('.note-context-content').remove()
+      $('#editwrap').removeClass('show-notes')
 
     @article.on 'updateStatus', (event, data) =>
       @updateStatus(data)

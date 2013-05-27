@@ -724,6 +724,7 @@ table.nice-table {
   .scrollable {
     overflow: auto;
     height: 100%;
+    position: relative;
   }
 
   .sidebar {
@@ -787,14 +788,17 @@ table.nice-table {
     left: 50%;
     top: 0;
     margin-left: 384px;
-    padding-left: 10px;
     @include box-sizing(border-box);
 
     .field {
       margin-bottom: 10px;
 
+      &:last-child {
+        margin-bottom: 0;
+      }
+
       .body {
-        min-height: 100px;
+        min-height: 80px;
         outline: none;
         border: 1px solid #ccc;
         border-radius: 3px;
@@ -803,14 +807,20 @@ table.nice-table {
     }
 
     .note-context {
-      width: 300px;
+      width: 100px;
       position: absolute;
+      @include box-sizing(border-box);
 
       .add-note-button {
         color: #999;
         display: none;
-        padding: 3px 10px 10px 10px;
+        padding: 5px 10px;
+        background-color: #fff;
+        border-radius: 0 3px 3px 0;
         cursor: pointer;
+        border: 1px solid #ccc;
+        border-left: none;
+        margin-left: 1px;
 
         &:hover {
           color: #555;
@@ -818,6 +828,15 @@ table.nice-table {
         &.show {
           display: inline-block;
         }
+      }
+
+      .note-context-content {
+        padding: 5px 10px;
+        background-color: #fff;
+        border-radius: 0 3px 3px 0;
+        border: 1px solid #ccc;
+        border-left: none;
+        margin-left: 1px;
       }
 
       &.show-on-mouseover,
@@ -840,11 +859,13 @@ table.nice-table {
 
     .note-context-header {
       font-weight: bold;
-      padding: 3px 10px 10px 10px;
       color: #555;
+      margin-bottom: 10px;
 
       a.close-button {
         cursor: pointer;
+        padding: 5px 10px;
+        margin-right: -10px;
         color: #999;
 
         &:hover {
@@ -883,14 +904,14 @@ table.nice-table {
       left: 10px;
 
       img {
-        width: 50px;
-        height: 50px;
-        border-radius: 25px;
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
       }
     }
 
     .note-card-content {
-      padding-left: 60px;
+      padding-left: 34px;
     }
 
     .note-card-header {
@@ -933,6 +954,11 @@ table.nice-table {
       position: relative;
       margin-left: 0;
       left: 0;
+
+      .note-context {
+        width: 400px;
+        max-width: 100%;
+      }
     }
   }
 
@@ -1108,6 +1134,7 @@ table.nice-table {
     article {
       margin: 0 auto;
       width: $editor-container-width;
+      max-width: 100%;
       background: #FFF;
       padding: 70px;
       outline: 0;
