@@ -1,0 +1,80 @@
+.pictures {
+  margin-right: -20px;
+  margin-bottom: 20px;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    @include clearfix();
+
+    li {
+      float: left;
+      width: 18%;
+      margin-right: 2%;
+      padding-bottom: 18%;
+      margin-bottom: 2%;
+      position: relative;
+      background-color: #f9f9f9;
+      @include box-shadow(0 2px 0px #ddd);
+
+      &:hover {
+        @include box-shadow(0 2px 0px #ccc);
+      }
+
+      @media (max-width: 768px) {
+        & {
+          width: 23%;
+          padding-bottom: 23%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        & {
+          width: 31%;
+          padding-bottom: 31%;
+        }
+      }
+
+      .pic-link {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        color: #555;
+
+        &:hover {
+          color: $linkColor;
+        }
+      }
+
+      img {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        max-height: 100%;
+        max-width: 100%;
+      }
+
+      .delete {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 7px;
+        line-height: 1em;
+        color: #ccc;
+
+        &:hover {
+          color: #555;
+        }
+      }
+
+      &:hover .delete {
+        display: inline-block;
+        font-size: 1.2em;
+      }
+    }
+  }
+}
