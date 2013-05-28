@@ -39,7 +39,7 @@ class ArticleEdit.NoteManager
       $(this).find('[name*=body]').val($(this).find('.body').html())
 
     @notes.on 'click', '.note-cancel-button', ->
-      note = $(this).closest('li')
+      note = $(this).closest('.note-card-comment')
       note.find('.dropdown').removeClass('hide')
       note.find('.note-card-body').removeClass('hide')
       note.find('form').remove()

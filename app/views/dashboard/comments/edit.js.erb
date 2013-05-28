@@ -1,0 +1,6 @@
+<% case @comment.discussion
+   when Topic %>
+<% when Note %>
+  $('#comment-<%= @comment.token %> .note-card-body').after('<%= j render :partial => 'dashboard/notes/edit_comment_form', :locals => { :comment => @comment } %>').addClass('hide');
+  $('#comment-<%= @comment.token %> .dropdown').removeClass('actived').addClass('hide');
+<% end %>
