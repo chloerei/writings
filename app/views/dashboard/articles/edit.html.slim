@@ -15,7 +15,7 @@ html lang=(logined? ? current_user.locale : 'zh-CN')
         #editarea
           .scrollable
             .editor-container
-              article contentEditable="true" spellcheck="false" data-id=(@article.token) data-save-count=(@article.save_count) data-category-id=(@article.category.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil) data-space=(@space.to_param) data-is-workspace=(@space.is_a?(Workspace)) data-current-user-name=(current_user.name)
+              article.article contentEditable="true" spellcheck="false" data-id=(@article.token) data-save-count=(@article.save_count) data-category-id=(@article.category.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil) data-space=(@space.to_param) data-is-workspace=(@space.is_a?(Workspace)) data-current-user-name=(current_user.name)
                 = article_format_body @article.body
               #alert-messages
             #notes.notes-container

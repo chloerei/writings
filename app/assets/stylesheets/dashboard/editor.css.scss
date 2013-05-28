@@ -341,7 +341,7 @@
     right: 0;
     bottom: 0;
 
-    article {
+    .article {
       margin: 0 auto;
       width: $editor-container-width;
       max-width: 100%;
@@ -558,11 +558,43 @@
     }
 
     .body {
-      min-height: 80px;
       outline: none;
       border: 1px solid #ccc;
       border-radius: 3px;
       padding: 7px;
+    }
+  }
+
+  .expandable-form {
+    .body {
+      min-height: 1.2em;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        left: 7px;
+        top: 7px;
+        content: attr(data-placeholder);
+        color: #999;
+      }
+    }
+
+    .show-on-expanded {
+      display: none;
+    }
+
+    &.expanded {
+      .body {
+        min-height: 80px;
+
+        &:after {
+          content: none;
+        }
+      }
+
+      .show-on-expanded {
+        display: block;
+      }
     }
   }
 
@@ -726,7 +758,7 @@
     float: left;
     width: 60%;
 
-    article {
+    .article {
       float: right;
     }
   }
@@ -755,7 +787,7 @@
       float: none;
       width: 100%;
 
-      article {
+      .article {
         float: none;
       }
     }

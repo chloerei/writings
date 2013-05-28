@@ -44,10 +44,10 @@ class ArticleEdit.NoteManager
       note.find('.note-card-body').removeClass('hide')
       note.find('form').remove()
 
-    @notes.on 'click', '.new-note-comment .body', ->
-      $(this).closest('.new-note-comment').addClass('actived')
-    @notes.on 'click', '.comment-cancel-button', ->
-      $(this).closest('.new-note-comment').removeClass('actived').find('.body').html('')
+    @notes.on 'click', '.expandable-form .body', ->
+      $(this).closest('.expandable-form').addClass('expanded')
+    @notes.on 'click', '.expandable-form .cancel-button', ->
+      $(this).closest('.expandable-form').removeClass('expanded').find('.body').html('<p><br></p>')
 
   openContext: (id) ->
     $("#note-context-#{id}").siblings().removeClass('actived').find('.note-context-content').remove()
