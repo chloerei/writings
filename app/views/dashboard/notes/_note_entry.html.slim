@@ -32,4 +32,4 @@ li.note-comment id=("note-#{note.token}")
                 '
                 = t '.delete'
     .note-body
-      = sanitize note.body
+      = sanitize note.body, :tags => %w(p br), :attributes => []
