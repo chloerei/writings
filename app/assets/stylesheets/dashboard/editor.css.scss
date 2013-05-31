@@ -795,3 +795,20 @@
     }
   }
 }
+
+.show-sidebar {
+  #notes {
+    display: none;
+  }
+
+  &#editwrap.show-notes {
+    .editor-container {
+      float: none;
+      width: 100%;
+
+      .article {
+        float: none;
+      }
+    }
+  }
+}
