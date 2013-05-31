@@ -1,8 +1,8 @@
-li.note-card-comment id="comment-#{comment.token}"
-  .note-card-avatar
+li.note-comment id="comment-#{comment.token}"
+  .note-avatar
     = image_tag comment.user.gravatar_url(:size => 50)
-  .note-card-content
-    .note-card-header.clearfix
+  .note-content
+    .note-content-header.clearfix
       .pull-left
         span.note-author
           = comment.user.display_name
@@ -24,5 +24,5 @@ li.note-card-comment id="comment-#{comment.token}"
                 i.icon-remove
                 '
                 = t '.delete'
-    .note-card-body
+    .note-body
       = sanitize comment.body

@@ -11,12 +11,12 @@
   .note-cards
     = render :partial => 'note', :collection => @notes
 
-  .new-note-card-comment.note-card
-    .note-card-comment
-      .note-card-avatar
+  .note-new.note-card
+    .note-comment
+      .note-avatar
         = image_tag current_user.gravatar_url(:size => 50)
-      .note-card-content
-        .note-card-body
+      .note-content
+        .note-body
           = form_for Note.new(:element_id => params[:element_id]), :url => dashboard_notes_path(:article_id => @article), :remote => true, :html => { :class => 'expandable-form' } do |f|
             .field
               = f.hidden_field :element_id

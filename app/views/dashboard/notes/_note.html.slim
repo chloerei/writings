@@ -1,11 +1,12 @@
 .note-card id="note-card-#{note.token}"
-  ul.note-card-comments
-    = render :partial => 'note_entry', :locals => { :note => note }
-    = render :partial => 'comment', :collection => note.comments
-  .new-note-comment.note-card-comment
-    .note-card-avatar
+  .note-comments
+    ul
+      = render :partial => 'note_entry', :locals => { :note => note }
+      = render :partial => 'comment', :collection => note.comments
+  .note-new-comment.note-comment
+    .note-avatar
       =image_tag current_user.gravatar_url(:size => 50)
-    .note-card-content
+    .note-content
       = form_for Comment.new, :url => dashboard_comments_path(:discussion_id => note), :remote => true, :html => {:class => 'expandable-form' } do |f|
         .field
           = f.hidden_field :body

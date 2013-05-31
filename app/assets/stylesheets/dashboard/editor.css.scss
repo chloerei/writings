@@ -603,7 +603,7 @@
     position: absolute;
     @include box-sizing(border-box);
 
-    .add-note-button {
+    .note-add-button {
       color: #999;
       display: none;
       padding: 5px 10px;
@@ -634,7 +634,7 @@
     &.show-on-mouseover,
     &.show-on-click,
     &:hover {
-      .add-note-button {
+      .note-add-button {
         display: inline-block;
       }
     }
@@ -642,7 +642,7 @@
     &.actived {
       z-index: 1;
 
-      .add-note-button {
+      .note-add-button {
         display: none;
       }
     }
@@ -675,13 +675,15 @@
 
   }
 
-  ul.note-card-comments {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .note-comments {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
   }
 
-  .note-card-comment {
+  .note-comment {
     padding: 10px;
     position: relative;
     min-height: 25px;
@@ -710,11 +712,11 @@
     }
   }
 
-  .new-note-comment {
+  .note-new-comment {
     border-top: 1px solid #ddd;
   }
 
-  .note-card-avatar {
+  .note-avatar {
     position: absolute;
     left: 10px;
 
@@ -725,11 +727,11 @@
     }
   }
 
-  .note-card-content {
+  .note-content {
     padding-left: 34px;
   }
 
-  .note-card-header {
+  .note-content-header {
     margin-bottom: 10px;
 
     .dropdown-toggle {

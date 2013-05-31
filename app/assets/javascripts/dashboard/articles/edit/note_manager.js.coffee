@@ -24,7 +24,7 @@ class ArticleEdit.NoteManager
         $("#note-context-#{this.id}").addClass('show-on-click').siblings().removeClass('show-on-click')
 
     _this = this
-    $('#notes').on 'click', '.add-note-button', ->
+    $('#notes').on 'click', '.note-add-button', ->
       _this.openContext($(this).closest('.note-context').data('element-id'))
       $('#editwrap').addClass('show-notes')
 
@@ -39,9 +39,9 @@ class ArticleEdit.NoteManager
       $(this).find('[name*=body]').val($(this).find('.body').html())
 
     @notes.on 'click', '.note-cancel-button', ->
-      note = $(this).closest('.note-card-comment')
+      note = $(this).closest('.note-comment')
       note.find('.dropdown').removeClass('hide')
-      note.find('.note-card-body').removeClass('hide')
+      note.find('.note-body').removeClass('hide')
       note.find('form').remove()
 
     @notes.on 'click', '.expandable-form .body', ->
@@ -90,7 +90,7 @@ class ArticleEdit.NoteManager
 
   addNoteButton: (id) ->
     count = @noteCounts[id]
-    "<a class='add-note-button #{if count then 'show'}'>
+    "<a class='note-add-button #{if count then 'show'}'>
       <i class='icon-pushpin'></i>
       #{ if count then (count + ' notes...') else 'add note...'}
     </a>"
@@ -100,4 +100,4 @@ class ArticleEdit.NoteManager
       @noteCounts[note.element_id] = note.count
 
     for id in @currentIds
-      $("#note-context-#{id} .add-note-button").replaceWith(@addNoteButton(id))
+      $("#note-context-#{id} .note-add-button").replaceWith(@addNoteButton(id))

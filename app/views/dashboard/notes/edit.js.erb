@@ -1,2 +1,2 @@
-$('#note-<%= @note.token %> .note-card-body').after('<%= j render :partial => 'edit_form' %>').addClass('hide');
+$('#note-<%= @note.token %> .note-body').after('<%= j render :partial => 'edit_form' %>').addClass('hide');
 $('#note-<%= @note.token %> .dropdown').removeClass('actived').addClass('hide');

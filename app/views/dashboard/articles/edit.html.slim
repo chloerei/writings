@@ -9,7 +9,7 @@ html lang=(logined? ? current_user.locale : 'zh-CN')
     = csrf_meta_tags
   body#articles-edit class=(cookies[:pick_up_topbar] ? 'pick-up-topbar' : nil)
     = render :partial => 'dashboard/articles/edit/edit_topbar'
-    #editwrap.readonly
+    #editwrap
       .main
         = render :partial => 'dashboard/articles/edit/toolbar'
         #editarea
