@@ -22,6 +22,9 @@ zh-CN:
   articles_count: "%{count} 篇文章"
   remember_me: "记住我"
 
+  notes_count: "%{count} 批注"
+  add_note: "添加批注"
+
   urlname_valid_message: "只能使用字母、数字和 '-' 号"
 
   page_not_found: "找不到该页面"
@@ -153,6 +156,9 @@ zh-CN:
         edit: "编辑"
         delete: "删除"
         delete_confirm: "确定删除？"
+
+    notes:
+      context:
 
     members:
       index:

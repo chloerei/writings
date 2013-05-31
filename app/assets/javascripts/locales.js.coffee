@@ -10,7 +10,7 @@
     translator = I18n[@locale] || I18n[@defaultLocale]
     translate = translator[key]
     if translate
-      if typeof value is 'function'
+      if typeof translate is 'function'
         translate(params)
       else
         translate

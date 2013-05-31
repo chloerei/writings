@@ -3,7 +3,11 @@
     .pull-left
       i.icon-pushpin
       '
-      = "#{@notes.count} notes"
+      span.notes-count
+        - if @notes.any?
+          = t 'notes_count', :count => @notes.count
+        - else
+          = t 'add_note'
     .pull-right
       a.close-button
         i.icon-remove

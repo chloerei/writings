@@ -3,3 +3,6 @@ I18n['en']=
   is_editing: (name) -> "#{name} is editing"
   loading: 'loading...'
   success: 'Success'
+
+  notesCount: (count) -> "#{count} notes"
+  addNote: -> 'Add note'

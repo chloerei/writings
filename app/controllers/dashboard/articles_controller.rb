@@ -60,14 +60,11 @@ class Dashboard::ArticlesController < Dashboard::BaseController
           @article.create_version
         end
 
-        respond_to do |format|
-          format.json { render :article }
-        end
+        render :article
       else
         respond_to do |format|
           format.json { render :json => { :message => @article.errors.full_messages.join }, :status => 400 }
         end
-
       end
     else
       render :json => { :message => I18n.t('save_count_expired'), :code => 'save_count_expired' }, :status => 400

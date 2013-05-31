@@ -92,7 +92,7 @@ class ArticleEdit.NoteManager
     count = @noteCounts[id]
     "<a class='note-add-button #{if count then 'show'}'>
       <i class='icon-pushpin'></i>
-      #{ if count then (count + ' notes...') else 'add note...'}
+      <span class='notes-count'>#{ if count then I18n.t('notesCount', count) else I18n.t('addNote') }</span>
     </a>"
 
   updateStatus: (data) ->
