@@ -7,6 +7,7 @@ class Discussion
 
   belongs_to :workspace
   belongs_to :user
+  belongs_to :last_comment, :class_name => 'Comment'
   has_many :comments, :dependent => :delete
 
   scope :opening, where(:archived => false)
@@ -22,5 +23,10 @@ class Discussion
 
   def to_param
     self.token.to_s
+  end
+
+  def update_last_comment
+    self.last_comment = comments.desc(:created_at).first
+    save
   end
 end

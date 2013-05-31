@@ -1,16 +1,23 @@
 li.discussion
-  - case discussion
-  - when Topic
-    a href=(dashboard_topic_path(:id => discussion))
-      .avatar
-        = image_tag discussion.user.gravatar_url(:size => 50)
-      h3
-        = discussion.title
-      .comments-count
-        = discussion.comments.count
-      .info
-        = t '.created_at'
-        = l discussion.created_at, :format => :short
-        = ' • '
-        = t '.updated_at'
-        = l discussion.updated_at, :format => :short
+  - user = discussion.last_comment ? discussion.last_comment.user : discussion.user
+  - time = discussion.last_comment ? discussion.last_comment.created_at : discussion.created_at
+  - body = discussion.last_comment ? discussion.last_comment.body : discussion.body
+  a href=(dashboard_discussion_path(discussion))
+    .avatar
+      = image_tag user.gravatar_url(:size => 50)
+    span.author
+      = user.name
+      = '. '
+    span.title
+      - case discussion
+      - when Topic
+        = truncate discussion.title
+      - when Note
+        = truncate discussion.article.title
+    span.summary
+      = ' - '
+      = truncate strip_tags(body), :length => 140
+    span.comments-count
+      = discussion.comments.count
+    .date
+      = l discussion.created_at, :format => :short

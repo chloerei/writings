@@ -9,7 +9,7 @@ html lang=(logined? ? current_user.locale : 'zh-CN')
     = csrf_meta_tags
   body#articles-edit class=(cookies[:pick_up_topbar] ? 'pick-up-topbar' : nil)
     = render :partial => 'dashboard/articles/edit/edit_topbar'
-    #editwrap
+    #editwrap class=(@note.present? ? 'show-notes' : nil)
       .main
         = render :partial => 'dashboard/articles/edit/toolbar'
         #editarea
@@ -19,6 +19,16 @@ html lang=(logined? ? current_user.locale : 'zh-CN')
                 = article_format_body @article.body
               #alert-messages
             #notes.notes-container
+              - if @note
+                .note-context.actived id="note-context-#{@note.element_id}" data-element-id=(@note.element_id)
+                  .note-add-button
+                  .note-context-content
+                    .note-context-header.clearfix
+                      .pull-right
+                        a.close-button
+                          i.icon-remove
+                    .note-cards
+                      = render :partial => 'dashboard/notes/note', :object => @note
           #readonly-message
             = t '.readonly_mode'
 

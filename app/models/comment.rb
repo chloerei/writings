@@ -5,7 +5,7 @@ class Comment
   field :body
   field :token
 
-  belongs_to :discussion, :touch => true
+  belongs_to :discussion, :touch => true, :inverse_of => 'comments'
   belongs_to :user
   belongs_to :workspace
 
@@ -17,6 +17,13 @@ class Comment
     if new_record?
       self.token ||= workspace.inc(:comment_next_id, 1).to_s
     end
+  end
+
+  after_create :update_last_comment
+  after_destroy :update_last_comment
+
+  def update_last_comment
+    discussion.update_last_comment
   end
 
   def to_param

@@ -1,8 +1,8 @@
 .note-card id="note-card-#{note.token}"
   .note-comments
     ul
-      = render :partial => 'note_entry', :locals => { :note => note }
-      = render :partial => 'comment', :collection => note.comments
+      = render :partial => 'dashboard/notes/note_entry', :locals => { :note => note }
+      = render :partial => 'dashboard/notes/comment', :collection => note.comments
   .note-new-comment.note-comment
     .note-avatar
       =image_tag current_user.gravatar_url(:size => 50)
