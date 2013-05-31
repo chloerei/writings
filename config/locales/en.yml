@@ -135,7 +135,6 @@ en:
         edit: Edit
         delete: Delete
         delete_confirm: Sure to delete?
-    comments:
       comment:
         manage: Manage
         edit: Edit

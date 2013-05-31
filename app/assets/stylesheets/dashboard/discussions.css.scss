@@ -119,6 +119,20 @@ ul.comments {
   .author {
     font-weight: bold;
   }
+
+  .dropdown-toggle {
+    padding: 7px;
+    display: inline;
+    color: #999;
+
+    &:hover {
+      color: #555;
+    }
+  }
+
+  .dropdown-menu {
+    top: 20px;
+  }
 }
 
 .topic {

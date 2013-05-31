@@ -2,17 +2,17 @@ li.comment id=("comment-#{comment.token}")
   .avatar
     = image_tag comment.user.gravatar_url(:size => 50)
   article
-    header
-      span.author
-        = comment.user.name
-      '
-      span.date
-        = l comment.created_at, :format => :short
+    header.clearfix
+      .pull-left
+        span.author
+          = comment.user.name
+          = '.'
       - if comment.user == current_user
-        .dropdown
-          .dropdown-toggle
-            a = t '.manage'
-          ul.dropdown-menu
+        .dropdown.pull-right
+          .dropdown-toggle.no-arrow
+            i.icon-chevron-sign-down.hide-on-active
+            i.icon-chevron-sign-up.show-on-active
+          ul.dropdown-menu.align-right
             li
               a href=(edit_dashboard_comment_path(:id => comment))
                 i.icon-edit
@@ -27,3 +27,5 @@ li.comment id=("comment-#{comment.token}")
                 = t('.delete')
 
     = sanitize comment.body
+    footer
+      = l comment.created_at, :format => :short

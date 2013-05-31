@@ -3,14 +3,14 @@
 
 class ArticleEdit
   constructor: ->
-    @article = $("#editarea article")
+    @article = $("#editarea .article")
     @space = @article.data('space')
     @saveCount = @article.data("saveCount")
     @lockScopes = []
 
     @editor = new Editor(
       toolbar: "#toolbar"
-      editable: "#editarea article"
+      editable: "#editarea .article"
     )
     @imageUploader = new Editor.ImageUploader(@editor)
     @linkCreator = new Editor.LinkCreator(@editor)

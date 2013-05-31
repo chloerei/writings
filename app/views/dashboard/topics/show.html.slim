@@ -18,24 +18,36 @@
             .avatar
               = image_tag @topic.user.gravatar_url(:size => 50)
             article
-              header
-                span.author
-                  = @topic.user.name
-                '
-                span.date
-                  = l @topic.created_at, :format => :short
-                .dropdown
-                  a.dropdown-toggle
-                    = t '.manage'
-                  - if @topic.user == current_user
-                    ul.dropdown-menu
+              header.clearfix
+                .pull-left
+                  span.author
+                    = @topic.user.name
+                    = '.'
+                .dropdown.pull-right
+                  a.dropdown-toggle.no-arrow
+                    i.icon-chevron-sign-down.hide-on-active
+                    i.icon-chevron-sign-up.show-on-active
+                  ul.dropdown-menu.align-right
+                    - if @topic.archived?
+                      li
+                        a href=(open_dashboard_topic_path(:id => @topic)) data-method='put' data-remote=(true)
+                          i.icon-upload-alt
+                          '
+                          = t('.reopen')
+                    - else
+                      li
+                        a href=(archive_dashboard_topic_path(:id => @topic)) data-method='put' data-remote=(true)
+                          i.icon-download-alt
+                          '
+                          = t('.archive')
+                    - if @topic.user == current_user
+                      li
+                        hr
                       li
                         a href=(edit_dashboard_topic_path(:id => @topic))
                           i.icon-edit
                           '
                           = t('.edit')
-                      li
-                        hr
                       li
                         = link_to dashboard_topic_path(:id => @topic), :method => :delete, :remote => true, :confirm => t('.delete_confirm') do
                           i.icon-remove
@@ -43,7 +55,9 @@
                           = t('.delete')
 
               = sanitize @topic.body
-          = render :partial => 'dashboard/comments/comment', :collection => @topic.comments
+              .date
+                = l @topic.created_at, :format => :short
+          = render :partial => 'comment', :collection => @topic.comments
       section
         .comment-area
           .discussion-form
@@ -61,13 +75,3 @@
             = render 'dashboard/share/link_creator_modal'
       section.clearfix
         .pull-right
-          - if @topic.archived?
-            a.button.no-margin href=(open_dashboard_topic_path(:id => @topic)) data-method='put' data-remote=(true)
-              i.icon-upload-alt
-              '
-              = t('.reopen')
-          - else
-            a.button.no-margin href=(archive_dashboard_topic_path(:id => @topic)) data-method='put' data-remote=(true)
-              i.icon-download-alt
-              '
-              = t('.archive')

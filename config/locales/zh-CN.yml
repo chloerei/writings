@@ -149,8 +149,6 @@ zh-CN:
         edit: "编辑"
         delete: "删除"
         delete_confirm: "确定删除？"
-
-    comments:
       comment:
         manage: "管理"
         edit: "编辑"
