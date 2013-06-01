@@ -156,6 +156,10 @@ zh-CN:
         delete_confirm: "确定删除？"
 
     notes:
+      context:
+        note_dot: "新批注..."
+      note:
+        comment_dot: "评论..."
       note_entry:
         archive: "归档"
         reopen: "重新开启"

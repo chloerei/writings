@@ -25,7 +25,7 @@
             .field
               = f.hidden_field :element_id
               = f.hidden_field :body
-              article.body contenteditable="true" data-placeholder='New note...'
+              article.body contenteditable="true" data-placeholder=(t '.note_dot')
                 p
                   br
             .field.show-on-expanded

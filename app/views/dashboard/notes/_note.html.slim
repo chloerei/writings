@@ -10,7 +10,7 @@
       = form_for Comment.new, :url => dashboard_comments_path(:discussion_id => note), :remote => true, :html => {:class => 'expandable-form' } do |f|
         .field
           = f.hidden_field :body
-          article.body contenteditable='true' data-placeholder='comment...'
+          article.body contenteditable='true' data-placeholder=(t '.comment_dot')
             p
               br
         .field.show-on-expanded

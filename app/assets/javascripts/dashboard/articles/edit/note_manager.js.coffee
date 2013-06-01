@@ -44,7 +44,7 @@ class ArticleEdit.NoteManager
       note.find('.note-body').removeClass('hide')
       note.find('form').remove()
 
-    @notes.on 'click', '.expandable-form .body', ->
+    @notes.on 'focusin', '.expandable-form .body', ->
       $(this).closest('.expandable-form').addClass('expanded')
     @notes.on 'click', '.expandable-form .cancel-button', ->
       $(this).closest('.expandable-form').removeClass('expanded').find('.body').html('<p><br></p>')
