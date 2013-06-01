@@ -4,7 +4,7 @@ class WorkspacesController < ApplicationController
   layout 'dashboard'
 
   def new
-    @workspace = Workspace.new
+    @workspace = Workspace.new :name => "#{current_user.name}-workspace-#{current_user.creator_workspaces.count + 1}"
   end
 
   def create

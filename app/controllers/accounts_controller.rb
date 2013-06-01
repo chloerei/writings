@@ -15,6 +15,6 @@ class AccountsController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :domain, :disqus_shortname, :locale, :password, :password_confirmation, :current_password).delete_if { |key, value| key =~ /password/ && value.empty? }
+    params.require(:user).permit(:email, :domain, :disqus_shortname, :locale, :password, :password_confirmation, :current_password).delete_if { |key, value| key =~ /password/ && value.empty? }
   end
 end

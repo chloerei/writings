@@ -338,19 +338,18 @@ zh-CN:
   mongoid:
     attributes:
       space:
+        name: "URL"
         full_name: "全名"
         description: "描述"
         domain: "独立域名"
         disqus_shortname: "Disqus 帐号"
       user:
-        name: "用户名"
         email: "邮箱"
         locale: "语言"
         password: "密码"
         password_confirmation: "密码确认"
         current_password: "当前密码"
       workspace:
-        name: "工作区名"
       profile:
         name: "名称"
         description: "描述"
