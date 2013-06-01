@@ -1,0 +1,13 @@
+<% if @space.errors.empty? %>
+  AlertMessage.show({
+    type: 'success',
+    text: '<%= t('success') %>',
+    timeout: 1500
+  });
+  $("#user-link").attr("href", "http://" + '<%= current_user.host %>');
+<% else %>
+  AlertMessage.show({
+    type: 'error',
+    text: '<%= j current_user.errors.full_messages.join %>'
+  });
+<% end %>

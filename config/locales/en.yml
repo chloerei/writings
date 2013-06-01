@@ -1,3 +1,4 @@
+---
 en:
   en: English
   zh-CN: Chinese(Simplified)
@@ -21,7 +22,7 @@ en:
   articles_count: '%{count} Articles'
   remember_me: Remember me
   notes_count: '%{count} notes'
-  add_note: 'Add note'
+  add_note: Add note
   urlname_valid_message: Allow character, number and '-'
   page_not_found: Page not found
   server_error: Server error
@@ -332,7 +333,9 @@ en:
   mongoid:
     attributes:
       space:
-        domain: Domain
+        full_name: Full name
+        description: Description
+        domain: Custom domain
         disqus_shortname: Disqus Shortname
       user:
         name: User name
@@ -341,6 +344,9 @@ en:
         password: Password
         password_confirmation: Password confirmation
         current_password: Current password
+      workspace:
+        name: Name
+        full_name: Full name
       profile:
         name: Name
         description: Description
@@ -354,9 +360,10 @@ en:
         urlname: URL
       attachment:
         file: Attachment
-      workspace:
-        name: Name
-        full_name: Full name
+      discusstion:
+        body: Body
+      note:
+        title: Title
   errors:
     messages:
       extension_white_list_error: 'Can not uplaod %{extension} file，allow extension:

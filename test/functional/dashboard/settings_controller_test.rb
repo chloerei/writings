@@ -12,7 +12,7 @@ class Dashboard::SettingsControllerTest < ActionController::TestCase
   end
 
   test "should update" do
-    put :update, :space_id => @user, :user => { :domain => 'change' }, :format => :json
+    put :update, :space_id => @user, :space => { :domain => 'change' }, :format => :js
     assert_response :success, @response.body
     assert_equal 'change', @user.reload.domain
   end
