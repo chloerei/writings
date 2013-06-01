@@ -11,6 +11,6 @@ class Dashboard::SettingsController < Dashboard::BaseController
   private
 
   def space_params
-    params.require(:space).permit(:name, :domain, :disqus_shortname, :full_name, :description)
+    params.require(:space).permit(:name, :domain, :disqus_shortname, :full_name, :description, :gravatar_email)
   end
 end

@@ -1,5 +1,10 @@
 class Workspace < Space
+  include Gravtastic
+
+  gravtastic :gravatar_email, :filetype => :png, :size => 100
+
   field :full_name
+  field :gravatar_email
 
   belongs_to :creator, :class_name => 'User'
   has_and_belongs_to_many :members, :inverse_of => nil, :class_name => 'User'

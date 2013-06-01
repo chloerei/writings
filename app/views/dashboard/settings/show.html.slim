@@ -19,6 +19,10 @@
           .field
             = f.label :description
             = f.text_area :description
+          - if @space.is_a? Workspace
+            .field
+              = f.label :gravatar_email
+              = f.text_field :gravatar_email
           .field
             = f.label :disqus_shortname
             = f.text_field :disqus_shortname, :placeholder => 'shortname'

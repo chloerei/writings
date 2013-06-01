@@ -349,6 +349,7 @@ zh-CN:
         password_confirmation: "密码确认"
         current_password: "当前密码"
       workspace:
+        gravatar_email: "Gravatar Email"
       profile:
         name: "名称"
         description: "描述"

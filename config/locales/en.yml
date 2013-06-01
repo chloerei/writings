@@ -1,4 +1,3 @@
----
 en:
   en: English
   zh-CN: Chinese(Simplified)
@@ -332,18 +331,20 @@ en:
   mongoid:
     attributes:
       space:
+        name: URL
         full_name: Full name
         description: Description
         domain: Custom domain
         disqus_shortname: Disqus Shortname
       user:
-        name: User name
         email: Email
         locale: Locale
         password: Password
         password_confirmation: Password confirmation
         current_password: Current password
+        name: User name
       workspace:
+        gravatar_email: Gravatar Email
         name: Name
         full_name: Full name
       profile:

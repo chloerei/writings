@@ -5,7 +5,7 @@ class Site::BaseController < ApplicationController
   private
 
   def require_space
-    if request.host =~ /^\w+\.#{APP_CONFIG["host"]}$/
+    if request.host =~ /^[a-z-A-Z0-9\-]+\.#{APP_CONFIG["host"]}$/
       @space = Space.find_by(:name => /^#{request.subdomain(DOMAIN_LENGTH)}$/i)
 
       redirect_to url_for(:host => @space.domain) if @space.domain.present?
