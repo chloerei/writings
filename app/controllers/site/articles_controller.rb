@@ -21,7 +21,7 @@ class Site::ArticlesController < Site::BaseController
 
   def feed
     @articles = @space.articles.publish.desc(:published_at).limit(20)
-    @feed_title = @space.profile.name.present? ? @space.profile.name : @space.name
+    @feed_title = @space.display_name
     @feed_link = site_root_url
 
     respond_to do |format|

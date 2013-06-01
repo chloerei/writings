@@ -6,6 +6,8 @@ class Space
   field :name
   field :domain
   field :disqus_shortname
+  field :full_name
+  field :description
 
   has_many :categories, :dependent => :delete
   has_many :articles, :dependent => :delete
@@ -30,4 +32,9 @@ class Space
   def to_param
     name.to_s
   end
+
+  def display_name
+    full_name.present? ? full_name : name
+  end
+
 end

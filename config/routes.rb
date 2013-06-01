@@ -14,7 +14,6 @@ Publish::Application.routes.draw do
     resources :users, :only => [:create]
     resources :user_sessions, :only => [:create]
 
-    resource :profile, :only => [:show, :update]
     resource :account, :only => [:show, :update, :destroy]
     resource :billing, :only => [:show]
 

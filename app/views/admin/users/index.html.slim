@@ -14,7 +14,7 @@ table.item-table
       tr
         td = link_to user.name, admin_user_path(user)
         td = user.email
-        td = user.profile.name
+        td = user.full_name
         td.min = user.plan
         td.min = user.created_at.to_s :db
 

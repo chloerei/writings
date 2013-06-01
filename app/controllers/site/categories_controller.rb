@@ -11,7 +11,7 @@ class Site::CategoriesController < Site::BaseController
   def feed
     @category = @space.categories.find_by :urlname => params[:id]
     @articles = @category.articles.publish.desc(:published_at).limit(20)
-    @feed_title = "#{@category.name} - #{@space.profile.name.present? ? @space.profile.name : @space.name}"
+    @feed_title = "#{@category.name} - #{@space.display_name}"
     @feed_link = site_category_url(@category)
 
     respond_to do |format|

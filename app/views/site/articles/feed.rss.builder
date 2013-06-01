@@ -14,7 +14,7 @@ xml.rss :version => "2.0" do
             xml.cdata! article_format_body(convert_attachment_url(article_remove_h1(article.body), @space))
           end
           xml.pubDate article.published_at.to_s(:rfc822)
-          xml.author @space.profile.name.present? ? @space.profile.name : @space.name
+          xml.author @space.display_name
           xml.link site_article_url(article, :urlname => article.urlname)
           xml.guid site_article_url(article)
           if article.category.present?

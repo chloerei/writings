@@ -6,14 +6,21 @@ end
 
 Space.update_all :_type => 'User'
 
-Article.all.each do |article|
+Article.asc(:_id).all.each do |article|
   article.rename :user_id, :space_id
 end
 
-Category.all.each do |category|
+Category.asc(:_id).all.each do |category|
   category.rename :user_id, :space_id
 end
 
 Attachment.asc(:_id).all.each do |attachment|
   attachment.update_attribute :space_id, attachment.user_id
+end
+
+User.asc(:_id).all.each do |user|
+  user.full_name = user["profile.name"]
+  user.description = user["profile.description"]
+  user.save
+  user.unset(:profile)
 end

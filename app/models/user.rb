@@ -14,7 +14,6 @@ class User < Space
 
   PLANS = %w(free base)
 
-  embeds_one :profile
   has_many :creator_workspaces, :class_name => 'Workspace', :inverse_of => :creator
 
   has_secure_password
@@ -27,8 +26,6 @@ class User < Space
   validate :check_current_password, :if => :need_current_password?
 
   attr_accessor :current_password, :need_current_password
-
-  before_create :build_profile
 
   def workspaces
     Workspace.where(:member_ids => self.id)
@@ -71,10 +68,6 @@ class User < Space
 
   def admin?
     APP_CONFIG['admin_emails'].include?(self.email)
-  end
-
-  def display_name
-    profile.name.present? ? profile.name : name
   end
 
   def in_plan?(plan)
