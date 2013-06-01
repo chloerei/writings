@@ -1,4 +1,4 @@
-$('#note-card-<%= @note.token %>').replaceWith('<%= j render(:partial => 'note', :object => @note) %>');
+$('#note-card-<%= @note.token %>').remove();
 <% count = @note.article.notes.opening.where(:element_id => @note.element_id).count %>
 $('#note-context-<%= @note.element_id %> .notes-count').text('<%= t 'notes_count', :count => count %>');
 <% if count == 0 %>
