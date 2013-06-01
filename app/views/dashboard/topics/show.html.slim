@@ -13,65 +13,63 @@
             - if @topic.archived?
               .label = t '.archived'
             = @topic.title
-        ul#comments.comments
-          li.comment
-            .avatar
-              = image_tag @topic.user.gravatar_url(:size => 50)
-            article
-              header.clearfix
-                .pull-left
-                  span.author
-                    = @topic.user.name
-                    = '.'
-                .dropdown.pull-right
-                  a.dropdown-toggle.no-arrow
-                    i.icon-chevron-sign-down.hide-on-active
-                    i.icon-chevron-sign-up.show-on-active
-                  ul.dropdown-menu.align-right
-                    - if @topic.archived?
-                      li
-                        a href=(open_dashboard_topic_path(:id => @topic)) data-method='put' data-remote=(true)
-                          i.icon-upload-alt
-                          '
-                          = t('.reopen')
-                    - else
-                      li
-                        a href=(archive_dashboard_topic_path(:id => @topic)) data-method='put' data-remote=(true)
-                          i.icon-download-alt
-                          '
-                          = t('.archive')
-                    - if @topic.user == current_user
-                      li
-                        hr
-                      li
-                        a href=(edit_dashboard_topic_path(:id => @topic))
-                          i.icon-edit
-                          '
-                          = t('.edit')
-                      li
-                        = link_to dashboard_topic_path(:id => @topic), :method => :delete, :remote => true, :confirm => t('.delete_confirm') do
-                          i.icon-remove
-                          '
-                          = t('.delete')
+        .comments
+          ul#comments
+            li.comment
+              .avatar
+                = image_tag @topic.user.gravatar_url(:size => 50)
+              article
+                header.clearfix
+                  .pull-left
+                    span.author
+                      = @topic.user.name
+                      = '. '
+                    span.date
+                      = l @topic.created_at, :format => :short
+                  .dropdown.pull-right
+                    a.dropdown-toggle.no-arrow
+                      i.icon-chevron-sign-down.hide-on-active
+                      i.icon-chevron-sign-up.show-on-active
+                    ul.dropdown-menu.align-right
+                      - if @topic.archived?
+                        li
+                          a href=(open_dashboard_topic_path(:id => @topic)) data-method='put' data-remote=(true)
+                            i.icon-upload-alt
+                            '
+                            = t('.reopen')
+                      - else
+                        li
+                          a href=(archive_dashboard_topic_path(:id => @topic)) data-method='put' data-remote=(true)
+                            i.icon-download-alt
+                            '
+                            = t('.archive')
+                      - if @topic.user == current_user
+                        li
+                          hr
+                        li
+                          a href=(edit_dashboard_topic_path(:id => @topic))
+                            i.icon-edit
+                            '
+                            = t('.edit')
+                        li
+                          = link_to dashboard_topic_path(:id => @topic), :method => :delete, :remote => true, :confirm => t('.delete_confirm') do
+                            i.icon-remove
+                            '
+                            = t('.delete')
 
-              = sanitize @topic.body
-              .date
-                = l @topic.created_at, :format => :short
-          = render :partial => 'comment', :collection => @topic.comments
-      section
-        .comment-area
-          .discussion-form
+                = sanitize @topic.body
+            = render :partial => 'comment', :collection => @topic.comments
+          .comment
             .avatar
               = image_tag current_user.gravatar_url(:size => 50)
-            = form_for Comment.new, :url => dashboard_comments_path(:discussion_id => @topic), :remote => true, :html => { :id => 'new-comment'} do |f|
-              .field
-                = render 'dashboard/share/mini_toolbar'
-              .field
-                = f.hidden_field :body
-                article.body contenteditable="true"
-              .field
-                = f.submit t('submit')
-            = render 'dashboard/share/image_uploader_modal'
-            = render 'dashboard/share/link_creator_modal'
-      section.clearfix
-        .pull-right
+            .discussion-form
+              = form_for Comment.new, :url => dashboard_comments_path(:discussion_id => @topic), :remote => true, :html => { :id => 'new-comment'} do |f|
+                .field
+                  = render 'dashboard/share/mini_toolbar'
+                .field
+                  = f.hidden_field :body
+                  article.body contenteditable="true"
+                .field
+                  = f.submit t('submit')
+              = render 'dashboard/share/image_uploader_modal'
+              = render 'dashboard/share/link_creator_modal'

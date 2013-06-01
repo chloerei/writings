@@ -1,11 +1,11 @@
 .discussions {
-  ul {
+  > ul {
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  li.discussion {
+  .discussion {
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 2px;
@@ -93,16 +93,21 @@
   }
 }
 
-ul.comments {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.comments {
+  > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
-  li.comment {
+    li.comment {
+      border-bottom: 1px solid #ddd;
+    }
+  }
+
+  .comment {
     position: relative;
     padding: 20px 0 20px 70px;
     min-height: 50px;
-    border-bottom: 1px solid #ddd;
   }
 
   .avatar {
@@ -133,6 +138,12 @@ ul.comments {
   .dropdown-menu {
     top: 20px;
   }
+
+  .discussion-form {
+    .body {
+      min-height: 100px;
+    }
+  }
 }
 
 .topic {
@@ -150,28 +161,6 @@ ul.comments {
       background-color: #ccc;
       border-radius: 3px;
       color: #fff;
-    }
-  }
-}
-
-.comment-area {
-  position: relative;
-  padding-left: 70px;
-
-  .avatar {
-    position: absolute;
-    left: 0;
-
-    img {
-      width: 50px;
-      height: 50px;
-      border-radius: 25px;
-    }
-  }
-
-  .discussion-form {
-    .body {
-      min-height: 100px;
     }
   }
 }

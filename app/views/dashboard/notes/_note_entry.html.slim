@@ -6,6 +6,7 @@ li.note-comment id=("note-#{note.token}")
       .pull-left
         span.note-author
           = note.user.display_name
+          = '. '
         span.note-date
           = l note.created_at, :format => :short
       .dropdown.pull-right

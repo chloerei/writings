@@ -6,7 +6,9 @@ li.comment id=("comment-#{comment.token}")
       .pull-left
         span.author
           = comment.user.name
-          = '.'
+          = '. '
+        span.date
+          = l comment.created_at, :format => :short
       - if comment.user == current_user
         .dropdown.pull-right
           .dropdown-toggle.no-arrow
@@ -27,5 +29,3 @@ li.comment id=("comment-#{comment.token}")
                 = t('.delete')
 
     = sanitize comment.body
-    footer
-      = l comment.created_at, :format => :short

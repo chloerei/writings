@@ -6,6 +6,7 @@ li.note-comment id="comment-#{comment.token}"
       .pull-left
         span.note-author
           = comment.user.display_name
+          = '. '
         span.note-date
           = l comment.created_at, :format => :short
       - if comment.user == current_user
