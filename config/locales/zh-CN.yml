@@ -12,7 +12,6 @@ zh-CN:
   publish: "已发布"
   draft: "草稿箱"
   trash: "回收站"
-  workspace_header: "%{name} 的工作区"
   invitation_email_subject: "邀请你加入工作区 %{name}"
 
   published_at: "发布于"

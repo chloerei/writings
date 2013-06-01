@@ -13,7 +13,6 @@ en:
   publish: Publish
   draft: Draft
   trash: Trash
-  workspace_header: '%{name}''s Workspace'
   invitation_email_subject: Invite you to join workspace %{name}
   published_at: Published at
   category: Category

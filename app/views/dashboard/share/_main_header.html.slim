@@ -1,7 +1,7 @@
 .header
   h1
     a href=(dashboard_root_path)
-      = t 'workspace_header', :name => @space.display_name
+      = @space.display_name
 nav.main-nav.clearfix
   ul.pull-left
     li class=(controller_name == 'articles' ? 'actived' : nil)
