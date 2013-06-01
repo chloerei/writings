@@ -24,3 +24,6 @@ User.asc(:_id).all.each do |user|
   user.save
   user.unset(:profile)
 end
+
+Rails::Mongoid.remove_indexes
+Rails::Mongoid.create_indexes
