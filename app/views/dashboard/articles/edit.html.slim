@@ -17,7 +17,6 @@ html lang=(logined? ? current_user.locale : 'zh-CN')
             .editor-container
               article.article contentEditable="true" spellcheck="false" data-id=(@article.token) data-save-count=(@article.save_count) data-category-id=(@article.category.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil) data-space=(@space.to_param) data-is-workspace=(@space.is_a?(Workspace)) data-current-user-name=(current_user.name)
                 = article_format_body @article.body
-              #alert-messages
             #notes.notes-container
               - if @note
                 .note-context.actived id="note-context-#{@note.element_id}" data-element-id=(@note.element_id)
@@ -29,6 +28,7 @@ html lang=(logined? ? current_user.locale : 'zh-CN')
                           i.icon-remove
                     .note-cards
                       = render :partial => 'dashboard/notes/note', :object => @note
+          #alert-messages
           #readonly-message
             = t '.readonly_mode'
 

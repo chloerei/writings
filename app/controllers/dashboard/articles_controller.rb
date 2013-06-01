@@ -139,7 +139,8 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def check_lock_status
     if @article.locked? and !@article.locked_by?(current_user)
-      render :json => { :message => I18n.t('is_editing', :name => @article.locked_by_user.name ), :code => 'article_locked' }, :status => 400
+      locked_user = User.where(:id => @article.locked_by).first
+      render :json => { :message => I18n.t('is_editing', :name => @article.locked_by_user.name ), :code => 'article_locked', :locked_user => { :name => locked_user.try(:name) } }, :status => 400
     else
       @article.lock_by(current_user)
     end

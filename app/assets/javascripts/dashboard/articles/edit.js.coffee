@@ -112,7 +112,7 @@ class ArticleEdit
           when 'article_locked'
             AlertMessage.show
               type: 'info'
-              text: data.message
+              text: I18n.t('is_editing', data.locked_user.name)
               scope: 'article-locked'
               keep: true
             @lockArticle('article-locked')

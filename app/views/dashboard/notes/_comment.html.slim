@@ -21,7 +21,7 @@ li.note-comment id="comment-#{comment.token}"
                 '
                 = t '.edit'
             li
-              = link_to dashboard_comment_path(:id => comment), :remote => true, :method => :delete, :confirm => '.delete_confirm' do
+              = link_to dashboard_comment_path(:id => comment), :remote => true, :method => :delete, :confirm => t('.delete_confirm') do
                 i.icon-remove
                 '
                 = t '.delete'

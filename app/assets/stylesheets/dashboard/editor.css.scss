@@ -1,18 +1,8 @@
 .editor-container {
   position: relative;
 
-  #alert-messages {
-    position: absolute;
-    right: 50%;
-    margin-right: -364px;
-    top: 54px;
-
-    @media (max-width: 768px) {
-        right: 20px;
-        margin-right: 0;
-    }
-  }
 }
+
 
 #editor-topbar {
   background-color: #fff;
@@ -376,6 +366,18 @@
           }
         }
       }
+    }
+  }
+
+  #alert-messages {
+    position: absolute;
+    right: 50%;
+    margin-right: -364px;
+    top: 54px;
+
+    @media (max-width: 768px) {
+        right: 20px;
+        margin-right: 0;
     }
   }
 

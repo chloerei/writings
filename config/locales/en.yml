@@ -20,6 +20,8 @@ en:
   author: Author
   articles_count: '%{count} Articles'
   remember_me: Remember me
+  notes_count: '%{count} notes'
+  add_note: 'Add note'
   urlname_valid_message: Allow character, number and '-'
   page_not_found: Page not found
   server_error: Server error
@@ -102,9 +104,9 @@ en:
         drop_here: Drop here
         preview: Preview
       link_creator_modal:
-        url: URL 地址
-        create_link: 创建链接
-        unlink: 去掉链接
+        url: URL
+        create_link: Create link
+        unlink: Unlink
       link_modal:
         url: URL
         create_link: Create link
@@ -137,6 +139,22 @@ en:
         delete_confirm: Sure to delete?
       comment:
         manage: Manage
+        edit: Edit
+        delete: Delete
+        delete_confirm: Sure to delete?
+    notes:
+      context:
+        note_dot: New note...
+      note:
+        comment_dot: Comment...
+      note_entry:
+        archive: Archive
+        reopen: Reopen
+        archived: Archived
+        edit: Edit
+        delete: Delete
+        delete_confirm: Sure to delete?
+      comment:
         edit: Edit
         delete: Delete
         delete_confirm: Sure to delete?
