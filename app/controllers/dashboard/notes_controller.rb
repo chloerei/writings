@@ -1,5 +1,5 @@
 class Dashboard::NotesController < Dashboard::BaseController
-  before_filter :find_note, :only => [:archive, :destroy, :edit, :update]
+  before_filter :find_note, :only => [:archive, :open, :destroy, :edit, :update]
   before_filter :require_author, :only => [:destroy, :edit, :update]
 
   def new
@@ -15,6 +15,10 @@ class Dashboard::NotesController < Dashboard::BaseController
 
   def archive
     @note.update_attribute :archived, true
+  end
+
+  def open
+    @note.update_attribute :archived, false
   end
 
   def destroy

@@ -96,6 +96,7 @@ class ArticleEdit.NoteManager
     </a>"
 
   updateStatus: (data) ->
+    @noteCounts = {}
     for note in data.notes
       @noteCounts[note.element_id] = note.count
 

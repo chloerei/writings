@@ -156,7 +156,17 @@ zh-CN:
         delete_confirm: "确定删除？"
 
     notes:
-      context:
+      note_entry:
+        archive: "归档"
+        reopen: "重新开启"
+        archived: "已归档"
+        edit: "编辑"
+        delete: "删除"
+        delete_confirm: "确认删除？"
+      comment:
+        edit: "编辑"
+        delete: "删除"
+        delete_confirm: "确认删除？"
 
     members:
       index:

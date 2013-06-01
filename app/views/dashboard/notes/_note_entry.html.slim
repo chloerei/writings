@@ -9,16 +9,27 @@ li.note-comment id=("note-#{note.token}")
           = '. '
         span.note-date
           = l note.created_at, :format => :short
+        - if note.archived?
+          span.status
+            = ' - '
+            = t '.archived'
       .dropdown.pull-right
         a.dropdown-toggle.no-arrow href='#'
           i.icon-chevron-sign-down.hide-on-active
           i.icon-chevron-sign-up.show-on-active
         ul.dropdown-menu.align-right
-          li
-            = link_to archive_dashboard_note_path(:id => note), :remote => true, :method => :put do
-              i.icon-download-alt
-              '
-              = t '.archive'
+          - if note.archived?
+            li
+              = link_to open_dashboard_note_path(:id => note), :remote => true, :method => :put do
+                i.icon-download-alt
+                '
+                = t '.reopen'
+          - else
+            li
+              = link_to archive_dashboard_note_path(:id => note), :remote => true, :method => :put do
+                i.icon-download-alt
+                '
+                = t '.archive'
           - if note.user == current_user
             li
               hr
