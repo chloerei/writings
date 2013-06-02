@@ -11,6 +11,10 @@ defaults: &defaults
     region: 'ap-northeast-1'
     fog_directory: 'writingsiotest' # bucket
 
+  ses:
+    user_name:
+    password:
+
 development:
   <<: *defaults
 
