@@ -78,12 +78,6 @@
       display: inherit;
     }
   }
-
-  @media (max-width: 768px) {
-    .button-group {
-      margin-right: 10px;
-    }
-  }
 }
 
 #editwrap {
@@ -183,31 +177,6 @@
       background-color: #fff;
     }
 
-    @media (max-width: 1118px) {
-      .editor-container {
-        width: 100%;
-      }
-
-      #alert-messages {
-        margin-right: 0;
-        right: 20px;
-      }
-    }
-
-    @media (max-width: 960px) {
-      .hide-on-mobile {
-        display: none !important;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .main,
-      .sidebar {
-        position: relative;
-        width: 100%;
-        height: 50%;
-      }
-    }
   }
 
   .toolbar {
@@ -371,14 +340,9 @@
 
   #alert-messages {
     position: absolute;
-    right: 50%;
-    margin-right: -364px;
+    right: 20px;
     top: 54px;
-
-    @media (max-width: 768px) {
-        right: 20px;
-        margin-right: 0;
-    }
+    margin-right: 0;
   }
 
   #readonly-message {
@@ -545,7 +509,6 @@
 }
 
 .notes-container {
-  background-color: #ccc;
   position: absolute;
   left: 50%;
   top: 0;
@@ -758,7 +721,7 @@
 
 }
 
-#editwrap.show-notes {
+.show-notes {
   .editor-container {
     float: left;
     width: 60%;
@@ -783,11 +746,11 @@
 }
 
 .pick-up-topbar {
-  #notes {
+  .notes-container {
     display: none;
   }
 
-  #editwrap.show-notes {
+  .show-notes {
     .editor-container {
       float: none;
       width: 100%;
@@ -800,17 +763,40 @@
 }
 
 .show-sidebar {
-  #notes {
+  .notes-container {
     display: none;
   }
 
-  &#editwrap.show-notes {
+  .show-notes {
     .editor-container {
       float: none;
       width: 100%;
 
       .article {
         float: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .notes-container {
+    display: none;
+  }
+
+  .show-notes {
+    .editor-container {
+      width: 100%;
+    }
+  }
+
+  #editwrap {
+    &.show-sidebar {
+      .main,
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: 50%;
       }
     }
   }
