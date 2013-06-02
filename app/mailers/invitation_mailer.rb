@@ -1,11 +1,11 @@
 class InvitationMailer < ActionMailer::Base
   default :from => "do-not-reply@writings.io"
 
-  def invite(invitation)
-    @invitation = invitation
-    @workspace = invitation.workspace
+  def invite(invitation_id)
+    @invitation = Invitation.find_by :id => invitation_id
+    @workspace = @invitation.workspace
 
-    mail(:to => invitation.email,
+    mail(:to => @invitation.email,
          :subject => I18n.t('invitation_email_subject', :name => @workspace.name))
   end
 end
