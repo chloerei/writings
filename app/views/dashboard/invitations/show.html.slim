@@ -12,7 +12,7 @@
             = ' '
             = t '.invite_you_to_join_this_workspace'
           blockquote
-            | text
+            = simple_format @invitation.message
           - if logined?
             p
               = t '.you_are_login_as'
