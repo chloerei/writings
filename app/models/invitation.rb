@@ -19,6 +19,8 @@ class Invitation
     self.token = SecureRandom.hex(16)
   end
 
+  after_create :send_mail
+
   def send_mail
     InvitationMailer.delay.invite(id.to_s)
   end
