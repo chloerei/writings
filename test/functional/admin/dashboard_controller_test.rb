@@ -6,17 +6,4 @@ class Admin::DashboardControllerTest < ActionController::TestCase
     @admin = create :user, :email => 'admin@writings.io'
     @user = create :user
   end
-
-  test "access check" do
-    get :show
-    assert_response 302, @response.body
-
-    login_as @user
-    get :show
-    assert_response 404, @response.body
-
-    login_as @admin
-    get :show
-    assert_response :success, @response.body
-  end
 end

@@ -40,7 +40,7 @@ class Dashboard::InvitationsControllerTest < ActionController::TestCase
   end
 
   test "should resend invitation" do
-    assert_difference "ActionMailer::Base.deliveries.count" do
+    assert_difference "Sidekiq::Extensions::DelayedMailer.jobs.size" do
       put :resend, :id => @invitation, :space_id => @workspace, :format => :js
     end
   end
