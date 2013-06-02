@@ -33,7 +33,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def create
-    @article = @space.articles.new article_params
+    @article = @space.articles.new article_params.merge(:last_edit_user => current_user)
     if @article.save
       @article.create_version
 
@@ -57,8 +57,12 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def update
+    if @article.last_edit_user && @article.last_edit_user != current_user
+      @article.create_version :user => @article.last_edit_user
+    end
+
     if article_params[:save_count].to_i > @article.save_count
-      if @article.update_attributes article_params
+      if @article.update_attributes article_params.merge(:last_edit_user => current_user)
 
         if @article.save_count - @article.last_version_save_count >= 100
           @article.create_version
