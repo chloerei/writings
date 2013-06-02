@@ -1,3 +1,13 @@
+require 'sidekiq/web'
+
+class AdminConstraint
+  def matches?(request)
+    return false unless request.session[:user_id]
+    user = User.find request.session[:user_id]
+    user && user.admin?
+  end
+end
+
 class Sitedomain
   def matches?(request)
     request.host =~ /^[a-zA-Z0-9\-]+\.#{Regexp.escape APP_CONFIG["host"]}$/ or request.host !~ /#{Regexp.escape APP_CONFIG["host"]}$/
@@ -88,6 +98,8 @@ Publish::Application.routes.draw do
         end
       end
     end
+
+    mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
   end
 
   constraints(Sitedomain) do

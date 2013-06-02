@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.13'
 
 gem 'mongoid', '~> 3.1.4'
 gem 'bcrypt-ruby', '~> 3.0.1'
@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 1.4.1'
 gem 'cache_digests', '~> 0.3.0'
 gem 'memcache-client', '~> 1.8.5'
 gem 'sidekiq', '~> 2.12.1'
+gem 'sinatra', '>= 1.3.0', :require => nil
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
