@@ -7,7 +7,7 @@ class Admin::BaseController < ApplicationController
   private
 
   def require_admin
-    unless APP_CONFIG['admin_emails'].include?(current_user.email)
+    unless current_user.admin?
       render_404
     end
   end
