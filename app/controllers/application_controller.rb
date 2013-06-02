@@ -15,7 +15,8 @@ class ApplicationController < ActionController::Base
     render 'errors/404', :layout => 'error', :status => 404
   end
 
-  def render_500
+  def render_500(e)
+    logger.info e
     render 'errors/500', :layout => 'error', :status => 500
   end
 
