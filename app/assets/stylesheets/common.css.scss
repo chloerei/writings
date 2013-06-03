@@ -686,6 +686,10 @@ a.button:hover {
       background-color: $blue;
     }
 
+    &.alert-warning {
+      background-color: $yellow;
+    }
+
     &.alert-error {
       background-color: $red;
     }

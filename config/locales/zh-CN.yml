@@ -13,6 +13,7 @@ zh-CN:
   draft: "草稿箱"
   trash: "回收站"
   invitation_email_subject: "邀请你加入工作区 %{name}"
+  being_develop: "该功能正在开发，将来有可能发生变化"
 
   published_at: "发布于"
   category: "分类"
@@ -63,12 +64,9 @@ zh-CN:
       feedback: "问题反馈"
 
   workspaces:
-    limit:
-      new_workspace: "创建工作区"
-      workspace_limit: "工作区额度不足"
-      see_plan: "查看套餐"
     new:
       new_workspace: "创建工作区"
+      remaining_workspace: "剩余 %{count} 个工作区额度"
   users:
     new:
       signup: "注册"

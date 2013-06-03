@@ -1,3 +1,4 @@
+---
 en:
   en: English
   zh-CN: Chinese(Simplified)
@@ -13,6 +14,7 @@ en:
   draft: Draft
   trash: Trash
   invitation_email_subject: Invite you to join workspace %{name}
+  being_develop: This function is being developed, maybe changed in future
   published_at: Published at
   category: Category
   subscribe: Subscribe
@@ -55,12 +57,13 @@ en:
     error:
       feedback: Feedback
   workspaces:
+    new:
+      new_workspace: New workspace
+      remaining_workspace: 剩余 %{count} 个工作区额度
     limit:
       new_workspace: New workspace
       workspace_limit: No workspace quote
       see_plan: See plan
-    new:
-      new_workspace: New workspace
   users:
     new:
       signup: Singup

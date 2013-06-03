@@ -7,6 +7,8 @@ AlertMessage =
     icon_type = switch options.type
       when 'loading'
         'icon-spinner icon-spin'
+      when 'warning'
+        'icon-exclamation'
       when 'error'
         'icon-minus-sign'
       when 'success'

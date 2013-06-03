@@ -16,14 +16,4 @@ class WorkspacesControllerTest < ActionController::TestCase
       post :create, :workspace => attributes_for(:workspace), :format => :js
     end
   end
-
-  test "should show limit page when over limit" do
-    @user.update_attribute :plan, 'free'
-    get :new
-    assert_template :limit
-
-    assert_no_difference "Workspace.count" do
-      post :create, :workspace => attributes_for(:workspace), :format => :js
-    end
-  end
 end

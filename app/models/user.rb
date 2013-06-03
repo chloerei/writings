@@ -105,13 +105,23 @@ class User < Space
   end
 
   def workspace_limit
+    return 999 if admin?
+
     if plan_expired_at.present? && plan_expired_at > Time.now
       case plan
       when :base
         1
       else
-        0
+        1
       end
+    else
+      1
+    end
+  end
+
+  def remain_workspace_count
+    if creator_workspaces.count < workspace_limit
+      workspace_limit - creator_workspaces.count
     else
       0
     end
