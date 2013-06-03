@@ -3,6 +3,6 @@ FactoryGirl.define do
     sequence(:name){|n| "category#{n}" }
     sequence(:urlname){|n| "category#{n}" }
 
-    user
+    space
   end
 end

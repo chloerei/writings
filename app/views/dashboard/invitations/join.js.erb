@@ -1,0 +1,5 @@
+<% if @user.persisted? %>
+  Turbolinks.visit('<%= dashboard_root_path(@space) %>');
+<% else %>
+  AlertMessage.show({ type: 'error', text: '<%= j @user.errors.full_messages.join %>' });
+<% end %>

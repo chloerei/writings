@@ -13,13 +13,15 @@ class Article
   field :published_at
 
   field :token
-  index({ :user_id => 1, :token => 1 }, { :unique => true })
-  index({ :user_id => 1, :old_url => 1 }, { :sparse => true })
+  index({ :space_id => 1, :token => 1 }, { :unique => true })
+  index({ :space_id => 1, :old_url => 1 }, { :sparse => true })
 
-  belongs_to :user
+  belongs_to :space
   belongs_to :category
+  belongs_to :last_edit_user, :class_name => 'User'
 
   has_many :versions, :order => [:created_at, :desc]
+  has_many :notes
 
   validates :urlname, :format => { :with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('urlname_valid_message'), :allow_blank => true }
 
@@ -51,7 +53,7 @@ class Article
   end
 
   def create_version(options = {})
-    user = options[:user] || self.user
+    user = options[:user] || self.space
 
     versions.create :title => title,
                     :body  => body,
@@ -79,11 +81,34 @@ class Article
 
   def set_token
     if new_record?
-      self.token ||= user.inc(:article_next_id, 1).to_s
+      self.token ||= space.inc(:article_next_id, 1).to_s
     end
   end
 
   def to_param
     self.token.to_s
+  end
+
+  def lock_by(user)
+    Rails.cache.write "/articles/#{id}/locked_by", user.id, :expires_in => 10.seconds
+  end
+
+  def locked_by
+    @locked_by = Rails.cache.read("/articles/#{id}/locked_by") if !defined?(@locked_by)
+    @locked_by
+  end
+
+  def locked_by_user
+    if locked_by
+      User.where(:id => locked_by).first
+    end
+  end
+
+  def locked?
+    !!locked_by
+  end
+
+  def locked_by?(user)
+    locked_by == user.id
   end
 end

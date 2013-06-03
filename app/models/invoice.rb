@@ -15,6 +15,8 @@ class Invoice
 
   belongs_to :user
 
+  index({ :user_id => 1 })
+
   validates_presence_of :plan, :quantity, :price, :balance
 
   def total_price

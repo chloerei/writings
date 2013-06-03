@@ -2,18 +2,20 @@ class Dashboard::CategoriesController < Dashboard::BaseController
   before_filter :find_category, :only => [:edit, :update, :destroy]
 
   def new
-    @category = Category.new :user => current_user
+    @category = Category.new :space => @space
   end
 
   def create
-    @category = current_user.categories.new category_params
+    @category = @space.categories.new category_params
 
     if @category.save
       respond_to do |format|
+        format.js
         format.json { render :json => @category.as_json(:only => [:urlname, :name]) }
       end
     else
       respond_to do |format|
+        format.js
         format.json { render :json => { :message => @category.errors.full_messages.join }, :status => 400 }
       end
     end
@@ -42,7 +44,7 @@ class Dashboard::CategoriesController < Dashboard::BaseController
   private
 
   def find_category
-    @category = current_user.categories.find_by(:urlname => params[:id])
+    @category = @space.categories.find_by(:urlname => params[:id])
   end
 
   def category_params

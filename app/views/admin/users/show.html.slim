@@ -11,11 +11,11 @@ section#user-info
     label Email
     = @user.email
   .field
-    label 资料名
-    = @user.profile.name
+    label 全名
+    = @user.full_name
   .field
     label 资料简述
-    = simple_format @user.profile.description
+    = simple_format @user.description
   .field
     label 套餐
     = @user.plan

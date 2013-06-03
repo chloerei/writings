@@ -3,7 +3,8 @@ class UserSessionsController < ApplicationController
   before_filter :require_no_logined, :except => :destroy
 
   def new
-    store_location request.referrer if request.referrer.present?
+    referrer = request.headers['X-XHR-Referer'] || request.referrer
+    store_location referrer if referrer.present?
   end
 
   def create
@@ -12,7 +13,7 @@ class UserSessionsController < ApplicationController
     if user and user.authenticate(params[:password])
       login_as user
       remember_me if params[:remember_me]
-      redirect_back_or_default dashboard_root_url
+      redirect_back_or_default dashboard_root_url(user)
     else
       flash[:error] = 'Wrong login name or password'
       redirect_to login_url

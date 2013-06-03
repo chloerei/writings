@@ -1,15 +1,10 @@
 class Dashboard::AttachmentsController < Dashboard::BaseController
   def index
-    @attachments = current_user.attachments.desc(:created_at).page(params[:page]).per(50)
-  end
-
-  def show
-    @attachment = current_user.attachments.find params[:id]
-    redirect_to @attachment.file.url
+    @attachments = @space.attachments.desc(:created_at).page(params[:page]).per(50)
   end
 
   def create
-    @attachment = current_user.attachments.new attachment_params
+    @attachment = @space.attachments.new attachment_params.merge(:user => current_user)
 
     if @attachment.save
       respond_to do |format|
@@ -27,12 +22,8 @@ class Dashboard::AttachmentsController < Dashboard::BaseController
   end
 
   def destroy
-    @attachment = current_user.attachments.find params[:id]
+    @attachment = @space.attachments.find params[:id]
     @attachment.destroy
-
-    respond_to do |format|
-      format.js
-    end
   end
 
   private

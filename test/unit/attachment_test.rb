@@ -12,7 +12,7 @@ class AttachmentTest < ActiveSupport::TestCase
     file = File.open("#{Rails.root}/app/assets/images/rails.png")
     user = create :user
     assert_difference "user.storage_used", file.size do
-      user.attachments.create :file => file
+      user.attachments.create :file => file, :user => user
     end
     assert_difference "user.storage_used", -file.size do
       user.attachments.last.destroy

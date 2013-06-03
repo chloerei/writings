@@ -1,0 +1,11 @@
+<% if @note.errors.empty? %>
+  $('#note-context-<%= @note.element_id %> .note-cards').append('<%= j render :partial => 'note', :object => @note %>').addClass('actived');
+  $('#note-context-<%= @note.element_id %> .notes-count').text('<%= t 'notes_count', :count => @article.notes.opening.where(:element_id => @note.element_id).count %>');
+  $('#note-context-<%= @note.element_id %> .note-add-button').addClass('show');
+  $('#note-context-<%= @note.element_id %> .note-new .body').html('<p><br></p>').blur().closest('form').removeClass('expanded');
+<% else %>
+  AlertMessage.show({
+    type: 'error',
+    text: @note.errors.full_messages.join
+  });
+<% end %>

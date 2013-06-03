@@ -1,0 +1,15 @@
+<%= @workspace.creator.display_name %> invite you to workspace <%= @workspace.display_name %>:
+
+<%= @invitation.message %>
+
+Writings.io is a website to write, manage and publish articles.
+
+Accept this invitation to get started:
+
+<%= dashboard_invitation_url(:space_id => @workspace, :id => @invitation.token, :host => APP_CONFIG['host']) %>
+
+<% if @workspace.members.any? %>
+Other members on the workspace are:
+
+<%= @workspace.members.map(&:display_name).join(', ') %>
+<% end %>

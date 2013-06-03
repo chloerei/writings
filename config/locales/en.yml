@@ -6,20 +6,23 @@ en:
   save: Save
   cancel: Cancel
   restore: Restore
-  all_articles: All Articles
-  not_collected: Not Collected
+  success: Success
+  untitled: Untitled
+  articles: Articles
+  not_category: Not category
   publish: Publish
   draft: Draft
   trash: Trash
-  untitled: Untitled
-  articles: Articles
-  workspace_header: '%{name}''s Workspace'
+  invitation_email_subject: Invite you to join workspace %{name}
+  being_develop: This function is being developed, maybe changed in future
   published_at: Published at
   category: Category
   subscribe: Subscribe
   author: Author
   articles_count: '%{count} Articles'
   remember_me: Remember me
+  notes_count: '%{count} notes'
+  add_note: Add note
   urlname_valid_message: Allow character, number and '-'
   page_not_found: Page not found
   server_error: Server error
@@ -35,6 +38,7 @@ en:
   layouts:
     dashboard:
       home: Home
+      new_workspace: New workspace
       articles: Articles
       pictures: Pictures
       feedback: Feedback
@@ -52,6 +56,14 @@ en:
       signup: Signup
     error:
       feedback: Feedback
+  workspaces:
+    new:
+      new_workspace: New workspace
+      remaining_workspace: 剩余 %{count} 个工作区额度
+    limit:
+      new_workspace: New workspace
+      workspace_limit: No workspace quote
+      see_plan: See plan
   users:
     new:
       signup: Singup
@@ -60,29 +72,124 @@ en:
       username_or_email: Username or Email
       password: Password
       login: Login
+  accounts:
+    show:
+      account_setting: Account setting
+      login_id: Login ID
+      custom: Custom
+      change_password: Change password
+      confirm_change: Confirm change
+  profiles:
+    show:
+      profile_setting: Profile setting
+      publish_profile: Published profile
   dashboard:
-    accounts:
-      show:
-        account_setting: Account setting
-        login_id: Login ID
-        custom: Custom
-        change_password: Change password
-        confirm_change: Confirm change
-    profiles:
-      show:
-        profile_setting: Profile setting
-        publish_profile: Published profile
     share:
+      main_header:
+        articles: Articles
+        discussions: Discussions
+        pictures: Pictures
+        members: Members
+        settings: Workspace settings
       settings_nav:
+        personal_settings: Psersonal settings
         account: Account
         profile: Profile
         billing: Billing
-    dashboard:
+      image_uploader_modal:
+        insert_image: Insert image
+        url: URL
+        link: Link
+        fetch: Fetch
+        select_file: Select file
+        upload: Upload
+        drop_here: Drop here
+        preview: Preview
+      link_creator_modal:
+        url: URL
+        create_link: Create link
+        unlink: Unlink
+      link_modal:
+        url: URL
+        create_link: Create link
+        unlink: Unlink
+    settings:
       show:
-        articles: Articles
-        pictures: Pictures
-        new_article: New article
-        no_articles: No articles
+        workspace_settings: Settings
+    discussions:
+      index:
+        open: Open
+        archived: Archived
+        new_topic: New topic
+        no_discussion: No discussion
+      discussion:
+        created_at: Created at
+        updated_at: Updated at
+    topics:
+      new:
+        return_to_discussions_list: Return to discussions list
+      form:
+        title: Title
+      show:
+        return_to_discussions_list: Return to discussions list
+        archived: Archived
+        manage: Manage
+        reopen: Reopen
+        archive: Archive
+        edit: Edit
+        delete: Delete
+        delete_confirm: Sure to delete?
+      comment:
+        manage: Manage
+        edit: Edit
+        delete: Delete
+        delete_confirm: Sure to delete?
+    notes:
+      context:
+        note_dot: New note...
+      note:
+        comment_dot: Comment...
+      note_entry:
+        archive: Archive
+        reopen: Reopen
+        archived: Archived
+        edit: Edit
+        delete: Delete
+        delete_confirm: Sure to delete?
+      comment:
+        edit: Edit
+        delete: Delete
+        delete_confirm: Sure to delete?
+    members:
+      index:
+        invite_members: Invite members
+        members: Members
+        contact_workspace_creator_to_invite_members: Contact workspace creator to
+          invite members
+      form:
+        send_invitation: Send invitation
+        up_to_members_limit: Up to members limit
+        message_with_email_invitation: Message with email invitation
+      member:
+        creator: Creator
+        remove: Remove
+        remove_confirm: Sure to remove?
+      invitation:
+        waiting_for_accept: Waiting for accept
+        remove: Remove
+        remove_confirm: Sure to remove?
+        resend: Resend
+    invitations:
+      show:
+        invitation_detail: Invitation detail
+        invite_you_to_join_this_workspace: Invite you to join this workspace
+        you_need_an_account: You need an account
+        already_have_account: Already have account?
+        signup_and_join: Signup and Join
+        you_are_login_as: You are logined as
+        change_account: Change account?
+        join_workspace: Join workspace
+        members: Members
     attachments:
       index:
         pictures: Pictures
@@ -90,20 +197,39 @@ en:
         no_picture: No picture
     articles:
       index:
-        inbox: Inbox
+        all: All
         publish: Publish
         draft: Draft
         new_article: New article
         no_articles: No articles
+        inbox: Inbox
         is_end: is end
+      main_sidebar:
+        all_articles: All articles
+        no_category: Not category
+        trash: Trash
+        new_category: New category
+      select_category_modal:
+        select_category: Select category
+        new_category: New category
+      add_category_modal:
+        new_category: New category
+      article:
+        link: Link
+        draft: Draft
+        publish: Publish
+        published: Published
+        category: Category
+        move_to_trash: Move to trash
+        restore: Restore
+        delete: Delete
+        delete_confirm: Sure to delete this article?
+        created_at: Created at
+        updated_at: Updated at
       trash_index:
         empty_trash: Empty trash
         empty_trash_confirm: Are you sure empty trash？
         no_articles: No articles
-      category_menu:
-        all: All
-        new_category: New category
-        trash: Trash
       new_category_modal:
         new_category: New category
       edit:
@@ -112,19 +238,6 @@ en:
         return_newest_version: Return to newest version
         version_limit: 'Current account can visit last 5 versions. '
         need_more_version: Need more versions?
-        image_modal:
-          insert_image: Insert image
-          url: URL
-          link: Link
-          fetch: Fetch
-          select_file: Select file
-          upload: Upload
-          drop_here: Drop here
-          preview: Preview
-        link_modal:
-          url: URL
-          create_link: Create link
-          unlink: Unlink
         urlname_modal:
           urlname: URL
         select_category_modal:
@@ -199,6 +312,10 @@ en:
         new_category: New category
       edit:
         page_title: Setting %{name}
+        all: All
+        publish: Publish
+        draft: Draft
+        new_article: New article
         delete_category: Delete category
         delete_category_confirm: Delete category %{name}? All articles in this category
           will mark not collected.
@@ -206,19 +323,33 @@ en:
         index: Index
         publish: Publish
         draft: Draft
-        trash: Trash
         new_article: New article
+        trash: Trash
+    dashboard:
+      show:
+        articles: Articles
+        pictures: Pictures
+        new_article: New article
+        no_articles: No articles
   mongoid:
     attributes:
+      space:
+        name: URL
+        full_name: Full name
+        description: Description
+        domain: Custom domain
+        disqus_shortname: Disqus Shortname
       user:
-        name: User name
         email: Email
-        domain: Domain
-        disqus_shortname: Disqus shortname
         locale: Locale
         password: Password
         password_confirmation: Password confirmation
         current_password: Current password
+        name: User name
+      workspace:
+        gravatar_email: Gravatar Email
+        name: Name
+        full_name: Full name
       profile:
         name: Name
         description: Description
@@ -232,6 +363,10 @@ en:
         urlname: URL
       attachment:
         file: Attachment
+      discusstion:
+        body: Body
+      note:
+        title: Title
   errors:
     messages:
       extension_white_list_error: 'Can not uplaod %{extension} file，allow extension:

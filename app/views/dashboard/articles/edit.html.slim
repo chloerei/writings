@@ -1,5 +1,5 @@
 doctype 5
-html
+html lang=(logined? ? current_user.locale : 'zh-CN')
   head
     title = page_title
     meta content='width=device-width, initial-scale=1.0' name='viewport'
@@ -7,19 +7,31 @@ html
     = javascript_include_tag "dashboard"
     = stylesheet_link_tag "dashboard"
     = csrf_meta_tags
-  body#articles-edit class=(cookies[:pick_up_topbar] ? 'pick-up-topbar' : nil)
+  body#articles-edit class=((!@note && cookies[:pick_up_topbar]) ? 'pick-up-topbar' : nil)
     = render :partial => 'dashboard/articles/edit/edit_topbar'
-    #editwrap class=(@article.trash? ? 'readonly' : nil)
+    #editwrap class=(@note.present? ? 'show-notes' : nil)
       .main
         = render :partial => 'dashboard/articles/edit/toolbar'
         #editarea
           .scrollable
             .editor-container
-              article contentEditable="true" spellcheck="false" data-id=(@article.token) data-save-count=(@article.save_count) data-category-id=(@article.category.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil)
+              article.article contentEditable="true" spellcheck="false" data-id=(@article.token) data-save-count=(@article.save_count) data-category-id=(@article.category.try(:urlname)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil) data-space=(@space.to_param) data-is-workspace=(@space.is_a?(Workspace)) data-current-user-name=(current_user.name)
                 = article_format_body @article.body
-              = render 'layouts/alert_messages'
+            #notes.notes-container
+              - if @note
+                .note-context.actived id="note-context-#{@note.element_id}" data-element-id=(@note.element_id)
+                  .note-add-button
+                  .note-context-content
+                    .note-context-header.clearfix
+                      .pull-right
+                        a.close-button
+                          i.icon-remove
+                    .note-cards
+                      = render :partial => 'dashboard/notes/note', :object => @note
+          #alert-messages
           #readonly-message
             = t '.readonly_mode'
+
       .sidebar
         #history
           .toolbar.clearfix
@@ -34,14 +46,14 @@ html
             .scrollable
               nav
                 ul#versions
-              - if current_user.in_plan?(:free)
+              - if @space.in_plan?(:free)
                 .message
                   = t '.version_limit'
-                  = link_to t('.need_more_version'), dashboard_billing_path
+                  = link_to t('.need_more_version'), billing_path
 
     = render 'dashboard/articles/edit/urlname_modal'
-    = render 'dashboard/articles/edit/link_modal'
-    = render 'dashboard/articles/edit/image_modal'
     = render 'dashboard/articles/edit/select_category_modal'
-    = render 'new_category_modal'
+    = render 'dashboard/articles/edit/new_category_modal'
     = render 'dashboard/articles/edit/help_modal'
+    = render 'dashboard/share/image_uploader_modal'
+    = render 'dashboard/share/link_creator_modal'

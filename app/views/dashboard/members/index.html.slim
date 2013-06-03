@@ -1,0 +1,21 @@
+- append_title t('.members')
+
+#main
+  .container
+    .inner
+      = render 'dashboard/share/main_header'
+      section.two-columns
+        .column
+          h3.title = t '.invite_members'
+          - if is_workspace_creator?
+            = render 'form'
+          - else
+            = t '.contact_workspace_creator_to_invite_members'
+        .column
+          #members.members
+            h3.title = t '.members'
+            ul
+              = render :partial => 'member', :collection => @space.members
+          #invitations.members
+            ul
+              = render :partial => 'invitation', :collection => @space.invitations

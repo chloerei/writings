@@ -3,8 +3,8 @@ require 'test_helper'
 class Site::CategoriesControllerTest < ActionController::TestCase
   def setup
     @user = create :user
-    @category = create :category, :user => @user
-    @article = create :article, :user => @user, :category => @category, :status => 'publish'
+    @category = create :category, :space => @user
+    @article = create :article, :space => @user, :category => @category, :status => 'publish'
     @request.host = "#{@user.name}.#{APP_CONFIG["host"]}"
   end
 

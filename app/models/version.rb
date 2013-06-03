@@ -7,4 +7,6 @@ class Version
 
   belongs_to :article
   belongs_to :user
+
+  index({ :article_id => 1 })
 end

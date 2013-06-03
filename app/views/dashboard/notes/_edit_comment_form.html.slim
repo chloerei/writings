@@ -1,0 +1,8 @@
+= form_for @comment, :url => dashboard_comment_path(:id => @comment), :remote => true do |f|
+  .field
+    = f.hidden_field :body
+    article.body contenteditable="true"
+      = sanitize @comment.body
+  .field
+    = f.submit t('submit')
+    a.button.note-cancel-button = t('cancel')

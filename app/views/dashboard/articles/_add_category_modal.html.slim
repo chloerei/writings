@@ -1,0 +1,24 @@
+#add-category-modal.modal-dialog
+  .modal-header
+    .title
+      = t '.new_category'
+    a.modal-close data-close='modal'
+      i.icon-remove
+  .modal-content
+    = form_for @space.categories.new, :remote => true, :url => dashboard_categories_path, :validate => true, :html => { :id => 'add-category-form', 'data-type' => 'json' } do |f|
+      .field
+        = f.label :name
+        = f.text_field :name
+      .field
+        = f.label :urlname
+        .input-prepend
+          .add-on
+            = "#{@space.host}/categories/"
+          .input
+            = f.text_field :urlname, :placeholder => 'urlname'
+      .field
+        = f.label :description
+        = f.text_area :description
+      .field
+        = f.submit t('submit')
+        = f.submit t('cancel'), :data => { :close => :modal }

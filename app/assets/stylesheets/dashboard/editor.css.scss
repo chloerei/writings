@@ -1,0 +1,803 @@
+.editor-container {
+  position: relative;
+
+}
+
+
+#editor-topbar {
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  border-bottom: 1px solid #ccc;
+  line-height: 18px;
+  @include transition(top 0.15s ease);
+
+  ul.top-nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    line-height: 18px;
+    @include clearfix();
+
+    li a [class^="icon-"],
+    li a [class*=" icon-"] {
+      width: 1em;
+      text-align: left;
+    }
+
+    .icon-level-up:before {
+      display: inline-block;
+    }
+
+    > li {
+      display: inline-block;
+      float: left;
+      height: 48px;
+
+      > a {
+        padding: 15px 20px;
+        display: block;
+        color: #555;
+        @include transition(all 0.15s ease);
+
+        &:hover {
+          background-color: #f9f9f9;
+        }
+      }
+    }
+  }
+
+  .pull-right {
+    padding: 15px 0;
+  }
+
+  .button {
+    display: inline;
+  }
+
+  #save-status {
+    display: inline-block;
+    margin-right: 10px;
+    color: #999;
+    cursor: pointer;
+
+    .saving,
+    .saved,
+    .retry {
+      display: none;
+    }
+
+    .saved:hover {
+      color: #555;
+    }
+
+    .show {
+      display: inherit;
+    }
+  }
+}
+
+#editwrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-top: 49px;
+  @include transition(margin-top 0.15s ease);
+
+  .main,
+  .sidebar {
+    height: 100%;
+    position: relative;
+  }
+
+  .scrollable {
+    overflow: auto;
+    height: 100%;
+    position: relative;
+  }
+
+  .sidebar {
+    display: none;
+    @include box-shadow(-1px 0 1px #ccc);
+    .content {
+      padding-top: 36px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .message {
+      padding: 10px;
+      color: #999;
+    }
+
+    nav ul {
+      li {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+
+        &.actived,
+        &:hover {
+          cursor: pointer;
+          background: #f9f9f9;
+        }
+
+        .title {
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+
+        .user {
+          color: #999;
+          margin-bottom: 5px;
+        }
+
+        .button {
+          padding: 3px 5px;
+        }
+
+        .action {
+          display: none;
+        }
+
+        &.actived {
+          .action {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  &.show-sidebar {
+    @include clearfix();
+
+    .main {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 350px;
+      border: 0;
+    }
+
+    .sidebar {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 350px;
+      background-color: #fff;
+    }
+
+  }
+
+  .toolbar {
+    background-color: #555;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+
+    .label {
+      line-height: 14px;
+      padding: 10px;
+      color: #fff;
+      display: inline-block;
+      height: 34px;
+      @include box-sizing(border-box);
+    }
+
+    ul.toolbar-buttons {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      @include clearfix();
+
+      [class^="icon-"], [class*=" icon-"] {
+        line-height: 14px;
+      }
+
+      > li {
+        display: inline-block;
+        float: left;
+        height: 34px;
+
+        a {
+        }
+
+        .toolbar-button {
+          padding: 10px;
+          display: block;
+          color: #fff;
+
+          &:hover {
+            text-decoration: none;
+            color: #555;
+            background-color: #f9f9f9;
+          }
+
+          &.actived,
+          &:active {
+            color: #555;
+            background-color: #f9f9f9;
+          }
+
+          &.disabled,
+          &.disabled:hover,
+          &.disabled:focus {
+            color: #999;
+            background-color: #555;
+          }
+        }
+      }
+
+      p, h1, h2, h3, h4, pre, blockquote {
+        padding: 0;
+        margin: 0;
+      }
+
+      .dropdown {
+        position: relative;
+        height: 34px;
+
+        .dropdown-toggle {
+          width: 80px;
+          padding-right: 20px;
+          font-weight: bold;
+          line-height: 14px;
+
+          &:after {
+            right: 0;
+            padding: 2px 10px;
+          }
+        }
+
+        .dropdown-menu {
+          top: 36px;
+          left: 0;
+
+          li {
+            display: block;
+            float: none;
+
+            a {
+              padding: 10px;
+
+              &:hover {
+                h1, h2, h3, h4 {
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
+
+        &.actived {
+          .dropdown-toggle {
+            color: #555;
+            background-color: #f9f9f9;
+          }
+        }
+      }
+    }
+  }
+
+  #editarea {
+    padding-top: 36px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .article {
+      margin: 0 auto;
+      width: $editor-container-width;
+      max-width: 100%;
+      background: #FFF;
+      padding: 70px;
+      outline: 0;
+      min-height: 1024px;
+      margin-top: 3px;
+      margin-bottom: 60px;
+      position: relative;
+      @include box-shadow(0 0 0 1px #ccc);
+      @include box-sizing(border-box);
+
+      @media (max-width: 768px) {
+        margin-top: 0;
+        margin-bottom: 0;
+        border: none;
+        padding: 70 / 768 * 100%;
+      }
+
+      &.init {
+        h1 {
+          position: relative;
+
+          &:after {
+            content: "Title here";
+            color: #ccc;
+            float: left;
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  #alert-messages {
+    position: absolute;
+    right: 20px;
+    top: 54px;
+    margin-right: 0;
+  }
+
+  #readonly-message {
+    display: none;
+  }
+
+  &.readonly {
+    #readonly-message {
+      padding: 10px 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      display: inline-block;
+      position: absolute;
+      left: 20px;
+      top: 54px;
+      font-size: 1.5em;
+      border-radius: 5px;
+    }
+
+    #formator-buttons {
+      .toolbar-button {
+        color: #999;
+        background-color: #555;
+        cursor: default;
+      }
+    }
+  }
+
+}
+
+.pick-up-topbar {
+  #editor-topbar {
+    top: -49px;
+  }
+
+  #toolbar {
+    top: 0;
+  }
+
+  #editwrap {
+    margin-top: 0;
+  }
+
+  #pick-up-button.icon-double-angle-up:before {
+    content: "\f103";
+  }
+
+  #notes {
+    display: none;
+  }
+
+  #editwrap.show-notes {
+    .editor-container {
+      float: none;
+      width: 100%;
+
+      article {
+        float: none;
+      }
+    }
+  }
+}
+
+#help-modal {
+  width: 450px;
+
+  table {
+    width: 100%;
+
+    tr {
+      &:nth-child(odd) {
+        background-color: #f9f9f9;
+      }
+    }
+
+    th, td {
+      padding: 10px;
+      vertical-align: top;
+      text-align: center;
+    }
+
+    th {
+    }
+  }
+}
+
+#image-uploader-modal {
+  width: 450px;
+
+  .preview,
+  .dropable {
+    height: 180px;
+    width: 100%;
+    border: 2px dashed #ccc;
+    display: table;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+    @include box-sizing(border-box);
+
+    .center {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      padding: 20px;
+    }
+
+    &.start .center {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      color: #999;
+    }
+
+  }
+
+  .dropable.start {
+    .message {
+      display: none;
+    }
+
+    .progress {
+      display: block;
+    }
+  }
+
+  .button-fileinput {
+    position: relative;
+    overflow: hidden;
+
+    input {
+      opacity: 0;
+      position: absolute;
+      top: -1px;
+      right: -1px;
+      cursor: pointer;
+      height: 34px;
+    }
+  }
+
+  .filename {
+    width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+  }
+
+  .progress {
+    display: none;
+    height: 5px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 2px;
+
+    .bar {
+      width: 0%;
+      height: 100%;
+      background-color: #ccc;
+    }
+  }
+}
+
+.notes-container {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-left: 384px;
+  margin-top: 2px;
+  @include box-sizing(border-box);
+
+  .field {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .body {
+      outline: none;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      padding: 7px;
+    }
+  }
+
+  .expandable-form {
+    .body {
+      min-height: 1.2em;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        left: 7px;
+        top: 7px;
+        content: attr(data-placeholder);
+        color: #999;
+      }
+    }
+
+    .show-on-expanded {
+      display: none;
+    }
+
+    &.expanded {
+      .body {
+        min-height: 80px;
+
+        &:after {
+          content: none;
+        }
+      }
+
+      .show-on-expanded {
+        display: block;
+      }
+    }
+  }
+
+  .note-context {
+    width: 100px;
+    position: absolute;
+    @include box-sizing(border-box);
+
+    .note-add-button {
+      color: #999;
+      display: none;
+      padding: 5px 10px;
+      background-color: #fff;
+      border-radius: 0 3px 3px 0;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-left: none;
+      margin-left: 1px;
+
+      &:hover {
+        color: #555;
+      }
+      &.show {
+        display: inline-block;
+      }
+    }
+
+    .note-context-content {
+      padding: 5px 10px;
+      background-color: #fff;
+      border-radius: 0 3px 3px 0;
+      border: 1px solid #ccc;
+      border-left: none;
+      margin-left: 1px;
+    }
+
+    &.show-on-mouseover,
+    &.show-on-click,
+    &:hover {
+      .note-add-button {
+        display: inline-block;
+      }
+    }
+
+    &.actived {
+      z-index: 1;
+
+      .note-add-button {
+        display: none;
+      }
+    }
+
+  }
+
+  .note-context-header {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 10px;
+
+    a.close-button {
+      cursor: pointer;
+      padding: 5px 10px;
+      margin-right: -10px;
+      color: #999;
+
+      &:hover {
+        color: #555;
+      }
+    }
+  }
+
+  .note-card {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    background-color: #fff;
+    @include box-shadow(0 1px 0 #ddd);
+
+  }
+
+  .note-comments {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .note-comment {
+    padding: 10px;
+    position: relative;
+    min-height: 25px;
+    border-bottom: 1px solid #ddd;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .submit-field {
+      display: none;
+    }
+
+    .body {
+      min-height: 1.2em;
+    }
+
+    &.actived {
+      .body {
+        min-height: 80px;
+      }
+
+      .submit-field {
+        display: block;
+      }
+    }
+  }
+
+  .note-new-comment {
+    border-top: 1px solid #ddd;
+  }
+
+  .note-avatar {
+    position: absolute;
+    left: 10px;
+
+    img {
+      width: 24px;
+      height: 24px;
+      border-radius: 12px;
+    }
+  }
+
+  .note-content {
+    padding-left: 34px;
+  }
+
+  .note-content-header {
+    margin-bottom: 10px;
+
+    .dropdown-toggle {
+      padding: 0;
+      display: inline;
+      color: #999;
+
+      &:hover {
+        color: #555;
+      }
+    }
+
+    .dropdown-menu {
+      top: 20px;
+    }
+  }
+
+  .note-author {
+    font-weight: bold;
+  }
+
+}
+
+.show-notes {
+  .editor-container {
+    float: left;
+    width: 60%;
+
+    .article {
+      float: right;
+    }
+  }
+
+  .notes-container {
+    width: 40%;
+    float: left;
+    position: relative;
+    margin-left: 0;
+    left: 0;
+
+    .note-context {
+      width: 400px;
+      max-width: 100%;
+    }
+  }
+}
+
+.pick-up-topbar {
+  .notes-container {
+    display: none;
+  }
+
+  .show-notes {
+    .editor-container {
+      float: none;
+      width: 100%;
+
+      .article {
+        float: none;
+      }
+    }
+  }
+}
+
+.show-sidebar {
+  .notes-container {
+    display: none;
+  }
+
+  .show-notes {
+    .editor-container {
+      float: none;
+      width: 100%;
+
+      .article {
+        float: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .notes-container {
+    display: none;
+  }
+
+  .show-notes {
+    .editor-container {
+      width: 100%;
+    }
+  }
+
+  #editwrap {
+    &.show-sidebar {
+      .main,
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: 50%;
+      }
+    }
+  }
+}

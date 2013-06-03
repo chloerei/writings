@@ -1,20 +1,9 @@
-nav
+.header
+  h1
+    = t '.personal_settings'
+nav.main-nav
   ul
-    li
-      - if controller_name == 'accounts'
-        = t '.account'
-      - else
-        a href=(dashboard_account_path)
-          = t '.account'
-    li
-      - if controller_name == 'profiles'
-        = t '.profile'
-      - else
-        a href=(dashboard_profile_path)
-          = t '.profile'
-    li
-      - if controller_name == 'billings'
-        = t '.billing'
-      - else
-        a href=(dashboard_billing_path)
-          = t '.billing'
+    li class=(controller_name == 'accounts' ? 'actived' : nil)
+      = link_to t('.account'), account_path
+    li class=(controller_name == 'billings' ? 'actived' : nil)
+      = link_to t('.billing'), billing_path

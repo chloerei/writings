@@ -48,6 +48,13 @@ a {
   }
 }
 
+li a [class^="icon-"],
+li a [class*=" icon-"] {
+  width: 1.2em;
+  text-align: center;
+  display: inline-block;
+}
+
 article {
   font-size: 1em;
   line-height: 160%;
@@ -79,7 +86,7 @@ article {
   pre code {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
-    @include border-radius(5px);
+    border-radius: 5px;
   }
 
   img {
@@ -163,9 +170,8 @@ textarea {
   max-width: 100%;
   @include box-sizing(border-box);
 
-  &:focus {
-    @include box-shadow(0 0 1px rgba(0, 0, 0, 0.3));
-    @include transition(box-shadow 0.15s ease);
+  &.full-width {
+    width: 100%;
   }
 }
 
@@ -285,34 +291,33 @@ fieldset {
 
 // button
 
-@mixin button-color($color, $textColor) {
+@mixin button-color($color, $textColor, $borderColor) {
   color: $textColor;
-  border: 1px solid darken($color, 20%);
-  @include linear-gradient($color, darken($color, 3%));
+  border: 1px solid $borderColor;
+  background-color: $color;
+  @include box-shadow(0 1px 0 #ddd);
 
   &:hover,
   &:focus {
     color: $textColor;
+    background-color: darken($color, 2%);
     text-decoration: none;
-    @include linear-gradient(darken($color, 3%), darken($color, 6%));
-    @include box-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
   }
 
   &.button-actived,
   &:active {
-    @include linear-gradient(darken($color, 9%), darken($color, 12%));
+    background-color: darken($color, 6%);
+    @include box-shadow(inset 0 1px 0 darken($color, 15%));
   }
 
   &.button-disabled {
     color: #999;
-    background-color: darken($color, 5%);
-    background-image: none;
 
     &:hover,
     &:focus,
     &:active {
       cursor: default;
-      background-color: darken($color, 5%);
+      background-color: darken($color, 10%);
       background-image: none;
       @include box-shadow(none);
     }
@@ -327,22 +332,23 @@ button,
   font-weight: normal;
   display: inline-block;
   border-radius: 2px;
-  @include button-color(#fefefe, #333);
+  cursor: pointer;
+  @include button-color(#fefefe, #333, #ccc);
 
   &.no-margin {
     margin: 0;
   }
 
   &.button-primary {
-    @include button-color($linkColor, #fff);
+    @include button-color($linkColor, #fff, darken($linkColor, 10%));
   }
 
   &.button-green {
-    @include button-color($green, #fff);
+    @include button-color($green, #fff, darken($green, 10%));
   }
 
   &.button-danger {
-    @include button-color($red, #fff);
+    @include button-color($red, #fff, darken($red, 10%));
   }
 
   &.button-large {
@@ -402,6 +408,7 @@ a.button:hover {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    cursor: pointer;
 
     &:after {
       position: absolute;
@@ -411,6 +418,36 @@ a.button:hover {
       display: inline-block;
       content: "\f0d7";
     }
+
+    &.no-arrow {
+      &:after {
+        content: none;
+      }
+
+      .show-on-active {
+        display: none;
+      }
+
+      .hide-on-active {
+        display: inline;
+      }
+    }
+  }
+
+  &.actived {
+    .dropdown-toggle.no-arrow {
+      &:after {
+        content: none;
+      }
+
+      .show-on-active {
+        display: inline;
+      }
+
+      .hide-on-active {
+        display: none;
+      }
+    }
   }
 
   .dropdown-menu {
@@ -418,8 +455,8 @@ a.button:hover {
     margin: 0;
     padding: 0;
     z-index: 1000;
-    width: 150px;
     position: absolute;
+    width: 150px;
     top: 36px;
     left: 0;
     background: #fff;
@@ -446,8 +483,7 @@ a.button:hover {
         @include transition(none);
 
         &:hover {
-          background-color: $linkColor;
-          color: #fff;
+          background-color: #eee;
         }
       }
 
@@ -614,41 +650,53 @@ a.button:hover {
 
 // alert message
 
-.alert-message {
+#alert-messages {
   position: fixed;
-  top: 102px;
+  top: 78px;
   right: 50%;
   margin-right: -460px;
-  padding: 5px 10px;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 3px;
-  color: #fff;
   z-index: 2000;
-  cursor: pointer;
-  opacity: 1;
-  visibility: visible;
-  @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.3));
-  @include transition(top 0.15s ease, opacity 0.15s ease);
 
-  &.alert-hide {
-    opacity: 0;
-    visibility: hidden;
-    @include transition(top 0.15s ease, visibility 0s ease 0.15s, opacity 0.15s ease);
+  @media (max-width: 960px) {
+      right: 20px;
+      margin-right: 0;
   }
 
-  i {
-    margin-right: 5px;
-  }
+  .alert-message {
+    float: right;
+    clear: both;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    color: #fff;
+    margin-bottom: 5px;
+    @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.3));
 
-  &.loading {
-  }
+    i {
+      margin-right: 5px;
+    }
 
-  &.error {
-    background-color: $red;
-  }
+    i.icon-remove {
+      cursor: pointer;
+      margin-left: 10px;
+      margin-right: 0;
+    }
 
-  &.success {
-    background-color: $green;
+    &.alert-info {
+      background-color: $blue;
+    }
+
+    &.alert-warning {
+      background-color: $yellow;
+    }
+
+    &.alert-error {
+      background-color: $red;
+    }
+
+    &.alert-success {
+      background-color: $green;
+    }
   }
 }
 

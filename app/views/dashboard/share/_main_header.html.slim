@@ -1,0 +1,20 @@
+.header
+  h1
+    a href=(dashboard_root_path)
+      = @space.display_name
+nav.main-nav.clearfix
+  ul.pull-left
+    li class=(controller_name == 'articles' ? 'actived' : nil)
+      = link_to t('.articles'), dashboard_articles_index_path
+    - if @space.is_a? Workspace
+      li class=(%w(discussions topics comments).include?(controller_name) ? 'actived' : nil)
+        = link_to t('.discussions'), dashboard_discussions_path
+    li class=(controller_name == 'attachments' ? 'actived' : nil)
+      = link_to t('.pictures'), dashboard_attachments_path
+  ul.pull-right
+    - if @space.is_a? Workspace
+      li class=(controller_name == 'members' ? 'actived' : nil)
+        = link_to t('.members'), dashboard_members_path
+    - if @space.is_a?(User) || @space.creator == current_user
+      li class=(controller_name == 'settings' ? 'actived' : nil)
+        = link_to t('.settings.'), dashboard_settings_path

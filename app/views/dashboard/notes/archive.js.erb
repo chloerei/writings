@@ -1,0 +1,7 @@
+$('#note-card-<%= @note.token %>').remove();
+<% count = @note.article.notes.opening.where(:element_id => @note.element_id).count %>
+$('#note-context-<%= @note.element_id %> .notes-count').text('<%= t 'notes_count', :count => count %>');
+<% if count == 0 %>
+  $('#note-context-<%= @note.element_id %> .note-add-button').removeClass('show');
+<% end %>
+AlertMessage.remove('ajax-loading');

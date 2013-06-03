@@ -10,6 +10,7 @@ class Attachment
     self.token ||= SecureRandom.hex(16)
   end
 
+  belongs_to :space
   belongs_to :user
 
   mount_uploader :file, FileUploader

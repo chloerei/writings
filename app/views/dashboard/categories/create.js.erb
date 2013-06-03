@@ -1,0 +1,5 @@
+<% if @category.persisted? %>
+  Turbolinks.visit('<%= dashboard_articles_index_path(:category_id => @category) %>')
+<% else %>
+  AlertMessage.show({ type: 'error', text: '<%= j @category.errors.full_messages.join %>' });
+<% end %>

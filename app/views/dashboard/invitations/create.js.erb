@@ -1,0 +1,6 @@
+$('#invitations ul').append('<%= j render(:partial => 'dashboard/members/invitation', :collection => @invitations) %>');
+
+$('#invitation-form').replaceWith('<%= j render(:partial => 'dashboard/members/form') %>');
+
+AlertMessage.remove('ajax-loading');
+AlertMessage.show({ type: 'success', text: '<%= t('success') %>', timeout: 1500 });

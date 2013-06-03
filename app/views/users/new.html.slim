@@ -7,7 +7,9 @@
       = form_for @user, :validate => true do |f|
         .field
           = f.label :name
-          = f.text_field :name, :tabindex => 1, :autofocus => 'autofocus'
+          .input-append
+            = f.text_field :name
+            .add-on = ".#{APP_CONFIG['host']}"
         .field
           = f.label :email
           = f.text_field :email, :tabindex => 2

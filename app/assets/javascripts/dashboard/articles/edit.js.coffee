@@ -1,17 +1,23 @@
-#= require editor
 #= require_self
 #= require_tree ./edit
 
 class ArticleEdit
   constructor: ->
+    @article = $("#editarea .article")
+    @space = @article.data('space')
+    @saveCount = @article.data("saveCount")
+    @lockScopes = []
+
     @editor = new Editor(
       toolbar: "#toolbar"
-      editable: "#editarea article"
+      editable: "#editarea .article"
     )
-    @imageUploader = new ArticleEdit.ImageUploader(@editor)
-    @version = new ArticleEdit.Version()
-    @article = $("#editarea article")
-    @saveCount = @article.data("saveCount")
+    @imageUploader = new Editor.ImageUploader(@editor)
+    @linkCreator = new Editor.LinkCreator(@editor)
+    @version = new ArticleEdit.Version(this)
+
+    if @article.data('is-workspace')
+      @noteManager = new ArticleEdit.NoteManager(this)
 
     @bindActions()
 
@@ -21,8 +27,15 @@ class ArticleEdit
     $("#publish-button").on "click", (event) => @publishArticle(event)
     $("#draft-button").on "click", (event) => @draftArticle(event)
     $("#category-form").on "submit", (event) => @saveCategory(event)
-    $("#new-category-form").on "submit", (event) => @createCategory(event)
     $("#pick-up-button").on "click", (event) => @pickUpTopbar(event)
+
+    $("#new-category-form").on "ajax:success", (event, data) ->
+      $li = $("<li><a href=\"#\">")
+      $li.find("a").text(data.name).data "category-id", data.urlname
+      $("#category-form .dropdown-menu").prepend $li
+      $("#category-form .dropdown-toggle").text data.name
+      $("#article-category-id").val data.urlname
+      Dialog.hide "#new-category-modal"
 
     $("#category-form .dropdown").on "click", ".dropdown-menu li a", (event) ->
       event.preventDefault()
@@ -35,16 +48,18 @@ class ArticleEdit
       @article.one "input", =>
         @article.removeClass "init"
 
+    if @article.data('is-workspace')
+      @updateStatus()
+
+      @updateStatusInterval = setInterval =>
+        @updateStatus()
+      , 10 * 1000
+
+      $(document).one 'page:change', =>
+        clearInterval @updateStatusInterval
+
     @article.on "editor:change", =>
       @saveArticle()
-
-    $("#link-form").on "submit", (event) =>
-      event.preventDefault()
-      @editor.formator.link $("#link-form input[name=url]").val()
-
-    $("#unlink-button").on "click", (event) =>
-      event.preventDefault()
-      @editor.formator.link ""
 
     Mousetrap.bind ["ctrl+s", "command+s"], (event) =>
       @saveArticle event
@@ -63,17 +78,9 @@ class ArticleEdit
     @saveCount = @saveCount + 1
     $("#save-status .saving").show().siblings().hide()
 
-  saveCompelete: (data) ->
-    if data.save_count is @saveCount
-      AlertMessage.clear()
-      $("#save-status .saved").attr("title", data.updated_at).show().siblings().hide()
-
-  saveError: (xhr) ->
-    try
-      AlertMessage.error $.parseJSON(xhr.responseText).message or "Save Failed"
-    catch err
-      AlertMessage.error "Server Error"
-    $("#save-status .retry").show().siblings().hide()
+  saveCompelete: ->
+    AlertMessage.remove('article-save')
+    $("#save-status .saved").show().siblings().hide()
 
   saveUrlname: (event) ->
     event.preventDefault()
@@ -89,17 +96,89 @@ class ArticleEdit
     @saveStart()
     data.article.save_count = @saveCount
     $.ajax(
-      url: "/articles/" + @article.data("id")
+      url: "/~#{@space}/articles/" + @article.data("id")
       data: data
       type: "put"
       dataType: "json"
     ).success((data) =>
-      @saveCompelete data
+      if data.save_count is @saveCount
+        @saveCompelete()
       @updateViewButton data
       success_callback data if success_callback
     ).error (xhr) =>
-      @saveError xhr
+      try
+        data = $.parseJSON(xhr.responseText)
+        switch data.code
+          when 'article_locked'
+            AlertMessage.show
+              type: 'info'
+              text: I18n.t('is_editing', data.locked_user.name)
+              scope: 'article-locked'
+              keep: true
+            @lockArticle('article-locked')
+            @saveCompelete()
+          when 'save_count_expired'
+            # do nothing
+          else
+            AlertMessage.show
+              type: 'error'
+              text: data.message
+              scope: 'article-save'
+            @showRetryButton()
+      catch err
+        AlertMessage.show
+          type: 'error'
+          text: I18n.t('server_error')
+          scope: 'article-save'
+        @showRetryButton()
       error_callback() if error_callback
+
+  lockArticle: (scope) ->
+    if !(scope in @lockScopes)
+      @lockScopes.push scope
+
+      $('#editwrap').addClass('readonly')
+      @editor.setReadonly(true)
+
+  unlockArticle: (scope) ->
+    if scope in @lockScopes
+      @lockScopes.splice(@lockScopes.indexOf(scope), 1)
+
+      if @lockScopes.length is 0
+        $('#editwrap').removeClass('readonly')
+        @editor.setReadonly(false)
+
+  updateStatus: ->
+    $.ajax
+      url: "/~#{@space}/articles/#{@article.data("id")}/status"
+      dataType: "json"
+      success: (data) =>
+        @article.trigger('updateStatus', data)
+        if data.save_count > @saveCount
+          @saveCount = data.save_count
+          @updateBody(data.body)
+
+        if data.locked_user and (data.locked_user.name isnt @article.data('current-user-name'))
+          @lockArticle('article-locked')
+          @updateBody(data.body)
+
+          AlertMessage.show
+            type: 'info'
+            text: I18n.t('is_editing', data.locked_user.name)
+            keep: true
+            scope: 'article-locked'
+        else
+          @unlockArticle('article-locked')
+          AlertMessage.remove('article-locked')
+
+  updateBody: (body) ->
+    if @version.opening
+      @version.storeBody = body
+    else
+      @article.html(body)
+
+  showRetryButton: ->
+    $("#save-status .retry").show().siblings().hide()
 
   saveCategory: (event) ->
     event.preventDefault()
@@ -117,21 +196,6 @@ class ArticleEdit
       @article.data "category-id", categoryId
       @createArticle()
       Dialog.hide "#select-category-modal"
-
-  createCategory: (event) ->
-    event.preventDefault()
-    $.ajax(
-      url: "/categories/"
-      data: $("#new-category-form").serializeArray()
-      type: "post"
-      dataType: "json"
-    ).success (data) ->
-      $li = $("<li><a href=\"#\">")
-      $li.find("a").text(data.name).data "category-id", data.urlname
-      $("#category-form .dropdown-menu").prepend $li
-      $("#category-form .dropdown-toggle").text data.name
-      $("#article-category-id").val data.urlname
-      Dialog.hide "#new-category-modal"
 
   saveArticle: (event) ->
     event.preventDefault() if event
@@ -156,7 +220,7 @@ class ArticleEdit
 
     # save change between ajax response
     $.ajax(
-      url: "/articles"
+      url: "/~#{@space}/articles"
       data:
         article:
           title: @editor.editable.find("h1").text()
@@ -168,15 +232,23 @@ class ArticleEdit
       type: "post"
       dataType: "json"
     ).done((data) =>
-      @saveCompelete data
+      if data.save_count is @saveCount
+        @saveCompelete()
       @article.data "id", data.token
       @updateViewButton data
-      history.replaceState null, null, "/articles/" + data.token + "/edit"
+      history.replaceState null, null, "/~#{@space}/articles/" + data.token + "/edit"
       $('#urlname-modal .article-id').text(data.token)
       @saveArticle()
     ).fail((xhr) =>
-      @saveError xhr
-      $("#save-status .retry").show().siblings().hide()
+      try
+        message = $.parseJSON(xhr.responseText).message
+      catch err
+        message = I18n.t('server_error')
+      AlertMessage.show
+        type: 'error'
+        text: message
+        scope: 'article-save'
+      @showRetryButton()
     ).always =>
       @creating = false
 
@@ -231,11 +303,11 @@ class ArticleEdit
 
     if $("body").hasClass("pick-up-topbar")
       $.cookie "pick_up_topbar", true,
-        path: "/articles"
+        path: "/"
         expires: 14
     else
       $.removeCookie "pick_up_topbar",
-        path: "/articles"
+        path: "/"
 
 @ArticleEdit = ArticleEdit
 

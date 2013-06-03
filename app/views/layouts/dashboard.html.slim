@@ -1,12 +1,11 @@
 doctype 5
-html
+html lang=(logined? ? current_user.locale : 'zh-CN')
   head
     title = page_title
     meta content='width=device-width, initial-scale=1.0' name='viewport'
     link rel="shortcut icon" href=(asset_path("favicon.png"))
     = javascript_include_tag "dashboard"
     = stylesheet_link_tag "dashboard"
-    = yield :head
     = csrf_meta_tags
   body id=("#{controller_name}-#{action_name}")
     #topbar
@@ -15,17 +14,37 @@ html
           - if logined?
             ul.top-nav.pull-left
               li
-                a href=(dashboard_root_path)
-                  i.icon-home
-                  = ' '
-                  = current_user.display_name
+                .dropdown
+                  a.dropdown-toggle href=(dashboard_root_path(@space || current_user))
+                    i.icon-user
+                    = ' '
+                    = (@space || current_user).display_name
+                  ul.dropdown-menu
+                    li
+                      a href=(dashboard_root_path(current_user))
+                        i.icon-user
+                        = ' '
+                        = current_user.display_name
+                    - current_user.workspaces.each do |workspace|
+                      li
+                        a href=(dashboard_root_path(workspace))
+                          i.icon-group
+                          = ' '
+                          = workspace.display_name
+                    li
+                      hr
+                    li
+                      a href=(new_workspace_path)
+                        i.icon-plus
+                        = ' '
+                        = t '.new_workspace'
               li
-                a#user-link href=(site_root_url(:host => current_user.host)) target='_blank'
+                a#user-link href=(site_root_url(:host => (@space || current_user).host)) target='_blank'
                   i.icon-external-link
           - else
             ul.top-nav.pull-left
               li
-                a href=(dashboard_root_path)
+                a href=(root_path)
                   i.icon-home
                   span.hide-on-mobile
                     = ' '
@@ -57,7 +76,7 @@ html
                       = t '.google_plus'
                   li
                     a href='https://github.com/writingsio/writingsio/issues' target='_blank'
-                      i.icon-github-alt
+                      i.icon-github
                       = ' '
                       = t '.github_issues'
                   li
@@ -68,24 +87,19 @@ html
             - if logined?
               li
                 .dropdown
-                  a.dropdown-toggle href=(dashboard_account_path)
+                  a.dropdown-toggle href=(account_path)
                     i.icon-cog
                     span.hide-on-mobile
                       = ' '
                       = t '.settings'
                   ul.dropdown-menu.align-right
                     li
-                      = link_to dashboard_account_path do
+                      = link_to account_path do
                         i.icon-user
                         = ' '
                         = t '.account'
                     li
-                      = link_to dashboard_profile_path do
-                        i.icon-credit-card
-                        = ' '
-                        = t '.profile'
-                    li
-                      = link_to dashboard_billing_path do
+                      = link_to billing_path do
                         i.icon-shopping-cart
                         = ' '
                         = t 'upgrade'
@@ -111,4 +125,3 @@ html
     = yield
     #spinner
       i.icon-spinner.icon-spin
-    = render 'layouts/alert_messages'

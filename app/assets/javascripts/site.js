@@ -1,7 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require sitewide/highlight
+//= require lib/highlight
 
 var highlightBlock = function() {
   $('pre code').each(function() {

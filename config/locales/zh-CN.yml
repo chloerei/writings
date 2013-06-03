@@ -5,14 +5,15 @@ zh-CN:
   save: "保存"
   cancel: "取消"
   restore: "恢复"
-  all_articles: "所有文章"
-  not_collected: "未归类"
-  publish: "已发布"
-  draft: "草稿箱"
-  trash: "垃圾桶"
+  success: "成功"
   untitled: "无标题"
   articles: "文章"
-  workspace_header: "%{name} 的工作区"
+  not_category: "未归类"
+  publish: "已发布"
+  draft: "草稿箱"
+  trash: "回收站"
+  invitation_email_subject: "邀请你加入工作区 %{name}"
+  being_develop: "该功能正在开发，将来有可能发生变化"
 
   published_at: "发布于"
   category: "分类"
@@ -20,6 +21,9 @@ zh-CN:
   author: "作者"
   articles_count: "%{count} 篇文章"
   remember_me: "记住我"
+
+  notes_count: "%{count} 批注"
+  add_note: "添加批注"
 
   urlname_valid_message: "只能使用字母、数字和 '-' 号"
 
@@ -40,6 +44,7 @@ zh-CN:
   layouts:
     dashboard:
       home: "首页"
+      new_workspace: "创建工作区"
       articles: "文章"
       pictures: "图片"
       feedback: "问题反馈"
@@ -49,7 +54,7 @@ zh-CN:
       douban: "豆瓣"
       about: "关于"
       dashboard: "面板"
-      settings: "设置"
+      settings: "个人设置"
       account: "账户"
       profile: "个人资料"
       logout: "登出"
@@ -58,6 +63,10 @@ zh-CN:
     error:
       feedback: "问题反馈"
 
+  workspaces:
+    new:
+      new_workspace: "创建工作区"
+      remaining_workspace: "剩余 %{count} 个工作区额度"
   users:
     new:
       signup: "注册"
@@ -66,30 +75,129 @@ zh-CN:
       username_or_email: "用户名或邮箱"
       password: "密码"
       login: "登录"
+
+  accounts:
+    show:
+      account_setting: "账户设置"
+      login_id: "登录 ID"
+      custom: "个性化"
+      change_password: "更换密码"
+      confirm_change: "确认修改"
+  profiles:
+    show:
+      profile_setting: "个人资料设置"
+      publish_profile: "公开的个人资料"
+
   dashboard:
-    accounts:
-      show:
-        account_setting: "账户设置"
-        login_id: "登录 ID"
-        custom: "个性化"
-        change_password: "更换密码"
-        confirm_change: "确认修改"
-    profiles:
-      show:
-        profile_setting: "个人资料设置"
-        publish_profile: "公开的个人资料"
     share:
+      main_header:
+        articles: "文章"
+        discussions: "讨论"
+        pictures: "图片"
+        members: "成员"
+        settings: "工作区设置"
+
       settings_nav:
+        personal_settings: "个人设置"
         account: "账户"
         profile: "个人信息"
         billing: "升级"
 
-    dashboard:
+      image_uploader_modal:
+        insert_image: "插入图片"
+        url: "URL 地址"
+        link: "外链"
+        fetch: "抓取"
+        select_file: "选择文件"
+        upload: "上传"
+        drop_here: "拖到此处"
+        preview: "预览"
+
+      link_creator_modal:
+        url: "URL 地址"
+        create_link: "创建链接"
+        unlink: "去掉链接"
+
+    settings:
       show:
-        articles: "文章"
-        pictures: "图片"
-        new_article: "新文章"
-        no_articles: "没有文章"
+        workspace_settings: "工作区设置"
+
+    discussions:
+      index:
+        open: "讨论中"
+        archived: "已归档"
+        new_topic: "新主题"
+        no_discussion: "没有讨论"
+      discussion:
+        created_at: "创建于"
+        updated_at: "更新于"
+
+    topics:
+      new:
+        return_to_discussions_list: "返回讨论列表"
+      form:
+        title: "标题"
+      show:
+        return_to_discussions_list: "返回讨论列表"
+        archived: "已归档"
+        manage: "管理"
+        reopen: "重新开启"
+        archive: "归档"
+        edit: "编辑"
+        delete: "删除"
+        delete_confirm: "确定删除？"
+      comment:
+        manage: "管理"
+        edit: "编辑"
+        delete: "删除"
+        delete_confirm: "确定删除？"
+
+    notes:
+      context:
+        note_dot: "新批注..."
+      note:
+        comment_dot: "评论..."
+      note_entry:
+        archive: "归档"
+        reopen: "重新开启"
+        archived: "已归档"
+        edit: "编辑"
+        delete: "删除"
+        delete_confirm: "确认删除？"
+      comment:
+        edit: "编辑"
+        delete: "删除"
+        delete_confirm: "确认删除？"
+
+    members:
+      index:
+        invite_members: "邀请成员"
+        members: "成员"
+        contact_workspace_creator_to_invite_members: "联系工作区创建者添加成员"
+      form:
+        send_invitation: "发送邀请"
+        up_to_members_limit: "达到成员上限"
+        message_with_email_invitation: "给邀请邮件附上信息"
+      member:
+        creator: "创建者"
+        remove: "移除"
+        remove_confirm: "确认移除"
+      invitation:
+        waiting_for_accept: "等待确认"
+        remove: "移除"
+        remove_confirm: "确认移除"
+        resend: "再次发送"
+    invitations:
+      show:
+        invitation_detail: "邀请详情"
+        invite_you_to_join_this_workspace: "邀请你加入工作区"
+        you_need_an_account: "你需要一个帐号"
+        already_have_account: "已有帐号？"
+        signup_and_join: "注册并加入"
+        you_are_login_as: "你的帐号是"
+        change_account: "使用另一个帐号？"
+        join_workspace: "加入工作区"
+        members: "成员"
 
     attachments:
       index:
@@ -98,24 +206,45 @@ zh-CN:
         no_picture: "没有图片"
     articles:
       index:
-        inbox: "索引"
+        all: "全部"
         publish: "已发布"
         draft: "草稿箱"
         new_article: "新文章"
         no_articles: "没有文章"
 
+      main_sidebar:
+        all_articles: "全部文章"
+        no_category: "未分类"
+        trash: "回收站"
+        new_category: "添加分类"
+
+      select_category_modal:
+        select_category: "选择分类"
+        new_category: "添加分类"
+
+      add_category_modal:
+        new_category: "添加分类"
+
+      article:
+        link: "链接"
+        draft: "草稿"
+        publish: "发布"
+        published: "已发布"
+        category: "分类"
+        move_to_trash: "移到回收站"
+        restore: "还原"
+        delete: "彻底删除"
+        delete_confirm: "确定彻底删除这篇文章？"
+        created_at: "创建于"
+        updated_at: "更新于"
+
       trash_index:
-        empty_trash: "清空垃圾桶"
-        empty_trash_confirm: "确认清空垃圾桶？"
+        empty_trash: "清空回收站"
+        empty_trash_confirm: "确认清空回收站？"
         no_articles: "没有文章"
 
-      category_menu:
-        all: "全部"
-        new_category: "新建分类"
-        trash: "垃圾桶"
-
       new_category_modal:
-        new_category: "新建分类"
+        new_category: "添加分类"
 
       edit:
         readonly_mode: "只读模式"
@@ -123,24 +252,11 @@ zh-CN:
         return_newest_version: "回到最新版本"
         version_limit: "当前帐号可以查看最近5个版本。"
         need_more_version: "需要查看更多？"
-        image_modal:
-          insert_image: "插入图片"
-          url: "URL 地址"
-          link: "外链"
-          fetch: "抓取"
-          select_file: "选择文件"
-          upload: "上传"
-          drop_here: "拖到此处"
-          preview: "预览"
-        link_modal:
-          url: "URL 地址"
-          create_link: "创建链接"
-          unlink: "去掉链接"
         urlname_modal:
           urlname: "URL"
         select_category_modal:
           select_category: "选择分类"
-          new_category: "新建分类"
+          new_category: "添加分类"
         edit_topbar:
           return: "返回文章列表"
           urlname: "URL"
@@ -152,8 +268,6 @@ zh-CN:
           save_error: "保存出错"
           retry: "重试"
           restore: "还原文章"
-          trash: "移至垃圾桶"
-          trash_confirm: "确定移动到垃圾桶？"
         toolbar:
           bold_tip: "加粗 Ctrl + B"
           italic_tip: "斜体 Ctrl + I"
@@ -203,29 +317,37 @@ zh-CN:
 
     categories:
       new:
-        new_category: "新建分类"
+        new_category: "添加分类"
       edit:
         page_title: "设置 %{name}"
+        all: "全部"
+        publish: "已发布"
+        draft: "草稿箱"
+        new_article: "新文章"
         delete_category: "删除分类"
         delete_category_confirm: "删除分类 %{name}？分类的文章会被标记为未归类。"
       tabs:
         index: "索引"
         publish: "已发布"
         draft: "草稿箱"
-        trash: "垃圾桶"
         new_article: "新文章"
 
   mongoid:
     attributes:
-      user:
-        name: "用户名"
-        email: "邮箱"
-        domain: "域名"
+      space:
+        name: "URL"
+        full_name: "全名"
+        description: "描述"
+        domain: "独立域名"
         disqus_shortname: "Disqus 帐号"
+      user:
+        email: "邮箱"
         locale: "语言"
         password: "密码"
         password_confirmation: "密码确认"
         current_password: "当前密码"
+      workspace:
+        gravatar_email: "Gravatar Email"
       profile:
         name: "名称"
         description: "描述"
@@ -239,6 +361,10 @@ zh-CN:
         urlname: "URL"
       attachment:
         file: "附件"
+      discusstion:
+        body: "内容"
+      note:
+        title: "标题"
 
   errors:
     messages:

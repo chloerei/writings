@@ -1,0 +1,304 @@
+.nice-list {
+  line-height: 1.6em;
+}
+
+.two-columns {
+  @include clearfix();
+
+  .column {
+    float: left;
+    width: 50%;
+  }
+
+  .title {
+    margin-top: 0;
+  }
+}
+
+table.nice-table {
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  @include box-sizing(border-box);
+
+  tr {
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    text-align: left;
+    @include linear-gradient(#fff, #eee);
+  }
+
+  th, td {
+    padding: 10px;
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+
+  &.max {
+    width: 99%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+
+  .min {
+    width: 1%;
+    white-space: nowrap;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  width: $container-width;
+
+  @media (max-width: 960px) {
+    width: 100%;
+  }
+}
+
+// signup, login
+.signup,
+.login {
+  margin: 100px auto;
+  width: 90%;
+  max-width: 350px;
+  padding: 40px;
+  background-color: #fff;
+  @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+  @include box-sizing(border-box);
+
+  .field {
+    width: 100%;
+
+    .input-append,
+    #{$all-text-inputs},
+    textarea {
+      width: 100%;
+    }
+  }
+}
+
+// topbar
+
+#topbar {
+  line-height: 18px;
+
+  ul.top-nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    line-height: 18px;
+    @include clearfix();
+
+    > li {
+      display: inline-block;
+      float: left;
+      height: 48px;
+
+      > a {
+        padding: 15px 20px;
+        display: block;
+        color: #555;
+        @include transition(all 0.15s ease);
+
+        &:hover {
+          color: $linkColor;
+        }
+      }
+    }
+  }
+
+  .dropdown {
+    height: 48px;
+
+    .dropdown-toggle {
+      padding: 15px 35px 15px 20px;
+      color: #555;
+      vertical-align: baseline;
+
+      &:after {
+        padding: 2px 20px;
+      }
+
+      &.actived {
+        color: $linkColor;
+      }
+
+      &:hover {
+        color: $linkColor;
+      }
+    }
+
+    .dropdown-menu {
+      top: 49px;
+      width: 150px;
+      font-weight: normal;
+
+      li {
+        a {
+          padding: 10px 20px 9px;
+        }
+      }
+    }
+
+    &.actived {
+      .dropdown-toggle {
+        color: $linkColor;
+      }
+    }
+  }
+}
+
+// main
+
+#main {
+  .inner {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 20px;
+    min-height: 800px;
+    @include box-shadow(0 1px 3px 1px rgba(0, 0, 0, 0.3));
+  }
+
+  .header {
+    margin-bottom: 20px;
+
+    &.margin {
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    h1 {
+      margin: 0;
+
+      a {
+        color: #333;
+      }
+    }
+  }
+
+  .main-nav {
+    margin-bottom: 20px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+    ul {
+      @include clearfix();
+    }
+
+    li {
+      float: left;
+
+      a {
+        padding: 10px 15px;
+        display: inline-block;
+      }
+
+      &.actived {
+        a {
+          color: #333;
+        }
+      }
+    }
+  }
+
+  section {
+    margin-bottom: 20px;
+    @include clearfix();
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .main-sidebar {
+      width: 20%;
+      float: left;
+
+      nav {
+        padding-right: 20px;
+        margin-bottom: 20px;
+      }
+
+      li {
+        margin-bottom: 5px;
+
+        a {
+          padding: 8px 10px;
+          display: block;
+          padding-right: 20px;
+          position: relative;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          color: #333;
+
+          &:hover {
+            background-color: #eee;
+
+            &:after {
+              border-left: 17px solid #eee;
+            }
+          }
+
+          &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            display: block;
+            border-top: 17px solid white;
+            border-bottom: 17px solid white;
+            border-left: 17px solid white;
+          }
+        }
+
+        &.actived {
+          a {
+            color: white;
+            background-color: $linkColor;
+
+            &:after {
+              border-left: 17px solid $linkColor;
+            }
+          }
+        }
+      }
+    }
+
+    .main-content {
+      width: 80%;
+      float: left;
+
+      .main-header {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .empty-message {
+    padding: 20px;
+    border: 2px dashed #ddd;
+    text-align: center;
+    color: #999;
+  }
+}
+
+#paginator {
+  margin-top: 20px;
+  @include clearfix();
+
+  .next {
+    float: right;
+  }
+
+  .prev {
+    float: left;
+  }
+}

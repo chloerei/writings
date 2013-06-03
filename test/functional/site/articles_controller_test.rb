@@ -3,13 +3,13 @@ require 'test_helper'
 class Site::ArticlesControllerTest < ActionController::TestCase
   def setup
     @user = create :user
-    @article = create :article, :user => @user, :status => 'publish'
+    @article = create :article, :space => @user, :status => 'publish'
     @request.host = "#{@user.name}.#{APP_CONFIG["host"]}"
   end
 
   test "should get index" do
     get :index
-    assert_equal @user, assigns(:user)
+    assert_equal @user, assigns(:space)
     assert_response :success, @response.body
   end
 
@@ -21,7 +21,7 @@ class Site::ArticlesControllerTest < ActionController::TestCase
 
     @request.host = 'custom.domain'
     get :index
-    assert_equal @user, assigns(:user)
+    assert_equal @user, assigns(:space)
     assert_response :success, @response.body
   end
 

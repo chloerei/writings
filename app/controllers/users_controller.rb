@@ -4,7 +4,8 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    store_location request.referrer if request.referrer.present?
+    referrer = request.headers['X-XHR-Referer'] || request.referrer
+    store_location referrer if referrer.present?
   end
 
   def create

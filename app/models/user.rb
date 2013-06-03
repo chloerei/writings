@@ -1,60 +1,43 @@
-class User
-  include Mongoid::Document
-  include Mongoid::Timestamps::Created
+class User < Space
   include ActiveModel::SecurePassword
-  include ActiveModel::ForbiddenAttributesProtection
   include Gravtastic
 
   gravtastic :filetype => :png, :size => 100
 
-  field :name
   field :email
   field :password_digest
   field :access_token
   field :locale, :default => I18n.locale.to_s
-  field :domain
-  field :disqus_shortname
   field :plan, :type => Symbol, :default => :free
   field :plan_expired_at, :type => DateTime
   field :storage_used, :default => 0
 
   PLANS = %w(free base)
 
-  embeds_one :profile
-
-  has_many :categories, :dependent => :delete
-  has_many :articles, :dependent => :delete
-  has_many :attachments, :dependent => :destroy
-  has_many :invoices, :dependent => :delete
+  has_many :creator_workspaces, :class_name => 'Workspace', :inverse_of => :creator
 
   has_secure_password
 
-  validates :name, :email, :presence => true, :uniqueness => {:case_sensitive => false}
-  validates :name, :format => {:with => /\A\w+\z/, :message => 'only A-Z, a-z, _ allowed'}, :length => {:in => 4..20}
-  validates :email, :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}
+  validates :email, :presence => true, :uniqueness => {:case_sensitive => false}, :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}
   validates :password, :password_confirmation, :presence => true, :on => :create
   validates :password, :length => {:minimum => 6, :allow_blank => true}
   validates :locale, :inclusion => {:in => ALLOW_LOCALE}
-  validates :current_password, :presence => true, :on => :update
-  validates :domain, :format => {:with => /\A[a-zA-Z0-9_\-.]+\z/}, :uniqueness => {:case_sensitive => false}, :allow_blank => true
-  validate :except_host
+  validates :current_password, :presence => true, :if => :need_current_password?
+  validate :check_current_password, :if => :need_current_password?
 
-  def except_host
-    if domain =~ /#{Regexp.escape APP_CONFIG["host"]}/
-      errors.add(:domain, I18n.t('errors.messages.invalid'))
-    end
+  attr_accessor :current_password, :need_current_password
+
+  def workspaces
+    Workspace.where(:member_ids => self.id)
   end
 
-  attr_accessor :current_password
+  def need_current_password?
+    !!@need_current_password
+  end
 
-  before_create :build_profile
-
-  def check_current_password(password)
-    if authenticate(password)
-      true
-    else
+  def check_current_password
+    unless authenticate(current_password)
       errors.add(:current_password, "is not match")
-      false
     end
   end
 
@@ -85,14 +68,6 @@ class User
 
   def admin?
     APP_CONFIG['admin_emails'].include?(self.email)
-  end
-
-  def host
-    domain.present? ? domain : "#{name}.#{APP_CONFIG['host']}"
-  end
-
-  def display_name
-    profile.name.present? ? profile.name : name
   end
 
   def in_plan?(plan)
@@ -129,7 +104,26 @@ class User
     end
   end
 
-  def to_param
-    name.to_s
+  def workspace_limit
+    return 999 if admin?
+
+    if plan_expired_at.present? && plan_expired_at > Time.now
+      case plan
+      when :base
+        1
+      else
+        1
+      end
+    else
+      1
+    end
+  end
+
+  def remain_workspace_count
+    if creator_workspaces.count < workspace_limit
+      workspace_limit - creator_workspaces.count
+    else
+      0
+    end
   end
 end

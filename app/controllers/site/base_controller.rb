@@ -1,20 +1,20 @@
 class Site::BaseController < ApplicationController
   layout 'site'
-  before_filter :require_site, :set_title
+  before_filter :require_space, :set_title
 
   private
 
-  def require_site
-    if request.host =~ /^\w+\.#{APP_CONFIG["host"]}$/
-      @user = User.find_by(:name => /^#{request.subdomain(DOMAIN_LENGTH)}$/i)
+  def require_space
+    if request.host =~ /^[a-zA-Z0-9-]+\.#{Regexp.escape APP_CONFIG["host"]}$/
+      @space = Space.find_by(:name => /^#{request.subdomain(DOMAIN_LENGTH)}$/i)
 
-      redirect_to url_for(:host => @user.domain) if @user.domain.present?
+      redirect_to url_for(:host => @space.domain) if @space.domain.present?
     else
-      @user = User.find_by(:domain => request.host)
+      @space = Space.find_by(:domain => request.host)
     end
   end
 
   def set_title
-    append_title @user.display_name
+    append_title @space.display_name
   end
 end
