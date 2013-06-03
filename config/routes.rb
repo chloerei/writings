@@ -66,7 +66,7 @@ Publish::Application.routes.draw do
           end
         end
       end
-      resources :attachments, :only => [:index, :show, :create, :destroy]
+      resources :attachments, :only => [:index, :create, :destroy]
 
       resources :discussions, :only => [:index] do
         collection do

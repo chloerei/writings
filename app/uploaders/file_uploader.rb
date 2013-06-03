@@ -3,7 +3,7 @@
 class FileUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  if Rails.env.development?
+  if false && Rails.env.development?
     storage :file
 
     def store_dir

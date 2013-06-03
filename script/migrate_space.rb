@@ -1,3 +1,5 @@
+Rails::Mongoid.remove_indexes
+
 session = Mongoid::Sessions.default
 database = session[:users].database.name
 session.with(:database => "admin") do |s|
@@ -25,5 +27,21 @@ User.asc(:_id).all.each do |user|
   user.unset(:profile)
 end
 
-Rails::Mongoid.remove_indexes
 Rails::Mongoid.create_indexes
+
+def convert_attachment_url(text, space)
+  doc = Nokogiri::HTML::DocumentFragment.parse(text)
+  doc.css('img').each do |img|
+    if r = %r|http://writings.io/attachments/(?<id>\w+)|.match(img['src'])
+      if attachment = space.attachments.where(:id => r[:id]).first
+        img['src'] = attachment.file.url
+        puts img['src']
+      end
+    end
+  end
+  doc.to_s
+end
+
+Article.asc(:_id).all.each do |article|
+  article.update_attribute :body, convert_attachment_url(article.body, article.space)
+end

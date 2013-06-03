@@ -25,7 +25,7 @@
   .container
     .inner
       article
-        = article_format_body(convert_attachment_url(@article.body, @space))
+        = article_format_body(@article.body)
       section#profile
         .avatar
           = link_to image_tag(@space.gravatar_url), site_root_path

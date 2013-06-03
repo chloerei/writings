@@ -3,11 +3,6 @@ class Dashboard::AttachmentsController < Dashboard::BaseController
     @attachments = @space.attachments.desc(:created_at).page(params[:page]).per(50)
   end
 
-  def show
-    @attachment = @space.attachments.find params[:id]
-    redirect_to @attachment.file.url
-  end
-
   def create
     @attachment = @space.attachments.new attachment_params.merge(:user => current_user)
 

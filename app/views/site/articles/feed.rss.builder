@@ -11,7 +11,7 @@ xml.rss :version => "2.0" do
         xml.item do
           xml.title article.title
           xml.description do
-            xml.cdata! article_format_body(convert_attachment_url(article_remove_h1(article.body), @space))
+            xml.cdata! article_format_body(article_remove_h1(article.body))
           end
           xml.pubDate article.published_at.to_s(:rfc822)
           xml.author @space.display_name
