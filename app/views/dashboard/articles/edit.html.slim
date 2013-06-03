@@ -7,7 +7,7 @@ html lang=(logined? ? current_user.locale : 'zh-CN')
     = javascript_include_tag "dashboard"
     = stylesheet_link_tag "dashboard"
     = csrf_meta_tags
-  body#articles-edit class=(cookies[:pick_up_topbar] ? 'pick-up-topbar' : nil)
+  body#articles-edit class=((!@note && cookies[:pick_up_topbar]) ? 'pick-up-topbar' : nil)
     = render :partial => 'dashboard/articles/edit/edit_topbar'
     #editwrap class=(@note.present? ? 'show-notes' : nil)
       .main
