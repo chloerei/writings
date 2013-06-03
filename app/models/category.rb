@@ -12,6 +12,8 @@ class Category
   validates :name, :urlname, :presence => true
   validates :urlname, :uniqueness => { :scope => :space_id, :case_sensitive => false }, :format => { :with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('urlname_valid_message') }
 
+  index({ :space_id => 1, :urlname => 1 }, { :unique => true })
+
   def to_param
     urlname
   end

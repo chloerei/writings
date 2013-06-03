@@ -13,6 +13,9 @@ class Workspace < Space
   has_many :topics, :dependent => :delete
   has_many :comments, :dependent => :delete
 
+  index({ :creator_id => 1 })
+  index({ :member_ids => 1 })
+
   delegate :storage_limit, :storage_used, :in_plan?, :version_limit, :to => :creator
 
   def display_name

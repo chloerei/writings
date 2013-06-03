@@ -10,6 +10,8 @@ class Discussion
   belongs_to :last_comment, :class_name => 'Comment'
   has_many :comments, :dependent => :delete
 
+  index({ :workspace_id => 1, :token => 1 }, { :unique => true })
+
   scope :opening, where(:archived => false)
   scope :archived, where(:archived => true)
 

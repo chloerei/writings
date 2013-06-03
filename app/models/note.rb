@@ -4,5 +4,6 @@ class Note < Discussion
 
   belongs_to :article
 
+  index({ :article_id  => 1 })
   validates_presence_of :body, :element_id
 end

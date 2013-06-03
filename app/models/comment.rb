@@ -9,6 +9,8 @@ class Comment
   belongs_to :user
   belongs_to :workspace
 
+  index({ :workspace_id => 1, :token => 1 }, { :unique => true })
+
   validates_presence_of :body
 
   before_validation :set_token
