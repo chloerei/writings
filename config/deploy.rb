@@ -1,5 +1,6 @@
-require "rvm/capistrano"
 set :rvm_type, :user
+require "rvm/capistrano"
+require 'sidekiq/capistrano'
 
 require 'bundler/capistrano'
 
@@ -7,7 +8,7 @@ set :application, "writings.io"
 set :repository,  "rei@chloerei.com:git/publish-design"
 set :scm, "git"
 set :branch, "master"
-#set :deploy_via, :remote_cache
+set :deploy_via, :remote_cache
 
 set :user, "rei"
 set :deploy_to, "/home/rei/#{application}"
