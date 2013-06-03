@@ -9,22 +9,22 @@ end
 Space.update_all :_type => 'User'
 
 Article.asc(:_id).all.each do |article|
-  article.rename :user_id, :space_id
+  article.timeless.rename :user_id, :space_id
 end
 
 Category.asc(:_id).all.each do |category|
-  category.rename :user_id, :space_id
+  category.timeless.rename :user_id, :space_id
 end
 
 Attachment.asc(:_id).all.each do |attachment|
-  attachment.update_attribute :space_id, attachment.user_id
+  attachment.timeless.update_attribute :space_id, attachment.user_id
 end
 
 User.asc(:_id).all.each do |user|
   user.full_name = user["profile.name"]
   user.description = user["profile.description"]
-  user.save
-  user.unset(:profile)
+  user.timeless.save
+  user.timeless.unset(:profile)
 end
 
 Rails::Mongoid.create_indexes
@@ -43,5 +43,5 @@ def convert_attachment_url(text, space)
 end
 
 Article.asc(:_id).all.each do |article|
-  article.update_attribute :body, convert_attachment_url(article.body, article.space)
+  article.timeless.update_attribute :body, convert_attachment_url(article.body, article.space)
 end

@@ -16,15 +16,4 @@ class Dashboard::AttachmentsControllerTest < ActionController::TestCase
       assert_response :success, @response.body
     end
   end
-
-  test "should show current_user attachment" do
-    attachment = create :attachment, :space => @user, :user => @user
-    get :show, :space_id => @user, :id => attachment.id
-    assert_response 302
-
-    login_as create(:user)
-    assert_raise(Dashboard::BaseController::AccessDenied) do
-      get :show, :space_id => @user, :id => attachment.id
-    end
-  end
 end
