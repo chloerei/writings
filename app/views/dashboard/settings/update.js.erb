@@ -4,7 +4,7 @@
     text: '<%= t('success') %>',
     timeout: 1500
   });
-  $("#user-link").attr("href", "http://" + '<%= current_user.host %>');
+  $("#user-link").attr("href", "http://" + '<%= @space.host %>');
 <% else %>
   AlertMessage.show({
     type: 'error',

@@ -4,7 +4,7 @@ json.status @article.status
 json.token @article.token
 json.save_count @article.save_count
 json.updated_at @article.updated_at
-json.url site_article_url(@article)
+json.url site_article_url(@article, :host => @space.host)
 json.host @space.host
 
 if @article.locked?
