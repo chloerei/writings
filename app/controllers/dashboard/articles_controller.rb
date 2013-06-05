@@ -65,7 +65,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
       if @article.update_attributes article_params.merge(:last_edit_user => current_user)
 
         if @article.save_count - @article.last_version_save_count >= 100
-          @article.create_version
+          @article.create_version :user => current_user
         end
 
         render :article
