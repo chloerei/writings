@@ -15,7 +15,7 @@
           ul
             - @attachments.each do |attachment|
               li id=("attachment-#{attachment.id}")
-                a.pic-link href=(dashboard_attachment_path(:id => attachment)) target='_blank' title=(attachment.file_name)
+                a.pic-link href=(attachment.file.url) target='_blank' title=(attachment.file_name)
                   = image_tag attachment.file.thumb.url
                 a.delete href=(dashboard_attachment_path(:id => attachment)) data-remote='true' data-method='delete' data-confirm=(t '.confirm_delete')
                   i.icon-remove

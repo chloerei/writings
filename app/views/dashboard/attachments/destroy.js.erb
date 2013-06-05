@@ -1,3 +1,4 @@
 $("#attachment-<%= @attachment.id %>").remove();
 $('#storage-status .used').text('<%= j number_to_human_size(@space.storage_used) %>');
+AlertMessage.remove('ajax-loading');
 AlertMessage.show({ type: 'success', text: '<%= t('success') %>', timeout: 1500 });
