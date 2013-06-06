@@ -27,6 +27,14 @@ class User < Space
 
   attr_accessor :current_password, :need_current_password
 
+  scope :in_plan, -> (plan) {
+    if plan.to_s == 'free'
+      scoped.or({:plan => plan}, {:plan_expired_at.lt => Time.now})
+    else
+      where(:plan => plan, :plan_expired_at.gt => Time.now)
+    end
+  }
+
   def workspaces
     Workspace.where(:member_ids => self.id)
   end

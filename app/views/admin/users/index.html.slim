@@ -6,7 +6,7 @@
       = "全部 #{User.count}"
     - %w(free base).each do |plan|
       a.button href=(url_for(:tab => plan)) class=(params[:tab] == plan ? 'button-actived' : nil)
-        = "#{plan} #{User.where(:plan => plan).count}"
+        = "#{plan} #{User.in_plan(plan).count}"
 
 table.item-table
   tbody
