@@ -3,7 +3,7 @@
 
 #tabs
   p
-    = "作者 #{@article.user.name}"
+    = "作者 #{@article.space.name}"
   p
     = "创建时间 #{l @article.created_at, :format => :long}"
   p
@@ -12,7 +12,7 @@
     p
       = "发布时间 #{l @article.published_at, :format => :long}"
     p
-      a href=(site_article_url(@article, :urlname => @article.urlname, :host => @article.user.host)) target='_blank'
+      a href=(site_article_url(@article, :urlname => @article.urlname, :host => @article.space.host)) target='_blank'
         i.icon-external-link
         = ' '
         = @article.title

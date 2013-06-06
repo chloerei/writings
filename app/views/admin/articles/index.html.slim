@@ -16,7 +16,11 @@ table.item-table
       tr
         td.max = link_to article.title, admin_article_path(article.id)
         td.min = article.status
-        td.min = link_to article.user.name, admin_user_path(article.user)
+        - case article.space
+        - when User
+          td.min = link_to article.space.name, admin_user_path(article.space)
+        - when Workspace
+          td.min = link_to article.space.name, admin_workspace_path(article.space)
         td.min
           - case params[:tab]
           - when 'publish'

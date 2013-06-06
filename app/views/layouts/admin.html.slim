@@ -22,6 +22,10 @@ html
                 i.icon-pencil
                 = ' 文章'
             li
+              a href=(admin_workspaces_path) class=(controller_name == 'workspaces' ? 'actived' : nil)
+                i.icon-group
+                = ' 工作区'
+            li
               a href=(admin_users_path) class=(controller_name == 'users' ? 'actived' : nil)
                 i.icon-user
                 = ' 用户'
@@ -35,4 +39,3 @@ html
           = yield
     #spinner
       i.icon-spinner.icon-spin
-    = render 'layouts/alert_messages'

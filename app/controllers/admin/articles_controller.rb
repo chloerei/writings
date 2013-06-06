@@ -1,8 +1,9 @@
 class Admin::ArticlesController < Admin::BaseController
   def index
     @articles_scope = Article.scoped
-    if params[:name] && @user = User.where(:name => params[:name]).first
-      @articles_scope = @articles_scope.where(:user_id => @user.id)
+    if params[:name]
+      @space = Space.where(:name => params[:name]).first
+      @articles_scope = @articles_scope.where(:space_id => (@space ? @space.id : nil))
     end
 
     @articles = case params[:tab]

@@ -1,0 +1,12 @@
+- append_title '工作区'
+
+table.item-table
+  tbody
+    - @workspaces.each do |workspace|
+      tr
+        td = link_to workspace.name, admin_workspace_path(workspace)
+        td = workspace.name
+        td = workspace.full_name
+        td.min = workspace.created_at.to_s :db
+
+= paginate @workspaces, :theme => :dashboard
