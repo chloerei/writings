@@ -62,8 +62,15 @@ html lang=(logined? ? current_user.locale : 'zh-CN')
                   i.icon-comments-alt
                   span.hide-on-mobile
                     = ' '
-                    = t '.feedback'
+                    = t '.community'
                 ul.dropdown-menu.align-right
+                  li
+                    a href='http://blog.writings.io' target='_blank'
+                      i.icon-bullhorn
+                      '
+                      | Blog
+                  li
+                    hr
                   li
                     a href='https://twitter.com/writingsio' target='_blank'
                       i.icon-twitter
