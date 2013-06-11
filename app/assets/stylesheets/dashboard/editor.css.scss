@@ -3,7 +3,6 @@
 
 }
 
-
 #editor-topbar {
   background-color: #fff;
   position: fixed;
@@ -36,17 +35,21 @@
       display: inline-block;
       float: left;
       height: 48px;
+    }
 
-      > a {
-        padding: 15px 20px;
-        display: block;
-        color: #555;
-        @include transition(all 0.15s ease);
+    .top-nav-button {
+      padding: 15px 20px;
+      display: block;
+      color: #555;
+      @include transition(all 0.15s ease);
 
-        &:hover {
-          background-color: #f9f9f9;
-        }
+      &:hover {
+        background-color: #f9f9f9;
       }
+    }
+
+    .dropdown-menu {
+      top: 49px;
     }
   }
 

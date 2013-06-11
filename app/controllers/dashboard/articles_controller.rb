@@ -1,5 +1,5 @@
 class Dashboard::ArticlesController < Dashboard::BaseController
-  before_filter :find_article, :only => [:status, :edit, :update, :trash, :restore, :publish, :draft, :category]
+  before_filter :find_article, :only => [:show, :status, :edit, :update, :trash, :restore, :publish, :draft, :category]
   before_filter :check_lock_status, :only => [:update]
 
   def index
@@ -21,6 +21,12 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     end
 
     append_title I18n.t(params[:status]) if params[:status].present?
+  end
+
+  def show
+    respond_to do |format|
+      format.md { render :text => PandocRuby.convert(@article.body, { :from => :html, :to => 'markdown+hard_line_breaks'}, 'atx-headers') }
+    end
   end
 
   def new

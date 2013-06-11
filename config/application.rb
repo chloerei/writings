@@ -73,3 +73,5 @@ end
 ALLOW_LOCALE = Dir["#{Rails.root}/config/locales/*.yml"].map {|f| File.basename(f).split('.').first}
 APP_CONFIG = YAML.load_file("#{Rails.root}/config/app_config.yml")[Rails.env]
 DOMAIN_LENGTH = APP_CONFIG["host"].split('.').length - 1
+
+Mime::Type.register "text/markdown", :md

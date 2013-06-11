@@ -24,6 +24,7 @@ gem 'memcache-client', '~> 1.8.5'
 gem 'sidekiq', '~> 2.12.1'
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'kiqstand', '~> 1.1.0'
+gem 'pandoc-ruby', '~> 0.7.0'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
