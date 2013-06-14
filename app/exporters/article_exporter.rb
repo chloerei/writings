@@ -26,7 +26,7 @@ class ArticleExporter
           local_path = "images/#{group_index * FETCH_THREAD_LIMIT + index}#{File.extname url.path}"
           img['src'] = local_path
           threads << Thread.new do
-            `curl -m 3 -s -o "#{tmp_path}/#{local_path}" "#{url}"`
+            system(*%W(curl -m 3 -s -o #{tmp_path}/#{local_path} #{url}))
           end
         rescue
         end
