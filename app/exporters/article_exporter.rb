@@ -48,6 +48,7 @@ class ArticleExporter
 
   def clean
     FileUtils.rmdir "#{tmp_path}/images"
+    FileUtils.rm "#{tmp_path}/body.html"
   end
 
   BUILD_TIMEOUT = 10
