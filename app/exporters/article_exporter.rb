@@ -37,7 +37,7 @@ class ArticleExporter
 
   def dump_body
     File.open("#{tmp_path}/body.html", 'w') do |f|
-      f.write @doc.to_s
+      f.write ApplicationController.helpers.article_format_body(@doc.to_s)
     end
   end
 
