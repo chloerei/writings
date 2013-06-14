@@ -29,10 +29,15 @@ class Dashboard::ArticlesController < Dashboard::BaseController
       format.html { send_data(@article.body, :filename => "#{basename}.html") }
       format.md { send_data(PandocRuby.convert(@article.body, { :from => :html, :to => 'markdown+hard_line_breaks'}, 'atx-headers'),
                             :filename => "#{basename}.md") }
-      format.docx { send_data(PandocRuby.convert(@article.body, { :from => :html, :to => 'docx'}),
-                              :filename => "#{basename}.docx") }
-      format.odt { send_data(PandocRuby.convert(@article.body, { :from => :html, :to => 'odt'}),
-                             :filename => "#{basename}.odt") }
+      format.docx do
+        send_file(ArticleExporter.new(@article).build_docx,
+                  :filename => "#{basename}.docx")
+      end
+
+      format.odt do
+        send_file(ArticleExporter.new(@article).build_odt,
+                  :filename => "#{basename}.odt")
+      end
     end
   end
 
