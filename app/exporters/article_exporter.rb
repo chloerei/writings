@@ -42,17 +42,30 @@ class ArticleExporter
   end
 
   def prepare_content
-    prepare
     fetch_images
     dump_body
   end
 
+  def clean
+    FileUtils.rmdir "#{tmp_path}/images"
+  end
+
   BUILD_TIMEOUT = 10
+
+  def build_md
+    Timeout::timeout(BUILD_TIMEOUT) {
+      dump_body
+      `cd #{tmp_path} ; pandoc body.html -o output.md -t markdown+hard_line_breaks --atx-headers `
+      clean
+      "#{tmp_path}/output.md"
+    }
+  end
 
   def build_docx
     Timeout::timeout(BUILD_TIMEOUT) {
       prepare_content
       `cd #{tmp_path} ; pandoc body.html -o output.docx`
+      clean
       "#{tmp_path}/output.docx"
     }
   end
@@ -61,6 +74,7 @@ class ArticleExporter
     Timeout::timeout(BUILD_TIMEOUT) {
       prepare_content
       `cd #{tmp_path} ; pandoc body.html -o output.odt`
+      clean
       "#{tmp_path}/output.odt"
     }
   end

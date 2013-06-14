@@ -26,8 +26,11 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   def show
     basename = "#{@article.token}-#{@article.urlname}"
     respond_to do |format|
-      format.md { send_data(PandocRuby.convert(@article.body, { :from => :html, :to => 'markdown+hard_line_breaks'}, 'atx-headers'),
-                            :filename => "#{basename}.md") }
+      format.md do
+        send_file(ArticleExporter.new(@article).build_md,
+                  :filename => "#{basename}.md")
+      end
+
       format.docx do
         send_file(ArticleExporter.new(@article).build_docx,
                   :filename => "#{basename}.docx")
