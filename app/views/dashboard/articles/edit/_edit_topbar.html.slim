@@ -30,15 +30,16 @@
             a.dropdown-toggle.top-nav-button
               i.icon-download-alt
             ul.dropdown-menu data-no-turbolink=(true)
-              li
-                a href=(dashboard_article_path(:format => :md))
-                  | Markdown (.md)
-              li
-                a href=(dashboard_article_path(:format => :odt))
-                  | OpenDocument (.odt)
-              li
-                a href=(dashboard_article_path(:format => :docx))
-                  | Microsoft Word (.docx)
+              - if @article.persisted?
+                li
+                  a href=(dashboard_article_path(:format => :md))
+                    | Markdown (.md)
+                li
+                  a href=(dashboard_article_path(:format => :odt))
+                    | OpenDocument (.odt)
+                li
+                  a href=(dashboard_article_path(:format => :docx))
+                    | Microsoft Word (.docx)
     .pull-right
       #save-status
         span.saving

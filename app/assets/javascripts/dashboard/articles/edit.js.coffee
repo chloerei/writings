@@ -236,6 +236,7 @@ class ArticleEdit
         @saveCompelete()
       @article.data "id", data.token
       @updateViewButton data
+      @buildDownloadList()
       history.replaceState null, null, "/~#{@space}/articles/" + data.token + "/edit"
       $('#urlname-modal .article-id').text(data.token)
       @saveArticle()
@@ -251,6 +252,14 @@ class ArticleEdit
       @showRetryButton()
     ).always =>
       @creating = false
+
+  buildDownloadList: () ->
+    $('#download').closest('li').removeClass('hide')
+    $('#download .dropdown-menu').append("
+    <li><a href='/~#{@space}/articles/#{@article.data('id')}.md' >Markdown (.md)</a></li>
+    <li><a href='/~#{@space}/articles/#{@article.data('id')}.odt' >OpenDocument (.odt)</a></li>
+    <li><a href='/~#{@space}/articles/#{@article.data('id')}.docx' >Microsoft Word (.docx)</a></li>
+    ")
 
   updateViewButton: (data) ->
     $("#view-button").attr "href", data.url

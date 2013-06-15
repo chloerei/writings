@@ -24,7 +24,12 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def show
-    basename = "#{@article.token}-#{@article.urlname}"
+    basename = if @article.urlname.present?
+                 "#{@article.token}-#{@article.urlname}"
+               else
+                 @article.token
+               end
+
     respond_to do |format|
       format.md do
         send_file(ArticleExporter.new(@article).build_md,
