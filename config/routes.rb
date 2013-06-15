@@ -66,6 +66,8 @@ Publish::Application.routes.draw do
           end
         end
       end
+
+      resource :export, :only => [:show, :create]
       resources :attachments, :only => [:index, :create, :destroy]
 
       resources :discussions, :only => [:index] do

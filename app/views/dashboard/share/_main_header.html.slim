@@ -12,6 +12,8 @@ nav.main-nav.clearfix
     li class=(controller_name == 'attachments' ? 'actived' : nil)
       = link_to t('.pictures'), dashboard_attachments_path
   ul.pull-right
+    li class=(controller_name == 'exports' ? 'actived' : nil)
+      = link_to t('.export'), dashboard_export_path
     - if @space.is_a? Workspace
       li class=(controller_name == 'members' ? 'actived' : nil)
         = link_to t('.members'), dashboard_members_path

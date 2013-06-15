@@ -1,0 +1,28 @@
+#main
+  .container
+    .inner
+      = render 'dashboard/share/main_header'
+      section
+        = form_tag dashboard_export_path do
+          fieldset
+            legend = t '.content'
+            .field
+              label
+                = radio_button_tag :range, 'all', true
+                '
+                = t '.all_articles'
+              label
+                = radio_button_tag :range, 'category'
+                '
+                = t '.in_category'
+                '
+                = select_tag :category_id, options_from_collection_for_select(@space.categories, :urlname, :name)
+          fieldset
+            legend = t '.format'
+            .field
+              label
+                = radio_button_tag :format, 'jekyll', true
+                '
+                | Jekyll
+          .field
+            = submit_tag '.export', :class => 'button-green'
