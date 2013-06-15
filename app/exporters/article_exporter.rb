@@ -47,7 +47,7 @@ class ArticleExporter
   end
 
   def clean
-    FileUtils.rmdir "#{tmp_path}/images"
+    FileUtils.rm_r "#{tmp_path}/images"
     FileUtils.rm "#{tmp_path}/body.html"
   end
 
