@@ -1,9 +1,9 @@
 class JekyllImporter < BaseImporter
   def import
-    results = {}
+    results = []
 
     Dir.chdir(tmp_path) do
-      File.open('import.zip', 'w') do |f|
+      File.open('import.zip', 'wb') do |f|
         f.write @file.read
       end
 
@@ -19,25 +19,25 @@ class JekyllImporter < BaseImporter
           end
 
           title = data['title']
-          content = "# #{title}\n\n" + content
-          status = data['published'] == 'draft' ? 'draft' : 'publish'
-          puts filename
-          date, urlname, _ = *filename.match(/\A_posts\/(\d+-\d+-\d+)-(.+)(\.[^.]+)\z/)
-          time = Time.parse(date)
+          if title
+            content = "# #{title}\n\n" + content
+          end
+          status = (data['published'] == 'draft' ? 'draft' : 'publish')
+          _, date, urlname, _ = *filename.match(/\A_posts\/(\d+-\d+-\d+)-(.+)(\.[^.]+)\z/)
+          time = Time.parse(date).utc
 
-          @space.articles.create!(
+          article = @space.articles.create!(
             :title => title,
-            :body  => content,
+            :body  => PandocRuby.convert(content, :from => :markdown, :to => :html),
             :status => status,
-            :urlname => urlname,
+            :urlname => @space.articles.where(:urlname => urlname).any? ? nil : urlname,
             :created_at => time,
-            :updated_at => Time.now,
+            :updated_at => Time.now.utc,
             :published_at => (status == 'publish' ? time : nil)
           )
 
-          results[title] = :success
+          results << article
         rescue
-          results[title] = :error
         end
       end
     end

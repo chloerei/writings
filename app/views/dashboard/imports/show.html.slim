@@ -1,0 +1,23 @@
+#main
+  .container
+    .inner
+      = render 'dashboard/share/main_header'
+      section
+        = form_tag dashboard_import_path, :multipart => true do
+          fieldset
+            legend = t '.format'
+            .field
+              label
+                = radio_button_tag :format, 'jekyll', true
+                '
+                | Jekyll (.zip)
+              label
+                = radio_button_tag :format, 'wordpress'
+                '
+                | Wordpress (.xml)
+          fieldset
+            legend = t '.file'
+            .field
+              = file_field_tag :file
+          .field
+            = submit_tag '.import', :class => 'button-green'

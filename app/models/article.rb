@@ -10,7 +10,7 @@ class Article
   field :status, :default => 'draft'
   field :save_count, :type => Integer, :default => 0
   field :last_version_save_count, :type => Integer, :default => 0
-  field :published_at
+  field :published_at, :type => Time
 
   field :token
   index({ :space_id => 1, :token => 1 }, { :unique => true })
@@ -48,7 +48,7 @@ class Article
 
   def set_published_at
     if status_changed? && publish?
-      self.published_at = Time.now.utc
+      self.published_at ||= Time.now.utc
     end
   end
 

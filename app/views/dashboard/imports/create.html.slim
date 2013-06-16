@@ -1,0 +1,16 @@
+#main
+  .container
+    .inner
+      = render 'dashboard/share/main_header'
+      section
+        table.nice-table
+          tbody
+            tr
+              th = t '.title'
+              th = t '.created_at'
+              th = t '.published_at'
+            - @results.each do |article|
+              tr
+                td = article.title
+                td = article.created_at.to_date
+                td = article.published_at.to_date

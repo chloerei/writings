@@ -3,7 +3,7 @@ require 'test_helper'
 class BaseExporterTest < ActiveSupport::TestCase
   def setup
     @space = create :user
-    @importer = JekyllImporter.new(@space, File.open("#{Rails.root}/test/files/blog-jekyll.zip"))
+    @importer = JekyllImporter.new(@space, File.open("#{Rails.root}/test/files/blog-jekyll.zip", 'rb'))
   end
 
   test "should import articles" do
