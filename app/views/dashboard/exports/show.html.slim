@@ -23,6 +23,10 @@
               label
                 = radio_button_tag :format, 'jekyll', true
                 '
-                | Jekyll
+                | Jekyll (.zip)
+              label
+                = radio_button_tag :format, 'wordpress'
+                '
+                | Wordpress (.xml)
           .field
             = submit_tag '.export', :class => 'button-green'

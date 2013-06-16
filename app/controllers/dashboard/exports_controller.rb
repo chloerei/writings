@@ -8,17 +8,13 @@ class Dashboard::ExportsController < Dashboard::BaseController
       @category = @space.categories.where(:urlname => params[:category_id]).first
     end
 
-    exporter_class = case params[:format]
-               when 'jekyll'
-                 JekyllExporter
-               else
-                 JekyllExporter
-               end
-
-    logger.info @category
-    exporter = exporter_class.new(@space, :category => @category)
-    logger.info exporter.articles.count
-
-    send_file exporter.export, :filename => "#{@space.name}-#{Time.now.to_s :number}.zip"
+    case params[:format]
+    when 'jekyll'
+      send_file JekyllExporter.new(@space, :category => @category).export, :filename => "#{@space.name}-jekyll-#{Time.now.to_s :number}.zip"
+    when 'wordpress'
+      send_file WordpressExporter.new(@space, :category => @category).export, :filename => "#{@space.name}-wordpress-#{Time.now.to_s :number}.xml"
+    else
+      redirect_to :action => :show
+    end
   end
 end
