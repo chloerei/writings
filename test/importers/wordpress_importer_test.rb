@@ -1,9 +1,9 @@
 require 'test_helper'
 
-class JekyllImporterTest < ActiveSupport::TestCase
+class WordpressImporterTest < ActiveSupport::TestCase
   def setup
     @space = create :user
-    @importer = JekyllImporter.new(@space, File.open("#{Rails.root}/test/files/blog-jekyll.zip", 'rb'))
+    @importer = WordpressImporter.new(@space, File.open("#{Rails.root}/test/files/blog-wordpress.xml", 'rb'))
   end
 
   test "should import articles" do

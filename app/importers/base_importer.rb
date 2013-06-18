@@ -10,4 +10,12 @@ class BaseImporter
   def tmp_path
     "#{Rails.root}/tmp/importers/#{self.class.name}/#{@space.id}"
   end
+
+  def filter_urlname(urlname)
+    if @space.articles.where(:urlname => urlname).any? or urlname !~ /\A[a-zA-Z0-9-]+\z/
+      nil
+    else
+      urlname
+    end
+  end
 end

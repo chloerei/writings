@@ -27,16 +27,18 @@ class JekyllImporter < BaseImporter
           end
 
           _, date, urlname, _ = *filename.match(/\A_posts\/(\d+-\d+-\d+)-(.+)(\.[^.]+)\z/)
-          time = Time.parse(date).utc
+          created_at = Time.parse(date).utc rescue nil
+          published_at = (status == 'publish' ? created_at : nil)
+          urlname = filter_urlname(urlname)
+          body = PandocRuby.convert(content, :from => :markdown, :to => :html)
 
           article = @space.articles.create!(
-            :title => title,
-            :body  => PandocRuby.convert(content, :from => :markdown, :to => :html),
-            :status => status,
-            :urlname => @space.articles.where(:urlname => urlname).any? ? nil : urlname,
-            :created_at => time,
-            :updated_at => Time.now.utc,
-            :published_at => (status == 'publish' ? time : nil)
+            :title        => title,
+            :body         => body,
+            :status       => status,
+            :urlname      => urlname,
+            :created_at   => created_at,
+            :published_at => published_at
           )
 
           results << article
