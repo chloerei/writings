@@ -10,49 +10,47 @@ class Exporter::Wordpress < Exporter::Base
   def export
     prepare
 
-    Dir.chdir(tmp_path) do
-      builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
+    builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
 
-        xml.rss(RSS_ATTRIBUTES) do
-          xml.channel do
-            xml.title @space.name
-            xml.link @space.host
-            xml.description @space.description
-            xml.pubdate Time.now.utc.rfc2822
+      xml.rss(RSS_ATTRIBUTES) do
+        xml.channel do
+          xml.title @space.name
+          xml.link @space.host
+          xml.description @space.description
+          xml.pubdate Time.now.utc.rfc2822
 
-            xml['wp'].wxr_version '1.2'
-            xml['wp'].base_site_url 'http://writings.io'
-            xml['wp'].base_blog_url "http://#{@space.host}"
+          xml['wp'].wxr_version '1.2'
+          xml['wp'].base_site_url 'http://writings.io'
+          xml['wp'].base_blog_url "http://#{@space.host}"
 
-            xml.generator "http://writings.io"
+          xml.generator "http://writings.io"
 
-            articles.each do |article|
-              xml.item do
-                xml.title article.title
-                xml.link url_helper.site_article_url(:id => article, :urlname => article.urlname, :host => @space.host)
-                xml.pubDate article.published_at.try(:rfc2822)
-                xml['dc'].creator @space.name
-                xml['content'].encoded do
-                  xml.cdata article.body
-                end
-                xml['wp'].post_date article.created_at
-                xml['wp'].post_type 'post'
-                xml['wp'].status article.status
+          articles.each do |article|
+            xml.item do
+              xml.title article.title
+              xml.link url_helper.site_article_url(:id => article, :urlname => article.urlname, :host => @space.host)
+              xml.pubDate article.published_at.try(:rfc2822)
+              xml['dc'].creator @space.name
+              xml['content'].encoded do
+                xml.cdata article.body
+              end
+              xml['wp'].post_date article.created_at
+              xml['wp'].post_type 'post'
+              xml['wp'].status article.status
 
-                if article.category
-                  xml.category(:domain => 'category') do
-                    xml.cdata article.category.name
-                  end
+              if article.category
+                xml.category(:domain => 'category') do
+                  xml.cdata article.category.name
                 end
               end
             end
           end
         end
       end
+    end
 
-      File.open("#{output_path}/wordpress.xml", 'w') do |f|
-        f.write builder.to_xml
-      end
+    File.open("#{output_path}/wordpress.xml", 'w') do |f|
+      f.write builder.to_xml
     end
 
     clean

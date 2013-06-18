@@ -1,0 +1,5 @@
+<%= @export_task.space.display_name %> 的导出任务已经完成。
+
+访问以下链接下载数据：
+
+<%= dashboard_export_task_url(:space_id => @export_task.space, :id => @export_task, :host => APP_CONFIG['host']) %>

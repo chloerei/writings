@@ -7,6 +7,9 @@ class ExportTask
 
   belongs_to :space
   belongs_to :category
+  belongs_to :user
+
+  scope :success, where(:status => 'success')
 
   after_destroy do
     FileUtils.rm_r output_path, :force => true
@@ -47,8 +50,11 @@ class ExportTask
     end
 
     update_attribute :status, 'success'
-  rescue
+
+    SystemMailer.export_task_success(id)
+  rescue => e
     update_attribute :status, 'error'
+    raise e
   end
 
   def path

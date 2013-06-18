@@ -7,7 +7,7 @@ class Dashboard::ExportTasksController < Dashboard::BaseController
       @category = @space.categories.where(:urlname => params[:category_id]).first
     end
 
-    task = ExportTask.create(:space => @space, :category => @category, :format => params[:format])
+    task = ExportTask.create(:space => @space, :category => @category, :format => params[:format], :user => current_user)
     ExportTask.delay.perform_task(task.id.to_s)
 
     redirect_to :action => :show, :id => task
@@ -18,7 +18,7 @@ class Dashboard::ExportTasksController < Dashboard::BaseController
   end
 
   def download
-    @export_task = @space.export_tasks.where(:completed => true).find params[:id]
+    @export_task = @space.export_tasks.success.find params[:id]
     send_file @export_task.path, :filename => @export_task.filename
   end
 end
