@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Exporter::ArticleTest < ActiveSupport::TestCase
+class ArticleDownloadTest < ActiveSupport::TestCase
   def setup
     @article = create :article
     @article.body = <<-EOF
@@ -12,11 +12,11 @@ class Exporter::ArticleTest < ActiveSupport::TestCase
     </p>
     EOF
 
-    @exporter = Exporter::Article.new(@article)
+    @exporter = ArticleDownload.new(@article)
   end
 
   test "should tmp_path" do
-    assert_equal "#{Rails.root}/tmp/exporters/article/#{@article.id}", @exporter.tmp_path
+    assert_equal "#{Rails.root}/tmp/article_download/#{@article.id}", @exporter.tmp_path
   end
 
   test "prepare" do

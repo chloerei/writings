@@ -1,4 +1,4 @@
-class Exporter::Article
+class ArticleDownload
   def initialize(article)
     @article = article
     @doc = Nokogiri::HTML::DocumentFragment.parse(@article.body)
@@ -7,10 +7,11 @@ class Exporter::Article
   end
 
   def tmp_path
-    "#{Rails.root}/tmp/exporters/article/#{@article.id}"
+    "#{Rails.root}/tmp/article_download/#{@article.id}"
   end
 
   def prepare
+    FileUtils.rm_r tmp_path, :force => true
     FileUtils.mkdir_p tmp_path
     FileUtils.mkdir_p "#{tmp_path}/images"
   end
