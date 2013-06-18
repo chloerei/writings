@@ -12,17 +12,20 @@ class JekyllImporter < BaseImporter
       Dir['_posts/*.{md,markdown}'].each do |filename|
         begin
           content = File.read filename
+          title = nil
+          status = 'draft'
 
           if content =~ /\A(---\s*\n.*?\n?)^(---\s*$\n?)/m
             content = $'
             data = YAML.safe_load($1)
+
+            title = data['title']
+            if title
+              content = "# #{title}\n\n" + content
+            end
+            status = (data['published'] == 'draft' ? 'draft' : 'publish')
           end
 
-          title = data['title']
-          if title
-            content = "# #{title}\n\n" + content
-          end
-          status = (data['published'] == 'draft' ? 'draft' : 'publish')
           _, date, urlname, _ = *filename.match(/\A_posts\/(\d+-\d+-\d+)-(.+)(\.[^.]+)\z/)
           time = Time.parse(date).utc
 
