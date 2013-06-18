@@ -3,7 +3,7 @@ class ExportTask
   include Mongoid::Timestamps
 
   field :format
-  field :completed, :type => Boolean
+  field :status
 
   belongs_to :space
   belongs_to :category
@@ -24,6 +24,14 @@ class ExportTask
     "#{Rails.root}/data/export_tasks/#{id}"
   end
 
+  def success?
+    status == 'success'
+  end
+
+  def error?
+    status == 'error'
+  end
+
   def export
     options = {
       :category    => category,
@@ -38,7 +46,9 @@ class ExportTask
       Exporter::Wordpress.new(space, options).export
     end
 
-    update_attribute :completed, true
+    update_attribute :status, 'success'
+  rescue
+    update_attribute :status, 'error'
   end
 
   def path

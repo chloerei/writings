@@ -3,8 +3,11 @@
     .inner
       = render 'dashboard/share/main_header'
       section
-        - if @export_task.completed?
+        - case @export_task.status
+        - when 'success'
           | Complete!
           = link_to 'Download', download_dashboard_export_task_path(:id => @export_task), :data => { 'no-turbolink' => true }
+        - when 'error'
+          | Error
         - else
           | Processing...
