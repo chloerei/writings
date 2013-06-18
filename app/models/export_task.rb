@@ -3,12 +3,17 @@ class ExportTask
   include Mongoid::Timestamps
 
   field :format
+  field :completed, :type => Boolean
 
   belongs_to :space
   belongs_to :category
 
   after_destroy do
     FileUtils.rm_r output_path, :force => true
+  end
+
+  def self.perform_task(id)
+    self.find(id).export
   end
 
   def tmp_path
@@ -32,6 +37,8 @@ class ExportTask
     when 'wordpress'
       Exporter::Wordpress.new(space, options).export
     end
+
+    update_attribute :completed, true
   end
 
   def path

@@ -17,7 +17,8 @@ class Importer::Jekyll < Importer::Base
 
           if content =~ /\A(---\s*\n.*?\n?)^(---\s*$\n?)/m
             content = $'
-            data = YAML.safe_load($1)
+            # TODO unsafe!!
+            data = YAML.load($1)
 
             title = data['title']
             if title

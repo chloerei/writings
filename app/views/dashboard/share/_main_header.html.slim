@@ -14,8 +14,8 @@ nav.main-nav.clearfix
   ul.pull-right
     li class=(controller_name == 'imports' ? 'actived' : nil)
       = link_to t('.import'), dashboard_import_path
-    li class=(controller_name == 'exports' ? 'actived' : nil)
-      = link_to t('.export'), dashboard_export_path
+    li class=(controller_name == 'export_tasks' ? 'actived' : nil)
+      = link_to t('.export'), dashboard_export_tasks_path
     - if @space.is_a? Workspace
       li class=(controller_name == 'members' ? 'actived' : nil)
         = link_to t('.members'), dashboard_members_path

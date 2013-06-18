@@ -67,7 +67,11 @@ Publish::Application.routes.draw do
         end
       end
 
-      resource :export, :only => [:show, :create]
+      resources :export_tasks, :only => [:index, :create, :show] do
+        member do
+          get :download
+        end
+      end
       resource :import, :only => [:show, :create]
       resources :attachments, :only => [:index, :create, :destroy]
 
