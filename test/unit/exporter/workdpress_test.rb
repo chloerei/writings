@@ -11,8 +11,7 @@ class Exporter::WordpressTest < ActiveSupport::TestCase
   end
 
   test "should export" do
-    path = @exporter.export
-    assert_equal "#{@exporter.tmp_path}/output.xml", path
-    assert File.exists?(path)
+    @exporter.export
+    assert File.exists?("#{@exporter.output_path}/wordpress.xml")
   end
 end

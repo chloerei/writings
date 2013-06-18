@@ -19,7 +19,9 @@ class Exporter::BaseTest < ActiveSupport::TestCase
   end
 
   test "should prepare tmp" do
-    assert_equal "#{Rails.root}/tmp/exporters/base/#{@space.id}", @exporter.tmp_path
+    @exporter.prepare
     assert File.exists?(@exporter.tmp_path)
+    @exporter.clean
+    assert !File.exists?(@exporter.tmp_path)
   end
 end

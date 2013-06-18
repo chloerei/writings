@@ -7,12 +7,11 @@ class Exporter::JekyllTest < ActiveSupport::TestCase
     @category = create :category, :space => @space
     2.times { create :article, :space => @space, :category => @category }
 
-    @exporter = Exporter::Jekyll.new(@space)
+    @exporter = Exporter::Jekyll.new(@space, :category => @category)
   end
 
   test "should export" do
-    path = @exporter.export
-    assert_equal "#{@exporter.tmp_path}/output.zip", path
-    assert File.exists?(path)
+    @exporter.export
+    assert File.exists?("#{@exporter.output_path}/jekyll.zip")
   end
 end
