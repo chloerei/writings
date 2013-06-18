@@ -1,4 +1,4 @@
-class WordpressExporter < BaseExporter
+class Exporter::Wordpress < Exporter::Base
   RSS_ATTRIBUTES = {
     'version'       => '2.0',
     'xmlns:excerpt' => 'http://wordpress.org/export/1.2/excerpt/',

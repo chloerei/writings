@@ -32,17 +32,17 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
     respond_to do |format|
       format.md do
-        send_file(ArticleExporter.new(@article).build_md,
+        send_file(Exporter::Article.new(@article).build_md,
                   :filename => "#{basename}.md")
       end
 
       format.docx do
-        send_file(ArticleExporter.new(@article).build_docx,
+        send_file(Exporter::Article.new(@article).build_docx,
                   :filename => "#{basename}.docx")
       end
 
       format.odt do
-        send_file(ArticleExporter.new(@article).build_odt,
+        send_file(Exporter::Article.new(@article).build_odt,
                   :filename => "#{basename}.odt")
       end
     end

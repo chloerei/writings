@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ArticleExporterTest < ActiveSupport::TestCase
+class Exporter::ArticleTest < ActiveSupport::TestCase
   def setup
     @article = create :article
     @article.body = <<-EOF
@@ -12,7 +12,7 @@ class ArticleExporterTest < ActiveSupport::TestCase
     </p>
     EOF
 
-    @exporter = ArticleExporter.new(@article)
+    @exporter = Exporter::Article.new(@article)
   end
 
   test "should tmp_path" do

@@ -1,4 +1,4 @@
-class JekyllExporter < BaseExporter
+class Exporter::Jekyll < Exporter::Base
   def export
     Timeout::timeout(BUILD_TIMEOUT) do
       Dir.chdir(tmp_path) do

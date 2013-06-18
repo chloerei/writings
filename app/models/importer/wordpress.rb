@@ -1,4 +1,4 @@
-class WordpressImporter < BaseImporter
+class Importer::Wordpress < Importer::Base
   def import
     results = []
 

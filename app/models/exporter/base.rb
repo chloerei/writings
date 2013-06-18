@@ -1,4 +1,4 @@
-class BaseExporter
+class Exporter::Base
   def initialize(space, options = {})
     @space = space
     @category = options[:category]
@@ -7,7 +7,7 @@ class BaseExporter
   end
 
   def tmp_path
-    "#{Rails.root}/tmp/exporters/#{self.class.name}/#{@space.id}"
+    "#{Rails.root}/tmp/exporters/#{self.class.name.split('::').last.downcase}/#{@space.id}"
   end
 
   def articles

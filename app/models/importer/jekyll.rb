@@ -1,4 +1,4 @@
-class JekyllImporter < BaseImporter
+class Importer::Jekyll < Importer::Base
   def import
     results = []
 

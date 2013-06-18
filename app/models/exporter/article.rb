@@ -1,4 +1,4 @@
-class ArticleExporter
+class Exporter::Article
   def initialize(article)
     @article = article
     @doc = Nokogiri::HTML::DocumentFragment.parse(@article.body)

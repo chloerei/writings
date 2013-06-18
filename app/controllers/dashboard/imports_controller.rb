@@ -5,9 +5,9 @@ class Dashboard::ImportsController < Dashboard::BaseController
   def create
     case params[:format]
     when 'jekyll'
-      @results = JekyllImporter.new(@space, params[:file]).import
+      @results = Importer::Jekyll.new(@space, params[:file]).import
     when 'wordpress'
-      @results = WordpressImporter.new(@space, params[:file]).import
+      @results = Importer::Wordpress.new(@space, params[:file]).import
     else
       redirect_to :action => :show
     end

@@ -1,4 +1,4 @@
-class BaseImporter
+class Importer::Base
   def initialize(space, file)
     @space = space
     @file = file
@@ -8,7 +8,7 @@ class BaseImporter
   end
 
   def tmp_path
-    "#{Rails.root}/tmp/importers/#{self.class.name}/#{@space.id}"
+    "#{Rails.root}/tmp/importers/#{self.class.name.split('::').last.downcase}/#{@space.id}"
   end
 
   def filter_urlname(urlname)
