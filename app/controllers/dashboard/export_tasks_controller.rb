@@ -3,9 +3,7 @@ class Dashboard::ExportTasksController < Dashboard::BaseController
   end
 
   def create
-    if params[:export_task][:range] == 'category'
-      @category = @space.categories.where(:urlname => params[:export_task][:category_id]).first
-    end
+    @category = @space.categories.where(:urlname => params[:export_task][:category_id]).first
 
     task = ExportTask.create(
       :space    => @space,

@@ -3,30 +3,22 @@
     .inner
       = render 'dashboard/share/main_header'
       section
-        = form_tag dashboard_export_tasks_path do
-          fieldset
-            legend = t '.content'
-            .field
-              label
-                = radio_button_tag 'export_task[range]', 'all', true
-                '
-                = t '.all_articles'
-              label
-                = radio_button_tag 'export_task[range]', 'category'
-                '
-                = t '.in_category'
-                '
-                = select_tag 'export_task[category_id]', options_from_collection_for_select(@space.categories, :urlname, :name)
+        = form_for ExportTask.new, :url => dashboard_export_tasks_path do |f|
           fieldset
             legend = t '.format'
             .field
               label
-                = radio_button_tag 'export_task[format]', 'jekyll', true
+                = f.radio_button :format, 'jekyll', :checked => true
                 '
                 | Jekyll (.zip)
               label
-                = radio_button_tag 'export_task[format]', 'wordpress'
+                = f.radio_button :format, 'wordpress'
                 '
                 | Wordpress (.xml)
+          fieldset
+            legend = t '.content'
+            .field
+              label
+                = f.select :category_id, options_from_collection_for_select(@space.categories, :urlname, :name), :prompt => t('.all')
           .field
-            = submit_tag '.export', :class => 'button-green'
+            = submit_tag '.start', :class => 'button-green'
