@@ -21,4 +21,4 @@
               label
                 = f.select :category_id, options_from_collection_for_select(@space.categories, :urlname, :name), :prompt => t('.all')
           .field
-            = submit_tag '.start', :class => 'button-green'
+            = submit_tag t('.start_export'), :class => 'button-green'

@@ -118,6 +118,23 @@ zh-CN:
         create_link: "创建链接"
         unlink: "去掉链接"
 
+    export_tasks:
+      index:
+        all: "全部"
+        format: "格式"
+        content: "内容"
+        start_export: "开始导出"
+      show:
+        task_success: "导出完成"
+        task_success_detail: "点击下载按钮下载存档："
+        task_error: "导出发生错误"
+        task_error_detail: "请联系管理员："
+        task_processing: "导出处理中"
+        task_processing_detail: "导出完成后，你将会收到系统邮件获取下载链接，你也可以刷新当前页面检查导出状态："
+        download: "下载存档"
+        refresh: "刷新"
+        task_detail: "任务详情"
+
     settings:
       show:
         workspace_settings: "工作区设置"
