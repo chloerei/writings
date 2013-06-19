@@ -3,21 +3,21 @@
     .inner
       = render 'dashboard/share/main_header'
       section
-        = form_tag dashboard_import_path, :multipart => true do
+        = form_for ImportTask.new, :url => dashboard_import_tasks_path, :multipart => true do |f|
           fieldset
             legend = t '.format'
             .field
               label
-                = radio_button_tag :format, 'jekyll', true
+                = f.radio_button :format, 'jekyll', :checked => true
                 '
                 | Jekyll (.zip)
               label
-                = radio_button_tag :format, 'wordpress'
+                = f.radio_button :format, 'wordpress'
                 '
                 | Wordpress (.xml)
           fieldset
             legend = t '.file'
             .field
-              = file_field_tag :file
+              = f.file_field :file
           .field
-            = submit_tag '.import', :class => 'button-green'
+            = f.submit '.import', :class => 'button-green'

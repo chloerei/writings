@@ -13,7 +13,8 @@ class Space
   has_many :articles, :dependent => :delete
   has_many :attachments, :dependent => :destroy
   has_many :invoices, :dependent => :delete
-  has_many :export_tasks, :dependent => :delete
+  has_many :export_tasks, :dependent => :destroy
+  has_many :import_tasks, :dependent => :destroy
 
   index({ :name => 1 }, { :unique => true })
   index({ :domain => 1 }, { :unique => true, :sparse => true})
