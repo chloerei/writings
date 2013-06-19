@@ -8,7 +8,7 @@ class ExportTaskTest < ActiveSupport::TestCase
   end
 
   test "should export and store path" do
-    task = ExportTask.new(:space => @space, :category => @category, :format => 'jekyll', :user => @user)
+    task = ExportTask.new(:space => @space, :category => @category, :format => 'jekyll', :user => @space)
     task.export
     assert_equal "#{Rails.root}/data/export_tasks/#{task.id}/jekyll.zip", task.path
     assert File.exists?(task.path)

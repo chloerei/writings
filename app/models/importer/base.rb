@@ -1,21 +1,12 @@
 class Importer::Base
-  def initialize(space, file)
-    @space = space
-    @file = file
+  attr_accessor :file, :tmp_path
+
+  def initialize(file, options = {})
+    self.file = file
+    time = Time.now.to_i
+    self.tmp_path = options[:tmp_path] || "#{Rails.root}/tmp/importers/#{time}"
 
     FileUtils.rm_r tmp_path, :force => true
     FileUtils.mkdir_p tmp_path
-  end
-
-  def tmp_path
-    "#{Rails.root}/tmp/importers/#{self.class.name.split('::').last.downcase}/#{@space.id}"
-  end
-
-  def filter_urlname(urlname)
-    if @space.articles.where(:urlname => urlname).any? or urlname !~ /\A[a-zA-Z0-9-]+\z/
-      nil
-    else
-      urlname
-    end
   end
 end
