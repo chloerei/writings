@@ -3,11 +3,16 @@ class Dashboard::ExportTasksController < Dashboard::BaseController
   end
 
   def create
-    if params[:range] == 'category'
-      @category = @space.categories.where(:urlname => params[:category_id]).first
+    if params[:export_task][:range] == 'category'
+      @category = @space.categories.where(:urlname => params[:export_task][:category_id]).first
     end
 
-    task = ExportTask.create(:space => @space, :category => @category, :format => params[:format], :user => current_user)
+    task = ExportTask.create(
+      :space    => @space,
+      :category => @category,
+      :format   => params[:export_task][:format],
+      :user     => current_user
+    )
     ExportTask.delay.perform_task(task.id.to_s)
 
     redirect_to :action => :show, :id => task
