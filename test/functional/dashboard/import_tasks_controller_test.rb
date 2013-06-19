@@ -11,4 +11,13 @@ class Dashboard::ImportTasksControllerTest < ActionController::TestCase
       post :create, :space_id => @user, :import_task => { :format => 'jekyll', :file => File.open("#{Rails.root}/test/files/blog-jekyll.zip") }
     end
   end
+
+  test "should confirm articles" do
+    import_task = create :import_task, :space => @user, :user => @user
+    import_task.import
+
+    assert_difference "@user.articles.count" do
+      post :confirm, :space_id => @user, :id => import_task, :ids => import_task.article_ids
+    end
+  end
 end

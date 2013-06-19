@@ -12,6 +12,14 @@ class Dashboard::ImportTasksController < Dashboard::BaseController
   end
 
   def show
+    @import_task = @space.import_tasks.find params[:id]
+  end
+
+  def confirm
+    @import_task = @space.import_tasks.where(:status => 'success').find params[:id]
+    @import_task.confirm(params[:ids])
+    @import_task.destroy
+    redirect_to dashboard_root_path
   end
 
   private

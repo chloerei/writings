@@ -74,7 +74,7 @@ Publish::Application.routes.draw do
       end
       resources :import_tasks, :only => [:index, :create, :show, :destroy] do
         member do
-          get :import
+          post :confirm
         end
       end
       resources :attachments, :only => [:index, :create, :destroy]

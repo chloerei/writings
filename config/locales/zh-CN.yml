@@ -118,6 +118,20 @@ zh-CN:
         create_link: "创建链接"
         unlink: "去掉链接"
 
+    import_tasks:
+      show:
+        title: "标题"
+        date: "日期"
+        status: "状态"
+        task_success: "解析完成"
+        task_success_detail: "请确认导入条目"
+        task_error: "导入发生错误"
+        task_error_detail: "请联系管理员："
+        task_processing: "导入处理中"
+        task_processing_detail: "导入解析完成后，你将会收到系统邮件并需要确认导入条目，你也可以刷新当前页面检查导入状态："
+        refresh: "刷新"
+        import_select: "导入选中条目"
+
     export_tasks:
       index:
         all: "全部"
@@ -133,7 +147,6 @@ zh-CN:
         task_processing_detail: "导出完成后，你将会收到系统邮件获取下载链接，你也可以刷新当前页面检查导出状态："
         download: "下载存档"
         refresh: "刷新"
-        task_detail: "任务详情"
 
     settings:
       show:
