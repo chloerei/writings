@@ -30,6 +30,9 @@ zh-CN:
   page_not_found: "找不到该页面"
   server_error: "服务器错误"
 
+  export_task_success_email_subject: "导出完成"
+  import_task_success_email_subject: "导入解析完成"
+
   older: "过往"
   newer: "较新"
   next_page: "下一页"
@@ -95,6 +98,8 @@ zh-CN:
         discussions: "讨论"
         pictures: "图片"
         members: "成员"
+        import: "导入"
+        export: "导出"
         settings: "工作区设置"
 
       settings_nav:
@@ -119,6 +124,10 @@ zh-CN:
         unlink: "去掉链接"
 
     import_tasks:
+      index:
+        format: "格式"
+        file: "文件"
+        start_import: "开始导入"
       show:
         title: "标题"
         date: "日期"
@@ -401,3 +410,4 @@ zh-CN:
       extension_white_list_error: "不能上传 %{extension} 文件，允许类型：%{allowed_types}"
       store_limit: "剩余容量不足"
       fetch_error: "抓取失败，也许没有权限访问该资源，请改由本地上传"
+      blank: "不能为空"

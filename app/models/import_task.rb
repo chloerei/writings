@@ -10,6 +10,8 @@ class ImportTask
   belongs_to :user
   has_many :articles, :dependent => :delete
 
+  validates_presence_of :file
+
   mount_uploader :file, FileUploader
 
   def tmp_path

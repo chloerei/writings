@@ -3,7 +3,7 @@
     .inner
       = render 'dashboard/share/main_header'
       section
-        = form_for ImportTask.new, :url => dashboard_import_tasks_path, :multipart => true do |f|
+        = form_for ImportTask.new, :url => dashboard_import_tasks_path, :multipart => true, :validate => true do |f|
           fieldset
             legend = t '.format'
             .field
@@ -20,4 +20,4 @@
             .field
               = f.file_field :file
           .field
-            = f.submit '.import', :class => 'button-green'
+            = f.submit t('.start_import'), :class => 'button-green'
