@@ -238,7 +238,7 @@ section.post {
   text-align: left;
   border-top: 0;
   padding: 0; }
-  section.post > * {
+  section.post > *:not(.highlight) {
     padding: 0 60px; }
   section.post > ul, section.post > ol {
     padding: 0 80px; }
@@ -296,19 +296,33 @@ section.post, section > p {
       display: block;
       width: 7px !important;
       white-space: normal; }
-  section.post li .CodeMirror, section > p li .CodeMirror {
+  section.post li .highlight, section > p li .highlight {
     margin: 10px 0; }
   section.post li p, section > p li p {
     margin-bottom: 5px; }
-  section.post code, section > p code {
-    font-size: 13px;
-    color: #888;
-    background: #f9f9f9;
-    padding: 0 4px; }
   section.post img, section > p img {
     max-width: 100%; }
     section.post img.half, section > p img.half {
       width: 50%; }
+
+.highlight {
+  margin: 0;
+  padding: 0; }
+
+pre {
+  overflow-x: auto;
+  padding: 10px 60px;
+  width: 100%;
+  line-height: 1.2em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+code {
+  font-size: 13px;
+  color: #888;
+  background: #f9f9f9;
+  padding: 0 4px; }
 
 .paging a {
   opacity: 0.15; }

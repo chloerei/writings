@@ -12,7 +12,7 @@
       padding: 15px; }
       body #container .links section.post, body #container .content section.post {
         margin: 0 -15px; }
-        body #container .links section.post > p, body #container .links section.post h1, body #container .content section.post > p, body #container .content section.post h1 {
+        body #container .links section.post > p, body #container .links section.post h1, body #container .links section.post .highlight, body #container .content section.post > p, body #container .content section.post h1, body #container .content section.post .highlight {
           padding: 0 15px; }
         body #container .links section.post > ul, body #container .links section.post > ol, body #container .content section.post > ul, body #container .content section.post > ol {
           padding: 0 30px; }
