@@ -11,7 +11,7 @@ class Importer::Jekyll < Importer::Base
         content = File.read filename
         title = nil
         category = nil
-        status = 'draft'
+        published = false
 
         if content =~ /\A(---\s*\n.*?\n?)^(---\s*$\n?)/m
           content = $'
@@ -21,26 +21,26 @@ class Importer::Jekyll < Importer::Base
           if title
             content = "# #{title}\n\n" + content
           end
-          status = (!data['published'] ? 'draft' : 'publish')
+          published = (!data['published'] ? false : true)
           category = data['category']
         end
 
         _, date, urlname, _ = *filename.match(/\A#{tmp_path}\/_posts\/(\d+-\d+-\d+)-(.+)(\.[^.]+)\z/)
         created_at = Time.parse(date).utc rescue nil
-        published_at = (status == 'publish' ? created_at : nil)
+        published_at = (published ? created_at : nil)
         body = PandocRuby.convert(content, :from => :markdown, :to => :html)
 
-        article = Article.new(
+        article = ImportArticle.new(
           :title        => title,
           :body         => body,
-          :status       => status,
+          :published    => published,
           :category     => category,
           :urlname      => urlname,
           :created_at   => created_at,
           :published_at => published_at
         )
 
-        yield article, category
+        yield article
       rescue => e
         # ignore on production
         raise e unless Rails.env.production?

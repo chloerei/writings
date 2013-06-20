@@ -10,7 +10,7 @@ class ImportTask
 
   belongs_to :space
   belongs_to :user
-  has_many :articles, :dependent => :delete
+  has_many :import_articles, :dependent => :delete
 
   validates_presence_of :file
 
@@ -38,10 +38,9 @@ class ImportTask
                  Importer::Wordpress.new(file, options)
                end
 
-    importer.import do |article, category|
-      article.space = space
-      article.import_task = self
-      article.save
+    importer.import do |import_article|
+      import_article.import_task = self
+      import_article.save
     end
     update_attribute :status, 'success'
 
@@ -53,6 +52,6 @@ class ImportTask
   end
 
   def confirm(ids)
-    articles.where(:id.in => ids).unset(:import_task_id)
+    import_articles.asc(:created_at).where(:id.in => ids).each(&:import)
   end
 end

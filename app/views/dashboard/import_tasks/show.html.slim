@@ -30,11 +30,11 @@
                     th = t '.title'
                     th = t '.status'
                     th = t '.date'
-                  - @import_task.articles.asc(:created_at).each do |article|
+                  - @import_task.import_articles.asc(:created_at).each do |article|
                     tr
                       td = check_box_tag 'ids[]', article.id, true, :id => "ids_#{article.id}"
                       td = article.title
-                      td = t article.status
+                      td = article.published? ? t('publish') : t('draft')
                       td = article.created_at.to_date
             .field
               = submit_tag t('.import_select'), :class => 'button-green'

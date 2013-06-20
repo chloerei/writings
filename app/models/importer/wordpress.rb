@@ -10,22 +10,23 @@ class Importer::Wordpress < Importer::Base
           if title.present?
             body = "<h1>#{title}</h1>\n" + body
           end
-          status = (item.xpath('wp:status').text == 'publish' ? 'publish' : 'draft')
+          published = (item.xpath('wp:status').text == 'publish' ? true : false)
           urlname = item.xpath('wp:post_name').text
           created_at = Time.parse(item.xpath('wp:post_date').text).utc# rescue nil
           publishded_at = Time.parse(item.xpath('pubDate').text).utc rescue nil
           category = item.xpath('category').text
 
-          article = Article.new(
+          article = ImportArticle.new(
             :title => title,
             :body => body,
-            :status => status,
+            :published => published,
+            :category => category,
             :urlname => urlname,
             :created_at => created_at,
             :published_at => publishded_at
           )
 
-          yield article, category
+          yield article
         rescue => e
           # ignore on production
           raise e unless Rails.env.production?

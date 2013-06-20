@@ -20,7 +20,7 @@ class Dashboard::ImportTasksControllerTest < ActionController::TestCase
     import_task.import
 
     assert_difference "@user.articles.count" do
-      post :confirm, :space_id => @user, :id => import_task, :ids => import_task.article_ids
+      post :confirm, :space_id => @user, :id => import_task, :ids => import_task.import_article_ids
     end
   end
 end
