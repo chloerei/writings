@@ -19,6 +19,10 @@ class ExportTask
     self.find(id).export
   end
 
+  def self.delete_task(id)
+    self.where(:id => id).first.try(:destroy)
+  end
+
   def tmp_path
     "#{Rails.root}/tmp/export_tasks/#{id}"
   end
@@ -52,6 +56,7 @@ class ExportTask
     update_attribute :status, 'success'
 
     SystemMailer.delay.export_task_success(id)
+    ImportTask.delay_for(1.day).delete_task(id)
   rescue => e
     update_attribute :status, 'error'
     raise e

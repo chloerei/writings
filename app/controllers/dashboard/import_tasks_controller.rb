@@ -7,7 +7,7 @@ class Dashboard::ImportTasksController < Dashboard::BaseController
       :user  => current_user,
       :space => @space
     )
-    ImportTask.delay.perform_import(@import_task.id.to_s)
+    ImportTask.delay.perform_task(@import_task.id.to_s)
     redirect_to :action => :show, :id => @import_task
   end
 

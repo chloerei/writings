@@ -16,8 +16,12 @@ class ImportTask
     "#{Rails.root}/tmp/import_tasks/#{id}"
   end
 
-  def self.perform_import(id)
+  def self.perform_task(id)
     self.find(id).import
+  end
+
+  def self.delete_task(id)
+    self.where(:id => id).first.try(:destroy)
   end
 
   def import
@@ -40,6 +44,7 @@ class ImportTask
     update_attribute :status, 'success'
 
     SystemMailer.delay.import_task_success(id)
+    ImportTask.delay_for(1.day).delete_task(id)
   rescue => e
     update_attribute :status, 'error'
     raise e
