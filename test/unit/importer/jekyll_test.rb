@@ -11,6 +11,8 @@ class Importer::JekyllTest < ActiveSupport::TestCase
       @importer.import do |article|
         article.space = @space
         article.save
+        assert_equal Time.parse('2013-06-03'), article.created_at
+        assert_equal Time.parse('2013-06-03'), article.published_at
       end
     end
   end

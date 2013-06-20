@@ -11,6 +11,8 @@ class ImporterWordpressTest < ActiveSupport::TestCase
       @importer.import do |article|
         article.space = @space
         article.save
+        assert_equal Time.parse('2013-06-03 18:16:44 +0800'), article.created_at
+        assert_equal Time.parse('Tue, 04 Jun 2013 09:00:57 -0000'), article.published_at
       end
     end
   end

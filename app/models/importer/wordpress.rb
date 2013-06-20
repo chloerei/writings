@@ -12,8 +12,9 @@ class Importer::Wordpress < Importer::Base
           end
           status = (item.xpath('wp:status').text == 'publishd' ? 'publish' : 'draft')
           urlname = item.xpath('wp:post_name').text
-          created_at = Time.parse(item.xpath('wp:post_date')).utc rescue nil
-          publishded_at = Time.parse(item.xpath('wp:pubDate')).utc rescue nil
+          created_at = Time.parse(item.xpath('wp:post_date').text).utc# rescue nil
+          publishded_at = Time.parse(item.xpath('pubDate').text).utc rescue nil
+          puts publishded_at
 
           article = Article.new(
             :title => title,
@@ -21,7 +22,7 @@ class Importer::Wordpress < Importer::Base
             :status => status,
             :urlname => urlname,
             :created_at => created_at,
-            :publishded_at => publishded_at
+            :published_at => publishded_at
           )
 
           yield article

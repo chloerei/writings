@@ -24,7 +24,7 @@ class Importer::Jekyll < Importer::Base
           status = (data['published'] == 'draft' ? 'draft' : 'publish')
         end
 
-        _, date, urlname, _ = *filename.match(/\A_posts\/(\d+-\d+-\d+)-(.+)(\.[^.]+)\z/)
+        _, date, urlname, _ = *filename.match(/\A#{tmp_path}\/_posts\/(\d+-\d+-\d+)-(.+)(\.[^.]+)\z/)
         created_at = Time.parse(date).utc rescue nil
         published_at = (status == 'publish' ? created_at : nil)
         body = PandocRuby.convert(content, :from => :markdown, :to => :html)
