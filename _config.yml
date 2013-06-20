@@ -6,16 +6,18 @@ disqus_shortname: # disqus comment thread for post header options. ( leave blank
 facebook_appid:   # appid for like button, remove from /_includes/share.html if unwanted.
 google_analytics: # set tracking, remove from /javascripts/basic.js if unwanted.
 
-links: 
+links:
   - name:         About
     url:          /about
   - name:         Blog
     url:          http://muan.co
+    external:     true
   - name:         Email
     url:          mailto:hello@muan.co
+    external:     true
   - name:         GitHub
     url:          http://github.com/muan
-
+    external:     true
 pygments:         true
 permalink:        pretty
 markdown:         rdiscount
