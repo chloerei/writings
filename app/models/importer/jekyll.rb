@@ -21,7 +21,7 @@ class Importer::Jekyll < Importer::Base
           if title
             content = "# #{title}\n\n" + content
           end
-          status = (data['published'] == 'draft' ? 'draft' : 'publish')
+          status = (!data['published'] ? 'draft' : 'publish')
         end
 
         _, date, urlname, _ = *filename.match(/\A#{tmp_path}\/_posts\/(\d+-\d+-\d+)-(.+)(\.[^.]+)\z/)
