@@ -3,10 +3,8 @@ class Dashboard::ImportTasksController < Dashboard::BaseController
   end
 
   def create
-    @import_task = ImportTask.create import_task_param.merge(
-      :user  => current_user,
-      :space => @space
-    )
+    @import_task = @space.import_tasks.create import_task_param.merge(:user => current_user)
+
     ImportTask.delay.perform_task(@import_task.id.to_s)
     redirect_to :action => :show, :id => @import_task
   end

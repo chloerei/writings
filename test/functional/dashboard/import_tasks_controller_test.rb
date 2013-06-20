@@ -8,7 +8,10 @@ class Dashboard::ImportTasksControllerTest < ActionController::TestCase
 
   test "should create task" do
     assert_difference ["@user.import_tasks.count", "Sidekiq::Extensions::DelayedClass.jobs.size"] do
-      post :create, :space_id => @user, :import_task => { :format => 'jekyll', :file => File.open("#{Rails.root}/test/files/_posts.zip") }
+      post :create, :space_id => @user, :import_task => {
+        :format => 'jekyll',
+        :file   => upload_file("#{Rails.root}/test/files/_posts.zip")
+      }
     end
   end
 

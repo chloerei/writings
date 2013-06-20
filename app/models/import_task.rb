@@ -6,13 +6,13 @@ class ImportTask
   field :status
   field :file
 
+  mount_uploader :file, FileUploader
+
   belongs_to :space
   belongs_to :user
   has_many :articles, :dependent => :delete
 
   validates_presence_of :file
-
-  mount_uploader :file, FileUploader
 
   def tmp_path
     "#{Rails.root}/tmp/import_tasks/#{id}"

@@ -22,6 +22,13 @@ class ActionController::TestCase
     login_as user
     yield
   end
+
+  def upload_file(path)
+    ActionDispatch::Http::UploadedFile.new(
+      :tempfile => File.open(path),
+      :filename => File.basename(path)
+    )
+  end
 end
 
 Fog.mock!
