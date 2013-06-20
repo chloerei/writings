@@ -70,6 +70,7 @@ module Publish
   end
 end
 
+SafeYAML::OPTIONS[:default_mode] = :unsafe
 ALLOW_LOCALE = Dir["#{Rails.root}/config/locales/*.yml"].map {|f| File.basename(f).split('.').first}
 APP_CONFIG = YAML.load_file("#{Rails.root}/config/app_config.yml")[Rails.env]
 DOMAIN_LENGTH = APP_CONFIG["host"].split('.').length - 1

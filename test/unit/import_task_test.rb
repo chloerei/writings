@@ -6,19 +6,19 @@ class ImportTaskTest < ActiveSupport::TestCase
   end
 
   test "should import jekyll" do
-    task = create :import_task, :space => @user, :file => File.open("#{Rails.root}/test/files/blog-jekyll.zip"), :format => 'jekyll'
+    task = create :import_task, :space => @user, :file => File.open("#{Rails.root}/test/files/_posts.zip"), :format => 'jekyll'
 
     assert_no_difference "@user.articles.count" do
-      assert_difference "@user.articles.unscoped.count" do
+      assert_difference "@user.articles.unscoped.count", 3 do
         task.import
       end
     end
 
-    assert_equal 1, task.articles.count
+    assert_equal 3, task.articles.count
   end
 
   test "should import wordpress" do
-    task = create :import_task, :space => @user, :file => File.open("#{Rails.root}/test/files/blog-wordpress.xml"), :format => 'wordpress'
+    task = create :import_task, :space => @user, :file => File.open("#{Rails.root}/test/files/wordpress.xml"), :format => 'wordpress'
 
     assert_no_difference "@user.articles.count" do
       assert_difference "@user.articles.unscoped.count" do

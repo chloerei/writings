@@ -3,7 +3,7 @@ require 'test_helper'
 class ImporterWordpressTest < ActiveSupport::TestCase
   def setup
     @space = create :user
-    @importer = Importer::Wordpress.new(File.open("#{Rails.root}/test/files/blog-wordpress.xml", 'rb'))
+    @importer = Importer::Wordpress.new(File.open("#{Rails.root}/test/files/wordpress.xml"))
   end
 
   test "should import articles" do

@@ -14,8 +14,7 @@ class Importer::Jekyll < Importer::Base
 
         if content =~ /\A(---\s*\n.*?\n?)^(---\s*$\n?)/m
           content = $'
-          # TODO unsafe!!
-          data = YAML.load($1)
+          data = YAML.load($1, :safe => true)
 
           title = data['title']
           if title
@@ -39,8 +38,9 @@ class Importer::Jekyll < Importer::Base
         )
 
         yield article
-      rescue
-        # ignore
+      rescue => e
+        # ignore on production
+        raise e unless Rails.env.production?
       end
     end
   end
