@@ -7,6 +7,7 @@ class Exporter::Jekyll < Exporter::Base
     articles.includes(:category).each do |article|
       name = article.urlname.present? ? "#{article.token}-#{article.urlname}" : article.token
       filename = "#{article.created_at.to_date.to_s}-#{name}.md"
+
       File.open("#{tmp_path}/_posts/#{filename}", 'w') do |f|
         f.write "---\n"
         f.write "layout: post\n"
@@ -17,7 +18,7 @@ class Exporter::Jekyll < Exporter::Base
         f.write "published: #{article.publish?}\n"
         f.write "---\n\n"
 
-        f.write PandocRuby.convert(article.body, { :from => :html, :to => 'markdown+hard_line_breaks' }, 'atx-headers')
+        f.write PandocRuby.convert(clean_body(article.body), { :from => :html, :to => 'markdown+hard_line_breaks' }, 'atx-headers')
       end
     end
 

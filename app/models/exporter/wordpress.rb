@@ -32,7 +32,7 @@ class Exporter::Wordpress < Exporter::Base
               xml.pubDate article.published_at.try(:rfc2822)
               xml['dc'].creator @space.name
               xml['content'].encoded do
-                xml.cdata article.body
+                xml.cdata clean_body(article.body)
               end
               xml['wp'].post_date article.created_at
               xml['wp'].post_type 'post'

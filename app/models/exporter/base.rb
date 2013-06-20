@@ -33,4 +33,8 @@ class Exporter::Base
   def url_helper
     Rails.application.routes.url_helpers
   end
+
+  def clean_body(body)
+    helper.article_format_body(helper.article_remove_h1(body))
+  end
 end
