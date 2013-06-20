@@ -10,6 +10,7 @@ class Importer::Jekyll < Importer::Base
       begin
         content = File.read filename
         title = nil
+        category = nil
         status = 'draft'
 
         if content =~ /\A(---\s*\n.*?\n?)^(---\s*$\n?)/m
@@ -21,6 +22,7 @@ class Importer::Jekyll < Importer::Base
             content = "# #{title}\n\n" + content
           end
           status = (!data['published'] ? 'draft' : 'publish')
+          category = data['category']
         end
 
         _, date, urlname, _ = *filename.match(/\A#{tmp_path}\/_posts\/(\d+-\d+-\d+)-(.+)(\.[^.]+)\z/)
@@ -32,12 +34,13 @@ class Importer::Jekyll < Importer::Base
           :title        => title,
           :body         => body,
           :status       => status,
+          :category     => category,
           :urlname      => urlname,
           :created_at   => created_at,
           :published_at => published_at
         )
 
-        yield article
+        yield article, category
       rescue => e
         # ignore on production
         raise e unless Rails.env.production?

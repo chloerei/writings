@@ -38,7 +38,7 @@ class ImportTask
                  Importer::Wordpress.new(file, options)
                end
 
-    importer.import do |article|
+    importer.import do |article, category|
       article.space = space
       article.import_task = self
       article.save

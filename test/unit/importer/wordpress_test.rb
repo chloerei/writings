@@ -8,11 +8,12 @@ class ImporterWordpressTest < ActiveSupport::TestCase
 
   test "should import articles" do
     assert_difference "@space.articles.count" do
-      @importer.import do |article|
+      @importer.import do |article, category|
         article.space = @space
         article.save
         assert_equal Time.parse('2013-06-03 18:16:44 +0800'), article.created_at
         assert_equal Time.parse('Tue, 04 Jun 2013 09:00:57 -0000'), article.published_at
+        assert_equal 'Ruby', category
       end
     end
   end

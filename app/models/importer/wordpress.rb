@@ -14,6 +14,7 @@ class Importer::Wordpress < Importer::Base
           urlname = item.xpath('wp:post_name').text
           created_at = Time.parse(item.xpath('wp:post_date').text).utc# rescue nil
           publishded_at = Time.parse(item.xpath('pubDate').text).utc rescue nil
+          category = item.xpath('category').text
 
           article = Article.new(
             :title => title,
@@ -24,7 +25,7 @@ class Importer::Wordpress < Importer::Base
             :published_at => publishded_at
           )
 
-          yield article
+          yield article, category
         rescue => e
           # ignore on production
           raise e unless Rails.env.production?

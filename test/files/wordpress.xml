@@ -10,14 +10,15 @@
     <wp:base_blog_url>http://blog.localhost</wp:base_blog_url>
     <generator>http://writings.io</generator>
     <item>
-      <title>多人工作区功能上线</title>
+      <title>title</title>
       <link>http://blog.localhost/articles/1-workspaces</link>
       <pubDate>Tue, 04 Jun 2013 09:00:57 -0000</pubDate>
       <dc:creator>blog</dc:creator>
-      <content:encoded><![CDATA[<h1 id="ukj3oja1">多人工作区功能上线</h1><p id="7fjvpylw">昨天开始，writings.io 已经上线了一个新功能：多人工作区。下面我详细说明多人工作区的目标和它提供了什么工具。</p><p id="2yob85zk"><img src="https://writingsio.s3.amazonaws.com/attachments/51ad9fc64017a4d66b000051/1da55e70c15938c12fb64b760fbd2402/writings-workspace-1.png"></p><p id="2x6firdk"><b>* 多人工作区目前还未完善，将来可能有变动</b></p><h2 id="9tbejhpn">解决的问题和面向的用户</h2><p id="bkyn87w1">多人区为了解决多人写作的文章同步、段落批注和成员间讨论的需求而诞生。</p><p id="qh4pk1yq">什么时候需要多人写作？可以是职业编辑和作者之间的工作交流，也可以是写作爱好者合著文章时候的协作，又或者是多人维护一个博客，都可以选择 writings.io 多人工作区。</p><p id="04f0tfea">多人工作区和单人帐号一样，拥有一个二级域名，也可以绑定自己的独立域名。</p><h2 id="7rasohgg">功能详情</h2><h3 id="xd4bablk">编辑锁</h3><p id="6jlr1tos">为了防止多人编辑同一篇文章产生冲突，其中一个成员编辑某篇文章的时候，其他成员打开同一片文章会显示“编辑中”的提示，并将文章编辑器切换为只读状态。</p><p id="yfzh5ay5"><img src="https://writingsio.s3.amazonaws.com/attachments/51ada4394017a4d66b00005c/c9b3933fa337af62bce5aedae7697038/writings-workspace-2.png"></p><h3 id="cndqx0ag">智能的历史版本</h3><p id="uhq6jlhj">切换用户编辑时，系统会自动创建历史版本，清楚记录修改痕迹，防止作者失手丢失数据。</p><p id="ll9h7o3r"><img src="https://writingsio.s3.amazonaws.com/attachments/51ada57a4017a4d66b00005d/4c8705ff708fb341b53c06e92e802d20/writings-workspace-3.png"></p><h3 id="zghllaxc">段落批注</h3><p id="d0gj2y74">点击想要添加批注的段落，或者悬停在段落的右侧，就会出现添加段落按钮。让作者间对文字“锱铢必较”。</p><p id="ttbsdsju"><img src="https://writingsio.s3.amazonaws.com/attachments/51ada63a4017a4d66b00005e/bac4d293bca13a0fee65d988847f2f49/writings-workspace-4.png"></p><h2 id="rrbpqr33">批注汇总</h2><p id="qolxo6mv">所有段落批注既可在文章编辑页查阅，又可在讨论区统一浏览，不遗漏每一个批注。</p><p id="7yf887nb"><img src="https://writingsio.s3.amazonaws.com/attachments/51ada7f54017a4d66b000060/e8c43d0c690fcf0fb082285f956a1dbd/writings-workspace-5.png"></p><p id="ixd485s2">已解决的批注，可以将它标记为“归档”。</p><h3 id="z52nga5m">成员邀请</h3><p id="l5ocefjx">通过成员邀请功能，向对方发送一封邮件邀请加入。</p><p id="90q5wka7"><img src="https://writingsio.s3.amazonaws.com/attachments/51ada9784017a4d66b000068/c794dc87aad107b3037f495fb57be210/writings-workspace-7.png"></p><p id="ys3358qu">目前成员数目限制在5人，功能成熟稳定后有可能扩大。</p><h2 id="52b2ffb1">当前的限额</h2><p id="4jsai90v">每个帐号可以开1个多人工作区，工作区所占用的图片空间计入创建者的图片空间内。</p><p id="qaek0hei">更高的限额会在功能完善后公布，更多的工作区和协作者上限将会收费。</p><h2 id="cxyuezvv">更多</h2><p id="pszlx8f0">多人工作区的开发耗时1个月，遇到很多困难，包括技术上和方向上的，以至于我多次差点放弃。挣扎之后终于坚持做出来了，我自己是挺需要这些功能的，但我不知道其他人是否需要。所以，如果你对多人工作区有任何看法，欢迎在下方留言。</p><p id="x6k8njnf">未来打算添加的功能有：导入导出，epub 电子书制作。</p><p id="13vh6z1w">wrtings.io 持续进化中。</p>]]></content:encoded>
+      <content:encoded><![CDATA[body]]></content:encoded>
       <wp:post_date>2013-06-03 18:16:44 +0800</wp:post_date>
       <wp:post_type>post</wp:post_type>
       <wp:status>publish</wp:status>
+      <category domain="category"><![CDATA[Ruby]]></category>
     </item>
   </channel>
 </rss>

@@ -21,7 +21,7 @@ class ImportTaskTest < ActiveSupport::TestCase
     task = create :import_task, :space => @user, :file => File.open("#{Rails.root}/test/files/wordpress.xml"), :format => 'wordpress'
 
     assert_no_difference "@user.articles.count" do
-      assert_difference "@user.articles.unscoped.count" do
+      assert_difference ["@user.articles.unscoped.count"] do
         task.import
       end
     end
@@ -34,7 +34,7 @@ class ImportTaskTest < ActiveSupport::TestCase
     import_task.import
     assert_equal 1, import_task.articles.count
 
-    assert_difference "@user.articles.count" do
+    assert_difference ["@user.articles.count"] do
       import_task.confirm(import_task.article_ids)
     end
 

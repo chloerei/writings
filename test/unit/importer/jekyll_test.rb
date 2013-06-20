@@ -9,11 +9,12 @@ class Importer::JekyllTest < ActiveSupport::TestCase
   test "should import articles" do
     articles = []
     assert_difference "articles.count", 3 do
-      @importer.import do |article|
+      @importer.import do |article, category|
         articles << article
         case article.urlname
         when 'public-article'
           assert_equal 'publish', article.status
+          assert_equal 'Ruby', category
           assert_equal Time.parse('2013-06-03'), article.created_at
           assert_equal Time.parse('2013-06-03'), article.published_at
         when 'draft-article'
