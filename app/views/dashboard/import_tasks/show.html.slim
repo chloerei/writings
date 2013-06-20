@@ -30,7 +30,7 @@
                     th = t '.title'
                     th = t '.date'
                     th = t '.status'
-                  - @import_task.articles.each do |article|
+                  - @import_task.articles.asc(:created_at).each do |article|
                     tr
                       td = check_box_tag 'ids[]', article.id, true, :id => "ids_#{article.id}"
                       td = article.title
