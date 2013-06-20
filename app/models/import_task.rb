@@ -38,8 +38,11 @@ class ImportTask
       article.save
     end
     update_attribute :status, 'success'
-  rescue
+
+    SystemMailer.delay.import_task_success(id)
+  rescue => e
     update_attribute :status, 'error'
+    raise e
   end
 
   def confirm(ids)

@@ -6,11 +6,7 @@ class ImportTaskTest < ActiveSupport::TestCase
   end
 
   test "should import jekyll" do
-    task = ImportTask.new(
-      :space  => @user,
-      :file   => File.open("#{Rails.root}/test/files/blog-jekyll.zip"),
-      :format => 'jekyll'
-    )
+    task = create :import_task, :space => @user, :file => File.open("#{Rails.root}/test/files/blog-jekyll.zip"), :format => 'jekyll'
 
     assert_no_difference "@user.articles.count" do
       assert_difference "@user.articles.unscoped.count" do
@@ -22,11 +18,7 @@ class ImportTaskTest < ActiveSupport::TestCase
   end
 
   test "should import wordpress" do
-    task = ImportTask.new(
-      :space  => @user,
-      :file   => File.open("#{Rails.root}/test/files/blog-wordpress.xml"),
-      :format => 'wordpress'
-    )
+    task = create :import_task, :space => @user, :file => File.open("#{Rails.root}/test/files/blog-wordpress.xml"), :format => 'wordpress'
 
     assert_no_difference "@user.articles.count" do
       assert_difference "@user.articles.unscoped.count" do
@@ -48,6 +40,13 @@ class ImportTaskTest < ActiveSupport::TestCase
 
     assert_no_difference "@user.articles.count" do
       import_task.destroy
+    end
+  end
+
+  test "should send email after import success" do
+    import_task = create :import_task
+    assert_difference "Sidekiq::Extensions::DelayedMailer.jobs.size" do
+      import_task.import
     end
   end
 end

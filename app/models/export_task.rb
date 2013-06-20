@@ -51,7 +51,7 @@ class ExportTask
 
     update_attribute :status, 'success'
 
-    SystemMailer.export_task_success(id)
+    SystemMailer.delay.export_task_success(id)
   rescue => e
     update_attribute :status, 'error'
     raise e
