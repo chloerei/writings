@@ -13,7 +13,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
         append_title I18n.t('not_category')
       else
-        @category = @space.categories.where(:token => params[:category_id]).first
+        @category = @space.categories.where(:token => param_to_token(params[:category_id])).first
         @articles = @articles.where(:category_id => @category.try(:id) || -1)
 
         append_title @category.name if @category
@@ -51,7 +51,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   def new
     @article = @space.articles.new
     if params[:category_id]
-      @article.category = @space.categories.where(:token => params[:category_id]).first
+      @article.category = @space.categories.where(:token => param_to_token(params[:category_id])).first
     end
     append_title @article.title
     render :edit, :layout => false
@@ -113,7 +113,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def category
-    @article.category = @space.categories.find_by(:token => params[:article][:category_id])
+    @article.category = @space.categories.find_by(:token => param_to_token(params[:article][:category_id]))
     @article.save
     render :update
   end
@@ -160,7 +160,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     base_params = params.require(:article).permit(:title, :body, :urlname, :status, :save_count)
 
     if params[:article][:category_id]
-      base_params.merge!(:category => @space.categories.where(:token => params[:article][:category_id]).first)
+      base_params.merge!(:category => @space.categories.where(:token => param_to_token(params[:article][:category_id])).first)
     end
 
     base_params

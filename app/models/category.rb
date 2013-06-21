@@ -9,4 +9,12 @@ class Category
 
   validates_presence_of :name
   validates_uniqueness_of :name, :scope => :space_id
+
+  def to_param
+    if name.parameterize.present?
+      "#{token}-#{name.parameterize}"
+    else
+      token
+    end
+  end
 end

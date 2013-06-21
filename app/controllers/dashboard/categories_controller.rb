@@ -44,7 +44,7 @@ class Dashboard::CategoriesController < Dashboard::BaseController
   private
 
   def find_category
-    @category = @space.categories.find_by(:token => params[:id])
+    @category = @space.categories.find_by(:token => param_to_token(params[:id]))
   end
 
   def category_params

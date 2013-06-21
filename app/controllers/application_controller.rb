@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def param_to_token(param)
+    param.split('-').first
+  end
+
   def render_404
     render 'errors/404', :layout => 'error', :status => 404
   end
