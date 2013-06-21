@@ -11,10 +11,10 @@ class SpaceTokenTest < ActiveSupport::TestCase
   end
 
   test "should generate token" do
-    assert_equal nil, @space["space_token_test/foo_next_id"]
+    assert_equal nil, @space["space_token_test_foos_next_id"]
     foo = Foo.new :space => @space
     foo.save
     assert_not_nil foo.token
-    assert_equal 1, @space.reload["space_token_test/foo_next_id"]
+    assert_equal 1, @space.reload["space_token_test_foos_next_id"]
   end
 end

@@ -5,7 +5,7 @@ class Dashboard::NotesControllerTest < ActionController::TestCase
     @user = create :user
     @workspace = create :workspace, :creator => @user
     @article = create :article, :space => @workspace
-    @note = create :note, :article => @article, :user => @user, :workspace => @workspace
+    @note = create :note, :article => @article, :user => @user, :space => @workspace
     login_as @user
   end
 

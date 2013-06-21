@@ -4,8 +4,8 @@ class Dashboard::CommentsControllerTest < ActionController::TestCase
   def setup
     @user = create :user
     @workspace = create :workspace, :creator => @user
-    @discussion = create :discussion, :workspace => @workspace, :user => @user
-    @comment = create :comment, :discussion => @discussion, :workspace => @workspace
+    @discussion = create :discussion, :space => @workspace, :user => @user
+    @comment = create :comment, :discussion => @discussion, :space => @workspace
     login_as @user
   end
 

@@ -12,7 +12,7 @@ module SpaceToken
   end
 
   def set_token
-    self.token ||= space.inc("#{self.class.name.underscore}_next_id", 1).to_s
+    self.token ||= space.inc("#{self.class.collection_name}_next_id", 1).to_s
   end
 
   def to_param

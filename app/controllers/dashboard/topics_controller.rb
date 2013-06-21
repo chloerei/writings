@@ -10,7 +10,7 @@ class Dashboard::TopicsController < Dashboard::BaseController
   end
 
   def create
-    @topic = Topic.create topic_params.merge(:workspace => @space, :user => current_user)
+    @topic = Topic.create topic_params.merge(:space => @space, :user => current_user)
   end
 
   def edit
@@ -41,7 +41,7 @@ class Dashboard::TopicsController < Dashboard::BaseController
   end
 
   def find_topic
-    @topic = @space.topics.find_by :token => params[:id]
+    @topic = @space.discussions.find_by :token => params[:id], :_type => 'Topic'
   end
 
   def require_author
