@@ -10,19 +10,19 @@ class Importer::Wordpress < Importer::Base
           if title.present?
             body = "<h1>#{title}</h1>\n" + body
           end
-          published = (item.xpath('wp:status').text == 'publish' ? true : false)
+          status = (item.xpath('wp:status').text == 'publish' ? 'publish' : 'draft')
           urlname = item.xpath('wp:post_name').text
           created_at = Time.parse(item.xpath('wp:post_date').text).utc# rescue nil
           publishded_at = Time.parse(item.xpath('pubDate').text).utc rescue nil
           category = item.xpath('category').text
 
           article = ImportArticle.new(
-            :title => title,
-            :body => body,
-            :published => published,
-            :category => category,
-            :urlname => urlname,
-            :created_at => created_at,
+            :title        => title,
+            :body         => body,
+            :status       => status,
+            :category     => category,
+            :urlname      => urlname,
+            :created_at   => created_at,
             :published_at => publishded_at
           )
 

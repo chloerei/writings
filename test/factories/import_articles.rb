@@ -4,7 +4,7 @@ FactoryGirl.define do
     body 'body'
     sequence(:urlname) {|n| "#{n}import-article-url" }
     category 'category'
-    published true
+    status 'publish'
     published_at Time.now
     import_task
   end

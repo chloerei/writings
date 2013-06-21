@@ -3,10 +3,10 @@
     .pull-left
       ul.top-nav
         li
-          a href=(dashboard_articles_index_path) title=(t '.return')
+          a.top-nav-button href=(dashboard_articles_index_path) title=(t '.return')
             i.icon-level-up.icon-rotate-270
         li
-          a href=(restore_dashboard_article_path(:id => @article)) data-method='put'
+          a.top-nav-button href=(restore_dashboard_article_path(:id => @article)) data-method='put'
             i.icon-undo
             = ' '
             = t '.restore'

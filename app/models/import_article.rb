@@ -6,7 +6,7 @@ class ImportArticle
   field :body
   field :urlname
   field :category
-  field :published
+  field :status
   field :published_at, :type => Time
 
   belongs_to :import_task
@@ -22,7 +22,7 @@ class ImportArticle
       :body         => body,
       :urlname      => checked_urlname,
       :category     => space_category,
-      :status       => published? ? 'publish' : 'draft',
+      :status       => status,
       :created_at   => created_at,
       :published_at => published_at
     )

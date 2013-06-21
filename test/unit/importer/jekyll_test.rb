@@ -13,12 +13,12 @@ class Importer::JekyllTest < ActiveSupport::TestCase
         articles << article
         case article.urlname
         when 'public-article'
-          assert_equal true, article.published?
+          assert_equal 'publish', article.status
           assert_equal 'Ruby', article.category
           assert_equal Time.parse('2013-06-03'), article.created_at
           assert_equal Time.parse('2013-06-03'), article.published_at
         when 'draft-article'
-          assert_equal false, article.published?
+          assert_equal 'draft', article.status
         end
       end
     end

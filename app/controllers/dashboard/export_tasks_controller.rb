@@ -3,7 +3,7 @@ class Dashboard::ExportTasksController < Dashboard::BaseController
   end
 
   def create
-    @category = @space.categories.where(:urlname => params[:export_task][:category_id]).first
+    @category = @space.categories.where(:token => params[:export_task][:category_id]).first
 
     task = ExportTask.create(
       :space    => @space,
