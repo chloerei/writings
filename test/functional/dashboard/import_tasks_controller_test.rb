@@ -19,6 +19,9 @@ class Dashboard::ImportTasksControllerTest < ActionController::TestCase
     import_task = create :import_task, :space => @user, :user => @user
     import_task.import
 
+    get :show, :space_id => @user, :id => import_task
+    assert_response :success, @response.body
+
     assert_difference "@user.articles.count" do
       post :confirm, :space_id => @user, :id => import_task, :ids => import_task.import_article_ids
     end
