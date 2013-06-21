@@ -28,12 +28,14 @@
                   tr
                     th = check_box_tag 'all', nil, true, :id => 'select-all'
                     th = t '.title'
+                    th = t '.category'
                     th = t '.status'
                     th = t '.date'
                   - @import_task.import_articles.asc(:created_at).each do |article|
                     tr
                       td = check_box_tag 'ids[]', article.id, true, :id => "ids_#{article.id}"
                       td = article.title
+                      td = article.category
                       td = article.published? ? t('publish') : t('draft')
                       td = article.created_at.to_date
             .field
