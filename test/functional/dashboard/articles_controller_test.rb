@@ -20,7 +20,7 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
     get :index, :space_id => @user, :status => 'publish'
     assert_response :success, @response.body
 
-    get :index, :space_id => @user, :category_id => @category.urlname, :status => 'publish'
+    get :index, :space_id => @user, :category_id => @category, :status => 'publish'
     assert_response :success, @response.body
 
     get :index, :space_id => @user, :format => :js
@@ -34,7 +34,7 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
     end
 
     assert_difference ["@user.articles.count", "@category.articles.count"] do
-      post :create, :space_id => @user, :format => :json, :article => attributes_for(:article).merge(:category_id => @category.urlname)
+      post :create, :space_id => @user, :format => :json, :article => attributes_for(:article).merge(:category_id => @category.token)
       assert_response :success, @response.body
     end
 

@@ -32,12 +32,6 @@
               = f.label :name
               = f.text_field :name
             .field
-              = f.label :urlname
-              = f.text_field :urlname
-            .field
-              = f.label :description
-              = f.text_area :description
-            .field
               = f.submit t('submit')
             hr
             = link_to t('.delete_category'), dashboard_category_path(:id => @category), :method => :delete, :confirm => t('.delete_category_confirm', :name => @category.name), :class => 'button button-danger'

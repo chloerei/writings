@@ -11,7 +11,7 @@ class Dashboard::CategoriesController < Dashboard::BaseController
     if @category.save
       respond_to do |format|
         format.js
-        format.json { render :json => @category.as_json(:only => [:urlname, :name]) }
+        format.json { render :json => @category.as_json(:only => [:token, :name]) }
       end
     else
       respond_to do |format|
@@ -27,7 +27,7 @@ class Dashboard::CategoriesController < Dashboard::BaseController
   def update
     if @category.update_attributes category_params
       respond_to do |format|
-        format.json { render :json => @category.as_json(:only => [:urlname, :name]) }
+        format.json { render :json => @category.as_json(:only => [:token, :name]) }
       end
     else
       respond_to do |format|
@@ -44,10 +44,10 @@ class Dashboard::CategoriesController < Dashboard::BaseController
   private
 
   def find_category
-    @category = @space.categories.find_by(:urlname => params[:id])
+    @category = @space.categories.find_by(:token => params[:id])
   end
 
   def category_params
-    params.require(:category).permit(:name, :urlname, :description)
+    params.require(:category).permit(:name)
   end
 end

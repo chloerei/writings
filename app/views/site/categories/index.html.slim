@@ -7,8 +7,5 @@
           - @categories.each do |category|
             section
               h1 = link_to category.name, site_category_path(category)
-              .summary
-                a href=(site_category_path(category))
-                  = simple_format category.description
               .info
                 = t 'articles_count', :count => category.articles.count

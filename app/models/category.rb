@@ -3,18 +3,23 @@ class Category
   include ActiveModel::ForbiddenAttributesProtection
 
   field :name
-  field :description
-  field :urlname
+  field :token, :type => Integer
+
+  index({ :space_id => 1, :token => 1 }, { :unique => true })
 
   has_many :articles, :dependent => :nullify
   belongs_to :space
 
-  validates :name, :urlname, :presence => true
-  validates :urlname, :uniqueness => { :scope => :space_id, :case_sensitive => false }, :format => { :with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('urlname_valid_message') }
+  validates_presence_of :name
+  validates_uniqueness_of :name
 
-  index({ :space_id => 1, :urlname => 1 }, { :unique => true })
+  before_create :set_token
+
+  def set_token
+    self.token ||= space.inc(:category_next_id, 1)
+  end
 
   def to_param
-    urlname
+    token.to_s
   end
 end

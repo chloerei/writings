@@ -7,16 +7,9 @@
   .modal-content
     = form_for :article, :remote => true, :method => :put, :html => { :id => 'select-category-form', :data => {'space' => @space.name } } do |f|
       .field
-        .dropdown
-          a.dropdown-toggle.button href="#" = t('not_category')
-          ul.dropdown-menu
-            - @space.categories.each do |category|
-              li
-                a href="#" data-category-id=(category.urlname) = category.name
-            li
-              a href="#" data-category-id=('null') = t('not_category')
+        = f.select :category_id, options_from_collection_for_select(@space.categories, :token, :name)
+        '
         = link_to t('.new_category'), '#add-category-modal', :data => { :toggle => :modal }
-        = f.hidden_field :category_id, :id => 'select-category-id-input'
       .field
         = f.submit t('save')
         = button_tag t('cancel'), :data => { :close => :modal }
