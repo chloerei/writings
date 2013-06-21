@@ -2,6 +2,7 @@ class Article
   include Mongoid::Document
   include Mongoid::Timestamps
   include ActiveModel::ForbiddenAttributesProtection
+  include SpaceToken
 
   field :title
   field :body
@@ -12,8 +13,6 @@ class Article
   field :last_version_save_count, :type => Integer, :default => 0
   field :published_at, :type => Time
 
-  field :token
-  index({ :space_id => 1, :token => 1 }, { :unique => true })
   index({ :space_id => 1, :old_url => 1 }, { :sparse => true })
 
   belongs_to :space
@@ -78,18 +77,6 @@ class Article
 
   def title
     read_attribute(:title).blank? ? I18n.t(:untitled) : read_attribute(:title)
-  end
-
-  before_validation :set_token
-
-  def set_token
-    if new_record?
-      self.token ||= space.inc(:article_next_id, 1).to_s
-    end
-  end
-
-  def to_param
-    self.token.to_s
   end
 
   def lock_by(user)
