@@ -12,7 +12,6 @@ class ImportArticle
   belongs_to :import_task
 
   def import
-    checked_urlname = import_task.space.articles(:urlname => urlname).exists? ? nil : urlname
     space_category = if category.present?
                        import_task.space.categories.find_or_create_by(:name => category)
                      end
@@ -20,7 +19,7 @@ class ImportArticle
     import_task.space.articles.create(
       :title        => title,
       :body         => body,
-      :urlname      => checked_urlname,
+      :urlname      => urlname.parameterize,
       :category     => space_category,
       :status       => status,
       :created_at   => created_at,
