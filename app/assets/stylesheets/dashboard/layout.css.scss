@@ -165,26 +165,8 @@ table.nice-table {
     @include box-shadow(0 1px 3px 1px rgba(0, 0, 0, 0.3));
   }
 
-  .header {
-    margin-bottom: 20px;
-
-    &.margin {
-      padding-bottom: 20px;
-      border-bottom: 1px solid #ccc;
-    }
-
-    h1 {
-      margin: 0;
-
-      a {
-        color: #333;
-      }
-    }
-  }
-
   .main-nav {
     margin-bottom: 20px;
-    border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 
     ul {
@@ -195,7 +177,7 @@ table.nice-table {
       float: left;
 
       a {
-        padding: 10px 15px;
+        padding: 10px;
         display: inline-block;
       }
 
