@@ -1,7 +1,10 @@
+set :default_environment, {
+  'PATH' => "/home/rei/.cabal/bin:$PATH"
+}
+
 set :rvm_type, :user
 require "rvm/capistrano"
 require 'sidekiq/capistrano'
-
 require 'bundler/capistrano'
 
 set :application, "writings.io"
