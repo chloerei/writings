@@ -36,6 +36,7 @@ class Exporter::Wordpress < Exporter::Base
               end
               xml['wp'].post_date article.created_at
               xml['wp'].post_type 'post'
+              xml['wp'].post_name (article.urlname.present? ? "#{article.token}-#{article.urlname}" : article.token)
               xml['wp'].status article.status
 
               if article.category
