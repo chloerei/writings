@@ -270,9 +270,8 @@ select {
 
 fieldset {
   border: 0;
-  border-bottom: 1px solid #ccc;
-  padding: 0 0 34px;
-  margin: 0 0 34px;
+  padding: 0;
+  margin: 0 0 20px;
   @include clearfix();
 
   &:last-child {

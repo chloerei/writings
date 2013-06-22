@@ -1,20 +1,20 @@
 class Category
   include Mongoid::Document
   include ActiveModel::ForbiddenAttributesProtection
+  include SpaceToken
 
   field :name
-  field :description
-  field :urlname
 
   has_many :articles, :dependent => :nullify
-  belongs_to :space
 
-  validates :name, :urlname, :presence => true
-  validates :urlname, :uniqueness => { :scope => :space_id, :case_sensitive => false }, :format => { :with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('urlname_valid_message') }
-
-  index({ :space_id => 1, :urlname => 1 }, { :unique => true })
+  validates_presence_of :name
+  validates_uniqueness_of :name, :scope => :space_id
 
   def to_param
-    urlname
+    if name.parameterize.present?
+      "#{token}-#{name.parameterize}"
+    else
+      token
+    end
   end
 end

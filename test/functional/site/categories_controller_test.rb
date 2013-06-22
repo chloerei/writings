@@ -9,12 +9,12 @@ class Site::CategoriesControllerTest < ActionController::TestCase
   end
 
   test "should get show" do
-    get :show, :id => @category.urlname
+    get :show, :id => @category
     assert_response :success, @response.body
   end
 
   test "should get feed" do
-    get :feed, :id => @category.urlname, :format => :rss
+    get :feed, :id => @category, :format => :rss
     assert_response :success, @response.body
   end
 end

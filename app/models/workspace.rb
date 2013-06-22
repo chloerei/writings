@@ -9,9 +9,6 @@ class Workspace < Space
   belongs_to :creator, :class_name => 'User'
   has_and_belongs_to_many :members, :inverse_of => nil, :class_name => 'User'
   has_many :invitations, :dependent => :delete
-  has_many :discussions, :dependent => :delete
-  has_many :topics, :dependent => :delete
-  has_many :comments, :dependent => :delete
 
   index({ :creator_id => 1 })
   index({ :member_ids => 1 })

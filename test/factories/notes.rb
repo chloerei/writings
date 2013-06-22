@@ -1,9 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :note do
-    user
-    workspace
+  factory :note, :parent => :discussion, :class => 'Note' do
     article
     body 'text'
     element_id 'aaaa'

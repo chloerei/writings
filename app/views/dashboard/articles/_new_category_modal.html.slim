@@ -10,15 +10,5 @@
         = f.label :name
         = f.text_field :name
       .field
-        = f.label :urlname
-        .input-prepend
-          .add-on
-            = "#{@space.host}/categories/"
-          .input
-            = f.text_field :urlname, :placeholder => 'urlname'
-      .field
-        = f.label :description
-        = f.text_area :description
-      .field
         = f.submit t('submit')
         = f.submit t('cancel'), :data => { :close => :modal }

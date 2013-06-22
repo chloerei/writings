@@ -19,7 +19,9 @@ module Publish
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(
+      #{config.root}/app/models/concerns
+    )
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -70,6 +72,11 @@ module Publish
   end
 end
 
+SafeYAML::OPTIONS[:default_mode] = :unsafe
 ALLOW_LOCALE = Dir["#{Rails.root}/config/locales/*.yml"].map {|f| File.basename(f).split('.').first}
 APP_CONFIG = YAML.load_file("#{Rails.root}/config/app_config.yml")[Rails.env]
 DOMAIN_LENGTH = APP_CONFIG["host"].split('.').length - 1
+
+Mime::Type.register "text/markdown", :md
+Mime::Type.register "application/vnd.openxmlformats-officedocument.wordprocessingml.document", :docx
+Mime::Type.register "application/vnd.oasis.opendocument.text", :odt

@@ -2,6 +2,7 @@ class Article
   include Mongoid::Document
   include Mongoid::Timestamps
   include ActiveModel::ForbiddenAttributesProtection
+  include SpaceToken
 
   field :title
   field :body
@@ -10,20 +11,21 @@ class Article
   field :status, :default => 'draft'
   field :save_count, :type => Integer, :default => 0
   field :last_version_save_count, :type => Integer, :default => 0
-  field :published_at
+  field :published_at, :type => Time
 
-  field :token
-  index({ :space_id => 1, :token => 1 }, { :unique => true })
   index({ :space_id => 1, :old_url => 1 }, { :sparse => true })
 
   belongs_to :space
   belongs_to :category
   belongs_to :last_edit_user, :class_name => 'User'
+  belongs_to :import_task
 
   has_many :versions, :order => [:created_at, :desc]
   has_many :notes
 
   validates :urlname, :format => { :with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('urlname_valid_message'), :allow_blank => true }
+
+  default_scope where(:import_task_id => nil)
 
   scope :publish, -> { where(:status => 'publish') }
   scope :draft, -> { where(:status => 'draft') }
@@ -48,7 +50,7 @@ class Article
 
   def set_published_at
     if status_changed? && publish?
-      self.published_at = Time.now.utc
+      self.published_at ||= Time.now.utc
     end
   end
 
@@ -75,18 +77,6 @@ class Article
 
   def title
     read_attribute(:title).blank? ? I18n.t(:untitled) : read_attribute(:title)
-  end
-
-  before_validation :set_token
-
-  def set_token
-    if new_record?
-      self.token ||= space.inc(:article_next_id, 1).to_s
-    end
-  end
-
-  def to_param
-    self.token.to_s
   end
 
   def lock_by(user)

@@ -1,0 +1,7 @@
+<%= @export_task.space.display_name %> export task is complete.
+
+Visit this link to download archive:
+
+<%= dashboard_export_task_url(:space_id => @export_task.space, :id => @export_task, :host => APP_CONFIG['host']) %>
+
+Data will keep 1 day in server.

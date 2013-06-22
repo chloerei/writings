@@ -3,7 +3,7 @@ class Dashboard::CommentsController < Dashboard::BaseController
 
   def create
     @discussion = @space.discussions.find_by :token => params[:discussion_id]
-    @comment = @discussion.comments.create comment_params.merge(:workspace => @space, :user => current_user)
+    @comment = @discussion.comments.create comment_params.merge(:space => @space, :user => current_user)
   end
 
   def edit

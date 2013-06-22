@@ -4,7 +4,7 @@ class Dashboard::TopicsControllerTest < ActionController::TestCase
   def setup
     @user = create :user
     @workspace = create :workspace, :creator => @user
-    @topic = create :topic, :workspace => @workspace, :user => @user
+    @topic = create :topic, :space => @workspace, :user => @user
     login_as @user
   end
 
@@ -34,7 +34,7 @@ class Dashboard::TopicsControllerTest < ActionController::TestCase
   end
 
   test "should destroy topic" do
-    assert_difference "@workspace.topics.count", -1 do
+    assert_difference "@workspace.discussions.count", -1 do
       delete :destroy, :space_id => @workspace, :id => @topic, :format => :js
     end
   end

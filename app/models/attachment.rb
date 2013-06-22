@@ -13,7 +13,7 @@ class Attachment
   belongs_to :space
   belongs_to :user
 
-  mount_uploader :file, FileUploader
+  mount_uploader :file, AttachmentUploader
 
   before_create :set_file_size
   after_create :inc_user_storage_used

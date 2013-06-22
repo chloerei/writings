@@ -1,0 +1,53 @@
+#main
+  .container
+    .inner
+      = render 'dashboard/share/main_header'
+      section
+        .section-title
+          h3
+            - case @import_task.status
+            - when 'success'
+              = t '.task_success'
+            - when 'error'
+              = t '.task_error'
+            - else
+              = t '.task_processing'
+            = ' [ '
+            = @import_task.read_attribute :file
+            = ' / '
+            = l @import_task.created_at, :format => :long
+            = ' ]'
+        - case @import_task.status
+        - when 'success'
+          p
+            = t '.task_success_detail'
+          = form_tag confirm_dashboard_import_task_path(:id => @import_task) do
+            .field
+              table.nice-table#articles
+                tbody
+                  tr
+                    th = check_box_tag 'all', nil, true, :id => 'select-all'
+                    th = t '.title'
+                    th = t '.category'
+                    th = t '.status'
+                    th = t '.date'
+                  - @import_task.import_articles.desc(:created_at).each do |article|
+                    tr
+                      td = check_box_tag 'ids[]', article.id, true, :id => "ids_#{article.id}"
+                      td = article.title
+                      td = article.category
+                      td = t(article.status)
+                      td = article.created_at.to_date
+            .field
+              = submit_tag t('.import_select'), :class => 'button-green'
+
+        - when 'error'
+          p
+            = t '.task_error_detail'
+          p
+            = mail_to 'chloerei@gmail.com', nil, :subject => t('.task_error'), :body => "ImportTask: #{@import_task.id}\n", :class => 'button'
+        - else
+          p
+            = t '.task_processing_detail'
+          p
+            = link_to t('.refresh'), url_for, :class => 'button'

@@ -1,0 +1,7 @@
+<%= @import_task.space.display_name %> 的导入任务已经完成。
+
+访问以下链接确认导入条目：
+
+<%= dashboard_import_task_url(:space_id => @import_task.space, :id => @import_task, :host => APP_CONFIG['host']) %>
+
+数据保留一天。

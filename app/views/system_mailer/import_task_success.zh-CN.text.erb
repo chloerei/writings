@@ -1,0 +1,7 @@
+<%= @import_task.space.display_name %> import task is complete.
+
+Visit this link to confirm import items:
+
+<%= dashboard_import_task_url(:space_id => @import_task.space, :id => @import_task, :host => APP_CONFIG['host']) %>
+
+Data will keep 1 day in server.

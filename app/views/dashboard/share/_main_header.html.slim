@@ -1,7 +1,3 @@
-.header
-  h1
-    a href=(dashboard_root_path)
-      = @space.display_name
 nav.main-nav.clearfix
   ul.pull-left
     li class=(controller_name == 'articles' ? 'actived' : nil)
@@ -12,6 +8,10 @@ nav.main-nav.clearfix
     li class=(controller_name == 'attachments' ? 'actived' : nil)
       = link_to t('.pictures'), dashboard_attachments_path
   ul.pull-right
+    li class=(controller_name == 'import_tasks' ? 'actived' : nil)
+      = link_to t('.import'), dashboard_import_tasks_path
+    li class=(controller_name == 'export_tasks' ? 'actived' : nil)
+      = link_to t('.export'), dashboard_export_tasks_path
     - if @space.is_a? Workspace
       li class=(controller_name == 'members' ? 'actived' : nil)
         = link_to t('.members'), dashboard_members_path

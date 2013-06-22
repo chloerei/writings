@@ -1,4 +1,3 @@
----
 en:
   en: English
   zh-CN: Chinese(Simplified)
@@ -26,6 +25,8 @@ en:
   urlname_valid_message: Allow character, number and '-'
   page_not_found: Page not found
   server_error: Server error
+  export_task_success_email_subject: Export success
+  import_task_success_email_subject: Import parse success
   older: Older
   newer: Newer
   next_page: Next page
@@ -59,7 +60,7 @@ en:
   workspaces:
     new:
       new_workspace: New workspace
-      remaining_workspace: 剩余 %{count} 个工作区额度
+      remaining_workspace: remaining %{count} space
     limit:
       new_workspace: New workspace
       workspace_limit: No workspace quote
@@ -90,6 +91,8 @@ en:
         discussions: Discussions
         pictures: Pictures
         members: Members
+        import: Import
+        export: Export
         settings: Workspace settings
       settings_nav:
         personal_settings: Psersonal settings
@@ -113,6 +116,44 @@ en:
         url: URL
         create_link: Create link
         unlink: Unlink
+    import_tasks:
+      index:
+        format: Format
+        file: File
+        start_import: Start import
+        import: Import
+        help: Help
+      show:
+        title: Title
+        date: Date
+        status: Status
+        task_success: Parse success
+        task_success_detail: 'Please confirm import items:'
+        task_error: Parse error
+        task_error_detail: Please contact admin：
+        task_processing: Parsing archive
+        task_processing_detail: 'You will receive system email when parse complete,
+          or refresh this page to check parse status:'
+        refresh: Refresh
+        import_select: Import selected
+    export_tasks:
+      index:
+        all: All
+        format: Format
+        content: Content
+        start_export: Start export
+        export: Export
+        help: Help
+      show:
+        task_success: Export complete
+        task_success_detail: 'Click download button to start:'
+        task_error: Export error
+        task_error_detail: 'Please contact admin:'
+        task_processing: Export processing
+        task_processing_detail: 'You will receive system email when parse complete,
+          or refresh this page to check parse status:'
+        download: Download
+        refresh: Refresh
     settings:
       show:
         workspace_settings: Settings
@@ -373,3 +414,4 @@ en:
         %{allowed_types}'
       store_limit: not enough attachment space
       fetch_error: Fetch error, can't access resource, please use local upload.
+      blank: 不能为空

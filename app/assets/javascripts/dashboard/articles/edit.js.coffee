@@ -30,11 +30,7 @@ class ArticleEdit
     $("#pick-up-button").on "click", (event) => @pickUpTopbar(event)
 
     $("#new-category-form").on "ajax:success", (event, data) ->
-      $li = $("<li><a href=\"#\">")
-      $li.find("a").text(data.name).data "category-id", data.urlname
-      $("#category-form .dropdown-menu").prepend $li
-      $("#category-form .dropdown-toggle").text data.name
-      $("#article-category-id").val data.urlname
+      $('#article-category-id').append("<option value=#{data.token}>#{data.name}</option>").val(data.token)
       Dialog.hide "#new-category-modal"
 
     $("#category-form .dropdown").on "click", ".dropdown-menu li a", (event) ->
@@ -183,7 +179,6 @@ class ArticleEdit
   saveCategory: (event) ->
     event.preventDefault()
     categoryId = $("#article-category-id").val()
-    categoryName = $("#category-form .dropdown-toggle").text()
     if @isPersisted()
       @updateArticle
         article:
@@ -236,6 +231,7 @@ class ArticleEdit
         @saveCompelete()
       @article.data "id", data.token
       @updateViewButton data
+      @buildDownloadList()
       history.replaceState null, null, "/~#{@space}/articles/" + data.token + "/edit"
       $('#urlname-modal .article-id').text(data.token)
       @saveArticle()
@@ -251,6 +247,14 @@ class ArticleEdit
       @showRetryButton()
     ).always =>
       @creating = false
+
+  buildDownloadList: () ->
+    $('#download').closest('li').removeClass('hide')
+    $('#download .dropdown-menu').append("
+    <li><a href='/~#{@space}/articles/#{@article.data('id')}.md' >Markdown (.md)</a></li>
+    <li><a href='/~#{@space}/articles/#{@article.data('id')}.odt' >OpenDocument (.odt)</a></li>
+    <li><a href='/~#{@space}/articles/#{@article.data('id')}.docx' >Microsoft Word (.docx)</a></li>
+    ")
 
   updateViewButton: (data) ->
     $("#view-button").attr "href", data.url

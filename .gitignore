@@ -5,3 +5,4 @@
 /config/app_config.yml
 /config/mongoid.yml
 /public/uploads
+/data/*

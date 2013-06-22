@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :discussion do
-    workspace
     user
+    space
   end
 end
