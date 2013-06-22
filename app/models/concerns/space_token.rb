@@ -8,6 +8,7 @@ module SpaceToken
     before_create :set_token
     index({ :space_id => 1, :token => 1 }, { :unique => true })
 
+    validates_uniqueness_of :token, :scope => :space_id
     validates_presence_of :space
   end
 
