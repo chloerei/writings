@@ -56,7 +56,7 @@ class ExportTask
     update_attribute :status, 'success'
 
     SystemMailer.delay.export_task_success(id)
-    ImportTask.delay_for(1.day).delete_task(id)
+    ExportTask.delay_for(1.day).delete_task(id)
   rescue => e
     update_attribute :status, 'error'
     raise e
