@@ -128,6 +128,8 @@ zh-CN:
         format: "格式"
         file: "文件"
         start_import: "开始导入"
+        import: "导入"
+        help: "帮助"
       show:
         title: "标题"
         date: "日期"
@@ -147,6 +149,8 @@ zh-CN:
         format: "格式"
         content: "内容"
         start_export: "开始导出"
+        export: "导出"
+        help: "帮助"
       show:
         task_success: "导出完成"
         task_success_detail: "点击下载按钮下载存档："

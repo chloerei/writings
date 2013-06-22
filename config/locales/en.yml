@@ -121,6 +121,8 @@ en:
         format: Format
         file: File
         start_import: Start import
+        import: Import
+        help: Help
       show:
         title: Title
         date: Date
@@ -130,7 +132,8 @@ en:
         task_error: Parse error
         task_error_detail: Please contact admin：
         task_processing: Parsing archive
-        task_processing_detail: 'You will receive system email when parse complete, or refresh this page to check parse status:'
+        task_processing_detail: 'You will receive system email when parse complete,
+          or refresh this page to check parse status:'
         refresh: Refresh
         import_select: Import selected
     export_tasks:
@@ -139,13 +142,16 @@ en:
         format: Format
         content: Content
         start_export: Start export
+        export: Export
+        help: Help
       show:
         task_success: Export complete
         task_success_detail: 'Click download button to start:'
         task_error: Export error
         task_error_detail: 'Please contact admin:'
         task_processing: Export processing
-        task_processing_detail: 'You will receive system email when parse complete, or refresh this page to check parse status:'
+        task_processing_detail: 'You will receive system email when parse complete,
+          or refresh this page to check parse status:'
         download: Download
         refresh: Refresh
     settings:
@@ -408,3 +414,4 @@ en:
         %{allowed_types}'
       store_limit: not enough attachment space
       fetch_error: Fetch error, can't access resource, please use local upload.
+      blank: 不能为空
