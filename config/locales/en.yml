@@ -127,6 +127,7 @@ en:
         title: Title
         date: Date
         status: Status
+        Category: Category
         task_success: Parse success
         task_success_detail: 'Please confirm import items:'
         task_error: Parse error

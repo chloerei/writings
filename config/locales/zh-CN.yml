@@ -133,6 +133,7 @@ zh-CN:
       show:
         title: "标题"
         date: "日期"
+        category: "分类"
         status: "状态"
         task_success: "解析完成"
         task_success_detail: "请确认导入条目"
