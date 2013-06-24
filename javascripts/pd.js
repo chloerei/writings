@@ -1,6 +1,6 @@
 function prettyDate ( timeObj ) {
   function setToStartOfDay( timeObject ) {
-    return new Date(timeObject.getUTCFullYear(), timeObject.getUTCMonth(), timeObject.getUTCDate(), 0, 0, 0, 0)
+    return new Date(timeObject.getUTCFullYear(), timeObject.getUTCMonth(), timeObject.getUTCDate(), 0, 0, 0, 0);
   }
   function pluralize(count, singular, plural) {
     return count + " " + ( (count == 1) ? singular : (plural || singular + "s") );
@@ -21,3 +21,15 @@ function prettyDate ( timeObj ) {
     day_diff < 366 && pluralize( Math.round( day_diff / 7 / 4 ), "month") + " ago" ||
     day_diff >= 366 && pluralize( Math.round( day_diff / 7 / 4 / 12 ), "year") + " ago";
 }
+
+$(function(){
+
+  $("body").keyup(function(event) {
+
+		if($(".left > a").length == 1 && event.which == 37) 
+			location.replace($(".left >a").attr("href"));
+		else if($(".right > a").length == 1 && event.which == 39)
+			location.replace($(".right >a").attr("href"));
+	});
+
+});
