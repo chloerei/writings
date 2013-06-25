@@ -25,14 +25,25 @@ class ArticleDownloadTest < ActiveSupport::TestCase
     assert File.exists?("#{@exporter.tmp_path}/images")
   end
 
+  test "parse_image should remove unsafe img src" do
+    @article.body = <<-EOF
+    <img src="file:/etc/passwd">
+    <img src="/etc/passwd">
+    EOF
+    exporter = ArticleDownload.new(@article)
+    exporter.parse_images
+    assert_equal 0, Dir["#{exporter.tmp_path}/images/*"].count
+    assert_equal 0, exporter.doc.css('img').count
+  end
+
   test "dump_body" do
     @exporter.dump_body
     assert File.exists?("#{@exporter.tmp_path}/body.html")
     assert_equal @article.body, File.open("#{@exporter.tmp_path}/body.html").read
   end
 
-  test "fetch_images" do
-    @exporter.fetch_images
+  test "parse_images" do
+    @exporter.parse_images
     assert_equal 2, Dir.glob("#{@exporter.tmp_path}/images/*").count
   end
 

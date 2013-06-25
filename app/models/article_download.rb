@@ -1,13 +1,14 @@
 class ArticleDownload
+  attr_accessor :article, :doc
   def initialize(article)
-    @article = article
-    @doc = Nokogiri::HTML::DocumentFragment.parse(@article.body)
+    self.article = article
+    self.doc = Nokogiri::HTML::DocumentFragment.parse(article.body)
 
     prepare
   end
 
   def tmp_path
-    "#{Rails.root}/tmp/article_download/#{@article.id}"
+    "#{Rails.root}/tmp/article_download/#{article.id}"
   end
 
   def prepare
@@ -19,7 +20,7 @@ class ArticleDownload
   FETCH_THREAD_LIMIT = 10
 
   def parse_images
-    @doc.css('img').to_a.in_groups_of(FETCH_THREAD_LIMIT, false).each_with_index do |group, group_index|
+    doc.css('img').to_a.in_groups_of(FETCH_THREAD_LIMIT, false).each_with_index do |group, group_index|
       threads = []
       group.each_with_index do |img, index|
         begin
@@ -31,9 +32,10 @@ class ArticleDownload
               system(*%W(curl -m 3 -s -o #{tmp_path}/#{local_path} #{url}))
             end
           else
-            img.remove # for secure, if use local path will be a big problem
+            img.remove # for security, if use local path will be a big problem
           end
         rescue
+          img.remove
         end
       end
       threads.each { |thread| thread.join(3) }
@@ -42,7 +44,7 @@ class ArticleDownload
 
   def dump_body
     File.open("#{tmp_path}/body.html", 'w') do |f|
-      f.write ApplicationController.helpers.article_format_body(@doc.to_s)
+      f.write ApplicationController.helpers.article_format_body(doc.to_s)
     end
   end
 
