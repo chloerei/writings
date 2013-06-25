@@ -18,7 +18,7 @@ class ArticleDownload
 
   FETCH_THREAD_LIMIT = 10
 
-  def fetch_images
+  def parse_images
     @doc.css('img').to_a.in_groups_of(FETCH_THREAD_LIMIT, false).each_with_index do |group, group_index|
       threads = []
       group.each_with_index do |img, index|
@@ -30,6 +30,8 @@ class ArticleDownload
             threads << Thread.new do
               system(*%W(curl -m 3 -s -o #{tmp_path}/#{local_path} #{url}))
             end
+          else
+            img.remove # for secure, if use local path will be a big problem
           end
         rescue
         end
@@ -45,7 +47,7 @@ class ArticleDownload
   end
 
   def prepare_content
-    #fetch_images
+    parse_images
     dump_body
   end
 
