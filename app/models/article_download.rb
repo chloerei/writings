@@ -24,10 +24,12 @@ class ArticleDownload
       group.each_with_index do |img, index|
         begin
           url = URI(img['src'])
-          local_path = "images/#{group_index * FETCH_THREAD_LIMIT + index}#{File.extname url.path}"
-          img['src'] = local_path
-          threads << Thread.new do
-            system(*%W(curl -m 3 -s -o #{tmp_path}/#{local_path} #{url}))
+          if %w(http https).include? url.scheme
+            local_path = "images/#{group_index * FETCH_THREAD_LIMIT + index}#{File.extname url.path}"
+            img['src'] = local_path
+            threads << Thread.new do
+              system(*%W(curl -m 3 -s -o #{tmp_path}/#{local_path} #{url}))
+            end
           end
         rescue
         end
