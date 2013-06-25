@@ -45,7 +45,7 @@ class ArticleDownload
   end
 
   def prepare_content
-    fetch_images
+    #fetch_images
     dump_body
   end
 
