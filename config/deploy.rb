@@ -8,7 +8,7 @@ require 'sidekiq/capistrano'
 require 'bundler/capistrano'
 
 set :application, "writings.io"
-set :repository,  "rei@chloerei.com:git/publish-design"
+set :repository,  "rei@writings.io:git/writingsio"
 set :scm, "git"
 set :branch, "master"
 set :deploy_via, :remote_cache
