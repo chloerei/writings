@@ -52,6 +52,8 @@ class ImportTask
   end
 
   def confirm(ids)
-    import_articles.asc(:created_at).where(:id.in => ids).each(&:import)
+    if ids
+      import_articles.asc(:created_at).where(:id.in => ids).each(&:import)
+    end
   end
 end
