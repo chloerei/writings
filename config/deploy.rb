@@ -11,7 +11,6 @@ set :application, "writings.io"
 set :repository,  "rei@writings.io:git/writingsio"
 set :scm, "git"
 set :branch, "master"
-set :deploy_via, :remote_cache
 
 set :user, "rei"
 set :deploy_to, "/home/rei/#{application}"
@@ -31,7 +30,11 @@ namespace :deploy do
   task :copy_config do
     run "cp #{deploy_to}/shared/config/*.yml #{release_path}/config"
   end
+
+  task :link_data do
+    run "ln -s #{deploy_to}/shared/data #{release_path}"
+  end
 end
 
-after "deploy:update_code", "deploy:copy_config"
+after "deploy:update_code", "deploy:copy_config", "deploy:link_data"
 load 'deploy/assets'
