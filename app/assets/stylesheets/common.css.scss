@@ -8,7 +8,7 @@
 
 body {
   color: #333;
-  background-color: #f9f9f9;
+  background-color: #efefef;
   font-size: 14px;
 }
 
@@ -44,12 +44,11 @@ a {
 
   &:hover {
     color: darken($linkColor, 10%);
-    @include transition(color 0.15s ease);
   }
 }
 
-li a [class^="icon-"],
-li a [class*=" icon-"] {
+a [class^="icon-"],
+a [class*=" icon-"] {
   width: 1.2em;
   text-align: center;
   margin-right: 5px;
@@ -295,18 +294,19 @@ fieldset {
   color: $textColor;
   border: 1px solid $borderColor;
   background-color: $color;
-  @include box-shadow(0 1px 0 #ddd);
+  @include linear-gradient($color, darken($color, 2%));
 
   &:hover,
   &:focus {
     color: $textColor;
-    background-color: darken($color, 2%);
     text-decoration: none;
+    @include linear-gradient(lighten($color, 2%), $color);
+    @include box-shadow(0 0 1px rgba(0, 0, 0, 0.3));
   }
 
   &.button-actived,
   &:active {
-    background-color: darken($color, 6%);
+    @include linear-gradient(darken($color, 2%), darken($color, 6%));
     @include box-shadow(inset 0 1px 0 darken($color, 15%));
   }
 
@@ -480,7 +480,6 @@ a.button:hover {
       a {
         display: block;
         padding: 6px 10px;
-        @include transition(none);
 
         &:hover {
           background-color: #eee;
@@ -617,7 +616,6 @@ a.button:hover {
           color: #555;
           padding: 10px 20px 10px 0;
           position: relative;
-          @include transition(none);
 
           .label {
             overflow: hidden;
@@ -710,5 +708,5 @@ a.button:hover {
   margin-left: -12px;
   display: none;
   font-size: 24px;
-  color: #999;
+  color: #eee;
 }

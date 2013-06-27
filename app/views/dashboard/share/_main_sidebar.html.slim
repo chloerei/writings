@@ -3,7 +3,7 @@ nav
     li class=('actived' if controller_name == 'articles' && action_name == 'index' && params[:category_id].blank?)
       a href=(dashboard_articles_index_path)
         i.icon-folder-open-alt
-        = t ('.all_articles')
+        = t ('.all')
     li class=('actived' if controller_name == 'articles' && action_name == 'index' && params[:category_id] == 'none')
       a href=(dashboard_articles_index_path(:category_id => 'none'))
         i.icon-file-alt
@@ -28,12 +28,13 @@ nav
       a href='#new-category-modal' data-toggle='modal'
         i.icon-plus
         = t '.new_category'
-      = render 'dashboard/articles/new_category_modal'
     - @space.categories.each do |category|
       li class=('actived' if category == @category)
         a href=(dashboard_articles_index_path(:category_id => category))
           i.icon-folder-close-alt
           = category.name
+= render 'dashboard/articles/new_category_modal'
+
 nav
   ul
     li class=(controller_name == 'import_tasks' ? 'actived' : nil)

@@ -85,35 +85,43 @@ table.nice-table {
 
 // topbar
 
+$topbarLinkColor: #eee;
+$topbarLinkBackgroundColor: #333;
+$topbarLinkHoverColor: #333;
+$topbarLinkHoverBackgroundColor: white;
+
 #topbar {
   line-height: 18px;
   margin-bottom: 20px;
-  background-color: $linkColor;
-  color: white;
+  color: $topbarLinkColor;
+  background-color: $topbarLinkBackgroundColor;
+  @include linear-gradient(#555, #333);
+  @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
 
-  ul.top-nav {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    line-height: 18px;
-    @include clearfix();
+  .space-menu {
+    width: 20%;
+    float: left;
 
-    > li {
-      display: inline-block;
-      float: left;
-      height: 48px;
+    .dropdown,
+    .dropdown-toggle {
+      display: block;
+    }
+  }
 
-      > a {
-        padding: 15px 20px;
-        display: block;
-        color: white;
-        @include transition(all 0.15s ease);
+  .sub-menu {
+    width: 80%;
+    float: left;
+  }
 
-        &:hover {
-          background-color: white;
-          color: $linkColor;
-        }
-      }
+  .topbar-button {
+    padding: 15px 20px;
+    display: inline-block;
+    color: $topbarLinkColor;
+    @include transition(all 0.15s ease);
+
+    &:hover {
+      background-color: $topbarLinkHoverBackgroundColor;
+      color: $topbarLinkHoverColor;
     }
   }
 
@@ -122,16 +130,16 @@ table.nice-table {
 
     .dropdown-toggle {
       padding: 15px 35px 15px 20px;
-      color: white;
       vertical-align: baseline;
+      color: $topbarLinkColor;
 
       &:after {
         padding: 2px 20px;
       }
 
       &:hover {
-        background-color: white;
-        color: $linkColor;
+        background-color: $topbarLinkHoverBackgroundColor;
+        color: $topbarLinkHoverColor;
       }
     }
 
@@ -150,8 +158,8 @@ table.nice-table {
 
     &.actived {
       .dropdown-toggle {
-        background-color: white;
-        color: $linkColor;
+        background-color: $topbarLinkHoverBackgroundColor;
+        color: $topbarLinkHoverColor;
       }
     }
   }
@@ -162,43 +170,48 @@ table.nice-table {
 #main {
   .inner {
     background-color: #fff;
-    padding: 20px;
     min-height: 800px;
-    border: 1px solid #ddd;
+    position: relative;
+    @include box-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+    @include clearfix();
   }
 
   .main-sidebar {
     width: 20%;
-    float: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #f9f9f9;
 
-    nav {
-      padding-right: 20px;
+    > nav {
       margin-bottom: 20px;
-    }
 
-    li {
-      margin-bottom: 5px;
+      li {
 
-      a {
-        padding: 8px 10px;
-        display: block;
-        padding-right: 20px;
-        position: relative;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        color: #333;
-        line-height: 18px;
-
-        &:hover {
-          background-color: #eee;
-        }
-      }
-
-      &.actived {
         a {
-          color: white;
-          background-color: $linkColor;
+          padding: 15px 20px;
+          display: block;
+          position: relative;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          color: #333;
+          line-height: 18px;
+
+          &:hover {
+            background-color: white;
+            color: $linkColor;
+          }
+        }
+
+        &.actived {
+          a {
+            background-color: white;
+            color: $linkColor;
+            padding-left: 17px;
+            border-left: 3px solid $linkColor;
+          }
         }
       }
     }
@@ -206,12 +219,15 @@ table.nice-table {
 
   .main-content {
     width: 80%;
-    float: left;
+    margin-left: 20%;
+    padding: 20px;
+    @include box-sizing(border-box);
 
     .main-header {
       margin-bottom: 20px;
     }
   }
+
   section {
     margin-bottom: 20px;
     @include clearfix();
