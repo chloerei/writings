@@ -1,35 +1,31 @@
-#main
-  .container
-    .inner
-      = render 'dashboard/share/main_header'
-      section
-        = render 'main_sidebar'
-        .main-content
-          .main-header.clearfix
-            .pull-left
-              .button-group.hide-on-mobile
-                a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id]))
-                  = t '.all'
-                a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'publish'))
-                  = t '.publish'
-                a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'draft'))
-                  = t '.draft'
-              - if @category
-                a.button href=(edit_dashboard_category_path(:id => @category))
-                  i.icon-wrench
-            .pull-right
-              a.button.no-margin href=(new_dashboard_article_path)
-                i.icon-pencil
-                span.hide-on-mobile
-                  = ' '
-                  = t '.new_article'
-          .articles
-            ul
-              = render :partial => 'article', :collection => @articles
-            = paginate @articles, :theme => :dashboard
-            - if @articles.empty?
-              .empty-message
-                = t '.no_articles'
+- content_for :sidebar do
+  = render 'dashboard/share/main_sidebar'
+
+.main-header.clearfix
+  .pull-left
+    .button-group.hide-on-mobile
+      a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id]))
+        = t '.all'
+      a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'publish'))
+        = t '.publish'
+      a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'draft'))
+        = t '.draft'
+    - if @category
+      a.button href=(edit_dashboard_category_path(:id => @category))
+        i.icon-wrench
+  .pull-right
+    a.button.no-margin href=(new_dashboard_article_path)
+      i.icon-pencil
+      span.hide-on-mobile
+        = ' '
+        = t '.new_article'
+.articles
+  ul
+    = render :partial => 'article', :collection => @articles
+  = paginate @articles, :theme => :dashboard
+  - if @articles.empty?
+    .empty-message
+      = t '.no_articles'
 
 = render 'select_category_modal'
 = render 'add_category_modal'

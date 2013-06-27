@@ -1,22 +1,21 @@
-#main
-  .container
-    .inner
-      = render 'dashboard/share/main_header'
-      section
-        .header.clearfix
-          .pull-left
-            .button-group
-              a.button href=(dashboard_discussions_path) class=(action_name == 'index' ? 'button-actived' : nil)
-                = t '.open'
-              a.button href=(archived_dashboard_discussions_path) class=(action_name == 'archived' ? 'button-actived' : nil)
-                = t '.archived'
-          .pull-right
-            a.button.no-margin href=(new_dashboard_topic_path)
-              = t '.new_topic'
-        .discussions
-          ul
-            = render :partial => 'discussion', :collection => @discussions
-          = paginate @discussions, :theme => :dashboard
-          - if @discussions.empty?
-            .empty-message
-              = t '.no_discussion'
+- content_for :sidebar do
+  = render 'dashboard/share/main_sidebar'
+
+.main-header.clearfix
+  .pull-left
+    .button-group
+      a.button href=(dashboard_discussions_path) class=(action_name == 'index' ? 'button-actived' : nil)
+        = t '.open'
+      a.button href=(archived_dashboard_discussions_path) class=(action_name == 'archived' ? 'button-actived' : nil)
+        = t '.archived'
+  .pull-right
+    a.button.no-margin href=(new_dashboard_topic_path)
+      = t '.new_topic'
+
+.discussions
+  ul
+    = render :partial => 'discussion', :collection => @discussions
+  = paginate @discussions, :theme => :dashboard
+  - if @discussions.empty?
+    .empty-message
+      = t '.no_discussion'

@@ -87,6 +87,9 @@ table.nice-table {
 
 #topbar {
   line-height: 18px;
+  margin-bottom: 20px;
+  background-color: $linkColor;
+  color: white;
 
   ul.top-nav {
     margin: 0;
@@ -103,10 +106,11 @@ table.nice-table {
       > a {
         padding: 15px 20px;
         display: block;
-        color: #555;
+        color: white;
         @include transition(all 0.15s ease);
 
         &:hover {
+          background-color: white;
           color: $linkColor;
         }
       }
@@ -118,26 +122,24 @@ table.nice-table {
 
     .dropdown-toggle {
       padding: 15px 35px 15px 20px;
-      color: #555;
+      color: white;
       vertical-align: baseline;
 
       &:after {
         padding: 2px 20px;
       }
 
-      &.actived {
-        color: $linkColor;
-      }
-
       &:hover {
+        background-color: white;
         color: $linkColor;
       }
     }
 
     .dropdown-menu {
       top: 49px;
-      width: 150px;
+      width: 100%;
       font-weight: normal;
+      @include box-sizing(border-box);
 
       li {
         a {
@@ -148,6 +150,7 @@ table.nice-table {
 
     &.actived {
       .dropdown-toggle {
+        background-color: white;
         color: $linkColor;
       }
     }
@@ -159,36 +162,56 @@ table.nice-table {
 #main {
   .inner {
     background-color: #fff;
-    margin: 10px 0;
     padding: 20px;
     min-height: 800px;
-    @include box-shadow(0 1px 3px 1px rgba(0, 0, 0, 0.3));
+    border: 1px solid #ddd;
   }
 
-  .main-nav {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ccc;
+  .main-sidebar {
+    width: 20%;
+    float: left;
 
-    ul {
-      @include clearfix();
+    nav {
+      padding-right: 20px;
+      margin-bottom: 20px;
     }
 
     li {
-      float: left;
+      margin-bottom: 5px;
 
       a {
-        padding: 10px;
-        display: inline-block;
+        padding: 8px 10px;
+        display: block;
+        padding-right: 20px;
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: #333;
+        line-height: 18px;
+
+        &:hover {
+          background-color: #eee;
+        }
       }
 
       &.actived {
         a {
-          color: #333;
+          color: white;
+          background-color: $linkColor;
         }
       }
     }
   }
 
+  .main-content {
+    width: 80%;
+    float: left;
+
+    .main-header {
+      margin-bottom: 20px;
+    }
+  }
   section {
     margin-bottom: 20px;
     @include clearfix();
@@ -203,72 +226,6 @@ table.nice-table {
       }
     }
 
-    .main-sidebar {
-      width: 20%;
-      float: left;
-
-      nav {
-        padding-right: 20px;
-        margin-bottom: 20px;
-      }
-
-      li {
-        margin-bottom: 5px;
-
-        a {
-          padding: 8px 10px;
-          display: block;
-          padding-right: 20px;
-          position: relative;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          color: #333;
-          line-height: 18px;
-
-          &:hover {
-            background-color: #eee;
-
-            &:after {
-              border-left: 17px solid #eee;
-            }
-          }
-
-          &:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 0;
-            height: 0;
-            display: block;
-            border-top: 17px solid white;
-            border-bottom: 17px solid white;
-            border-left: 17px solid white;
-          }
-        }
-
-        &.actived {
-          a {
-            color: white;
-            background-color: $linkColor;
-
-            &:after {
-              border-left: 17px solid $linkColor;
-            }
-          }
-        }
-      }
-    }
-
-    .main-content {
-      width: 80%;
-      float: left;
-
-      .main-header {
-        margin-bottom: 20px;
-      }
-    }
   }
 
   .empty-message {
