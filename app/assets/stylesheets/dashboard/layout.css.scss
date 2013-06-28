@@ -168,6 +168,8 @@ $topbarLinkHoverBackgroundColor: white;
 // main
 
 #main {
+  margin-bottom: 20px;
+
   .inner {
     background-color: #fff;
     min-height: 800px;
@@ -217,15 +219,25 @@ $topbarLinkHoverBackgroundColor: white;
     }
   }
 
+  .main-header {
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
   .main-content {
     width: 80%;
     margin-left: 20%;
     padding: 20px;
     @include box-sizing(border-box);
+  }
 
-    .main-header {
-      margin-bottom: 20px;
-    }
+  .main-actions {
+    margin-bottom: 5px;
   }
 
   section {

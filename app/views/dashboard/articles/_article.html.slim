@@ -1,5 +1,5 @@
 tr.article id=("article-#{article.token}") data-id=(article.token) data-category-id=(article.category.try(:token)) data-category-name=(article.category.try(:name))
-  td.min
+  /td.min
     = check_box_tag 'ids[]', article.token
   td.max
     h3 = link_to article.title, edit_dashboard_article_path(:id => article)

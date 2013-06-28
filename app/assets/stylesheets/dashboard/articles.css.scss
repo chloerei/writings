@@ -4,19 +4,29 @@
   }
 
   tr {
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #eee;
 
-    &:hover {
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover td {
       background-color: #f9f9f9;
     }
   }
 
+  th,
   td {
-    padding: 14px 14px 14px 0;
+    padding: 15px 15px 15px 0;
 
     &:first-child {
-      padding-left: 14px;
+      padding-left: 15px;
     }
+  }
+
+  th {
+    color: #555;
+    text-align: left;
   }
 
   .min {

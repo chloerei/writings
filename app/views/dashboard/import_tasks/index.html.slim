@@ -1,9 +1,11 @@
 - content_for :sidebar do
   = render 'dashboard/share/main_sidebar'
 
+.main-header
+  h2 = t '.import'
+
 .two-columns
   .column
-    h3.title = t '.import'
     = form_for ImportTask.new, :url => dashboard_import_tasks_path, :multipart => true, :validate => true do |f|
       fieldset
         legend = t '.format'
@@ -21,7 +23,7 @@
         .field
           = f.file_field :file
       .field
-        = f.submit t('.start_import'), :class => 'button-green'
+        = f.submit t('.start_import'), :class => 'button-primary'
   .column
     h3.title = t '.help'
     pre

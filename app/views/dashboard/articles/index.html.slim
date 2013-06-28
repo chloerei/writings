@@ -1,27 +1,42 @@
 - content_for :sidebar do
   = render 'dashboard/share/main_sidebar'
 
-.main-header.clearfix
-  .pull-left
-    .button-group.hide-on-mobile
-      a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id]))
-        = t '.all'
-      a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'publish'))
-        = t '.publish'
-      a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'draft'))
-        = t '.draft'
+.main-header
+  h2
+    = t '.articles'
     - if @category
-      a.button href=(edit_dashboard_category_path(:id => @category))
-        i.icon-wrench
-  .pull-right
-    a.button.button-green.no-margin href=(new_dashboard_article_path)
-      i.icon-pencil
-      span.hide-on-mobile
-        = ' '
-        = t '.new_article'
+      = ' / '
+      = @category.name
+
 .articles
+  .main-actions.clearfix
+    .pull-left
+      .button-group.hide-on-mobile
+        a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id]))
+          = t '.all'
+        a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'publish'))
+          = t '.publish'
+        a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'draft'))
+          = t '.draft'
+      - if @category
+        a.button href=(edit_dashboard_category_path(:id => @category))
+          i.icon-wrench
+    .pull-right
+      a.button.button-green.no-margin href=(new_dashboard_article_path)
+        i.icon-pencil
+        span.hide-on-mobile
+          = ' '
+          = t '.new_article'
+
   table
     tbody
+      tr
+        /th.min
+          = check_box_tag ''
+        th.max
+          = t '.title'
+        th.min
+          = t '.updated_at'
       = render :partial => 'article', :collection => @articles
   = paginate @articles, :theme => :dashboard
   - if @articles.empty?
