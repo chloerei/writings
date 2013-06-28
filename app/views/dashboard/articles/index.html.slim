@@ -20,8 +20,9 @@
         = ' '
         = t '.new_article'
 .articles
-  ul
-    = render :partial => 'article', :collection => @articles
+  table
+    tbody
+      = render :partial => 'article', :collection => @articles
   = paginate @articles, :theme => :dashboard
   - if @articles.empty?
     .empty-message

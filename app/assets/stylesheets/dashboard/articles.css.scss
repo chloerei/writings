@@ -1,64 +1,42 @@
 .articles {
-  > ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  table {
+    width: 100%;
+  }
 
-    > li {
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 2px;
-      @include box-shadow(0 1px 0 #ddd);
+  tr {
+    border: 1px solid #ddd;
 
-      &:hover {
-        border-color: #ccc;
-      }
+    &:hover {
+      background-color: #f9f9f9;
     }
+  }
+
+  td {
+    padding: 14px 14px 14px 0;
+
+    &:first-child {
+      padding-left: 14px;
+    }
+  }
+
+  .min {
+    width: 1%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .max {
+    width: 99%;
   }
 
   h3 {
-    padding-right: 40px;
-    margin: 0;
     font-size: 1em;
-    position: relative;
-    @include clearfix();
-
-    > a {
-      color: #333;
-      display: block;
-      padding: 7px 14px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .dropdown {
-      position: absolute;
-      right: 0;
-      top: 0;
-
-      .dropdown-toggle {
-        color: #999;
-        padding: 7px 14px;
-
-        &:hover {
-          color: #555;
-        }
-      }
-
-      .dropdown-menu {
-        top: 30px;
-      }
-    }
-  }
-
-  .info {
-    color: #999;
+    font-weight: normal;
+    margin: 0;
 
     a {
-      display: block;
-      color: #999;
-      padding: 7px 14px;
+      color: #333;
     }
   }
 }
