@@ -31,34 +31,36 @@
     text-align: left;
   }
 
-  .min {
-    width: 1%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  .max {
-    width: 99%;
-  }
-
-  a {
-    color: #888;
-    padding: 15px;
-
-    &:hover {
-      color: $linkColor;
+  td {
+    &.min {
+      width: 1%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
-  }
 
-  h3 {
-    font-size: 1em;
-    font-weight: normal;
-    margin: 0;
+    &.max {
+      width: 99%;
+    }
 
     a {
-      color: #333;
-      padding-left: 0;
+      color: #888;
+      padding: 15px;
+
+      &:hover {
+        color: $linkColor;
+      }
+    }
+
+    h3 {
+      font-size: 1em;
+      font-weight: normal;
+      margin: 0;
+
+      a {
+        color: #333;
+        padding-left: 0;
+      }
     }
   }
 }

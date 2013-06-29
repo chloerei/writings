@@ -7,12 +7,12 @@
   h2
     = t '.trashed'
 
-.articles
-  .main-actions.clearfix
-    .pull-left
-      a.button href=(trash_dashboard_articles_path) data-remote=(true) data-method='delete' data-confirm=(t '.empty_trash_confirm')
-        = t '.empty_trash'
+.main-actions.clearfix
+  .pull-left
+    a.button href=(trash_dashboard_articles_path) data-remote=(true) data-method='delete' data-confirm=(t '.empty_trash_confirm')
+      = t '.empty_trash'
 
+.articles
   - unless @articles.empty?
     table
       tbody
