@@ -4,4 +4,8 @@ tr.article id=("article-#{article.token}") data-id=(article.token) data-category
   td.max
     h3 = link_to article.title, edit_dashboard_article_path(:id => article)
   td.min
+    - if article.publish?
+      a href=(site_article_url(:id => article, :urlname => article.urlname, :host => @space.host)) target='_blank'
+        i.icon-external-link
+  td.min
     = l article.updated_at, :format => :short

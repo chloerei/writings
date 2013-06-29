@@ -42,6 +42,15 @@
     width: 99%;
   }
 
+  a {
+    color: #888;
+    padding: 15px;
+
+    &:hover {
+      color: $linkColor;
+    }
+  }
+
   h3 {
     font-size: 1em;
     font-weight: normal;
@@ -49,6 +58,7 @@
 
     a {
       color: #333;
+      padding-left: 0;
     }
   }
 }

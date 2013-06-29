@@ -45,6 +45,7 @@
           th.max
             = t '.title'
           th.min
+          th.min
             = t '.updated_at'
         = render :partial => 'article', :collection => @articles
     = paginate @articles, :theme => :dashboard
