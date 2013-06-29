@@ -10,8 +10,8 @@
 .articles
   .main-actions.clearfix
     .pull-left
-      a.button href=(trash_dashboard_articles_path) data-remote=(true) data-method='delete' data-confirm=('.empty_trash_confirm')
-        = '.empty_trash'
+      a.button href=(trash_dashboard_articles_path) data-remote=(true) data-method='delete' data-confirm=(t '.empty_trash_confirm')
+        = t '.empty_trash'
 
   - unless @articles.empty?
     table

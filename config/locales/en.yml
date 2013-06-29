@@ -55,6 +55,12 @@ en:
       logout: Logout
       login: Login
       signup: Signup
+      topbar:
+        community: Community
+        settings: Settings
+        account: Account
+        upgrade: Upgrade
+        logout: Logout
     error:
       feedback: Feedback
   workspaces:
@@ -75,30 +81,38 @@ en:
       login: Login
   accounts:
     show:
-      account_setting: Account setting
+      account_settings: Account Settings
       login_id: Login ID
       custom: Custom
       change_password: Change password
       confirm_change: Confirm change
+      account_setting: Account setting
+  billings:
+    show:
+      upgrade: Upgrade
   profiles:
     show:
       profile_setting: Profile setting
       publish_profile: Published profile
   dashboard:
     share:
-      main_header:
-        articles: Articles
-        discussions: Discussions
+      main_sidebar:
+        all_articles: All Articles
+        uncategorized: Uncategorized
+        trashed: Trashed
         pictures: Pictures
-        members: Members
+        discussions: Dicussions
+        new_category: New Category
         import: Import
         export: Export
-        settings: Workspace settings
-      settings_nav:
-        personal_settings: Psersonal settings
-        account: Account
-        profile: Profile
-        billing: Billing
+        settings: Space Settings
+        edit: Edit
+        delete: Delete
+        delete_category_confirm: Sure to delte %{name}? Articles in this category
+          will mark as uncategorized.
+      settings_sidebar:
+        account_settings: Account Settings
+        upgrade: Upgrade
       image_uploader_modal:
         insert_image: Insert image
         url: URL
@@ -124,10 +138,11 @@ en:
         import: Import
         help: Help
       show:
+        import: Import
         title: Title
         date: Date
+        category: Category
         status: Status
-        Category: Category
         task_success: Parse success
         task_success_detail: 'Please confirm import items:'
         task_error: Parse error
@@ -137,6 +152,7 @@ en:
           or refresh this page to check parse status:'
         refresh: Refresh
         import_select: Import selected
+        Category: Category
     export_tasks:
       index:
         all: All
@@ -146,6 +162,7 @@ en:
         export: Export
         help: Help
       show:
+        export: Export
         task_success: Export complete
         task_success_detail: 'Click download button to start:'
         task_error: Export error
@@ -157,7 +174,7 @@ en:
         refresh: Refresh
     settings:
       show:
-        workspace_settings: Settings
+        workspace_settings: Space Settings
     discussions:
       index:
         open: Open
@@ -239,18 +256,17 @@ en:
         no_picture: No picture
     articles:
       index:
+        all_articles: All Articles
+        uncategorized: Uncategorized
         all: All
         publish: Publish
         draft: Draft
         new_article: New article
         no_articles: No articles
+        title: Title
+        updated_at: Updated at
         inbox: Inbox
         is_end: is end
-      main_sidebar:
-        all_articles: All articles
-        no_category: Not category
-        trash: Trash
-        new_category: New category
       select_category_modal:
         select_category: Select category
         new_category: New category
@@ -268,12 +284,11 @@ en:
         delete_confirm: Sure to delete this article?
         created_at: Created at
         updated_at: Updated at
-      trash_index:
+      trashed:
+        trashed: Trashed
         empty_trash: Empty trash
         empty_trash_confirm: Are you sure empty trash？
         no_articles: No articles
-      new_category_modal:
-        new_category: New category
       edit:
         readonly_mode: Readonly Mode
         history_versions: History versions
@@ -349,6 +364,13 @@ en:
           new_category: New category
         new_category_modal:
           new_category: New category
+      main_sidebar:
+        all_articles: All articles
+        no_category: Not category
+        trash: Trash
+        new_category: New category
+      new_category_modal:
+        new_category: New category
     categories:
       new:
         new_category: New category
@@ -367,6 +389,10 @@ en:
         draft: Draft
         new_article: New article
         trash: Trash
+      new_category_modal:
+        new_category: New Category
+      edit_category_modal:
+        edit_category: Edit category
     dashboard:
       show:
         articles: Articles
@@ -415,4 +441,4 @@ en:
         %{allowed_types}'
       store_limit: not enough attachment space
       fetch_error: Fetch error, can't access resource, please use local upload.
-      blank: 不能为空
+      blank: Can't be blank

@@ -297,7 +297,8 @@ zh-CN:
         created_at: "创建于"
         updated_at: "更新于"
 
-      trash_index:
+      trashed:
+        trashed: "回收站"
         empty_trash: "清空回收站"
         empty_trash_confirm: "确认清空回收站？"
         no_articles: "没有文章"
