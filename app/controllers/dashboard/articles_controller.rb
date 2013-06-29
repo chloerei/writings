@@ -4,23 +4,23 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def index
     @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status]).includes(:category)
+  end
 
-    append_title I18n.t('articles')
+  def uncategorized
+    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status]).where(:category_id => nil)
 
-    if params[:category_id]
-      if params[:category_id] == 'none'
-        @articles = @articles.where(:category_id => nil)
+    render :index
+  end
 
-        append_title I18n.t('not_category')
-      else
-        @category = @space.categories.where(:token => param_to_token(params[:category_id])).first
-        @articles = @articles.where(:category_id => @category.try(:id) || -1)
+  def trashed
+    @articles = @space.articles.desc(:updated_at).page(params[:page]).status('trash').includes(:category)
+  end
 
-        append_title @category.name if @category
-      end
-    end
+  def categorized
+    @category = @space.categories.find_by :token => param_to_token(params[:category_id])
+    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status]).where(:category_id => @category.id)
 
-    append_title I18n.t(params[:status]) if params[:status].present?
+    render :index
   end
 
   def show
@@ -104,12 +104,8 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     end
   end
 
-  def trash_index
-    @articles = @space.articles.desc(:updated_at).page(params[:page]).status('trash').includes(:category)
-  end
-
   def empty_trash
-    @space.articles.trash.delete_all
+    @space.articles.trash.destroy_all
   end
 
   def category

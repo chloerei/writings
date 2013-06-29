@@ -1,0 +1,30 @@
+- append_title t('.trashed')
+
+- content_for :sidebar do
+  = render 'dashboard/share/main_sidebar'
+
+.main-header
+  h2
+    = t '.trashed'
+
+.articles
+  .main-actions.clearfix
+    .pull-left
+      a.button href=(trash_dashboard_articles_path) data-remote=(true) data-method='delete' data-confirm=('.empty_trash_confirm')
+        = '.empty_trash'
+
+  - unless @articles.empty?
+    table
+      tbody
+        tr
+          /th.min
+            = check_box_tag ''
+          th.max
+            = t '.title'
+          th.min
+            = t '.updated_at'
+        = render :partial => 'article', :collection => @articles
+    = paginate @articles, :theme => :dashboard
+  - else
+    .empty-message
+      = t '.no_articles'

@@ -1,17 +1,17 @@
 nav
   ul
     li class=('actived' if controller_name == 'articles' && action_name == 'index' && params[:category_id].blank?)
-      a href=(dashboard_articles_index_path)
+      a href=(dashboard_root_path)
         i.icon-folder-open-alt
-        = t ('.all')
-    li class=('actived' if controller_name == 'articles' && action_name == 'index' && params[:category_id] == 'none')
-      a href=(dashboard_articles_index_path(:category_id => 'none'))
+        = t ('.articles')
+    li class=('actived' if controller_name == 'articles' && action_name == 'uncategorized')
+      a href=(dashboard_articles_uncategorized_path)
         i.icon-file-alt
         = t '.no_category'
-    li class=('actived' if controller_name == 'articles' && action_name == 'trash_index')
-      a href=(dashboard_articles_trash_path)
+    li class=('actived' if controller_name == 'articles' && action_name == 'trashed')
+      a href=(dashboard_articles_trashed_path)
         i.icon-trash
-        = t '.trash'
+        = t '.trashed'
     li class=('actived' if controller_name == 'attachments')
       a href=(dashboard_attachments_path)
         i.icon-picture
@@ -30,7 +30,7 @@ nav
         = t '.new_category'
     - @space.categories.each do |category|
       li class=('actived' if category == @category)
-        a href=(dashboard_articles_index_path(:category_id => category))
+        a href=(dashboard_articles_categorized_path(:category_id => category))
           i.icon-folder-close-alt
           = category.name
 = render 'dashboard/articles/new_category_modal'

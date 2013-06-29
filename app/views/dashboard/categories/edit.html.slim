@@ -1,37 +1,38 @@
-- append_title t('.page_title', :name => @category.name)
+- append_title @category.name
 
-#main
-  .container
-    .inner
-      = render 'dashboard/share/main_header'
-      section
-        = render 'dashboard/articles/main_sidebar'
-        .main-content
-          .main-header.clearfix
-            .pull-left
-              .button-group.hide-on-mobile
-                a.button href=(dashboard_articles_index_path(:category_id => @category))
-                  = ' '
-                  = t '.all'
-                a.button href=(dashboard_articles_index_path(:category_id => @category, :status => 'publish'))
-                  = ' '
-                  = t '.publish'
-                a.button href=(dashboard_articles_index_path(:category_id => @category, :status => 'draft'))
-                  = ' '
-                  = t '.draft'
-              a.button.button-actived href=(edit_dashboard_category_path(:id => @category))
-                i.icon-wrench
-            .pull-right
-              a.button.no-margin href=(new_dashboard_article_path)
-                i.icon-pencil
-                span.hide-on-mobile
-                  = ' '
-                  = t '.new_article'
-          = form_for @category, :url => dashboard_category_path(:id => @category), :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
-            .field
-              = f.label :name
-              = f.text_field :name
-            .field
-              = f.submit t('submit')
-            hr
-            = link_to t('.delete_category'), dashboard_category_path(:id => @category), :method => :delete, :confirm => t('.delete_category_confirm', :name => @category.name), :class => 'button button-danger'
+- content_for :sidebar do
+  = render 'dashboard/share/main_sidebar'
+
+.main-header
+  h2 = @category.name
+
+.main-actions.clearfix
+  .pull-left
+    .button-group.hide-on-mobile
+      a.button href=(dashboard_articles_categorized_path(:category_id => @category))
+        = ' '
+        = t '.all'
+      a.button href=(dashboard_articles_categorized_path(:category_id => @category, :status => 'publish'))
+        = ' '
+        = t '.publish'
+      a.button href=(dashboard_articles_categorized_path(:category_id => @category, :status => 'draft'))
+        = ' '
+        = t '.draft'
+    a.button.button-actived href=(edit_dashboard_category_path(:id => @category))
+      i.icon-wrench
+  .pull-right
+    a.button.button-green.no-margin href=(new_dashboard_article_path(:category_id => @category))
+      i.icon-pencil
+      span.hide-on-mobile
+        = ' '
+        = t '.new_article'
+
+section
+  = form_for @category, :url => dashboard_category_path(:id => @category), :validate => true, :html => { :data => { :remote => true, :type => :json } } do |f|
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.submit t('submit')
+    hr
+    = link_to t('.delete_category'), dashboard_category_path(:id => @category), :method => :delete, :confirm => t('.delete_category_confirm', :name => @category.name), :class => 'button button-danger'
