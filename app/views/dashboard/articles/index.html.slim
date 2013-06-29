@@ -1,6 +1,6 @@
 - case action_name
 - when 'index'
-  - append_title t('.articles')
+  - append_title t('.all_articles')
 - when 'categorized'
   - append_title @category.name
 - when 'uncategorized'
@@ -13,7 +13,7 @@
   h2
     - case action_name
     - when 'index'
-      = t '.articles'
+      = t '.all_articles'
     - when 'categorized'
       = @category.name
     - when 'uncategorized'

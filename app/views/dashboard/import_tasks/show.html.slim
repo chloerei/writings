@@ -1,8 +1,14 @@
 - content_for :sidebar do
   = render 'dashboard/share/main_sidebar'
 
+.main-header
+  h2
+    a href=(dashboard_import_tasks_path)
+      i.icon-angle-left
+      = t '.import'
+
 section
-  .section-title
+  header
     h3
       - case @import_task.status
       - when 'success'

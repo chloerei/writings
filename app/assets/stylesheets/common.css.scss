@@ -460,13 +460,12 @@ a.button:hover {
     padding: 0;
     z-index: 1000;
     position: absolute;
-    min-width: 100px;
-    width: 100%;
+    min-width: 100%;
     top: 100%;
     left: 0;
     background: #fff;
-    border: 1px solid #ccc;
-    @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+    white-space: nowrap;
+    @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.3));
 
     &.align-right {
       left: auto;

@@ -1,10 +1,10 @@
-- append_title t('.account')
+- append_title t('.account_settings')
 
 - content_for :sidebar do
   = render 'dashboard/share/settings_sidebar'
 
 .main-header
-  h2 = t '.account'
+  h2 = t '.account_settings'
 
 section
   = form_for current_user, :url => account_path, :remote => true, :validate => true do |f|

@@ -145,7 +145,6 @@ $topbarLinkHoverBackgroundColor: white;
 
     .dropdown-menu {
       font-weight: normal;
-      @include box-sizing(border-box);
 
       li {
         a {
@@ -288,7 +287,7 @@ $topbarLinkHoverBackgroundColor: white;
       margin-bottom: 0;
     }
 
-    .section-title {
+    header {
       h3 {
         margin-top: 0;
       }
@@ -297,7 +296,7 @@ $topbarLinkHoverBackgroundColor: white;
   }
 
   .empty-message {
-    padding: 20px;
+    padding: 15px;
     border: 2px dashed #ddd;
     text-align: center;
     color: #999;

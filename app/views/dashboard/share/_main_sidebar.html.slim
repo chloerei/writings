@@ -3,11 +3,11 @@ nav.main-sidebar-nav
     li.main-sidebar-item class=('actived' if controller_name == 'articles' && action_name == 'index' && params[:category_id].blank?)
       a href=(dashboard_root_path)
         i.icon-folder-open-alt
-        = t ('.articles')
+        = t ('.all_articles')
     li.main-sidebar-item class=('actived' if controller_name == 'articles' && action_name == 'uncategorized')
       a href=(dashboard_articles_uncategorized_path)
         i.icon-file-alt
-        = t '.no_category'
+        = t '.uncategorized'
     li.main-sidebar-item class=('actived' if controller_name == 'articles' && action_name == 'trashed')
       a href=(dashboard_articles_trashed_path)
         i.icon-trash
@@ -15,7 +15,7 @@ nav.main-sidebar-nav
     li.main-sidebar-item class=('actived' if controller_name == 'attachments')
       a href=(dashboard_attachments_path)
         i.icon-picture
-        = t '.picture'
+        = t '.pictures'
     - if @space.is_a? Workspace
       li.main-sidebar-item class=('actived' if %w(discussions topics comments).include?(controller_name))
         a href=(dashboard_discussions_path)
@@ -43,9 +43,9 @@ nav.main-sidebar-nav
                   i.icon-edit
                   = t '.edit'
               li
-                a href=(dashboard_category_path(:id => category)) data-remote='true' data-method='delete' data-confirm=('.delete_category_confirm')
+                a href=(dashboard_category_path(:id => category)) data-remote='true' data-method='delete' data-confirm=(t('.delete_category_confirm', :name => category.name))
                   i.icon-remove
-                  = t '.remove'
+                  = t '.delete'
 
 = render 'dashboard/categories/new_category_modal'
 
