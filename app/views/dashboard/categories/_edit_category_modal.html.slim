@@ -1,0 +1,14 @@
+#edit-category-modal.modal-dialog
+  .modal-header
+    .title
+      = t '.new_category'
+    a.modal-close data-remove='modal'
+      i.icon-remove
+  .modal-content
+    = form_for @category, :remote => true, :url => dashboard_category_path(:id => @category), :validate => true do |f|
+      .field
+        = f.label :name
+        = f.text_field :name
+      .field
+        = f.submit t('save')
+        = f.submit t('cancel'), :data => { :remove => :modal }

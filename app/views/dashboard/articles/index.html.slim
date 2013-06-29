@@ -28,9 +28,6 @@
         = t '.publish'
       a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(url_for(:status => 'draft'))
         = t '.draft'
-    - if @category
-      a.button href=(edit_dashboard_category_path(:id => @category))
-        i.icon-wrench
   .pull-right
     a.button.button-green.no-margin href=(new_dashboard_article_path)
       i.icon-pencil

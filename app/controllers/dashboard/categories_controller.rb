@@ -25,20 +25,11 @@ class Dashboard::CategoriesController < Dashboard::BaseController
   end
 
   def update
-    if @category.update_attributes category_params
-      respond_to do |format|
-        format.json { render :json => @category.as_json(:only => [:token, :name]) }
-      end
-    else
-      respond_to do |format|
-        format.json { render :json => { :message => 'Validation Failed', :errors => @category.errors }, :status => 400 }
-      end
-    end
+    @category.update_attributes category_params
   end
 
   def destroy
     @category.destroy
-    redirect_to root_url
   end
 
   private

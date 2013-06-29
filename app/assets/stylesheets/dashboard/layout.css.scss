@@ -144,8 +144,6 @@ $topbarLinkHoverBackgroundColor: white;
     }
 
     .dropdown-menu {
-      top: 49px;
-      width: 100%;
       font-weight: normal;
       @include box-sizing(border-box);
 
@@ -186,12 +184,15 @@ $topbarLinkHoverBackgroundColor: white;
     bottom: 0;
     background-color: #f9f9f9;
 
-    > nav {
+    nav.main-sidebar-nav {
       margin-bottom: 20px;
 
-      li {
+      li.main-sidebar-item {
+        &:hover {
+          background-color: white;
+        }
 
-        a {
+        > a {
           padding: 15px 20px;
           display: block;
           position: relative;
@@ -202,17 +203,56 @@ $topbarLinkHoverBackgroundColor: white;
           line-height: 18px;
 
           &:hover {
-            background-color: white;
             color: $linkColor;
           }
         }
 
         &.actived {
-          a {
-            background-color: white;
+          background-color: white;
+
+          > a {
             color: $linkColor;
             padding-left: 16px;
             border-left: 4px solid $linkColor;
+          }
+        }
+
+        &.append-dropdown {
+          padding-right: 48px;
+          position: relative;
+
+          .dropdown {
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            &.actived {
+              a.dropdown-toggle {
+                visibility: visible;
+              }
+            }
+          }
+
+          a.dropdown-toggle {
+            visibility: hidden;
+            border-left: none;
+            width: 18px;
+            padding: 15px;
+
+            &:hover {
+              color: $linkColor;
+            }
+          }
+
+          &:hover,
+          &.actived {
+            a.dropdown-toggle {
+              visibility: visible;
+            }
+          }
+
+          .dropdown-menu {
+            top: 100%;
           }
         }
       }
@@ -220,7 +260,7 @@ $topbarLinkHoverBackgroundColor: white;
   }
 
   .main-header {
-    border-bottom: 1px dashed #ddd;
+    border-bottom: 1px solid #ddd;
     padding-bottom: 20px;
     margin-bottom: 20px;
 

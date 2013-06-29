@@ -1,0 +1,1 @@
+Turbolinks.visit("<%= dashboard_root_path %>")

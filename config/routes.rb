@@ -42,7 +42,7 @@ Publish::Application.routes.draw do
         end
       end
 
-      resources :categories, :only => [:create, :edit, :update, :destroy], :path_names => { :edit => :settings }
+      resources :categories, :only => [:create, :edit, :update, :destroy]
       get '/uncategorized', :as => 'articles_uncategorized', :to => 'articles#uncategorized'
       get '/trashed', :as => 'articles_trashed', :to => 'articles#trashed'
       get '/categorized/:category_id', :as => 'articles_categorized', :to => 'articles#categorized'

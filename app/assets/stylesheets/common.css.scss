@@ -419,6 +419,10 @@ a.button:hover {
       content: "\f0d7";
     }
 
+    &.button {
+      margin-right: 0;
+    }
+
     &.no-arrow {
       &:after {
         content: none;
@@ -456,8 +460,9 @@ a.button:hover {
     padding: 0;
     z-index: 1000;
     position: absolute;
-    width: 150px;
-    top: 36px;
+    min-width: 100px;
+    width: 100%;
+    top: 100%;
     left: 0;
     background: #fff;
     border: 1px solid #ccc;

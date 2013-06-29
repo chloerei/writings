@@ -27,10 +27,10 @@ gem 'kiqstand', '~> 1.1.0'
 gem 'pandoc-ruby', '~> 0.7.0'
 gem 'safe_yaml', '~> 0.9.3'
 gem 'mongoid_rails_migrations', '~> 1.0.1'
+gem 'coffee-rails', '~> 3.2.1'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'bourbon', '~> 3.1.6'
   gem 'font-awesome-rails', '~> 3.1.1.1'
