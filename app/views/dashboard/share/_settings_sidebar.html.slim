@@ -1,0 +1,8 @@
+nav.main-sidebar-nav
+  ul
+    li.main-sidebar-item class=('actived' if controller_name == 'accounts')
+      a href=(account_path)
+        = t '.account'
+    li.main-sidebar-item class=('actived' if controller_name == 'billings')
+      a href=(billing_path)
+        = t '.upgrade'

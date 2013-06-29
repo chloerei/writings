@@ -1,9 +1,10 @@
-- append_title t('upgrade')
+- append_title t('.upgrade')
 
-#main
-  .container
-    .inner
-      .header
-        = render 'dashboard/share/settings_nav'
-      #main-content
-        = render :partial => 'plan_content'
+- content_for :sidebar do
+  = render 'dashboard/share/settings_sidebar'
+
+.main-header
+  h2 = t '.upgrade'
+
+section
+  = render :partial => 'plan_content'

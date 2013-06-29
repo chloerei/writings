@@ -3,6 +3,9 @@
 - content_for :sidebar do
   = render 'dashboard/share/main_sidebar'
 
+.main-header
+  h2 = t '.workspace_settings'
+
 section
   = form_for @space, :as => :space, :url => dashboard_settings_path, :validate => true, :html => { :data => { :remote => true } } do |f|
     .field
@@ -27,4 +30,4 @@ section
       = f.label :disqus_shortname
       = f.text_field :disqus_shortname, :placeholder => 'shortname'
     .field
-      = f.submit t('submit')
+      = f.submit t('submit'), :class => 'button-primary'

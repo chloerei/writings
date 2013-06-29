@@ -1,37 +1,38 @@
-- append_title t('.account_setting')
+- append_title t('.account')
 
-#main
-  .container
-    .inner
-      .header
-        = render 'dashboard/share/settings_nav'
-      section
-        = form_for current_user, :url => account_path, :remote => true, :validate => true do |f|
-          fieldset
-            legend = t '.login_id'
-            .field
-              = f.label :name
-              .input-append
-                = f.text_field :name
-                .add-on = ".#{APP_CONFIG['host']}"
-            .field
-              = f.label :email
-              = f.text_field :email
-            .field
-              = f.label :locale
-              = f.select :locale, ALLOW_LOCALE.map{|locale| [t(locale), locale]}
-          fieldset
-            legend = t '.change_password'
-            .field
-              = f.label :password
-              = f.password_field :password, :validate => { :presence => false }, :autocomplete => 'off'
-            .field
-              = f.label :password_confirmation
-              = f.password_field :password_confirmation, :validate => { :presence => false }, :autocomplete => 'off'
-          fieldset
-            legend = t '.confirm_change'
-            .field
-              = f.label :current_password
-              = f.password_field :current_password, :validate => { :presence => true }, :autocomplete => 'off'
-            .field
-              = f.submit t('submit')
+- content_for :sidebar do
+  = render 'dashboard/share/settings_sidebar'
+
+.main-header
+  h2 = t '.account'
+
+section
+  = form_for current_user, :url => account_path, :remote => true, :validate => true do |f|
+    fieldset
+      legend = t '.login_id'
+      .field
+        = f.label :name
+        .input-append
+          = f.text_field :name
+          .add-on = ".#{APP_CONFIG['host']}"
+      .field
+        = f.label :email
+        = f.text_field :email
+      .field
+        = f.label :locale
+        = f.select :locale, ALLOW_LOCALE.map{|locale| [t(locale), locale]}
+    fieldset
+      legend = t '.change_password'
+      .field
+        = f.label :password
+        = f.password_field :password, :validate => { :presence => false }, :autocomplete => 'off'
+      .field
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, :validate => { :presence => false }, :autocomplete => 'off'
+    fieldset
+      legend = t '.confirm_change'
+      .field
+        = f.label :current_password
+        = f.password_field :current_password, :validate => { :presence => true }, :autocomplete => 'off'
+      .field
+        = f.submit t('submit'), :class => 'button-primary'
