@@ -87,7 +87,7 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
   test "batch category" do
     ids = 2.times.map { create(:article, :space => @user).token }
     assert_difference "@category.articles.count", 2 do
-      put :batch_category, :space_id => @user, :ids => ids, :category_id => @category
+      put :batch_category, :space_id => @user, :ids => ids, :category_id => @category.token, :format => :js
     end
   end
 end
