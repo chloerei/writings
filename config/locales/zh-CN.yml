@@ -106,7 +106,7 @@ zh-CN:
   dashboard:
     share:
       main_sidebar:
-        all_articles: "所有文章"
+        all_articles: "全部文章"
         uncategorized: "未分类"
         trashed: "回收站"
         pictures: "图片"

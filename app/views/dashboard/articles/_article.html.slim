@@ -12,5 +12,5 @@ tr.article id=("article-#{article.token}") data-id=(article.token)
     - if article.publish?
       a href=(site_article_url(:id => article, :urlname => article.urlname, :host => @space.host)) target='_blank'
         i.icon-external-link
-  td.min
+  td.min.date
     = l article.updated_at, :format => :short

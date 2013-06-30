@@ -36,3 +36,9 @@ page_ready ->
           element.prepend("<input name='ids[]' type='hidden' value='#{value}' >")
       else
         element.data('params', {ids: ids})
+
+    $('#add-category-modal').on 'ajax:success', (event, data) ->
+      option = "<option value='#{data.token}' >#{data.name}</option>"
+      $('#select-category-modal').find('select[name=category_id]').append(option).val(data.token)
+      $('#add-category-modal').find('input[name*=name]').val('')
+      Dialog.hide('#add-category-modal')

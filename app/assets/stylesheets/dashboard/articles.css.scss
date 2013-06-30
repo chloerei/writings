@@ -15,7 +15,7 @@
     &.selected,
     &:hover {
       td {
-        background-color: #f9f9f9;
+        background-color: lighten(yellow, 43%);
       }
     }
   }
@@ -75,5 +75,9 @@
         padding-left: 0;
       }
     }
+  }
+
+  .date {
+    padding-right: 15px;
   }
 }
