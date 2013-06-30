@@ -56,6 +56,10 @@ en:
       login: Login
       signup: Signup
       topbar:
+        home: Home
+        about: About
+        signup: Signup
+        login: Login
         community: Community
         settings: Settings
         account: Account
@@ -259,8 +263,11 @@ en:
         all_articles: All Articles
         uncategorized: Uncategorized
         all: All
+        published: Publish
+        drafted: Draft
         publish: Publish
         draft: Draft
+        more: More
         new_article: New article
         no_articles: No articles
         title: Title
@@ -270,6 +277,7 @@ en:
       select_category_modal:
         select_category: Select category
         new_category: New category
+        uncategorized: Uncategorized
       add_category_modal:
         new_category: New category
       article:
@@ -287,8 +295,11 @@ en:
       trashed:
         trashed: Trashed
         empty_trash: Empty trash
-        empty_trash_confirm: Are you sure empty trash？
+        empty_trash_confirm: Sure to empty trash?
+        destroy_confirm: Sure to delete selected?
         no_articles: No articles
+        title: Title
+        updated_at: Updated
       edit:
         readonly_mode: Readonly Mode
         history_versions: History versions
@@ -300,6 +311,7 @@ en:
         select_category_modal:
           select_category: Select category
           new_category: New category
+          uncategorized: Uncategorized
         edit_topbar:
           return: Return to article list
           urlname: URL

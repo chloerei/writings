@@ -65,6 +65,10 @@ zh-CN:
       signup: "注册"
 
       topbar:
+        home: "首页"
+        about: "关于"
+        signup: "注册"
+        login: "登录"
         community: "社区"
         settings: "设置"
         account: "账户"
