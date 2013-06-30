@@ -1,5 +1,6 @@
 class Dashboard::ArticlesController < Dashboard::BaseController
-  before_filter :find_article, :only => [:show, :status, :edit, :update, :trash, :restore, :publish, :draft, :category]
+  before_filter :find_article, :only => [:show, :status, :edit, :update]
+  before_filter :find_articles, :only => [:batch_category, :batch_trash, :batch_publish, :batch_draft, :batch_restore, :batch_destroy]
   before_filter :check_lock_status, :only => [:update]
 
   def index
@@ -108,48 +109,51 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     @space.articles.trash.destroy_all
   end
 
-  def category
-    @article.category = @space.categories.find_by(:token => param_to_token(params[:article][:category_id]))
-    @article.save
-    render :update
+  def batch_category
+    @category = @space.categories.find_by(:token => param_to_token(params[:category_id]))
+    @articles.untrash.update_all :category_id => @category.id
+
+    render :batch_update
   end
 
-  def trash
-    @article.update_attribute :status, 'trash'
-    respond_to do |format|
-      format.html { redirect_to dashboard_articles_url }
-      format.js { render :remove }
-    end
+  def batch_trash
+    @articles.untrash.update_all :status => 'trash'
+
+    render :batch_update
   end
 
-  def restore
-    @article.update_attribute :status, 'draft'
-    respond_to do |format|
-      format.html { redirect_to edit_dashboard_article_url(@space, @article) }
-      format.js { render :remove }
-    end
+  def batch_publish
+    @articles.untrash.update_all :status => 'publish'
+
+    render :batch_update
   end
 
-  def publish
-    @article.update_attribute :status, 'publish'
-    render :update
+  def batch_draft
+    @articles.untrash.update_all :status => 'draft'
+
+    render :batch_update
   end
 
-  def draft
-    @article.update_attribute :status, 'draft'
-    render :update
+  def batch_restore
+    @articles.trash.where(:status => 'trash').update_all :status => 'draft'
+
+    render :batch_update
   end
 
-  def destroy
-    @article = @space.articles.trash.find_by(:token => params[:id])
-    @article.destroy
-    render :remove
+  def batch_destroy
+    @articles.trash.destroy_all
+
+    render :batch_update
   end
 
   private
 
   def find_article
     @article = @space.articles.find_by(:token => params[:id])
+  end
+
+  def find_articles
+    @articles = @space.articles.where(:token.in => params[:ids])
   end
 
   def article_params

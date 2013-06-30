@@ -1,5 +1,5 @@
 page_ready ->
-  if $('#articles-index').length
+  if $('#articles').length
     $('#articles').on 'click', '.article:not(.selected)', (event) ->
       if event.originalEvent.srcElement.tagName isnt 'A'
         $(this).addClass('selected').find('.checkbox').removeClass('icon-check-empty').addClass('icon-check')
@@ -23,3 +23,16 @@ page_ready ->
       else
         $('#articles').find('.article.selected').removeClass('selected').find('.checkbox').removeClass('icon-check').addClass('icon-check-empty')
         $(this).removeClass('icon-check icon-check-minus').addClass('icon-check-empty')
+
+    $('#articles').on 'ajax:before', '[data-batch=true]', (event) ->
+      ids = $('#articles .article.selected').map(->
+        $(this).data('id')
+      ).get()
+
+      element = $(this)
+      if element.is('form')
+        element.find('[name="ids[]"]').remove()
+        $.each ids, (index, value)->
+          element.prepend("<input name='ids[]' type='hidden' value='#{value}' >")
+      else
+        element.data('params', {ids: ids})

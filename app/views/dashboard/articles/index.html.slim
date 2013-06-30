@@ -19,23 +19,39 @@
     - when 'uncategorized'
       = t '.uncategorized'
 
-.main-actions.clearfix
-  .pull-left
-    .button-group.hide-on-mobile
-      a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(url_for(:status => nil))
-        = t '.all'
-      a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(url_for(:status => 'publish'))
-        = t '.publish'
-      a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(url_for(:status => 'draft'))
-        = t '.draft'
-  .pull-right
-    a.button.button-green.no-margin href=(new_dashboard_article_path)
-      i.icon-pencil
-      span.hide-on-mobile
-        = ' '
-        = t '.new_article'
-
 #articles.articles
+  .main-actions.clearfix
+    .pull-left
+      .button-group
+        a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(url_for(:status => nil))
+          = t '.all'
+        a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(url_for(:status => 'publish'))
+          = t '.published'
+        a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(url_for(:status => 'draft'))
+          = t '.drafted'
+      .button-group
+        a.button href='#select-category-modal' data-toggle='modal'
+          i.icon-folder-close-alt
+        a.button href=(batch_trash_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true'
+          i.icon-trash
+      .dropdown
+        a.dropdown-toggle.button
+          = t '.more'
+        ul.dropdown-menu
+          li
+            a href=(batch_publish_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true'
+              = t '.publish'
+          li
+            a href=(batch_draft_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true'
+              = t '.draft'
+
+    .pull-right
+      a.button.button-green.no-margin href=(new_dashboard_article_path)
+        i.icon-pencil
+        span.hide-on-mobile
+          = ' '
+          = t '.new_article'
+
   - unless @articles.empty?
     table
       tbody
@@ -46,6 +62,7 @@
             = t '.title'
           th.min
           th.min
+          th.min
             = t '.updated_at'
         = render :partial => 'article', :collection => @articles
     = paginate @articles, :theme => :dashboard
@@ -53,5 +70,5 @@
     .empty-message
       = t '.no_articles'
 
-= render 'select_category_modal'
-= render 'add_category_modal'
+  = render 'select_category_modal'
+  = render 'add_category_modal'

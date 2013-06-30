@@ -7,20 +7,27 @@
   h2
     = t '.trashed'
 
-.main-actions.clearfix
-  .pull-left
-    a.button href=(trash_dashboard_articles_path) data-remote=(true) data-method='delete' data-confirm=(t '.empty_trash_confirm')
-      = t '.empty_trash'
+#articles.articles
+  .main-actions.clearfix
+    .pull-left
+      a.button href=(trashed_dashboard_articles_path) data-remote=(true) data-method='delete' data-confirm=(t '.empty_trash_confirm')
+        = t '.empty_trash'
+      .button-group
+        a.button href=(batch_destroy_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true' data-confirm=(t '.destroy_confirm')
+          i.icon-remove
+        a.button href=(batch_restore_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true'
+          i.icon-undo
 
-.articles
   - unless @articles.empty?
     table
       tbody
         tr
-          /th.min
-            = check_box_tag ''
+          th.min
+            i#select-all.checkbox.icon-check-empty
           th.max
             = t '.title'
+          th.min
+          th.min
           th.min
             = t '.updated_at'
         = render :partial => 'article', :collection => @articles
