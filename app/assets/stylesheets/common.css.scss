@@ -53,6 +53,10 @@ a [class*=" icon-"] {
   text-align: center;
   margin-right: 5px;
   display: inline-block;
+
+  &.no-margin {
+    margin-right: 0;
+  }
 }
 
 article {

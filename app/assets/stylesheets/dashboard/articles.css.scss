@@ -1,4 +1,12 @@
 .articles {
+  .show-on-selected {
+    display: none;
+
+    &.show {
+      display: inline-block;
+    }
+  }
+
   table {
     width: 100%;
     border-top: 1px solid #ddd;

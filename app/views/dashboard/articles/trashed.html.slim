@@ -12,11 +12,11 @@
     .pull-left
       a.button href=(trashed_dashboard_articles_path) data-remote=(true) data-method='delete' data-confirm=(t '.empty_trash_confirm')
         = t '.empty_trash'
-      .button-group
+      .button-group.show-on-selected
         a.button href=(batch_destroy_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true' data-confirm=(t '.destroy_confirm')
-          i.icon-remove
+          i.icon-remove.no-margin
         a.button href=(batch_restore_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true'
-          i.icon-undo
+          i.icon-undo.no-margin
 
   - unless @articles.empty?
     table

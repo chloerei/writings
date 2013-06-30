@@ -1,3 +1,9 @@
+toggleButton = ->
+  if $('#articles .article.selected').length
+    $('#articles .show-on-selected').addClass('show')
+  else
+    $('#articles .show-on-selected').removeClass('show')
+
 page_ready ->
   if $('#articles').length
     $('#articles').on 'click', '.article:not(.selected)', (event) ->
@@ -8,6 +14,8 @@ page_ready ->
         else
           $('#select-all').removeClass('icon-check-minus icon-check-empty').addClass('icon-check')
 
+        toggleButton()
+
     $('#articles').on 'click', '.article.selected', (event) ->
       if event.originalEvent.srcElement.tagName isnt 'A'
         $(this).removeClass('selected').find('.checkbox').removeClass('icon-check').addClass('icon-check-empty')
@@ -16,6 +24,8 @@ page_ready ->
         else
           $('#select-all').removeClass('icon-check-minus icon-check').addClass('icon-check-empty')
 
+        toggleButton()
+
     $('#select-all').on 'click', ->
       if $(this).hasClass('icon-check-empty')
         $('#articles').find('.article:not(.selected)').addClass('selected').find('.checkbox').removeClass('icon-check-empty').addClass('icon-check')
@@ -23,6 +33,8 @@ page_ready ->
       else
         $('#articles').find('.article.selected').removeClass('selected').find('.checkbox').removeClass('icon-check').addClass('icon-check-empty')
         $(this).removeClass('icon-check icon-check-minus').addClass('icon-check-empty')
+
+      toggleButton()
 
     $('#articles').on 'ajax:before', '[data-batch=true]', (event) ->
       ids = $('#articles .article.selected').map(->
