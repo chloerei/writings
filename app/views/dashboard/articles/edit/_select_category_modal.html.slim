@@ -7,7 +7,7 @@
   .modal-content
     = form_for @article, :url => dashboard_article_path(:id => @article), :html => { :id => 'category-form' } do |f|
       .field
-        = f.select :category_id, options_from_collection_for_select(@space.categories, :token, :name), {}, :id => 'article-category-id'
+        = f.select :category_id, options_from_collection_for_select(@space.categories, :token, :name), { :include_blank => t('.uncategorized') }, :id => 'article-category-id'
         '
         = link_to t('.new_category'), '#new-category-modal', :data => { :toggle => :modal }
       .field

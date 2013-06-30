@@ -110,8 +110,12 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def batch_category
-    @category = @space.categories.find_by(:token => param_to_token(params[:category_id]))
-    @articles.untrash.update_all :category_id => @category.id
+    if params[:category_id].blank?
+      @articles.untrash.update_all :category_id => nil
+    else
+      @category = @space.categories.find_by(:token => param_to_token(params[:category_id]))
+      @articles.untrash.update_all :category_id => @category.id
+    end
 
     render :batch_update
   end

@@ -283,6 +283,7 @@ zh-CN:
       select_category_modal:
         select_category: "选择分类"
         new_category: "添加分类"
+        uncategorized: "未分类"
 
       add_category_modal:
         new_category: "添加分类"
@@ -320,6 +321,7 @@ zh-CN:
         select_category_modal:
           select_category: "选择分类"
           new_category: "添加分类"
+          uncategorized: "未分类"
         edit_topbar:
           return: "返回文章列表"
           urlname: "URL"
