@@ -1,4 +1,4 @@
-<% if current_user.valid? %>
+<% if current_user.errors.empty? %>
   AlertMessage.removeAll();
   AlertMessage.show({ type: 'success', text: '<%= t('success') %>', timeout: 1500 });
   $("#user-link").attr("href", "http://" + '<%= current_user.host %>')

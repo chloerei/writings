@@ -415,4 +415,5 @@ en:
         %{allowed_types}'
       store_limit: not enough attachment space
       fetch_error: Fetch error, can't access resource, please use local upload.
-      blank: 不能为空
+      blank: Can't be blank
+      is_not_match: is not match

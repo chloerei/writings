@@ -416,3 +416,4 @@ zh-CN:
       store_limit: "剩余容量不足"
       fetch_error: "抓取失败，也许没有权限访问该资源，请改由本地上传"
       blank: "不能为空"
+      is_not_match: "不正确"
