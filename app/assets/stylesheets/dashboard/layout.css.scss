@@ -309,9 +309,19 @@ $topbarLinkHoverBackgroundColor: white;
 
   .next {
     float: right;
+
+    i {
+      margin-right: 0;
+      margin-left: 5px;
+      text-align: right;
+    }
   }
 
   .prev {
     float: left;
+
+    i {
+      text-align: left;
+    }
   }
 }

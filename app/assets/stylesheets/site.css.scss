@@ -156,6 +156,18 @@ body {
 
       .newer {
         text-align: right;
+
+        i {
+          margin-right: 0;
+          margin-left: 5px;
+          text-align: right;
+        }
+      }
+
+      .older {
+        i {
+          text-align: left;
+        }
       }
     }
   }
