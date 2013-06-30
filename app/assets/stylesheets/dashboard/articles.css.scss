@@ -19,19 +19,6 @@
 
   th,
   td {
-    padding: 15px 15px 15px 0;
-
-    &:first-child {
-      padding-left: 15px;
-    }
-  }
-
-  th {
-    color: #555;
-    text-align: left;
-  }
-
-  td {
     &.min {
       width: 1%;
       overflow: hidden;
@@ -44,14 +31,28 @@
     }
 
     a {
+      display: block;
       color: #888;
       padding: 15px;
 
       &:hover {
         color: $linkColor;
       }
-    }
 
+      i {
+        width: auto;
+        margin-right: 0;
+        text-align: left;
+      }
+    }
+  }
+
+  th {
+    color: #555;
+    text-align: left;
+  }
+
+  td {
     h3 {
       font-size: 1em;
       font-weight: normal;
