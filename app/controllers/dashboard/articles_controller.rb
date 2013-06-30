@@ -1,5 +1,5 @@
 class Dashboard::ArticlesController < Dashboard::BaseController
-  before_filter :find_article, :only => [:show, :status, :edit, :update]
+  before_filter :find_article, :only => [:show, :status, :edit, :update, :restore]
   before_filter :find_articles, :only => [:batch_category, :batch_trash, :batch_publish, :batch_draft, :batch_restore, :batch_destroy]
   before_filter :check_lock_status, :only => [:update]
 
@@ -103,6 +103,11 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     else
       render :json => { :message => I18n.t('save_count_expired'), :code => 'save_count_expired' }, :status => 400
     end
+  end
+
+  def restore
+    @article.update_attributes :status => :draft
+    redirect_to :action => :edit, :id => @article
   end
 
   def empty_trash

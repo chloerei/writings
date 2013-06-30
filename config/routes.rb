@@ -59,6 +59,7 @@ Publish::Application.routes.draw do
 
         member do
           get :status
+          put :restore
         end
 
         resources :versions, :only => [:index, :show] do
