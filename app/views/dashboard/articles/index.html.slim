@@ -35,14 +35,13 @@
         = ' '
         = t '.new_article'
 
-.articles
+#articles.articles
   - unless @articles.empty?
     table
       tbody
         tr
           th.min
-            a
-              i.icon-check-empty
+            i#select-all.checkbox.icon-check-empty
           th.max
             = t '.title'
           th.min

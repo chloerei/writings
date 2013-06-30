@@ -12,13 +12,22 @@
       border-bottom: none;
     }
 
-    &:hover td {
-      background-color: #f9f9f9;
+    &.selected,
+    &:hover {
+      td {
+        background-color: #f9f9f9;
+      }
     }
   }
 
   th,
   td {
+    padding: 15px 15px 15px 0;
+
+    &:first-child {
+      padding-left: 15px;
+    }
+
     &.min {
       width: 1%;
       overflow: hidden;
@@ -31,7 +40,6 @@
     }
 
     a {
-      display: block;
       color: #888;
       padding: 15px;
 
@@ -40,10 +48,15 @@
       }
 
       i {
-        width: auto;
         margin-right: 0;
-        text-align: left;
       }
+    }
+
+    .checkbox {
+      width: 1em;
+      margin-right: 0;
+      text-align: left;
+      display: inline-block;
     }
   }
 
