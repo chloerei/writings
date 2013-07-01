@@ -7,9 +7,12 @@ tr.article id=("article-#{article.token}") data-id=(article.token)
         = article.title
         - if !%w(categorized uncategorized).include?(action_name) && article.category
           span.category = article.category.name
-  td.min
+  td.min.hide-on-mobile
     - if article.publish?
       a href=(site_article_url(:id => article, :urlname => article.urlname, :host => @space.host)) target='_blank'
         i.icon-external-link
   td.min.date
-    = l article.updated_at, :format => :short
+    .hide.show-on-mobile
+      = l article.updated_at.to_date, :format => :short
+    .hide-on-mobile
+      = l article.updated_at, :format => :short

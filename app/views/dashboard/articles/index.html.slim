@@ -58,7 +58,7 @@
             i#select-all.checkbox.icon-check-empty
           th.max
             = t '.title'
-          th.min
+          th.min.hide-on-mobile
           th.min.date
             = t '.updated_at'
         = render :partial => 'article', :collection => @articles
