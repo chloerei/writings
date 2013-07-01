@@ -3,7 +3,7 @@
     .pull-left
       ul.top-nav
         li
-          a.top-nav-button href=(dashboard_articles_index_path) title=(t '.return')
+          a.top-nav-button href=(dashboard_root_path) title=(t '.return')
             i.icon-level-up.icon-rotate-270
         li
           a.top-nav-button href=(restore_dashboard_article_path(:id => @article)) data-method='put'
@@ -14,7 +14,7 @@
     .pull-left
       ul.top-nav
         li
-          a.top-nav-button href=(dashboard_articles_index_path) title=(t '.return')
+          a.top-nav-button href=(dashboard_root_path) title=(t '.return')
             i.icon-level-up.icon-rotate-270
         li.hide-on-mobile
           a.top-nav-button href='#select-category-modal' data-toggle='modal' title=(t '.collect')

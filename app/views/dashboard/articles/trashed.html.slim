@@ -1,0 +1,36 @@
+- append_title t('.trashed')
+
+- content_for :sidebar do
+  = render 'dashboard/share/main_sidebar'
+
+.main-header
+  h2
+    = t '.trashed'
+
+#articles.articles
+  .main-actions.clearfix
+    .pull-left
+      a.button href=(trashed_dashboard_articles_path) data-remote=(true) data-method='delete' data-confirm=(t '.empty_trash_confirm')
+        = t '.empty_trash'
+      .button-group.show-on-selected
+        a.button href=(batch_destroy_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true' data-confirm=(t '.destroy_confirm')
+          i.icon-remove.no-margin
+        a.button href=(batch_restore_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true'
+          i.icon-undo.no-margin
+
+  - unless @articles.empty?
+    table
+      tbody
+        tr
+          th.min
+            i#select-all.checkbox.icon-check-empty
+          th.max
+            = t '.title'
+          th.min.hide-on-mobile
+          th.min
+            = t '.updated_at'
+        = render :partial => 'article', :collection => @articles
+    = paginate @articles, :theme => :dashboard
+  - else
+    .empty-message
+      = t '.no_articles'

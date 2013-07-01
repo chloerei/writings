@@ -1,15 +1,19 @@
-#main
-  .container
-    .inner
-      = render 'dashboard/share/main_header'
-      section
-        .header
-          a href=(dashboard_discussions_path)
-            i.icon-circle-arrow-left
-            '
-            = t '.return_to_discussions_list'
-        .discussion-form
-          = form_for @topic, :url => dashboard_topics_path, :remote => true, :html => { :id => 'new-topic' } do |f|
-            = render :partial => 'form', :object => f
-          = render 'dashboard/share/image_uploader_modal'
-          = render 'dashboard/share/link_creator_modal'
+- append_title t('.new_topic')
+
+- content_for :sidebar do
+  = render 'dashboard/share/main_sidebar'
+
+.main-header
+  h2
+    a href=(dashboard_discussions_path)
+      i.icon-angle-left
+      = t '.discussions'
+    = ' / '
+    = t '.new_topic'
+
+section
+  .discussion-form
+    = form_for @topic, :url => dashboard_topics_path, :remote => true, :html => { :id => 'new-topic' } do |f|
+      = render :partial => 'form', :object => f
+    = render 'dashboard/share/image_uploader_modal'
+    = render 'dashboard/share/link_creator_modal'

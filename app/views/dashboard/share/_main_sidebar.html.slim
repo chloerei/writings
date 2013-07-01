@@ -1,0 +1,71 @@
+nav.main-sidebar-nav
+  ul
+    li.main-sidebar-item class=('actived' if controller_name == 'articles' && action_name == 'index' && params[:category_id].blank?)
+      a href=(dashboard_root_path)
+        i.icon-folder-open-alt
+        = t ('.all_articles')
+    li.main-sidebar-item class=('actived' if controller_name == 'articles' && action_name == 'trashed')
+      a href=(dashboard_articles_trashed_path)
+        i.icon-trash
+        = t '.trashed'
+    li.main-sidebar-item class=('actived' if controller_name == 'attachments')
+      a href=(dashboard_attachments_path)
+        i.icon-picture
+        = t '.pictures'
+    - if @space.is_a? Workspace
+      li.main-sidebar-item class=('actived' if %w(discussions topics comments).include?(controller_name))
+        a href=(dashboard_discussions_path)
+          i.icon-comment-alt
+          = t '.discussions'
+
+nav.main-sidebar-nav
+  ul
+    li.main-sidebar-item
+      a href='#new-category-modal' data-toggle='modal'
+        i.icon-plus
+        = t '.new_category'
+    - @space.categories.each do |category|
+      li.main-sidebar-item.append-dropdown class=('actived' if category == @category)
+        a href=(dashboard_articles_categorized_path(:category_id => category))
+          i.icon-folder-close-alt
+          = category.name
+        .dropdown
+          a.dropdown-toggle.no-arrow
+            .icon-angle-down
+          .dropdown-menu.align-right
+            ul
+              li
+                a href=(edit_dashboard_category_path(:id => category)) data-remote='true'
+                  i.icon-edit
+                  = t '.edit'
+              li
+                a href=(dashboard_category_path(:id => category)) data-remote='true' data-method='delete' data-confirm=(t('.delete_category_confirm', :name => category.name))
+                  i.icon-remove
+                  = t '.delete'
+    li.main-sidebar-item class=('actived' if controller_name == 'articles' && action_name == 'uncategorized')
+      a href=(dashboard_articles_uncategorized_path)
+        i.icon-folder-close-alt
+        = t '.uncategorized'
+
+= render 'dashboard/categories/new_category_modal'
+
+nav.main-sidebar-nav
+  ul
+    li.main-sidebar-item class=(controller_name == 'import_tasks' ? 'actived' : nil)
+      a href=(dashboard_import_tasks_path)
+        i.icon-cloud-upload
+        = t('.import')
+    li.main-sidebar-item class=(controller_name == 'export_tasks' ? 'actived' : nil)
+      a href=(dashboard_export_tasks_path)
+        i.icon-cloud-download
+        = t('.export')
+    - if @space.is_a? Workspace
+      li.main-sidebar-item class=('actived' if controller_name == 'members')
+        a href=(dashboard_members_path)
+          i.icon-group
+          = t('.members')
+    - if @space.is_a?(User) || @space.creator == current_user
+      li.main-sidebar-item class=(controller_name == 'settings' ? 'actived' : nil)
+        a href=(dashboard_settings_path)
+          i.icon-wrench
+          = t('.settings.')

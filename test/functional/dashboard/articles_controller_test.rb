@@ -6,6 +6,8 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
     @category = create(:category, :space => @user)
     @article = create(:article, :space => @user, :category => @category)
     login_as @user
+
+    request.env["HTTP_REFERER"] = dashboard_root_url(:space_id => @user)
   end
 
   test "should get new page" do
@@ -82,11 +84,66 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
     assert_response 400, @response.body
   end
 
-  test "should publish article" do
-    put :publish, :space_id => @user, :id => @article, :format => :js
-    assert @article.reload.publish?
+  test "restore" do
+    article = create :article, :space => @user, :status => 'trash'
 
-    put :draft, :space_id => @user, :id => @article, :format => :js
-    assert @article.reload.draft?
+    assert_difference "@user.articles.draft.count" do
+      put :restore, :space_id => @user, :id => article
+    end
+  end
+
+  test "batch category" do
+    ids = 2.times.map { create(:article, :space => @user).token }
+    assert_no_difference "@user.articles.count" do
+      assert_difference "@category.articles.count", 2 do
+        put :batch_category, :space_id => @user, :ids => ids, :category_id => @category.token, :format => :js
+      end
+    end
+  end
+
+  test "batch trash" do
+    ids = 2.times.map { create(:article, :space => @user).token }
+
+    assert_difference "@user.articles.untrash.count", -2 do
+      put :batch_trash, :space_id => @user, :ids => ids, :format => :js
+    end
+  end
+
+  test "batch restroe" do
+    ids = 2.times.map { create(:article, :space => @user, :status => 'trash').token }
+
+    assert_difference "@user.articles.untrash.count", 2 do
+      put :batch_restore, :space_id => @user, :ids => ids, :format => :js
+    end
+  end
+
+  test "batch publish" do
+    ids = 2.times.map { create(:article, :space => @user, :status => 'draft').token }
+
+    assert_difference "@user.articles.publish.count", 2 do
+      put :batch_publish, :space_id => @user, :ids => ids, :format => :js
+    end
+  end
+
+  test "batch draft" do
+    ids = 2.times.map { create(:article, :space => @user, :status => 'publish').token }
+
+    assert_difference "@user.articles.draft.count", 2 do
+      put :batch_draft, :space_id => @user, :ids => ids, :format => :js
+    end
+  end
+
+  test "batch destroy" do
+    ids = 2.times.map { create(:article, :space => @user, :status => 'trash').token }
+
+    assert_difference "@user.articles.count", -2 do
+      put :batch_destroy, :space_id => @user, :ids => ids, :format => :js
+    end
+
+    ids = 2.times.map { create(:article, :space => @user, :status => 'draft').token }
+
+    assert_no_difference "@user.articles.count" do
+      put :batch_destroy, :space_id => @user, :ids => ids, :format => :js
+    end
   end
 end

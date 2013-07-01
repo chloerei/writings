@@ -55,6 +55,13 @@ $(document).on('click', '[data-close=modal]', function(event) {
   Dialog.hide($(this).closest('.modal-dialog'));
 });
 
+$(document).on('click', '[data-remove=modal]', function(event) {
+  event.preventDefault();
+  var dialog = $(this).closest('.modal-dialog');
+  Dialog.hide(dialog);
+  dialog.remove();
+});
+
 $(document).on('keyup', function(event) {
   if (event.keyCode === 27 && Dialog.level > 0) { // Esc
     Dialog.hide('.modal-level-' + Dialog.level);

@@ -1,64 +1,100 @@
 .articles {
-  > ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .show-on-selected {
+    display: none;
 
-    > li {
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 2px;
-      @include box-shadow(0 1px 0 #ddd);
+    &.show {
+      display: inline-block;
+    }
+  }
 
-      &:hover {
-        border-color: #ccc;
+  table {
+    width: 100%;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    line-height: 160%;
+  }
+
+  tr {
+    border-bottom: 1px solid #eee;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.selected,
+    &:hover {
+      td {
+        background-color: lighten(yellow, 43%);
       }
     }
   }
 
-  h3 {
-    padding-right: 40px;
-    margin: 0;
-    font-size: 1em;
-    position: relative;
-    @include clearfix();
-
-    > a {
-      color: #333;
-      display: block;
-      padding: 7px 14px;
+  th,
+  td {
+    &.min {
+      width: 1%;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
 
-    .dropdown {
-      position: absolute;
-      right: 0;
-      top: 0;
+    &.max {
+      width: 99%;
+    }
 
-      .dropdown-toggle {
-        color: #999;
-        padding: 7px 14px;
+    a {
+      display: inline-block;
+      color: #888;
+      padding: 15px;
 
-        &:hover {
-          color: #555;
-        }
+      &:hover {
+        color: $linkColor;
       }
 
-      .dropdown-menu {
-        top: 30px;
+      i {
+        margin-right: 0;
       }
+    }
+
+    .checkbox {
+      width: 1em;
+      margin-right: 0;
+      text-align: left;
+      display: inline-block;
+      padding: 15px;
+      cursor: pointer;
     }
   }
 
-  .info {
-    color: #999;
+  th {
+    color: #555;
+    text-align: left;
+  }
 
-    a {
-      display: block;
-      color: #999;
-      padding: 7px 14px;
+  td {
+    cursor: pointer;
+
+    h3 {
+      font-size: 1em;
+      font-weight: normal;
+      margin: 0;
+
+      a {
+        color: #333;
+        padding-left: 0;
+      }
     }
+
+    .category {
+      padding: 0 5px;
+      background: #efefef;
+      color: #555;
+      border-radius: 2px;
+      margin-left: 5px;
+    }
+  }
+
+  .date {
+    padding-right: 15px;
   }
 }

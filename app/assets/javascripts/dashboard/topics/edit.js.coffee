@@ -13,3 +13,9 @@ page_ready ->
     $('#new-topic').data('editor', editor)
     new Editor.ImageUploader(editor)
     new Editor.LinkCreator(editor)
+
+    $('#topics-edit').data('editor', editor)
+
+$(document).on 'page:restore', ->
+  if $('#topics-edit').length
+    $('#topics-edit').data('editor').bindShortcuts()

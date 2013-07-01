@@ -1,64 +1,18 @@
-li.article id=("article-#{article.token}") data-id=(article.token) data-category-id=(article.category.try(:token)) data-category-name=(article.category.try(:name))
-  h3
-    = link_to article.title, edit_dashboard_article_path(:id => article)
-    .dropdown
-      a.dropdown-toggle.no-arrow href='#'
-        i.icon-chevron-sign-down.hide-on-active
-        i.icon-chevron-sign-up.show-on-active
-      ul.dropdown-menu.align-right
-        - if article.publish?
-          li
-            a href=(draft_dashboard_article_path(:id => article)) data-remote=(true) data-method='put'
-              i.icon-check-minus
-              '
-              = t '.draft'
-          li
-            a href=(site_article_url(:host => @space.host, :id => article)) target='_blank'
-              i.icon-external-link
-              '
-              = t '.link'
-        - elsif article.draft?
-          li
-            a href=(publish_dashboard_article_path(:id => article)) data-remote=(true) data-method='put'
-              i.icon-check
-              '
-              = t '.publish'
-        - if article.trash?
-          li
-            a href=(restore_dashboard_article_path(:id => article)) data-remote=(true) data-method='put'
-              i.icon-undo
-              '
-              = t '.restore'
-            hr
-          li
-            a href=(dashboard_article_path(:id => article)) data-remote=(true) data-method='delete' data-confirm=(t '.delete_confirm')
-              i.icon-remove
-              '
-              = t '.delete'
-        - else
-          li
-            a.select-category href='#select-category-modal' data-toggle='modal'
-              i.icon-folder-close-alt
-              '
-              = t '.category'
-          li
-            hr
-          li
-            a href=(trash_dashboard_article_path(:id => article)) data-remote=(true) data-method='put'
-              i.icon-trash
-              '
-              = t '.move_to_trash'
-  .info
-    a href=(edit_dashboard_article_path(:id => article))
-      = t '.created_at'
-      = l article.created_at, :format => :short
-      = ' • '
-      = t '.updated_at'
+tr.article id=("article-#{article.token}") data-id=(article.token)
+  td.min
+    i.checkbox.icon-check-empty
+  td.max
+    h3
+      a href=(edit_dashboard_article_path(:id => article))
+        = article.title
+        - if !%w(categorized uncategorized).include?(action_name) && article.category
+          span.category = article.category.name
+  td.min.hide-on-mobile
+    - if article.publish?
+      a href=(site_article_url(:id => article, :urlname => article.urlname, :host => @space.host)) target='_blank'
+        i.icon-external-link
+  td.min.date
+    .hide.show-on-mobile
+      = l article.updated_at.to_date, :format => :short
+    .hide-on-mobile
       = l article.updated_at, :format => :short
-      - if article.category
-        = ' • '
-        span.category-name
-          = article.category.name
-      - if article.publish?
-        = ' • '
-        = t '.published'

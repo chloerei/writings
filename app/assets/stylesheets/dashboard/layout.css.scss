@@ -7,7 +7,8 @@
 
   .column {
     float: left;
-    width: 50%;
+    width: 45%;
+    margin-right: 5%;
   }
 
   .title {
@@ -55,10 +56,6 @@ table.nice-table {
 .container {
   margin: 0 auto;
   width: $container-width;
-
-  @media (max-width: 960px) {
-    width: 100%;
-  }
 }
 
 // signup, login
@@ -67,7 +64,7 @@ table.nice-table {
   margin: 100px auto;
   width: 90%;
   max-width: 350px;
-  padding: 40px;
+  padding: 20px;
   background-color: #fff;
   @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
   @include box-sizing(border-box);
@@ -85,31 +82,53 @@ table.nice-table {
 
 // topbar
 
+$mainSidebarWidth: 200px;
+
+$topbarLinkColor: #eee;
+$topbarLinkBackgroundColor: #333;
+$topbarLinkHoverColor: #333;
+$topbarLinkHoverBackgroundColor: white;
+
 #topbar {
   line-height: 18px;
+  margin-bottom: 20px;
+  color: $topbarLinkColor;
+  background-color: $topbarLinkBackgroundColor;
+  @include linear-gradient(#555, #333);
+  @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
 
-  ul.top-nav {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    line-height: 18px;
-    @include clearfix();
+  .container {
+    position: relative;
+  }
 
-    > li {
-      display: inline-block;
-      float: left;
-      height: 48px;
+  .space-menu {
+    width: $mainSidebarWidth;
+    position: absolute;
+    left: 0;
 
-      > a {
-        padding: 15px 20px;
-        display: block;
-        color: #555;
-        @include transition(all 0.15s ease);
+    .dropdown,
+    .dropdown-toggle {
+      display: block;
+    }
+  }
 
-        &:hover {
-          color: $linkColor;
-        }
-      }
+  .sub-menu {
+    margin-left: $mainSidebarWidth;
+  }
+
+  .topbar-button {
+    padding: 15px 20px;
+    display: inline-block;
+    color: $topbarLinkColor;
+    @include transition(all 0.15s ease);
+
+    &.actived {
+      background-color: #333;
+    }
+
+    &:hover {
+      background-color: $topbarLinkHoverBackgroundColor;
+      color: $topbarLinkHoverColor;
     }
   }
 
@@ -118,25 +137,20 @@ table.nice-table {
 
     .dropdown-toggle {
       padding: 15px 35px 15px 20px;
-      color: #555;
       vertical-align: baseline;
+      color: $topbarLinkColor;
 
       &:after {
         padding: 2px 20px;
       }
 
-      &.actived {
-        color: $linkColor;
-      }
-
       &:hover {
-        color: $linkColor;
+        background-color: $topbarLinkHoverBackgroundColor;
+        color: $topbarLinkHoverColor;
       }
     }
 
     .dropdown-menu {
-      top: 49px;
-      width: 150px;
       font-weight: normal;
 
       li {
@@ -148,7 +162,8 @@ table.nice-table {
 
     &.actived {
       .dropdown-toggle {
-        color: $linkColor;
+        background-color: $topbarLinkHoverBackgroundColor;
+        color: $topbarLinkHoverColor;
       }
     }
   }
@@ -157,36 +172,118 @@ table.nice-table {
 // main
 
 #main {
+  margin-bottom: 20px;
+
   .inner {
     background-color: #fff;
-    margin: 10px 0;
-    padding: 20px;
     min-height: 800px;
-    @include box-shadow(0 1px 3px 1px rgba(0, 0, 0, 0.3));
+    position: relative;
+    @include box-shadow(0 0 2px rgba(0, 0, 0, 0.3));
+    @include clearfix();
   }
 
-  .main-nav {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ccc;
+  .main-sidebar {
+    width: 20%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #f9f9f9;
 
-    ul {
-      @include clearfix();
-    }
+    nav.main-sidebar-nav {
+      margin-bottom: 20px;
 
-    li {
-      float: left;
+      li.main-sidebar-item {
+        &:hover {
+          background-color: white;
+        }
 
-      a {
-        padding: 10px;
-        display: inline-block;
-      }
-
-      &.actived {
-        a {
+        > a {
+          padding: 15px 20px;
+          display: block;
+          position: relative;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
           color: #333;
+          line-height: 18px;
+
+          &:hover {
+            color: $linkColor;
+          }
+        }
+
+        &.actived {
+          background-color: white;
+
+          > a {
+            color: $linkColor;
+            padding-left: 16px;
+            border-left: 4px solid $linkColor;
+          }
+        }
+
+        &.append-dropdown {
+          padding-right: 48px;
+          position: relative;
+
+          .dropdown {
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            &.actived {
+              a.dropdown-toggle {
+                visibility: visible;
+              }
+            }
+          }
+
+          a.dropdown-toggle {
+            visibility: hidden;
+            border-left: none;
+            width: 18px;
+            padding: 15px;
+
+            &:hover {
+              color: $linkColor;
+            }
+          }
+
+          &:hover,
+          &.actived {
+            a.dropdown-toggle {
+              visibility: visible;
+            }
+          }
+
+          .dropdown-menu {
+            top: 100%;
+          }
         }
       }
     }
+  }
+
+  .main-header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .main-content {
+    margin-left: $mainSidebarWidth;
+    padding: 20px;
+    @include box-sizing(border-box);
+  }
+
+
+  .main-actions {
+    margin-bottom: 20px;
   }
 
   section {
@@ -197,82 +294,16 @@ table.nice-table {
       margin-bottom: 0;
     }
 
-    .section-title {
+    header {
       h3 {
         margin-top: 0;
       }
     }
 
-    .main-sidebar {
-      width: 20%;
-      float: left;
-
-      nav {
-        padding-right: 20px;
-        margin-bottom: 20px;
-      }
-
-      li {
-        margin-bottom: 5px;
-
-        a {
-          padding: 8px 10px;
-          display: block;
-          padding-right: 20px;
-          position: relative;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          color: #333;
-          line-height: 18px;
-
-          &:hover {
-            background-color: #eee;
-
-            &:after {
-              border-left: 17px solid #eee;
-            }
-          }
-
-          &:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 0;
-            height: 0;
-            display: block;
-            border-top: 17px solid white;
-            border-bottom: 17px solid white;
-            border-left: 17px solid white;
-          }
-        }
-
-        &.actived {
-          a {
-            color: white;
-            background-color: $linkColor;
-
-            &:after {
-              border-left: 17px solid $linkColor;
-            }
-          }
-        }
-      }
-    }
-
-    .main-content {
-      width: 80%;
-      float: left;
-
-      .main-header {
-        margin-bottom: 20px;
-      }
-    }
   }
 
   .empty-message {
-    padding: 20px;
+    padding: 15px;
     border: 2px dashed #ddd;
     text-align: center;
     color: #999;
@@ -285,9 +316,100 @@ table.nice-table {
 
   .next {
     float: right;
+
+    i {
+      margin-right: 0;
+      margin-left: 5px;
+      text-align: right;
+    }
   }
 
   .prev {
     float: left;
+
+    i {
+      text-align: left;
+    }
+  }
+}
+
+#main-sidebar-background {
+  background-color: white;
+  @include transition(background-color 0.15s ease);
+}
+
+#sidebar-button.topbar-button {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .two-columns {
+    .column {
+      width: auto;
+      float: none;
+      margin-bottom: 20px;
+      margin-right: 0;
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .container {
+    width: 100%;
+  }
+
+  .space-menu {
+    #sidebar-button.topbar-button {
+      cursor: pointer;
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      width: 18px;
+    }
+
+    .dropdown {
+      margin-left: 58px;
+    }
+  }
+
+  #topbar {
+    margin-bottom: 0;
+  }
+
+  #main {
+    margin-bottom: 0;
+
+    .main-sidebar {
+      width: $mainSidebarWidth;
+      left: -$mainSidebarWidth;
+      @include transition(left 0.15s ease);
+      @include transition
+    }
+
+    .main-content {
+      margin-left: 0;
+    }
+
+    &.show-sidebar {
+      .main-sidebar {
+        left: 0;
+        z-index: 1;
+        @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+      }
+
+      .main-content {
+        z-index: -1;
+      }
+
+      #main-sidebar-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    }
   }
 }

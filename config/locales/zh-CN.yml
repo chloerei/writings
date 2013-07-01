@@ -63,6 +63,18 @@ zh-CN:
       logout: "登出"
       login: "登录"
       signup: "注册"
+
+      topbar:
+        home: "首页"
+        about: "关于"
+        signup: "注册"
+        login: "登录"
+        community: "社区"
+        settings: "设置"
+        account: "账户"
+        upgrade: "升级"
+        logout: "登出"
+
     error:
       feedback: "问题反馈"
 
@@ -81,11 +93,15 @@ zh-CN:
 
   accounts:
     show:
-      account_setting: "账户设置"
+      account_settings: "账户设置"
       login_id: "登录 ID"
       custom: "个性化"
       change_password: "更换密码"
       confirm_change: "确认修改"
+  billings:
+    show:
+      upgrade: "升级"
+
   profiles:
     show:
       profile_setting: "个人资料设置"
@@ -93,20 +109,24 @@ zh-CN:
 
   dashboard:
     share:
-      main_header:
-        articles: "文章"
-        discussions: "讨论"
+      main_sidebar:
+        all_articles: "全部文章"
+        uncategorized: "未分类"
+        trashed: "回收站"
         pictures: "图片"
-        members: "成员"
+        discussions: "讨论"
+        new_category: "添加分类"
         import: "导入"
         export: "导出"
+        members: "成员"
         settings: "工作区设置"
+        edit: "编辑"
+        delete: "删除"
+        delete_category_confirm: "删除分类 %{name}？该分类下的文章会被标记为未归类。"
 
-      settings_nav:
-        personal_settings: "个人设置"
-        account: "账户"
-        profile: "个人信息"
-        billing: "升级"
+      settings_sidebar:
+        account_settings: "账户设置"
+        upgrade: "升级"
 
       image_uploader_modal:
         insert_image: "插入图片"
@@ -131,6 +151,7 @@ zh-CN:
         import: "导入"
         help: "帮助"
       show:
+        import: "导入"
         title: "标题"
         date: "日期"
         category: "分类"
@@ -153,6 +174,7 @@ zh-CN:
         export: "导出"
         help: "帮助"
       show:
+        export: "导出"
         task_success: "导出完成"
         task_success_detail: "点击下载按钮下载存档："
         task_error: "导出发生错误"
@@ -168,6 +190,7 @@ zh-CN:
 
     discussions:
       index:
+        discussions: "讨论"
         open: "讨论中"
         archived: "已归档"
         new_topic: "新主题"
@@ -178,10 +201,13 @@ zh-CN:
 
     topics:
       new:
+        discussions: "讨论"
+        new_topic: "新主题"
         return_to_discussions_list: "返回讨论列表"
       form:
         title: "标题"
       show:
+        discussions: "讨论"
         return_to_discussions_list: "返回讨论列表"
         archived: "已归档"
         manage: "管理"
@@ -217,6 +243,7 @@ zh-CN:
       index:
         invite_members: "邀请成员"
         members: "成员"
+        current_members: "当前成员"
         contact_workspace_creator_to_invite_members: "联系工作区创建者添加成员"
       form:
         send_invitation: "发送邀请"
@@ -233,7 +260,7 @@ zh-CN:
         resend: "再次发送"
     invitations:
       show:
-        invitation_detail: "邀请详情"
+        invitation_detail: "邀请函详情"
         invite_you_to_join_this_workspace: "邀请你加入工作区"
         you_need_an_account: "你需要一个帐号"
         already_have_account: "已有帐号？"
@@ -241,7 +268,7 @@ zh-CN:
         you_are_login_as: "你的帐号是"
         change_account: "使用另一个帐号？"
         join_workspace: "加入工作区"
-        members: "成员"
+        current_members: "成员"
 
     attachments:
       index:
@@ -250,21 +277,23 @@ zh-CN:
         no_picture: "没有图片"
     articles:
       index:
+        all_articles: "全部文章"
+        uncategorized: "未分类"
         all: "全部"
-        publish: "已发布"
-        draft: "草稿箱"
+        published: "已发布"
+        drafted: "草稿箱"
+        publish: "发布"
+        draft: "草稿"
+        more: "更多"
         new_article: "新文章"
         no_articles: "没有文章"
-
-      main_sidebar:
-        all_articles: "全部文章"
-        no_category: "未分类"
-        trash: "回收站"
-        new_category: "添加分类"
+        title: "标题"
+        updated_at: "更新时间"
 
       select_category_modal:
         select_category: "选择分类"
         new_category: "添加分类"
+        uncategorized: "未分类"
 
       add_category_modal:
         new_category: "添加分类"
@@ -282,13 +311,14 @@ zh-CN:
         created_at: "创建于"
         updated_at: "更新于"
 
-      trash_index:
+      trashed:
+        trashed: "回收站"
         empty_trash: "清空回收站"
         empty_trash_confirm: "确认清空回收站？"
+        destroy_confirm: "确认彻底删除所选？"
         no_articles: "没有文章"
-
-      new_category_modal:
-        new_category: "添加分类"
+        title: "标题"
+        updated_at: "更新时间"
 
       edit:
         readonly_mode: "只读模式"
@@ -301,6 +331,7 @@ zh-CN:
         select_category_modal:
           select_category: "选择分类"
           new_category: "添加分类"
+          uncategorized: "未分类"
         edit_topbar:
           return: "返回文章列表"
           urlname: "URL"
@@ -375,6 +406,11 @@ zh-CN:
         publish: "已发布"
         draft: "草稿箱"
         new_article: "新文章"
+      new_category_modal:
+        new_category: "添加分类"
+      edit_category_modal:
+        edit_category: "编辑分类"
+
 
   mongoid:
     attributes:
@@ -417,3 +453,4 @@ zh-CN:
       fetch_error: "抓取失败，也许没有权限访问该资源，请改由本地上传"
       blank: "不能为空"
       is_not_match: "不正确"
+      space_name: "只能包含英文字母，数字和 - 符号"

@@ -19,7 +19,7 @@ class @Editor
     if @options.toolbar
       @toolbar = new Editor.Toolbar(this, @options.toolbar, @options.toolbarOptions)
       @toolbar.detectState()
-    @connectShortcuts()
+    @bindShortcuts()
     @initParagraph()
     _this = this
     @editable.on "keyup mouseup", ->
@@ -94,7 +94,7 @@ class @Editor
     undo: ["ctrl+z"]
     redo: ["ctrl+y", "ctrl+shift+z"]
 
-  connectShortcuts: ->
+  bindShortcuts: ->
     _this = this
     $.each @shortcuts, (method, key) ->
       if _this.formator[method]

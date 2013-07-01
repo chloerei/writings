@@ -1,26 +1,27 @@
 class Dashboard::ArticlesController < Dashboard::BaseController
-  before_filter :find_article, :only => [:show, :status, :edit, :update, :trash, :restore, :publish, :draft, :category]
+  before_filter :find_article, :only => [:show, :status, :edit, :update, :restore]
+  before_filter :find_articles, :only => [:batch_category, :batch_trash, :batch_publish, :batch_draft, :batch_restore, :batch_destroy]
   before_filter :check_lock_status, :only => [:update]
 
   def index
     @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status]).includes(:category)
+  end
 
-    append_title I18n.t('articles')
+  def uncategorized
+    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status]).where(:category_id => nil)
 
-    if params[:category_id]
-      if params[:category_id] == 'none'
-        @articles = @articles.where(:category_id => nil)
+    render :index
+  end
 
-        append_title I18n.t('not_category')
-      else
-        @category = @space.categories.where(:token => param_to_token(params[:category_id])).first
-        @articles = @articles.where(:category_id => @category.try(:id) || -1)
+  def trashed
+    @articles = @space.articles.desc(:updated_at).page(params[:page]).status('trash').includes(:category)
+  end
 
-        append_title @category.name if @category
-      end
-    end
+  def categorized
+    @category = @space.categories.find_by :token => param_to_token(params[:category_id])
+    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status]).where(:category_id => @category.id)
 
-    append_title I18n.t(params[:status]) if params[:status].present?
+    render :index
   end
 
   def show
@@ -104,56 +105,65 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     end
   end
 
-  def trash_index
-    @articles = @space.articles.desc(:updated_at).page(params[:page]).status('trash').includes(:category)
+  def restore
+    @article.update_attributes :status => :draft
+    redirect_to :action => :edit, :id => @article
   end
 
   def empty_trash
-    @space.articles.trash.delete_all
+    @space.articles.trash.destroy_all
   end
 
-  def category
-    @article.category = @space.categories.find_by(:token => param_to_token(params[:article][:category_id]))
-    @article.save
-    render :update
-  end
-
-  def trash
-    @article.update_attribute :status, 'trash'
-    respond_to do |format|
-      format.html { redirect_to dashboard_articles_url }
-      format.js { render :remove }
+  def batch_category
+    if params[:category_id].blank?
+      @articles.untrash.update_all :category_id => nil, :updated_at => Time.now.utc
+    else
+      @category = @space.categories.find_by(:token => param_to_token(params[:category_id]))
+      @articles.untrash.update_all :category_id => @category.id, :updated_at => Time.now.utc
     end
+
+    render :batch_update
   end
 
-  def restore
-    @article.update_attribute :status, 'draft'
-    respond_to do |format|
-      format.html { redirect_to edit_dashboard_article_url(@space, @article) }
-      format.js { render :remove }
-    end
+  def batch_trash
+    @articles.untrash.update_all :status => 'trash', :updated_at => Time.now.utc
+
+    render :batch_update
   end
 
-  def publish
-    @article.update_attribute :status, 'publish'
-    render :update
+  def batch_publish
+    @articles.untrash.update_all :status => 'publish', :updated_at => Time.now.utc
+    @articles.untrash.where(:published_at => nil).update_all :published_at => Time.now.utc
+
+    render :batch_update
   end
 
-  def draft
-    @article.update_attribute :status, 'draft'
-    render :update
+  def batch_draft
+    @articles.untrash.update_all :status => 'draft', :updated_at => Time.now.utc
+
+    render :batch_update
   end
 
-  def destroy
-    @article = @space.articles.trash.find_by(:token => params[:id])
-    @article.destroy
-    render :remove
+  def batch_restore
+    @articles.trash.where(:status => 'trash').update_all :status => 'draft', :updated_at => Time.now.utc
+
+    render :batch_update
+  end
+
+  def batch_destroy
+    @articles.trash.destroy_all
+
+    render :batch_update
   end
 
   private
 
   def find_article
     @article = @space.articles.find_by(:token => params[:id])
+  end
+
+  def find_articles
+    @articles = @space.articles.where(:token.in => params[:ids])
   end
 
   def article_params

@@ -20,6 +20,7 @@ class ArticleEdit
       @noteManager = new ArticleEdit.NoteManager(this)
 
     @bindActions()
+    @bindShortcuts()
 
   bindActions: ->
     $("#urlname-form").on "submit", (event) => @saveUrlname(event)
@@ -57,6 +58,7 @@ class ArticleEdit
     @article.on "editor:change", =>
       @saveArticle()
 
+  bindShortcuts: ->
     Mousetrap.bind ["ctrl+s", "command+s"], (event) =>
       @saveArticle event
 
@@ -313,7 +315,16 @@ class ArticleEdit
       $.removeCookie "pick_up_topbar",
         path: "/"
 
+  restore: ->
+    @bindShortcuts()
+    @editor.bindShortcuts()
+
 @ArticleEdit = ArticleEdit
 
 page_ready ->
-  new ArticleEdit() if $("body#articles-edit").length
+  if $("body#articles-edit").length
+    $("body#articles-edit").data('article-edit', new ArticleEdit())
+
+$(document).on 'page:restore', ->
+  if $("body#articles-edit").length
+    $("body#articles-edit").data('article-edit').restore()

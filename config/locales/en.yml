@@ -1,3 +1,4 @@
+---
 en:
   en: English
   zh-CN: Chinese(Simplified)
@@ -55,6 +56,16 @@ en:
       logout: Logout
       login: Login
       signup: Signup
+      topbar:
+        home: Home
+        about: About
+        signup: Signup
+        login: Login
+        community: Community
+        settings: Settings
+        account: Account
+        upgrade: Upgrade
+        logout: Logout
     error:
       feedback: Feedback
   workspaces:
@@ -75,30 +86,39 @@ en:
       login: Login
   accounts:
     show:
-      account_setting: Account setting
+      account_settings: Account Settings
       login_id: Login ID
       custom: Custom
       change_password: Change password
       confirm_change: Confirm change
+      account_setting: Account setting
+  billings:
+    show:
+      upgrade: Upgrade
   profiles:
     show:
       profile_setting: Profile setting
       publish_profile: Published profile
   dashboard:
     share:
-      main_header:
-        articles: Articles
-        discussions: Discussions
+      main_sidebar:
+        all_articles: All Articles
+        uncategorized: Uncategorized
+        trashed: Trashed
         pictures: Pictures
-        members: Members
+        discussions: Dicussions
+        new_category: New Category
         import: Import
         export: Export
-        settings: Workspace settings
-      settings_nav:
-        personal_settings: Psersonal settings
-        account: Account
-        profile: Profile
-        billing: Billing
+        members: Members
+        settings: Space Settings
+        edit: Edit
+        delete: Delete
+        delete_category_confirm: Sure to delte %{name}? Articles in this category
+          will mark as uncategorized.
+      settings_sidebar:
+        account_settings: Account Settings
+        upgrade: Upgrade
       image_uploader_modal:
         insert_image: Insert image
         url: URL
@@ -124,10 +144,11 @@ en:
         import: Import
         help: Help
       show:
+        import: Import
         title: Title
         date: Date
+        category: Category
         status: Status
-        Category: Category
         task_success: Parse success
         task_success_detail: 'Please confirm import items:'
         task_error: Parse error
@@ -137,6 +158,7 @@ en:
           or refresh this page to check parse status:'
         refresh: Refresh
         import_select: Import selected
+        Category: Category
     export_tasks:
       index:
         all: All
@@ -146,6 +168,7 @@ en:
         export: Export
         help: Help
       show:
+        export: Export
         task_success: Export complete
         task_success_detail: 'Click download button to start:'
         task_error: Export error
@@ -157,9 +180,10 @@ en:
         refresh: Refresh
     settings:
       show:
-        workspace_settings: Settings
+        workspace_settings: Space Settings
     discussions:
       index:
+        discussions: Discussions
         open: Open
         archived: Archived
         new_topic: New topic
@@ -169,10 +193,13 @@ en:
         updated_at: Updated at
     topics:
       new:
+        discussions: Discussions
+        new_topic: New Topic
         return_to_discussions_list: Return to discussions list
       form:
         title: Title
       show:
+        discussions: Discussions
         return_to_discussions_list: Return to discussions list
         archived: Archived
         manage: Manage
@@ -206,6 +233,7 @@ en:
       index:
         invite_members: Invite members
         members: Members
+        current_members: Current Members
         contact_workspace_creator_to_invite_members: Contact workspace creator to
           invite members
       form:
@@ -231,7 +259,7 @@ en:
         you_are_login_as: You are logined as
         change_account: Change account?
         join_workspace: Join workspace
-        members: Members
+        current_members: Current Members
     attachments:
       index:
         pictures: Pictures
@@ -239,21 +267,24 @@ en:
         no_picture: No picture
     articles:
       index:
+        all_articles: All Articles
+        uncategorized: Uncategorized
         all: All
+        published: Publish
+        drafted: Draft
         publish: Publish
         draft: Draft
+        more: More
         new_article: New article
         no_articles: No articles
+        title: Title
+        updated_at: Updated at
         inbox: Inbox
         is_end: is end
-      main_sidebar:
-        all_articles: All articles
-        no_category: Not category
-        trash: Trash
-        new_category: New category
       select_category_modal:
         select_category: Select category
         new_category: New category
+        uncategorized: Uncategorized
       add_category_modal:
         new_category: New category
       article:
@@ -268,12 +299,14 @@ en:
         delete_confirm: Sure to delete this article?
         created_at: Created at
         updated_at: Updated at
-      trash_index:
+      trashed:
+        trashed: Trashed
         empty_trash: Empty trash
-        empty_trash_confirm: Are you sure empty trash？
+        empty_trash_confirm: Sure to empty trash?
+        destroy_confirm: Sure to delete selected?
         no_articles: No articles
-      new_category_modal:
-        new_category: New category
+        title: Title
+        updated_at: Updated
       edit:
         readonly_mode: Readonly Mode
         history_versions: History versions
@@ -285,6 +318,7 @@ en:
         select_category_modal:
           select_category: Select category
           new_category: New category
+          uncategorized: Uncategorized
         edit_topbar:
           return: Return to article list
           urlname: URL
@@ -349,6 +383,13 @@ en:
           new_category: New category
         new_category_modal:
           new_category: New category
+      main_sidebar:
+        all_articles: All articles
+        no_category: Not category
+        trash: Trash
+        new_category: New category
+      new_category_modal:
+        new_category: New category
     categories:
       new:
         new_category: New category
@@ -367,6 +408,10 @@ en:
         draft: Draft
         new_article: New article
         trash: Trash
+      new_category_modal:
+        new_category: New Category
+      edit_category_modal:
+        edit_category: Edit category
     dashboard:
       show:
         articles: Articles
@@ -417,3 +462,4 @@ en:
       fetch_error: Fetch error, can't access resource, please use local upload.
       blank: Can't be blank
       is_not_match: is not match
+      space_name: only A-Z, a-z, 0-9, - allowed

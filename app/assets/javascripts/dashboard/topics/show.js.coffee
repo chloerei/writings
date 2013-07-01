@@ -13,3 +13,9 @@ page_ready ->
     $('#new-comment').data('editor', editor)
     new Editor.ImageUploader(editor)
     new Editor.LinkCreator(editor)
+
+    $('#topics-show').data('editor', editor)
+
+$(document).on 'page:restore', ->
+  if $('#topics-show').length
+    $('#topics-show').data('editor').bindShortcuts()

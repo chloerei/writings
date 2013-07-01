@@ -1,35 +1,71 @@
-#main
-  .container
-    .inner
-      = render 'dashboard/share/main_header'
-      section
-        = render 'main_sidebar'
-        .main-content
-          .main-header.clearfix
-            .pull-left
-              .button-group.hide-on-mobile
-                a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id]))
-                  = t '.all'
-                a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'publish'))
-                  = t '.publish'
-                a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(dashboard_articles_index_path(:category_id => params[:category_id], :status => 'draft'))
-                  = t '.draft'
-              - if @category
-                a.button href=(edit_dashboard_category_path(:id => @category))
-                  i.icon-wrench
-            .pull-right
-              a.button.no-margin href=(new_dashboard_article_path)
-                i.icon-pencil
-                span.hide-on-mobile
-                  = ' '
-                  = t '.new_article'
-          .articles
-            ul
-              = render :partial => 'article', :collection => @articles
-            = paginate @articles, :theme => :dashboard
-            - if @articles.empty?
-              .empty-message
-                = t '.no_articles'
+- case action_name
+- when 'index'
+  - append_title t('.all_articles')
+- when 'categorized'
+  - append_title @category.name
+- when 'uncategorized'
+  - append_title t('.uncategorized')
 
-= render 'select_category_modal'
-= render 'add_category_modal'
+- content_for :sidebar do
+  = render 'dashboard/share/main_sidebar'
+
+.main-header
+  h2
+    - case action_name
+    - when 'index'
+      = t '.all_articles'
+    - when 'categorized'
+      = @category.name
+    - when 'uncategorized'
+      = t '.uncategorized'
+
+#articles.articles
+  .main-actions.clearfix
+    .pull-left
+      #status-button-group.button-group
+        a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(url_for(:status => nil))
+          = t '.all'
+        a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(url_for(:status => 'publish'))
+          = t '.published'
+        a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(url_for(:status => 'draft'))
+          = t '.drafted'
+      .button-group.show-on-selected
+        a.button href='#select-category-modal' data-toggle='modal'
+          i.icon-folder-close-alt.no-margin
+        a.button href=(batch_trash_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true'
+          i.icon-trash.no-margin
+      .dropdown.show-on-selected
+        a.dropdown-toggle.button
+          = t '.more'
+        ul.dropdown-menu
+          li
+            a href=(batch_publish_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true'
+              = t '.publish'
+          li
+            a href=(batch_draft_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true'
+              = t '.draft'
+
+    .pull-right
+      a.button.button-green.no-margin href=(new_dashboard_article_path)
+        i.icon-pencil
+        = t '.new_article'
+
+  - unless @articles.empty?
+    table
+      tbody
+        tr
+          th.min
+            i#select-all.checkbox.icon-check-empty
+          th.max
+            = t '.title'
+          th.min.hide-on-mobile
+          th.min.date
+            = t '.updated_at'
+        = render :partial => 'article', :collection => @articles
+    = paginate @articles, :theme => :dashboard
+  - else
+    .empty-message
+      = t '.no_articles'
+
+  = render 'select_category_modal'
+  = render 'add_category_modal'

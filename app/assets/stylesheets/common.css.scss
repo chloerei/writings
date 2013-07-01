@@ -8,7 +8,7 @@
 
 body {
   color: #333;
-  background-color: #f9f9f9;
+  background-color: #efefef;
   font-size: 14px;
 }
 
@@ -44,15 +44,19 @@ a {
 
   &:hover {
     color: darken($linkColor, 10%);
-    @include transition(color 0.15s ease);
   }
 }
 
-li a [class^="icon-"],
-li a [class*=" icon-"] {
+a [class^="icon-"],
+a [class*=" icon-"] {
   width: 1.2em;
   text-align: center;
+  margin-right: 5px;
   display: inline-block;
+
+  &.no-margin {
+    margin-right: 0;
+  }
 }
 
 article {
@@ -294,18 +298,19 @@ fieldset {
   color: $textColor;
   border: 1px solid $borderColor;
   background-color: $color;
-  @include box-shadow(0 1px 0 #ddd);
+  @include linear-gradient($color, darken($color, 2%));
 
   &:hover,
   &:focus {
     color: $textColor;
-    background-color: darken($color, 2%);
     text-decoration: none;
+    @include linear-gradient(lighten($color, 2%), $color);
+    @include box-shadow(0 0 1px rgba(0, 0, 0, 0.3));
   }
 
   &.button-actived,
   &:active {
-    background-color: darken($color, 6%);
+    @include linear-gradient(darken($color, 2%), darken($color, 6%));
     @include box-shadow(inset 0 1px 0 darken($color, 15%));
   }
 
@@ -418,6 +423,10 @@ a.button:hover {
       content: "\f0d7";
     }
 
+    &.button {
+      margin-right: 0;
+    }
+
     &.no-arrow {
       &:after {
         content: none;
@@ -455,12 +464,12 @@ a.button:hover {
     padding: 0;
     z-index: 1000;
     position: absolute;
-    width: 150px;
-    top: 36px;
+    min-width: 100%;
+    top: 100%;
     left: 0;
     background: #fff;
-    border: 1px solid #ccc;
-    @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+    white-space: nowrap;
+    @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.3));
 
     &.align-right {
       left: auto;
@@ -479,7 +488,6 @@ a.button:hover {
       a {
         display: block;
         padding: 6px 10px;
-        @include transition(none);
 
         &:hover {
           background-color: #eee;
@@ -616,7 +624,6 @@ a.button:hover {
           color: #555;
           padding: 10px 20px 10px 0;
           position: relative;
-          @include transition(none);
 
           .label {
             overflow: hidden;
@@ -665,7 +672,7 @@ a.button:hover {
     float: right;
     clear: both;
     padding: 5px 10px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: #999;
     border-radius: 3px;
     color: #fff;
     margin-bottom: 5px;
@@ -702,12 +709,12 @@ a.button:hover {
 // spinner
 
 #spinner {
+  display: inline-block;
   position: fixed;
   top: 11px;
   left: 50%;
   z-index: 2000;
   margin-left: -12px;
-  display: none;
   font-size: 24px;
-  color: #999;
+  color: #eee;
 }

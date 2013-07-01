@@ -42,22 +42,24 @@ Publish::Application.routes.draw do
         end
       end
 
-      resources :categories, :only => [:create, :edit, :update, :destroy], :path_names => { :edit => :settings }
-      get '(/category/:category_id)(/:status)', :as => 'articles_index', :to => 'articles#index', :constraints => { :status => /publish|draft/ }
-      get '/trash', :as => 'articles_trash', :to => 'articles#trash_index'
+      resources :categories, :only => [:create, :edit, :update, :destroy]
+      get '/uncategorized', :as => 'articles_uncategorized', :to => 'articles#uncategorized'
+      get '/trashed', :as => 'articles_trashed', :to => 'articles#trashed'
+      get '/categorized/:category_id', :as => 'articles_categorized', :to => 'articles#categorized'
       resources :articles, :only => [:new, :show, :create, :edit, :update, :destroy] do
         collection do
-          delete 'trash', :to => 'articles#empty_trash'
+          delete 'trashed', :to => 'articles#empty_trash'
+          put :batch_category
+          put :batch_trash
+          put :batch_publish
+          put :batch_draft
+          put :batch_restore
+          put :batch_destroy
         end
 
         member do
           get :status
-          put :category
-          put :publish
-          put :draft
-          put :trash
           put :restore
-          delete :destroy
         end
 
         resources :versions, :only => [:index, :show] do

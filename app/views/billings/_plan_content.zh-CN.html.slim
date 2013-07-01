@@ -23,14 +23,12 @@ section
         - if current_user.in_plan? :free
           | 当前套餐
   ul.nice-list
-    li 到 <a href="http://chloerei.taobao.com" target="_blank">Writings.io Shop</a>（淘宝店）购买使用期，一次购买月数最多不超过12个月
+    li 到 <a href="http://chloerei.taobao.com" target="_blank">writings.io 淘宝店</a> 购买使用期，上限12个月
     li 交易人工操作，非实时生效，以淘宝交易状态为准
-    li 试用期结束或者使用到期后，所有数据和图片为你继续保留，可正常使用免费版功能。
+    li 使用到期后，所有数据和图片为你继续保留，可正常使用免费版功能。
     li
-      | 其他疑问可 Email 或 Gtalk 联系：
-      = mail_to 'chloerei@gmail.com', nil, :target => '_blank'
-
-  p 延伸阅读：<a href="http://blog.chloerei.com/articles/57ca31fb-image-uplaod-on-writings-io">为什么收费？</a>
+      | 任何疑问可 Email 或 Hangouts 联系：
+      = mail_to 'chloerei@gmail.com', nil, :target => '_blank', :subject => 'writings.io 升级咨询'
 
 - if @invoices.any?
   section

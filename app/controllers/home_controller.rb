@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  layout 'dashboard'
+  layout 'dashboard_base'
 
   def index
     if logined?
