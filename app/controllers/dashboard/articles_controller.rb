@@ -116,35 +116,36 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def batch_category
     if params[:category_id].blank?
-      @articles.untrash.update_all :category_id => nil
+      @articles.untrash.update_all :category_id => nil, :updated_at => Time.now.utc
     else
       @category = @space.categories.find_by(:token => param_to_token(params[:category_id]))
-      @articles.untrash.update_all :category_id => @category.id
+      @articles.untrash.update_all :category_id => @category.id, :updated_at => Time.now.utc
     end
 
     render :batch_update
   end
 
   def batch_trash
-    @articles.untrash.update_all :status => 'trash'
+    @articles.untrash.update_all :status => 'trash', :updated_at => Time.now.utc
 
     render :batch_update
   end
 
   def batch_publish
-    @articles.untrash.update_all :status => 'publish'
+    @articles.untrash.update_all :status => 'publish', :updated_at => Time.now.utc
+    @articles.untrash.where(:published_at => nil).update_all :published_at => Time.now.utc
 
     render :batch_update
   end
 
   def batch_draft
-    @articles.untrash.update_all :status => 'draft'
+    @articles.untrash.update_all :status => 'draft', :updated_at => Time.now.utc
 
     render :batch_update
   end
 
   def batch_restore
-    @articles.trash.where(:status => 'trash').update_all :status => 'draft'
+    @articles.trash.where(:status => 'trash').update_all :status => 'draft', :updated_at => Time.now.utc
 
     render :batch_update
   end
