@@ -7,7 +7,8 @@
 
   .column {
     float: left;
-    width: 50%;
+    width: 45%;
+    margin-right: 5%;
   }
 
   .title {
@@ -63,7 +64,7 @@ table.nice-table {
   margin: 100px auto;
   width: 90%;
   max-width: 350px;
-  padding: 40px;
+  padding: 20px;
   background-color: #fff;
   @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
   @include box-sizing(border-box);
@@ -339,6 +340,17 @@ $topbarLinkHoverBackgroundColor: white;
 
 #sidebar-button.topbar-button {
   display: none;
+}
+
+@media (max-width: 480px) {
+  .two-columns {
+    .column {
+      width: auto;
+      float: none;
+      margin-bottom: 20px;
+      margin-right: 0;
+    }
+  }
 }
 
 @media (max-width: 960px) {

@@ -7,11 +7,12 @@
 
   .member {
     margin-bottom: 20px;
+    position: relative;
     @include clearfix();
 
     .avatar {
-      float: left;
-      width: 30%;
+      position: absolute;
+      left: 0;
 
       img {
         width: 100px;
@@ -21,8 +22,7 @@
     }
 
     .info {
-      float: left;
-      width: 70%;
+      margin-left: 120px;
 
       .name {
         font-size: 1.2em;

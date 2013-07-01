@@ -82,9 +82,9 @@
       - else
         .clearfix
           .pull-left
-            a.topbar-button href=(root_path)
+            a.topbar-button href=(root_path) class=('actived' if controller_name == 'home')
               i.icon-home
-              span.hide-on-mobile
+              span
                 = t '.home'
             a.topbar-button href='http://blog.chloerei.com/articles/7db48376-what-is-writings-io'
               i.icon-info-sign
@@ -96,5 +96,4 @@
               = t '.signup'
             a.topbar-button href=(login_path)
               i.icon-signin
-              span.hide-on-mobile
-                = t '.login'
+              = t '.login'
