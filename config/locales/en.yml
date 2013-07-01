@@ -181,6 +181,7 @@ en:
         workspace_settings: Space Settings
     discussions:
       index:
+        discussions: Discussions
         open: Open
         archived: Archived
         new_topic: New topic
@@ -190,10 +191,13 @@ en:
         updated_at: Updated at
     topics:
       new:
+        discussions: Discussions
+        new_topic: New Topic
         return_to_discussions_list: Return to discussions list
       form:
         title: Title
       show:
+        discussions: Discussions
         return_to_discussions_list: Return to discussions list
         archived: Archived
         manage: Manage

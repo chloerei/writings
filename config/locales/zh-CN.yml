@@ -189,6 +189,7 @@ zh-CN:
 
     discussions:
       index:
+        discussions: "讨论"
         open: "讨论中"
         archived: "已归档"
         new_topic: "新主题"
@@ -199,10 +200,13 @@ zh-CN:
 
     topics:
       new:
+        discussions: "讨论"
+        new_topic: "新主题"
         return_to_discussions_list: "返回讨论列表"
       form:
         title: "标题"
       show:
+        discussions: "讨论"
         return_to_discussions_list: "返回讨论列表"
         archived: "已归档"
         manage: "管理"
