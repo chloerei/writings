@@ -315,12 +315,16 @@ class ArticleEdit
       $.removeCookie "pick_up_topbar",
         path: "/"
 
+  restore: ->
+    @bindShortcuts()
+    @editor.bindShortcuts()
+
 @ArticleEdit = ArticleEdit
 
 page_ready ->
   if $("body#articles-edit").length
-    articleEdit = new ArticleEdit()
+    $("body#articles-edit").data('article-edit', new ArticleEdit())
 
-    $(document).on 'page:restore', ->
-      articleEdit.bindShortcuts()
-      articleEdit.editor.bindShortcuts()
+$(document).on 'page:restore', ->
+  if $("body#articles-edit").length
+    $("body#articles-edit").data('article-edit').restore()
