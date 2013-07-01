@@ -1,8 +1,10 @@
 toggleButton = ->
   if $('#articles .article.selected').length
+    $('#status-button-group').addClass('hide-on-mobile')
     $('#articles .show-on-selected').addClass('show')
   else
     $('#articles .show-on-selected').removeClass('show')
+    $('#status-button-group').removeClass('hide-on-mobile')
 
 page_ready ->
   if $('#articles').length

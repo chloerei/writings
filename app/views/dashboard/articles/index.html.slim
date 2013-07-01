@@ -22,7 +22,7 @@
 #articles.articles
   .main-actions.clearfix
     .pull-left
-      .button-group
+      #status-button-group.button-group
         a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(url_for(:status => nil))
           = t '.all'
         a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(url_for(:status => 'publish'))
@@ -48,9 +48,7 @@
     .pull-right
       a.button.button-green.no-margin href=(new_dashboard_article_path)
         i.icon-pencil
-        span.hide-on-mobile
-          = ' '
-          = t '.new_article'
+        = t '.new_article'
 
   - unless @articles.empty?
     table
