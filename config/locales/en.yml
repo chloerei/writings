@@ -1,3 +1,4 @@
+---
 en:
   en: English
   zh-CN: Chinese(Simplified)
@@ -109,6 +110,7 @@ en:
         new_category: New Category
         import: Import
         export: Export
+        members: Members
         settings: Space Settings
         edit: Edit
         delete: Delete
@@ -231,6 +233,7 @@ en:
       index:
         invite_members: Invite members
         members: Members
+        current_members: Current Members
         contact_workspace_creator_to_invite_members: Contact workspace creator to
           invite members
       form:
@@ -256,7 +259,7 @@ en:
         you_are_login_as: You are logined as
         change_account: Change account?
         join_workspace: Join workspace
-        members: Members
+        current_members: Current Members
     attachments:
       index:
         pictures: Pictures
@@ -458,3 +461,4 @@ en:
       store_limit: not enough attachment space
       fetch_error: Fetch error, can't access resource, please use local upload.
       blank: Can't be blank
+      space_name: only A-Z, a-z, 0-9, - allowed

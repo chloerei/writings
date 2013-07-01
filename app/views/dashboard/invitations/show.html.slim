@@ -1,49 +1,55 @@
-#main
-  .container
-    .inner
-      .header.margin
-        h1
-          = @space.display_name
-      section.two-columns
-        .column
-          h3.title = t '.invitation_detail'
-          p
-            b = @space.creator.display_name
-            = ' '
-            = t '.invite_you_to_join_this_workspace'
-          blockquote
-            = simple_format @invitation.message
-          - if logined?
-            p
-              = t '.you_are_login_as'
-              = ' '
-              b = current_user.display_name
-              = ' • '
-              = link_to t('.change_account'), logout_path, :method => :delete
-            p
-              = link_to t('.join_workspace'), accept_dashboard_invitation_path(:id => @invitation.token), :class => 'button button-green', :remote => true, :method => :put
-          - else
-            p
-              = t '.you_need_an_account'
-              = ' • '
-              = link_to t('.already_have_account'), login_path
-            = form_for User.new(:name => @invitation.email.split('@').first, :email => @invitation.email), :url => join_dashboard_invitation_path, :remote => true, :validate => true do |f|
-              .field
-                = f.label :name
-                = f.text_field :name, :tabindex => 1, :autofocus => 'autofocus'
-              .field
-                = f.label :email
-                = f.text_field :email, :tabindex => 2
-              .field
-                = f.label :password
-                = f.password_field :password, :tabindex => 3
-              .field
-                = f.label :password_confirmation
-                = f.password_field :password_confirmation, :tabindex => 4
-              .field
-                = f.submit t('.signup_and_join'), :class => 'button-green', :tabindex => 5
-        .column
-          #members.members
-            h3.title = t '.members'
-            ul
-              = render :partial => 'dashboard/members/member', :collection => @space.members
+.main-header
+  h2
+    = t '.invitation_detail'
+
+- content_for :sidebar do
+  nav.main-sidebar-nav
+    ul
+      li.main-sidebar-item.actived
+        a href=(url_for)
+          = t '.invitation_detail'
+
+section.two-columns
+  .column
+    p
+      b = @space.creator.display_name
+      '
+      = t '.invite_you_to_join_this_workspace'
+      '
+      b = @space.name
+    blockquote
+      = simple_format @invitation.message
+    - if logined?
+      p
+        = t '.you_are_login_as'
+        = ' '
+        b = current_user.display_name
+        = ' • '
+        = link_to t('.change_account'), logout_path, :method => :delete
+      p
+        = link_to t('.join_workspace'), accept_dashboard_invitation_path(:id => @invitation.token), :class => 'button button-green', :remote => true, :method => :put
+    - else
+      p
+        = t '.you_need_an_account'
+        = ' • '
+        = link_to t('.already_have_account'), login_path
+      = form_for User.new(:name => @invitation.email.split('@').first, :email => @invitation.email), :url => join_dashboard_invitation_path, :remote => true, :validate => true do |f|
+        .field
+          = f.label :name
+          = f.text_field :name, :tabindex => 1, :autofocus => 'autofocus'
+        .field
+          = f.label :email
+          = f.text_field :email, :tabindex => 2
+        .field
+          = f.label :password
+          = f.password_field :password, :tabindex => 3
+        .field
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation, :tabindex => 4
+        .field
+          = f.submit t('.signup_and_join'), :class => 'button-green', :tabindex => 5
+  .column
+    #members.members
+      h3.title = t '.current_members'
+      ul
+        = render :partial => 'dashboard/members/member', :collection => @space.members

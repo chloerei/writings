@@ -118,6 +118,7 @@ zh-CN:
         new_category: "添加分类"
         import: "导入"
         export: "导出"
+        members: "成员"
         settings: "工作区设置"
         edit: "编辑"
         delete: "删除"
@@ -242,6 +243,7 @@ zh-CN:
       index:
         invite_members: "邀请成员"
         members: "成员"
+        current_members: "当前成员"
         contact_workspace_creator_to_invite_members: "联系工作区创建者添加成员"
       form:
         send_invitation: "发送邀请"
@@ -258,7 +260,7 @@ zh-CN:
         resend: "再次发送"
     invitations:
       show:
-        invitation_detail: "邀请详情"
+        invitation_detail: "邀请函详情"
         invite_you_to_join_this_workspace: "邀请你加入工作区"
         you_need_an_account: "你需要一个帐号"
         already_have_account: "已有帐号？"
@@ -266,7 +268,7 @@ zh-CN:
         you_are_login_as: "你的帐号是"
         change_account: "使用另一个帐号？"
         join_workspace: "加入工作区"
-        members: "成员"
+        current_members: "成员"
 
     attachments:
       index:
@@ -450,3 +452,4 @@ zh-CN:
       store_limit: "剩余容量不足"
       fetch_error: "抓取失败，也许没有权限访问该资源，请改由本地上传"
       blank: "不能为空"
+      space_name: "只能包含英文字母，数字和 - 符号"
