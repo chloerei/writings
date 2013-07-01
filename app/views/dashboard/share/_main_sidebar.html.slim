@@ -4,10 +4,6 @@ nav.main-sidebar-nav
       a href=(dashboard_root_path)
         i.icon-folder-open-alt
         = t ('.all_articles')
-    li.main-sidebar-item class=('actived' if controller_name == 'articles' && action_name == 'uncategorized')
-      a href=(dashboard_articles_uncategorized_path)
-        i.icon-file-alt
-        = t '.uncategorized'
     li.main-sidebar-item class=('actived' if controller_name == 'articles' && action_name == 'trashed')
       a href=(dashboard_articles_trashed_path)
         i.icon-trash
@@ -46,6 +42,10 @@ nav.main-sidebar-nav
                 a href=(dashboard_category_path(:id => category)) data-remote='true' data-method='delete' data-confirm=(t('.delete_category_confirm', :name => category.name))
                   i.icon-remove
                   = t '.delete'
+    li.main-sidebar-item class=('actived' if controller_name == 'articles' && action_name == 'uncategorized')
+      a href=(dashboard_articles_uncategorized_path)
+        i.icon-folder-close-alt
+        = t '.uncategorized'
 
 = render 'dashboard/categories/new_category_modal'
 

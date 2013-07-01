@@ -123,6 +123,10 @@ $topbarLinkHoverBackgroundColor: white;
       background-color: $topbarLinkHoverBackgroundColor;
       color: $topbarLinkHoverColor;
     }
+
+    &.actived {
+      background-color: #333;
+    }
   }
 
   .dropdown {

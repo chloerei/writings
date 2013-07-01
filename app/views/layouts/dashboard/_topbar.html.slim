@@ -4,7 +4,7 @@
       - if logined?
         .space-menu
           .dropdown
-            a.dropdown-toggle.topbar-button href=(dashboard_root_path(@space || current_user))
+            a.dropdown-toggle.topbar-button href=(dashboard_root_path(@space || current_user)) class=('actived' if %w(articles attachments categories import_tasks export_tasks settings).include? controller_name)
               i.icon-user
               = (@space || current_user).display_name
             ul.dropdown-menu
@@ -47,19 +47,17 @@
                 li
                   a href='https://plus.google.com/communities/118240447023703524479' target='_blank'
                     i.icon-google-plus
-                    = ' '
                     = t '.google_plus'
                 li
                   a href='https://github.com/writingsio/writingsio/issues' target='_blank'
                     i.icon-github
-                    = ' '
                     = t '.github_issues'
                 li
                   a href='http://www.douban.com/subject/23009789/' target='_blank'
                     i.icon-sign-blank
                     = t '.douban'
             .dropdown
-              a.dropdown-toggle.topbar-button href=(account_path)
+              a.dropdown-toggle.topbar-button href=(account_path) class=('actived' if %w(accounts billings).include? controller_name)
                 i.icon-cog
                 span.hide-on-mobile
                   = t '.settings'
