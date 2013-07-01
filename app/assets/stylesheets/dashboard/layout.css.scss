@@ -360,6 +360,7 @@ $topbarLinkHoverBackgroundColor: white;
 
   .space-menu {
     #sidebar-button.topbar-button {
+      cursor: pointer;
       display: inline-block;
       position: absolute;
       left: 0;
