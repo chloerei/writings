@@ -74,6 +74,7 @@ zh-CN:
         account: "账户"
         upgrade: "升级"
         logout: "登出"
+        new_workspace: "创建工作区"
 
     error:
       feedback: "问题反馈"

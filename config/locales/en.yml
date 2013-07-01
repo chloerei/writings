@@ -66,6 +66,7 @@ en:
         account: Account
         upgrade: Upgrade
         logout: Logout
+        new_workspace: New workspace
     error:
       feedback: Feedback
   workspaces:
