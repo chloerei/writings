@@ -5,9 +5,8 @@ tr.article id=("article-#{article.token}") data-id=(article.token)
     h3
       a href=(edit_dashboard_article_path(:id => article))
         = article.title
-  td.min
-    - if article.category
-      = article.category.name
+        - if !%w(categorized uncategorized).include?(action_name) && article.category
+          span.category = article.category.name
   td.min
     - if article.publish?
       a href=(site_article_url(:id => article, :urlname => article.urlname, :host => @space.host)) target='_blank'

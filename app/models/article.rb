@@ -38,7 +38,7 @@ class Article
     when 'trash'
       trash
     else
-      where(:status.ne => 'trash')
+      untrash
     end
   }
 
