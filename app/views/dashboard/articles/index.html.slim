@@ -30,10 +30,10 @@
         a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(url_for(:status => 'draft'))
           = t '.drafted'
       .button-group.show-on-selected
-        a.button href='#select-category-modal' data-toggle='modal'
-          i.icon-folder-close-alt.no-margin
-        a.button href=(batch_trash_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true'
-          i.icon-trash.no-margin
+        a.button href='#select-category-modal' data-toggle='modal' title=(t '.category')
+          i.icon-folder-close-alt
+        a.button href=(batch_trash_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true' title=(t '.trash')
+          i.icon-trash
       .dropdown.show-on-selected
         a.dropdown-toggle.button
           = t '.more'

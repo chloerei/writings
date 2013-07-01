@@ -14,9 +14,11 @@
         = t '.empty_trash'
       .button-group.show-on-selected
         a.button href=(batch_destroy_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true' data-confirm=(t '.destroy_confirm')
-          i.icon-remove.no-margin
+          i.icon-remove
+          = t '.completely_remove'
         a.button href=(batch_restore_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true'
-          i.icon-undo.no-margin
+          i.icon-undo
+          = t '.restore'
 
   - unless @articles.empty?
     table
