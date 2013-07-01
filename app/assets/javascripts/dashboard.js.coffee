@@ -17,10 +17,11 @@ $ ->
   $(document).on "page:change", ->
     $("form[data-validate]").validate()
 
+  spinner = $("<div id='spinner'><i class='icon-spinner icon-spin' ></i></div>")
   $(document).on("page:fetch", ->
-    $("#spinner").show()
-  ).on "page:restore", ->
-    $("#spinner").hide()
+    $('body').append(spinner)
+  ).on "page:change", ->
+    spinner.remove()
 
   $(document).on("ajax:before", ->
     AlertMessage.show

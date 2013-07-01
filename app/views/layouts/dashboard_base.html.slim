@@ -10,5 +10,3 @@ html lang=(logined? ? current_user.locale : 'zh-CN')
   body id=("#{controller_name}-#{action_name}")
     = render 'layouts/dashboard/topbar'
     = yield
-    #spinner
-      i.icon-spinner.icon-spin
