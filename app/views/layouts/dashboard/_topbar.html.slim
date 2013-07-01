@@ -3,6 +3,8 @@
     #site-header.clearfix
       - if logined?
         .space-menu
+          a#sidebar-button.topbar-button
+            i.icon-reorder.no-margin
           .dropdown
             a.dropdown-toggle.topbar-button href=(dashboard_root_path(@space || current_user)) class=('actived' if %w(articles attachments categories import_tasks export_tasks settings).include? controller_name)
               i.icon-user
@@ -28,7 +30,7 @@
             a#user-link.topbar-button href=(site_root_url(:host => (@space || current_user).host)) target='_blank'
               i.icon-external-link
           .pull-right
-            .dropdown
+            .dropdown.hide-on-mobile
               a.dropdown-toggle.topbar-button href="#"
                 i.icon-comments-alt
                 span.hide-on-mobile

@@ -55,10 +55,6 @@ table.nice-table {
 .container {
   margin: 0 auto;
   width: $container-width;
-
-  @media (max-width: 960px) {
-    width: 100%;
-  }
 }
 
 // signup, login
@@ -85,6 +81,8 @@ table.nice-table {
 
 // topbar
 
+$mainSidebarWidth: 200px;
+
 $topbarLinkColor: #eee;
 $topbarLinkBackgroundColor: #333;
 $topbarLinkHoverColor: #333;
@@ -98,9 +96,14 @@ $topbarLinkHoverBackgroundColor: white;
   @include linear-gradient(#555, #333);
   @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
 
+  .container {
+    position: relative;
+  }
+
   .space-menu {
-    width: 20%;
-    float: left;
+    width: $mainSidebarWidth;
+    position: absolute;
+    left: 0;
 
     .dropdown,
     .dropdown-toggle {
@@ -109,8 +112,7 @@ $topbarLinkHoverBackgroundColor: white;
   }
 
   .sub-menu {
-    width: 80%;
-    float: left;
+    margin-left: $mainSidebarWidth;
   }
 
   .topbar-button {
@@ -119,13 +121,13 @@ $topbarLinkHoverBackgroundColor: white;
     color: $topbarLinkColor;
     @include transition(all 0.15s ease);
 
+    &.actived {
+      background-color: #333;
+    }
+
     &:hover {
       background-color: $topbarLinkHoverBackgroundColor;
       color: $topbarLinkHoverColor;
-    }
-
-    &.actived {
-      background-color: #333;
     }
   }
 
@@ -273,11 +275,11 @@ $topbarLinkHoverBackgroundColor: white;
   }
 
   .main-content {
-    width: 80%;
-    margin-left: 20%;
+    margin-left: $mainSidebarWidth;
     padding: 20px;
     @include box-sizing(border-box);
   }
+
 
   .main-actions {
     margin-bottom: 20px;
@@ -326,6 +328,75 @@ $topbarLinkHoverBackgroundColor: white;
 
     i {
       text-align: left;
+    }
+  }
+}
+
+#main-sidebar-background {
+  background-color: white;
+  @include transition(background-color 0.15s ease);
+}
+
+#sidebar-button.topbar-button {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .container {
+    width: 100%;
+  }
+
+  .space-menu {
+    #sidebar-button.topbar-button {
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      width: 18px;
+    }
+
+    .dropdown {
+      margin-left: 58px;
+    }
+  }
+
+  #topbar {
+    margin-bottom: 0;
+  }
+
+  #main {
+    margin-bottom: 0;
+
+    .main-sidebar {
+      width: $mainSidebarWidth;
+      left: -$mainSidebarWidth;
+      @include transition(left 0.15s ease);
+      @include transition
+    }
+
+    .main-content {
+      margin-left: 0;
+    }
+
+    &.show-sidebar {
+      .main-sidebar {
+        left: 0;
+        z-index: 1;
+        @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+      }
+
+      .main-content {
+        z-index: -1;
+      }
+
+      #main-sidebar-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
     }
   }
 }
