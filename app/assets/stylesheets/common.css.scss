@@ -335,8 +335,10 @@ button,
   margin-right: 10px;
   font-weight: normal;
   display: inline-block;
+  vertical-align: middle;
   border-radius: 2px;
   cursor: pointer;
+  line-height: 18px;
   @include button-color(#fefefe, #333, #ccc);
 
   &.no-margin {
@@ -396,6 +398,7 @@ a.button:hover {
 .dropdown {
   position: relative;
   display: inline-block;
+  vertical-align: middle;
 
   a {
     color: #333;

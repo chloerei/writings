@@ -9,7 +9,7 @@ toggleButton = ->
 page_ready ->
   if $('#articles').length
     $('#articles').on 'click', '.article:not(.selected)', (event) ->
-      if event.originalEvent.srcElement.tagName isnt 'A'
+      if event.target.tagName isnt 'A'
         $(this).addClass('selected').find('.checkbox').removeClass('icon-check-empty').addClass('icon-check')
         if $('#articles .article:not(.selected)').length
           $('#select-all').removeClass('icon-check icon-check-empty').addClass('icon-check-minus')
@@ -19,7 +19,7 @@ page_ready ->
         toggleButton()
 
     $('#articles').on 'click', '.article.selected', (event) ->
-      if event.originalEvent.srcElement.tagName isnt 'A'
+      if event.target.tagName isnt 'A'
         $(this).removeClass('selected').find('.checkbox').removeClass('icon-check').addClass('icon-check-empty')
         if $('#articles .article.selected').length
           $('#select-all').removeClass('icon-check').addClass('icon-check-minus')

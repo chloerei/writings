@@ -31,9 +31,9 @@
           = t '.drafted'
       .button-group.show-on-selected
         a.button href='#select-category-modal' data-toggle='modal' title=(t '.category')
-          i.icon-folder-close-alt
+          i.icon-folder-close-alt.no-margin
         a.button href=(batch_trash_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true' title=(t '.trash')
-          i.icon-trash
+          i.icon-trash.no-margin
       .dropdown.show-on-selected
         a.dropdown-toggle.button
           = t '.more'
