@@ -183,7 +183,7 @@ $topbarLinkHoverBackgroundColor: white;
   }
 
   .main-sidebar {
-    width: 20%;
+    width: $mainSidebarWidth;
     position: absolute;
     top: 0;
     left: 0;
@@ -383,7 +383,6 @@ $topbarLinkHoverBackgroundColor: white;
       width: $mainSidebarWidth;
       left: -$mainSidebarWidth;
       @include transition(left 0.15s ease);
-      @include transition
     }
 
     .main-content {
