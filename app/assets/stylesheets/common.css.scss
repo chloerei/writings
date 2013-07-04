@@ -179,6 +179,10 @@ textarea {
   }
 }
 
+#{$all-text-inputs} {
+  vertical-align: middle;
+}
+
 textarea {
   height: 150px;
 }
@@ -203,12 +207,14 @@ select {
   .input {
     width: 99%;
     display: table-cell;
+    vertical-align: top;
     margin: 0;
   }
 
   .add-on {
     width: 1%;
     display: table-cell;
+    vertical-align: top;
     background-color: #eee;
     padding: 7px;
     border: 1px solid #ccc;
@@ -369,6 +375,7 @@ a.button:hover {
 
 .button-group {
   display: inline-block;
+  vertical-align: middle;
   margin-right: 10px;
 
   &.no-margin {

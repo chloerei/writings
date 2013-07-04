@@ -55,15 +55,12 @@
   }
 
   .pull-right {
-    padding: 15px 0;
-  }
-
-  .button {
-    display: inline;
+    padding: 7px 0;
   }
 
   #save-status {
     display: inline-block;
+    vertical-align: middle;
     margin-right: 10px;
     color: #999;
     cursor: pointer;
@@ -221,6 +218,8 @@
 
         .toolbar-button {
           padding: 10px;
+          width: 1.2em;
+          text-align: center;
           display: block;
           color: #fff;
 

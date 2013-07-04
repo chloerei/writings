@@ -1,84 +1,81 @@
-#main
-  .container
-    .inner.inner-full-height
-      section style="padding: 20px;"
-        form
-          .field
-            label Text
-            = text_field_tag ''
-          .field
-            label Password
-            = password_field_tag ''
-          .field.field-error
-            label Text error
-            = text_field_tag ''
-            label.message message
-          .field
-            label prepend
-            .input-prepend
-              .add-on
-                | prepend
-              .input
-                = text_field_tag ''
-          .field
-            label append
-            .input-append
-              .input
-                = text_field_tag ''
-              .add-on
-                | append
-          .field.field-error
-            label prepend with error
-            .input-prepend
-              .add-on
-                | prepend
-              .input
-                = text_field_tag ''
-            label.message message
-          .field
-            label File Input
-            = file_field_tag ''
-          .field
-            label Text Area
-            = text_area_tag '', '', :size => '50x10'
-          .field
-            label Select
-            select
-              option One
-              option Two
-              option Three
-          .field
-            = submit_tag 'Save'
-            = submit_tag 'Primary', :class => 'button-primary'
-            = submit_tag 'Green', :class => 'button-green'
-            = submit_tag 'Danger', :class => 'button-danger'
-          .field
-            .button-group
-              button One
-              button Two
-              button Three
-          .field
-            = text_field_tag ''
-            = link_to 'link-button', '#', :class => 'button'
-            = submit_tag 'submit-button'
-          .field
-            .dropdown
-              a.dropdown-toggle.button href='#' Dropdown Button
-              ul.dropdown-menu
-                li
-                  a href="#" Item one
-                li
-                  a href="#" Item two
-                li
-                  a href="#" Item three
-            button Ver
-          .field
-            .dropdown
-              a.dropdown-toggle href='#' Dropdown Link
-              ul.dropdown-menu
-                li
-                  a href="#" Item one
-                li
-                  a href="#" Item two
-                li
-                  a href="#" Item three
+section style="padding: 20px;"
+  form
+    .field
+      label Text
+      = text_field_tag ''
+    .field
+      label Password
+      = password_field_tag ''
+    .field.field-error
+      label Text error
+      = text_field_tag ''
+      label.message message
+    .field
+      label prepend
+      .input-prepend
+        .add-on
+          | prepend
+        .input
+          = text_field_tag ''
+    .field
+      label append
+      .input-append
+        .input
+          = text_field_tag ''
+        .add-on
+          | append
+    .field.field-error
+      label prepend with error
+      .input-prepend
+        .add-on
+          | prepend
+        .input
+          = text_field_tag ''
+      label.message message
+    .field
+      label File Input
+      = file_field_tag ''
+    .field
+      label Text Area
+      = text_area_tag '', '', :size => '50x10'
+    .field
+      label Select
+      select
+        option One
+        option Two
+        option Three
+    .field
+      = submit_tag 'Save'
+      = submit_tag 'Primary', :class => 'button-primary'
+      = submit_tag 'Green', :class => 'button-green'
+      = submit_tag 'Danger', :class => 'button-danger'
+    .field
+      .button-group
+        button One
+        button Two
+        button Three
+    .field
+      = text_field_tag ''
+      = link_to 'link-button', '#', :class => 'button'
+      = submit_tag 'submit-button'
+    .field
+      .dropdown
+        a.dropdown-toggle.button href='#' Dropdown Button
+        ul.dropdown-menu
+          li
+            a href="#" Item one
+          li
+            a href="#" Item two
+          li
+            a href="#" Item three
+      button Ver
+    .field
+      .dropdown
+        a.dropdown-toggle href='#' Dropdown Link
+        ul.dropdown-menu
+          li
+            a href="#" Item one
+          li
+            a href="#" Item two
+          li
+            a href="#" Item three
