@@ -54,19 +54,20 @@ class @Editor
           _this.undoManager.save()
           _this.editable.trigger "editor:change"
         ), 0
-      ).on("keydown", ->
+      ).on("keydown", (event) ->
         switch event.keyCode
           when 8, 46
             _this.wordCount = _this.editable.html().length
-      ).on "keyup", ->
-
+      ).on "keyup", (event) ->
         # when delete action, trigger change event
         switch event.keyCode
-          # Backspace
-          when 8, 46 # Delete
+          # Backspace, Delete
+          when 8, 46
             if _this.editable.html().length < _this.wordCount
-              _this.undoManager.save()
-              _this.editable.trigger "editor:change"
+              setTimeout (->
+                _this.undoManager.save()
+                _this.editable.trigger "editor:change"
+              ), 0
 
     else
       @editable.on "input", ->
