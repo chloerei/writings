@@ -10,6 +10,12 @@
 
 table.item-table
   tbody
+    tr
+      th 用户名
+      th 邮箱
+      th 全名
+      th.min 套餐
+      th.min 注册日期
     - @users.each do |user|
       tr
         td = link_to user.name, admin_user_path(user)

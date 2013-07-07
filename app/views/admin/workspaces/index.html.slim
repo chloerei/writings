@@ -2,11 +2,16 @@
 
 table.item-table
   tbody
+    tr
+      th 工作区名
+      th 全名
+      th 创建者名
+      th.min 创建日期
     - @workspaces.each do |workspace|
       tr
         td = link_to workspace.name, admin_workspace_path(workspace)
-        td = workspace.name
         td = workspace.full_name
+        td = workspace.creator.name
         td.min = workspace.created_at.to_s :db
 
 = paginate @workspaces, :theme => :dashboard

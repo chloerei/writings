@@ -1,8 +1,11 @@
 @import "dashboard";
 
+#main .inner {
+  padding: 20px;
+}
+
 #tabs {
-  padding: 10px 20px;
-  background-color: #f9f9f9;
+  margin-bottom: 20px;
 }
 
 table.item-table {

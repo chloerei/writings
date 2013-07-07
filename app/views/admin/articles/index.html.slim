@@ -12,15 +12,21 @@
 
 table.item-table
   tbody
+    tr
+      th.max 标题
+      th.min 状态
+      th.min 用户
+      th.min 更新时间
     - @articles.each do |article|
       tr
         td.max = link_to article.title, admin_article_path(article.id)
         td.min = article.status
-        - case article.space
-        - when User
-          td.min = link_to article.space.name, admin_user_path(article.space)
-        - when Workspace
-          td.min = link_to article.space.name, admin_workspace_path(article.space)
+        td.min
+          - case article.space
+          - when User
+            = link_to article.space.name, admin_user_path(article.space)
+          - when Workspace
+            = link_to article.space.name, admin_workspace_path(article.space)
         td.min
           - case params[:tab]
           - when 'publish'

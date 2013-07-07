@@ -11,29 +11,22 @@ html
   body id=("#{controller_name}-#{action_name}")
     #topbar
       .container
-        header#site-header.clearfix
-          ul.top-nav.pull-left
-            li
-              a href=(admin_root_path) class=(controller_name == 'dashboard' ? 'actived' : nil)
-                i.icon-dashboard
-                = ' 面板'
-            li
-              a href=(admin_articles_path) class=(controller_name == 'articles' ? 'actived' : nil)
-                i.icon-pencil
-                = ' 文章'
-            li
-              a href=(admin_workspaces_path) class=(controller_name == 'workspaces' ? 'actived' : nil)
-                i.icon-group
-                = ' 工作区'
-            li
-              a href=(admin_users_path) class=(controller_name == 'users' ? 'actived' : nil)
-                i.icon-user
-                = ' 用户'
-            li
-              a href=(admin_invoices_path) class=(controller_name == 'invoices' ? 'actived' : nil)
-                i.icon-money
-                = ' 账单'
+        a.topbar-button href=(admin_root_path) class=('actived' if controller_name == 'dashboard')
+          i.icon-dashboard
+          = ' 面板'
+        a.topbar-button href=(admin_articles_path) class=('actived' if controller_name == 'articles')
+          i.icon-pencil
+          = ' 文章'
+        a.topbar-button href=(admin_workspaces_path) class=('actived' if controller_name == 'workspaces')
+          i.icon-group
+          = ' 工作区'
+        a.topbar-button href=(admin_users_path) class=('actived' if controller_name == 'users')
+          i.icon-user
+          = ' 用户'
+        a.topbar-button href=(admin_invoices_path) class=(controller_name == 'invoices' ? 'actived' : nil)
+          i.icon-money
+          = ' 账单'
     #main
       .container
-        .inner.inner-full-height
+        .inner
           = yield
