@@ -12,11 +12,6 @@ nav.main-sidebar-nav
       a href=(dashboard_attachments_path)
         i.icon-picture
         = t '.pictures'
-    - if @space.is_a? Workspace
-      li.main-sidebar-item class=('actived' if %w(discussions topics comments).include?(controller_name))
-        a href=(dashboard_discussions_path)
-          i.icon-comment-alt
-          = t '.discussions'
 
 nav.main-sidebar-nav
   ul

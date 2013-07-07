@@ -1,4 +1,3 @@
----
 en:
   en: English
   zh-CN: Chinese(Simplified)
@@ -21,8 +20,6 @@ en:
   author: Author
   articles_count: '%{count} Articles'
   remember_me: Remember me
-  notes_count: '%{count} notes'
-  add_note: Add note
   urlname_valid_message: Allow character, number and '-'
   page_not_found: Page not found
   server_error: Server error
@@ -107,7 +104,6 @@ en:
         uncategorized: Uncategorized
         trashed: Trashed
         pictures: Pictures
-        discussions: Dicussions
         new_category: New Category
         import: Import
         export: Export
@@ -182,54 +178,6 @@ en:
     settings:
       show:
         workspace_settings: Space Settings
-    discussions:
-      index:
-        discussions: Discussions
-        open: Open
-        archived: Archived
-        new_topic: New topic
-        no_discussion: No discussion
-      discussion:
-        created_at: Created at
-        updated_at: Updated at
-    topics:
-      new:
-        discussions: Discussions
-        new_topic: New Topic
-        return_to_discussions_list: Return to discussions list
-      form:
-        title: Title
-      show:
-        discussions: Discussions
-        return_to_discussions_list: Return to discussions list
-        archived: Archived
-        manage: Manage
-        reopen: Reopen
-        archive: Archive
-        edit: Edit
-        delete: Delete
-        delete_confirm: Sure to delete?
-      comment:
-        manage: Manage
-        edit: Edit
-        delete: Delete
-        delete_confirm: Sure to delete?
-    notes:
-      context:
-        note_dot: New note...
-      note:
-        comment_dot: Comment...
-      note_entry:
-        archive: Archive
-        reopen: Reopen
-        archived: Archived
-        edit: Edit
-        delete: Delete
-        delete_confirm: Sure to delete?
-      comment:
-        edit: Edit
-        delete: Delete
-        delete_confirm: Sure to delete?
     members:
       index:
         invite_members: Invite members
@@ -271,6 +219,8 @@ en:
         all_articles: All Articles
         uncategorized: Uncategorized
         all: All
+        category: 分类
+        trash: 移到回收站
         published: Publish
         drafted: Draft
         publish: Publish
@@ -304,6 +254,8 @@ en:
         trashed: Trashed
         empty_trash: Empty trash
         empty_trash_confirm: Sure to empty trash?
+        completely_remove: 彻底删除
+        restore: 还原
         destroy_confirm: Sure to delete selected?
         no_articles: No articles
         title: Title
@@ -451,10 +403,6 @@ en:
         urlname: URL
       attachment:
         file: Attachment
-      discusstion:
-        body: Body
-      note:
-        title: Title
   errors:
     messages:
       extension_white_list_error: 'Can not uplaod %{extension} file，allow extension:
@@ -464,3 +412,5 @@ en:
       blank: Can't be blank
       is_not_match: is not match
       space_name: only A-Z, a-z, 0-9, - allowed
+  notes_count: '%{count} notes'
+  add_note: Add note

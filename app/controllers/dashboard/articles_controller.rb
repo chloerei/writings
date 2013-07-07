@@ -75,10 +75,6 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   def edit
     append_title @article.title
 
-    if params[:note_id]
-      @note = @article.notes.where(:token => params[:note_id]).first
-    end
-
     render :layout => false
   end
 

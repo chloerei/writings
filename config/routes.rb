@@ -80,25 +80,6 @@ Publish::Application.routes.draw do
         end
       end
       resources :attachments, :only => [:index, :create, :destroy]
-
-      resources :discussions, :only => [:index] do
-        collection do
-          get :archived
-        end
-      end
-      resources :topics, :only => [:show, :new, :create, :edit, :update ,:destroy] do
-        member do
-          put :archive
-          put :open
-        end
-      end
-      resources :notes, :only => [:new, :create, :edit, :update, :destroy] do
-        member do
-          put :archive
-          put :open
-        end
-      end
-      resources :comments, :only => [:create, :edit, :update, :destroy]
     end
 
     constraints(AdminConstraint) do

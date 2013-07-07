@@ -1,3 +1,0 @@
-$('#note-card-<%= @note.token %>').replaceWith('<%= j render(:partial => 'note', :object => @note) %>');
-$('#note-context-<%= @note.element_id %> .notes-count').text('<%= t 'notes_count', :count => @note.article.notes.opening.where(:element_id => @note.element_id).count %>');
-AlertMessage.remove('ajax-loading');

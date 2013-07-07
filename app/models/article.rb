@@ -20,7 +20,6 @@ class Article
   belongs_to :last_edit_user, :class_name => 'User'
 
   has_many :versions, :order => [:created_at, :desc]
-  has_many :notes
 
   validates :urlname, :format => { :with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('urlname_valid_message'), :allow_blank => true }
 

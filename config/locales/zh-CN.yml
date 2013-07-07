@@ -22,9 +22,6 @@ zh-CN:
   articles_count: "%{count} 篇文章"
   remember_me: "记住我"
 
-  notes_count: "%{count} 批注"
-  add_note: "添加批注"
-
   urlname_valid_message: "只能使用字母、数字和 '-' 号"
 
   page_not_found: "找不到该页面"
@@ -115,7 +112,6 @@ zh-CN:
         uncategorized: "未分类"
         trashed: "回收站"
         pictures: "图片"
-        discussions: "讨论"
         new_category: "添加分类"
         import: "导入"
         export: "导出"
@@ -188,57 +184,6 @@ zh-CN:
     settings:
       show:
         workspace_settings: "工作区设置"
-
-    discussions:
-      index:
-        discussions: "讨论"
-        open: "讨论中"
-        archived: "已归档"
-        new_topic: "新主题"
-        no_discussion: "没有讨论"
-      discussion:
-        created_at: "创建于"
-        updated_at: "更新于"
-
-    topics:
-      new:
-        discussions: "讨论"
-        new_topic: "新主题"
-        return_to_discussions_list: "返回讨论列表"
-      form:
-        title: "标题"
-      show:
-        discussions: "讨论"
-        return_to_discussions_list: "返回讨论列表"
-        archived: "已归档"
-        manage: "管理"
-        reopen: "重新开启"
-        archive: "归档"
-        edit: "编辑"
-        delete: "删除"
-        delete_confirm: "确定删除？"
-      comment:
-        manage: "管理"
-        edit: "编辑"
-        delete: "删除"
-        delete_confirm: "确定删除？"
-
-    notes:
-      context:
-        note_dot: "新批注..."
-      note:
-        comment_dot: "评论..."
-      note_entry:
-        archive: "归档"
-        reopen: "重新开启"
-        archived: "已归档"
-        edit: "编辑"
-        delete: "删除"
-        delete_confirm: "确认删除？"
-      comment:
-        edit: "编辑"
-        delete: "删除"
-        delete_confirm: "确认删除？"
 
     members:
       index:
