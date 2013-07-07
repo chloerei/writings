@@ -1,5 +1,5 @@
 <% if logined? %>
-  Turbolinks.visit('<%= j(session[:return_to] || root_url) %>');
+  Turbolinks.visit('<%= j(session.delete(:return_to) || root_url) %>');
 <% else %>
   AlertMessage.show({
     type: 'error',
