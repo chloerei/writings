@@ -22,20 +22,20 @@ $ ->
       type: 'loading',
       text: I18n.t('loading')
       keep: true
-      scope: 'ajax-loading'
+      scope: 'page-loading'
   ).on "page:change", ->
-    AlertMessage.remove('ajax-loading')
+    AlertMessage.remove('page-loading')
 
   $(document).on("ajax:before", ->
     AlertMessage.show
       type: 'loading'
       text: I18n.t('sending')
       keep: true
-      scope: 'ajax-loading'
+      scope: 'ajax-sending'
   ).on("ajax:error", (xhr, status, error) ->
     AlertMessage.show
       type: 'error'
       text: I18n.t('server_error')
   ).on("ajax:complete", ->
-    AlertMessage.remove('ajax-loading')
+    AlertMessage.remove('ajax-sending')
   )
