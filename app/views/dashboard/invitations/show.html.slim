@@ -25,7 +25,7 @@ section.two-columns
         = ' '
         b = current_user.display_name
         = ' • '
-        = link_to t('.change_account'), logout_path, :method => :delete
+        = link_to t('.change_account'), logout_path(:return_to => url_for), :remote => true, :method => :delete
       p
         = link_to t('.join_workspace'), accept_dashboard_invitation_path(:id => @invitation.token), :class => 'button button-green', :remote => true, :method => :put
     - else

@@ -1,1 +1,1 @@
-Turbolinks.visit('<%= j(request.referrer || root_url) %>');
+Turbolinks.visit('<%= j(params[:return_to] || root_url) %>');
