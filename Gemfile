@@ -37,7 +37,7 @@ group :assets do
   gem 'highlight_js-rails', '~> 7.1.0'
   gem 'jquery-rails', '~> 2.2.1'
   gem 'mousetrap-rails', '~> 0.0.9'
-  gem 'turbolinks', '~> 1.1.1'
+  gem 'turbolinks', '~> 1.2.0'
   gem 'jquery-fileupload-rails', '~> 0.4.1'
 end
 
