@@ -13,15 +13,10 @@ class UserSessionsController < ApplicationController
     if user and user.authenticate(params[:password])
       login_as user
       remember_me if params[:remember_me]
-      redirect_back_or_default dashboard_root_url(user)
-    else
-      flash[:error] = 'Wrong login name or password'
-      redirect_to login_url
     end
   end
 
   def destroy
     logout
-    redirect_to request.referrer || root_url
   end
 end

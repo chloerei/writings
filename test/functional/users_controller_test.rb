@@ -7,12 +7,12 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should create news" do
-    post :create, :user => attributes_for(:user).slice(:name)
-    assert_template :new
+    assert_no_difference "User.count" do
+      post :create, :user => attributes_for(:user).slice(:name), :format => :js
+    end
 
     assert_difference "User.count" do
-      post :create, :user => attributes_for(:user)
+      post :create, :user => attributes_for(:user), :format => :js
     end
-    assert_redirected_to root_url
   end
 end

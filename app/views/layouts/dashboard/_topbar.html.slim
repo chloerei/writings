@@ -75,7 +75,7 @@
                 li
                   hr
                 li
-                  = link_to logout_path, :method => :delete do
+                  = link_to logout_path, :remote => true, :method => :delete do
                     i.icon-signout
                     = t '.logout'
 

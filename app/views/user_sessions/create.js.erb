@@ -1,0 +1,8 @@
+<% if logined? %>
+  Turbolinks.visit('<%= j(session[:return_to] || root_url) %>');
+<% else %>
+  AlertMessage.show({
+    type: 'error',
+    text: "<%= j I18n.t('errors.messages.wrong_name_or_password') %>"
+  });
+<% end %>

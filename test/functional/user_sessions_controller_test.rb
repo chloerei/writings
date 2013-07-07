@@ -11,26 +11,26 @@ class UserSessionsControllerTest < ActionController::TestCase
   end
 
   test "should login with name and right password" do
-    post :create, :login => @user.name, :password => 'password'
+    post :create, :login => @user.name, :password => 'password', :format => :js
     assert_equal @user, current_user
   end
 
   test "should login with email and right password" do
-    post :create, :login => @user.email, :password => 'password'
+    post :create, :login => @user.email, :password => 'password', :format => :js
     assert_equal @user, current_user
   end
 
   test "should remember me" do
-    post :create, :login => @user.email, :password => 'password', :remember_me => 'yes'
+    post :create, :login => @user.email, :password => 'password', :remember_me => 'yes', :format => :js
     assert_equal @user, current_user
     assert_equal @user.remember_token, cookies[:remember_token]
   end
 
   test "should no login with name or email with wrong password" do
-    post :create, :login => @user.name, :password => 'wrong password'
+    post :create, :login => @user.name, :password => 'wrong password', :format => :js
     assert_nil current_user
 
-    post :create, :login => @user.email, :password => 'wrong password'
+    post :create, :login => @user.email, :password => 'wrong password', :format => :js
     assert_nil current_user
   end
 
@@ -41,8 +41,7 @@ class UserSessionsControllerTest < ActionController::TestCase
 
   test "should logout" do
     login_as @user
-    delete :destroy
+    delete :destroy, :format => :js
     assert !logined?
-    assert_redirected_to root_url
   end
 end

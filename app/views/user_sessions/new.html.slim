@@ -4,7 +4,7 @@
 #main
   .container
     .signup
-      = form_tag user_sessions_path do |f|
+      = form_tag user_sessions_path, :remote => true do |f|
         .field
           = label_tag :login, t('.username_or_email')
           = text_field_tag :login, '', :tabindex => 1, :autofocus => 'autofocus'
