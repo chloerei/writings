@@ -4,8 +4,8 @@ html
     title = page_title
     meta content='width=device-width, initial-scale=1.0' name='viewport'
     link rel="shortcut icon" href=(@space.gravatar_url)
-    = javascript_include_tag "site"
-    = stylesheet_link_tag "site"
+    = javascript_include_tag 'site', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'site', 'data-turbolinks-track' => true
     = yield :head
     = csrf_meta_tags
   body id=("#{controller_name}-#{action_name}")
