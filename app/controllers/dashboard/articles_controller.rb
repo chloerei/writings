@@ -55,7 +55,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
       @article.category = @space.categories.where(:token => param_to_token(params[:category_id])).first
     end
     append_title @article.title
-    render :edit, :layout => false
+    render :edit, :layout => 'editor'
   end
 
   def create
@@ -75,7 +75,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   def edit
     append_title @article.title
 
-    render :layout => false
+    render :layout => 'editor'
   end
 
   def update

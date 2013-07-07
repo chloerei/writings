@@ -1,48 +1,38 @@
-doctype 5
-html lang=(logined? ? current_user.locale : 'zh-CN')
-  head
-    title = page_title
-    meta content='width=device-width, initial-scale=1.0' name='viewport'
-    link rel="shortcut icon" href=(asset_path("favicon.png"))
-    = javascript_include_tag "dashboard"
-    = stylesheet_link_tag "dashboard"
-    = csrf_meta_tags
-  body#articles-edit
-    = render :partial => 'dashboard/articles/edit/edit_topbar'
-    #editwrap
-      .main
-        = render :partial => 'dashboard/articles/edit/toolbar'
-        #editarea
-          .scrollable
-            .editor-container
-              article.article contentEditable="true" spellcheck="false" data-id=(@article.token) data-save-count=(@article.save_count) data-category-id=(@article.category.try(:token)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil) data-space=(@space.to_param) data-is-workspace=(@space.is_a?(Workspace)) data-current-user-name=(current_user.name)
-                = article_format_body @article.body
-          #alert-messages
-          #readonly-message
-            = t '.readonly_mode'
+= render :partial => 'dashboard/articles/edit/edit_topbar'
+#editwrap
+  .main
+    = render :partial => 'dashboard/articles/edit/toolbar'
+    #editarea
+      .scrollable
+        .editor-container
+          article.article contentEditable="true" spellcheck="false" data-id=(@article.token) data-save-count=(@article.save_count) data-category-id=(@article.category.try(:token)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil) data-space=(@space.to_param) data-is-workspace=(@space.is_a?(Workspace)) data-current-user-name=(current_user.name)
+            = article_format_body @article.body
+      #alert-messages
+      #readonly-message
+        = t '.readonly_mode'
 
-      .sidebar
-        #history
-          .toolbar.clearfix
-            .label.pull-left
-              i.icon-time
-              = ' '
-              = t '.history_versions'
-            ul.toolbar-buttons.pull-right
-              li
-                a.close-button.toolbar-button.icon-remove href="#close-history" title=(t '.return_newest_version')
-          .content
-            .scrollable
-              nav
-                ul#versions
-              - if @space.in_plan?(:free)
-                .message
-                  = t '.version_limit'
-                  = link_to t('.need_more_version'), billing_path
+  .sidebar
+    #history
+      .toolbar.clearfix
+        .label.pull-left
+          i.icon-time
+          = ' '
+          = t '.history_versions'
+        ul.toolbar-buttons.pull-right
+          li
+            a.close-button.toolbar-button.icon-remove href="#close-history" title=(t '.return_newest_version')
+      .content
+        .scrollable
+          nav
+            ul#versions
+          - if @space.in_plan?(:free)
+            .message
+              = t '.version_limit'
+              = link_to t('.need_more_version'), billing_path
 
-    = render 'dashboard/articles/edit/urlname_modal'
-    = render 'dashboard/articles/edit/select_category_modal'
-    = render 'dashboard/articles/edit/new_category_modal'
-    = render 'dashboard/articles/edit/help_modal'
-    = render 'dashboard/share/image_uploader_modal'
-    = render 'dashboard/share/link_creator_modal'
+= render 'dashboard/articles/edit/urlname_modal'
+= render 'dashboard/articles/edit/select_category_modal'
+= render 'dashboard/articles/edit/new_category_modal'
+= render 'dashboard/articles/edit/help_modal'
+= render 'dashboard/share/image_uploader_modal'
+= render 'dashboard/share/link_creator_modal'
