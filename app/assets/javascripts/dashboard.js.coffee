@@ -17,16 +17,19 @@ $ ->
   $(document).on "page:change", ->
     $("form[data-validate]").validate()
 
-  spinner = $("<div id='spinner'><i class='icon-spinner icon-spin' ></i></div>")
   $(document).on("page:fetch", ->
-    $('body').append(spinner)
+    AlertMessage.show
+      type: 'loading',
+      text: I18n.t('loading')
+      keep: true
+      scope: 'ajax-loading'
   ).on "page:change", ->
-    spinner.remove()
+    AlertMessage.remove('ajax-loading')
 
   $(document).on("ajax:before", ->
     AlertMessage.show
       type: 'loading'
-      text: I18n.t('loading')
+      text: I18n.t('sending')
       keep: true
       scope: 'ajax-loading'
   ).on("ajax:error", (xhr, status, error) ->
