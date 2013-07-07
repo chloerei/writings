@@ -17,15 +17,6 @@ $ ->
   $(document).on "page:change", ->
     $("form[data-validate]").validate()
 
-  $(document).on("page:fetch", ->
-    AlertMessage.show
-      type: 'loading',
-      text: I18n.t('loading')
-      keep: true
-      scope: 'ajax-loading'
-  ).on "page:change", ->
-    AlertMessage.remove('ajax-loading')
-
   $(document).on("ajax:before", ->
     AlertMessage.show
       type: 'loading'
