@@ -8,7 +8,7 @@
         .field
           = f.label :name
           .input-append
-            = f.text_field :name
+            = f.text_field :name, :tabindex => 1
             .add-on = ".#{APP_CONFIG['host']}"
         .field
           = f.label :email
