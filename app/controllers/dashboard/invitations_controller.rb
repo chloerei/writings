@@ -7,7 +7,7 @@ class Dashboard::InvitationsController < Dashboard::BaseController
     @invitation = @space.invitations.find_by :token => params[:id]
 
     if logined? and @space.members.include?(current_user)
-      redirect_to dashboard_root_path
+      redirect_to dashboard_root_url
     end
   end
 

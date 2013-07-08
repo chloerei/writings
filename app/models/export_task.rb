@@ -9,7 +9,7 @@ class ExportTask
   belongs_to :category
   belongs_to :user
 
-  scope :success, where(:status => 'success')
+  scope :success, -> { where(:status => 'success') }
 
   after_destroy do
     FileUtils.rm_r output_path, :force => true
