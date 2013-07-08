@@ -120,6 +120,6 @@ Publish::Application.routes.draw do
   end
 
   if Rails.env.production?
-    match '*a', :to => 'errors#not_found'
+    get '*a', :to => 'errors#not_found'
   end
 end
