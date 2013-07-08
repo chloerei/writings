@@ -8,14 +8,14 @@
         .field
           = f.label :name
           .input-append
-            = f.text_field :name
+            = f.text_field :name, :tabindex => 1
             .add-on = ".#{APP_CONFIG['host']}"
         .field
           = f.label :email
           = f.text_field :email, :tabindex => 2
         .field
           = f.label :password
-          = f.password_field :password, :tabindex => 3
+          = f.password_field :password, :tabindex => 3, :validate => true
         .field
           = f.label :password_confirmation
           = f.password_field :password_confirmation, :tabindex => 4

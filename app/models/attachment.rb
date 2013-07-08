@@ -29,11 +29,11 @@ class Attachment
   end
 
   def inc_user_storage_used
-    user.inc(:storage_used, file_size)
+    user.inc(:storage_used => file_size)
   end
 
   def dec_user_storage_used
-    user.inc(:storage_used, -file_size)
+    user.inc(:storage_used => -file_size)
   end
 
   def check_user_storage_limit

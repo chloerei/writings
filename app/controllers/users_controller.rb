@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :require_no_logined
 
   def new
-    @user = User.new
+    @user = User.new :password => 1 # force client side validation patch
     referrer = request.headers['X-XHR-Referer'] || request.referrer
     store_location referrer if referrer.present?
   end

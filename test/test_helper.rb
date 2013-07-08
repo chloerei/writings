@@ -13,7 +13,12 @@ end
 
 class ActionController::TestCase
   attr_reader :controller
-  delegate :login_as, :logout, :current_user, :logined?, :to => :controller
+
+  %w(login_as logout current_user logined?).each do |method|
+    define_method method do |*args|
+      controller.send method, *args
+    end
+  end
 
   def assert_require_logined(user = create(:user))
     logout
