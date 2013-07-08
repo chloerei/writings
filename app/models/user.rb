@@ -19,7 +19,7 @@ class User < Space
   has_secure_password
 
   validates :email, :presence => true, :uniqueness => {:case_sensitive => false}, :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}
-  validates :password, :length => {:minimum => 6, :allow_blank => true}
+  validates :password, :length => { :minimum => 6 }, :on => :create
   validates :locale, :inclusion => {:in => ALLOW_LOCALE}
   validates :current_password, :presence => true, :if => :need_current_password
 
