@@ -4,7 +4,7 @@
       - if logined?
         .space-menu
           a#sidebar-button.topbar-button
-            i.icon-reorder.no-margin
+            i.icon-reorder
           .dropdown
             a.dropdown-toggle.topbar-button href=(dashboard_root_path(@space || current_user)) class=('actived' if %w(articles attachments categories import_tasks export_tasks settings).include? controller_name)
               i.icon-user
@@ -33,8 +33,7 @@
             .dropdown.hide-on-mobile
               a.dropdown-toggle.topbar-button href="#"
                 i.icon-comments-alt
-                span.hide-on-mobile
-                  = t '.community'
+                = t '.community'
               ul.dropdown-menu.align-right
                 li
                   a href='http://blog.writings.io' target='_blank'
@@ -61,8 +60,7 @@
             .dropdown
               a.dropdown-toggle.topbar-button href=(account_path) class=('actived' if %w(accounts billings).include? controller_name)
                 i.icon-cog
-                span.hide-on-mobile
-                  = t '.settings'
+                = t '.settings'
               ul.dropdown-menu.align-right
                 li
                   = link_to account_path do

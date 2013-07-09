@@ -4,6 +4,13 @@ $blue: #2b6ca3;
 $yellow: #f89406;
 $linkColor: $blue;
 
-$container-width: 960px;
-$editor-container-width: 768px;
-$site-container-width: 768px;
+$container-width: 68em;
+$editor-container-width: 55em;
+$site-container-width: 55em;
+
+$commonPadding: 1.5em;
+$commonMargin: 1.5em;
+
+$buttonPaddingY: 0.5em;
+$buttonPaddingX: 1em;
+$buttonRadius: 0.2em;

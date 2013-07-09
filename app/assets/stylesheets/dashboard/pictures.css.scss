@@ -1,7 +1,4 @@
 .pictures {
-  margin-right: -20px;
-  margin-bottom: 20px;
-
   ul {
     list-style: none;
     padding: 0;
@@ -10,7 +7,7 @@
     li {
       float: left;
       width: 18%;
-      margin-right: 2%;
+      margin-right: 2.5%;
       padding-bottom: 18%;
       margin-bottom: 2%;
       position: relative;
@@ -21,17 +18,33 @@
         @include box-shadow(0 2px 0px #ccc);
       }
 
-      @media (max-width: 768px) {
-        & {
-          width: 23%;
-          padding-bottom: 23%;
+      @media (min-width: $editor-container-width) {
+        &:nth-child(5n) {
+          margin-right: 0;
         }
       }
 
-      @media (max-width: 480px) {
+      @media (max-width: $editor-container-width) and (min-width: $editor-container-width * 2/3) {
         & {
-          width: 31%;
-          padding-bottom: 31%;
+          width: 22.5%;
+          padding-bottom: 22.5%;
+          margin-right: 3.333%;
+        }
+
+        &:nth-child(4n) {
+          margin-right: 0;
+        }
+      }
+
+      @media (max-width: $editor-container-width * 2/3) {
+        & {
+          width: 30%;
+          padding-bottom: 30%;
+          margin-right: 5%;
+        }
+
+        &:nth-child(3n) {
+          margin-right: 0;
         }
       }
 
@@ -62,9 +75,13 @@
         position: absolute;
         right: 0;
         top: 0;
-        padding: 7px;
+        padding: 0.3em;
         line-height: 1em;
         color: #ccc;
+
+        i {
+          margin-right: 0;
+        }
 
         &:hover {
           color: #555;

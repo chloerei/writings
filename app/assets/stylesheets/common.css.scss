@@ -10,6 +10,7 @@ body {
   color: #333;
   background-color: #efefef;
   font-size: 14px;
+  line-height: 1.4em;
 
   @include hidpi {
     font-size: 1.1em;
@@ -56,7 +57,7 @@ a [class^="icon-"],
 a [class*=" icon-"] {
   width: 1.2em;
   text-align: center;
-  margin-right: 5px;
+  margin-right: 0.5em;
   display: inline-block;
 
   &.no-margin {
@@ -65,7 +66,7 @@ a [class*=" icon-"] {
 }
 
 article {
-  font-size: 1.1em;
+  font-size: 1em;
   line-height: 160%;
   word-wrap: break-word;
 
@@ -82,20 +83,20 @@ article {
   blockquote {
     margin: 1em 0;
     padding: 0 0 0 1em;
-    border-left: 5px solid #ccc;
+    border-left: 0.5em solid #ccc;
     color: #555;
   }
 
   p code {
-    margin: 0 5px;
-    padding: 0 5px;
+    margin: 0 0.5em;
+    padding: 0 0.5em;
     background-color: #efefef;
   }
 
   pre code {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 0.3em;
   }
 
   img {
@@ -114,7 +115,7 @@ article {
 }
 
 hr {
-  margin: 40px 0;
+  margin: 2em 0;
   border: 0;
   height: 1px;
   background-color: #ccc;
@@ -171,12 +172,13 @@ nav ul {
 #{$all-text-inputs},
 textarea {
   border: 1px solid #ccc;
-  padding: 7px;
-  margin-right: 10px;
+  padding: $buttonPaddingY;
+  margin-right: 1em;
   outline: 0;
-  border-radius: 3px;
-  width: 300px;
+  border-radius: $buttonRadius;
+  width: 25em;
   max-width: 100%;
+  line-height: 1.4em;
   @include box-sizing(border-box);
 
   &.full-width {
@@ -189,21 +191,21 @@ textarea {
 }
 
 textarea {
-  height: 150px;
+  height: 10em;
 }
 
 select {
   border: 1px solid #ccc;
   background-color: #fff;
-  padding: 5px 7px;
+  padding: $buttonPaddingY $buttonPaddingX;
   outline: 0;
-  border-radius: 3px;
+  border-radius: $buttonRadius;
 }
 
 .input-prepend,
 .input-append{
   display: table;
-  width: 300px;
+  width: 25em;
 
   #{$all-text-inputs} {
     width: 100%;
@@ -228,28 +230,28 @@ select {
 
 .input-prepend {
   .add-on {
-    border-radius: 3px 0 0 3px;
+    border-radius: $buttonRadius 0 0 $buttonRadius;
     border-right: 0;
   }
 
   #{$all-text-inputs} {
-    border-radius: 0 3px 3px 0;
+    border-radius: 0 $buttonRadius $buttonRadius 0;
   }
 }
 
 .input-append {
   .add-on {
-    border-radius: 0 3px 3px 0;
+    border-radius: 0 $buttonRadius $buttonRadius 0;
     border-left: 0;
   }
 
   #{$all-text-inputs} {
-    border-radius: 3px 0 0 3px;
+    border-radius: $buttonRadius 0 0 $buttonRadius;
   }
 }
 
 .field {
-  margin-bottom: 20px;
+  margin-bottom: 1.5em;
 
   &:last-child {
     margin-bottom: 0;
@@ -257,7 +259,7 @@ select {
 
   label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 0.5em;
   }
 
   &.field-error {
@@ -271,13 +273,13 @@ select {
     }
 
     label.message {
-      margin: 5px 0 0;
+      margin: 0.5em 0 0;
 
       &::before {
         font-family: FontAwesome;
         display: inline-block;
         content: "\f05e"; // ban-icon
-        margin-right: 2px;
+        margin-right: 0.5em;
       }
     }
   }
@@ -286,7 +288,7 @@ select {
 fieldset {
   border: 0;
   padding: 0;
-  margin: 0 0 20px;
+  margin: 0 0 1.5em;
   @include clearfix();
 
   &:last-child {
@@ -298,7 +300,7 @@ fieldset {
   legend {
     font-weight: bold;
     color: #555;
-    margin-bottom: 20px;
+    margin-bottom: 1.5em;
   }
 }
 
@@ -342,14 +344,14 @@ fieldset {
 input[type=submit],
 button,
 .button {
-  padding: 7px 14px;
-  margin-right: 10px;
+  padding: $buttonPaddingY $buttonPaddingX;
+  margin-right: 1em;
+  line-height: 1.4em;
   font-weight: normal;
   display: inline-block;
   vertical-align: middle;
-  border-radius: 2px;
+  border-radius: $buttonRadius;
   cursor: pointer;
-  line-height: 18px;
   @include button-color(#fefefe, #333, #ccc);
 
   &.no-margin {
@@ -370,7 +372,7 @@ button,
 
   &.button-large {
     font-size: 1.2em;
-    padding: 7px 28px;
+    padding: $buttonPaddingY $buttonPaddingX * 1.5;
   }
 }
 
@@ -381,7 +383,7 @@ a.button:hover {
 .button-group {
   display: inline-block;
   vertical-align: middle;
-  margin-right: 10px;
+  margin-right: 1em;
 
   &.no-margin {
     margin: 0;
@@ -395,12 +397,12 @@ a.button:hover {
     border-radius: 0;
 
     &:first-child {
-      border-radius: 2px 0 0 2px;
+      border-radius: $buttonRadius 0 0 $buttonRadius;
     }
 
     &:last-child {
       border-right-width: 1px;
-      border-radius: 0 2px 2px 0;
+      border-radius: 0 $buttonRadius $buttonRadius 0;
     }
   }
 }
@@ -422,24 +424,23 @@ a.button:hover {
 
   .dropdown-toggle {
     position: relative;
-    padding: 7px 27px 7px 10px;
+    padding: $buttonPaddingY ($buttonPaddingX + 1em) $buttonPaddingY $buttonPaddingX;
     display: inline-block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
 
+    &.button {
+      margin-right: 0;
+    }
+
     &:after {
       position: absolute;
       right: 0;
-      padding: 2px 10px;
+      padding-right: 1em;
       font-family: FontAwesome;
-      display: inline-block;
       content: "\f0d7";
-    }
-
-    &.button {
-      margin-right: 0;
     }
 
     &.no-arrow {
@@ -502,7 +503,7 @@ a.button:hover {
 
       a {
         display: block;
-        padding: 6px 10px;
+        padding: $buttonPaddingY $buttonPaddingX;
 
         &:hover {
           background-color: #eee;
@@ -562,8 +563,7 @@ a.button:hover {
 .modal-dialog {
   position: fixed;
   display: none;
-
-  width: 400px;
+  width: 30em;
   max-width: 90%;
   max-height: 90%;
   top: 50%;
@@ -582,7 +582,7 @@ a.button:hover {
     @include clearfix();
 
     .title {
-      padding: 10px 15px;
+      padding: 1em;
       float: left;
       font-weight: bold;
       color: #555;
@@ -592,11 +592,11 @@ a.button:hover {
       display: inline-block;
       cursor: pointer;
       float: right;
-      padding: 10px 15px;
+      padding: 1em;
       color: #999;
 
       i {
-        vertical-align: top;
+        margin-right: 0;
       }
 
       &:hover {
@@ -606,12 +606,12 @@ a.button:hover {
   }
 
   .modal-content {
-    padding: 10px 15px 15px;
+    padding: 1em;
     @include clearfix();
   }
 
   .dropdown-menu {
-    max-height: 200px;
+    max-height: 10em;
     overflow: auto;
   }
 
@@ -624,39 +624,26 @@ a.button:hover {
 
     textarea {
       width: 100%;
-      height: 120px;
     }
   }
 
   .tabs {
     float: left;
-    width: 25%;
+    width: 20%;
 
     nav {
       li {
         a {
           display: block;
           color: #555;
-          padding: 10px 20px 10px 0;
+          padding: 1em;
           position: relative;
-
-          .label {
-            overflow: hidden;
-            white-space: nowrap;
-            margin-right: 10px;
-          }
+          overflow: hidden;
+          white-space: nowrap;
 
           &.actived,
           &:hover {
             color: $linkColor;
-
-            &:after {
-              content: "\f054";
-              font-family: FontAwesome;
-              position: absolute;
-              right: 10px;
-              top: 13px;
-            }
           }
         }
       }
@@ -664,8 +651,10 @@ a.button:hover {
   }
 
   .tab-content {
+    padding: 1em;
     float: right;
-    width: 70%;
+    width: 80%;
+    @include box-sizing(border-box);
   }
 }
 
@@ -673,33 +662,34 @@ a.button:hover {
 
 #alert-messages {
   position: fixed;
-  top: 88px;
+  top: 3em /* topbar height */ + $commonMargin + $commonPadding;
   right: 50%;
-  margin-right: -460px;
+  margin-right: -($container-width / 2 - $commonPadding);
   z-index: 2000;
 
-  @media (max-width: 960px) {
-      right: 20px;
+  @media (max-width: $container-width) {
+      right: $commonPadding;
+      top: 3em + $commonPadding;
       margin-right: 0;
   }
 
   .alert-message {
     float: right;
     clear: both;
-    padding: 5px 10px;
+    padding: $buttonPaddingY $buttonPaddingX;
     background-color: #999;
-    border-radius: 3px;
+    border-radius: $buttonRadius;
     color: #fff;
-    margin-bottom: 5px;
+    margin-bottom: 0.5em;
     @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.3));
 
     i {
-      margin-right: 5px;
+      margin-right: 0.5em;
     }
 
     i.icon-remove {
       cursor: pointer;
-      margin-left: 10px;
+      margin-left: 0.5em;
       margin-right: 0;
     }
 

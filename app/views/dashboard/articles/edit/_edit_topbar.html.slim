@@ -56,6 +56,6 @@
           i.icon-minus-sign
           = ' '
           = t '.save_error'
-      .button-group
+      .button-group.no-margin
         = link_to t('.publish'), '#', :class => ['button', (@article.publish? ? 'button-actived' : nil)], :id => 'publish-button'
         = link_to t('.draft'), '#', :class => ['button', (@article.draft? ? 'button-actived' : nil)], :id => 'draft-button'

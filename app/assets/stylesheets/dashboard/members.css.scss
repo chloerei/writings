@@ -1,12 +1,12 @@
 .members {
   ul {
     list-style: none;
-    margin-bottom: 30px;
+    margin-bottom: $commonMargin;
     padding: 0;
   }
 
   .member {
-    margin-bottom: 20px;
+    margin-bottom: $commonMargin;
     position: relative;
     @include clearfix();
 
@@ -15,24 +15,24 @@
       left: 0;
 
       img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50px;
+        width: 7em;
+        height: 7em;
+        border-radius: 3.5em;
       }
     }
 
     .info {
-      margin-left: 120px;
+      margin-left: 8em;
 
       .name {
         font-size: 1.2em;
         font-weight: bold;
-        margin-bottom: 10px;
+        margin-bottom: $commonMargin / 2;
       }
 
       .action,
       .email {
-        margin-bottom: 10px;
+        margin-bottom: $commonMargin / 2;
       }
     }
   }
