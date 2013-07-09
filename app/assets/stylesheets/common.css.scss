@@ -10,7 +10,12 @@ body {
   color: #333;
   background-color: #efefef;
   font-size: 14px;
+
+  @include hidpi {
+    font-size: 1.1em;
+  }
 }
+
 
 h1, h2, h3, h4 {
   margin: 1.6em 0 1em;
@@ -60,7 +65,7 @@ a [class*=" icon-"] {
 }
 
 article {
-  font-size: 1em;
+  font-size: 1.1em;
   line-height: 160%;
   word-wrap: break-word;
 
