@@ -2,21 +2,29 @@
   .clearfix
     ul#formator-buttons.toolbar-buttons.pull-left
       li
-        a class='toolbar-button icon-bold' href='#' data-command='bold' title=(t '.bold_tip')
+        a class='toolbar-button' href='#' data-command='bold' title=(t '.bold_tip')
+          i.icon-bold
       li
-        a class='toolbar-button icon-italic' href='#' data-command='italic' title=(t '.italic_tip')
+        a class='toolbar-button' href='#' data-command='italic' title=(t '.italic_tip')
+          i.icon-italic
       li
-        a class='toolbar-button icon-strikethrough' href='#' data-command='strikeThrough' title=(t '.strike_tip')
+        a class='toolbar-button' href='#' data-command='strikeThrough' title=(t '.strike_tip')
+          i.icon-strikethrough
       li
-        a class='toolbar-button icon-underline' href='#' data-command='underline' title=(t '.underline_tip')
+        a class='toolbar-button' href='#' data-command='underline' title=(t '.underline_tip')
+          i.icon-underline
       li.hide-on-mobile
-        a class='toolbar-button icon-link' href='#' data-command='link' title=(t '.link_tip')
+        a class='toolbar-button' href='#' data-command='link' title=(t '.link_tip')
+          i.icon-link
       li.hide-on-mobile
-        a class='toolbar-button icon-picture' href='#' data-command='image' title=(t '.image_tip')
+        a class='toolbar-button' href='#' data-command='image' title=(t '.image_tip')
+          i.icon-picture
       li
-        a class='toolbar-button icon-list-ol' href='#' data-command='orderedList' title=(t '.orderList_tip')
+        a class='toolbar-button' href='#' data-command='orderedList' title=(t '.orderList_tip')
+          i.icon-list-ol
       li
-        a class='toolbar-button icon-list-ul' href='#' data-command='unorderedList' title=(t '.unorderList_tip')
+        a class='toolbar-button' href='#' data-command='unorderedList' title=(t '.unorderList_tip')
+          i.icon-list-ul
       li.hide-on-mobile
         #format-block.dropdown
           a.dropdown-toggle.toolbar-button href="#" = t '.normal_text'
@@ -48,6 +56,8 @@
                 blockquote = t '.blockquote'
     ul.toolbar-buttons.pull-right
       li.hide-on-mobile
-        a#help-button.toolbar-button.icon-question-sign href='#help-modal' title=(t '.help_tip') data-toggle='modal'
+        a#help-button.toolbar-button href='#help-modal' title=(t '.help_tip') data-toggle='modal'
+          i.icon-question-sign
       li
-        a#pick-up-button.toolbar-button.icon-double-angle-up href="#"
+        a#pick-up-button.toolbar-button href="#"
+          i.icon-double-angle-up

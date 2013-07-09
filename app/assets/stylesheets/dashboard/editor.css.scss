@@ -10,7 +10,6 @@
   left: 0;
   right: 0;
   z-index: 20;
-  line-height: 1em;
   @include transition(top 0.15s ease);
 
   ul.top-nav {
@@ -56,13 +55,11 @@
   }
 
   .pull-right {
-    line-height: 1em;
     padding: 1em;
 
     .button-group,
     .button {
       display: inline;
-      line-height: 1em;
       vertical-align: baseline;
     }
   }
@@ -95,7 +92,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  margin-top: 3em;
+  margin-top: 3.4em;
   @include transition(margin-top 0.15s ease);
 
   .main,
@@ -190,12 +187,10 @@
     left: 0;
     right: 0;
     z-index: 9;
-    line-height: 1em;
     @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
 
     .label {
       padding: 0.7em;
-      line-height: 1em;
       color: #fff;
       display: inline-block;
       @include box-sizing(border-box);
@@ -209,6 +204,7 @@
 
       [class^="icon-"], [class*=" icon-"] {
         width: 1.2em;
+        margin-right: 0;
       }
 
       > li {
@@ -216,7 +212,7 @@
         float: left;
 
         .toolbar-button {
-          padding: 0.7em;
+          padding: 0.7em 1em;
           text-align: center;
           display: block;
           color: #fff;
@@ -287,7 +283,7 @@
   }
 
   #editarea {
-    padding-top: 2.4em;
+    padding-top: 2.8em;
     position: absolute;
     top: 0;
     left: 0;
@@ -369,7 +365,7 @@
 
 .pick-up-topbar {
   #editor-topbar {
-    top: -3em;
+    top: -3.4em;
   }
 
   #toolbar {
@@ -380,8 +376,10 @@
     margin-top: 0;
   }
 
-  #pick-up-button.icon-double-angle-up:before {
-    content: "\f103";
+  #pick-up-button {
+    i.icon-double-angle-up:before {
+      content: "\f103";
+    }
   }
 }
 

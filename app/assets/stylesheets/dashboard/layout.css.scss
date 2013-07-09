@@ -90,7 +90,6 @@ $topbarLinkHoverColor: #333;
 $topbarLinkHoverBackgroundColor: white;
 
 #topbar {
-  line-height: 1em;
   margin-bottom: $commonMargin;
   color: $topbarLinkColor;
   background-color: $topbarLinkBackgroundColor;
@@ -114,6 +113,10 @@ $topbarLinkHoverBackgroundColor: white;
 
   .sub-menu {
     margin-left: $mainSidebarWidth;
+    .dropdown,
+    .dropdown-toggle {
+      vertical-align: top;
+    }
   }
 
   .topbar-button {
@@ -191,8 +194,6 @@ $topbarLinkHoverBackgroundColor: white;
       margin-bottom: $commonMargin;
 
       li.main-sidebar-item {
-        line-height: 1em;
-
         &:hover {
           background-color: white;
         }
