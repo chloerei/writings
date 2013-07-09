@@ -1,8 +1,7 @@
 <% if logined? %>
   Turbolinks.visit('<%= j(session.delete(:return_to) || root_url) %>');
 <% else %>
-  AlertMessage.show({
-    type: 'error',
-    text: "<%= j @user.errors.full_messages.join %>"
-  });
+  <% @user.errors.full_messages.each do |message| %>
+    AlertMessage.show({ type: 'error', text: "<%= j message %>" });
+  <% end %>
 <% end %>

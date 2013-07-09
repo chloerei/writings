@@ -6,8 +6,7 @@
   });
   $("#user-link").attr("href", "http://" + '<%= @space.host %>');
 <% else %>
-  AlertMessage.show({
-    type: 'error',
-    text: '<%= j current_user.errors.full_messages.join %>'
-  });
+  <% @space.errors.full_messages.each do |message| %>
+    AlertMessage.show({ type: 'error', text: "<%= j message %>" });
+  <% end %>
 <% end %>

@@ -1,5 +1,5 @@
-<% if @category.persisted? %>
-  Turbolinks.visit('<%= dashboard_articles_categorized_path(:category_id => @category) %>')
+<% if @category.errors.empty? %>
+  Turbolinks.visit("<%= dashboard_articles_categorized_path(:category_id => @category) %>");
 <% else %>
   <% @category.errors.full_messages.each do |message| %>
     AlertMessage.show({ type: 'error', text: "<%= j message %>" });
