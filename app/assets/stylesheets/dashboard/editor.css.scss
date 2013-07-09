@@ -10,15 +10,12 @@
   left: 0;
   right: 0;
   z-index: 20;
-  border-bottom: 1px solid #ccc;
-  line-height: 18px;
   @include transition(top 0.15s ease);
 
   ul.top-nav {
     margin: 0;
     padding: 0;
     list-style: none;
-    line-height: 18px;
     @include clearfix();
 
     li a [class^="icon-"],
@@ -34,34 +31,42 @@
     > li {
       display: inline-block;
       float: left;
-      height: 48px;
     }
 
     .top-nav-button {
-      padding: 15px 20px;
+      padding: 1em $commonPadding;
       display: block;
       color: #555;
       @include transition(all 0.15s ease);
+
+      i {
+        width: 1em;
+        margin-right: 0;
+      }
 
       &:hover {
         background-color: #f9f9f9;
       }
     }
+  }
 
-    .dropdown-menu {
-      top: 49px;
-      width: 200px;
-    }
+  .dropdown-menu li a {
+    padding: 1em $commonPadding;
   }
 
   .pull-right {
-    padding: 7px 0;
+    padding: 1em;
+
+    .button-group,
+    .button {
+      display: inline;
+      vertical-align: baseline;
+    }
   }
 
   #save-status {
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 10px;
+    display: inline;
+    margin-right: 0.5em;
     color: #999;
     cursor: pointer;
 
@@ -87,7 +92,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  margin-top: 49px;
+  margin-top: 3.4em;
   @include transition(margin-top 0.15s ease);
 
   .main,
@@ -106,17 +111,12 @@
     display: none;
     @include box-shadow(-1px 0 1px #ccc);
     .content {
-      padding-top: 36px;
+      padding-top: 34px;
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-    }
-
-    .message {
-      padding: 10px;
-      color: #999;
     }
 
     nav ul {
@@ -190,11 +190,9 @@
     @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
 
     .label {
-      line-height: 14px;
-      padding: 10px;
+      padding: 0.7em;
       color: #fff;
       display: inline-block;
-      height: 34px;
       @include box-sizing(border-box);
     }
 
@@ -205,20 +203,16 @@
       @include clearfix();
 
       [class^="icon-"], [class*=" icon-"] {
-        line-height: 14px;
+        width: 1.2em;
+        margin-right: 0;
       }
 
       > li {
         display: inline-block;
         float: left;
-        height: 34px;
-
-        a {
-        }
 
         .toolbar-button {
-          padding: 10px;
-          width: 1.2em;
+          padding: 0.7em 1em;
           text-align: center;
           display: block;
           color: #fff;
@@ -251,35 +245,28 @@
 
       .dropdown {
         position: relative;
-        height: 34px;
 
         .dropdown-toggle {
-          width: 80px;
-          padding-right: 20px;
+          padding-right: 1.7em;
           font-weight: bold;
-          line-height: 14px;
 
           &:after {
             right: 0;
-            padding: 2px 10px;
+            padding-right: 0.7em;
           }
         }
 
         .dropdown-menu {
-          top: 36px;
-          left: 0;
-
           li {
             display: block;
             float: none;
 
             a {
-              padding: 10px;
+              display: block;
+              padding: 0.7em;
 
-              &:hover {
-                h1, h2, h3, h4 {
-                  color: #fff;
-                }
+              h1, h2, h3, h4 {
+                line-height: 100%;
               }
             }
           }
@@ -296,7 +283,7 @@
   }
 
   #editarea {
-    padding-top: 36px;
+    padding-top: 2.8em;
     position: absolute;
     top: 0;
     left: 0;
@@ -308,20 +295,20 @@
       width: $editor-container-width;
       max-width: 100%;
       background: #FFF;
-      padding: 70px;
+      padding:  5em;
       outline: 0;
-      min-height: 1024px;
-      margin-top: 3px;
-      margin-bottom: 60px;
+      min-height: 73em;
+      margin-top: 0.3em;
+      margin-bottom: 10em;
       position: relative;
       @include box-shadow(0 0 0 1px #ccc);
       @include box-sizing(border-box);
 
-      @media (max-width: 768px) {
+      @media (max-width: $editor-container-width) {
         margin-top: 0;
         margin-bottom: 0;
         border: none;
-        padding: 70 / 768 * 100%;
+        padding:  5em / $editor-container-width * 100%;
       }
 
       &.init {
@@ -343,8 +330,8 @@
 
   #alert-messages {
     position: absolute;
-    right: 20px;
-    top: 54px;
+    right: $commonPadding;
+    top: 2.5em + $commonPadding;
     margin-right: 0;
   }
 
@@ -354,15 +341,15 @@
 
   &.readonly {
     #readonly-message {
-      padding: 10px 20px;
+      padding: $buttonPaddingY $buttonPaddingX;
       background-color: rgba(0, 0, 0, 0.5);
       color: #fff;
       display: inline-block;
       position: absolute;
-      left: 20px;
-      top: 54px;
+      left: $commonPadding / 1.5;
+      top: (2.5em + $commonPadding) / 1.5;
+      border-radius: $buttonRadius;
       font-size: 1.5em;
-      border-radius: 5px;
     }
 
     #formator-buttons {
@@ -378,7 +365,7 @@
 
 .pick-up-topbar {
   #editor-topbar {
-    top: -49px;
+    top: -3.4em;
   }
 
   #toolbar {
@@ -389,13 +376,15 @@
     margin-top: 0;
   }
 
-  #pick-up-button.icon-double-angle-up:before {
-    content: "\f103";
+  #pick-up-button {
+    i.icon-double-angle-up:before {
+      content: "\f103";
+    }
   }
 }
 
 #help-modal {
-  width: 450px;
+  width: 35em;
 
   table {
     width: 100%;
@@ -407,7 +396,7 @@
     }
 
     th, td {
-      padding: 10px;
+      padding: 0.5em;
       vertical-align: top;
       text-align: center;
     }
@@ -418,11 +407,11 @@
 }
 
 #image-uploader-modal {
-  width: 450px;
+  width: 45em;
 
   .preview,
   .dropable {
-    height: 180px;
+    height: 20em;
     width: 100%;
     border: 2px dashed #ccc;
     display: table;
@@ -435,7 +424,7 @@
       display: table-cell;
       vertical-align: middle;
       text-align: center;
-      padding: 20px;
+      padding: 1em;
     }
 
     &.start .center {
@@ -466,10 +455,10 @@
     input {
       opacity: 0;
       position: absolute;
-      top: -1px;
-      right: -1px;
+      top: 0;
+      right: 0;
       cursor: pointer;
-      height: 34px;
+      height: 100%;
     }
   }
 
@@ -484,7 +473,7 @@
   .progress {
     display: none;
     height: 5px;
-    margin-top: 20px;
+    margin-top: 1.5em;
     border: 1px solid #ccc;
     padding: 2px;
 
@@ -496,7 +485,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $editor-container-width) {
   #editwrap {
     &.show-sidebar {
       .main,

@@ -32,7 +32,7 @@ table.nice-table {
   }
 
   th, td {
-    padding: 10px;
+    padding: 1em;
 
     &:last-child {
       text-align: right;
@@ -61,10 +61,10 @@ table.nice-table {
 // signup, login
 .signup,
 .login {
-  margin: 100px auto;
-  width: 90%;
-  max-width: 350px;
-  padding: 20px;
+  margin: 7em auto;
+  width: 25em;
+  max-width: 90%;
+  padding: $commonPadding;
   background-color: #fff;
   @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
   @include box-sizing(border-box);
@@ -82,7 +82,7 @@ table.nice-table {
 
 // topbar
 
-$mainSidebarWidth: 200px;
+$mainSidebarWidth: $container-width - $editor-container-width;
 
 $topbarLinkColor: #eee;
 $topbarLinkBackgroundColor: #333;
@@ -90,8 +90,7 @@ $topbarLinkHoverColor: #333;
 $topbarLinkHoverBackgroundColor: white;
 
 #topbar {
-  line-height: 18px;
-  margin-bottom: 20px;
+  margin-bottom: $commonMargin;
   color: $topbarLinkColor;
   background-color: $topbarLinkBackgroundColor;
   @include linear-gradient(#555, #333);
@@ -114,10 +113,14 @@ $topbarLinkHoverBackgroundColor: white;
 
   .sub-menu {
     margin-left: $mainSidebarWidth;
+    .dropdown,
+    .dropdown-toggle {
+      vertical-align: top;
+    }
   }
 
   .topbar-button {
-    padding: 15px 20px;
+    padding: 1em $commonPadding;
     display: inline-block;
     color: $topbarLinkColor;
     @include transition(all 0.15s ease);
@@ -133,15 +136,12 @@ $topbarLinkHoverBackgroundColor: white;
   }
 
   .dropdown {
-    height: 48px;
-
     .dropdown-toggle {
-      padding: 15px 35px 15px 20px;
-      vertical-align: baseline;
+      padding: 1em ($commonPadding + 1em) 1em $commonPadding;
       color: $topbarLinkColor;
 
       &:after {
-        padding: 2px 20px;
+        padding-right: 1.5em;
       }
 
       &:hover {
@@ -155,7 +155,7 @@ $topbarLinkHoverBackgroundColor: white;
 
       li {
         a {
-          padding: 10px 20px 9px;
+          padding: 1em $commonPadding;
         }
       }
     }
@@ -172,7 +172,7 @@ $topbarLinkHoverBackgroundColor: white;
 // main
 
 #main {
-  margin-bottom: 20px;
+  margin-bottom: $commonMargin;
 
   .inner {
     background-color: #fff;
@@ -191,7 +191,7 @@ $topbarLinkHoverBackgroundColor: white;
     background-color: #f9f9f9;
 
     nav.main-sidebar-nav {
-      margin-bottom: 20px;
+      margin-bottom: $commonMargin;
 
       li.main-sidebar-item {
         &:hover {
@@ -199,14 +199,13 @@ $topbarLinkHoverBackgroundColor: white;
         }
 
         > a {
-          padding: 15px 20px;
+          padding: 1em $commonPadding;
           display: block;
           position: relative;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
           color: #333;
-          line-height: 18px;
 
           &:hover {
             color: $linkColor;
@@ -218,13 +217,13 @@ $topbarLinkHoverBackgroundColor: white;
 
           > a {
             color: $linkColor;
-            padding-left: 16px;
-            border-left: 4px solid $linkColor;
+            padding-left: $commonPadding - 0.3em;
+            border-left: 0.3em solid $linkColor;
           }
         }
 
         &.append-dropdown {
-          padding-right: 48px;
+          padding-right: 3em;
           position: relative;
 
           .dropdown {
@@ -242,11 +241,15 @@ $topbarLinkHoverBackgroundColor: white;
           a.dropdown-toggle {
             visibility: hidden;
             border-left: none;
-            width: 18px;
-            padding: 15px;
+            padding: 1em;
 
             &:hover {
               color: $linkColor;
+            }
+
+            i {
+              width: 1em;
+              margin-right: 0;
             }
           }
 
@@ -267,8 +270,8 @@ $topbarLinkHoverBackgroundColor: white;
 
   .main-header {
     border-bottom: 1px solid #ddd;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+    padding-bottom: $commonPadding;
+    margin-bottom: $commonMargin;
 
     h2 {
       margin: 0;
@@ -277,17 +280,17 @@ $topbarLinkHoverBackgroundColor: white;
 
   .main-content {
     margin-left: $mainSidebarWidth;
-    padding: 20px;
+    padding: $commonPadding;
     @include box-sizing(border-box);
   }
 
 
   .main-actions {
-    margin-bottom: 20px;
+    margin-bottom: $commonPadding;
   }
 
   section {
-    margin-bottom: 20px;
+    margin-bottom: $commonMargin;
     @include clearfix();
 
     &:last-child {
@@ -303,7 +306,7 @@ $topbarLinkHoverBackgroundColor: white;
   }
 
   .empty-message {
-    padding: 15px;
+    padding: 1em;
     border: 2px dashed #ddd;
     text-align: center;
     color: #999;
@@ -347,13 +350,13 @@ $topbarLinkHoverBackgroundColor: white;
     .column {
       width: auto;
       float: none;
-      margin-bottom: 20px;
+      margin-bottom: $commonMargin;
       margin-right: 0;
     }
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: $container-width) {
   .container {
     width: 100%;
   }
@@ -364,11 +367,15 @@ $topbarLinkHoverBackgroundColor: white;
       display: inline-block;
       position: absolute;
       left: 0;
-      width: 18px;
+
+      i {
+        width: 1em;
+        margin-right: 0;
+      }
     }
 
     .dropdown {
-      margin-left: 58px;
+      margin-left: 4em;
     }
   }
 

@@ -30,7 +30,7 @@ body {
       }
 
       a {
-        padding: 15px 20px;
+        padding: 1em 1.5em;
         color: #999;
         display: block;
 
@@ -44,22 +44,22 @@ body {
 
 #main {
   .container {
-    max-width: 768px;
+    max-width: $site-container-width;
     width: 100%;
     margin: 0 auto;
   }
 
   section,
   article {
-    margin: (70px / 768px) * 100%;
+    margin: (5em / $site-container-width) * 100%;
   }
 
   #page {
-    margin: 40px 0;
+    margin: 2em 0;
     border: 1px solid #ccc;
     background-color: #fff;
 
-    @media (max-width: 768px) {
+    @media (max-width: $site-container-width) {
       margin: 0;
       border: none;
     }
@@ -84,7 +84,7 @@ body {
         a {
           display: block;
           color: #ccc;
-          padding: 15px 20px;
+          padding: 1em 1.5em;
 
           &.actived,
           &:hover {
@@ -96,7 +96,7 @@ body {
   }
 
   #category-header {
-    padding: 15px 20px;
+    padding: 1em 1.5em;
     text-align: center;
     background-color: #f9f9f9;
     font-weight: bold;
@@ -110,7 +110,7 @@ body {
     section,
     article {
       margin: 0;
-      padding: (70px / 768px) * 100%;
+      padding: (5em / $site-container-width) * 100%;
       border-bottom: 1px solid #ddd;
     }
 
@@ -144,7 +144,7 @@ body {
 
         a {
           display: block;
-          padding: 15px 20px;
+          padding: (1em/1.5) (1.5em/1.5);
           font-size: 1.5em;
           color: #999;
 
@@ -173,9 +173,11 @@ body {
   }
 
   #profile {
-    padding: (40px / 768px * 100%) 0;
+    padding: (2em / $site-container-width * 100%) 0;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
+    position: relative;
+    min-height: 7em;
     @include clearfix();
 
     &.header {
@@ -189,23 +191,21 @@ body {
     }
 
     .avatar {
-      float: left;
-      width: 100px;
+      position: absolute;
+      left: 0;
 
       img {
-        width: 100px;
-        height: 100px;
-        max-width: 100%;
-        border-radius: 50px;
+        width: 7em;
+        height: 7em;
+        border-radius: 3.5em;
       }
     }
 
     .info {
-      float: right;
-      width: 768 - 120px - 140px;
+      margin-left: 8em;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: $site-container-width) {
       .avatar,
       .info {
         float: none;
@@ -225,7 +225,7 @@ body {
     font-weight: bold;
 
     a {
-      padding: 20px 0;
+      padding: 1em 0;
       color: #777;
       display: block;
 

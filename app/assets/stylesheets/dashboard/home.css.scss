@@ -1,12 +1,12 @@
 #masthead {
-  padding: 70px;
+  padding: 5em;
 
   @media (max-width: 960px) {
-    padding: (70 / 960) * 100%;
+    padding: (5em / $container-width) * 100%;
   }
 
   section {
-    min-height: 320px;
+    min-height: 8em;
     @include clearfix();
   }
 
@@ -49,15 +49,15 @@
 }
 
 #features {
-  padding: 0 70px;
+  padding: 0 5em;
 
   @media (max-width: 960px) {
-    padding: 0 (70 / 960) * 100%;
+    padding: 0 (5em / $container-width) * 100%;
   }
 
   section {
-    margin-bottom: 70px;
-    min-height: 240px;
+    margin-bottom: 5em;
+    min-height: 17em;
     @include clearfix();
   }
 
@@ -92,7 +92,7 @@
 
   @media (max-width: 640px) {
     section {
-      margin-bottom: 50px;
+      margin-bottom: 3em;
     }
 
     .pic,
@@ -109,7 +109,7 @@
 }
 
 #upto-top {
-  margin: 70px 0;
+  margin: 5em 0;
 
   a {
     padding: 10;
