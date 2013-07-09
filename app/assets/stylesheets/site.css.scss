@@ -208,9 +208,17 @@ body {
     @media (max-width: $site-container-width) {
       .avatar,
       .info {
-        float: none;
         text-align: center;
         width: 100%;
+      }
+
+      .avatar {
+        position: relative;
+        margin-bottom: $commonMargin;
+      }
+
+      .info {
+        margin-left: 0;
       }
     }
   }
