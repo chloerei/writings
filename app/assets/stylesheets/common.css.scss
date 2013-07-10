@@ -10,11 +10,7 @@ body {
   color: #333;
   background-color: #efefef;
   font-size: 14px;
-  line-height: 1.4em;
-
-  @include hidpi {
-    font-size: 15px;
-  }
+  line-height: 140%;
 }
 
 
