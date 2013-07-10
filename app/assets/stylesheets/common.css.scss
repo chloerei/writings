@@ -13,7 +13,7 @@ body {
   line-height: 1.4em;
 
   @include hidpi {
-    font-size: 1.05em;
+    font-size: 15px;
   }
 }
 
@@ -66,7 +66,7 @@ a [class*=" icon-"] {
 }
 
 article {
-  font-size: 1em;
+  //font-size: 1em;
   line-height: 160%;
   word-wrap: break-word;
 
