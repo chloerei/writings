@@ -44,7 +44,7 @@
     a {
       display: inline-block;
       color: #888;
-      padding: 13px 15px;
+      padding: 15px;
 
       &:hover {
         color: $linkColor;
@@ -56,11 +56,11 @@
     }
 
     .checkbox {
+      line-height: 20px;
       width: 15px;
       margin-right: 0;
-      text-align: left;
       display: inline-block;
-      padding: 13px 15px;
+      padding: 15px;
       cursor: pointer;
     }
   }
