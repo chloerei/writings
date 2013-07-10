@@ -18,12 +18,6 @@
     list-style: none;
     @include clearfix();
 
-    li a [class^="icon-"],
-    li a [class*=" icon-"] {
-      width: 1em;
-      text-align: left;
-    }
-
     .icon-level-up:before {
       display: inline-block;
     }
@@ -34,13 +28,12 @@
     }
 
     .top-nav-button {
-      padding: 1em $commonPadding;
+      padding: 15px $commonPadding;
       display: block;
       color: #555;
       @include transition(all 0.15s ease);
 
       i {
-        width: 1em;
         margin-right: 0;
       }
 
@@ -51,11 +44,11 @@
   }
 
   .dropdown-menu li a {
-    padding: 1em $commonPadding;
+    padding: 15px $commonPadding;
   }
 
   .pull-right {
-    padding: 1em;
+    padding: 15px $commonPadding;
 
     .button-group,
     .button {
@@ -66,7 +59,7 @@
 
   #save-status {
     display: inline;
-    margin-right: 0.5em;
+    margin-right: 10px;
     color: #999;
     cursor: pointer;
 
@@ -92,7 +85,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  margin-top: 3.4em;
+  margin-top: 50px;
   @include transition(margin-top 0.15s ease);
 
   .main,
@@ -190,7 +183,7 @@
     @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
 
     .label {
-      padding: 0.7em;
+      padding: 7px 10px;
       color: #fff;
       display: inline-block;
       @include box-sizing(border-box);
@@ -203,7 +196,6 @@
       @include clearfix();
 
       [class^="icon-"], [class*=" icon-"] {
-        width: 1.2em;
         margin-right: 0;
       }
 
@@ -212,7 +204,7 @@
         float: left;
 
         .toolbar-button {
-          padding: 0.7em 1em;
+          padding: 7px 10px;
           text-align: center;
           display: block;
           color: #fff;
@@ -247,12 +239,12 @@
         position: relative;
 
         .dropdown-toggle {
-          padding-right: 1.7em;
+          padding-right: 25px;
           font-weight: bold;
 
           &:after {
             right: 0;
-            padding-right: 0.7em;
+            padding-right: 10px;
           }
         }
 
@@ -263,7 +255,7 @@
 
             a {
               display: block;
-              padding: 0.7em;
+              padding: 7px 10px;
 
               h1, h2, h3, h4 {
                 line-height: 100%;
@@ -283,7 +275,7 @@
   }
 
   #editarea {
-    padding-top: 2.8em;
+    padding-top: 34px;
     position: absolute;
     top: 0;
     left: 0;
@@ -295,11 +287,11 @@
       width: $editor-container-width;
       max-width: 100%;
       background: #FFF;
-      padding:  5em;
+      padding:  70px;
       outline: 0;
-      min-height: 73em;
-      margin-top: 0.3em;
-      margin-bottom: 10em;
+      min-height: 1024px;
+      margin-top: 5px;
+      margin-bottom: 150px;
       position: relative;
       @include box-shadow(0 0 0 1px #ccc);
       @include box-sizing(border-box);
@@ -308,7 +300,7 @@
         margin-top: 0;
         margin-bottom: 0;
         border: none;
-        padding:  5em / $editor-container-width * 100%;
+        padding:  70px / $editor-container-width * 100%;
       }
 
       &.init {
@@ -331,7 +323,7 @@
   #alert-messages {
     position: absolute;
     right: $commonPadding;
-    top: 2.5em + $commonPadding;
+    top: 35px + $commonPadding;
     margin-right: 0;
   }
 
@@ -341,15 +333,15 @@
 
   &.readonly {
     #readonly-message {
-      padding: $buttonPaddingY $buttonPaddingX;
+      padding: 10px 20px;
       background-color: rgba(0, 0, 0, 0.5);
       color: #fff;
       display: inline-block;
       position: absolute;
-      left: $commonPadding / 1.5;
-      top: (2.5em + $commonPadding) / 1.5;
-      border-radius: $buttonRadius;
-      font-size: 1.5em;
+      left: $commonPadding;
+      top: 35px + $commonPadding;
+      border-radius: 3px;
+      font-size: 20px;
     }
 
     #formator-buttons {
@@ -365,7 +357,7 @@
 
 .pick-up-topbar {
   #editor-topbar {
-    top: -3.4em;
+    top: -50px;
   }
 
   #toolbar {
@@ -384,7 +376,7 @@
 }
 
 #help-modal {
-  width: 35em;
+  width: 500px;
 
   table {
     width: 100%;
@@ -396,7 +388,7 @@
     }
 
     th, td {
-      padding: 0.5em;
+      padding: 7px;
       vertical-align: top;
       text-align: center;
     }
@@ -407,11 +399,11 @@
 }
 
 #image-uploader-modal {
-  width: 45em;
+  width: 630px;
 
   .preview,
   .dropable {
-    height: 20em;
+    height: 280px;
     width: 100%;
     border: 2px dashed #ccc;
     display: table;
@@ -424,7 +416,7 @@
       display: table-cell;
       vertical-align: middle;
       text-align: center;
-      padding: 1em;
+      padding: 15px;
     }
 
     &.start .center {
@@ -473,7 +465,7 @@
   .progress {
     display: none;
     height: 5px;
-    margin-top: 1.5em;
+    margin-top: 20px;
     border: 1px solid #ccc;
     padding: 2px;
 

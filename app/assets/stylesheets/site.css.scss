@@ -30,7 +30,7 @@ body {
       }
 
       a {
-        padding: 1em 1.5em;
+        padding: 15px 20px;
         color: #999;
         display: block;
 
@@ -51,11 +51,11 @@ body {
 
   section,
   article {
-    margin: (5em / $site-container-width) * 100%;
+    margin: (70px / $site-container-width) * 100%;
   }
 
   #page {
-    margin: 2em 0;
+    margin: 30px 0;
     border: 1px solid #ccc;
     background-color: #fff;
 
@@ -110,12 +110,8 @@ body {
     section,
     article {
       margin: 0;
-      padding: (5em / $site-container-width) * 100%;
+      padding: (70px / $site-container-width) * 100%;
       border-bottom: 1px solid #ddd;
-    }
-
-    h1 {
-      margin-top: 0;
     }
 
     a {
@@ -144,8 +140,8 @@ body {
 
         a {
           display: block;
-          padding: (1em/1.5) (1.5em/1.5);
-          font-size: 1.5em;
+          padding: 12px 20px;
+          font-size: 20px;
           color: #999;
 
           &:hover {
@@ -173,11 +169,11 @@ body {
   }
 
   #profile {
-    padding: (2em / $site-container-width * 100%) 0;
+    padding: 30px 0;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     position: relative;
-    min-height: 7em;
+    min-height: 100px;
     @include clearfix();
 
     &.header {

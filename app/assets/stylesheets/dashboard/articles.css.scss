@@ -11,7 +11,6 @@
     width: 100%;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
-    line-height: 160%;
   }
 
   tr {
@@ -45,7 +44,7 @@
     a {
       display: inline-block;
       color: #888;
-      padding: 1em;
+      padding: 13px 15px;
 
       &:hover {
         color: $linkColor;
@@ -57,11 +56,11 @@
     }
 
     .checkbox {
-      width: 1em;
+      width: 15px;
       margin-right: 0;
       text-align: left;
       display: inline-block;
-      padding: 1em;
+      padding: 13px 15px;
       cursor: pointer;
     }
   }
@@ -75,7 +74,8 @@
     cursor: pointer;
 
     h3 {
-      font-size: 1em;
+      font-size: 14px;
+      line-height: 20px;
       font-weight: normal;
       margin: 0;
 
@@ -86,15 +86,15 @@
     }
 
     .category {
-      padding: 0 0.3em;
+      padding: 0 5px;
       background: #efefef;
       color: #555;
-      border-radius: 0.2em;
-      margin-left: 0.3em;
+      border-radius: 3px;
+      margin-left: 5px;
     }
   }
 
   .date {
-    padding-right: 1em;
+    padding-right: 15px;
   }
 }

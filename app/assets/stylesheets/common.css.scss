@@ -10,34 +10,36 @@ body {
   color: #333;
   background-color: #efefef;
   font-size: 14px;
-  line-height: 140%;
+  line-height: $commonLineHeight;
 }
 
 
 h1, h2, h3, h4 {
-  margin: 1.6em 0 1em;
   font-weight: normal;
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 30px;
+  line-height: 40px
 }
 
 h2 {
-  font-size: 1.6em;
+  font-size: 22px;
+  line-height: 30px
 }
 
 h3 {
-  font-size: 1.4em;
+  font-size: 20px;
+  line-height: 30px
 }
 
 h4 {
-  font-size: 1.2em;
+  font-size: 18px;
 }
 
 p {
-  font-size: 1em;
-  margin: 1em 0;
+  font-size: 14px;
+  margin: 10px 0;
 }
 
 a {
@@ -62,12 +64,16 @@ a [class*=" icon-"] {
 }
 
 article {
-  //font-size: 1em;
-  line-height: 160%;
-  word-wrap: break-word;
+  h1, h2, h3, h4 {
+    margin: 30px 0 20px;
+  }
 
-  * {
-    line-height: 160%;
+  p, pre, blockquote, ul{
+    margin: 15px 0;
+  }
+
+  li {
+    margin: 5px 0;
   }
 
   a {
@@ -77,41 +83,40 @@ article {
   }
 
   blockquote {
-    margin: 1em 0;
-    padding: 0 0 0 1em;
-    border-left: 0.5em solid #ccc;
+    padding: 0 0 0 10px;
+    border-left: 5px solid #ccc;
     color: #555;
   }
 
   p code {
-    margin: 0 0.5em;
-    padding: 0 0.5em;
+    margin: 0 5px;
+    padding: 0 5px;
     background-color: #efefef;
   }
 
   pre code {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
-    border-radius: 0.3em;
+    border-radius: 3px;
   }
 
   img {
     display: block;
-    margin: 0 auto;
+    margin: 15px auto;
     max-width: 100%;
   }
 
-  :first-child {
+  > :first-child {
     margin-top: 0;
   }
 
-  :last-child {
+  > :last-child {
     margin-bottom: 0;
   }
 }
 
 hr {
-  margin: 2em 0;
+  margin: 20px 0;
   border: 0;
   height: 1px;
   background-color: #ccc;
@@ -169,12 +174,12 @@ nav ul {
 textarea {
   border: 1px solid #ccc;
   padding: $buttonPaddingY;
-  margin-right: 1em;
+  margin-right: 15px;
   outline: 0;
   border-radius: $buttonRadius;
-  width: 25em;
+  width: 350px;
   max-width: 100%;
-  line-height: 1.4em;
+  line-height: 20px;
   @include box-sizing(border-box);
 
   &.full-width {
@@ -187,7 +192,7 @@ textarea {
 }
 
 textarea {
-  height: 10em;
+  height: 150px;
 }
 
 select {
@@ -201,7 +206,7 @@ select {
 .input-prepend,
 .input-append{
   display: table;
-  width: 25em;
+  width: 350px;
 
   #{$all-text-inputs} {
     width: 100%;
@@ -219,7 +224,7 @@ select {
     display: table-cell;
     vertical-align: top;
     background-color: #eee;
-    padding: 7px;
+    padding: $buttonPaddingY;
     border: 1px solid #ccc;
   }
 }
@@ -247,7 +252,7 @@ select {
 }
 
 .field {
-  margin-bottom: 1.5em;
+  margin-bottom: 20px;
 
   &:last-child {
     margin-bottom: 0;
@@ -255,7 +260,7 @@ select {
 
   label {
     display: block;
-    margin-bottom: 0.5em;
+    margin-bottom: 5px;
   }
 
   &.field-error {
@@ -269,13 +274,13 @@ select {
     }
 
     label.message {
-      margin: 0.5em 0 0;
+      margin: 5px 0 0;
 
       &::before {
         font-family: FontAwesome;
         display: inline-block;
         content: "\f05e"; // ban-icon
-        margin-right: 0.5em;
+        margin-right: 5px;
       }
     }
   }
@@ -284,7 +289,7 @@ select {
 fieldset {
   border: 0;
   padding: 0;
-  margin: 0 0 1.5em;
+  margin: 0 0 20px;
   @include clearfix();
 
   &:last-child {
@@ -296,7 +301,7 @@ fieldset {
   legend {
     font-weight: bold;
     color: #555;
-    margin-bottom: 1.5em;
+    margin-bottom: 20px;
   }
 }
 
@@ -341,8 +346,8 @@ input[type=submit],
 button,
 .button {
   padding: $buttonPaddingY $buttonPaddingX;
-  margin-right: 1em;
-  line-height: 1.4em;
+  margin-right: 10px;
+  line-height: 20px;
   font-weight: normal;
   display: inline-block;
   vertical-align: middle;
@@ -367,7 +372,8 @@ button,
   }
 
   &.button-large {
-    font-size: 1.2em;
+    font-size: 18px;
+    line-height: 30px;
     padding: $buttonPaddingY $buttonPaddingX * 1.5;
   }
 }
@@ -379,7 +385,7 @@ a.button:hover {
 .button-group {
   display: inline-block;
   vertical-align: middle;
-  margin-right: 1em;
+  margin-right: 10px;
 
   &.no-margin {
     margin: 0;
@@ -420,7 +426,7 @@ a.button:hover {
 
   .dropdown-toggle {
     position: relative;
-    padding: $buttonPaddingY ($buttonPaddingX + 1em) $buttonPaddingY $buttonPaddingX;
+    padding: $buttonPaddingY ($buttonPaddingX + 15px) $buttonPaddingY $buttonPaddingX;
     display: inline-block;
     white-space: nowrap;
     overflow: hidden;
@@ -434,7 +440,7 @@ a.button:hover {
     &:after {
       position: absolute;
       right: 0;
-      padding-right: 1em;
+      padding-right: 10px;
       font-family: FontAwesome;
       content: "\f0d7";
     }
@@ -559,7 +565,7 @@ a.button:hover {
 .modal-dialog {
   position: fixed;
   display: none;
-  width: 30em;
+  width: 420px;
   max-width: 90%;
   max-height: 90%;
   top: 50%;
@@ -578,7 +584,7 @@ a.button:hover {
     @include clearfix();
 
     .title {
-      padding: 1em;
+      padding: 15px;
       float: left;
       font-weight: bold;
       color: #555;
@@ -588,7 +594,7 @@ a.button:hover {
       display: inline-block;
       cursor: pointer;
       float: right;
-      padding: 1em;
+      padding: 15px;
       color: #999;
 
       i {
@@ -602,12 +608,12 @@ a.button:hover {
   }
 
   .modal-content {
-    padding: 1em;
+    padding: 15px;
     @include clearfix();
   }
 
   .dropdown-menu {
-    max-height: 10em;
+    max-height: 150px;
     overflow: auto;
   }
 
@@ -632,7 +638,7 @@ a.button:hover {
         a {
           display: block;
           color: #555;
-          padding: 1em;
+          padding: 15px;
           position: relative;
           overflow: hidden;
           white-space: nowrap;
@@ -647,7 +653,7 @@ a.button:hover {
   }
 
   .tab-content {
-    padding: 1em;
+    padding: 15px;
     float: right;
     width: 80%;
     @include box-sizing(border-box);
@@ -658,14 +664,14 @@ a.button:hover {
 
 #alert-messages {
   position: fixed;
-  top: 3em /* topbar height */ + $commonMargin + $commonPadding;
+  top: 42px /* topbar height */ + $commonMargin + $commonPadding;
   right: 50%;
   margin-right: -($container-width / 2 - $commonPadding);
   z-index: 2000;
 
   @media (max-width: $container-width) {
       right: $commonPadding;
-      top: 3em + $commonPadding;
+      top: 42px + $commonPadding;
       margin-right: 0;
   }
 
@@ -676,7 +682,7 @@ a.button:hover {
     background-color: #999;
     border-radius: $buttonRadius;
     color: #fff;
-    margin-bottom: 0.5em;
+    margin-bottom: 10px;
     @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.3));
 
     i {

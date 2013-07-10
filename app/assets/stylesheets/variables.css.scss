@@ -4,13 +4,14 @@ $blue: #2b6ca3;
 $yellow: #f89406;
 $linkColor: $blue;
 
-$container-width: 68em;
-$editor-container-width: 55em;
-$site-container-width: 55em;
+$container-width: 960px;
+$editor-container-width: 768px;
+$site-container-width: 768px;
 
-$commonPadding: 1.5em;
-$commonMargin: 1.5em;
+$commonLineHeight: 20px;
+$commonPadding: 20px;
+$commonMargin: 20px;
 
-$buttonPaddingY: 0.5em;
-$buttonPaddingX: 1em;
-$buttonRadius: 0.2em;
+$buttonPaddingY: 7px;
+$buttonPaddingX: 15px;
+$buttonRadius: 2px;
