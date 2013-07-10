@@ -116,7 +116,7 @@ $topbarLinkHoverBackgroundColor: white;
   }
 
   .topbar-button {
-    padding: 15px $commonPadding;
+    padding: 10px $commonPadding;
     display: inline-block;
     color: $topbarLinkColor;
     @include transition(all 0.15s ease);
@@ -133,7 +133,7 @@ $topbarLinkHoverBackgroundColor: white;
 
   .dropdown {
     .dropdown-toggle {
-      padding: 15px ($commonPadding + 15px) 15px $commonPadding;
+      padding: 10px ($commonPadding + 15px) 10px $commonPadding;
       color: $topbarLinkColor;
 
       &:after {
@@ -151,7 +151,7 @@ $topbarLinkHoverBackgroundColor: white;
 
       li {
         a {
-          padding: 15px $commonPadding;
+          padding: 10px $commonPadding;
         }
       }
     }
