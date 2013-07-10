@@ -25,7 +25,7 @@
         li class=(@article.persisted? && @article.publish? ? nil : 'hide')
           a#view-button.top-nav-button target='_blank' href=(@article.persisted? ? site_article_url(@article, :urlname => @article.urlname, :host => @space.host) : site_root_url(:host => @space.host))
             i.icon-external-link
-        li class=(@article.persisted? ? nil : 'hide')
+        li.hide-on-mobile class=(@article.persisted? ? nil : 'hide')
           .dropdown#download
             a.dropdown-toggle.top-nav-button
               i.icon-download-alt
@@ -44,18 +44,21 @@
       #save-status
         span.saving
           i.icon-refresh
-          = ' '
-          = t '.saving'
+          span.hide-on-mobile
+            '
+            = t '.saving'
         span.saved class=(@article.persisted? ? 'show' : nil) title=(@article.persisted? ? @article.updated_at : nil)
           i.icon-ok
-          = ' '
-          = t '.saved'
+          span.hide-on-mobile
+            '
+            = t '.saved'
         span.retry
           a href='#' = t '.retry'
-          = ' '
+          '
           i.icon-minus-sign
-          = ' '
-          = t '.save_error'
+          span.hide-on-mobile
+            '
+            = t '.save_error'
       .button-group.no-margin
         = link_to t('.publish'), '#', :class => ['button', (@article.publish? ? 'button-actived' : nil)], :id => 'publish-button'
         = link_to t('.draft'), '#', :class => ['button', (@article.draft? ? 'button-actived' : nil)], :id => 'draft-button'

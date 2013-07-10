@@ -48,7 +48,8 @@
     .pull-right
       a.button.button-green.no-margin href=(new_dashboard_article_path)
         i.icon-pencil
-        = t '.new_article'
+        span.hide-on-mobile
+          = t '.new_article'
 
   - unless @articles.empty?
     table

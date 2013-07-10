@@ -27,7 +27,7 @@
                   = t '.new_workspace'
         .sub-menu.clearfix
           .pull-left
-            a#user-link.topbar-button href=(site_root_url(:host => (@space || current_user).host)) target='_blank'
+            a#user-link.topbar-button.hide-on-mobile href=(site_root_url(:host => (@space || current_user).host)) target='_blank'
               i.icon-external-link
           .pull-right
             .dropdown.hide-on-mobile
@@ -62,6 +62,9 @@
                 i.icon-cog
                 = t '.settings'
               ul.dropdown-menu.align-right
+                li.hide.show-on-mobile
+                  a href=(site_root_url(:host => (@space || current_user).host)) target='_blank'
+                    i.icon-external-link
                 li
                   = link_to account_path do
                     i.icon-user
