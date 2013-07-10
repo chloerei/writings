@@ -65,6 +65,7 @@
                 li.hide.show-on-mobile
                   a href=(site_root_url(:host => (@space || current_user).host)) target='_blank'
                     i.icon-external-link
+                    = t '.publish_page'
                 li
                   = link_to account_path do
                     i.icon-user

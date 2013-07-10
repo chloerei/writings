@@ -60,6 +60,7 @@ en:
         login: Login
         community: Community
         settings: Settings
+        publish_page: Publish Page
         account: Account
         upgrade: Upgrade
         logout: Logout
