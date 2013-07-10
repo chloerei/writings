@@ -1,12 +1,12 @@
 #masthead {
-  padding: 5em;
+  padding: 70px;
 
   @media (max-width: 960px) {
-    padding: (5em / $container-width) * 100%;
+    padding: (70px / $container-width) * 100%;
   }
 
   section {
-    min-height: 8em;
+    min-height: 120px;
     @include clearfix();
   }
 
@@ -43,21 +43,21 @@
     }
 
     h1 {
-      margin-top: 1.6em;
+      margin-top: 20px;
     }
   }
 }
 
 #features {
-  padding: 0 5em;
+  padding: 0 70px;
 
   @media (max-width: 960px) {
-    padding: 0 (5em / $container-width) * 100%;
+    padding: 0 (70px / $container-width) * 100%;
   }
 
   section {
-    margin-bottom: 5em;
-    min-height: 17em;
+    margin-bottom: 40px;
+    min-height: 240px;
     @include clearfix();
   }
 
@@ -92,7 +92,7 @@
 
   @media (max-width: 640px) {
     section {
-      margin-bottom: 3em;
+      margin-bottom: 30px;
     }
 
     .pic,
@@ -102,18 +102,18 @@
     }
 
     h3 {
-      margin-top: 1.6em;
+      margin-top: 20px;
     }
   }
 
 }
 
 #upto-top {
-  margin: 5em 0;
+  margin: 70px 0;
 
   a {
     padding: 10;
-    font-size: 1.5em;
+    font-size: 20px;
     color: #999;
     display: block;
     text-align: center;

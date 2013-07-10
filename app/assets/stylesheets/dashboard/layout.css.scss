@@ -1,5 +1,5 @@
 .nice-list {
-  line-height: 1.6em;
+  line-height: 1.6;
 }
 
 .two-columns {
@@ -32,7 +32,7 @@ table.nice-table {
   }
 
   th, td {
-    padding: 1em;
+    padding: 15px;
 
     &:last-child {
       text-align: right;
@@ -61,8 +61,8 @@ table.nice-table {
 // signup, login
 .signup,
 .login {
-  margin: 7em auto;
-  width: 25em;
+  margin: 100px auto;
+  width: 350px;
   max-width: 90%;
   padding: $commonPadding;
   background-color: #fff;
@@ -120,7 +120,7 @@ $topbarLinkHoverBackgroundColor: white;
   }
 
   .topbar-button {
-    padding: 1em $commonPadding;
+    padding: 15px $commonPadding;
     display: inline-block;
     color: $topbarLinkColor;
     @include transition(all 0.15s ease);
@@ -137,11 +137,11 @@ $topbarLinkHoverBackgroundColor: white;
 
   .dropdown {
     .dropdown-toggle {
-      padding: 1em ($commonPadding + 1em) 1em $commonPadding;
+      padding: 15px ($commonPadding + 15px) 15px $commonPadding;
       color: $topbarLinkColor;
 
       &:after {
-        padding-right: 1.5em;
+        padding-right: $commonPadding;
       }
 
       &:hover {
@@ -155,7 +155,7 @@ $topbarLinkHoverBackgroundColor: white;
 
       li {
         a {
-          padding: 1em $commonPadding;
+          padding: 15px $commonPadding;
         }
       }
     }
@@ -199,7 +199,7 @@ $topbarLinkHoverBackgroundColor: white;
         }
 
         > a {
-          padding: 1em $commonPadding;
+          padding: 15px $commonPadding;
           display: block;
           position: relative;
           overflow: hidden;
@@ -217,13 +217,13 @@ $topbarLinkHoverBackgroundColor: white;
 
           > a {
             color: $linkColor;
-            padding-left: $commonPadding - 0.3em;
-            border-left: 0.3em solid $linkColor;
+            padding-left: $commonPadding - 4px;
+            border-left: 4px solid $linkColor;
           }
         }
 
         &.append-dropdown {
-          padding-right: 3em;
+          padding-right: 45px;
           position: relative;
 
           .dropdown {
@@ -241,14 +241,14 @@ $topbarLinkHoverBackgroundColor: white;
           a.dropdown-toggle {
             visibility: hidden;
             border-left: none;
-            padding: 1em;
+            padding: 15px;
 
             &:hover {
               color: $linkColor;
             }
 
             i {
-              width: 1em;
+              width: 15px;
               margin-right: 0;
             }
           }
@@ -306,7 +306,7 @@ $topbarLinkHoverBackgroundColor: white;
   }
 
   .empty-message {
-    padding: 1em;
+    padding: 15px;
     border: 2px dashed #ddd;
     text-align: center;
     color: #999;
@@ -369,13 +369,13 @@ $topbarLinkHoverBackgroundColor: white;
       left: 0;
 
       i {
-        width: 1em;
+        width: 15px;
         margin-right: 0;
       }
     }
 
     .dropdown {
-      margin-left: 4em;
+      margin-left: $commonPadding * 2 + 15px;
     }
   }
 

@@ -15,17 +15,17 @@
       left: 0;
 
       img {
-        width: 7em;
-        height: 7em;
-        border-radius: 3.5em;
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
       }
     }
 
     .info {
-      margin-left: 8em;
+      margin-left: 120px;
 
       .name {
-        font-size: 1.2em;
+        font-size: 20px;
         font-weight: bold;
         margin-bottom: $commonMargin / 2;
       }

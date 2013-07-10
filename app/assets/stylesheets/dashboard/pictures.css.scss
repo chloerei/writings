@@ -75,7 +75,7 @@
         position: absolute;
         right: 0;
         top: 0;
-        padding: 0.3em;
+        padding: 3px;
         color: #ccc;
 
         i {
@@ -89,7 +89,6 @@
 
       &:hover .delete {
         display: inline-block;
-        font-size: 1.2em;
       }
     }
   }
