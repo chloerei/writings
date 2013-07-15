@@ -1,126 +1,99 @@
-#masthead {
+#home {
   padding: 70px;
 
   @media (max-width: 960px) {
     padding: (70px / $container-width) * 100%;
   }
 
+  .center {
+    text-align: center;
+  }
+
   section {
-    min-height: 120px;
+    margin-bottom: 60px;
     @include clearfix();
   }
 
-  h1 {
-    margin-top: 0;
-  }
-
-  .quiet {
-    color: #999;
-  }
-
-  .pic {
-    float: left;
-    width: 60%;
-    margin-right: 5%;
-
-    img {
-      max-width: 100%;
-      @include box-shadow(0 3px 8px rgba(0, 0, 0, 0.5));
-    }
-  }
-
-  .info {
-    float: left;
-    width: 35%;
-
-  }
-
-  @media (max-width: 640px) {
-    .pic,
-    .info {
-      float: none;
-      width: 100%;
-    }
-
+  #masthead {
     h1 {
-      margin-top: 20px;
+      margin-top: 0;
     }
-  }
-}
 
-#features {
-  padding: 0 70px;
-
-  @media (max-width: 960px) {
-    padding: 0 (70px / $container-width) * 100%;
-  }
-
-  section {
-    margin-bottom: 40px;
-    min-height: 240px;
-    @include clearfix();
-  }
-
-  h3 {
-    margin-top: 0;
-  }
-
-  .pic {
-    float: left;
-    width: 45%;
-
-    img {
-      max-width: 100%;
-      @include box-shadow(0 3px 8px rgba(0, 0, 0, 0.5));
+    .quiet {
+      color: #999;
     }
-  }
 
-  .info {
-    float: right;
-    width: 45%;
-  }
-
-  .reverse {
     .pic {
-      float: right;
+      float: left;
+      width: 60%;
+      margin-right: 5%;
+
+      img {
+        max-width: 100%;
+        @include box-shadow(0 3px 8px rgba(0, 0, 0, 0.5));
+      }
     }
 
     .info {
       float: left;
+      width: 35%;
+    }
+
+    @media (max-width: 640px) {
+      .pic,
+      .info {
+        float: none;
+        width: 100%;
+      }
+
+      h1 {
+        margin-top: 20px;
+      }
     }
   }
 
-  @media (max-width: 640px) {
-    section {
-      margin-bottom: 30px;
+  #features {
+    .column {
+      width: 30%;
+      margin-right: 5%;
+      float: left;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      @media (max-width: 640px) {
+        width: 100%;
+        margin-right: 0;
+        float: none;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+      }
     }
 
-    .pic,
-    .info {
-      width: 100%;
-      float: none;
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+
+      @media (max-width: 640px) {
+        text-align: left;
+      }
     }
 
     h3 {
-      margin-top: 20px;
+      i {
+        width: 1.2em;
+        margin-right: 0.5em;
+      }
     }
   }
 
-}
+  #footer {
+    padding: 0 70px;
 
-#upto-top {
-  margin: 70px 0;
-
-  a {
-    padding: 10;
-    font-size: 20px;
-    color: #999;
-    display: block;
-    text-align: center;
-
-    &:hover {
-      color: #555;
+    @media (max-width: 960px) {
+      padding: (70px / $container-width) * 100%;
     }
   }
 }
-

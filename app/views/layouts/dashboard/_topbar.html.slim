@@ -86,12 +86,7 @@
           .pull-left
             a.topbar-button href=(root_path) class=('actived' if controller_name == 'home')
               i.icon-home
-              span
-                = t '.home'
-            a.topbar-button href='http://blog.chloerei.com/articles/7db48376-what-is-writings-io'
-              i.icon-info-sign
-              span.hide-on-mobile
-                = t '.about'
+              = t '.home'
           .pull-right
             a.topbar-button href=(signup_path)
               i.icon-plus-sign
