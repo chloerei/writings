@@ -84,9 +84,12 @@
       - else
         .clearfix
           .pull-left
-            a.topbar-button href=(root_path) class=('actived' if controller_name == 'home')
+            a.topbar-button href=(root_path) class=('actived' if controller_name == 'home' && action_name == 'index')
               i.icon-home
               = t '.home'
+            a.topbar-button href="/feature-manager" class=('actived' if controller_name == 'home' && action_name == 'about')
+              i.icon-info
+              = t '.about'
           .pull-right
             a.topbar-button href=(signup_path)
               i.icon-plus-sign

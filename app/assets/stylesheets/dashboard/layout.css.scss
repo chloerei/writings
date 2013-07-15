@@ -65,6 +65,10 @@ table.nice-table {
   @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
   @include box-sizing(border-box);
 
+  h2 {
+    margin-top: 0;
+  }
+
   .field {
     width: 100%;
 
@@ -172,7 +176,6 @@ $topbarLinkHoverBackgroundColor: white;
 
   .inner {
     background-color: #fff;
-    min-height: 800px;
     position: relative;
     @include box-shadow(0 0 2px rgba(0, 0, 0, 0.3));
     @include clearfix();

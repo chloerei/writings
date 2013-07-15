@@ -4,6 +4,7 @@
 #main
   .container
     .signup
+      h2 = t '.just_one_step'
       = form_for @user, :remote => true, :validate => true do |f|
         .field
           = f.label :name
@@ -20,4 +21,4 @@
           = f.label :password_confirmation
           = f.password_field :password_confirmation, :tabindex => 4
         .field
-          = f.submit t('submit'), :class => 'button-green', :tabindex => 5
+          = f.submit t('.signup'), :class => 'button-green', :tabindex => 5

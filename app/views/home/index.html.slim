@@ -8,7 +8,7 @@
           h1 理想的写作环境
           p
             a.button.button-green.button-large href=(signup_path)
-              | 免费注册
+              | 现在注册
           p 自由自在地发挥写作灵感而无需花费时间搭建复杂的系统。
           p.quiet * 支持 Chrome，Safari，Firefox 较新版本，以及其他基于 webkit 内核的浏览器。
       section#features
@@ -23,7 +23,7 @@
         .column
           h3
             i.icon-cloud
-            | 数据储存
+            | 在线储存
           p 自动保存文章。
           p 自动生成历史记录。
           p 每日备份。
@@ -34,7 +34,12 @@
           p 支持绑定独立域名。
           p 支持 Disqus 评论。
           p 支持 Jekyll/Wordpress 存档导入/导出。
-      section
-        p.center
+      section.center
+        h2
+          = "现在成为第 #{User.count + 1} 位用户，或者"
+          a href='/feature-manager'
+            | 了解更多
+            i.icon-angle-right.no-margin
+        p
           a.button.button-green.button-large href=(signup_path)
-            | 免费注册
+            | 现在注册

@@ -9,16 +9,25 @@
     text-align: center;
   }
 
+  img {
+    max-width: 100%;
+    @include box-shadow(0 3px 8px rgba(0, 0, 0, 0.5));
+  }
+
   section {
     margin-bottom: 60px;
     @include clearfix();
   }
 
-  #masthead {
-    h1 {
-      margin-top: 0;
-    }
+  h1 {
+    margin-top: 0;
+  }
 
+  li {
+    margin: 5px 0;
+  }
+
+  #masthead {
     .quiet {
       color: #999;
     }
@@ -27,11 +36,6 @@
       float: left;
       width: 60%;
       margin-right: 5%;
-
-      img {
-        max-width: 100%;
-        @include box-shadow(0 3px 8px rgba(0, 0, 0, 0.5));
-      }
     }
 
     .info {
@@ -86,14 +90,6 @@
         width: 1.2em;
         margin-right: 0.5em;
       }
-    }
-  }
-
-  #footer {
-    padding: 0 70px;
-
-    @media (max-width: 960px) {
-      padding: (70px / $container-width) * 100%;
     }
   }
 }
