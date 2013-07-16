@@ -43,36 +43,18 @@ zh-CN:
 
   layouts:
     dashboard:
-      home: "首页"
-      new_workspace: "创建工作区"
-      articles: "文章"
-      pictures: "图片"
-      community: "社区"
-      twitter: "Twitter"
-      google_plus: "Google+"
-      github_issues: "Github"
-      douban: "豆瓣"
-      about: "关于"
-      dashboard: "面板"
-      settings: "个人设置"
-      account: "账户"
-      profile: "个人资料"
-      logout: "登出"
-      login: "登录"
-      signup: "注册"
-
       topbar:
         home: "首页"
         about: "关于"
         signup: "注册"
         login: "登录"
-        community: "社区"
-        settings: "设置"
-        publish_page: "发布页面"
         account: "账户"
         upgrade: "升级"
         logout: "登出"
         new_workspace: "创建工作区"
+        twitter: "Twitter"
+        bug_report: "报告错误"
+        blog: "博客"
 
     error:
       feedback: "问题反馈"
