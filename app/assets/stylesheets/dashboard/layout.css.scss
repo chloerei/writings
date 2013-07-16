@@ -65,6 +65,10 @@ table.nice-table {
   @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
   @include box-sizing(border-box);
 
+  h2 {
+    margin-top: 0;
+  }
+
   .field {
     width: 100%;
 
@@ -172,18 +176,18 @@ $topbarLinkHoverBackgroundColor: white;
 
   .inner {
     background-color: #fff;
-    min-height: 800px;
-    position: relative;
     @include box-shadow(0 0 2px rgba(0, 0, 0, 0.3));
     @include clearfix();
   }
 
+  .main-container {
+    display: table;
+    width: 100%;
+  }
+
   .main-sidebar {
     width: $mainSidebarWidth;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
+    display: table-cell;
     background-color: #f9f9f9;
 
     nav.main-sidebar-nav {
@@ -275,7 +279,8 @@ $topbarLinkHoverBackgroundColor: white;
   }
 
   .main-content {
-    margin-left: $mainSidebarWidth;
+    display: table-cell;
+    vertical-align: top;
     padding: $commonPadding;
     @include box-sizing(border-box);
   }
@@ -356,7 +361,9 @@ $topbarLinkHoverBackgroundColor: white;
   .container {
     width: 100%;
   }
+}
 
+@media (max-width: $editor-container-width) {
   .space-menu {
     #sidebar-button.topbar-button {
       cursor: pointer;
@@ -382,13 +389,23 @@ $topbarLinkHoverBackgroundColor: white;
   #main {
     margin-bottom: 0;
 
+    .main-container {
+      display: block;
+      position: relative;
+    }
+
     .main-sidebar {
+      display: block;
+      position: absolute;
       width: $mainSidebarWidth;
       left: -$mainSidebarWidth;
+      top: 0;
+      bottom: 0;
       @include transition(left 0.15s ease);
     }
 
     .main-content {
+      display: block;
       margin-left: 0;
     }
 
@@ -404,7 +421,7 @@ $topbarLinkHoverBackgroundColor: white;
       }
 
       #main-sidebar-background {
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;

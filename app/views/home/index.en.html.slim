@@ -1,0 +1,45 @@
+#main
+  .container
+    #home.inner
+      section#masthead
+        .pic
+          = image_tag "masthead.png"
+        .info
+          h1 Clean Writing Environment
+          p
+            a.button.button-green.button-large href=(signup_path)
+              | Signup Now
+          p Free play writing inspiration without spend time building complex systems.
+          p.quiet * Support Chrome, Safari, Firefox and other modern browser
+      section#features
+        h2 The Reason Why Love writings.io
+        .column
+          h3
+            i.icon-pencil
+            | Editing Experience
+          p Visual editor.
+          p Same stylesheet in edit/publish mode, no need to preview.
+          p Limit format, focus on content.
+        .column
+          h3
+            i.icon-cloud
+            | Online Store
+          p Auto save.
+          p Auto create history.
+          p Daily backup.
+        .column
+          h3
+            i.icon-exchange
+            | Open
+          p Support custom domain.
+          p Support Disqus comment.
+          p Suport Jekyll/Wordpress archive import/export.
+      section.center
+        h2
+          = "Join #{User.count} User, or "
+          a href='/feature-manager'
+            | find out more
+            i.icon-angle-right.no-margin
+        p
+          a.button.button-green.button-large href=(signup_path)
+            | Singup Now

@@ -1,0 +1,45 @@
+#main
+  .container
+    #home.inner
+      section#masthead
+        .pic
+          = image_tag "masthead.png"
+        .info
+          h1 理想的写作环境
+          p
+            a.button.button-green.button-large href=(signup_path)
+              | 现在注册
+          p 自由发挥写作灵感而无需花时间搭建复杂的系统。
+          p.quiet * 支持 Chrome，Safari，Firefox 较新版本，以及其他基于 webkit 内核的浏览器。
+      section#features
+        h2 喜欢 writings.io 的理由
+        .column
+          h3
+            i.icon-pencil
+            | 编辑体验
+          p 所见即所得编辑器。
+          p 样式一致，告别预览。
+          p 有限的排版格式，关注内容。
+        .column
+          h3
+            i.icon-cloud
+            | 在线储存
+          p 自动保存文章。
+          p 自动生成历史记录。
+          p 每日备份。
+        .column
+          h3
+            i.icon-exchange
+            | 开放
+          p 支持绑定独立域名。
+          p 支持 Disqus 评论。
+          p 支持 Jekyll/Wordpress 存档导入/导出。
+      section.center
+        h2
+          = "加入 #{User.count + 1} 位用户，或者"
+          a href='/feature-manager'
+            | 了解更多
+            i.icon-angle-right.no-margin
+        p
+          a.button.button-green.button-large href=(signup_path)
+            | 现在注册
