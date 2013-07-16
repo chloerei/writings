@@ -8,7 +8,6 @@ en:
   success: Success
   untitled: Untitled
   articles: Articles
-  not_category: Not category
   publish: Publish
   draft: Draft
   trash: Trash
@@ -19,16 +18,16 @@ en:
   subscribe: Subscribe
   author: Author
   articles_count: '%{count} Articles'
-  remember_me: Remember me
+  remember_me: Remember Me
   urlname_valid_message: Allow character, number and '-'
-  page_not_found: Page not found
-  server_error: Server error
-  export_task_success_email_subject: Export success
+  page_not_found: Page not Found
+  server_error: Server Error
+  export_task_success_email_subject: Export Success
   import_task_success_email_subject: Import parse success
   older: Older
   newer: Newer
-  next_page: Next page
-  prev_page: Prev page
+  next_page: Next Page
+  prev_page: Prev Page
   need_more_storage: Need more storage？
   upgrade: Upgrade
   plan:
@@ -36,50 +35,36 @@ en:
     base: Base
   layouts:
     dashboard:
-      home: Home
-      new_workspace: New workspace
-      articles: Articles
-      pictures: Pictures
-      community: Community
-      twitter: Twitter
-      google_plus: Google+
-      github_issues: Github
-      douban: Douban
-      about: About
-      dashboard: Dashboard
-      settings: Settings
-      account: Account
-      profile: Profile
-      logout: Logout
-      login: Login
-      signup: Signup
       topbar:
         home: Home
         about: About
         signup: Signup
         login: Login
-        community: Community
-        settings: Settings
-        publish_page: Publish Page
         account: Account
         upgrade: Upgrade
         logout: Logout
-        new_workspace: New workspace
+        new_workspace: New Workspace
+        twitter: Twitter
+        bug_report: Bug Report
+        blog: Blog
+        features: Features
     error:
       feedback: Feedback
   workspaces:
     new:
-      new_workspace: New workspace
+      new_workspace: New Workspace
       remaining_workspace: remaining %{count} space
     limit:
-      new_workspace: New workspace
+      new_workspace: New Workspace
       workspace_limit: No workspace quote
-      see_plan: See plan
+      see_plan: See Plan
   users:
     new:
+      just_one_step: Juet One Step
       signup: Singup
   user_sessions:
     new:
+      welcome_back: Welcome Back
       username_or_email: Username or Email
       password: Password
       login: Login
@@ -96,8 +81,8 @@ en:
       upgrade: Upgrade
   profiles:
     show:
-      profile_setting: Profile setting
-      publish_profile: Published profile
+      profile_setting: Profile Setting
+      publish_profile: Published Profile
   dashboard:
     share:
       main_sidebar:
@@ -118,27 +103,27 @@ en:
         account_settings: Account Settings
         upgrade: Upgrade
       image_uploader_modal:
-        insert_image: Insert image
+        insert_image: Insert Image
         url: URL
         link: Link
         fetch: Fetch
-        select_file: Select file
+        select_file: Select File
         upload: Upload
-        drop_here: Drop here
+        drop_here: Drop Here
         preview: Preview
       link_creator_modal:
         url: URL
-        create_link: Create link
+        create_link: Create Link
         unlink: Unlink
       link_modal:
         url: URL
-        create_link: Create link
+        create_link: Create Link
         unlink: Unlink
     import_tasks:
       index:
         format: Format
         file: File
-        start_import: Start import
+        start_import: Start Import
         import: Import
         help: Help
       show:
@@ -147,31 +132,31 @@ en:
         date: Date
         category: Category
         status: Status
-        task_success: Parse success
+        task_success: Parse Success
         task_success_detail: 'Please confirm import items:'
-        task_error: Parse error
+        task_error: Parse Error
         task_error_detail: Please contact admin：
-        task_processing: Parsing archive
+        task_processing: Parsing Archive
         task_processing_detail: 'You will receive system email when parse complete,
           or refresh this page to check parse status:'
         refresh: Refresh
-        import_select: Import selected
+        import_select: Import Selected
         Category: Category
     export_tasks:
       index:
         all: All
         format: Format
         content: Content
-        start_export: Start export
+        start_export: Start Export
         export: Export
         help: Help
       show:
         export: Export
-        task_success: Export complete
+        task_success: Export Complete
         task_success_detail: 'Click download button to start:'
-        task_error: Export error
+        task_error: Export Error
         task_error_detail: 'Please contact admin:'
-        task_processing: Export processing
+        task_processing: Export Processing
         task_processing_detail: 'You will receive system email when parse complete,
           or refresh this page to check parse status:'
         download: Download
@@ -181,11 +166,10 @@ en:
         workspace_settings: Space Settings
     members:
       index:
-        invite_members: Invite members
+        invite_members: Invite Members
         members: Members
         current_members: Current Members
-        contact_workspace_creator_to_invite_members: Contact workspace creator to
-          invite members
+        contact_workspace_creator_to_invite_members: Contact workspace creator to invite members
       form:
         send_invitation: Send invitation
         up_to_members_limit: Up to members limit
@@ -220,32 +204,32 @@ en:
         all_articles: All Articles
         uncategorized: Uncategorized
         all: All
-        category: 分类
-        trash: 移到回收站
+        category: Category
+        trash: Trash
         published: Publish
         drafted: Draft
         publish: Publish
         draft: Draft
         more: More
-        new_article: New article
-        no_articles: No articles
+        new_article: New Article
+        no_articles: No Articles
         title: Title
         updated_at: Updated at
         inbox: Inbox
         is_end: is end
       select_category_modal:
-        select_category: Select category
-        new_category: New category
+        select_category: Select Category
+        new_category: New Category
         uncategorized: Uncategorized
       add_category_modal:
-        new_category: New category
+        new_category: New Category
       article:
         link: Link
         draft: Draft
         publish: Publish
         published: Published
         category: Category
-        move_to_trash: Move to trash
+        move_to_trash: Move to Trash
         restore: Restore
         delete: Delete
         delete_confirm: Sure to delete this article?
@@ -253,25 +237,25 @@ en:
         updated_at: Updated at
       trashed:
         trashed: Trashed
-        empty_trash: Empty trash
+        empty_trash: Empty Trash
         empty_trash_confirm: Sure to empty trash?
-        completely_remove: 彻底删除
-        restore: 还原
+        completely_remove: Completely Remove
+        restore: Restore
         destroy_confirm: Sure to delete selected?
-        no_articles: No articles
+        no_articles: No Articles
         title: Title
         updated_at: Updated
       edit:
         readonly_mode: Readonly Mode
-        history_versions: History versions
+        history_versions: History Versions
         return_newest_version: Return to newest version
         version_limit: 'Current account can visit last 5 versions. '
         need_more_version: Need more versions?
         urlname_modal:
           urlname: URL
         select_category_modal:
-          select_category: Select category
-          new_category: New category
+          select_category: Select Category
+          new_category: New Category
           uncategorized: Uncategorized
         edit_topbar:
           return: Return to article list
@@ -283,8 +267,8 @@ en:
           saved: Saved.
           save_error: Save error
           retry: retry
-          restore: Retore article
-          trash: Move to trash
+          restore: Retore Article
+          trash: Move to Trash
           trash_confirm: Are you sure move to trash?
         toolbar:
           bold_tip: Bold Ctrl + B
@@ -333,64 +317,63 @@ en:
           undo: Undo
           redo: Redo
         move_category_modal:
-          select_category: Select category
-          new_category: New category
+          select_category: Select Category
+          new_category: New Category
         new_category_modal:
-          new_category: New category
+          new_category: New Category
       main_sidebar:
-        all_articles: All articles
-        no_category: Not category
+        all_articles: All Articles
+        no_category: Not Category
         trash: Trash
-        new_category: New category
+        new_category: New Category
       new_category_modal:
-        new_category: New category
+        new_category: New Category
     categories:
       new:
-        new_category: New category
+        new_category: New Category
       edit:
         page_title: Setting %{name}
         all: All
         publish: Publish
         draft: Draft
-        new_article: New article
-        delete_category: Delete category
-        delete_category_confirm: Delete category %{name}? All articles in this category
-          will mark not collected.
+        new_article: New Article
+        delete_category: Delete Category
+        delete_category_confirm: Delete category %{name}? All articles in this category will mark not collected.
       tabs:
         index: Index
         publish: Publish
         draft: Draft
-        new_article: New article
+        new_article: New Article
         trash: Trash
       new_category_modal:
         new_category: New Category
       edit_category_modal:
-        edit_category: Edit category
+        edit_category: Edit Category
     dashboard:
       show:
         articles: Articles
         pictures: Pictures
-        new_article: New article
-        no_articles: No articles
+        new_article: New Article
+        no_articles: No Articles
   mongoid:
     attributes:
       space:
         name: URL
         full_name: Full name
         description: Description
-        domain: Custom domain
+        domain: Custom Domain
         disqus_shortname: Disqus Shortname
       user:
         email: Email
         locale: Locale
         password: Password
-        password_confirmation: Password confirmation
-        current_password: Current password
+        password_confirmation: Password Confirmation
+        current_password: Current Password
         name: User name
       workspace:
         gravatar_email: Gravatar Email
         name: Name
-        full_name: Full name
+        full_name: Full Name
       profile:
         name: Name
         description: Description

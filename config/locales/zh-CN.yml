@@ -8,7 +8,6 @@ zh-CN:
   success: "成功"
   untitled: "无标题"
   articles: "文章"
-  not_category: "未归类"
   publish: "已发布"
   draft: "草稿箱"
   trash: "回收站"
@@ -377,10 +376,6 @@ zh-CN:
         urlname: "URL"
       attachment:
         file: "附件"
-      discusstion:
-        body: "内容"
-      note:
-        title: "标题"
 
   errors:
     messages:
