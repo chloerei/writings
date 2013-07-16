@@ -28,11 +28,11 @@
         .sub-menu.clearfix
           .pull-left
             a#user-link.topbar-button href=(site_root_url(:host => (@space || current_user).host)) target='_blank'
-              i.icon-external-link
+              i.icon-external-link.no-margin
           .pull-right
             .dropdown
               a.dropdown-toggle.topbar-button href=(account_path) class=('actived' if %w(accounts billings).include? controller_name)
-                i.icon-cog
+                i.icon-cog.no-margin
               ul.dropdown-menu.align-right
                 li
                   = link_to account_path do
