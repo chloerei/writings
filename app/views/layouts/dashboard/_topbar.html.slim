@@ -69,16 +69,16 @@
             a.topbar-button href=(root_path) class=('actived' if controller_name == 'home' && action_name == 'index')
               i.icon-home
               = t '.home'
-            /a.topbar-button.hide-on-mobile href='http://help.writings.io' target='_blank'
-              i.icon-book
-              = t '.help'
+            a.topbar-button.hide-on-mobile href='/feature-manager' class=('actived' if controller_name == 'home' && action_name =~ /^feature/)
+              i.icon-lightbulb
+              = t '.features'
             a.topbar-button.hide-on-mobile href='http://blog.writings.io' target='_blank'
               i.icon-bullhorn
               = t '.blog'
           .pull-right
-            a.topbar-button href=(signup_path)
+            a.topbar-button href=(signup_path) class=('actived' if controller_name == 'users')
               i.icon-plus-sign
               = t '.signup'
-            a.topbar-button href=(login_path)
+            a.topbar-button href=(login_path) class=('actived' if controller_name == 'user_sessions')
               i.icon-signin
               = t '.login'
