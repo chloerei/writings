@@ -80,10 +80,10 @@ class User < Space
       when :base
         3.gigabytes
       else
-        100.megabytes
+        10.megabytes
       end
     else
-      100.megabytes
+      10.megabytes
     end
   end
 
