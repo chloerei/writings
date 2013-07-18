@@ -91,6 +91,7 @@ Publish::Application.routes.draw do
         resources :articles, :only => [:index, :show]
         resources :users, :only => [:index, :show]
         resources :workspaces, :only => [:index, :show]
+        resources :attachments, :only => [:index]
         resources :invoices, :only => [:index, :show, :new, :create, :destroy] do
           member do
             put :approve
