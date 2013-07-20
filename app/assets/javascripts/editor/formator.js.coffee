@@ -18,7 +18,7 @@ class @Editor.Formator
   bold: ->
     if @canBold()
       @exec "bold"
-      @afterFormat()  unless @isCollapsed
+      @afterFormat() unless @isCollapsed()
 
   isItalic: ->
     @canItalic() and (document.queryCommandValue("italic") is "true" or document.queryCommandState("italic"))
@@ -29,7 +29,7 @@ class @Editor.Formator
   italic: ->
     if @canItalic()
       @exec "italic"
-      @afterFormat()  unless @isCollapsed
+      @afterFormat() unless @isCollapsed()
 
   isStrikeThrough: ->
     @canStrikeThrough() and (document.queryCommandValue("strikeThrough") is "true" or document.queryCommandState("strikeThrough"))
@@ -40,7 +40,7 @@ class @Editor.Formator
   strikeThrough: ->
     if @canStrikeThrough()
       @exec "strikeThrough"
-      @afterFormat()  unless @isCollapsed
+      @afterFormat() unless @isCollapsed()
 
   isUnderline: ->
     @canUnorderedList() and (document.queryCommandValue("underline") is "true" or document.queryCommandState("underline"))
@@ -51,7 +51,7 @@ class @Editor.Formator
   underline: ->
     if @canUnderline()
       @exec "underline"
-      @afterFormat()  unless @isCollapsed
+      @afterFormat() unless @isCollapsed()
 
   isOrderedList: ->
     @canOrderedList() and document.queryCommandValue("insertOrderedList") is "true"
