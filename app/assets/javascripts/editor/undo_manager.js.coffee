@@ -1,4 +1,6 @@
 class @Editor.UndoManager
+  undoSize: 50
+
   constructor: (@editor) ->
     @editable = @editor.editable
     @stashContents = @currentContents()
@@ -8,6 +10,8 @@ class @Editor.UndoManager
   # call **after** content change
   save: ->
     @undoStack.push @stashContents
+    if @undoStack.length > @undoSize
+      @undoStack.shift()
     @stashContents = @currentContents()
     @redoStack = []
 
