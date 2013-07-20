@@ -1,6 +1,6 @@
 class Space
   include Mongoid::Document
-  include Mongoid::Timestamps::Created
+  include Mongoid::Timestamps
   include ActiveModel::ForbiddenAttributesProtection
 
   field :name

@@ -4,7 +4,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   before_filter :check_lock_status, :only => [:update]
 
   def index
-    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status]).includes(:category)
+    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status])
   end
 
   def uncategorized
@@ -14,7 +14,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def trashed
-    @articles = @space.articles.desc(:updated_at).page(params[:page]).status('trash').includes(:category)
+    @articles = @space.articles.desc(:updated_at).page(params[:page]).status('trash')
   end
 
   def categorized
