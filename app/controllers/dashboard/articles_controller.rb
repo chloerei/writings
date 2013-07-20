@@ -25,27 +25,8 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def show
-    basename = if @article.urlname.present?
-                 "#{@article.token}-#{@article.urlname}"
-               else
-                 @article.token
-               end
-
     respond_to do |format|
-      format.md do
-        send_file(ArticleDownload.new(@article).build_md,
-                  :filename => "#{basename}.md")
-      end
-
-      format.docx do
-        send_file(ArticleDownload.new(@article).build_docx,
-                  :filename => "#{basename}.docx")
-      end
-
-      format.odt do
-        send_file(ArticleDownload.new(@article).build_odt,
-                  :filename => "#{basename}.odt")
-      end
+      format.md { render :text => PandocRuby.convert(@article.body, { :from => 'html', :to => 'markdown+hard_line_breaks' }, 'atx-headers') }
     end
   end
 

@@ -32,14 +32,8 @@
             ul.dropdown-menu data-no-turbolink=(true)
               - if @article.persisted?
                 li
-                  a href=(dashboard_article_path(:format => :md))
+                  a href=(dashboard_article_path(:format => :md)) target='_blank'
                     | Markdown (.md)
-                li
-                  a href=(dashboard_article_path(:format => :odt))
-                    | OpenDocument (.odt)
-                li
-                  a href=(dashboard_article_path(:format => :docx))
-                    | Microsoft Word (.docx)
     .pull-right
       #save-status
         span.saving
