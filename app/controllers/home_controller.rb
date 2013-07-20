@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   layout 'dashboard_base'
-  before_filter :logined_redirect
+  before_filter :logined_redirect, :except => [:about]
 
   private
 

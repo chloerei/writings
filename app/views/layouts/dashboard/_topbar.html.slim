@@ -53,14 +53,6 @@
                     i.icon-book
                     = t '.help'
                 li
-                  a href='https://twitter.com/writingsio'
-                    i.icon-twitter
-                    = t '.twitter'
-                li
-                  a href='https://github.com/writingsio/writingsio/issues'
-                    i.icon-github
-                    = t '.bug_report'
-                li
                   hr
                 li
                   = link_to logout_path, :remote => true, :method => :delete do
@@ -76,9 +68,9 @@
             a.topbar-button.hide-on-mobile href='/feature-manager' class=('actived' if controller_name == 'home' && action_name =~ /^feature/)
               i.icon-lightbulb
               = t '.features'
-            a.topbar-button.hide-on-mobile href='http://blog.writings.io' target='_blank'
-              i.icon-bullhorn
-              = t '.blog'
+            a.topbar-button.hide-on-mobile href='/about' class=('actived' if controller_name == 'home' && action_name == 'about')
+              i.icon-info
+              = t '.about'
           .pull-right
             a.topbar-button href=(signup_path) class=('actived' if controller_name == 'users')
               i.icon-plus-sign

@@ -20,6 +20,7 @@ Publish::Application.routes.draw do
     get 'feature-manager', :to => 'home#feature-manager'
     get 'feature-editor', :to => 'home#feature-editor'
     get 'feature-history', :to => 'home#feature-history'
+    get 'about', :to => 'home#about'
     get 'signup' => 'users#new', :as => :signup
     get 'login' => 'user_sessions#new', :as => :login
     delete 'logout' => 'user_sessions#destroy', :as => :logout

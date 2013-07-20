@@ -49,6 +49,10 @@ en:
         blog: Blog
         help: Help
         features: Features
+      footer:
+        about: 'About'
+        blog: 'Blog'
+        help: 'Help'
     error:
       feedback: Feedback
   workspaces:

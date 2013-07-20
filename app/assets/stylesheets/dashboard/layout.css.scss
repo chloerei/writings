@@ -432,3 +432,25 @@ $topbarLinkHoverBackgroundColor: white;
     }
   }
 }
+
+#footer {
+  margin: $commonMargin 0 $commonMargin*2;
+  .inner {
+    padding: 0 $commonPadding;
+  }
+
+  .pull-left {
+    color: #555;
+  }
+
+  .pull-right {
+    a {
+      color: #999;
+      padding-left: 10px;
+
+      &:hover {
+        color: #555;
+      }
+    }
+  }
+}

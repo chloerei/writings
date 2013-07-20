@@ -56,6 +56,10 @@ zh-CN:
         blog: "博客"
         help: "帮助"
         features: "特色"
+      footer:
+        about: '关于'
+        blog: '博客'
+        help: '帮助'
 
     error:
       feedback: "问题反馈"
