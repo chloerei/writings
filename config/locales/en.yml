@@ -291,7 +291,7 @@ en:
           h4: Header 4
           code: Code
           blockquote: Blockquote
-          normal_text_tip: Normal text Ctrl + P
+          normal_text_tip: Normal text Ctrl + 0
           h1_tip: Article Header Ctrl + 1
           h2_tip: Header 2 Ctrl + 2
           h3_tip: Header 3 Ctrl + 3

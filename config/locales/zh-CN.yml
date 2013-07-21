@@ -299,7 +299,7 @@ zh-CN:
           h4: "四级标题"
           code: "代码"
           blockquote: "引用"
-          normal_text_tip: "普通文本 Ctrl+p"
+          normal_text_tip: "普通文本 Ctrl + 0"
           h1_tip: "文章标题 Ctrl + 1"
           h2_tip: "二级标题 Ctrl + 2"
           h3_tip: "三级标题 Ctrl + 3"
