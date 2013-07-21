@@ -97,4 +97,8 @@
   .date {
     padding-right: 15px;
   }
+
+  &.hide-category .category {
+    display: none;
+  }
 }

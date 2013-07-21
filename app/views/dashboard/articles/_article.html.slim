@@ -6,7 +6,7 @@
       h3
         a href=(edit_dashboard_article_path(:id => article))
           = article.title
-          - if !%w(categorized uncategorized).include?(action_name) && article.category
+          - if article.category
             span.category = article.category.name
     td.min.hide-on-mobile
       - if article.publish?

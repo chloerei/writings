@@ -19,7 +19,7 @@
     - when 'uncategorized'
       = t '.uncategorized'
 
-#articles.articles
+#articles.articles class=('hide-category' if %w(categorized uncategorized).include?(action_name))
   .main-actions.clearfix
     .pull-left
       #status-button-group.button-group
