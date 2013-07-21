@@ -188,7 +188,7 @@ GEM
       rails (>= 3.2.0)
       railties (>= 3.2.0)
     moped (1.5.0)
-    mousetrap-rails (0.0.10)
+    mousetrap-rails (0.0.11)
     multi_json (1.7.7)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -319,7 +319,7 @@ DEPENDENCIES
   mongoid (~> 4.0.0)!
   mongoid-grid_fs!
   mongoid_rails_migrations (~> 1.0.1)
-  mousetrap-rails (~> 0.0.9)
+  mousetrap-rails (~> 0.0.11)
   nokogiri (~> 1.5.9)
   pandoc-ruby (~> 0.7.0)
   quiet_assets (~> 1.0.2)

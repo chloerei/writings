@@ -282,8 +282,8 @@ en:
           underline_tip: Underline Ctrl + Shift + L
           link_tip: Link Ctrl + L
           image_tip: Image Ctrl + G
-          orderList_tip: Order list Ctrl + O
-          unorderList_tip: Unorder list Ctrl + L
+          orderList_tip: Order list Ctrl + 7
+          unorderList_tip: Unorder list Ctrl + 8
           normal_text: Normal text
           h1: Article Header
           h2: Header 2

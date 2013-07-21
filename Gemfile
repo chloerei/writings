@@ -35,7 +35,7 @@ gem 'bourbon', '~> 3.1.6'
 gem 'font-awesome-rails', '~> 3.2.1'
 gem 'highlight_js-rails', '~> 7.1.0'
 gem 'jquery-rails', '~> 2.2.1'
-gem 'mousetrap-rails', '~> 0.0.9'
+gem 'mousetrap-rails', '~> 0.0.11'
 gem 'jquery-fileupload-rails', '~> 0.4.1'
 
 group :development do
