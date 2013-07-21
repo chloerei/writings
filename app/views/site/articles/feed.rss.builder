@@ -7,7 +7,7 @@ xml.rss :version => "2.0" do
     xml.lastBuildDate @articles.first.published_at.to_s(:rfc822) if @articles.any?
 
     @articles.each do |article|
-      cache article do
+      cache [@space.name, article] do
         xml.item do
           xml.title article.title
           xml.description do
