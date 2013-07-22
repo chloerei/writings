@@ -9,6 +9,7 @@ Bundler.require(:default, Rails.env)
 
 module Publish
   class Application < Rails::Application
+    config.middleware.insert_before Rack::Runtime, 'ConditionalSSL'
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Beijing'

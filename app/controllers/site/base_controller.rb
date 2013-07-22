@@ -4,10 +4,6 @@ class Site::BaseController < ApplicationController
 
   private
 
-  def ssl_configured?
-    false
-  end
-
   def require_space
     if request.host =~ /^[a-zA-Z0-9-]+\.#{Regexp.escape APP_CONFIG["host"]}$/
       @space = Space.find_by(:name => /^#{request.subdomain(DOMAIN_LENGTH)}$/i)

@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  force_ssl :if => :ssl_configured?
 
   helper_method :logined?, :current_user, :append_title, :page_title
   before_filter :set_locale
@@ -11,10 +10,6 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-
-  def ssl_configured?
-    Rails.env.production?
-  end
 
   def param_to_token(param)
     param.split('-').first
