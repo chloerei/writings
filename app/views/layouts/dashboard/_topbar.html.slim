@@ -27,7 +27,7 @@
                   = t '.new_workspace'
         .sub-menu.clearfix
           .pull-left
-            a#user-link.topbar-button href=(site_root_url(:host => (@space || current_user).host)) target='_blank'
+            a#user-link.topbar-button href=(site_root_url(:host => (@space || current_user).host, :protocol => 'http')) target='_blank'
               i.icon-external-link.no-margin
           .pull-right
             .dropdown

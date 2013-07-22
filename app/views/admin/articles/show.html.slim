@@ -12,7 +12,7 @@
     p
       = "发布时间 #{l @article.published_at, :format => :long}"
     p
-      a href=(site_article_url(@article, :urlname => @article.urlname, :host => @article.space.host)) target='_blank'
+      a href=(site_article_url(@article, :urlname => @article.urlname, :host => @article.space.host, :protocol => 'http')) target='_blank'
         i.icon-external-link
         = ' '
         = @article.title

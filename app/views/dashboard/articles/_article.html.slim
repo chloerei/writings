@@ -10,7 +10,7 @@
             span.category = article.category.name
     td.min.hide-on-mobile
       - if article.publish?
-        a href=(site_article_url(:id => article, :urlname => article.urlname, :host => @space.host)) target='_blank'
+        a href=(site_article_url(:id => article, :urlname => article.urlname, :host => @space.host, :protocol => 'http')) target='_blank'
           i.icon-external-link
     td.min.date
       .hide.show-on-mobile

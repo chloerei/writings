@@ -6,7 +6,7 @@ section#user-info
     = image_tag @workspace.gravatar_url
   .field
     label 用户名
-    = link_to @workspace.name, site_root_url(:host => @workspace.host)
+    = link_to @workspace.name, site_root_url(:host => @workspace.host, :protocol => 'http')
   .field
     label 全名
     = @workspace.full_name
