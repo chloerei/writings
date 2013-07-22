@@ -6,7 +6,7 @@ section#user-info
     = image_tag @user.gravatar_url
   .field
     label 用户名
-    = link_to @user.name, site_root_url(:host => @user.host)
+    = link_to @user.name, site_root_url(:host => @user.host, :protocol => 'http')
   .field
     label Email
     = @user.email

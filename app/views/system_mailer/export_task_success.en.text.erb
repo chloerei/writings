@@ -2,6 +2,6 @@
 
 Visit this link to download archive:
 
-<%= dashboard_export_task_url(:space_id => @export_task.space, :id => @export_task, :host => APP_CONFIG['host']) %>
+<%= dashboard_export_task_url(:space_id => @export_task.space, :id => @export_task, :host => APP_CONFIG['host'], :protocol => 'https') %>
 
 Data will keep 1 day in server.

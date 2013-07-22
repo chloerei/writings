@@ -2,6 +2,6 @@
 
 访问以下链接下载数据：
 
-<%= dashboard_export_task_url(:space_id => @export_task.space, :id => @export_task, :host => APP_CONFIG['host']) %>
+<%= dashboard_export_task_url(:space_id => @export_task.space, :id => @export_task, :host => APP_CONFIG['host'], :protocol => 'https') %>
 
 数据保留一天。

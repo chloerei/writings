@@ -23,7 +23,7 @@
           a.top-nav-button href='#urlname-modal' data-toggle='modal' title=(t '.urlname')
             i.icon-flag
         li class=(@article.persisted? && @article.publish? ? nil : 'hide')
-          a#view-button.top-nav-button target='_blank' href=(@article.persisted? ? site_article_url(@article, :urlname => @article.urlname, :host => @space.host) : site_root_url(:host => @space.host))
+          a#view-button.top-nav-button target='_blank' href=(@article.persisted? ? site_article_url(@article, :urlname => @article.urlname, :host => @space.host, :protocol => 'http') : site_root_url(:host => @space.host, :protocol => 'http'))
             i.icon-external-link
         li.hide-on-mobile class=(@article.persisted? ? nil : 'hide')
           .dropdown#download
