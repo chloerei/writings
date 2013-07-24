@@ -6,24 +6,45 @@
 .main-header
   h2 = t '.upgrade'
 
-= render :partial => 'plan_content'
+section
+  table.nice-table
+    tr
+      th 套餐
+      th 价格
+      th 图片空间
+      th 历史版本
+      th.min
+    tr
+      td 基础版
+      td ￥20/月
+      td 3GB
+      td 100
+      td.min
+        = link_to t('.renew'), new_invoice_path, :class => 'button button-green'
+    tr
+      td 免费版
+      td -
+      td 10MB
+      td 5
+      td.min
 
 section
-  p
-    = link_to t('.renew'), new_invoice_path, :class => 'button button-green'
   - if @invoices.any?
     table.nice-table
       tbody
         tr
-          th 创建日期
-          th 套餐
-          th 数量（月）
-          th.min 有效期
+          th 创建时间
+          th 内容
+          th 费用
+          th 状态
         - @invoices.each do |invoice|
           tr
-            td = invoice.created_at.to_date
-            td = t "plan.#{invoice.plan}"
-            td = invoice.quantity
-            td.min
-              - if invoice.approved?
-                = "#{invoice.start_at.to_date} 至 #{invoice.end_at.to_date}"
+            td = l invoice.created_at, :format => :long
+            td
+              = t "plan.#{invoice.plan}"
+              '
+              = " #{invoice.quantity} 个月"
+            td
+              = "￥#{invoice.total_price}"
+            td
+              | 查看

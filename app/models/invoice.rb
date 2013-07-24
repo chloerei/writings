@@ -20,7 +20,7 @@ class Invoice
   validates_presence_of :plan, :quantity, :price
 
   def total_price
-    price + discount
+    price * quantity + discount
   end
 
   def approved?

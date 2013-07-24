@@ -11,9 +11,9 @@ class InvoicesController < ApplicationController
 
     case @invoice.quantity
     when 6
-      @invoice.discount = 20
+      @invoice.discount = -20
     when 12
-      @invoice.discount = 40
+      @invoice.discount = -40
     end
 
     if [1, 6, 12].include?(@invoice.quantity) && @invoice.save

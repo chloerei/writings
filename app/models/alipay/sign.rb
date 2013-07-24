@@ -4,7 +4,7 @@ class Alipay::Sign
       "#{key}=#{value}"
     end.join('&')
 
-    Digest::MD5.hexdigest("#{query}#{Alipay.md5_key}")
+    Digest::MD5.hexdigest("#{query}#{APP_CONFIG['alipay']['md5_key']}")
   end
 
   def self.verify?(params)

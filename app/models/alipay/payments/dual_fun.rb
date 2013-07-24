@@ -19,17 +19,19 @@ class Alipay::Payments::DualFun
   attr_accessor :options
 
   def initialize(options)
-    self.options = {
+    self.options = options.merge(
       :service        => 'trade_create_by_buyer',
       :_input_charset => 'utf-8',
-      :partner        => Alipay.pid,
-      :seller_email   => Alipay.email,
+      :partner        => APP_CONFIG['alipay']['pid'],
+      :seller_email   => APP_CONFIG['alipay']['email'],
       :payment_type   => '1'
-    }.merge(options)
+    )
 
+    Rails.logger.info Alipay.pid
+    Rails.logger.info self.options
     miss_options = []
     MUST_OPTIONS.each do |key|
-      miss_options << key if @options[key].blank?
+      miss_options << key if self.options[key].blank?
     end
 
     raise "miss options: #{miss_options.inspect}" if miss_options.any?
