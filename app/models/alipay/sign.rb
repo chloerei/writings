@@ -4,11 +4,12 @@ class Alipay::Sign
       "#{key}=#{value}"
     end.join('&')
 
-    Digest::MD5.hexdigest("#{query}#{Alipay.md5_key}").upcase
+    Digest::MD5.hexdigest("#{query}#{Alipay.md5_key}")
   end
 
   def self.verify?(params)
     params = params.clone
+    params.delete(:sign_type)
     sign = params.delete(:sign)
 
     generate(params) == sign

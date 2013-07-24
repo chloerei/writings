@@ -6,8 +6,7 @@ class Alipay::SignTest < ActiveSupport::TestCase
       :service => 'test',
       :partner => '123'
     }
-    Alipay.md5_key = 'md5key'
-    @sign = Digest::MD5.hexdigest("partner=123&service=test#{Alipay.md5_key}").upcase
+    @sign = Digest::MD5.hexdigest("partner=123&service=test#{Alipay.md5_key}")
   end
 
   test "should generate sign" do
