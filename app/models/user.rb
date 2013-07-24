@@ -15,6 +15,7 @@ class User < Space
   PLANS = %w(free base)
 
   has_many :creator_workspaces, :class_name => 'Workspace', :inverse_of => :creator
+  has_many :invoices, :dependent => :delete
 
   has_secure_password
 

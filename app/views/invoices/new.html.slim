@@ -1,0 +1,26 @@
+- append_title t('.renew')
+
+- content_for :sidebar do
+  = render 'dashboard/share/settings_sidebar'
+
+.main-header
+  h2 = t '.renew'
+
+section
+  = form_for @invoice do |f|
+    .field
+      = f.label :plan
+      = t('plan.base')
+    .field
+      = f.label :quantity
+      label
+        = f.radio_button :quantity, 1, :checked => true
+        = t '20_per_1_month'
+      label
+        = f.radio_button :quantity, 6
+        = t '100_per_6_month'
+      label
+        = f.radio_button :quantity, 12
+        = t '180_per_1_year'
+    .field
+      = f.submit 'payment', :class => 'button-green'

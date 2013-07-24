@@ -41,7 +41,7 @@ class Alipay::Payments::DualFun
 
   def query_string
     options.merge(:sign_type => 'MD5', :sign => Alipay::Sign.generate(options)).map do |key, value|
-      "#{key}=#{CGI.escape(value)}"
+      "#{key}=#{CGI.escape(value.to_s)}"
     end.join('&')
   end
 end

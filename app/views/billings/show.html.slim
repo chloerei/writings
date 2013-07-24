@@ -6,5 +6,24 @@
 .main-header
   h2 = t '.upgrade'
 
+= render :partial => 'plan_content'
+
 section
-  = render :partial => 'plan_content'
+  p
+    = link_to t('.renew'), new_invoice_path, :class => 'button button-green'
+  - if @invoices.any?
+    table.nice-table
+      tbody
+        tr
+          th 创建日期
+          th 套餐
+          th 数量（月）
+          th.min 有效期
+        - @invoices.each do |invoice|
+          tr
+            td = invoice.created_at.to_date
+            td = t "plan.#{invoice.plan}"
+            td = invoice.quantity
+            td.min
+              - if invoice.approved?
+                = "#{invoice.start_at.to_date} 至 #{invoice.end_at.to_date}"

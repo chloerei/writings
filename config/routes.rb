@@ -30,6 +30,7 @@ Publish::Application.routes.draw do
 
     resource :account, :only => [:show, :update, :destroy]
     resource :billing, :only => [:show]
+    resources :invoices, :only => [:index, :new, :create, :show, :destroy]
 
     resources :workspaces, :only => [:new, :create]
 
