@@ -1,5 +1,6 @@
 class Alipay::Sign
   def self.generate(params)
+    params = params.symbolize_keys
     query = params.sort.map do |key, value|
       "#{key}=#{value}"
     end.join('&')
@@ -8,7 +9,7 @@ class Alipay::Sign
   end
 
   def self.verify?(params)
-    params = params.clone
+    params = params.symbolize_keys
     params.delete(:sign_type)
     sign = params.delete(:sign)
 
