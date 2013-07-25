@@ -80,6 +80,19 @@ class InvoicesControllerTest < ActionController::TestCase
     assert invoice.reload.paid?
   end
 
+  test "should save trade_no" do
+    pass_notify
+    invoice = create :invoice
+
+    message = {
+      :out_trade_no => invoice.id.to_s,
+      :trade_status => 'WAIT_SELLER_SEND_GOODS',
+      :trade_no     => '123456'
+    }
+    post :alipay_notify, message.merge(:sign_type => 'MD5', :sign => Alipay::Sign.generate(message))
+    assert_equal message[:trade_no], invoice.trade_no
+  end
+
   def pass_notify
     FakeWeb.register_uri(:get, %r|http://notify.alipay.com/trade/notify_query.*|, :body => "true")
   end

@@ -30,6 +30,8 @@ class InvoicesController < ApplicationController
   def alipay_notify
     if Alipay::Sign.verify?(params.except(:controller, :action)) && Alipay::Notify.verify?(params)
       @invoice = Invoice.find params[:out_trade_no]
+      @invoice.trade_no ||= params[:trade_no]
+
       case params[:trade_status]
       when 'TRADE_FINISHED'
         @invoice.accept

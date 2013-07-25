@@ -14,6 +14,7 @@ class Invoice
   field :paid_at, :type => DateTime
   field :start_at, :type => DateTime
   field :end_at, :type => DateTime
+  field :trade_no
 
   field :remark
 
