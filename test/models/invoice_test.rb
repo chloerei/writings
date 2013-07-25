@@ -56,4 +56,18 @@ class InvoiceTest < ActiveSupport::TestCase
     @invoice.cancel
     assert @user.reload.plan_expired_at < time
   end
+
+  test "should not cancel after accepted" do
+    @invoice.accept
+    assert @invoice.accepted?
+    @invoice.cancel
+    assert !@invoice.canceled?
+  end
+
+  test "should not paid after accepted" do
+    @invoice.accept
+    assert @invoice.accepted?
+    @invoice.pay
+    assert !@invoice.paid?
+  end
 end
