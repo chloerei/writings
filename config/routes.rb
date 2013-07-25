@@ -31,7 +31,9 @@ Publish::Application.routes.draw do
     resource :account, :only => [:show, :update, :destroy]
     resource :billing, :only => [:show]
     resources :invoices, :only => [:index, :new, :create, :show, :destroy] do
-      post :alipay_notify
+      collection do
+        post :alipay_notify
+      end
     end
 
     resources :workspaces, :only => [:new, :create]
