@@ -40,4 +40,40 @@ class InvoicesControllerTest < ActionController::TestCase
       assert_equal 0, assigns(:invoice).discount
     end
   end
+
+  test "should accept alipay_notify" do
+    invoice = create :invoice
+
+    message = {
+      :out_trade_no => invoice.id.to_s,
+      :trade_status => 'TRADE_FINISHED'
+    }
+    post :alipay_notify, message.merge(:sign_type => 'MD5', :sign => Alipay::Sign.generate(message))
+    assert_equal 'success', @response.body
+    assert invoice.reload.accepted?
+  end
+
+  test "should cancel alipay_notify" do
+    invoice = create :invoice
+
+    message = {
+      :out_trade_no => invoice.id.to_s,
+      :trade_status => 'TRADE_CLOSED'
+    }
+    post :alipay_notify, message.merge(:sign_type => 'MD5', :sign => Alipay::Sign.generate(message))
+    assert_equal 'success', @response.body
+    assert invoice.reload.canceled?
+  end
+
+  test "should pay alipay_notify" do
+    invoice = create :invoice
+
+    message = {
+      :out_trade_no => invoice.id.to_s,
+      :trade_status => 'WAIT_SELLER_SEND_GOODS'
+    }
+    post :alipay_notify, message.merge(:sign_type => 'MD5', :sign => Alipay::Sign.generate(message))
+    assert_equal 'success', @response.body
+    assert invoice.reload.paid?
+  end
 end

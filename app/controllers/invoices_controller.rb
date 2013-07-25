@@ -27,6 +27,26 @@ class InvoicesController < ApplicationController
     @invoice = current_user.invoices.find params[:id]
   end
 
+  def alipay_notify
+    if Alipay::Sign.verify?(params.except(:controller, :action))
+      @invoice = Invoice.find params[:out_trade_no]
+      case params[:trade_status]
+      when 'TRADE_FINISHED'
+        @invoice.accept
+      when 'TRADE_CLOSED'
+        @invoice.cancel
+      when 'WAIT_SELLER_SEND_GOODS'
+        @invoice.pay
+        # send good
+      else
+      end
+
+      render :text => 'success'
+    else
+      render :text => 'error'
+    end
+  end
+
   private
 
   def invoice_param
