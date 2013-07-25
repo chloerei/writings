@@ -23,6 +23,10 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def show
+    @invoice = current_user.invoices.find params[:id]
+  end
+
   private
 
   def invoice_param

@@ -1,0 +1,21 @@
+- append_title t('.upgrade')
+
+- content_for :sidebar do
+  = render 'dashboard/share/settings_sidebar'
+
+.main-header
+  h2 = t '.invoice'
+
+section
+  - case @invoice.state
+  - when 'pendding'
+    | waiting for payment
+    p
+      a.button.button-green href=(@invoice.pay_url)
+        | Payment
+  - when 'paid'
+    | paid
+  - when 'cancel'
+    | cancel
+  - when 'accept'
+    | accept
