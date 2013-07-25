@@ -92,8 +92,8 @@ class Invoice
       :logistics_type    => 'POST',
       :logistics_fee     => '0',
       :logistics_payment => 'SELLER_PAY',
-      :return_url        => Rails.application.routes.url_helpers.alipay_notify_invoices_url,
-      :notify_url        => Rails.application.routes.url_helpers.invoice_url(self)
+      :return_url        => Rails.application.routes.url_helpers.invoice_url(self),
+      :notify_url        => Rails.application.routes.url_helpers.alipay_notify_invoices_url
     ).generate_pay_url
   end
 
