@@ -7,10 +7,11 @@ class Invoice
   field :price, :type => Integer, :default => 0
   field :discount, :type => Integer, :default => 0
 
-  STATE = %w(pendding payed accepted canceled)
+  STATE = %w(pendding paid accepted canceled)
   field :state, :default => 'pendding'
   field :accepted_at, :type => DateTime
   field :canceled_at, :type => DateTime
+  field :paid_at, :type => DateTime
   field :start_at, :type => DateTime
   field :end_at, :type => DateTime
 
@@ -34,29 +35,50 @@ class Invoice
   end
 
   def accept
-    if state == 'pendding'
+    if pendding? or paid?
       start_at = user.plan_expired_at || Time.now.utc
+      add_plan if pendding?
+
       update_attributes(
         :start_at    => start_at,
         :end_at      => start_at + quantity.months,
         :accepted_at => Time.now.utc,
         :state       => 'accepted'
       )
-
-      user.update_attributes(
-        :plan => plan,
-        :plan_expired_at => end_at
-      )
     end
   end
 
   def cancel
-    if state == 'pendding'
+    if pendding? or paid?
+      remove_plan if paid?
       update_attributes(
         :state       => 'canceled',
         :canceled_at => Time.now.utc
       )
     end
+  end
+
+  def pay
+    if pendding?
+      update_attributes(
+        :state   => 'paid',
+        :paid_at => Time.now.utc
+      )
+      add_plan
+    end
+  end
+
+  def add_plan
+    user.update_attributes(
+      :plan => plan,
+      :plan_expired_at => (user.plan_expired_at || Time.now.utc) + quantity.months
+    )
+  end
+
+  def remove_plan
+    user.update_attributes(
+      :plan_expired_at => user.plan_expired_at - quantity.months
+    )
   end
 
   def pay_url
