@@ -44,6 +44,7 @@ class InvoicesControllerTest < ActionController::TestCase
   test "should accept alipay_notify" do
     fake_service
     invoice = create :invoice
+    logout
 
     message = {
       :out_trade_no => invoice.id.to_s,
@@ -57,6 +58,7 @@ class InvoicesControllerTest < ActionController::TestCase
   test "should cancel alipay_notify" do
     fake_service
     invoice = create :invoice
+    logout
 
     message = {
       :out_trade_no => invoice.id.to_s,
@@ -70,6 +72,7 @@ class InvoicesControllerTest < ActionController::TestCase
   test "should pay alipay_notify" do
     fake_service
     invoice = create :invoice
+    logout
 
     message = {
       :out_trade_no => invoice.id.to_s,
@@ -84,6 +87,7 @@ class InvoicesControllerTest < ActionController::TestCase
   test "should save trade_no" do
     fake_service
     invoice = create :invoice
+    logout
 
     message = {
       :out_trade_no => invoice.id.to_s,

@@ -1,5 +1,6 @@
 class InvoicesController < ApplicationController
-  before_filter :require_logined
+  before_filter :require_logined, :except => [:alipay_notify]
+  skip_before_filter :verify_authenticity_token, :only => [:alipay_notify]
   layout 'dashboard'
 
   def new
