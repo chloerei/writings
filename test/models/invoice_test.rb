@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class InvoiceTest < ActiveSupport::TestCase
+  test "init state" do
+    invoice = create :invoice
+  end
   test "should approve" do
     user = create :user
     invoice = create :invoice, :plan => :base, :quantity => 2, :user => user

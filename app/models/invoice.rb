@@ -2,12 +2,13 @@ class Invoice
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :approved_at, :type => DateTime
   field :plan, :type => Symbol
   field :quantity, :type => Integer
   field :price, :type => Integer, :default => 0
   field :discount, :type => Integer, :default => 0
 
+  field :state, :type => Symbol, :default => :pendding
+  field :approved_at, :type => DateTime
   field :start_at, :type => DateTime
   field :end_at, :type => DateTime
 
