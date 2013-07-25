@@ -7,8 +7,10 @@ class Invoice
   field :price, :type => Integer, :default => 0
   field :discount, :type => Integer, :default => 0
 
-  field :state, :type => Symbol, :default => :pendding
-  field :approved_at, :type => DateTime
+  STATE = %w(pendding payed accepted canceled)
+  field :state, :default => 'pendding'
+  field :accepted_at, :type => DateTime
+  field :canceled_at, :type => DateTime
   field :start_at, :type => DateTime
   field :end_at, :type => DateTime
 
@@ -19,28 +21,40 @@ class Invoice
   index({ :user_id => 1 })
 
   validates_presence_of :plan, :quantity, :price
+  validates_inclusion_of :state, :in => STATE
 
   def total_price
     price * quantity + discount
   end
 
-  def approved?
-    state == :approved
+  STATE.each do |state|
+    define_method "#{state}?" do
+      self.state == state
+    end
   end
 
-  def approve
-    if !approved?
+  def accept
+    if state == 'pendding'
       start_at = user.plan_expired_at || Time.now.utc
       update_attributes(
         :start_at    => start_at,
         :end_at      => start_at + quantity.months,
-        :approved_at => Time.now.utc,
-        :state       => :approved
+        :accepted_at => Time.now.utc,
+        :state       => 'accepted'
       )
 
       user.update_attributes(
         :plan => plan,
         :plan_expired_at => end_at
+      )
+    end
+  end
+
+  def cancel
+    if state == 'pendding'
+      update_attributes(
+        :state       => 'canceled',
+        :canceled_at => Time.now.utc
       )
     end
   end
