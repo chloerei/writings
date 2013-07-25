@@ -94,4 +94,8 @@ class Invoice
       :logistics_payment => 'SELLER_PAY'
     ).generate_pay_url
   end
+
+  def send_good
+    Alipay::SendGoods.new(:trade_no => trade_no, :logistics_name => 'writings.io').send_good
+  end
 end

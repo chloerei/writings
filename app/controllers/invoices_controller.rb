@@ -39,7 +39,7 @@ class InvoicesController < ApplicationController
         @invoice.cancel
       when 'WAIT_SELLER_SEND_GOODS'
         @invoice.pay
-        Alipay::SendGoods.new(:trade_no => @invoice.trade_no, :logistics_name => 'writings.io').send_good
+        @invoice.send_good
         # send good
       else
         # do nothing
