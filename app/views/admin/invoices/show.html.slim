@@ -7,7 +7,7 @@ section
     .field
       label 用户
       = link_to @invoice.user.name, admin_user_path(@invoice.user)
-    - %w(created_at plan quantity price balance total_price approved_at start_at end_at).each do |column|
+    - %w(created_at plan quantity price discount total_price approved_at start_at end_at).each do |column|
       .field
         = f.label column
         = f.text_field column, :disabled => true

@@ -25,17 +25,23 @@ class Invoice
   end
 
   def approved?
-    !approved_at.blank?
+    state == :approved
   end
 
   def approve
     if !approved?
-      self.start_at = user.plan_expired_at || Time.now.utc
-      self.end_at = self.start_at + quantity.months
-      self.approved_at = Time.now.utc
-      save
-      user.update_attribute :plan, plan
-      user.update_attribute :plan_expired_at, end_at
+      start_at = user.plan_expired_at || Time.now.utc
+      update_attributes(
+        :start_at    => start_at,
+        :end_at      => start_at + quantity.months,
+        :approved_at => Time.now.utc,
+        :state       => :approved
+      )
+
+      user.update_attributes(
+        :plan => plan,
+        :plan_expired_at => end_at
+      )
     end
   end
 

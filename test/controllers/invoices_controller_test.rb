@@ -27,12 +27,12 @@ class InvoicesControllerTest < ActionController::TestCase
 
     assert_difference "@user.invoices.count" do
       post :create, :invoice => { :quantity => 6 }
-      assert_equal 20, assigns(:invoice).discount
+      assert_equal (-20), assigns(:invoice).discount
     end
 
     assert_difference "@user.invoices.count" do
       post :create, :invoice => { :quantity => 12 }
-      assert_equal 40, assigns(:invoice).discount
+      assert_equal (-40), assigns(:invoice).discount
     end
 
     assert_no_difference "@user.invoices.count" do
