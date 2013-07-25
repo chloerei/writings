@@ -12,12 +12,11 @@ class Alipay::SendGoods
   attr_accessor :options
 
   def initialize(options)
-    self.options = options.merge(
+    self.options = options.symbolize_keys.merge(
       :service        => 'send_goods_confirm_by_platform',
-      :_input_charset => 'utf-8',
       :partner        => APP_CONFIG['alipay']['pid'],
-      :seller_email   => APP_CONFIG['alipay']['email'],
-      :payment_type   => '1'
+      :_input_charset => 'utf-8',
+      :transport_type => 'POST'
     )
 
     miss_options = []
@@ -34,7 +33,7 @@ class Alipay::SendGoods
 
   def query_string
     options.merge(:sign_type => 'MD5', :sign => Alipay::Sign.generate(options)).map do |key, value|
-      CGI.escape("#{key}=#{value.to_s}")
+      "#{CGI.escape(key.to_s)}=#{CGI.escape(value.to_s)}"
     end.join('&')
   end
 end
