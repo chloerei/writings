@@ -1,26 +1,19 @@
-class Alipay::Payments::DualFun
+class Alipay::SendGoods
   GATEWAY_URL = 'https://mapi.alipay.com/gateway.do'
 
   MUST_OPTIONS = [
     :service,
     :partner,
     :_input_charset,
-    :out_trade_no,
-    :subject,
-    :payment_type,
-    :logistics_type,
-    :logistics_fee,
-    :logistics_payment,
-    :seller_email,
-    :price,
-    :quantity
+    :trade_no,
+    :logistics_name
   ]
 
   attr_accessor :options
 
   def initialize(options)
     self.options = options.merge(
-      :service        => 'trade_create_by_buyer',
+      :service        => 'send_goods_confirm_by_platform',
       :_input_charset => 'utf-8',
       :partner        => APP_CONFIG['alipay']['pid'],
       :seller_email   => APP_CONFIG['alipay']['email'],
@@ -35,8 +28,8 @@ class Alipay::Payments::DualFun
     raise "miss options: #{miss_options.inspect}" if miss_options.any?
   end
 
-  def generate_pay_url
-    "#{GATEWAY_URL}?#{query_string}"
+  def send_good
+    open("#{GATEWAY_URL}?#{query_string}").read
   end
 
   def query_string

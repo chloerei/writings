@@ -42,7 +42,7 @@ class InvoicesControllerTest < ActionController::TestCase
   end
 
   test "should accept alipay_notify" do
-    pass_notify
+    fake_service
     invoice = create :invoice
 
     message = {
@@ -55,7 +55,7 @@ class InvoicesControllerTest < ActionController::TestCase
   end
 
   test "should cancel alipay_notify" do
-    pass_notify
+    fake_service
     invoice = create :invoice
 
     message = {
@@ -68,12 +68,13 @@ class InvoicesControllerTest < ActionController::TestCase
   end
 
   test "should pay alipay_notify" do
-    pass_notify
+    fake_service
     invoice = create :invoice
 
     message = {
       :out_trade_no => invoice.id.to_s,
-      :trade_status => 'WAIT_SELLER_SEND_GOODS'
+      :trade_status => 'WAIT_SELLER_SEND_GOODS',
+      :trade_no     => '1234'
     }
     post :alipay_notify, message.merge(:sign_type => 'MD5', :sign => Alipay::Sign.generate(message))
     assert_equal 'success', @response.body
@@ -81,7 +82,7 @@ class InvoicesControllerTest < ActionController::TestCase
   end
 
   test "should save trade_no" do
-    pass_notify
+    fake_service
     invoice = create :invoice
 
     message = {
@@ -93,7 +94,16 @@ class InvoicesControllerTest < ActionController::TestCase
     assert_equal message[:trade_no], invoice.trade_no
   end
 
-  def pass_notify
-    FakeWeb.register_uri(:get, %r|http://notify.alipay.com/trade/notify_query.*|, :body => "true")
+  def fake_service
+    FakeWeb.register_uri(
+      :get,
+      %r|http://notify\.alipay\.com/trade/notify_query.*|,
+      :body => "true"
+    )
+    FakeWeb.register_uri(
+      :get,
+      %r|https://mapi\.alipay\.com/gateway\.do\?.*send_goods_confirm_by_platform.*|,
+      :body => ''
+    )
   end
 end
