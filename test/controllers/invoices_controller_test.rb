@@ -42,6 +42,7 @@ class InvoicesControllerTest < ActionController::TestCase
   end
 
   test "should accept alipay_notify" do
+    pass_notify
     invoice = create :invoice
 
     message = {
@@ -54,6 +55,7 @@ class InvoicesControllerTest < ActionController::TestCase
   end
 
   test "should cancel alipay_notify" do
+    pass_notify
     invoice = create :invoice
 
     message = {
@@ -66,6 +68,7 @@ class InvoicesControllerTest < ActionController::TestCase
   end
 
   test "should pay alipay_notify" do
+    pass_notify
     invoice = create :invoice
 
     message = {
@@ -75,5 +78,9 @@ class InvoicesControllerTest < ActionController::TestCase
     post :alipay_notify, message.merge(:sign_type => 'MD5', :sign => Alipay::Sign.generate(message))
     assert_equal 'success', @response.body
     assert invoice.reload.paid?
+  end
+
+  def pass_notify
+    FakeWeb.register_uri(:get, %r|http://notify.alipay.com/trade/notify_query.*|, :body => "true")
   end
 end

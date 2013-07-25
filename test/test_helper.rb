@@ -8,6 +8,7 @@ class ActiveSupport::TestCase
 
   def teardown
     Mongoid.default_session.collections.select{|c| c.name !~ /system/}.each(&:drop)
+    FakeWeb.clean_registry
   end
 end
 

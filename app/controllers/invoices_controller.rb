@@ -28,7 +28,7 @@ class InvoicesController < ApplicationController
   end
 
   def alipay_notify
-    if Alipay::Sign.verify?(params.except(:controller, :action))
+    if Alipay::Sign.verify?(params.except(:controller, :action)) && Alipay::Notify.verify?(params)
       @invoice = Invoice.find params[:out_trade_no]
       case params[:trade_status]
       when 'TRADE_FINISHED'
@@ -39,6 +39,7 @@ class InvoicesController < ApplicationController
         @invoice.pay
         # send good
       else
+        # do nothing
       end
 
       render :text => 'success'
