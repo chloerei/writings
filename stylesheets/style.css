@@ -16,6 +16,9 @@ body {
   body, body * {
     -webkit-font-smoothing: antialiased; }
 
+img {
+  border: none; }
+
 #go-back-home {
   margin: 40px 0 0; }
   #go-back-home:hover {
