@@ -6,3 +6,6 @@ nav.main-sidebar-nav
     li.main-sidebar-item class=('actived' if controller_name == 'billings')
       a href=(billing_path)
         = t '.upgrade'
+    li.main-sidebar-item class=('actived' if controller_name == 'orders')
+      a href=(orders_path)
+        = t '.orders'
