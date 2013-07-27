@@ -3,6 +3,10 @@ class OrdersController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:alipay_notify]
   layout 'dashboard'
 
+  def index
+    @orders = current_user.orders.where(:state.ne => 'pendding').desc(:created_at)
+  end
+
   def new
     @order = Order.new
   end

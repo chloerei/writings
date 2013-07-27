@@ -6,6 +6,12 @@ class OrdersControllerTest < ActionController::TestCase
     login_as @user
   end
 
+  test "should get index page" do
+    create :order, :user => @user
+    get :index
+    assert_response :success, @response.body
+  end
+
   test "should get new page" do
     get :new
     assert_response :success, @response.body

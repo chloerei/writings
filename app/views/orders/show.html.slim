@@ -1,10 +1,16 @@
-- append_title t('.upgrade')
+- append_title t('.orders')
+- append_title @order.id
 
 - content_for :sidebar do
   = render 'dashboard/share/settings_sidebar'
 
 .main-header
-  h2 = t '.order'
+  h2
+    = link_to t('.billing'), billing_path
+    = ' / '
+    = link_to t('.orders'), orders_path
+    = ' / '
+    = @order.id
 
 section
   - case @order.state

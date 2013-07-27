@@ -42,10 +42,13 @@ table.nice-table {
     text-overflow: ellipsis;
   }
 
-
   .min {
     width: 1%;
     white-space: nowrap;
+  }
+
+  .button {
+    display: inline;
   }
 }
 
