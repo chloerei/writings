@@ -35,6 +35,11 @@ Publish::Application.routes.draw do
         post :alipay_notify
       end
     end
+    resources :orders, :only => [:index, :new, :create, :show, :destroy] do
+      collection do
+        post :alipay_notify
+      end
+    end
 
     resources :workspaces, :only => [:new, :create]
 

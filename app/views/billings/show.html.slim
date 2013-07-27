@@ -20,7 +20,7 @@ section
       td 3GB
       td 100
       td.min
-        = link_to t('.renew'), new_invoice_path, :class => 'button button-green no-margin'
+        = link_to t('.renew'), new_order_path, :class => 'button button-green no-margin'
     tr
       td 免费版
       td -
@@ -31,7 +31,7 @@ section
 section
   header
     h3 有效订单
-  - if @invoices.any?
+  - if @orders.any?
     table.nice-table
       tbody
         tr
@@ -39,14 +39,14 @@ section
           th 内容
           th 费用
           th 状态
-        - @invoices.each do |invoice|
+        - @orders.each do |order|
           tr
-            td = l invoice.created_at, :format => :long
+            td = l order.created_at, :format => :long
             td
-              = t "plan.#{invoice.plan}"
+              = t "plan.#{order.plan}"
               '
-              = " #{invoice.quantity} 个月"
+              = " #{order.quantity} 个月"
             td
-              = "￥#{invoice.total_price}"
+              = "￥#{order.total_price}"
             td
               | 查看

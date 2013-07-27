@@ -4,14 +4,14 @@
   = render 'dashboard/share/settings_sidebar'
 
 .main-header
-  h2 = t '.invoice'
+  h2 = t '.order'
 
 section
-  - case @invoice.state
+  - case @order.state
   - when 'pendding'
     | waiting for payment
     p
-      a.button.button-green href=(@invoice.pay_url)
+      a.button.button-green href=(@order.pay_url)
         | Payment
   - when 'paid'
     | paid

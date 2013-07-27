@@ -1,46 +1,46 @@
-class InvoicesController < ApplicationController
+class OrdersController < ApplicationController
   before_filter :require_logined, :except => [:alipay_notify]
   skip_before_filter :verify_authenticity_token, :only => [:alipay_notify]
   layout 'dashboard'
 
   def new
-    @invoice = Invoice.new
+    @order = Order.new
   end
 
   def create
-    @invoice = current_user.invoices.new invoice_param.merge(:plan => :base, :price => 20)
+    @order = current_user.orders.new order_param.merge(:plan => :base, :price => 20)
 
-    case @invoice.quantity
+    case @order.quantity
     when 6
-      @invoice.discount = -20
+      @order.discount = -20
     when 12
-      @invoice.discount = -40
+      @order.discount = -40
     end
 
-    if [1, 6, 12].include?(@invoice.quantity) && @invoice.save
-      redirect_to @invoice.pay_url
+    if [1, 6, 12].include?(@order.quantity) && @order.save
+      redirect_to @order.pay_url
     else
       render :new
     end
   end
 
   def show
-    @invoice = current_user.invoices.find params[:id]
+    @order = current_user.orders.find params[:id]
   end
 
   def alipay_notify
     if Alipay::Sign.verify?(params.except(:controller, :action, :host)) && Alipay::Notify.verify?(params)
-      @invoice = Invoice.find params[:out_trade_no]
-      @invoice.trade_no ||= params[:trade_no]
+      @order = Order.find params[:out_trade_no]
+      @order.trade_no ||= params[:trade_no]
 
       case params[:trade_status]
       when 'TRADE_FINISHED'
-        @invoice.accept
+        @order.accept
       when 'TRADE_CLOSED'
-        @invoice.cancel
+        @order.cancel
       when 'WAIT_SELLER_SEND_GOODS'
-        @invoice.pay
-        @invoice.send_good
+        @order.pay
+        @order.send_good
         # send good
       else
         # do nothing
@@ -54,7 +54,7 @@ class InvoicesController < ApplicationController
 
   private
 
-  def invoice_param
-    params.require(:invoice).permit(:quantity)
+  def order_param
+    params.require(:order).permit(:quantity)
   end
 end
