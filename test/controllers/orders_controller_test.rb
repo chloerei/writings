@@ -41,7 +41,7 @@ class OrdersControllerTest < ActionController::TestCase
     end
   end
 
-  test "should accept alipay_notify" do
+  test "should complete alipay_notify" do
     fake_service
     order = create :order
     logout
@@ -52,7 +52,7 @@ class OrdersControllerTest < ActionController::TestCase
     }
     post :alipay_notify, message.merge(:sign_type => 'MD5', :sign => Alipay::Sign.generate(message))
     assert_equal 'success', @response.body
-    assert order.reload.accepted?
+    assert order.reload.completed?
   end
 
   test "should cancel alipay_notify" do

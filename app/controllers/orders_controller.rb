@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
 
       case params[:trade_status]
       when 'TRADE_FINISHED'
-        @order.accept
+        @order.complete
       when 'TRADE_CLOSED'
         @order.cancel
       when 'WAIT_SELLER_SEND_GOODS'

@@ -7,9 +7,9 @@ class Order
   field :price, :type => Integer, :default => 0
   field :discount, :type => Integer, :default => 0
 
-  STATE = %w(pendding paid accepted canceled)
+  STATE = %w(pendding paid completed canceled)
   field :state, :default => 'pendding'
-  field :accepted_at, :type => DateTime
+  field :completed_at, :type => DateTime
   field :canceled_at, :type => DateTime
   field :paid_at, :type => DateTime
   field :start_at, :type => DateTime
@@ -35,13 +35,13 @@ class Order
     end
   end
 
-  def accept
+  def complete
     if pendding? or paid?
       add_plan if pendding?
 
       update_attributes(
-        :accepted_at => Time.now.utc,
-        :state       => 'accepted'
+        :completed_at => Time.now.utc,
+        :state       => 'completed'
       )
     end
   end

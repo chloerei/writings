@@ -28,7 +28,10 @@ section
       td 5
       td.min
 
-  p = "当前套餐：#{t "plan.#{current_user.plan}"}（#{l current_user.plan_expired_at.to_date, :format => :long}到期）"
+  p
+    = "当前套餐：#{t "plan.#{current_user.plan}"}"
+    - if current_user.plan_expired_at
+      = "（#{l current_user.plan_expired_at.to_date, :format => :long}到期）"
 
 section
   header
@@ -48,7 +51,7 @@ section
             td
               = t "plan.#{order.plan}"
             td
-              - if order.paid? or order.accepted?
+              - if order.paid? or order.completed?
                 = l order.start_at.to_date, :format => :long
                 = ' - '
                 = l order.end_at.to_date, :format => :long

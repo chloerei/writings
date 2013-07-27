@@ -10,14 +10,14 @@ class OrderTest < ActiveSupport::TestCase
     assert @order.pendding?
   end
 
-  test "should accept" do
-    @order.accept
-    assert_equal 'accepted', @order.state
-    assert @order.accepted?
+  test "should complete" do
+    @order.complete
+    assert_equal 'completed', @order.state
+    assert @order.completed?
     @user.reload
     assert_not_nil @order.start_at
     assert_not_nil @order.end_at
-    assert_not_nil @order.accepted_at
+    assert_not_nil @order.completed_at
     assert_equal @order.plan, @user.plan
     assert_not_nil @user.plan_expired_at
   end
@@ -59,16 +59,16 @@ class OrderTest < ActiveSupport::TestCase
     assert @user.reload.plan_expired_at < time
   end
 
-  test "should not cancel after accepted" do
-    @order.accept
-    assert @order.accepted?
+  test "should not cancel after completed" do
+    @order.complete
+    assert @order.completed?
     @order.cancel
     assert !@order.canceled?
   end
 
-  test "should not paid after accepted" do
-    @order.accept
-    assert @order.accepted?
+  test "should not paid after completed" do
+    @order.complete
+    assert @order.completed?
     @order.pay
     assert !@order.paid?
   end
