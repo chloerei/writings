@@ -28,15 +28,18 @@ section
       td 5
       td.min
 
+  p = "当前套餐：#{t "plan.#{current_user.plan}"}（#{l current_user.plan_expired_at.to_date, :format => :long}到期）"
+
 section
   header
-    h3 有效订单
+    h3 订单
   - if @orders.any?
     table.nice-table
       tbody
         tr
           th 创建时间
-          th 内容
+          th 套餐
+          th 生效时间
           th 费用
           th 状态
         - @orders.each do |order|
@@ -44,9 +47,12 @@ section
             td = l order.created_at, :format => :long
             td
               = t "plan.#{order.plan}"
-              '
-              = " #{order.quantity} 个月"
+            td
+              - if order.paid? or order.accepted?
+                = l order.start_at.to_date, :format => :long
+                = ' - '
+                = l order.end_at.to_date, :format => :long
             td
               = "￥#{order.total_price}"
             td
-              | 查看
+              = t "order_state.#{order.state}"

@@ -37,12 +37,9 @@ class Order
 
   def accept
     if pendding? or paid?
-      start_at = user.plan_expired_at || Time.now.utc
       add_plan if pendding?
 
       update_attributes(
-        :start_at    => start_at,
-        :end_at      => start_at + quantity.months,
         :accepted_at => Time.now.utc,
         :state       => 'accepted'
       )
@@ -70,9 +67,17 @@ class Order
   end
 
   def add_plan
+    start_at = (user.plan_expired_at && user.plan_expired_at > Time.now.utc) ? user.plan_expired_at : Time.now.utc
+    end_at = start_at + quantity.months
+
+    update_attributes(
+      :start_at    => start_at,
+      :end_at      => end_at
+    )
+
     user.update_attributes(
       :plan => plan,
-      :plan_expired_at => (user.plan_expired_at || Time.now.utc) + quantity.months
+      :plan_expired_at => end_at
     )
   end
 

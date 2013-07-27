@@ -41,6 +41,8 @@ class OrderTest < ActiveSupport::TestCase
     @order.add_plan
     assert_equal @order.plan, @user.plan
     assert_not_nil @user.plan_expired_at
+    assert_not_nil @order.start_at
+    assert_not_nil @order.end_at
   end
 
   test "should remove_plan" do
