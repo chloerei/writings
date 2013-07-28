@@ -48,13 +48,15 @@ class OrdersController < ApplicationController
 
       case params[:trade_status]
       when 'TRADE_FINISHED'
+        need_mail = @order.pendding?
         @order.complete
+        SystemMailer.delay.order_payment_success(@order.id.to_s) if need_mail
       when 'TRADE_CLOSED'
         @order.cancel
       when 'WAIT_SELLER_SEND_GOODS'
         @order.pay
         @order.send_good
-        # send good
+        SystemMailer.delay.order_payment_success(@order.id.to_s)
       else
         # do nothing
       end

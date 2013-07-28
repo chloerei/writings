@@ -33,12 +33,12 @@ class OrdersControllerTest < ActionController::TestCase
 
     assert_difference "@user.orders.count" do
       post :create, :order => { :quantity => 6 }
-      assert_equal (-20), assigns(:order).discount
+      assert_equal (-10), assigns(:order).discount
     end
 
     assert_difference "@user.orders.count" do
       post :create, :order => { :quantity => 12 }
-      assert_equal (-40), assigns(:order).discount
+      assert_equal (-20), assigns(:order).discount
     end
 
     assert_no_difference "@user.orders.count" do

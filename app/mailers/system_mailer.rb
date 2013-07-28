@@ -14,4 +14,11 @@ class SystemMailer < ActionMailer::Base
     mail(:to => @import_task.user.email,
          :subject => I18n.t('import_task_success_email_subject'))
   end
+
+  def order_payment_success(order_id)
+    @order = Order.find order_id
+
+    mail(:to => @order.user.email,
+         :subject => I18n.t('order_payment_success_email_subject'))
+  end
 end
