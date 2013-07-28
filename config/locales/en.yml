@@ -36,6 +36,11 @@ en:
   plan:
     free: Free
     base: Base
+  order_state:
+    pendding: "Waiting Payment"
+    paid: "Paid"
+    canceled: "Canceled"
+    completed: "Completed"
   layouts:
     dashboard:
       topbar:

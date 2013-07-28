@@ -42,6 +42,11 @@ zh-CN:
   plan:
     free: "免费版"
     base: "基础版"
+  order_state:
+    pendding: "等待支付"
+    paid: "已支付"
+    canceled: "取消"
+    completed: "完成"
 
   layouts:
     dashboard:
