@@ -56,7 +56,7 @@ zh-CN:
         signup: "注册"
         login: "登录"
         account: "账户"
-        upgrade: "升级"
+        billing: "付费"
         logout: "登出"
         new_workspace: "创建空间"
         twitter: "Twitter"
@@ -96,7 +96,7 @@ zh-CN:
       confirm_change: "确认修改"
   billings:
     show:
-      billing: "计费"
+      billing: "付费"
       renew: "续费"
       plan: "套餐"
       price: "价格"
@@ -110,7 +110,7 @@ zh-CN:
 
   orders:
     index:
-      billing: "计费"
+      billing: "付费"
       orders: "订单"
     orders:
       created_at: "创建时间"
@@ -120,7 +120,7 @@ zh-CN:
       range: "有效时间"
       no_orders: "没有订单"
     new:
-      billing: "计费"
+      billing: "付费"
       new_order: "新订单"
       order: "订单"
       10_per_1_month: "10元 / 月"
@@ -128,7 +128,7 @@ zh-CN:
       100_per_1_year: "100元 / 年"
       alipay_payment: "支付宝支付"
     show:
-      billing: "计费"
+      billing: "付费"
       orders: "订单"
       order_id: "订单 ID"
       created_at: "创建时间"
@@ -163,7 +163,7 @@ zh-CN:
 
       settings_sidebar:
         account_settings: "账户设置"
-        billing: "计费"
+        billing: "付费"
 
       image_uploader_modal:
         insert_image: "插入图片"

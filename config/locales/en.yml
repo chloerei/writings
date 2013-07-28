@@ -37,10 +37,10 @@ en:
     free: Free
     base: Base
   order_state:
-    pendding: "Waiting Payment"
-    paid: "Paid"
-    canceled: "Canceled"
-    completed: "Completed"
+    pendding: Waiting Payment
+    paid: Paid
+    canceled: Canceled
+    completed: Completed
   layouts:
     dashboard:
       topbar:
@@ -49,7 +49,7 @@ en:
         signup: Signup
         login: Login
         account: Account
-        upgrade: Upgrade
+        billing: Billing
         logout: Logout
         new_workspace: New Workspace
         twitter: Twitter
