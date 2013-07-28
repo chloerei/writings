@@ -1,0 +1,9 @@
+Order <%= @order.id %> Canceled.
+
+Order Content: <%= I18n.t "plan.#{@order.plan}" %> <%= @order.quantity %> month(s).
+
+Visit this link to show detail:
+
+<%= order_url(@order, :host => APP_CONFIG['host'], :protocol => 'https') %>
+
+Please don't reply this email.

@@ -53,6 +53,7 @@ class OrdersController < ApplicationController
         SystemMailer.delay.order_payment_success(@order.id.to_s) if need_mail
       when 'TRADE_CLOSED'
         @order.cancel
+        SystemMailer.delay.order_cancel(@order.id.to_s)
       when 'WAIT_SELLER_SEND_GOODS'
         @order.pay
         @order.send_good
