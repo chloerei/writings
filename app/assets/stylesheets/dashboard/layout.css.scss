@@ -30,7 +30,7 @@ table.nice-table {
   th, td {
     padding: 15px;
 
-    &:last-child {
+    &.align-right {
       text-align: right;
     }
   }

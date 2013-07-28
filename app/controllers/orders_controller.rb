@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   layout 'dashboard'
 
   def index
-    @orders = current_user.orders.where(:state.ne => 'pendding').desc(:created_at)
+    @orders = current_user.orders.showable.desc(:created_at)
   end
 
   def new
@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = current_user.orders.find params[:id]
+    @order = current_user.orders.showable.find params[:id]
   end
 
   def alipay_notify

@@ -13,15 +13,34 @@
     = @order.id
 
 section
-  - case @order.state
-  - when 'pendding'
-    | waiting for payment
-    p
-      a.button.button-green href=(@order.pay_url)
-        | Payment
-  - when 'paid'
-    | paid
-  - when 'cancel'
-    | cancel
-  - when 'accept'
-    | accept
+  table.nice-table
+    tbody
+      tr
+        td 订单号
+        td = @order.id
+      tr
+        td 创建时间
+        td = l @order.created_at, :format => :long
+      tr
+        td 套餐
+        td = t ("plan.#{@order.plan}")
+      tr
+        td 数量
+        td = @order.quantity
+      tr
+        td 费用
+        td = @order.total_price
+      tr
+        td 状态
+        td = t "order_state.#{@order.state}"
+      tr
+        td 生效时间
+        td
+          - if @order.paid? or @order.completed?
+            = l @order.start_at.to_date, :format => :long
+            = ' - '
+            = l @order.end_at.to_date, :format => :long
+  p
+    | 对订单有疑问，请联系
+    '
+    = mail_to 'chloerei@gmail.com', 'chloerei@gmail.com', :subject => "订单 #{@order.id}"

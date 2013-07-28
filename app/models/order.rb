@@ -18,6 +18,8 @@ class Order
 
   belongs_to :user
 
+  scope :showable, where(:state.ne => 'pendding')
+
   index({ :user_id => 1 })
 
   validates_presence_of :plan, :quantity, :price

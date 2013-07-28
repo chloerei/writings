@@ -43,23 +43,23 @@ section
         tr
           th 创建时间
           th 套餐
-          th 生效时间
           th 费用
           th 状态
+          th 生效时间
         - @orders.each do |order|
           tr
             td = link_to l(order.created_at, :format => :long), order_path(order)
             td
               = t "plan.#{order.plan}"
             td
+              = "￥#{order.total_price}"
+            td
+              = t "order_state.#{order.state}"
+            td
               - if order.paid? or order.completed?
                 = l order.start_at.to_date, :format => :long
                 = ' - '
                 = l order.end_at.to_date, :format => :long
-            td
-              = "￥#{order.total_price}"
-            td
-              = t "order_state.#{order.state}"
     p
       a href=(orders_path)
         i.icon-double-angle-right.no-margin
