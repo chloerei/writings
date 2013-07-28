@@ -3,6 +3,7 @@ class SystemMailer < ActionMailer::Base
 
   def export_task_success(export_task_id)
     @export_task = ExportTask.find export_task_id
+    I18n.locale = @export_task.user.locale
 
     mail(:to => @export_task.user.email,
          :subject => I18n.t('export_task_success_email_subject'))
@@ -10,6 +11,7 @@ class SystemMailer < ActionMailer::Base
 
   def import_task_success(export_task_id)
     @import_task = ImportTask.find export_task_id
+    I18n.locale = @import_task.user.locale
 
     mail(:to => @import_task.user.email,
          :subject => I18n.t('import_task_success_email_subject'))
@@ -17,6 +19,7 @@ class SystemMailer < ActionMailer::Base
 
   def order_payment_success(order_id)
     @order = Order.find order_id
+    I18n.locale = @order.user.locale
 
     mail(:to => @order.user.email,
          :subject => I18n.t('order_payment_success_email_subject'))
@@ -24,6 +27,7 @@ class SystemMailer < ActionMailer::Base
 
   def order_cancel(order_id)
     @order = Order.find order_id
+    I18n.locale = @order.user.locale
 
     mail(:to => @order.user.email,
          :subject => I18n.t('order_cancel_email_subject'))

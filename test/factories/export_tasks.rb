@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :export_task do
+    space
+    user
   end
 end
