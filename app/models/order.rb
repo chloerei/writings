@@ -13,7 +13,6 @@ class Order
   field :canceled_at, :type => DateTime
   field :paid_at, :type => DateTime
   field :start_at, :type => DateTime
-  field :end_at, :type => DateTime
   field :trade_no
 
   belongs_to :user
@@ -27,6 +26,10 @@ class Order
 
   def total_price
     price * quantity + discount
+  end
+
+  def end_at
+    start_at + quantity.months
   end
 
   STATE.each do |state|
@@ -68,16 +71,14 @@ class Order
 
   def add_plan
     start_at = (user.plan_expired_at && user.plan_expired_at > Time.now.utc) ? user.plan_expired_at : Time.now.utc
-    end_at = start_at + quantity.months
 
     update_attributes(
-      :start_at    => start_at,
-      :end_at      => end_at
+      :start_at    => start_at
     )
 
     user.update_attributes(
       :plan => plan,
-      :plan_expired_at => end_at
+      :plan_expired_at => start_at + quantity.months
     )
   end
 
@@ -85,6 +86,9 @@ class Order
     user.update_attributes(
       :plan_expired_at => user.plan_expired_at - quantity.months
     )
+    user.orders.where(:start_at.gt => start_at).each do |order|
+      order.update_attribute :start_at, order.start_at - quantity.months
+    end
   end
 
   def pay_url
