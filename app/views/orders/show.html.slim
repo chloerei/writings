@@ -30,7 +30,7 @@ section
         td = @order.quantity
       tr
         td = t '.total_price'
-        td = @order.total_price
+        td = t '.price', :price => @order.total_price
       tr
         td = t '.state'
         td = t "order_state.#{@order.state}"

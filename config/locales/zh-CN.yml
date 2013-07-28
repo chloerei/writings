@@ -135,6 +135,7 @@ zh-CN:
       plan: "套餐"
       quantity: "数量"
       total_price: "费用"
+      price: "%{price} 元"
       state: "订单状态"
       range: "有效时间"
       order_question_contact: "对订单有疑问，请联系："

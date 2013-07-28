@@ -110,6 +110,7 @@ en:
       created_at: Created
       plan: Plan
       total_price: Total Price
+      price: "%{price} RMB"
       state: State
       range: Range
       no_orders: No Orders
