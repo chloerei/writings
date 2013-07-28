@@ -457,3 +457,41 @@ $topbarLinkHoverBackgroundColor: white;
     }
   }
 }
+
+.flash-message {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  @include clearfix();
+
+  .flash-close {
+    cursor: pointer;
+    float: right;
+  }
+
+  &.flash-success {
+    background-color: lighten($green, 5%);
+    border-color: $green;
+    color: #fff;
+  }
+
+  &.flash-info {
+    background-color: lighten($blue, 5%);
+    border-color: $blue;
+    color: #fff;
+  }
+
+  &.flash-warning {
+    background-color: lighten($yellow, 5%);
+    border-color: $yellow;
+    color: #fff;
+  }
+
+  &.flash-error {
+    background-color: lighten($red, 5%);
+    border-color: $red;
+    color: #fff;
+  }
+}

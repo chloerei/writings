@@ -29,7 +29,16 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = current_user.orders.showable.find params[:id]
+    @order = current_user.orders.find params[:id]
+
+    callback_params = params.except(*request.path_parameters.keys)
+    if callback_params.any? && Alipay::Sign.verify?(callback_params)
+      if @order.paid? || @order.completed?
+        flash.now[:success] = I18n.t('order_paid_message')
+      elsif @order.pendding?
+        flash.now[:info] = I18n.t('order_pendding_message')
+      end
+    end
   end
 
   def alipay_notify

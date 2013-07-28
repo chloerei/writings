@@ -29,6 +29,9 @@ zh-CN:
   export_task_success_email_subject: "导出完成"
   import_task_success_email_subject: "导入解析完成"
 
+  order_paid_message: "订单支付成功，祝您写作愉快！"
+  order_pendding_message: "订单处理中，请稍后；处理完成后，系统会发送一封通知邮件。"
+
   older: "过往"
   newer: "较新"
   next_page: "下一页"
