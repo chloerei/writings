@@ -5,6 +5,8 @@
 
 .main-header
   h2
+    = link_to t('.billing'), billing_path
+    = ' / '
     = t '.orders'
 
 section
@@ -31,3 +33,5 @@ section
               = "￥#{order.total_price}"
             td
               = t "order_state.#{order.state}"
+  - else
+    | 没有订单
