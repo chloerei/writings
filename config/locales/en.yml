@@ -22,8 +22,10 @@ en:
   urlname_valid_message: Allow character, number and '-'
   page_not_found: Page not Found
   server_error: Server Error
-  export_task_success_email_subject: Export Success
-  import_task_success_email_subject: Import parse success
+  export_task_success_email_subject: Writings.io - Export Success
+  import_task_success_email_subject: Writings.io - Import parse success
+  order_payment_success_email_subject: Writings.io - Order Payment Success
+  order_cancel_email_subject: Writings.io - Order Canceled
   order_paid_message: Payment success, happy writings!
   order_pendding_message: Payment is processing, you will receive a email when it's
     done.
@@ -110,10 +112,10 @@ en:
       created_at: Created
       plan: Plan
       total_price: Total Price
-      price: "%{price} RMB"
       state: State
       range: Range
       no_orders: No Orders
+      price: '%{price} RMB'
     new:
       billing: Billing
       new_order: New Order
@@ -130,6 +132,7 @@ en:
       plan: Plan
       quantity: Quantity
       total_price: Total Price
+      price: '%{price} 元'
       state: Order State
       range: Range
       order_question_contact: 'If you have question about this order, please contact: '

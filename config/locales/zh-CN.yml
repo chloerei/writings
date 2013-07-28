@@ -26,9 +26,10 @@ zh-CN:
   page_not_found: "找不到该页面"
   server_error: "服务器错误"
 
-  export_task_success_email_subject: "导出完成"
-  import_task_success_email_subject: "导入解析完成"
-  order_payment_success_email_subject: "订单支付完成"
+  export_task_success_email_subject: "Writings.io - 导出完成"
+  import_task_success_email_subject: "Writings.io - 导入解析完成"
+  order_payment_success_email_subject: "Writings.io - 订单支付完成"
+  order_cancel_email_subject: "Writings.io - 订单被取消"
 
   order_paid_message: "订单支付成功，祝您写作愉快！"
   order_pendding_message: "订单处理中，请稍后；处理完成后，系统会发送一封通知邮件。"
