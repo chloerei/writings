@@ -1,10 +1,13 @@
-- append_title t('.renew')
+- append_title t('.new_order')
 
 - content_for :sidebar do
   = render 'dashboard/share/settings_sidebar'
 
 .main-header
-  h2 = t '.new_order'
+  h2
+    = link_to t('.billing'), billing_path
+    = ' / '
+    = t '.new_order'
 
 section
   = form_for @order do |f|
@@ -15,12 +18,12 @@ section
       = f.label :quantity
       label
         = f.radio_button :quantity, 1, :checked => true
-        = t '20_per_1_month'
+        = t '.10_per_1_month'
       label
         = f.radio_button :quantity, 6
-        = t '100_per_6_month'
+        = t '.50_per_6_month'
       label
         = f.radio_button :quantity, 12
-        = t '180_per_1_year'
+        = t '.100_per_1_year'
     .field
-      = f.submit 'payment', :class => 'button-green'
+      = f.submit t('.alipay_payment'), :class => 'button-green'

@@ -12,13 +12,13 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_user.orders.new order_param.merge(:plan => :base, :price => 20)
+    @order = current_user.orders.new order_param.merge(:plan => :base, :price => 10)
 
     case @order.quantity
     when 6
-      @order.discount = -20
+      @order.discount = -10
     when 12
-      @order.discount = -40
+      @order.discount = -20
     end
 
     if [1, 6, 12].include?(@order.quantity) && @order.save

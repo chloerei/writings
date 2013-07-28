@@ -1,0 +1,26 @@
+- if @orders.any?
+  table.nice-table
+    tbody
+      tr
+        th = t '.created_at'
+        th = t '.plan'
+        th = t '.total_price'
+        th = t '.state'
+        th = t '.range'
+      - @orders.each do |order|
+        tr
+          td = link_to l(order.created_at, :format => :long), order_path(order)
+          td
+            = t "plan.#{order.plan}"
+          td
+            = "￥#{order.total_price}"
+          td
+            = t "order_state.#{order.state}"
+          td
+            - if order.paid? or order.completed?
+              = l order.start_at.to_date, :format => :long
+              = ' - '
+              = l order.end_at.to_date, :format => :long
+- else
+  .empty-message
+    = t '.no_orders'
