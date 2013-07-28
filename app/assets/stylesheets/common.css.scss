@@ -42,6 +42,10 @@ p {
   margin: 10px 0;
 }
 
+ul, ol {
+  padding-left: 2em;
+}
+
 a {
   color: $linkColor;
   text-decoration: none;

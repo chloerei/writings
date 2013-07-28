@@ -111,6 +111,7 @@ en:
     new:
       billing: Billing
       new_order: New Order
+      order: Order
       10_per_1_month: 10 RMB / month
       50_per_6_month: 50 RMB / 6 months
       100_per_1_year: 100 RMB / year

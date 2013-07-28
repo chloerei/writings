@@ -117,6 +117,7 @@ zh-CN:
     new:
       billing: "计费"
       new_order: "新订单"
+      order: "订单"
       10_per_1_month: "10元 / 月"
       50_per_6_month: "50元 / 6个月"
       100_per_1_year: "100元 / 年"
