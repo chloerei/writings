@@ -98,7 +98,7 @@ class Order
       :price             => price,
       :quantity          => quantity,
       :discount          => discount,
-      :subject           => "#{APP_CONFIG['host']} #{plan}",
+      :subject           => "#{APP_CONFIG['site_name']} #{I18n.t "plan.#{plan}"} x #{quantity}",
       :logistics_type    => 'DIRECT',
       :logistics_fee     => '0',
       :logistics_payment => 'SELLER_PAY',
