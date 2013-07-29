@@ -53,4 +53,4 @@ When writing a post, there are 3 options you can add to the header.
 ### The end
 
 Like it? [Tell me](http://twitter.com/muanchiou).<br/>
-Question? [Use GitHub Issues](https://github.com/muan/scribble).
+Question? [Use GitHub Issues](https://github.com/muan/scribble/issues).
