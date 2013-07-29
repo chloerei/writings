@@ -16,6 +16,7 @@ class Order
   field :trade_no
 
   belongs_to :user
+  has_many :alipay_notifies
 
   scope :showable, where(:state.ne => 'pendding')
 

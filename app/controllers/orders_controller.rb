@@ -42,7 +42,8 @@ class OrdersController < ApplicationController
   end
 
   def alipay_notify
-    if Alipay::Sign.verify?(params.except(:controller, :action, :host)) && Alipay::Notify.verify?(params)
+    notify_params = params.except(:controller, :action, :host)
+    if Alipay::Sign.verify?(notify_params) && Alipay::Notify.verify?(notify_params)
       @order = Order.find params[:out_trade_no]
       @order.trade_no ||= params[:trade_no]
 
@@ -62,8 +63,19 @@ class OrdersController < ApplicationController
         # do nothing
       end
 
+      AlipayNotify.create(
+        :verify => true,
+        :order  => @order,
+        :params => notify_params
+      )
+
       render :text => 'success'
     else
+      AlipayNotify.create(
+        :verify => false,
+        :params => notify_params
+      )
+
       render :text => 'error'
     end
   end

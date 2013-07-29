@@ -104,6 +104,33 @@ class OrdersControllerTest < ActionController::TestCase
     assert_equal message[:trade_no], order.trade_no
   end
 
+  test "should save unverify alipay notify" do
+    assert_difference "AlipayNotify.count" do
+      post :alipay_notify, { :name => 'value'}
+    end
+    assert !AlipayNotify.last.verify?
+    assert_not_nil AlipayNotify.last.params
+  end
+
+  test "should save verify alipay notify" do
+    fake_service
+    order = create :order
+    logout
+
+    message = {
+      :out_trade_no => order.id.to_s,
+      :trade_status => 'WAIT_SELLER_SEND_GOODS',
+      :trade_no     => '123456'
+    }
+
+    assert_difference "AlipayNotify.count" do
+      post :alipay_notify, message.merge(:sign_type => 'MD5', :sign => Alipay::Sign.generate(message))
+    end
+    assert AlipayNotify.last.verify?
+    assert_equal order, AlipayNotify.last.order
+    assert_not_nil AlipayNotify.last.params
+  end
+
   def fake_service
     FakeWeb.register_uri(
       :get,
