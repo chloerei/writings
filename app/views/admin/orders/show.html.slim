@@ -6,6 +6,9 @@ table.nice-table
       tr
         td = key
         td = value
+    tr
+      td 用户
+      td = link_to @order.user.name, admin_user_path(:id => @order.user.name)
 
 h3 支付宝通知
 table.nice-table
