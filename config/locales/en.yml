@@ -428,7 +428,7 @@ en:
         email: Email
         locale: Locale
         password: Password
-        password_confirmation: Password Confirmation
+        password_confirmation: Password
         current_password: Current Password
         name: User name
       order:

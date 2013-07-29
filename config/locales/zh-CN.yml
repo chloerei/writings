@@ -417,7 +417,7 @@ zh-CN:
         email: "邮箱"
         locale: "语言"
         password: "密码"
-        password_confirmation: "密码确认"
+        password_confirmation: "密码"
         current_password: "当前密码"
       order:
         plan: "套餐"

@@ -11,8 +11,3 @@ window.ClientSideValidations.formBuilders =
 
     remove: (element, settings) ->
       element.closest(".field").removeClass("field-error").find("label.message").remove()
-
-window.ClientSideValidations.validators.local["confirmation"] = (element, options) ->
-  confirm = jQuery("##{element.attr('id')}_confirmation").val()
-  if confirm isnt '' and element.val() isnt confirm
-    return options.message
