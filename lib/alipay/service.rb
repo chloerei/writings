@@ -2,8 +2,9 @@ module Alipay
   module Service
     GATEWAY_URL = 'https://mapi.alipay.com/gateway.do'
 
-    DUAL_FUN_PAYMENT_REQUIRED_OPTIONS = %w( service partner _input_charset out_trade_no subject payment_type logistics_type logistics_fee logistics_payment seller_email price quantity )
-    def self.dual_fun_payment_url(options = {})
+    TRADE_CREATE_BY_BUYER_REQUIRED_OPTIONS = %w( service partner _input_charset out_trade_no subject payment_type logistics_type logistics_fee logistics_payment seller_email price quantity )
+    # alipaydualfun
+    def self.trade_create_by_buyer_url(options = {})
       options = {
         :service        => 'trade_create_by_buyer',
         :_input_charset => 'utf-8',
@@ -12,7 +13,7 @@ module Alipay
         :payment_type   => '1'
       }.merge(options.symbolize_keys)
 
-      check_required_options(options, DUAL_FUN_PAYMENT_REQUIRED_OPTIONS)
+      check_required_options(options, TRADE_CREATE_BY_BUYER_REQUIRED_OPTIONS)
 
       "#{GATEWAY_URL}?#{query_string(options)}"
     end

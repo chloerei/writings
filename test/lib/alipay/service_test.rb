@@ -11,7 +11,7 @@ class Alipay::ServiceTest < ActiveSupport::TestCase
       :price             => '0.01',
       :quantity          => 1
     }
-    assert_not_nil Alipay::Service.dual_fun_payment_url(options)
+    assert_not_nil Alipay::Service.trade_create_by_buyer_url(options)
   end
 
   test "should send_goods_confirm_by_platform" do
