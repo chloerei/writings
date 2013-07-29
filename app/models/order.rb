@@ -93,7 +93,7 @@ class Order
   end
 
   def pay_url
-    Alipay::Service.trade_create_by_buyer_url(
+    Alipay::Service.create_partner_trade_by_buyer_url(
       :out_trade_no      => id.to_s,
       :price             => price,
       :quantity          => quantity,

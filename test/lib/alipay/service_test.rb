@@ -1,7 +1,20 @@
 require 'test_helper'
 
 class Alipay::ServiceTest < ActiveSupport::TestCase
-  test "should generate duan_fun payment url" do
+  test "should generate create_partner_trade_by_buyer url" do
+    options = {
+      :out_trade_no      => '1',
+      :subject           => 'test',
+      :logistics_type    => 'POST',
+      :logistics_fee     => '0',
+      :logistics_payment => 'SELLER_PAY',
+      :price             => '0.01',
+      :quantity          => 1
+    }
+    assert_not_nil Alipay::Service.create_partner_trade_by_buyer_url(options)
+  end
+
+  test "should generate trade_create_by_buyer url" do
     options = {
       :out_trade_no      => '1',
       :subject           => 'test',
