@@ -102,7 +102,11 @@ class Order
       :logistics_fee     => '0',
       :logistics_payment => 'SELLER_PAY',
       :return_url        => Rails.application.routes.url_helpers.order_url(self),
-      :notify_url        => Rails.application.routes.url_helpers.alipay_notify_orders_url
+      :notify_url        => Rails.application.routes.url_helpers.alipay_notify_orders_url,
+      :receive_name      => 'none',
+      :receive_address   => 'none',
+      :receive_zip       => '100000',
+      :receive_mobile    => '100000000000'
     )
   end
 
