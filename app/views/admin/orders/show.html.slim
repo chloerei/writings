@@ -1,0 +1,24 @@
+- append_title "订单 #{@order.id}"
+
+table.nice-table
+  tbody
+    - @order.attributes.each do |key, value|
+      tr
+        td = key
+        td = value
+    tr
+      td 用户
+      td = link_to @order.user.name, admin_user_path(:id => @order.user.name)
+
+h3 支付宝通知
+table.nice-table
+  tbody
+    tr
+      th ID
+      th 创建时间
+      th 状态
+    - @order.alipay_notifies.asc(:created_at).each do |alipay_notify|
+      tr
+        td = link_to alipay_notify.id, admin_alipay_notify_path(alipay_notify)
+        td = l alipay_notify.created_at, :format => :long
+        td = alipay_notify.params['trade_status']

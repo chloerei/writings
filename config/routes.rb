@@ -30,6 +30,16 @@ Publish::Application.routes.draw do
 
     resource :account, :only => [:show, :update, :destroy]
     resource :billing, :only => [:show]
+    resources :invoices, :only => [:index, :new, :create, :show, :destroy] do
+      collection do
+        post :alipay_notify
+      end
+    end
+    resources :orders, :only => [:index, :new, :create, :show, :destroy] do
+      collection do
+        post :alipay_notify
+      end
+    end
 
     resources :workspaces, :only => [:new, :create]
 
@@ -93,11 +103,8 @@ Publish::Application.routes.draw do
         resources :users, :only => [:index, :show]
         resources :workspaces, :only => [:index, :show]
         resources :attachments, :only => [:index]
-        resources :invoices, :only => [:index, :show, :new, :create, :destroy] do
-          member do
-            put :approve
-          end
-        end
+        resources :orders, :only => [:index, :show]
+        resources :alipay_notifies, :only => [:index, :show]
       end
 
       mount Sidekiq::Web => '/sidekiq'

@@ -1,0 +1,7 @@
+Order <%= @order.id %> Payment Success.
+
+Order Content: <%= I18n.t "plan.#{@order.plan}" %> <%= @order.quantity %> month(s).
+
+Visit this link to show detail:
+
+<%= order_url(@order, :host => APP_CONFIG['host'], :protocol => 'https') %>

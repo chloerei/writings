@@ -3,6 +3,6 @@ class BillingsController < ApplicationController
   layout 'dashboard'
 
   def show
-    @invoices = current_user.invoices.desc(:created_at)
+    @orders = current_user.orders.where(:state.ne => 'pendding').desc(:created_at).limit(5)
   end
 end

@@ -12,7 +12,6 @@ class Space
   has_many :categories, :dependent => :delete
   has_many :articles, :dependent => :delete
   has_many :attachments, :dependent => :destroy
-  has_many :invoices, :dependent => :delete
   has_many :export_tasks, :dependent => :destroy
   has_many :import_tasks, :dependent => :destroy
 

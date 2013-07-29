@@ -26,9 +26,12 @@ html
         a.topbar-button href=(admin_users_path) class=('actived' if controller_name == 'users')
           i.icon-user
           = '用户'
-        a.topbar-button href=(admin_invoices_path) class=(controller_name == 'invoices' ? 'actived' : nil)
+        a.topbar-button href=(admin_orders_path) class=(controller_name == 'orders' ? 'actived' : nil)
           i.icon-money
-          = '账单'
+          = '订单'
+        a.topbar-button href=(admin_alipay_notifies_path) class=(controller_name == 'alipay_notifies' ? 'actived' : nil)
+          i.icon-info
+          = '支付宝通知'
     #main
       .container
         .inner

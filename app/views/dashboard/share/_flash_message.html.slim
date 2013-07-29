@@ -1,0 +1,20 @@
+- if flash[:success]
+  .flash-message.flash-success
+    = flash[:success]
+    .flash-close
+      i.icon-remove
+- if flash[:info]
+  .flash-message.flash-info
+    = flash[:info]
+    .flash-close
+      i.icon-remove
+- if flash[:warning]
+  .flash-message.flash-warning
+    = flash[:warning]
+    .flash-close
+      i.icon-remove
+- if flash[:error]
+  .flash-message.flash-error
+    = flash[:error]
+    .flash-close
+      i.icon-remove

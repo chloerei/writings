@@ -22,8 +22,13 @@ en:
   urlname_valid_message: Allow character, number and '-'
   page_not_found: Page not Found
   server_error: Server Error
-  export_task_success_email_subject: Export Success
-  import_task_success_email_subject: Import parse success
+  export_task_success_email_subject: Writings.io - Export Success
+  import_task_success_email_subject: Writings.io - Import parse success
+  order_payment_success_email_subject: Writings.io - Order Payment Success
+  order_cancel_email_subject: Writings.io - Order Canceled
+  order_paid_message: Payment success, happy writings!
+  order_pendding_message: Payment is processing, you will receive a email when it's
+    done.
   older: Older
   newer: Newer
   next_page: Next Page
@@ -33,6 +38,11 @@ en:
   plan:
     free: Free
     base: Base
+  order_state:
+    pendding: Waiting Payment
+    paid: Paid
+    canceled: Canceled
+    completed: Completed
   layouts:
     dashboard:
       topbar:
@@ -41,7 +51,7 @@ en:
         signup: Signup
         login: Login
         account: Account
-        upgrade: Upgrade
+        billing: Billing
         logout: Logout
         new_workspace: New Workspace
         twitter: Twitter
@@ -50,9 +60,9 @@ en:
         help: Help
         features: Features
       footer:
-        about: 'About'
-        blog: 'Blog'
-        help: 'Help'
+        about: About
+        blog: Blog
+        help: Help
     error:
       feedback: Feedback
   workspaces:
@@ -83,7 +93,50 @@ en:
       account_setting: Account setting
   billings:
     show:
-      upgrade: Upgrade
+      billing: Billing
+      renew: Renew
+      plan: Plan
+      price: Price
+      storage: Storage
+      history: History
+      10_per_1_month: 10 RMB / month
+      current_plan: 'Current plan: '
+      expired: ' Expired'
+      orders: Orders
+      view_all: View all
+  orders:
+    index:
+      billing: Billing
+      orders: Orders
+    orders:
+      created_at: Created
+      plan: Plan
+      total_price: Total Price
+      state: State
+      range: Range
+      no_orders: No Orders
+      price: '%{price} RMB'
+    new:
+      billing: Billing
+      new_order: New Order
+      order: Order
+      10_per_1_month: 10 RMB / month
+      50_per_6_month: 50 RMB / 6 months
+      100_per_1_year: 100 RMB / year
+      alipay_payment: Alipay Payment
+    show:
+      billing: Billing
+      orders: Orders
+      order_id: Order ID
+      created_at: Created
+      plan: Plan
+      quantity: Quantity
+      total_price: Total Price
+      price: '%{price} 元'
+      state: Order State
+      range: Range
+      order_question_contact: 'If you have question about this order, please contact: '
+      order: Order
   profiles:
     show:
       profile_setting: Profile Setting
@@ -106,6 +159,7 @@ en:
           will mark as uncategorized.
       settings_sidebar:
         account_settings: Account Settings
+        billing: Billing
         upgrade: Upgrade
       image_uploader_modal:
         insert_image: Insert Image
@@ -174,7 +228,8 @@ en:
         invite_members: Invite Members
         members: Members
         current_members: Current Members
-        contact_workspace_creator_to_invite_members: Contact workspace creator to invite members
+        contact_workspace_creator_to_invite_members: Contact workspace creator to
+          invite members
       form:
         send_invitation: Send invitation
         up_to_members_limit: Up to members limit
@@ -343,7 +398,8 @@ en:
         draft: Draft
         new_article: New Article
         delete_category: Delete Category
-        delete_category_confirm: Delete category %{name}? All articles in this category will mark not collected.
+        delete_category_confirm: Delete category %{name}? All articles in this category
+          will mark not collected.
       tabs:
         index: Index
         publish: Publish
@@ -375,6 +431,9 @@ en:
         password_confirmation: Password Confirmation
         current_password: Current Password
         name: User name
+      order:
+        plan: Plan
+        quantity: Quantity
       workspace:
         gravatar_email: Gravatar Email
         name: Name

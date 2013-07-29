@@ -1,0 +1,7 @@
+订单 <%= @order.id %> 支付已完成。
+
+订单内容：<%= I18n.t "plan.#{@order.plan}" %> <%= @order.quantity %> 个月。
+
+访问以下链接查看详情：
+
+<%= order_url(@order, :host => APP_CONFIG['host'], :protocol => 'https') %>

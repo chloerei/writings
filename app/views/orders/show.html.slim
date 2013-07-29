@@ -1,0 +1,46 @@
+- append_title t('.orders')
+- append_title @order.id
+
+- content_for :sidebar do
+  = render 'dashboard/share/settings_sidebar'
+
+.main-header
+  h2
+    = link_to t('.billing'), billing_path
+    = ' / '
+    = link_to t('.orders'), orders_path
+    = ' / '
+    = @order.id
+
+section
+  = render 'dashboard/share/flash_message'
+  table.nice-table
+    tbody
+      tr
+        td = t '.order_id'
+        td = @order.id
+      tr
+        td = t '.created_at'
+        td = l @order.created_at, :format => :long
+      tr
+        td = t '.plan'
+        td = t ("plan.#{@order.plan}")
+      tr
+        td = t '.quantity'
+        td = @order.quantity
+      tr
+        td = t '.total_price'
+        td = t '.price', :price => @order.total_price
+      tr
+        td = t '.state'
+        td = t "order_state.#{@order.state}"
+      tr
+        td = t '.range'
+        td
+          - if @order.paid? or @order.completed?
+            = l @order.start_at.to_date, :format => :long
+            = ' - '
+            = l @order.end_at.to_date, :format => :long
+  p
+    = t '.order_question_contact'
+    = mail_to 'chloerei@gmail.com', 'chloerei@gmail.com', :subject => "#{t '.order'} #{@order.id}"

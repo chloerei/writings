@@ -26,8 +26,13 @@ zh-CN:
   page_not_found: "找不到该页面"
   server_error: "服务器错误"
 
-  export_task_success_email_subject: "导出完成"
-  import_task_success_email_subject: "导入解析完成"
+  export_task_success_email_subject: "Writings.io - 导出完成"
+  import_task_success_email_subject: "Writings.io - 导入解析完成"
+  order_payment_success_email_subject: "Writings.io - 订单支付完成"
+  order_cancel_email_subject: "Writings.io - 订单被取消"
+
+  order_paid_message: "订单支付成功，祝您写作愉快！"
+  order_pendding_message: "订单处理中，请稍后；处理完成后，系统会发送一封通知邮件。"
 
   older: "过往"
   newer: "较新"
@@ -39,6 +44,11 @@ zh-CN:
   plan:
     free: "免费版"
     base: "基础版"
+  order_state:
+    pendding: "等待支付"
+    paid: "已支付"
+    canceled: "取消"
+    completed: "完成"
 
   layouts:
     dashboard:
@@ -48,7 +58,7 @@ zh-CN:
         signup: "注册"
         login: "登录"
         account: "账户"
-        upgrade: "升级"
+        billing: "付费"
         logout: "登出"
         new_workspace: "创建空间"
         twitter: "Twitter"
@@ -88,7 +98,50 @@ zh-CN:
       confirm_change: "确认修改"
   billings:
     show:
-      upgrade: "升级"
+      billing: "付费"
+      renew: "续费"
+      plan: "套餐"
+      price: "价格"
+      storage: "储存空间"
+      history: "历史记录"
+      10_per_1_month: "10元 / 月"
+      current_plan: "当前套餐："
+      expired: "到期"
+      orders: "订单"
+      view_all: "查看全部"
+
+  orders:
+    index:
+      billing: "付费"
+      orders: "订单"
+    orders:
+      created_at: "创建时间"
+      plan: "套餐"
+      total_price: "费用"
+      state: "状态"
+      range: "有效时间"
+      no_orders: "没有订单"
+    new:
+      billing: "付费"
+      new_order: "新订单"
+      order: "订单"
+      10_per_1_month: "10元 / 月"
+      50_per_6_month: "50元 / 6个月"
+      100_per_1_year: "100元 / 年"
+      alipay_payment: "支付宝支付"
+    show:
+      billing: "付费"
+      orders: "订单"
+      order_id: "订单 ID"
+      created_at: "创建时间"
+      plan: "套餐"
+      quantity: "数量"
+      total_price: "费用"
+      price: "%{price} 元"
+      state: "订单状态"
+      range: "有效时间"
+      order_question_contact: "对订单有疑问，请联系："
+      order: "订单"
 
   profiles:
     show:
@@ -113,7 +166,7 @@ zh-CN:
 
       settings_sidebar:
         account_settings: "账户设置"
-        upgrade: "升级"
+        billing: "付费"
 
       image_uploader_modal:
         insert_image: "插入图片"
@@ -366,6 +419,9 @@ zh-CN:
         password: "密码"
         password_confirmation: "密码确认"
         current_password: "当前密码"
+      order:
+        plan: "套餐"
+        quantity: "数量"
       workspace:
         gravatar_email: "Gravatar Email"
       profile:

@@ -1,10 +1,46 @@
-- append_title t('.upgrade')
+- append_title t('.billing')
 
 - content_for :sidebar do
   = render 'dashboard/share/settings_sidebar'
 
 .main-header
-  h2 = t '.upgrade'
+  h2 = t '.billing'
 
 section
-  = render :partial => 'plan_content'
+  table.nice-table
+    tr
+      th = t '.plan'
+      th = t '.price'
+      th = t '.storage'
+      th = t '.history'
+      th.min
+    tr
+      td = t 'plan.base'
+      td = t '.10_per_1_month'
+      td 1GB
+      td 50
+      td.min
+        = link_to t('.renew'), new_order_path, :class => 'button button-green no-margin'
+    tr
+      td = t 'plan.free'
+      td -
+      td 10MB
+      td 5
+      td.min
+
+  p
+    = t '.current_plan'
+    = t "plan.#{current_user.plan}"
+    - if current_user.plan_expired_at
+      = "（#{l current_user.plan_expired_at.to_date, :format => :long}#{t '.expired'}）"
+
+- if @orders.any?
+  section
+    header
+      h3
+        = t '.orders'
+    = render 'orders/orders'
+    p.quiet
+      a href=(orders_path)
+        i.icon-double-angle-right.no-margin
+        = t '.view_all'

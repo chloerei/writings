@@ -42,6 +42,10 @@ p {
   margin: 10px 0;
 }
 
+ul, ol {
+  padding-left: 2em;
+}
+
 a {
   color: $linkColor;
   text-decoration: none;
@@ -260,7 +264,7 @@ select {
 
   label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
   }
 
   &.field-error {
@@ -709,6 +713,18 @@ a.button:hover {
 
     &.alert-success {
       background-color: $green;
+    }
+  }
+}
+
+.quiet {
+  color: #999;
+
+  a {
+    color: #999;
+
+    &:hover {
+      color: #333;
     }
   }
 }

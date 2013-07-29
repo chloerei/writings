@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::InvoicesControllerTest < ActionController::TestCase
+class AlipayNotifyTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
