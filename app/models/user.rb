@@ -79,7 +79,7 @@ class User < Space
     if plan_expired_at.present? && plan_expired_at > Time.now
       case plan
       when :base
-        3.gigabytes
+        1.gigabytes
       else
         10.megabytes
       end
@@ -92,7 +92,7 @@ class User < Space
     if plan_expired_at.present? && plan_expired_at > Time.now
       case plan
       when :base
-        100
+        50
       else
         5
       end
