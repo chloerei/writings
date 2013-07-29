@@ -43,6 +43,16 @@ class OrderTest < ActiveSupport::TestCase
     assert_not_nil @order.start_at
   end
 
+  test "should add_plan if plan exists" do
+    time = 1.day.from_now
+    @user.update_attributes :plan => :base, :plan_expired_at => time
+    assert_difference "@user.plan_expired_at", @order.quantity.months do
+      @order.add_plan
+    end
+    assert_equal @order.plan, @user.plan
+    assert_equal time, @order.start_at
+  end
+
   test "should remove_plan" do
     @order.add_plan
     assert_difference "@user.reload.plan_expired_at", -@order.quantity.month do
