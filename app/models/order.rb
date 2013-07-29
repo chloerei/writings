@@ -98,19 +98,15 @@ class Order
       :quantity          => quantity,
       :discount          => discount,
       :subject           => "#{APP_CONFIG['host']} #{plan}",
-      :logistics_type    => 'POST',
+      :logistics_type    => 'DIRECT',
       :logistics_fee     => '0',
       :logistics_payment => 'SELLER_PAY',
       :return_url        => Rails.application.routes.url_helpers.order_url(self),
-      :notify_url        => Rails.application.routes.url_helpers.alipay_notify_orders_url,
-      :receive_name      => 'none',
-      :receive_address   => 'none',
-      :receive_zip       => '100000',
-      :receive_mobile    => '100000000000'
+      :notify_url        => Rails.application.routes.url_helpers.alipay_notify_orders_url
     )
   end
 
   def send_good
-    Alipay::Service.send_goods_confirm_by_platform(:trade_no => trade_no, :logistics_name => 'writings.io')
+    Alipay::Service.send_goods_confirm_by_platform(:trade_no => trade_no, :logistics_name => 'writings.io', :transport_type => 'DIRECT')
   end
 end
