@@ -1,7 +1,6 @@
 module Alipay
   module Sign
     def self.generate(params)
-      params = params.symbolize_keys
       query = params.sort.map do |key, value|
         "#{key}=#{value}"
       end.join('&')
