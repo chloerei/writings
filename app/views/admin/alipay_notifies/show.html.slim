@@ -1,0 +1,21 @@
+- append_title "支付宝通知 #{@alipay_notify.id}"
+
+table.nice-table
+  tbody
+    tr
+      td ID
+      td = @alipay_notify.id
+    tr
+      td 订单
+      td
+        - if @alipay_notify.order
+          = link_to @alipay_notify.order.id, admin_order_path(@alipay_notify.order)
+    tr
+      td 时间
+      td = l @alipay_notify.created_at, :format => :long
+    tr
+      td 参数
+      td
+        pre
+          code
+            = JSON.pretty_generate @alipay_notify.params

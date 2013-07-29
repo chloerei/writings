@@ -7,12 +7,14 @@ table.nice-table
         td = key
         td = value
 
-h3 支付宝消息通知
+h3 支付宝通知
 table.nice-table
   tbody
     tr
-      th 创建
+      th ID
+      th 创建时间
       th 状态
     - @order.alipay_notifies.asc(:created_at).each do |alipay_notify|
+      td = link_to alipay_notify.id, admin_alipay_notify_path(alipay_notify)
       td = l alipay_notify.created_at, :format => :long
       td = alipay_notify.params['trade_status']

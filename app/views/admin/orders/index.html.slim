@@ -17,3 +17,5 @@ table.item-table
         td = t "order_state.#{order.state}"
         td = t "plan.#{order.plan}"
         td = order.quantity
+
+= paginate @orders, :theme => :dashboard

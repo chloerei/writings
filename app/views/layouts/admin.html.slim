@@ -29,6 +29,9 @@ html
         a.topbar-button href=(admin_orders_path) class=(controller_name == 'orders' ? 'actived' : nil)
           i.icon-money
           = '订单'
+        a.topbar-button href=(admin_alipay_notifies_path) class=(controller_name == 'alipay_notifies' ? 'actived' : nil)
+          i.icon-info
+          = '支付宝通知'
     #main
       .container
         .inner

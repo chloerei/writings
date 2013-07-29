@@ -104,6 +104,7 @@ Publish::Application.routes.draw do
         resources :workspaces, :only => [:index, :show]
         resources :attachments, :only => [:index]
         resources :orders, :only => [:index, :show]
+        resources :alipay_notifies, :only => [:index, :show]
       end
 
       mount Sidekiq::Web => '/sidekiq'

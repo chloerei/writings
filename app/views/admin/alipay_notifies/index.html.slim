@@ -1,0 +1,21 @@
+- append_title "支付宝通知"
+
+table.item-table
+  tbody
+    tr
+      th ID
+      th 创建时间
+      th 订单
+      th 验证
+      th 状态
+    - @alipay_notifies.each do |alipay_notify|
+      tr
+        td = link_to alipay_notify.id, admin_alipay_notify_path(alipay_notify)
+        td = l alipay_notify.created_at, :format => :long
+        td
+          - if alipay_notify.order
+            = link_to alipay_notify.order.id, admin_order_path(alipay_notify.order)
+        td = alipay_notify.verify?
+        td = alipay_notify.params['trade_status']
+
+= paginate @alipay_notifies, :theme => :dashboard
