@@ -103,11 +103,7 @@ Publish::Application.routes.draw do
         resources :users, :only => [:index, :show]
         resources :workspaces, :only => [:index, :show]
         resources :attachments, :only => [:index]
-        resources :invoices, :only => [:index, :show, :new, :create, :destroy] do
-          member do
-            put :approve
-          end
-        end
+        resources :orders, :only => [:index, :show]
       end
 
       mount Sidekiq::Web => '/sidekiq'

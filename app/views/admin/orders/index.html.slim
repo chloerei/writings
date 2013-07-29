@@ -1,0 +1,19 @@
+- append_title '订单'
+
+table.item-table
+  tbody
+    tr
+      th ID
+      th 创建时间
+      th 用户
+      th 状态
+      th 套餐
+      th 数量
+    - @orders.each do |order|
+      tr
+        td = link_to order.id, admin_order_path(order)
+        td = l order.created_at, :format => :long
+        td = link_to order.user.name, admin_user_path(:id => order.user.name)
+        td = t "order_state.#{order.state}"
+        td = t "plan.#{order.plan}"
+        td = order.quantity
