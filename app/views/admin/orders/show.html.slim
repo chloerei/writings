@@ -15,6 +15,7 @@ table.nice-table
       th 创建时间
       th 状态
     - @order.alipay_notifies.asc(:created_at).each do |alipay_notify|
-      td = link_to alipay_notify.id, admin_alipay_notify_path(alipay_notify)
-      td = l alipay_notify.created_at, :format => :long
-      td = alipay_notify.params['trade_status']
+      tr
+        td = link_to alipay_notify.id, admin_alipay_notify_path(alipay_notify)
+        td = l alipay_notify.created_at, :format => :long
+        td = alipay_notify.params['trade_status']
