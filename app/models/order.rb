@@ -92,7 +92,7 @@ class Order
   end
 
   def pay_url
-    Alipay::Payments::DualFun.new(
+    Alipay::Service.dual_fun_payment_url(
       :out_trade_no      => id.to_s,
       :price             => price,
       :quantity          => quantity,
@@ -107,10 +107,10 @@ class Order
       :receive_address   => 'none',
       :receive_zip       => '100000',
       :receive_mobile    => '100000000000'
-    ).generate_pay_url
+    )
   end
 
   def send_good
-    Alipay::SendGoods.new(:trade_no => trade_no, :logistics_name => 'writings.io').send_good
+    Alipay::Service.send_goods_confirm_by_platform(:trade_no => trade_no, :logistics_name => 'writings.io')
   end
 end

@@ -5,6 +5,11 @@ defaults: &defaults
   admin_emails:
     - 'chloerei@gmail.com'
 
+  alipay:
+    pid: ''
+    key: ''
+    seller_email: ''
+
   s3:
     aws_access_key_id: ''
     aws_secret_access_key: ''
