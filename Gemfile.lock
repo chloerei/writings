@@ -33,6 +33,12 @@ GIT
       json (>= 1.7)
 
 GIT
+  remote: git://github.com/chloerei/alipay.git
+  revision: 3a24f42d7b4ba0b7149478ccff8be509431b3ae0
+  specs:
+    alipay (0.0.1)
+
+GIT
   remote: git://github.com/chloerei/client_side_validations-mongoid.git
   revision: 01d1ac6c8d734fd934cd5237fc568de6268b2cb9
   branch: 4-0-beta
@@ -295,6 +301,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  alipay!
   bcrypt-ruby (~> 3.0.1)
   bourbon (~> 3.1.6)
   capistrano (~> 2.15.4)

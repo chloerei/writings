@@ -26,6 +26,7 @@ gem 'kiqstand', :github => 'mongoid/kiqstand'
 gem 'pandoc-ruby', '~> 0.7.0'
 gem 'safe_yaml', '~> 0.9.3'
 gem 'mongoid_rails_migrations', '~> 1.0.1'
+gem 'alipay', :github => 'chloerei/alipay'
 
 gem 'coffee-rails', '~> 4.0.0'
 gem 'sass-rails',   '~> 4.0.0'
