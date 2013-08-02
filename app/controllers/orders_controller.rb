@@ -42,8 +42,8 @@ class OrdersController < ApplicationController
   end
 
   def alipay_notify
-    notify_params = params.except(:controller, :action, :host)
-    if Alipay::Sign.verify?(notify_params) && Alipay::Notify.verify?(notify_params)
+    notify_params = params.except(*request.path_parameters.keys)
+    if Alipay::Notify.verify?(notify_params)
       @order = Order.find params[:out_trade_no]
       @order.trade_no ||= params[:trade_no]
 
