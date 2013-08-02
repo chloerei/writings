@@ -39,6 +39,7 @@ en:
     free: Free
     base: Base
   order_state:
+    opening: Opening
     pending: Waiting Payment
     paid: Paid
     canceled: Canceled

@@ -45,6 +45,7 @@ zh-CN:
     free: "免费版"
     base: "基础版"
   order_state:
+    opening: "打开"
     pending: "等待支付"
     paid: "已支付"
     canceled: "取消"

@@ -7,7 +7,7 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "init state" do
-    assert_nil @order.state
+    assert_equal 'opening', @order.state
   end
 
   test "should pend" do
