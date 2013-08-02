@@ -7,8 +7,9 @@ class Order
   field :price, :type => Integer, :default => 0
   field :discount, :type => Integer, :default => 0
 
-  STATE = %w(pendding paid completed canceled)
-  field :state, :default => 'pendding'
+  STATE = %w(pending paid completed canceled)
+  field :state
+  field :pending_at, :type => DateTime
   field :completed_at, :type => DateTime
   field :canceled_at, :type => DateTime
   field :paid_at, :type => DateTime
@@ -18,12 +19,12 @@ class Order
   belongs_to :user
   has_many :alipay_notifies
 
-  scope :showable, where(:state.ne => 'pendding')
+  scope :showable, where(:state.ne => nil)
 
   index({ :user_id => 1 })
 
   validates_presence_of :plan, :quantity, :price
-  validates_inclusion_of :state, :in => STATE
+  validates_inclusion_of :state, :in => STATE, :allow_nil => true
 
   def total_price
     price * quantity + discount
@@ -39,9 +40,18 @@ class Order
     end
   end
 
+  def pend
+    if state.nil?
+      update_attributes(
+        :pending_at => Time.now.utc,
+        :state       => 'pending'
+      )
+    end
+  end
+
   def complete
-    if pendding? or paid?
-      add_plan if pendding?
+    if pending? or paid?
+      add_plan if pending?
 
       update_attributes(
         :completed_at => Time.now.utc,
@@ -51,7 +61,7 @@ class Order
   end
 
   def cancel
-    if pendding? or paid?
+    if pending? or paid?
       remove_plan if paid?
       update_attributes(
         :state       => 'canceled',
@@ -61,7 +71,7 @@ class Order
   end
 
   def pay
-    if pendding?
+    if pending?
       update_attributes(
         :state   => 'paid',
         :paid_at => Time.now.utc

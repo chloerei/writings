@@ -5,12 +5,19 @@ class OrderTest < ActiveSupport::TestCase
     @user = create :user
     @order = create :order, :plan => :base, :quantity => 2, :user => @user
   end
+
   test "init state" do
-    assert_equal 'pendding', @order.state
-    assert @order.pendding?
+    assert_nil @order.state
+  end
+
+  test "should pend" do
+    @order.pend
+    assert_equal 'pending', @order.state
+    assert @order.pending?
   end
 
   test "should complete" do
+    @order.update_attribute :state, 'pending'
     @order.complete
     assert_equal 'completed', @order.state
     assert @order.completed?
@@ -22,6 +29,7 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "should cancel" do
+    @order.update_attribute :state, 'pending'
     @order.cancel
     assert_equal 'canceled', @order.state
     assert @order.canceled?
@@ -29,6 +37,7 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "should pay" do
+    @order.update_attribute :state, 'pending'
     @order.pay
     assert_equal 'paid', @order.state
     assert @order.paid?
@@ -72,6 +81,7 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "remove_plan when cancel after pay" do
+    @order.update_attribute :state, 'pending'
     @order.pay
     assert_difference "@user.reload.plan_expired_at", -@order.quantity.month do
       @order.cancel
@@ -79,14 +89,14 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "should not cancel after completed" do
-    @order.complete
+    @order.update_attribute :state, 'completed'
     assert @order.completed?
     @order.cancel
     assert !@order.canceled?
   end
 
   test "should not paid after completed" do
-    @order.complete
+    @order.update_attribute :state, 'completed'
     assert @order.completed?
     @order.pay
     assert !@order.paid?

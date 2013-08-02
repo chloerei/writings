@@ -49,7 +49,7 @@ class OrdersControllerTest < ActionController::TestCase
 
   test "should complete alipay_notify" do
     fake_service
-    order = create :order
+    order = create :order, :state => 'pending'
     logout
 
     message = {
@@ -63,7 +63,7 @@ class OrdersControllerTest < ActionController::TestCase
 
   test "should cancel alipay_notify" do
     fake_service
-    order = create :order
+    order = create :order, :state => 'pending'
     logout
 
     message = {
@@ -77,7 +77,7 @@ class OrdersControllerTest < ActionController::TestCase
 
   test "should pay alipay_notify" do
     fake_service
-    order = create :order
+    order = create :order, :state => 'pending'
     logout
 
     message = {
@@ -90,17 +90,18 @@ class OrdersControllerTest < ActionController::TestCase
     assert order.reload.paid?
   end
 
-  test "should save trade_no" do
+  test "should pend and save trade_no" do
     fake_service
     order = create :order
     logout
 
     message = {
       :out_trade_no => order.id.to_s,
-      :trade_status => 'WAIT_SELLER_SEND_GOODS',
+      :trade_status => 'WAIT_BUYER_PAY',
       :trade_no     => '123456'
     }
     post :alipay_notify, message.merge(:sign_type => 'MD5', :sign => Alipay::Sign.generate(message))
+    assert order.reload.pending?
     assert_equal message[:trade_no], order.trade_no
   end
 

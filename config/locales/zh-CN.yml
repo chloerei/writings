@@ -32,7 +32,7 @@ zh-CN:
   order_cancel_email_subject: "Writings.io - 订单被取消"
 
   order_paid_message: "订单支付成功，祝您写作愉快！"
-  order_pendding_message: "订单处理中，请稍后；处理完成后，系统会发送一封通知邮件。"
+  order_pending_message: "订单处理中，请稍后；处理完成后，系统会发送一封通知邮件。"
 
   older: "过往"
   newer: "较新"
@@ -45,7 +45,7 @@ zh-CN:
     free: "免费版"
     base: "基础版"
   order_state:
-    pendding: "等待支付"
+    pending: "等待支付"
     paid: "已支付"
     canceled: "取消"
     completed: "完成"

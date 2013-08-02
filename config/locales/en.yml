@@ -27,7 +27,7 @@ en:
   order_payment_success_email_subject: Writings.io - Order Payment Success
   order_cancel_email_subject: Writings.io - Order Canceled
   order_paid_message: Payment success, happy writings!
-  order_pendding_message: Payment is processing, you will receive a email when it's
+  order_pending_message: Payment is processing, you will receive a email when it's
     done.
   older: Older
   newer: Newer
@@ -39,7 +39,7 @@ en:
     free: Free
     base: Base
   order_state:
-    pendding: Waiting Payment
+    pending: Waiting Payment
     paid: Paid
     canceled: Canceled
     completed: Completed

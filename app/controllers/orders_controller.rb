@@ -35,8 +35,8 @@ class OrdersController < ApplicationController
     if callback_params.any? && Alipay::Sign.verify?(callback_params)
       if @order.paid? || @order.completed?
         flash.now[:success] = I18n.t('order_paid_message')
-      elsif @order.pendding?
-        flash.now[:info] = I18n.t('order_pendding_message')
+      elsif @order.pending?
+        flash.now[:info] = I18n.t('order_pending_message')
       end
     end
   end
@@ -45,11 +45,13 @@ class OrdersController < ApplicationController
     notify_params = params.except(*request.path_parameters.keys)
     if Alipay::Notify.verify?(notify_params)
       @order = Order.find params[:out_trade_no]
-      @order.trade_no ||= params[:trade_no]
 
       case params[:trade_status]
+      when 'WAIT_BUYER_PAY'
+        @order.update_attribute :trade_no, params[:trade_no]
+        @order.pend
       when 'TRADE_FINISHED'
-        need_mail = @order.pendding?
+        need_mail = @order.pending?
         @order.complete
         SystemMailer.delay.order_payment_success(@order.id.to_s) if need_mail
       when 'TRADE_CLOSED'
