@@ -134,12 +134,12 @@ class OrdersControllerTest < ActionController::TestCase
   def fake_service
     FakeWeb.register_uri(
       :get,
-      %r|http://notify\.alipay\.com/trade/notify_query.*|,
+      %r|https://mapi\.alipay\.com/gateway\.do\?.*notify_verify.*|,
       :body => "true"
     )
     FakeWeb.register_uri(
       :get,
-      %r|https://mapi\.alipay\.com/gateway\.do\?.*send_goods_confirm_by_platform.*|,
+      %r|https://mapi\.alipay\.com/gateway\.do\?.*service=send_goods_confirm_by_platform.*|,
       :body => ''
     )
   end

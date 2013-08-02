@@ -34,7 +34,7 @@ GIT
 
 GIT
   remote: git://github.com/chloerei/alipay.git
-  revision: 64b370e8ee732369548a4734503b174265344e51
+  revision: 6e95c07df144ee60105b41a603624abd40dbb4f9
   specs:
     alipay (0.0.1)
 
