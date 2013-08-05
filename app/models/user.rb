@@ -10,7 +10,7 @@ class User < Space
   field :password_reset_token_created_at, :type => Time
   field :locale, :default => I18n.locale.to_s
   field :plan, :type => Symbol, :default => :free
-  field :plan_expired_at, :type => DateTime
+  field :plan_expired_at, :type => Time
   field :storage_used, :default => 0
 
   PLANS = %w(free base)

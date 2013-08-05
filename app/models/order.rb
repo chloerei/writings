@@ -9,11 +9,11 @@ class Order
 
   STATE = %w(opening pending paid completed canceled)
   field :state, :default => 'opening'
-  field :pending_at, :type => DateTime
-  field :completed_at, :type => DateTime
-  field :canceled_at, :type => DateTime
-  field :paid_at, :type => DateTime
-  field :start_at, :type => DateTime
+  field :pending_at, :type => Time
+  field :completed_at, :type => Time
+  field :canceled_at, :type => Time
+  field :paid_at, :type => Time
+  field :start_at, :type => Time
   field :trade_no
 
   belongs_to :user
