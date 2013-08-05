@@ -15,7 +15,7 @@ class UserTest < ActiveSupport::TestCase
     assert_not_nil user.password_reset_token
     assert_not_nil user.password_reset_token_created_at
 
-    user.remove_password_reset_token
+    user.unset_password_reset_token
     assert_nil user.password_reset_token
     assert_nil user.password_reset_token_created_at
   end

@@ -56,7 +56,7 @@ class User < Space
     )
   end
 
-  def remove_password_reset_token
+  def unset_password_reset_token
     unset(:password_reset_token, :password_reset_token_created_at)
   end
 

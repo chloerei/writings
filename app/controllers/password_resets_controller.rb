@@ -38,7 +38,7 @@ class PasswordResetsController < ApplicationController
     @user = User.find_by(:password_reset_token => params[:id])
     @user.in_password_reset = true
     if @user.update_attributes params.require(:user).permit(:password, :password_confirmation)
-      @user.remove_password_reset_token
+      @user.unset_password_reset_token
       flash[:success] = I18n.t(:password_reset_success)
     end
   end
