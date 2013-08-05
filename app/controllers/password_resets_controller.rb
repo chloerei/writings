@@ -46,7 +46,7 @@ class PasswordResetsController < ApplicationController
   private
 
   def inc_ip_count
-    Rails.cache.write "password_reset_count/#{request.remote_ip}", ip_count + 1, :tti => 60.seconds
+    Rails.cache.write "password_reset_count/#{request.remote_ip}", ip_count + 1, :expires_in => 60.seconds
   end
 
   def ip_count
