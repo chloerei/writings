@@ -1,5 +1,13 @@
 <% if @user %>
-  Turbolinks.visit('<%= login_url %>');
+  <% if @user.errors.empty? %>
+    Turbolinks.visit('<%= login_url %>');
+  <% else %>
+    AlertMessage.show({
+      type: 'error',
+      text: '<%= @user.errors.full_messages.join %>'
+    });
+    Recaptcha.reload();
+  <% end %>
 <% else %>
   Turbolinks.visit('<%= new_password_reset_url %>');
 <% end %>

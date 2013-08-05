@@ -20,6 +20,10 @@ defaults: &defaults
     user_name:
     password:
 
+  recaptcha:
+    public_key: ''
+    private_key: ''
+
 development:
   <<: *defaults
 

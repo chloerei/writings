@@ -9,5 +9,8 @@
         .field
           = label_tag :email
           = text_field_tag :email, nil, :tabindex => 1
+        - if require_recaptcha?
+          .field
+            = recaptcha_tags :display => { :theme => 'white' }, :ajax => true
         .field
           = submit_tag t('.send_reset_email'), :class => 'button-green', :tabindex => 2
