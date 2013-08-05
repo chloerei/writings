@@ -462,3 +462,8 @@ zh-CN:
       is_not_match: "不正确"
       space_name: "只能包含英文字母，数字和 - 符号"
       wrong_name_or_password: "错误的用户名或密码"
+
+  recaptcha:
+    errors:
+      verification_failed: "验证码错误，请重试。"
+      recaptcha_unreachable: "验证码访问超时，请重试。"

@@ -475,3 +475,8 @@ en:
       is_not_match: is not match
       space_name: only A-Z, a-z, 0-9, - allowed
       wrong_name_or_password: Wrong username or password
+
+  recaptcha:
+    errors:
+      verification_failed: "Word verification response is incorrect, please try again."
+      recaptcha_unreachable: "Oops, we failed to validate your word verification response. Please try again."
