@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
 
   def require_no_logined
     if logined?
-      redirect_to root_url
+      redirect_to dashboard_root_url(current_user)
     end
   end
 

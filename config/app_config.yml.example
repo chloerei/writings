@@ -25,6 +25,7 @@ development:
 
 test:
   <<: *defaults
+  host: 'test.host'
 
 production:
   <<: *defaults

@@ -89,6 +89,10 @@ zh-CN:
       username_or_email: "用户名或邮箱"
       password: "密码"
       login: "登录"
+  password_resets:
+    new:
+      password_reset: "密码重置"
+      send_reset_email: "发送重置邮件"
 
   accounts:
     show:

@@ -1,0 +1,12 @@
+- append_title t('.password_reset')
+
+#main
+  .container
+    .signup
+      h2 = t '.password_reset'
+      = form_tag password_resets_path, :remote => true do |f|
+        .field
+          = label_tag :email
+          = text_field_tag :email, nil, :tabindex => 1
+        .field
+          = submit_tag t('.send_reset_email'), :class => 'button-green', :tabindex => 2
