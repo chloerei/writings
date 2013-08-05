@@ -23,12 +23,17 @@ en:
   page_not_found: Page not Found
   server_error: Server Error
   export_task_success_email_subject: Writings.io - Export Success
-  import_task_success_email_subject: Writings.io - Import parse success
+  import_task_success_email_subject: Writings.io - Import Parse Success
   order_payment_success_email_subject: Writings.io - Order Payment Success
   order_cancel_email_subject: Writings.io - Order Canceled
+  password_reset_email_subject: Writings.io - Password Reset
   order_paid_message: Payment success, happy writings!
   order_pending_message: Payment is processing, you will receive a email when it's
     done.
+  password_reset_email_send: Password reset link has been send to your Email.
+  password_reset_email_no_found: Can not found this user.
+  password_reset_not_found_or_expired: Password reset link invalid or expired.
+  password_reset_success: Password reset success!
   older: Older
   newer: Newer
   next_page: Next Page
@@ -84,6 +89,14 @@ en:
       username_or_email: Username or Email
       password: Password
       login: Login
+      forgot_password: Forgot password?
+  password_resets:
+    new:
+      password_reset: Password Reset
+      send_reset_email: Send reset email
+    edit:
+      password_reset: Password Reset
+      update_password: Update password
   accounts:
     show:
       account_settings: Account Settings
@@ -133,7 +146,7 @@ en:
       plan: Plan
       quantity: Quantity
       total_price: Total Price
-      price: '%{price} 元'
+      price: '%{price} RMB'
       state: Order State
       range: Range
       order_question_contact: 'If you have question about this order, please contact: '
@@ -429,7 +442,7 @@ en:
         email: Email
         locale: Locale
         password: Password
-        password_confirmation: Password
+        password_confirmation: Password Confirmation
         current_password: Current Password
         name: User name
       order:
