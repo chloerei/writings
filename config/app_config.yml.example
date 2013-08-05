@@ -20,11 +20,16 @@ defaults: &defaults
     user_name:
     password:
 
+  recaptcha:
+    public_key: ''
+    private_key: ''
+
 development:
   <<: *defaults
 
 test:
   <<: *defaults
+  host: 'test.host'
 
 production:
   <<: *defaults

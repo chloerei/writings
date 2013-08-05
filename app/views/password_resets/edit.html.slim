@@ -1,0 +1,16 @@
+- append_title t('.password_reset')
+
+#main
+  .container
+    .signup
+      h2 = t '.password_reset'
+      = render 'dashboard/share/flash_message'
+      = form_for @user, :url => password_reset_path, :remote => true, :validate => true do |f|
+        .field
+          = f.label :password
+          = f.password_field :password, :tabindex => 1
+        .field
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation, :tabindex => 2
+        .field
+          = submit_tag t('.update_password'), :class => 'button-green', :tabindex => 3

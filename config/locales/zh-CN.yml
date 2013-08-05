@@ -30,9 +30,15 @@ zh-CN:
   import_task_success_email_subject: "Writings.io - 导入解析完成"
   order_payment_success_email_subject: "Writings.io - 订单支付完成"
   order_cancel_email_subject: "Writings.io - 订单被取消"
+  password_reset_email_subject: "Writings.io - 密码重置"
 
   order_paid_message: "订单支付成功，祝您写作愉快！"
   order_pending_message: "订单处理中，请稍后；处理完成后，系统会发送一封通知邮件。"
+
+  password_reset_email_send: "密码重置邮件已发送到您的邮箱，请注意查收。"
+  password_reset_email_no_found: "找不到该用户。"
+  password_reset_not_found_or_expired: "密码重置链接无效或已过期。"
+  password_reset_success: "密码重置成功！"
 
   older: "过往"
   newer: "较新"
@@ -89,6 +95,14 @@ zh-CN:
       username_or_email: "用户名或邮箱"
       password: "密码"
       login: "登录"
+      forgot_password: "忘记密码？"
+  password_resets:
+    new:
+      password_reset: "密码重置"
+      send_reset_email: "发送重置邮件"
+    edit:
+      password_reset: "密码重置"
+      update_password: "更新密码"
 
   accounts:
     show:
@@ -418,7 +432,7 @@ zh-CN:
         email: "邮箱"
         locale: "语言"
         password: "密码"
-        password_confirmation: "密码"
+        password_confirmation: "密码确认"
         current_password: "当前密码"
       order:
         plan: "套餐"
@@ -448,3 +462,8 @@ zh-CN:
       is_not_match: "不正确"
       space_name: "只能包含英文字母，数字和 - 符号"
       wrong_name_or_password: "错误的用户名或密码"
+
+  recaptcha:
+    errors:
+      verification_failed: "验证码错误，请重试。"
+      recaptcha_unreachable: "验证码访问超时，请重试。"

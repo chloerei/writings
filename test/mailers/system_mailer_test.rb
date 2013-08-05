@@ -30,4 +30,12 @@ class SystemMailerTest < ActionMailer::TestCase
       SystemMailer.order_cancel(order.id).deliver
     end
   end
+
+  test "password_reset email" do
+    user = create :user
+    user.generate_password_reset_token
+    assert_difference "ActionMailer::Base.deliveries.count" do
+      SystemMailer.password_reset(user.id).deliver
+    end
+  end
 end

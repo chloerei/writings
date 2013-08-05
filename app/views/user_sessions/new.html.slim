@@ -4,6 +4,7 @@
   .container
     .signup
       h2 = t '.welcome_back'
+      = render 'dashboard/share/flash_message'
       = form_tag user_sessions_path, :remote => true do |f|
         .field
           = label_tag :login, t('.username_or_email')
@@ -16,5 +17,9 @@
             = check_box_tag :remember_me, nil ,false, :tabindex => 3
             = ' '
             = t 'remember_me'
+        - if require_recaptcha?
+          .field
+            = recaptcha_tags :display => { :theme => 'white' }, :ajax => true
         .field
           = submit_tag t('.login'), :tabindex => 4, :class => 'button-green'
+          = link_to t('.forgot_password'), new_password_reset_path
