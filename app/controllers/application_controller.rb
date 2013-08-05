@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper_method :logined?, :current_user, :append_title, :page_title
-  before_filter :set_locale
+  before_filter :set_locale, :set_base_title
 
   unless Rails.application.config.consider_all_requests_local
     rescue_from Exception, :with => :render_500
@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def set_base_title
+    append_title APP_CONFIG['site_name']
+  end
 
   def param_to_token(param)
     param.split('-').first

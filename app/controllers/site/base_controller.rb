@@ -1,6 +1,7 @@
 class Site::BaseController < ApplicationController
   layout 'site'
-  before_filter :require_space, :set_title
+  skip_filter :set_base_title
+  before_filter :require_space, :set_site_title
 
   private
 
@@ -14,7 +15,7 @@ class Site::BaseController < ApplicationController
     end
   end
 
-  def set_title
+  def set_site_title
     append_title @space.display_name
   end
 end
