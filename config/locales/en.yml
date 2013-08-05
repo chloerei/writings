@@ -19,6 +19,7 @@ en:
   author: Author
   articles_count: '%{count} Articles'
   remember_me: Remember Me
+  captcha: Captcha
   urlname_valid_message: Allow character, number and '-'
   page_not_found: Page not Found
   server_error: Server Error
