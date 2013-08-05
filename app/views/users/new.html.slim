@@ -4,6 +4,7 @@
   .container
     .signup
       h2 = t '.just_one_step'
+      = render 'dashboard/share/flash_message'
       = form_for @user, :remote => true, :validate => true do |f|
         .field
           = f.label :name

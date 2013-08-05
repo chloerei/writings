@@ -6,7 +6,8 @@ class User < Space
 
   field :email
   field :password_digest
-  field :access_token
+  field :password_reset_token
+  field :password_reset_token_created_at, :type => Time
   field :locale, :default => I18n.locale.to_s
   field :plan, :type => Symbol, :default => :free
   field :plan_expired_at, :type => DateTime
@@ -47,20 +48,15 @@ class User < Space
     (user && user.remember_token == token) ? user : nil
   end
 
-  def set_access_token
-    self.access_token ||= generate_token
+  def generate_password_reset_token
+    update_attributes(
+      :password_reset_token => generate_token,
+      :password_reset_token_created_at => Time.now.utc
+    )
   end
 
   def generate_token
     SecureRandom.hex(32)
-  end
-
-  def reset_access_token
-    update_attribute :access_token, generate_token
-  end
-
-  def self.find_by_access_token(token)
-    first :conditions => {:access_token => token} if token.present?
   end
 
   def admin?

@@ -9,6 +9,13 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 'custom.domain', user.host
   end
 
+  test "should generate password_reset_token" do
+    user = create :user
+    user.generate_password_reset_token
+    assert_not_nil user.password_reset_token
+    assert_not_nil user.password_reset_token_created_at
+  end
+
   test "domain validates" do
     user = create :user, :password => '12345678', :password_confirmation => '12345678'
     user.current_password = '12345678'

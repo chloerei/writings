@@ -32,4 +32,12 @@ class SystemMailer < ActionMailer::Base
     mail(:to => @order.user.email,
          :subject => I18n.t('order_cancel_email_subject'))
   end
+
+  def password_reset(user_id)
+    @user = User.find user_id
+    I18n.locale = @user.locale
+
+    mail(:to => @user.email,
+         :subject => I18n.t('password_reset_email_subject'))
+  end
 end

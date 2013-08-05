@@ -1,0 +1,5 @@
+<% if @user %>
+  Turbolinks.visit('<%= login_url %>');
+<% else %>
+  Turbolinks.visit('<%= new_password_reset_url %>');
+<% end %>

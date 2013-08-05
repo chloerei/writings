@@ -14,7 +14,9 @@ class PasswordResetsControllerTest < ActionController::TestCase
   end
 
   test "should create reset" do
-    post :create, :email => @user.email, :format => :js
-    assert_not_nil assigns(:user)
+    assert_difference "Sidekiq::Extensions::DelayedMailer.jobs.size" do
+      post :create, :email => @user.email, :format => :js
+      assert_not_nil assigns(:user)
+    end
   end
 end
