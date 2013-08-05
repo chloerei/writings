@@ -4,7 +4,8 @@
   .container
     .signup
       h2 = t '.password_reset'
-      = form_tag password_resets_path, :remote => true do |f|
+      = render 'dashboard/share/flash_message'
+      = form_tag password_resets_path, :remote => true do
         .field
           = label_tag :email
           = text_field_tag :email, nil, :tabindex => 1

@@ -14,6 +14,10 @@ class UserTest < ActiveSupport::TestCase
     user.generate_password_reset_token
     assert_not_nil user.password_reset_token
     assert_not_nil user.password_reset_token_created_at
+
+    user.remove_password_reset_token
+    assert_nil user.password_reset_token
+    assert_nil user.password_reset_token_created_at
   end
 
   test "domain validates" do

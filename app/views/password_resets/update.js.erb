@@ -1,0 +1,8 @@
+<% if @user.errors.empty? %>
+  Turbolinks.visit('<%= login_url %>');
+<% else %>
+  AlertMessage.show({
+    type: 'error',
+    text: '<%= @user.errors.full_messages.join %>'
+  });
+<% end %>

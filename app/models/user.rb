@@ -24,8 +24,9 @@ class User < Space
   validates :password, :length => { :minimum => 6 }, :on => :create
   validates :locale, :inclusion => {:in => ALLOW_LOCALE}
   validates :current_password, :presence => true, :if => :need_current_password
+  validates_length_of :password, :minimum => 6, :if => :in_password_reset
 
-  attr_accessor :current_password, :need_current_password
+  attr_accessor :current_password, :need_current_password, :in_password_reset
 
   scope :in_plan, -> plan {
     if plan.to_s == 'free'
@@ -53,6 +54,10 @@ class User < Space
       :password_reset_token => generate_token,
       :password_reset_token_created_at => Time.now.utc
     )
+  end
+
+  def remove_password_reset_token
+    unset(:password_reset_token, :password_reset_token_created_at)
   end
 
   def generate_token
