@@ -12,7 +12,10 @@ class @Editor.LinkCreator
     $("#link-form").on "submit", (event) =>
       event.preventDefault()
       @editor.restoreRange()
-      @editor.formator.exec 'createLink', @input.val()
+      url = @input.val()
+      if !url.match(/\w+:\/\//)
+        url = "http://#{url}"
+      @editor.formator.exec 'createLink', url
       @editor.formator.afterFormat()
       @input.val('')
       @close()
