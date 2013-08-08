@@ -1,6 +1,7 @@
 defaults: &defaults
   host: 'localhost'
   site_name: 'Site Name'
+  google_analytics_id: ''
 
   admin_emails:
     - 'chloerei@gmail.com'
