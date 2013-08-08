@@ -15,7 +15,11 @@ class @Editor.LinkCreator
       url = @input.val()
       if !url.match(/\w+:\/\//)
         url = "http://#{url}"
-      @editor.formator.exec 'createLink', url
+
+      if @editor.formator.isWraped('a')
+        $(@editor.formator.commonAncestorContainer()).closest("a").prop('href', url)
+      else
+        @editor.formator.exec 'createLink', url
       @editor.formator.afterFormat()
       @input.val('')
       @close()
