@@ -318,7 +318,7 @@ class ArticleEdit
 
 @ArticleEdit = ArticleEdit
 
-page_ready ->
+$ ->
   if $("#editwrap").length
     $("editwrap").data('article-edit', new ArticleEdit())
 

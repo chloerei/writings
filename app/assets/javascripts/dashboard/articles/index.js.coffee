@@ -6,7 +6,7 @@ toggleButton = ->
     $('#articles .show-on-selected').removeClass('show')
     $('#status-button-group').removeClass('hide-on-mobile')
 
-page_ready ->
+$ ->
   if $('#articles').length
     $('#articles').on 'click', '.article:not(.selected)', (event) ->
       if event.target.tagName isnt 'A'
