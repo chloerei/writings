@@ -8,26 +8,35 @@
 
 section
   table.nice-table
-    tr
-      th = t '.plan'
-      th = t '.price'
-      th = t '.storage'
-      th = t '.history'
-      th.min
-    tr
-      td = t 'plan.base'
-      td = t '.10_per_1_month'
-      td 1GB
-      td 50
-      td.min
-        = link_to t('.renew'), new_order_path, :class => 'button button-green no-margin'
-    tr
-      td = t 'plan.free'
-      td -
-      td 10MB
-      td 5
-      td.min
-
+    tbody
+      tr
+        th = t '.plan'
+        th = t 'plan.free'
+        th = t 'plan.base'
+      tr
+        td = t '.price'
+        td
+          i.icon-minus
+        td = t '.10_per_1_month'
+      tr
+        td = t '.storage'
+        td 10MB
+        td 1GB
+      tr
+        td = t '.history'
+        td 5
+        td 50
+      tr
+        td = t '.google_analytics'
+        td
+          i.icon-minus
+        td
+          i.icon-ok
+      tr
+        td = t '.renew'
+        td
+        td
+          = link_to t('.renew'), new_order_path, :class => 'button button-green no-margin'
   p
     = t '.current_plan'
     = t "plan.#{current_user.plan}"

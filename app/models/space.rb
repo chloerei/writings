@@ -6,6 +6,7 @@ class Space
   field :name
   field :domain
   field :disqus_shortname
+  field :google_analytics_id
   field :full_name
   field :description
 

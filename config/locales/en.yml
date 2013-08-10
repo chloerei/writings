@@ -39,6 +39,7 @@ en:
   newer: Newer
   next_page: Next Page
   prev_page: Prev Page
+  need_upgrade: "Need Upgrade"
   need_more_storage: Need more storage？
   upgrade: Upgrade
   plan:
@@ -438,7 +439,8 @@ en:
         full_name: Full name
         description: Description
         domain: Custom Domain
-        disqus_shortname: Disqus Shortname
+        disqus_shortname: Disqus
+        google_analytics_id: "Google Analytics"
       user:
         email: Email
         locale: Locale

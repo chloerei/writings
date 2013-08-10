@@ -4,5 +4,11 @@ javascript:
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', '#{APP_CONFIG['google_analytics_id']}', '#{@space.host}');
+  ga('create', '#{APP_CONFIG['google_analytics_id']}');
   ga('send', 'pageview');
+
+- user = @space.is_a?(User) ? @space : @space.creator
+- if true || !user.in_plan?(:free) && @space.google_analytics_id.present?
+  javascript:
+    ga('create', '#{@space.google_analytics_id}', {'name': 'userTracker'});
+    ga('userTracker.send', 'pageview');
