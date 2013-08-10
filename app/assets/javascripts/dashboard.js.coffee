@@ -12,14 +12,23 @@
 #= require_tree ./lib
 #= require_tree ./dashboard
 
+analyticsReferrer = document.referrer
+
 $ ->
   I18n.setLocale($('html').attr('lang'))
 
   googleAnalyticsID = $('meta[name=google-analytics]').prop('content')
+
+  path = window.location.protocol + '//' + window.location.hostname + window.location.pathname + window.location.search
+
   if googleAnalyticsID? && googleAnalyticsID isnt ''
-    path = window.location.protocol + '//' + window.location.hostname + window.location.pathname + window.location.search
     ga('create', googleAnalyticsID)
+    ga('set', 'referrer', analyticsReferrer)
     ga('send', 'pageview', { location: path })
+
+  # Referrer no change in Turbolink
+  analyticsReferrer = null
+
 
 $(document).on(
   "page:change": ->

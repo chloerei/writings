@@ -5,6 +5,8 @@
 #= require lib/highlight
 #= require lib/google_analytics
 
+analyticsReferrer = document.referrer
+
 $ ->
   $("pre code").each ->
     hljs.highlightBlock this
@@ -14,9 +16,15 @@ $ ->
 
   path = window.location.protocol + '//' + window.location.hostname + window.location.pathname + window.location.search
 
-  if googleAnalyticsID isnt ''
+  if googleAnalyticsID? && googleAnalyticsID isnt ''
     ga('create', googleAnalyticsID)
+    ga('set', 'referrer', analyticsReferrer)
     ga('send', 'pageview', { location: path })
-  if spaceGoogleAnalyticsID isnt ''
+
+  if spaceGoogleAnalyticsID? && spaceGoogleAnalyticsID isnt ''
     ga('create', spaceGoogleAnalyticsID, { name: 'spaceTracker' })
+    ga('spaceTracker.set', 'referrer', analyticsReferrer)
     ga('spaceTracker.send', 'pageview', { location: path })
+
+  # Referrer no change in Turbolink
+  analyticsReferrer = null
