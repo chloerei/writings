@@ -30,4 +30,12 @@ section
       = f.label :disqus_shortname
       = f.text_field :disqus_shortname, :placeholder => 'shortname'
     .field
+      = f.label :google_analytics_id
+      = f.text_field :google_analytics_id, :placeholder => 'UA-XXXX-Y', :disabled => current_user.in_plan?(:free)
+      - if current_user.in_plan?(:free)
+        .quiet
+          a href=(billing_path)
+            i.icon-exclamation-sign.no-margin
+            = t('need_upgrade')
+    .field
       = f.submit t('submit'), :class => 'button-primary'

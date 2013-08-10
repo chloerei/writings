@@ -46,6 +46,7 @@ zh-CN:
   next_page: "下一页"
   prev_page: "上一页"
 
+  need_upgrade: "需要升级"
   need_more_storage: "需要更多空间？"
   upgrade: "升级"
   plan:
@@ -428,7 +429,8 @@ zh-CN:
         full_name: "全名"
         description: "描述"
         domain: "独立域名"
-        disqus_shortname: "Disqus 帐号"
+        disqus_shortname: "Disqus"
+        google_analytics_id: "Google Analytics"
       user:
         email: "邮箱"
         locale: "语言"
