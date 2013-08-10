@@ -8,6 +8,10 @@ html
     = stylesheet_link_tag 'site', 'data-turbolinks-track' => true
     = yield :head
     = csrf_meta_tags
+    meta name='google-analytics' content=(APP_CONFIG['google_analytics_id'])
+    - user = @space.is_a?(User) ? @space : @space.creator
+    - if !user.in_plan?(:free) && @space.google_analytics_id.present?
+      meta name='space-google-analytics' content=(@space.google_analytics_id)
   body id=("#{controller_name}-#{action_name}")
     = yield
     #footer
@@ -16,4 +20,3 @@ html
           | writings
           small
             | .io
-    = render 'layouts/site/analytics'

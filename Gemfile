@@ -32,6 +32,7 @@ gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'sass-rails',   '~> 4.0.0'
 gem 'turbolinks', '~> 1.2.0'
+gem 'jquery-turbolinks', "~> 1.0.0"
 gem 'uglifier', '>= 1.0.3'
 gem 'bourbon', '~> 3.1.6'
 gem 'font-awesome-rails', '~> 3.2.1'

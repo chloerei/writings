@@ -1,4 +1,4 @@
-page_ready ->
+$ ->
   if $('#sidebar-button').length
     $('#sidebar-button').on 'click', ->
       $('#main').toggleClass('show-sidebar')
