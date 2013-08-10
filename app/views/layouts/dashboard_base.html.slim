@@ -7,6 +7,7 @@ html lang=(logined? ? current_user.locale : 'zh-CN')
     = javascript_include_tag 'dashboard', 'data-turbolinks-track' => true
     = stylesheet_link_tag 'dashboard', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    meta name='google-analytics' content=(APP_CONFIG['google_analytics_id'])
   body id=("#{controller_name}-#{action_name}")
     = render 'layouts/dashboard/topbar'
     = yield
