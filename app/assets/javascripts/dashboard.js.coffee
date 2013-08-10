@@ -16,7 +16,7 @@ $ ->
   I18n.setLocale($('html').attr('lang'))
 
   googleAnalyticsID = $('meta[name=google-analytics]').prop('content')
-  if googleAnalyticsID isnt ''
+  if googleAnalyticsID? && googleAnalyticsID isnt ''
     path = window.location.protocol + '//' + window.location.hostname + window.location.pathname + window.location.search
     ga('create', googleAnalyticsID)
     ga('send', 'pageview', { location: path })
