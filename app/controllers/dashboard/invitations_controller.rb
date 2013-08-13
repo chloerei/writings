@@ -1,5 +1,4 @@
 class Dashboard::InvitationsController < Dashboard::BaseController
-  before_filter :require_workspace
   before_filter :require_creator, :only => [:create, :destroy, :resend]
   skip_filter :require_logined, :require_space_access, :only => [:show, :accept, :join]
 

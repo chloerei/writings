@@ -8,6 +8,7 @@
   .member {
     margin-bottom: $commonMargin;
     position: relative;
+    min-height: 100px;
     @include clearfix();
 
     .avatar {

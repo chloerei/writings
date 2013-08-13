@@ -1,4 +1,4 @@
-<%= @workspace.creator.display_name %> invite you to workspace <%= @workspace.display_name %>:
+<%= @space.user.display_name %> invite you to space <%= @space.display_name %>:
 
 <%= @invitation.message %>
 
@@ -6,10 +6,10 @@ Writings.io is a website to write, manage and publish articles.
 
 Accept this invitation to get started:
 
-<%= dashboard_invitation_url(:space_id => @workspace, :id => @invitation.token, :host => APP_CONFIG['host'], :protocol => 'https') %>
+<%= dashboard_invitation_url(:space_id => @space, :id => @invitation.token, :host => APP_CONFIG['host'], :protocol => 'https') %>
 
-<% if @workspace.members.any? %>
+<% if @space.members.any? %>
 Other members on the workspace are:
 
-<%= @workspace.members.map(&:display_name).join(', ') %>
+<%= @space.members.map(&:display_name).join(', ') %>
 <% end %>

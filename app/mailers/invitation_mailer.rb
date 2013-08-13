@@ -3,10 +3,10 @@ class InvitationMailer < ActionMailer::Base
 
   def invite(invitation_id)
     @invitation = Invitation.find_by :id => invitation_id
-    @workspace = @invitation.workspace
-    I18n.locale = @workspace.creator.locale
+    @space = @invitation.space
+    I18n.locale = @space.user.locale
 
     mail(:to => @invitation.email,
-         :subject => I18n.t('invitation_email_subject', :name => @workspace.name))
+         :subject => I18n.t('invitation_email_subject', :name => @space.display_name))
   end
 end

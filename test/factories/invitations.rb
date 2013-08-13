@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :invitation do
     sequence(:email){|n| "invitation_email#{n}@writings.io" }
-    workspace
+    space
   end
 end

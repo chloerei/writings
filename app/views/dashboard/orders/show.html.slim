@@ -2,13 +2,13 @@
 - append_title @order.id
 
 - content_for :sidebar do
-  = render 'dashboard/share/settings_sidebar'
+  = render 'dashboard/share/main_sidebar'
 
 .main-header
   h2
-    = link_to t('.billing'), billing_path
+    = link_to t('.billing'), dashboard_billing_path
     = ' / '
-    = link_to t('.orders'), orders_path
+    = link_to t('.orders'), dashboard_orders_path
     = ' / '
     = @order.id
 

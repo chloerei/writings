@@ -1,7 +1,7 @@
 - append_title t('.billing')
 
 - content_for :sidebar do
-  = render 'dashboard/share/settings_sidebar'
+  = render 'dashboard/share/main_sidebar'
 
 .main-header
   h2 = t '.billing'
@@ -36,12 +36,12 @@ section
         td = t '.renew'
         td
         td
-          = link_to t('.renew'), new_order_path, :class => 'button button-green no-margin'
+          = link_to t('.renew'), new_dashboard_order_path, :class => 'button button-green no-margin'
   p
     = t '.current_plan'
-    = t "plan.#{current_user.plan}"
-    - if current_user.plan_expired_at
-      = "（#{l current_user.plan_expired_at.to_date, :format => :long}#{t '.expired'}）"
+    = t "plan.#{@space.plan}"
+    - if @space.plan_expired_at
+      = "（#{l @space.plan_expired_at.to_date, :format => :long}#{t '.expired'}）"
 
 - if @orders.any?
   section

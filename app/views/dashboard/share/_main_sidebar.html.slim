@@ -54,13 +54,16 @@ nav.main-sidebar-nav
       a href=(dashboard_export_tasks_path)
         i.icon-cloud-download
         = t('.export')
-    - if @space.is_a? Workspace
-      li.main-sidebar-item class=('actived' if controller_name == 'members')
-        a href=(dashboard_members_path)
-          i.icon-group
-          = t('.members')
-    - if @space.is_a?(User) || @space.creator == current_user
+    li.main-sidebar-item class=('actived' if controller_name == 'members')
+      a href=(dashboard_members_path)
+        i.icon-group
+        = t('.members')
+    - if @space.user == current_user
       li.main-sidebar-item class=(controller_name == 'settings' ? 'actived' : nil)
         a href=(dashboard_settings_path)
           i.icon-wrench
-          = t('.settings.')
+          = t('.settings')
+      li.main-sidebar-item class=(controller_name == 'billings' ? 'actived' : nil)
+        a href=(dashboard_billing_path)
+          i.icon-shopping-cart
+          = t('.upgrade')

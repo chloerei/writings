@@ -1,7 +1,7 @@
 class Dashboard::BaseController < ApplicationController
   before_filter :require_logined
   before_filter :find_space, :require_space_access
-  helper_method :is_workspace_creator?
+  helper_method :is_creator?
   layout 'dashboard'
 
   private
@@ -14,33 +14,18 @@ class Dashboard::BaseController < ApplicationController
   end
 
   def require_space_access
-    case @space
-    when User
-      unless @space == current_user
-        raise AccessDenied
-      end
-    when Workspace
-      unless logined? && @space.members.include?(current_user)
-        raise AccessDenied
-      end
-    else
+    unless @space.user == current_user or @space.members.include?(current_user)
       raise AccessDenied
-    end
-  end
-
-  def require_workspace
-    unless @space.is_a?(Workspace)
-      redirect_to dashboard_root_path
     end
   end
 
   def require_creator
-    if @space.is_a?(Workspace) && @space.creator != current_user
+    unless is_creator?
       raise AccessDenied
     end
   end
 
-  def is_workspace_creator?
-    @space.is_a?(Workspace) && @space.creator == current_user
+  def is_creator?
+    @space.user == current_user
   end
 end

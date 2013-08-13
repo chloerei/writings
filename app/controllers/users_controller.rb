@@ -14,6 +14,7 @@ class UsersController < ApplicationController
       login_as @user
     end
   end
+
   private
 
   def user_params

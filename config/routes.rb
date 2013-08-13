@@ -31,22 +31,22 @@ Publish::Application.routes.draw do
     resources :user_sessions, :only => [:create]
 
     resource :account, :only => [:show, :update, :destroy]
-    resource :billing, :only => [:show]
     resources :invoices, :only => [:index, :new, :create, :show, :destroy] do
       collection do
         post :alipay_notify
       end
     end
-    resources :orders, :only => [:index, :new, :create, :show, :destroy] do
-      collection do
-        post :alipay_notify
-      end
-    end
-
-    resources :workspaces, :only => [:new, :create]
+    resources :spaces, :only => [:new, :create]
 
     scope '/~:space_id', :module => 'dashboard', :as => 'dashboard' do
       root :to => 'articles#index'
+
+      resource :billing, :only => [:show]
+      resources :orders, :only => [:index, :new, :create, :show, :destroy] do
+        collection do
+          post :alipay_notify
+        end
+      end
 
       resource :settings, :only => [:show, :update]
       resources :members, :only => [:index, :destroy]

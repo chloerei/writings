@@ -1,7 +1,0 @@
-<% if @workspace.persisted? %>
-  Turbolinks.visit('<%= dashboard_root_path(@workspace) %>')
-<% else %>
-  <% @workspace.errors.full_messages.each do |message| %>
-    AlertMessage.show({ type: 'error', text: "<%= j message %>" });
-  <% end %>
-<% end %>

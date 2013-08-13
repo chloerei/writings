@@ -7,11 +7,6 @@
       = render 'dashboard/share/flash_message'
       = form_for @user, :remote => true, :validate => true do |f|
         .field
-          = f.label :name
-          .input-append
-            = f.text_field :name, :tabindex => 1
-            .add-on = ".#{APP_CONFIG['host']}"
-        .field
           = f.label :email
           = f.text_field :email, :tabindex => 2
         .field

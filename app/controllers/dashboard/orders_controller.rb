@@ -1,10 +1,8 @@
-class OrdersController < ApplicationController
-  before_filter :require_logined, :except => [:alipay_notify]
-  skip_before_filter :verify_authenticity_token, :only => [:alipay_notify]
-  layout 'dashboard'
+class Dashboard::OrdersController < Dashboard::BaseController
+  skip_before_filter :require_logined, :require_space_access, :verify_authenticity_token, :only => [:alipay_notify]
 
   def index
-    @orders = current_user.orders.showable.desc(:created_at)
+    @orders = @space.orders.showable.desc(:created_at)
   end
 
   def new
@@ -12,7 +10,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_user.orders.new order_param.merge(:plan => :base, :price => 10)
+    @order = @space.orders.new order_param.merge(:plan => :base, :price => 10)
 
     case @order.quantity
     when 6
@@ -29,7 +27,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = current_user.orders.find params[:id]
+    @order = @space.orders.find params[:id]
 
     callback_params = params.except(*request.path_parameters.keys)
     if callback_params.any? && Alipay::Sign.verify?(callback_params)

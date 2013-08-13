@@ -2,148 +2,147 @@ require 'test_helper'
 
 class Dashboard::ArticlesControllerTest < ActionController::TestCase
   def setup
-    @user = create(:user)
-    @category = create(:category, :space => @user)
-    @article = create(:article, :space => @user, :category => @category)
-    login_as @user
+    @space = create :space
+    @category = create(:category, :space => @space)
+    @article = create(:article, :space => @space, :category => @category)
+    login_as @space.user
 
-    request.env["HTTP_REFERER"] = dashboard_root_url(:space_id => @user)
+    request.env["HTTP_REFERER"] = dashboard_root_url(:space_id => @space)
   end
 
   test "should get new page" do
-    get :new, :space_id => @user
+    get :new, :space_id => @space
     assert_response :success, @response.body
   end
 
   test "should get index" do
-    get :index, :space_id => @user
+    get :index, :space_id => @space
     assert_response :success, @response.body
 
-    get :index, :space_id => @user, :status => 'publish'
+    get :index, :space_id => @space, :status => 'publish'
     assert_response :success, @response.body
 
-    get :index, :space_id => @user, :category_id => @category, :status => 'publish'
+    get :index, :space_id => @space, :category_id => @category, :status => 'publish'
     assert_response :success, @response.body
 
-    get :index, :space_id => @user, :format => :js
+    get :index, :space_id => @space, :format => :js
     assert_response :success, @response.body
   end
 
   test "should create article" do
-    assert_difference "@user.articles.count" do
-      post :create, :space_id => @user, :format => :json, :article => attributes_for(:article)
+    assert_difference "@space.articles.count" do
+      post :create, :space_id => @space, :format => :json, :article => attributes_for(:article)
       assert_response :success, @response.body
     end
 
-    assert_difference ["@user.articles.count", "@category.articles.count"] do
-      post :create, :space_id => @user, :format => :json, :article => attributes_for(:article).merge(:category_id => @category.token)
+    assert_difference ["@space.articles.count", "@category.articles.count"] do
+      post :create, :space_id => @space, :format => :json, :article => attributes_for(:article).merge(:category_id => @category.token)
       assert_response :success, @response.body
     end
 
     # strong parameters
-    other = create(:user)
-    assert_no_difference "other.articles.count" do
-      assert_difference "@user.articles.count" do
-        post :create, :space_id => @user, :format => :json, :article => attributes_for(:article).merge(:space_id => other.id)
+    other_space = create(:space)
+    assert_no_difference "other_space.articles.count" do
+      assert_difference "@space.articles.count" do
+        post :create, :space_id => @space, :format => :json, :article => attributes_for(:article).merge(:space_id => other_space.id)
         assert_response :success, @response.body
       end
     end
   end
 
   test "should edit article" do
-    get :edit, :space_id => @user, :id => @article
+    get :edit, :space_id => @space, :id => @article
     assert_response :success, @response.body
   end
 
   test "should update article" do
-    put :update, :space_id => @user, :id => @article, :article => { :title => 'change', :save_count => @article.save_count + 1 }, :format => :json
+    put :update, :space_id => @space, :id => @article, :article => { :title => 'change', :save_count => @article.save_count + 1 }, :format => :json
     assert_response :success, @response.body
     assert_equal 'change', @article.reload.title
   end
 
   test "should empty trash" do
-    2.times { create :article, :space => @user, :status => 'trash' }
-    assert_difference "@user.articles.count", -2 do
-      delete :empty_trash, :space_id => @user, :format => :js
+    2.times { create :article, :space => @space, :status => 'trash' }
+    assert_difference "@space.articles.count", -2 do
+      delete :empty_trash, :space_id => @space, :format => :js
     end
   end
 
   test "should lock article when someone editing" do
-    workspace = create :workspace, :creator => @user
     member = create :user
-    workspace.members << member
-    article = create :article, :space => workspace
+    @space.members << member
+    article = create :article, :space => @space
 
-    put :update, :space_id => workspace, :id => article, :article => { :title => 'change', :save_count => article.reload.save_count + 1 }, :format => :json
+    put :update, :space_id => @space, :id => article, :article => { :title => 'change', :save_count => article.reload.save_count + 1 }, :format => :json
     assert_response :success, @response.body
     assert article.locked?
-    assert article.locked_by?(@user)
+    assert article.locked_by?(current_user)
 
     login_as member
-    put :update, :space_id => workspace, :id => article, :article => { :title => 'change', :save_count => article.reload.save_count + 1 }
+    put :update, :space_id => @space, :id => article, :article => { :title => 'change', :save_count => article.reload.save_count + 1 }
     assert_response 400, @response.body
   end
 
   test "restore" do
-    article = create :article, :space => @user, :status => 'trash'
+    article = create :article, :space => @space, :status => 'trash'
 
-    assert_difference "@user.articles.draft.count" do
-      put :restore, :space_id => @user, :id => article
+    assert_difference "@space.articles.draft.count" do
+      put :restore, :space_id => @space, :id => article
     end
   end
 
   test "batch category" do
-    ids = 2.times.map { create(:article, :space => @user).token }
-    assert_no_difference "@user.articles.count" do
+    ids = 2.times.map { create(:article, :space => @space).token }
+    assert_no_difference "@space.articles.count" do
       assert_difference "@category.articles.count", 2 do
-        put :batch_category, :space_id => @user, :ids => ids, :category_id => @category.token, :format => :js
+        put :batch_category, :space_id => @space, :ids => ids, :category_id => @category.token, :format => :js
       end
     end
   end
 
   test "batch trash" do
-    ids = 2.times.map { create(:article, :space => @user).token }
+    ids = 2.times.map { create(:article, :space => @space).token }
 
-    assert_difference "@user.articles.untrash.count", -2 do
-      put :batch_trash, :space_id => @user, :ids => ids, :format => :js
+    assert_difference "@space.articles.untrash.count", -2 do
+      put :batch_trash, :space_id => @space, :ids => ids, :format => :js
     end
   end
 
   test "batch restroe" do
-    ids = 2.times.map { create(:article, :space => @user, :status => 'trash').token }
+    ids = 2.times.map { create(:article, :space => @space, :status => 'trash').token }
 
-    assert_difference "@user.articles.untrash.count", 2 do
-      put :batch_restore, :space_id => @user, :ids => ids, :format => :js
+    assert_difference "@space.articles.untrash.count", 2 do
+      put :batch_restore, :space_id => @space, :ids => ids, :format => :js
     end
   end
 
   test "batch publish" do
-    ids = 2.times.map { create(:article, :space => @user, :status => 'draft').token }
+    ids = 2.times.map { create(:article, :space => @space, :status => 'draft').token }
 
-    assert_difference "@user.articles.publish.count", 2 do
-      put :batch_publish, :space_id => @user, :ids => ids, :format => :js
+    assert_difference "@space.articles.publish.count", 2 do
+      put :batch_publish, :space_id => @space, :ids => ids, :format => :js
     end
   end
 
   test "batch draft" do
-    ids = 2.times.map { create(:article, :space => @user, :status => 'publish').token }
+    ids = 2.times.map { create(:article, :space => @space, :status => 'publish').token }
 
-    assert_difference "@user.articles.draft.count", 2 do
-      put :batch_draft, :space_id => @user, :ids => ids, :format => :js
+    assert_difference "@space.articles.draft.count", 2 do
+      put :batch_draft, :space_id => @space, :ids => ids, :format => :js
     end
   end
 
   test "batch destroy" do
-    ids = 2.times.map { create(:article, :space => @user, :status => 'trash').token }
+    ids = 2.times.map { create(:article, :space => @space, :status => 'trash').token }
 
-    assert_difference "@user.articles.count", -2 do
-      put :batch_destroy, :space_id => @user, :ids => ids, :format => :js
+    assert_difference "@space.articles.count", -2 do
+      put :batch_destroy, :space_id => @space, :ids => ids, :format => :js
     end
 
-    ids = 2.times.map { create(:article, :space => @user, :status => 'draft').token }
+    ids = 2.times.map { create(:article, :space => @space, :status => 'draft').token }
 
-    assert_no_difference "@user.articles.count" do
-      put :batch_destroy, :space_id => @user, :ids => ids, :format => :js
+    assert_no_difference "@space.articles.count" do
+      put :batch_destroy, :space_id => @space, :ids => ids, :format => :js
     end
   end
 end

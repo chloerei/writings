@@ -1,11 +1,11 @@
 - append_title t('.new_order')
 
 - content_for :sidebar do
-  = render 'dashboard/share/settings_sidebar'
+  = render 'dashboard/share/main_sidebar'
 
 .main-header
   h2
-    = link_to t('.billing'), billing_path
+    = link_to t('.billing'), dashboard_billing_path
     = ' / '
     = t '.new_order'
 
@@ -13,7 +13,7 @@ section
   .two-columns
     .column
       h3.title = t '.order'
-      = form_for @order do |f|
+      = form_for @order, :url => dashboard_orders_path do |f|
         .field
           = f.label :plan
           = t('plan.base')

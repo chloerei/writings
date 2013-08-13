@@ -24,10 +24,10 @@ class ArticleTest < ActiveSupport::TestCase
 
   test "should create version" do
     article = create :article
+    user = create :user
     assert_difference "article.versions.count" do
-      article.create_version :user => article.space
+      article.create_version :user => user
     end
-    assert_equal article.space, article.versions.asc(:created_at).last.user
 
     other_user = create :user
     assert_difference "article.versions.count" do

@@ -4,4 +4,4 @@ Order Content: <%= I18n.t "plan.#{@order.plan}" %> <%= @order.quantity %> month(
 
 Visit this link to show detail:
 
-<%= order_url(@order, :host => APP_CONFIG['host'], :protocol => 'https') %>
+<%= dashboard_order_url(@order.space, @order, :host => APP_CONFIG['host'], :protocol => 'https') %>

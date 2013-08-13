@@ -5,7 +5,7 @@
     #editarea
       .scrollable
         .editor-container
-          article.article contentEditable="true" spellcheck="false" data-id=(@article.token) data-save-count=(@article.save_count) data-category-id=(@article.category.try(:token)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil) data-space=(@space.to_param) data-is-workspace=(@space.is_a?(Workspace)) data-current-user-name=(current_user.name)
+          article.article contentEditable="true" spellcheck="false" data-id=(@article.token) data-save-count=(@article.save_count) data-category-id=(@article.category.try(:token)) data-urlname=(@article.urlname) data-status=(@article.status) class=(@article.new_record? ? 'init' : nil) data-space=(@space.to_param) data-is-workspace=(@space.members.count > 1) data-current-user-name=(current_user.name)
             = article_format_body @article.body
       #alert-messages
       #readonly-message
@@ -30,7 +30,7 @@
           - if @space.in_plan?(:free)
             .message
               = t '.version_limit'
-              = link_to t('.need_more_version'), billing_path
+              = link_to t('.need_more_version'), dashboard_billing_path
 
 = render 'dashboard/articles/edit/urlname_modal'
 = render 'dashboard/articles/edit/select_category_modal'
