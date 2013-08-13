@@ -83,8 +83,8 @@ en:
       see_plan: See Plan
   users:
     new:
-      just_one_step: Juet One Step
-      signup: Singup
+      just_one_step: Just One Step
+      signup: Signup
   user_sessions:
     new:
       welcome_back: Welcome Back
