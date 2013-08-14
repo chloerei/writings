@@ -8,7 +8,7 @@
           .dropdown
             a.dropdown-toggle.topbar-button class=('actived' if %w(articles attachments categories import_tasks export_tasks settings).include? controller_name)
               i.icon-user
-              = @space.try(:display_name)
+              = @space.try(:display_name) || t('.select_space')
             ul.dropdown-menu
               - current_user.spaces.each do |space|
                 li

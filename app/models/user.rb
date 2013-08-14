@@ -20,6 +20,7 @@ class User
 
   has_secure_password
 
+  validates :name, :presence => true, :uniqueness => {:case_sensitive => false}, :format => {:with => /\A[a-z0-9-]+\z/, :message => I18n.t('errors.messages.space_name') }, :length => {:in => 4..20}
   validates :email, :presence => true, :uniqueness => {:case_sensitive => false}, :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}
   validates :password, :length => { :minimum => 6 }, :on => :create
   validates :locale, :inclusion => {:in => ALLOW_LOCALE}

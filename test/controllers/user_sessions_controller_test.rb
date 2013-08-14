@@ -10,12 +10,10 @@ class UserSessionsControllerTest < ActionController::TestCase
     assert_response :success, @response.body
   end
 
-=begin
   test "should login with name and right password" do
     post :create, :login => @user.name, :password => 'password', :format => :js
     assert_equal @user, current_user
   end
-=end
 
   test "should login with email and right password" do
     post :create, :login => @user.email, :password => 'password', :format => :js

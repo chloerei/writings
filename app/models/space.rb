@@ -34,7 +34,7 @@ class Space
 
   PLANS = %w(free base)
 
-  validates :name, :presence => true, :uniqueness => {:case_sensitive => false}, :format => {:with => /\A[a-zA-Z0-9-]+\z/, :message => I18n.t('errors.messages.space_name') }, :length => {:in => 4..20}
+  validates :name, :presence => true, :uniqueness => {:case_sensitive => false}, :format => {:with => /\A[a-z0-9-]+\z/, :message => I18n.t('errors.messages.space_name') }, :length => {:in => 4..20}
   validates :domain, :format => {:with => /\A[a-zA-Z0-9_\-.]+\z/}, :uniqueness => {:case_sensitive => false}, :allow_blank => true
 
   validate :except_host

@@ -17,6 +17,14 @@ class SplitUserAndSpace < Mongoid::Migration
     end
     Space.all.unset(user_attributes - [:name, :full_name, :description])
 
+    Space.asc(:_id).each do |space|
+      space.update_attribute :name, space.name.downcase.gsub('_', '-')
+    end
+
+    User.asc(:_id).each do |user|
+      user.update_attribute :name, user.name.downcase.gsub('_', '-')
+    end
+
     # Order
     Order.all.rename :user_id => :space_id
   end
