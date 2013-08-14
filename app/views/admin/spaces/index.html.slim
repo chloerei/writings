@@ -1,0 +1,17 @@
+- append_title '工作区'
+
+table.item-table
+  tbody
+    tr
+      th 空间名
+      th 全名
+      th 创建者名
+      th.min 创建日期
+    - @spaces.each do |space|
+      tr
+        td = link_to space.name, admin_space_path(space)
+        td = space.full_name
+        td = space.user.name
+        td.min = space.created_at
+
+= paginate @spaces, :theme => :dashboard

@@ -103,7 +103,7 @@ Publish::Application.routes.draw do
         root :to => 'dashboard#show'
         resources :articles, :only => [:index, :show]
         resources :users, :only => [:index, :show]
-        resources :workspaces, :only => [:index, :show]
+        resources :spaces, :only => [:index, :show]
         resources :attachments, :only => [:index]
         resources :orders, :only => [:index, :show]
         resources :alipay_notifies, :only => [:index, :show]

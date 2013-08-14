@@ -15,7 +15,7 @@ class SplitUserAndSpace < Mongoid::Migration
       space.update_attribute :user_id, user.id
       space.members << user
     end
-    Space.all.unset(user_attributes - [:name, :full_name, :description])
+    Space.all.unset(:email, :password_digest, :password_reset_token, :password_reset_token_created_at, :locale)
 
     Space.asc(:_id).each do |space|
       space.update_attribute :name, space.name.downcase.gsub('_', '-')

@@ -1,0 +1,35 @@
+#tabs
+  | 工作组信息
+section#user-info
+  .field
+    label 头像
+    = image_tag @space.gravatar_url
+  .field
+    label 用户名
+    = link_to @space.name, site_root_url(:host => @space.host, :protocol => 'http')
+  .field
+    label 全名
+    = @space.full_name
+  .field
+    label 资料简述
+    = simple_format @space.description
+  .field
+    label
+      | 文章数（全部/发表/草稿/回收）
+      = link_to '查看全部', admin_articles_path(:name => @space.name)
+    = @space.articles.count
+    | /
+    = @space.articles.publish.count
+    | /
+    = @space.articles.draft.count
+    | /
+    = @space.articles.trash.count
+  .field
+    label 创建者
+    = link_to @space.user.name, admin_user_path(@space.user)
+  .field
+    label 成员
+    ul
+      - @space.members.each do |member|
+        li
+          = link_to member.name, admin_user_path(member)
