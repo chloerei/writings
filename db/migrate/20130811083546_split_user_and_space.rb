@@ -33,7 +33,7 @@ class SplitUserAndSpace < Mongoid::Migration
     end
 
     Article.asc(:_id).each do |article|
-      article.update_attribute :user_id, article.space_id # same
+      article.update_attribute :user_id, article.space.user_id
     end
 
     # Order
