@@ -2,10 +2,10 @@ require 'test_helper'
 
 class Site::CategoriesControllerTest < ActionController::TestCase
   def setup
-    @user = create :user
-    @category = create :category, :space => @user
-    @article = create :article, :space => @user, :category => @category, :status => 'publish'
-    @request.host = "#{@user.name}.#{APP_CONFIG["host"]}"
+    @space = create :space
+    @category = create :category, :space => @space
+    @article = create :article, :space => @space, :category => @category, :status => 'publish'
+    @request.host = "#{@space.name}.#{APP_CONFIG["host"]}"
   end
 
   test "should get show" do

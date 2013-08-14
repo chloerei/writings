@@ -4,4 +4,4 @@
 
 访问以下链接查看详情：
 
-<%= order_url(@order, :host => APP_CONFIG['host'], :protocol => 'https') %>
+<%= dashboard_order_url(@order.space, @order, :host => APP_CONFIG['host'], :protocol => 'https') %>

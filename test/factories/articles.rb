@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :article do
     space
+    user
     sequence(:title){|n| "title #{n}" }
     body '<p>body</p>'
   end

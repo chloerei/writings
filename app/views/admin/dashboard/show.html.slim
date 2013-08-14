@@ -4,29 +4,29 @@ table.item-table
       th 时间段
       th 文章
       th 用户
-      th 工作区
+      th 空间
       th 订单
     tr
       td 今天
       td = Article.where(:created_at.gt => Time.zone.now.beginning_of_day).count
       td = User.where(:created_at.gt => Time.zone.now.beginning_of_day).count
-      td = Workspace.where(:created_at.gt => Time.zone.now.beginning_of_day).count
+      td = Space.where(:created_at.gt => Time.zone.now.beginning_of_day).count
       td = Order.where(:created_at.gt => Time.zone.now.beginning_of_day).count
     tr
       td 昨天
       td = Article.where(:created_at.gt => 1.day.ago.beginning_of_day, :created_at.lt => Time.zone.now.beginning_of_day).count
       td = User.where(:created_at.gt => 1.day.ago.beginning_of_day, :created_at.lt => Time.zone.now.beginning_of_day).count
-      td = Workspace.where(:created_at.gt => 1.day.ago.beginning_of_day, :created_at.lt => Time.zone.now.beginning_of_day).count
+      td = Space.where(:created_at.gt => 1.day.ago.beginning_of_day, :created_at.lt => Time.zone.now.beginning_of_day).count
       td = Order.where(:created_at.gt => 1.day.ago.beginning_of_day, :created_at.lt => Time.zone.now.beginning_of_day).count
     tr
       td 前天
       td = Article.where(:created_at.gt => 2.day.ago.beginning_of_day, :created_at.lt => 1.day.ago.beginning_of_day).count
       td = User.where(:created_at.gt => 2.day.ago.beginning_of_day, :created_at.lt => 1.day.ago.beginning_of_day).count
-      td = Workspace.where(:created_at.gt => 2.day.ago.beginning_of_day, :created_at.lt => 1.day.ago.beginning_of_day).count
+      td = Space.where(:created_at.gt => 2.day.ago.beginning_of_day, :created_at.lt => 1.day.ago.beginning_of_day).count
       td = Order.where(:created_at.gt => 2.day.ago.beginning_of_day, :created_at.lt => 1.day.ago.beginning_of_day).count
     tr
       td 总数
       td = Article.count
       td = User.count
-      td = Workspace.count
+      td = Space.count
       td = Order.count

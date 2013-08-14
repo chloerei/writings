@@ -16,12 +16,12 @@ class Order
   field :start_at, :type => Time
   field :trade_no
 
-  belongs_to :user
+  belongs_to :space
   has_many :alipay_notifies
 
   scope :showable, where(:state.ne => 'opening')
 
-  index({ :user_id => 1 })
+  index({ :space_id => 1 })
 
   validates_presence_of :plan, :quantity, :price
   validates_inclusion_of :state, :in => STATE
@@ -81,23 +81,23 @@ class Order
   end
 
   def add_plan
-    start_at = (user.plan_expired_at && user.plan_expired_at > Time.now.utc) ? user.plan_expired_at : Time.now.utc
+    start_at = (space.plan_expired_at && space.plan_expired_at > Time.now.utc) ? space.plan_expired_at : Time.now.utc
 
     update_attributes(
       :start_at    => start_at
     )
 
-    user.update_attributes(
+    space.update_attributes(
       :plan => plan,
       :plan_expired_at => start_at + quantity.months
     )
   end
 
   def remove_plan
-    user.update_attributes(
-      :plan_expired_at => user.plan_expired_at - quantity.months
+    space.update_attributes(
+      :plan_expired_at => space.plan_expired_at - quantity.months
     )
-    user.orders.where(:start_at.gt => start_at).each do |order|
+    space.orders.where(:start_at.gt => start_at).each do |order|
       order.update_attribute :start_at, order.start_at - quantity.months
     end
   end
@@ -112,8 +112,8 @@ class Order
       :logistics_type    => 'DIRECT',
       :logistics_fee     => '0',
       :logistics_payment => 'SELLER_PAY',
-      :return_url        => Rails.application.routes.url_helpers.order_url(self, :protocol => 'https', :host => APP_CONFIG['host']),
-      :notify_url        => Rails.application.routes.url_helpers.alipay_notify_orders_url(:protocol => 'https', :host => APP_CONFIG['host']),
+      :return_url        => Rails.application.routes.url_helpers.dashboard_order_url(:space_id => space, :id => self, :protocol => 'https', :host => APP_CONFIG['host']),
+      :notify_url        => Rails.application.routes.url_helpers.alipay_notify_dashboard_orders_url(:space_id => space, :protocol => 'https', :host => APP_CONFIG['host']),
       :receive_name      => 'none',
       :receive_address   => 'none',
       :receive_zip       => '100000',

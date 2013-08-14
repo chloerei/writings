@@ -16,12 +16,6 @@ class AccountsControllerTest < ActionController::TestCase
     put :update, :user => { :email => 'change@writings.io', :current_password => @password }, :format => :js
     assert_response :success, @response.body
     assert_equal 'change@writings.io', @user.reload.email
-
-    # remmove domain
-    @user.update_attribute :domain, 'old'
-    put :update, :user => { :domain => '', :current_password => @password }, :format => :js
-    assert_response :success, @response.body
-    assert_equal '', @user.reload.domain
   end
 
   test "should not update if current_password error" do

@@ -113,53 +113,6 @@ zh-CN:
       custom: "个性化"
       change_password: "更换密码"
       confirm_change: "确认修改"
-  billings:
-    show:
-      billing: "付费"
-      renew: "续费"
-      plan: "套餐"
-      price: "价格"
-      storage: "储存空间"
-      history: "历史记录"
-      10_per_1_month: "10元 / 月"
-      current_plan: "当前套餐："
-      expired: "到期"
-      orders: "订单"
-      view_all: "查看全部"
-
-  orders:
-    index:
-      billing: "付费"
-      orders: "订单"
-    orders:
-      created_at: "创建时间"
-      plan: "套餐"
-      total_price: "费用"
-      state: "状态"
-      range: "有效时间"
-      no_orders: "没有订单"
-    new:
-      billing: "付费"
-      new_order: "新订单"
-      order: "订单"
-      10_per_1_month: "10元 / 月"
-      50_per_6_month: "50元 / 6个月"
-      100_per_1_year: "100元 / 年"
-      alipay_payment: "支付宝支付"
-    show:
-      billing: "付费"
-      orders: "订单"
-      order_id: "订单 ID"
-      created_at: "创建时间"
-      plan: "套餐"
-      quantity: "数量"
-      total_price: "费用"
-      price: "%{price} 元"
-      state: "订单状态"
-      range: "有效时间"
-      order_question_contact: "对订单有疑问，请联系："
-      order: "订单"
-
   profiles:
     show:
       profile_setting: "个人资料设置"
@@ -177,6 +130,7 @@ zh-CN:
         export: "导出"
         members: "成员"
         settings: "空间设置"
+        billing: "付费服务"
         edit: "编辑"
         delete: "删除"
         delete_category_confirm: "删除分类 %{name}？该分类下的文章会被标记为未归类。"
@@ -275,6 +229,54 @@ zh-CN:
         change_account: "使用另一个帐号？"
         join_workspace: "加入空间"
         current_members: "成员"
+
+    billings:
+      show:
+        billing: "付费"
+        renew: "续费"
+        plan: "套餐"
+        price: "价格"
+        storage: "储存空间"
+        history_versions: "历史记录"
+        members: "成员"
+        10_per_1_month: "10元 / 月"
+        current_plan: "当前套餐："
+        expired: "到期"
+        orders: "订单"
+        view_all: "查看全部"
+
+    orders:
+      index:
+        billing: "付费"
+        orders: "订单"
+      orders:
+        created_at: "创建时间"
+        plan: "套餐"
+        total_price: "费用"
+        state: "状态"
+        range: "有效时间"
+        no_orders: "没有订单"
+      new:
+        billing: "付费"
+        new_order: "新订单"
+        order: "订单"
+        10_per_1_month: "10元 / 月"
+        50_per_6_month: "50元 / 6个月"
+        100_per_1_year: "100元 / 年"
+        alipay_payment: "支付宝支付"
+      show:
+        billing: "付费"
+        orders: "订单"
+        order_id: "订单 ID"
+        created_at: "创建时间"
+        plan: "套餐"
+        quantity: "数量"
+        total_price: "费用"
+        price: "%{price} 元"
+        state: "订单状态"
+        range: "有效时间"
+        order_question_contact: "对订单有疑问，请联系："
+        order: "订单"
 
     attachments:
       index:

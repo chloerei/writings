@@ -9,11 +9,11 @@ class Invitation
   field :email
   field :message
 
-  belongs_to :workspace
+  belongs_to :space
 
-  index({ :workspace_id => 1, :token => 1 }, { :unique => true })
+  index({ :space_id => 1, :token => 1 }, { :unique => true })
 
-  validates :email, :presence => true, :uniqueness => {:case_sensitive => false, :scope => :workspace_id }, :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}
+  validates :email, :presence => true, :uniqueness => {:case_sensitive => false, :scope => :space_id }, :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}
 
   before_create :set_token
 

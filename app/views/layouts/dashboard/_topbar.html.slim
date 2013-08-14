@@ -6,42 +6,35 @@
           a#sidebar-button.topbar-button
             i.icon-reorder
           .dropdown
-            a.dropdown-toggle.topbar-button href=(dashboard_root_path(@space || current_user)) class=('actived' if %w(articles attachments categories import_tasks export_tasks settings).include? controller_name)
+            a.dropdown-toggle.topbar-button class=('actived' if %w(articles attachments categories import_tasks export_tasks settings).include? controller_name)
               i.icon-user
-              = (@space || current_user).display_name
+              = @space.try(:display_name) || t('.select_space')
             ul.dropdown-menu
-              li
-                a href=(dashboard_root_path(current_user))
-                  i.icon-user
-                  = current_user.display_name
-              - current_user.workspaces.each do |workspace|
+              - current_user.spaces.asc(:created_at).each do |space|
                 li
-                  a href=(dashboard_root_path(workspace))
+                  a href=(dashboard_root_path(space))
                     i.icon-group
-                    = workspace.display_name
+                    = space.display_name
               li
                 hr
               li
-                a href=(new_workspace_path)
+                a href=(new_space_path)
                   i.icon-plus
-                  = t '.new_workspace'
+                  = t '.new_space'
         .sub-menu.clearfix
           .pull-left
-            a#user-link.topbar-button href=(site_root_url(:host => (@space || current_user).host, :protocol => 'http')) target='_blank'
-              i.icon-external-link.no-margin
+            - if @space
+              a#user-link.topbar-button href=(site_root_url(:host => @space.host, :protocol => 'http')) target='_blank'
+                i.icon-external-link.no-margin
           .pull-right
             .dropdown
-              a.dropdown-toggle.topbar-button href=(account_path) class=('actived' if %w(accounts billings).include? controller_name)
+              a.dropdown-toggle.topbar-button href=(account_path) class=('actived' if %w(accounts).include? controller_name)
                 i.icon-cog.no-margin
               ul.dropdown-menu.align-right
                 li
                   = link_to account_path do
                     i.icon-user
                     = t '.account'
-                li
-                  = link_to billing_path do
-                    i.icon-shopping-cart
-                    = t '.billing'
                 li
                   hr
                 li

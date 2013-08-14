@@ -3,11 +3,11 @@
   - if left_count > 0
     - (left_count).times do
       .field
-        = text_field_tag 'emails[]', nil, :placeholder => 'Email', :id => nil
+        = text_field_tag 'emails[]', nil, :placeholder => 'Email', :id => nil, :disabled => (@space.in_plan?(:free))
     .field
       = label_tag t('.message_with_email_invitation'), nil, :for => 'message'
-      = text_area_tag 'message'
+      = text_area_tag 'message', nil, :disabled => (@space.in_plan?(:free))
     .field
-      = submit_tag t('.send_invitation')
+      = submit_tag t('.send_invitation'), :disabled => (@space.in_plan?(:free))
   - else
     = t '.upto_members_limit'

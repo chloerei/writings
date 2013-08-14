@@ -2,26 +2,26 @@ require 'test_helper'
 
 class Site::ArticlesControllerTest < ActionController::TestCase
   def setup
-    @user = create :user
-    @article = create :article, :space => @user, :status => 'publish'
-    @request.host = "#{@user.name}.#{APP_CONFIG["host"]}"
+    @space = create :space
+    @article = create :article, :space => @space, :status => 'publish'
+    @request.host = "#{@space.name}.#{APP_CONFIG["host"]}"
   end
 
   test "should get index" do
     get :index
-    assert_equal @user, assigns(:space)
+    assert_equal @space, assigns(:space)
     assert_response :success, @response.body
   end
 
   test "should get index when setting domain" do
-    @user.update_attribute :domain, 'custom.domain'
+    @space.update_attribute :domain, 'custom.domain'
 
     get :index
-    assert_redirected_to "http://#{@user.domain}/"
+    assert_redirected_to "http://#{@space.domain}/"
 
     @request.host = 'custom.domain'
     get :index
-    assert_equal @user, assigns(:space)
+    assert_equal @space, assigns(:space)
     assert_response :success, @response.body
   end
 

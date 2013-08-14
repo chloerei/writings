@@ -16,6 +16,7 @@ class Article
   index({ :space_id => 1, :old_url => 1 }, { :sparse => true })
 
   belongs_to :space
+  belongs_to :user
   belongs_to :category
   belongs_to :last_edit_user, :class_name => 'User'
 

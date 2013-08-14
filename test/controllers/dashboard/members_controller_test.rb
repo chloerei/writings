@@ -2,24 +2,29 @@ require 'test_helper'
 
 class Dashboard::MembersControllerTest < ActionController::TestCase
   def setup
-    @user = create :user
-    @workspace = create :workspace, :creator => @user
-    login_as @user
+    @space = create :space, :plan => :base, :plan_expired_at => 1.day.from_now
+    login_as @space.user
   end
 
   test "should get workspace members" do
-    get :index, :space_id => @user
-    assert_redirected_to dashboard_root_path(:space_id => @user)
-
-    get :index, :space_id => @workspace
+    get :index, :space_id => @space
     assert_response :success, @response.body
   end
 
   test "should destroy member" do
     member = create :user
-    @workspace.members << member
-    assert_difference "@workspace.reload.members.count", -1 do
-      delete :destroy, :space_id => @workspace, :id => member, :format => :js
+    @space.members << member
+    assert_difference "@space.reload.members.count", -1 do
+      delete :destroy, :space_id => @space, :id => member, :format => :js
+    end
+  end
+
+  test "shuold not destroy if in plan free" do
+    @space.update_attribute :plan, :free
+    member = create :user
+    @space.members << member
+    assert_no_difference "@space.reload.members.count", -1 do
+      delete :destroy, :space_id => @space, :id => member, :format => :js
     end
   end
 end

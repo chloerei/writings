@@ -19,17 +19,17 @@ class SystemMailer < ActionMailer::Base
 
   def order_payment_success(order_id)
     @order = Order.find order_id
-    I18n.locale = @order.user.locale
+    I18n.locale = @order.space.user.locale
 
-    mail(:to => @order.user.email,
+    mail(:to => @order.space.user.email,
          :subject => I18n.t('order_payment_success_email_subject'))
   end
 
   def order_cancel(order_id)
     @order = Order.find order_id
-    I18n.locale = @order.user.locale
+    I18n.locale = @order.space.user.locale
 
-    mail(:to => @order.user.email,
+    mail(:to => @order.space.user.email,
          :subject => I18n.t('order_cancel_email_subject'))
   end
 

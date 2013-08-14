@@ -7,8 +7,8 @@ table.nice-table
         td = key
         td = value
     tr
-      td 用户
-      td = link_to @order.user.name, admin_user_path(:id => @order.user.name)
+      td 空间
+      td = link_to @order.space.name, admin_space_path(:id => @order.space.name)
 
 h3 支付宝通知
 table.nice-table

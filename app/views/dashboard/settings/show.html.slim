@@ -22,19 +22,18 @@ section
     .field
       = f.label :description
       = f.text_area :description
-    - if @space.is_a? Workspace
-      .field
-        = f.label :gravatar_email
-        = f.text_field :gravatar_email
+    .field
+      = f.label :gravatar_email
+      = f.text_field :gravatar_email
     .field
       = f.label :disqus_shortname
       = f.text_field :disqus_shortname, :placeholder => 'shortname'
     .field
       = f.label :google_analytics_id
-      = f.text_field :google_analytics_id, :placeholder => 'UA-XXXX-Y', :disabled => current_user.in_plan?(:free)
-      - if current_user.in_plan?(:free)
+      = f.text_field :google_analytics_id, :placeholder => 'UA-XXXX-Y', :disabled => @space.in_plan?(:free)
+      - if @space.in_plan?(:free)
         .quiet
-          a href=(billing_path)
+          a href=(dashboard_billing_path)
             i.icon-exclamation-sign.no-margin
             = t('need_upgrade')
     .field

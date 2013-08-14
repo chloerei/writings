@@ -3,6 +3,3 @@ nav.main-sidebar-nav
     li.main-sidebar-item class=('actived' if controller_name == 'accounts')
       a href=(account_path)
         = t '.account_settings'
-    li.main-sidebar-item class=('actived' if %w(billings orders).include?(controller_name))
-      a href=(billing_path)
-        = t '.billing'

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class Exporter::WordpressTest < ActiveSupport::TestCase
   def setup
-    @space = create :user
+    @space = create :space
     2.times { create :article, :space => @space }
     @category = create :category, :space => @space
     2.times { create :article, :space => @space, :category => @category }

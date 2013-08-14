@@ -480,23 +480,39 @@ $topbarLinkHoverBackgroundColor: white;
     background-color: lighten($green, 5%);
     border-color: $green;
     color: #fff;
+
+    a {
+      color: #fff;
+    }
   }
 
   &.flash-info {
     background-color: lighten($blue, 5%);
     border-color: $blue;
     color: #fff;
+
+    a {
+      color: #fff;
+    }
   }
 
   &.flash-warning {
     background-color: lighten($yellow, 5%);
     border-color: $yellow;
     color: #fff;
+
+    a {
+      color: #fff;
+    }
   }
 
   &.flash-error {
     background-color: lighten($red, 5%);
     border-color: $red;
     color: #fff;
+
+    a {
+      color: #fff;
+    }
   }
 }

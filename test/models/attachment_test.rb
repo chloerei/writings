@@ -8,21 +8,21 @@ class AttachmentTest < ActiveSupport::TestCase
     assert_not_nil attachment.file_size
   end
 
-  test "should change user storage_used" do
+  test "should change space storage_used" do
     file = File.open("#{Rails.root}/app/assets/images/rails.png")
-    user = create :user
-    assert_difference "user.storage_used", file.size do
-      user.attachments.create :file => file, :user => user
+    space = create :space
+    assert_difference "space.storage_used", file.size do
+      space.attachments.create :file => file, :user => create(:user)
     end
-    assert_difference "user.storage_used", -file.size do
-      user.attachments.last.destroy
+    assert_difference "space.storage_used", -file.size do
+      space.attachments.last.destroy
     end
   end
 
-  test "should valid false if touch user sotre limit" do
-    user = create :user
-    assert build(:attachment, :user => user).valid?
-    user.update_attribute :storage_used, user.storage_limit
-    assert !build(:attachment, :user => user).valid?
+  test "should valid false if touch space sotre limit" do
+    space = create :space
+    assert build(:attachment, :space => space).valid?
+    space.update_attribute :storage_used, space.storage_limit
+    assert !build(:attachment, :space => space).valid?
   end
 end

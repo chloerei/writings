@@ -2,8 +2,8 @@ require 'test_helper'
 
 class OrderTest < ActiveSupport::TestCase
   def setup
-    @user = create :user
-    @order = create :order, :plan => :base, :quantity => 2, :user => @user
+    @space = create :space
+    @order = create :order, :plan => :base, :quantity => 2, :space => @space
   end
 
   test "init state" do
@@ -21,11 +21,11 @@ class OrderTest < ActiveSupport::TestCase
     @order.complete
     assert_equal 'completed', @order.state
     assert @order.completed?
-    @user.reload
+    @space.reload
     assert_not_nil @order.start_at
     assert_not_nil @order.completed_at
-    assert_equal @order.plan, @user.plan
-    assert_not_nil @user.plan_expired_at
+    assert_equal @order.plan, @space.plan
+    assert_not_nil @space.plan_expired_at
   end
 
   test "should cancel" do
@@ -41,37 +41,37 @@ class OrderTest < ActiveSupport::TestCase
     @order.pay
     assert_equal 'paid', @order.state
     assert @order.paid?
-    assert_equal @order.plan, @user.plan
-    assert_not_nil @user.plan_expired_at
+    assert_equal @order.plan, @space.plan
+    assert_not_nil @space.plan_expired_at
   end
 
   test "should add_plan" do
     @order.add_plan
-    assert_equal @order.plan, @user.plan
-    assert_not_nil @user.plan_expired_at
+    assert_equal @order.plan, @space.plan
+    assert_not_nil @space.plan_expired_at
     assert_not_nil @order.start_at
   end
 
   test "should add_plan if plan exists" do
     time = 1.day.from_now
-    @user.update_attributes :plan => :base, :plan_expired_at => time
-    assert_difference "@user.plan_expired_at", @order.quantity.months do
+    @space.update_attributes :plan => :base, :plan_expired_at => time
+    assert_difference "@space.plan_expired_at", @order.quantity.months do
       @order.add_plan
     end
-    assert_equal @order.plan, @user.plan
+    assert_equal @order.plan, @space.plan
     assert_equal time, @order.start_at
   end
 
   test "should remove_plan" do
     @order.add_plan
-    assert_difference "@user.reload.plan_expired_at", -@order.quantity.month do
+    assert_difference "@space.reload.plan_expired_at", -@order.quantity.month do
       @order.remove_plan
     end
   end
 
   test "should remove_plan and reset other order after this" do
     @order.add_plan
-    other_order = create :order, :user => @user, :quantity => 1
+    other_order = create :order, :space => @space, :quantity => 1
     other_order.add_plan
     assert other_order.start_at > @order.start_at
     assert_not_nil other_order.start_at
@@ -83,7 +83,7 @@ class OrderTest < ActiveSupport::TestCase
   test "remove_plan when cancel after pay" do
     @order.update_attribute :state, 'pending'
     @order.pay
-    assert_difference "@user.reload.plan_expired_at", -@order.quantity.month do
+    assert_difference "@space.reload.plan_expired_at", -@order.quantity.month do
       @order.cancel
     end
   end

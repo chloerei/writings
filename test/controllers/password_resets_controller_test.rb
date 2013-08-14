@@ -10,7 +10,7 @@ class PasswordResetsControllerTest < ActionController::TestCase
 
     login_as @user
     get :new
-    assert_redirected_to dashboard_root_path(current_user)
+    assert_redirected_to root_path
   end
 
   test "should create reset" do

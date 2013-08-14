@@ -1,6 +1,5 @@
 class Dashboard::InvitationsController < Dashboard::BaseController
-  before_filter :require_workspace
-  before_filter :require_creator, :only => [:create, :destroy, :resend]
+  before_filter :require_creator, :require_plan, :only => [:create, :destroy, :resend]
   skip_filter :require_logined, :require_space_access, :only => [:show, :accept, :join]
 
   def show
@@ -55,6 +54,12 @@ class Dashboard::InvitationsController < Dashboard::BaseController
   end
 
   private
+
+  def require_plan
+    if @space.in_plan?(:free)
+      render :js => "Turbolinks.visit('#{dashboard_members_url(@space)}');"
+    end
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)

@@ -23,7 +23,8 @@ class ImportArticle
       :category     => space_category,
       :status       => status,
       :created_at   => created_at,
-      :published_at => published_at
+      :published_at => published_at,
+      :user         => import_task.user
     )
   end
 end

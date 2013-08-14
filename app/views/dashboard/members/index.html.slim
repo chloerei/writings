@@ -7,10 +7,16 @@
   h2
     = t '.members'
 
+- if @space.in_plan?(:free)
+  a href=(dashboard_billing_path)
+    .flash-message.flash-info
+      i.icon-exclamation-sign
+      = t('need_upgrade')
+
 section.two-columns
   .column
     h3.title = t '.invite_members'
-    - if is_workspace_creator?
+    - if is_creator?
       = render 'form'
     - else
       = t '.contact_workspace_creator_to_invite_members'

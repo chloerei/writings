@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :order do
-    user
+    space
     plan :base
     quantity 1
     price 20

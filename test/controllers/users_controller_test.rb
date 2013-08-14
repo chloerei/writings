@@ -6,9 +6,9 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success, @response.body
   end
 
-  test "should create news" do
+  test "should create user" do
     assert_no_difference "User.count" do
-      post :create, :user => attributes_for(:user).slice(:name), :format => :js
+      post :create, :user => attributes_for(:user).slice(:email), :format => :js
     end
 
     assert_difference "User.count" do

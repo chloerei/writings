@@ -1,0 +1,13 @@
+- append_title t('.orders')
+
+- content_for :sidebar do
+  = render 'dashboard/share/main_sidebar'
+
+.main-header
+  h2
+    = link_to t('.billing'), dashboard_billing_path
+    = ' / '
+    = t '.orders'
+
+section
+  = render 'orders'

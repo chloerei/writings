@@ -3,7 +3,7 @@ li.member id=("invitation-#{invitation.id}")
   .info
     .email = invitation.email
     p = t '.waiting_for_accept'
-    - if is_workspace_creator?
+    - if is_creator? && !@space.in_plan?(:free)
       .action
         = link_to t('.resend'), resend_dashboard_invitation_path(:id => invitation), :remote => true, :method => :put
         = ' / '

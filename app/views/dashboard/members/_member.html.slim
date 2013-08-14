@@ -4,8 +4,8 @@ li.member id=("member-#{member.id}")
     .name = member.name
     .email = member.email
     .action
-      - if @space.creator != member
-        - if is_workspace_creator?
+      - if @space.user != member
+        - if is_creator? && !@space.in_plan?(:free)
           = link_to t('.remove'), dashboard_member_path(:id => member), :remote => true, :method => :delete, :data => { :confirm => t('.remove_confirm') }
       - else
         = t '.creator'

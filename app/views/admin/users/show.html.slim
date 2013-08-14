@@ -6,7 +6,12 @@ section#user-info
     = image_tag @user.gravatar_url
   .field
     label 用户名
-    = link_to @user.name, site_root_url(:host => @user.host, :protocol => 'http')
+    = @user.name
+  .field
+    label 空间
+    ul
+      - @user.spaces.each do |space|
+        li = link_to space.name, admin_space_path(space)
   .field
     label Email
     = @user.email
@@ -16,36 +21,3 @@ section#user-info
   .field
     label 资料简述
     = simple_format @user.description
-  .field
-    label 套餐
-    = @user.plan
-  .field
-    label 到期
-    = @user.plan_expired_at || '无'
-  .field
-    label
-      | 文章数（全部/发表/草稿/回收）
-      = link_to '查看全部', admin_articles_path(:name => @user.name)
-    = @user.articles.count
-    | /
-    = @user.articles.publish.count
-    | /
-    = @user.articles.draft.count
-    | /
-    = @user.articles.trash.count
-
-table.item-table
-  tbody
-    tr
-      th ID
-      th 创建时间
-      th 状态
-      th 套餐
-      th 数量
-    - @user.orders.each do |order|
-      tr
-        td = link_to order.id, admin_order_path(order)
-        td = l order.created_at, :format => :long
-        td = t "order_state.#{order.state}"
-        td = t "plan.#{order.plan}"
-        td = order.quantity
