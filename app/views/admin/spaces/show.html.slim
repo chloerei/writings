@@ -33,3 +33,25 @@ section#user-info
       - @space.members.each do |member|
         li
           = link_to member.name, admin_user_path(member)
+  .field
+    label 套餐
+    = @space.plan
+  .field
+    label 到期
+    = @space.plan_expired_at || '无'
+
+table.item-table
+  tbody
+    tr
+      th ID
+      th 创建时间
+      th 状态
+      th 套餐
+      th 数量
+    - @space.orders.each do |order|
+      tr
+        td = link_to order.id, admin_order_path(order)
+        td = l order.created_at, :format => :long
+        td = t "order_state.#{order.state}"
+        td = t "plan.#{order.plan}"
+        td = order.quantity

@@ -2,10 +2,16 @@
 
 table.item-table
   tbody
+    tr
+      th 图片
+      th 大小
+      th 用户
+      th 空间
     - @attachments.each do |attachment|
       tr
         td = link_to image_tag(attachment.file.thumb.url), attachment.file.url, :target => '_blank'
         td = number_to_human_size attachment.file_size
         td = link_to  attachment.user.name, admin_user_path(attachment.user)
+        td = link_to  attachment.space.name, admin_space_path(attachment.space)
 
 = paginate @attachments, :theme => :dashboard
