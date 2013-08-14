@@ -34,6 +34,7 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
       post :create, :space_id => @space, :format => :json, :article => attributes_for(:article)
       assert_response :success, @response.body
     end
+    assert_equal current_user, assigns(:article).user
 
     assert_difference ["@space.articles.count", "@category.articles.count"] do
       post :create, :space_id => @space, :format => :json, :article => attributes_for(:article).merge(:category_id => @category.token)

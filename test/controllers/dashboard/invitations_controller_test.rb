@@ -2,7 +2,7 @@ require 'test_helper'
 
 class Dashboard::InvitationsControllerTest < ActionController::TestCase
   def setup
-    @space = create :space
+    @space = create :space, :plan => :base, :plan_expired_at => 1.day.from_now
     @invitation = create :invitation, :space => @space
     login_as @space.user
   end
@@ -29,6 +29,18 @@ class Dashboard::InvitationsControllerTest < ActionController::TestCase
     emails = 3.times.map { attributes_for(:invitation)[:email] }
     assert_difference "@space.invitations.count", 3 do
       post :create, :emails => emails, :space_id => @space, :format => :js
+    end
+  end
+
+  test "should not create invitation if in plan free" do
+    @space.update_attribute :plan, :free
+    assert_no_difference "@space.invitations.count" do
+      post :create, :emails => [attributes_for(:invitation)[:email]], :space_id => @space, :format => :js
+    end
+
+    @space.update_attributes :plan => :base, :plan_expired_at => 1.day.ago
+    assert_no_difference "@space.invitations.count" do
+      post :create, :emails => [attributes_for(:invitation)[:email]], :space_id => @space, :format => :js
     end
   end
 

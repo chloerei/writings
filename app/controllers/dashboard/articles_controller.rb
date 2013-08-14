@@ -40,7 +40,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   end
 
   def create
-    @article = @space.articles.new article_params.merge(:last_edit_user => current_user)
+    @article = @space.articles.new article_params.merge(:user => current_user, :last_edit_user => current_user)
     if @article.save
       @article.create_version
 
