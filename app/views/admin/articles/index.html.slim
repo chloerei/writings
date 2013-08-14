@@ -29,8 +29,8 @@ table.item-table
         td.min
           - case params[:tab]
           - when 'publish'
-            = article.published_at.to_s :db
+            = l article.published_at, :format => :long
           - else
-            = article.updated_at.to_s :db
+            = l article.updated_at, :format => :long
 
 = paginate @articles, :theme => :dashboard
