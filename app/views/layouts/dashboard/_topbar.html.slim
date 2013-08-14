@@ -10,7 +10,7 @@
               i.icon-user
               = @space.try(:display_name) || t('.select_space')
             ul.dropdown-menu
-              - current_user.spaces.each do |space|
+              - current_user.spaces.asc(:created_at).each do |space|
                 li
                   a href=(dashboard_root_path(space))
                     i.icon-group

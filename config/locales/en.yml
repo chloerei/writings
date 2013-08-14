@@ -39,7 +39,7 @@ en:
   newer: Newer
   next_page: Next Page
   prev_page: Prev Page
-  need_upgrade: "Need Upgrade"
+  need_upgrade: Need Upgrade
   need_more_storage: Need more storage？
   upgrade: Upgrade
   plan:
@@ -107,52 +107,6 @@ en:
       change_password: Change password
       confirm_change: Confirm change
       account_setting: Account setting
-  billings:
-    show:
-      billing: Billing
-      renew: Renew
-      plan: Plan
-      price: Price
-      storage: Storage
-      history: History
-      10_per_1_month: 10 RMB / month
-      current_plan: 'Current plan: '
-      expired: ' Expired'
-      orders: Orders
-      view_all: View all
-  orders:
-    index:
-      billing: Billing
-      orders: Orders
-    orders:
-      created_at: Created
-      plan: Plan
-      total_price: Total Price
-      state: State
-      range: Range
-      no_orders: No Orders
-      price: '%{price} RMB'
-    new:
-      billing: Billing
-      new_order: New Order
-      order: Order
-      10_per_1_month: 10 RMB / month
-      50_per_6_month: 50 RMB / 6 months
-      100_per_1_year: 100 RMB / year
-      alipay_payment: Alipay Payment
-    show:
-      billing: Billing
-      orders: Orders
-      order_id: Order ID
-      created_at: Created
-      plan: Plan
-      quantity: Quantity
-      total_price: Total Price
-      price: '%{price} RMB'
-      state: Order State
-      range: Range
-      order_question_contact: 'If you have question about this order, please contact: '
-      order: Order
   profiles:
     show:
       profile_setting: Profile Setting
@@ -169,6 +123,7 @@ en:
         export: Export
         members: Members
         settings: Space Settings
+        billing: Billing
         edit: Edit
         delete: Delete
         delete_category_confirm: Sure to delte %{name}? Articles in this category
@@ -270,6 +225,53 @@ en:
         change_account: Change account?
         join_workspace: Join workspace
         current_members: Current Members
+    billings:
+      show:
+        billing: Billing
+        renew: Renew
+        plan: Plan
+        price: Price
+        storage: Storage
+        history_versions: History Versions
+        members: Members
+        10_per_1_month: 10 RMB / month
+        current_plan: 'Current plan: '
+        expired: ' Expired'
+        orders: Orders
+        view_all: View all
+    orders:
+      index:
+        billing: Billing
+        orders: Orders
+      orders:
+        created_at: Created
+        plan: Plan
+        total_price: Total Price
+        state: State
+        range: Range
+        no_orders: No Orders
+        price: '%{price} RMB'
+      new:
+        billing: Billing
+        new_order: New Order
+        order: Order
+        10_per_1_month: 10 RMB / month
+        50_per_6_month: 50 RMB / 6 months
+        100_per_1_year: 100 RMB / year
+        alipay_payment: Alipay Payment
+      show:
+        billing: Billing
+        orders: Orders
+        order_id: Order ID
+        created_at: Created
+        plan: Plan
+        quantity: Quantity
+        total_price: Total Price
+        price: '%{price} RMB'
+        state: Order State
+        range: Range
+        order_question_contact: 'If you have question about this order, please contact: '
+        order: Order
     attachments:
       index:
         pictures: Pictures
@@ -397,13 +399,6 @@ en:
           new_category: New Category
         new_category_modal:
           new_category: New Category
-      main_sidebar:
-        all_articles: All Articles
-        no_category: Not Category
-        trash: Trash
-        new_category: New Category
-      new_category_modal:
-        new_category: New Category
     categories:
       new:
         new_category: New Category
@@ -440,7 +435,7 @@ en:
         description: Description
         domain: Custom Domain
         disqus_shortname: Disqus
-        google_analytics_id: "Google Analytics"
+        google_analytics_id: Google Analytics
       user:
         email: Email
         locale: Locale
@@ -478,8 +473,8 @@ en:
       is_not_match: is not match
       space_name: only A-Z, a-z, 0-9, - allowed
       wrong_name_or_password: Wrong username or password
-
   recaptcha:
     errors:
-      verification_failed: "Word verification response is incorrect, please try again."
-      recaptcha_unreachable: "Oops, we failed to validate your word verification response. Please try again."
+      verification_failed: Word verification response is incorrect, please try again.
+      recaptcha_unreachable: Oops, we failed to validate your word verification response.
+        Please try again.
