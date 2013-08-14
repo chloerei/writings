@@ -11,7 +11,7 @@ en:
   publish: Publish
   draft: Draft
   trash: Trash
-  invitation_email_subject: Invite you to join workspace %{name}
+  invitation_email_subject: Invite you to join space %{name}
   being_develop: This function is being developed, maybe changed in future
   published_at: Published at
   category: Category
@@ -61,30 +61,31 @@ en:
         account: Account
         billing: Billing
         logout: Logout
-        new_workspace: New Workspace
+        new_space: New Workspace
         twitter: Twitter
         bug_report: Bug Report
         blog: Blog
         help: Help
         features: Features
+        select_space: Select Space
       footer:
         about: About
         blog: Blog
         help: Help
     error:
       feedback: Feedback
-  workspaces:
+  spaces:
     new:
-      new_workspace: New Workspace
-      remaining_workspace: remaining %{count} space
+      new_space: New Workspace
+      remaining_space: remaining %{count} space
     limit:
-      new_workspace: New Workspace
-      workspace_limit: No workspace quote
+      new_space: New Workspace
+      space_limit: No space quote
       see_plan: See Plan
   users:
     new:
-      just_one_step: Just One Step
       signup: Signup
+      just_one_step: Just One Step
   user_sessions:
     new:
       welcome_back: Welcome Back
@@ -193,14 +194,13 @@ en:
         refresh: Refresh
     settings:
       show:
-        workspace_settings: Space Settings
+        space_settings: Space Settings
     members:
       index:
         invite_members: Invite Members
         members: Members
         current_members: Current Members
-        contact_workspace_creator_to_invite_members: Contact workspace creator to
-          invite members
+        contact_space_creator_to_invite_members: Contact space creator to invite members
       form:
         send_invitation: Send invitation
         up_to_members_limit: Up to members limit
@@ -217,13 +217,13 @@ en:
     invitations:
       show:
         invitation_detail: Invitation detail
-        invite_you_to_join_this_workspace: Invite you to join this workspace
+        invite_you_to_join_this_space: Invite you to join this space
         you_need_an_account: You need an account
         already_have_account: Already have account?
         signup_and_join: Signup and Join
         you_are_login_as: You are logined as
         change_account: Change account?
-        join_workspace: Join workspace
+        join_space: Join space
         current_members: Current Members
     billings:
       show:
@@ -430,26 +430,23 @@ en:
   mongoid:
     attributes:
       space:
-        name: URL
-        full_name: Full name
+        name: Name
+        full_name: Full Name
         description: Description
-        domain: Custom Domain
+        domain: Domain
         disqus_shortname: Disqus
         google_analytics_id: Google Analytics
+        gravatar_email: Gravatar Email
       user:
+        name: User name
         email: Email
         locale: Locale
         password: Password
         password_confirmation: Password Confirmation
         current_password: Current Password
-        name: User name
       order:
         plan: Plan
         quantity: Quantity
-      workspace:
-        gravatar_email: Gravatar Email
-        name: Name
-        full_name: Full Name
       profile:
         name: Name
         description: Description

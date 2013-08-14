@@ -14,7 +14,7 @@ section.two-columns
     p
       b = @space.user.display_name
       '
-      = t '.invite_you_to_join_this_workspace'
+      = t '.invite_you_to_join_this_space'
       '
       b = @space.name
     blockquote
@@ -27,7 +27,7 @@ section.two-columns
         = ' • '
         = link_to t('.change_account'), logout_path(:return_to => url_for), :remote => true, :method => :delete
       p
-        = link_to t('.join_workspace'), accept_dashboard_invitation_path(:id => @invitation.token), :class => 'button button-green', :remote => true, :method => :put
+        = link_to t('.join_space'), accept_dashboard_invitation_path(:id => @invitation.token), :class => 'button button-green', :remote => true, :method => :put
     - else
       p
         = t '.you_need_an_account'

@@ -3,7 +3,7 @@
 #main
   .container
     .signup
-      h2 = t '.just_one_step'
+      h2 = t '.signup'
       = render 'dashboard/share/flash_message'
       = form_for @user, :remote => true, :validate => true do |f|
         .field

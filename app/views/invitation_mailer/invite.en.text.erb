@@ -9,7 +9,7 @@ Accept this invitation to get started:
 <%= dashboard_invitation_url(:space_id => @space, :id => @invitation.token, :host => APP_CONFIG['host'], :protocol => 'https') %>
 
 <% if @space.members.any? %>
-Other members on the workspace are:
+Other members on the space are:
 
 <%= @space.members.map(&:display_name).join(', ') %>
 <% end %>

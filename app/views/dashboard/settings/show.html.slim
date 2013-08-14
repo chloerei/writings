@@ -1,10 +1,10 @@
-- append_title t('.workspace_settings')
+- append_title t('.space_settings')
 
 - content_for :sidebar do
   = render 'dashboard/share/main_sidebar'
 
 .main-header
-  h2 = t '.workspace_settings'
+  h2 = t '.space_settings'
 
 section
   = form_for @space, :as => :space, :url => dashboard_settings_path, :validate => true, :html => { :data => { :remote => true } } do |f|
