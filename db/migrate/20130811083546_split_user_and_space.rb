@@ -13,6 +13,7 @@ class SplitUserAndSpace < Mongoid::Migration
       user = User.new(user_attr)
       user.save(:validate => false)
       space.update_attribute :user_id, user.id
+      space.update_attribute :gravatar_email, user.email if space.gravatar_email.blank?
       space.members << user
     end
     Space.all.unset(:email, :password_digest, :password_reset_token, :password_reset_token_created_at, :locale)
