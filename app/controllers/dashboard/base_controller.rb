@@ -14,7 +14,7 @@ class Dashboard::BaseController < ApplicationController
   end
 
   def require_space_access
-    unless @space.user == current_user or @space.members.include?(current_user)
+    unless @space.user == current_user or (!@space.in_plan?(:free) && @space.members.include?(current_user))
       raise AccessDenied
     end
   end

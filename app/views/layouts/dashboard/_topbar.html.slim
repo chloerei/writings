@@ -7,13 +7,17 @@
             i.icon-reorder
           .dropdown
             a.dropdown-toggle.topbar-button class=('actived' if %w(articles attachments categories import_tasks export_tasks settings).include? controller_name)
-              i.icon-user
-              = @space.try(:display_name) || t('.select_space')
+              - if @space
+                i class=(@space.in_plan?(:free) ? 'icon-user' : 'icon-group')
+                = @space.display_name
+              - else
+                i.icon-user
+                = t('.select_space')
             ul.dropdown-menu
               - current_user.spaces.asc(:created_at).each do |space|
                 li
                   a href=(dashboard_root_path(space))
-                    i.icon-group
+                    i class=(space.in_plan?(:free) ? 'icon-user' : 'icon-group')
                     = space.display_name
               li
                 hr

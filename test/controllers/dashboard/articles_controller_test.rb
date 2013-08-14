@@ -69,9 +69,29 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
     end
   end
 
+  test "should not access when no member or no plan" do
+    member = create :user
+    login_as member
+
+    assert_raise(Dashboard::BaseController::AccessDenied) do
+      get :index, :space_id => @space
+    end
+
+    @space.members << member
+    assert_raise(Dashboard::BaseController::AccessDenied) do
+      get :index, :space_id => @space
+    end
+
+    @space.update_attributes :plan => :base, :plan_expired_at => 1.day.from_now
+    assert_nothing_raised do
+      get :index, :space_id => @space
+    end
+  end
+
   test "should lock article when someone editing" do
     member = create :user
     @space.members << member
+    @space.update_attributes :plan => :base, :plan_expired_at => 1.day.from_now
     article = create :article, :space => @space
 
     put :update, :space_id => @space, :id => article, :article => { :title => 'change', :save_count => article.reload.save_count + 1 }, :format => :json
