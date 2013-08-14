@@ -48,8 +48,8 @@ section
     header
       h3
         = t '.orders'
-    = render 'orders/orders'
+    = render 'dashboard/orders/orders'
     p.quiet
-      a href=(orders_path)
+      a href=(dashboard_orders_path)
         i.icon-double-angle-right.no-margin
         = t '.view_all'

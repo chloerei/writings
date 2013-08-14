@@ -9,7 +9,7 @@
         th = t '.range'
       - @orders.each do |order|
         tr
-          td = link_to l(order.created_at, :format => :long), order_path(order)
+          td = link_to l(order.created_at, :format => :long), dashboard_order_path(:id => order)
           td
             = t "plan.#{order.plan}"
           td
