@@ -25,6 +25,16 @@ class SplitUserAndSpace < Mongoid::Migration
       user.update_attribute :name, user.name.downcase.gsub('_', '-')
     end
 
+    Article.asc(:_id).each do |article|
+      article.user_id = article.space.user_id
+
+      def article.able_to_set_updated_at?
+        false
+      end
+
+      article.save
+    end
+
     # Order
     Order.all.rename :user_id => :space_id
   end
