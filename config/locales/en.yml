@@ -234,6 +234,7 @@ en:
         storage: Storage
         history_versions: History Versions
         members: Members
+        custom_domain: Custom Domain
         10_per_1_month: 10 RMB / month
         current_plan: 'Current plan: '
         expired: ' Expired'
@@ -433,7 +434,7 @@ en:
         name: Name
         full_name: Full Name
         description: Description
-        domain: Domain
+        domain: Custom Domain
         disqus_shortname: Disqus
         google_analytics_id: Google Analytics
         gravatar_email: Gravatar Email
