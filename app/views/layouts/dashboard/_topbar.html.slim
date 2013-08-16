@@ -39,13 +39,13 @@
                 ul.dropdown-menu.align-right
                   - blog.articles.desc(:created_at).publish.limit(3).each do |article|
                     li
-                      a href=(site_article_url(:id => article, :urlname => article.urlname, :host => blog.host))
+                      a href=(site_article_url(:id => article, :urlname => article.urlname, :host => blog.host, :protocol => 'http'))
                         = article.title
                         .quiet = l article.created_at, :format => :short
                   li
                     hr
                   li
-                    a href=(site_root_url(:host => blog.host))
+                    a href=(site_root_url(:host => blog.host, :protocol => 'http'))
                       = t '.all_announcement'
             .dropdown
               a.dropdown-toggle.topbar-button href=(account_path) class=('actived' if %w(accounts).include? controller_name)
