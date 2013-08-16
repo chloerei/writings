@@ -24,4 +24,19 @@ class SpaceTest < ActiveSupport::TestCase
     assert_equal :free, space.plan
     assert_equal 10.megabytes, space.storage_limit
   end
+
+  test "in_plan?" do
+    assert create(:space).in_plan?(:free)
+    assert create(:space, :plan => :base).in_plan?(:free)
+    assert create(:space, :plan => :base, :plan_expired_at => 1.day.ago).in_plan?(:free)
+    assert create(:space, :plan => :base, :plan_expired_at => 1.day.from_now).in_plan?(:base)
+  end
+
+  test "domain_enabled?" do
+    assert !create(:space).domain_enabled?
+    assert !create(:space, :plan => :base).domain_enabled?
+    assert !create(:space, :plan => :base, :plan_expired_at => 1.day.ago).domain_enabled?
+    assert create(:space, :plan => :base, :plan_expired_at => 1.day.from_now).domain_enabled?
+    assert create(:space, :domain_keep => true).domain_enabled?
+  end
 end

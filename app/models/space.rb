@@ -8,6 +8,7 @@ class Space
 
   field :name
   field :domain
+  field :domain_keep, :type => Boolean # for feed user
   field :disqus_shortname
   field :google_analytics_id
   field :full_name
@@ -73,9 +74,9 @@ class Space
 
   def in_plan?(plan)
     if plan == :free
-      self.plan == plan || (plan_expired_at.present? &&plan_expired_at < Time.now)
+      self.plan == plan || plan_expired_at.blank? || plan_expired_at < Time.now
     else
-      self.plan == plan && (plan_expired_at.present? && plan_expired_at > Time.now)
+      self.plan == plan && plan_expired_at.present? && plan_expired_at > Time.now
     end
   end
 
@@ -103,5 +104,9 @@ class Space
     else
       5
     end
+  end
+
+  def domain_enabled?
+    domain_keep? || !in_plan?(:free)
   end
 end
