@@ -55,7 +55,7 @@ class Space
   end
 
   def host
-    domain.present? ? domain : "#{name}.#{APP_CONFIG['host']}"
+    (domain_enabled? && domain.present?) ? domain : "#{name}.#{APP_CONFIG['host']}"
   end
 
   def to_param

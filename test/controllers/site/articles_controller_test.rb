@@ -13,16 +13,38 @@ class Site::ArticlesControllerTest < ActionController::TestCase
     assert_response :success, @response.body
   end
 
-  test "should get index when setting domain" do
+  test "should redirect to subdomain if free" do
     @space.update_attribute :domain, 'custom.domain'
 
+    @request.host = "#{@space.name}.#{APP_CONFIG["host"]}"
     get :index
-    assert_redirected_to "http://#{@space.domain}/"
+    assert_response :success, @response.body
 
     @request.host = 'custom.domain'
     get :index
-    assert_equal @space, assigns(:space)
+    assert_redirected_to "http://#{@space.name}.#{APP_CONFIG["host"]}/"
+  end
+
+  test "should redirect to domain if no free" do
+    @space.update_attributes :domain => 'custom.domain', :plan => :base, :plan_expired_at => 1.day.from_now
+    @request.host = 'custom.domain'
+    get :index
     assert_response :success, @response.body
+
+    @request.host = "#{@space.name}.#{APP_CONFIG["host"]}"
+    get :index
+    assert_redirected_to "http://#{@space.domain}/"
+  end
+
+  test "shuold redirect to domain if domain_keep " do
+    @space.update_attributes :domain => 'custom.domain', :domain_keep => true
+    @request.host = 'custom.domain'
+    get :index
+    assert_response :success, @response.body
+
+    @request.host = "#{@space.name}.#{APP_CONFIG["host"]}"
+    get :index
+    assert_redirected_to "http://#{@space.domain}/"
   end
 
   test "should get show" do

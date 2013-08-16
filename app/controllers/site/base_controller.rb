@@ -6,12 +6,18 @@ class Site::BaseController < ApplicationController
   private
 
   def require_space
-    if request.host =~ /^[a-zA-Z0-9-]+\.#{Regexp.escape APP_CONFIG["host"]}$/
-      @space = Space.find_by(:name => /^#{request.subdomain(DOMAIN_LENGTH)}$/i)
+    if request.host =~ /^[a-z0-9-]+\.#{Regexp.escape APP_CONFIG["host"]}$/
+      @space = Space.find_by(:name => request.subdomain(DOMAIN_LENGTH))
 
-      redirect_to url_for(:host => @space.domain) if @space.domain.present?
+      if @space.domain_enabled? && @space.domain.present?
+        redirect_to url_for(:host => @space.domain)
+      end
     else
       @space = Space.find_by(:domain => request.host)
+
+      if !@space.domain_enabled?
+        redirect_to url_for(:host => @space.host)
+      end
     end
   end
 

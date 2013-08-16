@@ -39,4 +39,11 @@ class SpaceTest < ActiveSupport::TestCase
     assert create(:space, :plan => :base, :plan_expired_at => 1.day.from_now).domain_enabled?
     assert create(:space, :domain_keep => true).domain_enabled?
   end
+
+  test "host" do
+    assert_equal "name.#{APP_CONFIG["host"]}", create(:space, :name => 'name').host
+    assert_equal "name2.#{APP_CONFIG["host"]}", create(:space, :name => 'name2', :domain => 'custom2.domain').host
+    assert_equal "custom3.domain", create(:space, :domain => 'custom3.domain', :plan => :base, :plan_expired_at => 1.day.from_now).host
+    assert_equal "custom4.domain", create(:space, :domain => 'custom4.domain', :domain_keep => true).host
+  end
 end
