@@ -58,6 +58,7 @@ en:
         about: About
         signup: Signup
         login: Login
+        all_announcement: "All Announcement"
         account: Account
         billing: Billing
         logout: Logout

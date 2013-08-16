@@ -59,3 +59,7 @@ $(document).on(
   "ajax:complete": ->
     AlertMessage.remove('ajax-sending')
 )
+
+$(document).on 'click', '#blog-button.highlight', ->
+  $(this).removeClass('highlight')
+  $.post('/read_blog')

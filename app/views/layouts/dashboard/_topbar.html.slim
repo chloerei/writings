@@ -31,6 +31,22 @@
               a#user-link.topbar-button href=(site_root_url(:host => @space.host, :protocol => 'http')) target='_blank'
                 i.icon-external-link.no-margin
           .pull-right
+            - blog = Space.where(:name => :blog).first
+            - if blog
+              .dropdown.hide-on-mobile
+                a#blog-button.dropdown-toggle.topbar-button class=('highlight' if current_user.read_blog_at.blank? || blog.articles.publish.where(:created_at.gt => current_user.read_blog_at).any?)
+                  i.icon-bullhorn
+                ul.dropdown-menu.align-right
+                  - blog.articles.desc(:created_at).publish.limit(3).each do |article|
+                    li
+                      a href=(site_article_url(:id => article, :urlname => article.urlname, :host => blog.host))
+                        = article.title
+                        .quiet = l article.created_at, :format => :short
+                  li
+                    hr
+                  li
+                    a href=(site_root_url(:host => blog.host))
+                      = t '.all_announcement'
             .dropdown
               a.dropdown-toggle.topbar-button href=(account_path) class=('actived' if %w(accounts).include? controller_name)
                 i.icon-cog.no-margin
@@ -41,10 +57,6 @@
                     = t '.account'
                 li
                   hr
-                li
-                  a href='http://blog.writings.io'
-                    i.icon-bullhorn
-                    = t '.blog'
                 li
                   a href='http://help.writings.io'
                     i.icon-book

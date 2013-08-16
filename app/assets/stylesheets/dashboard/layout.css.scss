@@ -136,6 +136,10 @@ $topbarLinkHoverBackgroundColor: white;
       background-color: $topbarLinkHoverBackgroundColor;
       color: $topbarLinkHoverColor;
     }
+
+    &.highlight {
+      background-color: $blue;
+    }
   }
 
   .dropdown {

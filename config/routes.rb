@@ -24,6 +24,7 @@ Publish::Application.routes.draw do
     get 'signup' => 'users#new', :as => :signup
     get 'login' => 'user_sessions#new', :as => :login
     delete 'logout' => 'user_sessions#destroy', :as => :logout
+    post 'read_blog', :to => 'home#read_blog'
 
     resources :password_resets, :only => [:new, :create, :edit, :update]
 
