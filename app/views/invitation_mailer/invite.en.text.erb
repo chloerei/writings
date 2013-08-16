@@ -1,4 +1,4 @@
-<%= @space.user.display_name %> invite you to space <%= @space.display_name %>:
+<%= @space.user.display_name %> invite you to writing space <%= @space.display_name %>:
 
 <%= @invitation.message %>
 
@@ -9,7 +9,7 @@ Accept this invitation to get started:
 <%= dashboard_invitation_url(:space_id => @space, :id => @invitation.token, :host => APP_CONFIG['host'], :protocol => 'https') %>
 
 <% if @space.members.any? %>
-Other members on the space are:
+Other members in this writing space:
 
 <%= @space.members.map(&:display_name).join(', ') %>
 <% end %>
