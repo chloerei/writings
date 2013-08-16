@@ -238,6 +238,7 @@ zh-CN:
         storage: "储存空间"
         history_versions: "历史记录"
         members: "成员"
+        custom_domain: "独立域名"
         10_per_1_month: "10元 / 月"
         current_plan: "当前套餐："
         expired: "到期"
