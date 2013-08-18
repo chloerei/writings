@@ -13,33 +13,34 @@ body {
   line-height: $commonLineHeight;
 }
 
-
 h1, h2, h3, h4 {
   font-weight: normal;
+  margin: 0;
 }
 
 h1 {
-  font-size: 30px;
-  line-height: 40px
+  font-size: 35px;
+  line-height: 50px;
 }
 
 h2 {
-  font-size: 22px;
-  line-height: 30px
+  font-size: 25px;
+  line-height: 30px;
 }
 
 h3 {
   font-size: 20px;
-  line-height: 30px
+  line-height: 30px;
 }
 
 h4 {
   font-size: 18px;
+  line-height: 30px;
 }
 
 p {
-  font-size: 14px;
-  margin: 10px 0;
+  font-size: 16px;
+  line-height: 25px;
 }
 
 ul, ol {
@@ -59,7 +60,6 @@ a [class^="icon-"],
 a [class*=" icon-"] {
   width: 1.2em;
   text-align: center;
-  margin-right: 0.5em;
   display: inline-block;
 
   &.no-margin {
@@ -68,12 +68,27 @@ a [class*=" icon-"] {
 }
 
 article {
-  h1, h2, h3, h4 {
-    margin: 30px 0 20px;
+  font-size: 16px;
+  line-height: 25px;
+
+  h1 {
+    margin: 30px 0;
+  }
+
+  h2 {
+    margin: 50px 0 30px;
+  }
+
+  h3 {
+    margin: 50px 0 30px;
+  }
+
+  h4 {
+    margin: 50px 0 30px;
   }
 
   p, pre, blockquote, ul{
-    margin: 15px 0;
+    margin: 20px 0;
   }
 
   li {
@@ -81,9 +96,6 @@ article {
   }
 
   a {
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   blockquote {
@@ -95,7 +107,9 @@ article {
   code {
     margin: 0 5px;
     padding: 0 5px;
-    background-color: #efefef;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 3px;
   }
 
   pre code {
@@ -108,7 +122,7 @@ article {
 
   img {
     display: block;
-    margin: 15px auto;
+    margin: 20px auto;
     max-width: 100%;
   }
 
@@ -676,9 +690,9 @@ a.button:hover {
   z-index: 2000;
 
   @media (max-width: $container-width) {
-      right: $commonPadding;
-      top: 42px + $commonPadding;
-      margin-right: 0;
+    right: $commonPadding;
+    top: 42px + $commonPadding;
+    margin-right: 0;
   }
 
   .alert-message {

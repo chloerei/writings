@@ -1,10 +1,93 @@
 @import "common";
 
 body {
+  background-color: white;
+}
+
+#tabs {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+
+  a {
+    color: #666;
+    padding: 20px;
+    font-size: 16px;
+    display: inline-block;
+
+    &:hover {
+      color: #333;
+    }
+  }
+
+
+  @media (max-width: 480px) {
+    a {
+      display: block;
+      border-bottom: 1px solid #ddd;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+#main {
+  padding: 70px 0;
+  border-bottom: 1px solid #ddd;
+
+  article {
+    margin-bottom: 70px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    a {
+      color: #333;
+
+      &:hover {
+        color: $linkColor;
+      }
+    }
+
+    .summary {
+      a {
+        color: #666;
+      }
+    }
+
+    .date {
+      color: #999;
+    }
+  }
+}
+
+#paginator {
+  border-bottom: 1px solid #ddd;
   background-color: #f9f9f9;
 
-  &#articles-show {
-    background-color: #fff;
+  .paginator {
+    @include clearfix();
+  }
+
+  a {
+    font-size: 16px;
+    color: #666;
+    display: inline-block;
+    padding: 20px 0;
+    width: 50%;
+
+    &:hover {
+      color: #333;
+    }
+
+    &.older {
+    }
+
+    &.newer {
+      text-align: right;
+    }
   }
 }
 
@@ -12,6 +95,7 @@ body {
   nav ul {
     display: table;
     width: 100%;
+    background-color: #f9f9f9;
     border-bottom: 1px solid #ddd;
 
     li {
@@ -19,7 +103,7 @@ body {
       width: 1%;
       overflow: hidden;
       white-space: nowrap;
-      border-right: 1px solid #ddd;
+      border-right: 1px solid white;
 
       &.host {
         width: 99%;
@@ -31,8 +115,8 @@ body {
 
       a {
         padding: 15px 20px;
-        color: #999;
         display: block;
+        color: #666;
 
         &:hover {
           color: #333;
@@ -42,189 +126,91 @@ body {
   }
 }
 
-#main {
-  .container {
-    max-width: $site-container-width;
-    width: 100%;
-    margin: 0 auto;
+.container {
+  max-width: $site-container-width;
+  width: 100%;
+  margin: 0 auto;
+
+  .inner {
+    padding: 0 (70px / $site-container-width) * 100%;
+  }
+}
+
+#article {
+  padding: 50px 0;
+}
+
+#date {
+  font-size: 16px;
+  padding: 0 0 30px;
+  color: #999;
+}
+
+#profile {
+  padding: 30px 0;
+  background: #f9f9f9;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  color: #666;
+
+  p {
+    margin: 16px 0;
   }
 
-  section,
-  article {
-    margin: (70px / $site-container-width) * 100%;
-  }
-
-  #page {
-    margin: 30px 0;
-    border: 1px solid #ccc;
-    background-color: #fff;
-
-    @media (max-width: $site-container-width) {
-      margin: 0;
-      border: none;
-    }
-  }
-
-  #main-nav {
-    ul {
-      display: table;
-      table-layout: fixed;
-      width: 100%;
-      background-color: #555;
-
-      li {
-        display: table-cell;
-        text-align: center;
-        border-right: 1px solid #999;
-
-        &:last-child {
-          border-right: none;
-        }
-
-        a {
-          display: block;
-          color: #ccc;
-          padding: 1em 1.5em;
-
-          &.actived,
-          &:hover {
-            color: #fff;
-          }
-        }
-      }
-    }
-  }
-
-  #category-header {
-    padding: 1em 1.5em;
-    text-align: center;
-    background-color: #f9f9f9;
-    font-weight: bold;
-    color: #555;
-  }
-
-  .page-contents {
-    padding: 0;
-    margin: 0;
-
-    section,
-    article {
-      margin: 0;
-      padding: (70px / $site-container-width) * 100%;
-      border-bottom: 1px solid #ddd;
-    }
-
-    a {
-      color: #555;
-      display: block;
-
-      &:hover {
-        color: #333;
-        text-decoration: none;
-      }
-    }
-
-    .info {
-      color: #999;
-    }
-  }
-
-  #paginator {
-    ul {
-      width: 100%;
-      display: table;
-      table-layout: fixed;
-
-      li {
-        display: table-cell;
-
-        a {
-          display: block;
-          padding: 12px 20px;
-          font-size: 20px;
-          color: #999;
-
-          &:hover {
-            color: #555;
-          }
-        }
-      }
-
-      .newer {
-        text-align: right;
-
-        i {
-          margin-right: 0;
-          margin-left: 5px;
-          text-align: right;
-        }
-      }
-
-      .older {
-        i {
-          text-align: left;
-        }
-      }
-    }
-  }
-
-  #profile {
-    padding: 30px 0;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+  .profile {
     position: relative;
     min-height: 100px;
-    @include clearfix();
+  }
 
-    &.header {
-      border: none;
-      margin-top: 0;
+  .avatar {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    img {
+      height: 120px;
+      width: 120px;
+      border-radius: 60px;
+    }
+  }
+
+  .info {
+    padding-left: 160px;
+    word-wrap: break-word;
+
+    p:last-child {
       margin-bottom: 0;
     }
+  }
 
+  @media (max-width: 480px) {
     h1 {
-      margin-top: 0;
+      margin-top: 16px;
+    }
+
+    .profile {
+      text-align: center;
     }
 
     .avatar {
-      position: absolute;
-      left: 0;
-
-      img {
-        width: 7em;
-        height: 7em;
-        border-radius: 3.5em;
-      }
+      position: relative;
     }
 
     .info {
-      margin-left: 8em;
-    }
-
-    @media (max-width: $site-container-width) {
-      .avatar,
-      .info {
-        text-align: center;
-        width: 100%;
-      }
-
-      .avatar {
-        position: relative;
-        margin-bottom: $commonMargin;
-      }
-
-      .info {
-        margin-left: 0;
-      }
+      padding-left: 0;
     }
   }
 }
 
+#comments {
+  padding: 50px 0;
+  border-bottom: 1px solid #ddd;
+}
+
 #footer {
   text-align: center;
-  border-top: 1px solid #ddd;
 
-  #logo {
+  .logo {
     font-size: 1.5em;
     font-weight: bold;
 

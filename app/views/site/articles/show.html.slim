@@ -1,42 +1,41 @@
 - append_title @article.title
 
-#topbar
+header#topbar
   nav
     ul
-      li.host = link_to @space.host, root_path
-      li.hide-on-mobile
-        a href=(site_article_path(@article, :urlname => @article.urlname))
-          i.icon-time
-          = ' '
-          = l @article.published_at.to_date, :format => :long
-      - if @article.category
-        li
-          a href=(site_category_path(@article.category))
-            i.icon-folder-close-alt
-            span.hide-on-mobile
-              = ' '
-              = @article.category.name
-      - if @space.disqus_shortname.present?
-        li
-          a href="#disqus_thread"
-            i.icon-comment
+      li.host
+        a href=(root_path)
+          i.icon-chevron-left
+          = @space.display_name
 
-#main
+section#article
   .container
     .inner
       article
         = article_format_body(@article.body)
-      section#profile
+
+section#date
+  .container
+    .inner
+      = l @article.published_at.to_date
+
+section#profile
+  .container
+    .inner
+      .profile
         .avatar
-          = link_to image_tag(@article.user.gravatar_url), site_root_path
+          = link_to image_tag(@article.user.gravatar_url(:size => 120)), site_root_path
         .info
           h1
             = link_to @article.user.display_name, site_root_path
           .description
             = simple_format @article.user.description
 
-      - if @space.disqus_shortname.present?
-        section#disqus_thread
+- if @space.disqus_shortname.present?
+  #comments
+    .container
+      .inner
+        #disqus_thread
         javascript:
           var disqus_shortname = '#{@space.disqus_shortname}';
           var disqus_identifier = '#{@article.token}';

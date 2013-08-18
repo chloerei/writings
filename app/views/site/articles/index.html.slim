@@ -1,11 +1,54 @@
 - content_for :head do
   link href=(site_feed_path(:format => :rss)) rel='alternate' type='application/rss+xml'
 
-#main
+header#profile
   .container
     .inner
-      #page
-        = render :partial => 'site/share/page_header'
-        section#articles.page-contents
-          = render :partial => 'article', :collection => @articles
-        = paginate @articles, :theme => 'site'
+      .profile
+        .avatar
+          = image_tag @space.gravatar_url(:size => 120)
+        .info
+          h1
+            = @space.display_name
+          .description
+            = simple_format @space.description
+
+nav#tabs
+  .container
+    .inner
+      a href=(root_path)
+        .icon-home
+        '
+        = t '.home'
+      a href='#about'
+        .icon-user
+        '
+        = t '.about'
+      a href='#archives'
+        .icon-inbox
+        '
+        = t '.archives'
+      a href='#rss'
+        .icon-rss
+        '
+        | RSS
+
+section#main
+  .container
+    .inner
+      - @articles.each do |article|
+        article
+          h1
+            = link_to article.title, site_article_path(article, :urlname => article.urlname)
+          .summary
+            = link_to article_summary_body(article.body), site_article_path(article, :urlname => article.urlname)
+          .continue
+            a href=(site_article_path(article, :urlname => article.urlname))
+              = t '.continue_reading'
+              '
+              i.icon-long-arrow-right
+
+section#paginator
+  .container
+    .inner
+      = paginate @articles, :theme => 'site'

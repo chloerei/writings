@@ -458,6 +458,14 @@ zh-CN:
       attachment:
         file: "附件"
 
+  site:
+    articles:
+      index:
+        continue_reading: "继续阅读"
+        home: "首页"
+        about: "关于"
+        archives: "存档"
+
   errors:
     messages:
       extension_white_list_error: "不能上传 %{extension} 文件，允许类型：%{allowed_types}"

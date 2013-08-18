@@ -13,8 +13,8 @@ html
       meta name='space-google-analytics' content=(@space.google_analytics_id)
   body id=("#{controller_name}-#{action_name}")
     = yield
-    #footer
-      #logo
+    footer#footer
+      .logo
         a href="https://writings.io"
           | writings
           small
