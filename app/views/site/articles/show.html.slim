@@ -1,42 +1,62 @@
 - append_title @article.title
 
-#topbar
-  nav
-    ul
-      li.host = link_to @space.host, root_path
-      li.hide-on-mobile
-        a href=(site_article_path(@article, :urlname => @article.urlname))
-          i.icon-time
-          = ' '
-          = l @article.published_at.to_date, :format => :long
-      - if @article.category
-        li
-          a href=(site_category_path(@article.category))
-            i.icon-folder-close-alt
-            span.hide-on-mobile
-              = ' '
-              = @article.category.name
-      - if @space.disqus_shortname.present?
-        li
-          a href="#disqus_thread"
-            i.icon-comment
+header#topbar.clearfix
+  a.topbar-button.pull-left href=(root_path)
+    i.icon-chevron-left
+    = t '.home'
+  .dropdown.pull-right
+    a.topbar-button.dropdown-toggle.no-arrow
+      i.icon-share-alt
+    ul.dropdown-menu.align-right
+      li
+        a href="https://twitter.com/share?url=#{site_article_url(@article, :urlname => @article.urlname)}&text=#{@article.title}" target='_blank'
+          i.icon-twitter
+          '
+          | Twitter
+      li
+        a href="http://service.weibo.com/share/share.php?url=#{site_article_url(@article, :urlname => @article.urlname)}&title=#{@article.title}" target='_blank'
+          i.icon-weibo
+          '
+          = t '.weibo'
+      li
+        a href="https://plus.google.com/share?url=#{site_article_url(@article, :urlname => @article.urlname)}" target='_blank'
+          i.icon-google-plus
+          '
+          | Google+
+      li
+        a href="https://www.facebook.com/sharer/sharer.php?u=#{site_article_url(@article, :urlname => @article.urlname)}" target='_blank'
+          i.icon-facebook
+          '
+          | Facebook
 
-#main
+section#article
   .container
     .inner
       article
         = article_format_body(@article.body)
-      section#profile
+
+section#date
+  .container
+    .inner
+      = l @article.published_at.to_date
+
+section#profile
+  .container
+    .inner
+      .profile
         .avatar
-          = link_to image_tag(@article.user.gravatar_url), site_root_path
+          = link_to image_tag(@article.user.gravatar_url(:size => 120)), site_author_path(@article.user)
         .info
           h1
-            = link_to @article.user.display_name, site_root_path
+            = link_to @article.user.display_name, site_author_path(@article.user)
           .description
             = simple_format @article.user.description
 
-      - if @space.disqus_shortname.present?
-        section#disqus_thread
+- if @space.disqus_shortname.present?
+  #comments
+    .container
+      .inner
+        #disqus_thread
         javascript:
           var disqus_shortname = '#{@space.disqus_shortname}';
           var disqus_identifier = '#{@article.token}';

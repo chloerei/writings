@@ -458,6 +458,29 @@ zh-CN:
       attachment:
         file: "附件"
 
+  site:
+    articles:
+      index:
+        continue_reading: "继续阅读"
+        home: "首页"
+        about: "关于"
+        authors: "作者"
+        archives: "存档"
+      show:
+        home: "首页"
+    authors:
+      index:
+        authors: "作者"
+        authors_of_space: "%{name} 的作者"
+        home: "首页"
+      show:
+        other_authors: "其他作者"
+        continue_reading: "继续阅读"
+    archives:
+      index:
+        archives: "存档"
+        home: "首页"
+
   errors:
     messages:
       extension_white_list_error: "不能上传 %{extension} 文件，允许类型：%{allowed_types}"

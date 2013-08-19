@@ -1,0 +1,25 @@
+- append_title t('.authors')
+
+header#topbar.clearfix
+  a.topbar-button.pull-left href=(root_path)
+    i.icon-chevron-left
+    = t '.home'
+
+section#authors
+  .container
+    .inner
+      h1
+        i.icon-user
+        '
+        = t '.authors_of_space', :name => @space.display_name
+      - @authors.each do |author|
+        .profile
+          .avatar
+            a href=(site_author_path(author))
+              = image_tag author.gravatar_url(:size => 120)
+          .info
+            h2
+              a href=(site_author_path(author))
+                = author.display_name
+            .description
+              = simple_format author.description

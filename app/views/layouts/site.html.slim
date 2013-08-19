@@ -4,6 +4,7 @@ html
     title = page_title
     meta content='width=device-width, initial-scale=1.0' name='viewport'
     link rel="shortcut icon" href=(@space.gravatar_url)
+    link href=(site_feed_path(:format => :rss)) rel='alternate' type='application/rss+xml'
     = javascript_include_tag 'site', 'data-turbolinks-track' => true
     = stylesheet_link_tag 'site', 'data-turbolinks-track' => true
     = yield :head
@@ -13,8 +14,8 @@ html
       meta name='space-google-analytics' content=(@space.google_analytics_id)
   body id=("#{controller_name}-#{action_name}")
     = yield
-    #footer
-      #logo
+    footer#footer
+      .logo
         a href="https://writings.io"
           | writings
           small

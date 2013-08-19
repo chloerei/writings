@@ -1,230 +1,236 @@
 @import "common";
 
 body {
-  background-color: #f9f9f9;
-
-  &#articles-show {
-    background-color: #fff;
-  }
+  background-color: white;
 }
 
-#topbar {
-  nav ul {
-    display: table;
-    width: 100%;
-    border-bottom: 1px solid #ddd;
+#tabs {
+  text-align: center;
+  border-bottom: 1px solid #ddd;
 
-    li {
-      display: table-cell;
-      width: 1%;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 1px solid #ddd;
+  a {
+    color: #666;
+    padding: 15px;
+    font-size: 16px;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 25%;
 
-      &.host {
-        width: 99%;
-      }
+    &:hover {
+      color: #333;
+    }
+  }
 
-      &:last-child {
-        border-right: none;
-      }
 
-      a {
-        padding: 15px 20px;
-        color: #999;
-        display: block;
-
-        &:hover {
-          color: #333;
-        }
-      }
+  @media (max-width: 480px) {
+    a {
+      width: 50%;
     }
   }
 }
 
 #main {
-  .container {
-    max-width: $site-container-width;
-    width: 100%;
-    margin: 0 auto;
-  }
+  padding: 70px 0;
+  border-bottom: 1px solid #ddd;
 
-  section,
   article {
-    margin: (70px / $site-container-width) * 100%;
-  }
+    margin-bottom: 70px;
 
-  #page {
-    margin: 30px 0;
-    border: 1px solid #ccc;
-    background-color: #fff;
-
-    @media (max-width: $site-container-width) {
-      margin: 0;
-      border: none;
-    }
-  }
-
-  #main-nav {
-    ul {
-      display: table;
-      table-layout: fixed;
-      width: 100%;
-      background-color: #555;
-
-      li {
-        display: table-cell;
-        text-align: center;
-        border-right: 1px solid #999;
-
-        &:last-child {
-          border-right: none;
-        }
-
-        a {
-          display: block;
-          color: #ccc;
-          padding: 1em 1.5em;
-
-          &.actived,
-          &:hover {
-            color: #fff;
-          }
-        }
-      }
-    }
-  }
-
-  #category-header {
-    padding: 1em 1.5em;
-    text-align: center;
-    background-color: #f9f9f9;
-    font-weight: bold;
-    color: #555;
-  }
-
-  .page-contents {
-    padding: 0;
-    margin: 0;
-
-    section,
-    article {
-      margin: 0;
-      padding: (70px / $site-container-width) * 100%;
-      border-bottom: 1px solid #ddd;
-    }
-
-    a {
-      color: #555;
-      display: block;
-
-      &:hover {
-        color: #333;
-        text-decoration: none;
-      }
-    }
-
-    .info {
-      color: #999;
-    }
-  }
-
-  #paginator {
-    ul {
-      width: 100%;
-      display: table;
-      table-layout: fixed;
-
-      li {
-        display: table-cell;
-
-        a {
-          display: block;
-          padding: 12px 20px;
-          font-size: 20px;
-          color: #999;
-
-          &:hover {
-            color: #555;
-          }
-        }
-      }
-
-      .newer {
-        text-align: right;
-
-        i {
-          margin-right: 0;
-          margin-left: 5px;
-          text-align: right;
-        }
-      }
-
-      .older {
-        i {
-          text-align: left;
-        }
-      }
-    }
-  }
-
-  #profile {
-    padding: 30px 0;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    position: relative;
-    min-height: 100px;
-    @include clearfix();
-
-    &.header {
-      border: none;
-      margin-top: 0;
+    &:last-child {
       margin-bottom: 0;
     }
 
-    h1 {
-      margin-top: 0;
-    }
+    a {
+      color: #333;
 
-    .avatar {
-      position: absolute;
-      left: 0;
-
-      img {
-        width: 7em;
-        height: 7em;
-        border-radius: 3.5em;
+      &:hover {
+        color: $linkColor;
       }
     }
 
-    .info {
-      margin-left: 8em;
+    .summary {
+      a {
+        color: #666;
+      }
     }
 
-    @media (max-width: $site-container-width) {
-      .avatar,
-      .info {
-        text-align: center;
-        width: 100%;
-      }
-
-      .avatar {
-        position: relative;
-        margin-bottom: $commonMargin;
-      }
-
-      .info {
-        margin-left: 0;
-      }
+    .date {
+      color: #999;
     }
   }
 }
 
+#paginator {
+  border-bottom: 1px solid #ddd;
+  background-color: #f9f9f9;
+
+  .paginator {
+    @include clearfix();
+  }
+
+  a {
+    font-size: 16px;
+    color: #666;
+    display: inline-block;
+
+    &:hover {
+      color: #333;
+    }
+
+    &.older {
+      padding: 15px 15px 15px 0;
+      float: left;
+    }
+
+    &.newer {
+      padding: 15px 0 15px 15px;
+      float: right
+    }
+  }
+}
+
+#topbar {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+
+  .topbar-button {
+    padding: 15px;
+    display: block;
+    color: #666;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+      color: #333;
+    }
+  }
+
+  .dropdown {
+    margin-right: 2px;
+  }
+
+  .dropdown-menu {
+    margin-top: 3px;
+  }
+}
+
+.container {
+  max-width: $site-container-width;
+  width: 100%;
+  margin: 0 auto;
+
+  .inner {
+    padding: 0 (70px / $site-container-width) * 100%;
+  }
+}
+
+#article {
+  padding: 50px 0;
+}
+
+#date {
+  font-size: 16px;
+  padding: 0 0 30px;
+  color: #999;
+  border-bottom: 1px solid #ddd;
+}
+
+#authors {
+  padding: 50px 0;
+  border-bottom: 1px solid #ddd;
+
+  h1 {
+    margin-bottom: 50px;
+  }
+
+  .profile {
+    margin-bottom: 50px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+#archives {
+  padding: 50px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin: 20px 0;
+  }
+
+  .date {
+    color: #999;
+    margin-right: 10px;
+  }
+}
+
+#profile {
+  padding: 30px 0;
+  background: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+  color: #666;
+}
+
+.profile {
+  position: relative;
+  min-height: 120px;
+
+  p {
+    margin: 16px 0;
+  }
+
+  .avatar {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    img {
+      height: 120px;
+      width: 120px;
+      border-radius: 60px;
+    }
+  }
+
+  .info {
+    padding-left: 160px;
+    word-wrap: break-word;
+  }
+
+  @media (max-width: 480px) {
+    text-align: center;
+
+    h1, h2 {
+      margin-top: 16px;
+    }
+
+    .avatar {
+      position: relative;
+    }
+
+    .info {
+      padding-left: 0;
+    }
+  }
+}
+
+#comments {
+  padding: 50px 0;
+  border-bottom: 1px solid #ddd;
+}
+
 #footer {
   text-align: center;
-  border-top: 1px solid #ddd;
 
-  #logo {
+  .logo {
     font-size: 1.5em;
     font-weight: bold;
 

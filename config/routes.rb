@@ -119,6 +119,8 @@ Publish::Application.routes.draw do
       root :to => 'articles#index'
       get 'feed', :to => 'articles#feed', :as => :feed
       get 'articles/:id(-:urlname)', :to => 'articles#show', :as => :article, :constraints => { :id => /[a-zA-Z0-9]+/ }
+      resources :authors, :only => [:index, :show]
+      resources :archives, :only => [:index]
       resources :categories, :only => [:index, :show] do
         member do
           get :feed
