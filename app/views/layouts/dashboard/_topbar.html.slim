@@ -9,27 +9,31 @@
             a.dropdown-toggle.topbar-button class=('actived' if %w(articles attachments categories import_tasks export_tasks settings).include? controller_name)
               - if @space
                 i class=(@space.in_plan?(:free) ? 'icon-user' : 'icon-group')
+                '
                 = @space.display_name
               - else
                 i.icon-user
+                '
                 = t('.select_space')
             ul.dropdown-menu
               - current_user.spaces.asc(:created_at).each do |space|
                 li
                   a href=(dashboard_root_path(space))
                     i class=(space.in_plan?(:free) ? 'icon-user' : 'icon-group')
+                    '
                     = space.display_name
               li
                 hr
               li
                 a href=(new_space_path)
                   i.icon-plus
+                  '
                   = t '.new_space'
         .sub-menu.clearfix
           .pull-left
             - if @space
               a#user-link.topbar-button href=(site_root_url(:host => @space.host, :protocol => 'http')) target='_blank'
-                i.icon-external-link.no-margin
+                i.icon-external-link
           .pull-right
             - blog = Space.where(:name => :blog).first
             - if blog
@@ -54,16 +58,19 @@
                 li
                   = link_to account_path do
                     i.icon-user
+                    '
                     = t '.account'
                 li
                   a href='http://help.writings.io'
                     i.icon-book
+                    '
                     = t '.help'
                 li
                   hr
                 li
                   = link_to logout_path, :remote => true, :method => :delete do
                     i.icon-signout
+                    '
                     = t '.logout'
 
       - else
@@ -71,17 +78,22 @@
           .pull-left
             a.topbar-button href=(root_path) class=('actived' if controller_name == 'home' && action_name == 'index')
               i.icon-home
+              '
               = t '.home'
             a.topbar-button.hide-on-mobile href='/feature-manager' class=('actived' if controller_name == 'home' && action_name =~ /^feature/)
               i.icon-lightbulb
+              '
               = t '.features'
             a.topbar-button.hide-on-mobile href='/about' class=('actived' if controller_name == 'home' && action_name == 'about')
               i.icon-info
+              '
               = t '.about'
           .pull-right
             a.topbar-button href=(signup_path) class=('actived' if controller_name == 'users')
               i.icon-plus-sign
+              '
               = t '.signup'
             a.topbar-button href=(login_path) class=('actived' if controller_name == 'user_sessions')
               i.icon-signin
+              '
               = t '.login'
