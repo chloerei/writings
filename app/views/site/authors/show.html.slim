@@ -1,34 +1,21 @@
+- append_title @author.display_name
+
+header#topbar.clearfix
+  a.topbar-button.pull-left href=(site_authors_path)
+    i.icon-chevron-left
+    = t '.other_authors'
+
 header#profile
   .container
     .inner
       .profile
         .avatar
-          = image_tag @space.gravatar_url(:size => 120)
+          = image_tag @author.gravatar_url(:size => 120)
         .info
           h1
-            = @space.display_name
+            = @author.display_name
           .description
-            = simple_format @space.description
-
-nav#tabs
-  .container
-    .inner
-      a href=(root_path)
-        .icon-home
-        '
-        = t '.home'
-      a href=(site_authors_path)
-        .icon-user
-        '
-        = t '.authors'
-      a href='#archives'
-        .icon-inbox
-        '
-        = t '.archives'
-      a href='#rss'
-        .icon-rss
-        '
-        | RSS
+            = simple_format @author.description
 
 section#main
   .container

@@ -464,7 +464,18 @@ zh-CN:
         continue_reading: "继续阅读"
         home: "首页"
         about: "关于"
+        authors: "作者"
         archives: "存档"
+      show:
+        home: "首页"
+    authors:
+      index:
+        authors: "作者"
+        authors_of_space: "%{name} 的作者"
+        home: "首页"
+      show:
+        other_authors: "其他作者"
+        continue_reading: "继续阅读"
 
   errors:
     messages:
