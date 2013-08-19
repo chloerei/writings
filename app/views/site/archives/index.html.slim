@@ -1,0 +1,23 @@
+- append_title t('.archives')
+
+header#topbar.clearfix
+  a.topbar-button.pull-left href=(root_path)
+    i.icon-chevron-left
+    = t '.home'
+
+section#archives
+  .container
+    .inner
+      h1
+        .icon-archive
+        '
+        = t '.archives'
+      ul
+        - @space.articles.publish.desc(:published_at).each do |article|
+          li
+            span.date
+              = l article.published_at.to_date
+              '
+              .icon-angle-right
+            a href=(site_article_path(article, :urlname => article.urlname))
+                = article.title

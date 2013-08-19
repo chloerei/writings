@@ -45,10 +45,10 @@ section#profile
     .inner
       .profile
         .avatar
-          = link_to image_tag(@article.user.gravatar_url(:size => 120)), site_root_path
+          = link_to image_tag(@article.user.gravatar_url(:size => 120)), site_author_path(@article.user)
         .info
           h1
-            = link_to @article.user.display_name, site_root_path
+            = link_to @article.user.display_name, site_author_path(@article.user)
           .description
             = simple_format @article.user.description
 

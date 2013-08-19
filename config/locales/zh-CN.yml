@@ -476,6 +476,10 @@ zh-CN:
       show:
         other_authors: "其他作者"
         continue_reading: "继续阅读"
+    archives:
+      index:
+        archives: "存档"
+        home: "首页"
 
   errors:
     messages:

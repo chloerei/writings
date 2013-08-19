@@ -9,6 +9,8 @@ section#authors
   .container
     .inner
       h1
+        i.icon-user
+        '
         = t '.authors_of_space', :name => @space.display_name
       - @authors.each do |author|
         .profile

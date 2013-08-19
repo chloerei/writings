@@ -21,11 +21,11 @@ nav#tabs
         .icon-user
         '
         = t '.authors'
-      a href='#archives'
-        .icon-inbox
+      a href=(site_archives_path)
+        .icon-archive
         '
         = t '.archives'
-      a href='#rss'
+      a href=(site_feed_path(:format => :rss))
         .icon-rss
         '
         | RSS
