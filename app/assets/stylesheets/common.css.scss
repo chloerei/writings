@@ -498,13 +498,15 @@ a.button:hover {
 
   .dropdown-menu {
     display: none;
-    margin: 0;
-    padding: 0;
+    margin: 2px 0 0;
+    padding: 3px 0;
     z-index: 1000;
     position: absolute;
     min-width: 100%;
     top: 100%;
     left: 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
     background: #fff;
     white-space: nowrap;
     @include box-shadow(0 1px 5px rgba(0, 0, 0, 0.3));
@@ -528,7 +530,8 @@ a.button:hover {
         padding: $buttonPaddingY $buttonPaddingX;
 
         &:hover {
-          background-color: #eee;
+          background-color: $linkColor;
+          color: white;
         }
       }
 

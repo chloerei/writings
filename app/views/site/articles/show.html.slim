@@ -1,12 +1,33 @@
 - append_title @article.title
 
-header#topbar
-  nav
-    ul
-      li.host
-        a href=(root_path)
-          i.icon-chevron-left
-          = @space.display_name
+header#topbar.clearfix
+  a.topbar-button.pull-left href=(root_path)
+    i.icon-chevron-left
+    = @space.display_name
+  .dropdown.pull-right
+    a.topbar-button.dropdown-toggle.no-arrow
+      i.icon-share-alt
+    ul.dropdown-menu.align-right
+      li
+        a
+          i.icon-twitter
+          '
+          | Twitter
+      li
+        a
+          i.icon-weibo
+          '
+          = t '.weibo'
+      li
+        a
+          i.icon-google-plus
+          '
+          | Google+
+      li
+        a
+          i.icon-facebook
+          '
+          | Facebook
 
 section#article
   .container
