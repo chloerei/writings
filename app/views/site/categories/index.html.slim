@@ -5,7 +5,9 @@
         = render :partial => 'site/share/page_header'
         section#categories.page-contents
           - @categories.each do |category|
-            section
-              h1 = link_to category.name, site_category_path(category)
-              .info
-                = t 'articles_count', :count => category.articles.count
+            - count = category.articles.publish.count
+            - if count > 0
+              section
+                h1 = link_to category.name, site_category_path(category)
+                .info
+                  = t 'articles_count', :count => count
