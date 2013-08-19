@@ -9,22 +9,22 @@ header#topbar.clearfix
       i.icon-share-alt
     ul.dropdown-menu.align-right
       li
-        a
+        a href="https://twitter.com/share?url=#{site_article_url(@article, :urlname => @article.urlname)}&text=#{@article.title}" target='_blank'
           i.icon-twitter
           '
           | Twitter
       li
-        a
+        a href="http://service.weibo.com/share/share.php?url=#{site_article_url(@article, :urlname => @article.urlname)}&title=#{@article.title}" target='_blank'
           i.icon-weibo
           '
           = t '.weibo'
       li
-        a
+        a href="https://plus.google.com/share?url=#{site_article_url(@article, :urlname => @article.urlname)}" target='_blank'
           i.icon-google-plus
           '
           | Google+
       li
-        a
+        a href="https://www.facebook.com/sharer/sharer.php?u=#{site_article_url(@article, :urlname => @article.urlname)}" target='_blank'
           i.icon-facebook
           '
           | Facebook
