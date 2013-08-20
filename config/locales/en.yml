@@ -58,17 +58,17 @@ en:
         about: About
         signup: Signup
         login: Login
-        all_announcement: "All Announcement"
+        all_announcement: All Announcement
         account: Account
         billing: Billing
         logout: Logout
         new_space: New Workspace
         twitter: Twitter
         bug_report: Bug Report
-        blog: Blog
         help: Help
         features: Features
         select_space: Select Space
+        blog: Blog
       footer:
         about: About
         blog: Blog
@@ -462,6 +462,27 @@ en:
         urlname: URL
       attachment:
         file: Attachment
+  site:
+    articles:
+      index:
+        continue_reading: Continue Reading
+        home: Home
+        authors: Authors
+        archives: Archives
+      show:
+        home: Home
+    authors:
+      index:
+        authors: Authors
+        authors_of_space: 'Authors of %{name}'
+        home: Home
+      show:
+        other_authors: Other Authors
+        continue_reading: Continue Reading
+    archives:
+      index:
+        archives: Archives
+        home: Home
   errors:
     messages:
       extension_white_list_error: 'Can not uplaod %{extension} file，allow extension:

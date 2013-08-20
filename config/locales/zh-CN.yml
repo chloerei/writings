@@ -471,7 +471,7 @@ zh-CN:
     authors:
       index:
         authors: "作者"
-        authors_of_space: "%{name} 的作者"
+        authors_of_space: "%{name}的作者"
         home: "首页"
       show:
         other_authors: "其他作者"
