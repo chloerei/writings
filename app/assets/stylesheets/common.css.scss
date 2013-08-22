@@ -66,6 +66,7 @@ a [class*=" icon-"] {
 article {
   font-size: 16px;
   line-height: 25px;
+  word-wrap: break-word;
 
   h1 {
     margin: 30px 0;
@@ -127,20 +128,18 @@ article {
   }
 
   code {
+    font-size: 14px;
     margin: 0 5px;
-    padding: 0 5px;
+    padding: 5px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 3px;
   }
 
   pre code {
-    font-size: 14px;
     margin: 0;
-    padding: 5px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 3px;
+    padding: 5px 10px;
+    word-break: break-all;
   }
 
   img {
