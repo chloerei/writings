@@ -1,13 +1,16 @@
 - append_title t('.orders')
 
-- content_for :sidebar do
-  = render 'dashboard/share/main_sidebar'
+- content_for :topbar do
+  ul.topbar-nav.pull-left
+    li.topbar-nav-item
+      a.min href=(dashboard_billing_path)
+        i.icon-chevron-left
+    li.topbar-nav-item.text
+      = t('.orders')
 
-.main-header
-  h2
-    = link_to t('.billing'), dashboard_billing_path
-    = ' / '
-    = t '.orders'
+  ul.topbar-nav.pull-right
+    = render 'dashboard/share/config_menu'
 
-section
-  = render 'orders'
+.main-section
+  .inner
+    = render 'orders'

@@ -5,7 +5,9 @@ class Dashboard::SettingsController < Dashboard::BaseController
   end
 
   def update
-    @space.update_attributes space_params
+    if @space.update_attributes space_params
+      flash[:success] = t('update_success')
+    end
   end
 
   private

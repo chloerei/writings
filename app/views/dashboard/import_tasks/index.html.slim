@@ -1,36 +1,36 @@
-- content_for :sidebar do
-  = render 'dashboard/share/main_sidebar'
+- append_title t('.import')
 
-.main-header
-  h2 = t '.import'
+- content_for :topbar do
+  = render :partial => 'dashboard/share/topbar', :locals => { :title => t('.import') }
 
-.two-columns
-  .column
-    = form_for ImportTask.new, :url => dashboard_import_tasks_path, :multipart => true, :validate => true do |f|
-      fieldset
-        legend = t '.format'
+.main-section
+  .two-columns.inner
+    .column
+      = form_for ImportTask.new, :url => dashboard_import_tasks_path, :multipart => true, :validate => true do |f|
+        fieldset
+          legend = t '.format'
+          .field
+            label
+              = f.radio_button :format, 'jekyll', :checked => true
+              '
+              | Jekyll (.zip)
+            label
+              = f.radio_button :format, 'wordpress'
+              '
+              | Wordpress (.xml)
+        fieldset
+          legend = t '.file'
+          .field
+            = f.file_field :file
         .field
-          label
-            = f.radio_button :format, 'jekyll', :checked => true
-            '
-            | Jekyll (.zip)
-          label
-            = f.radio_button :format, 'wordpress'
-            '
-            | Wordpress (.xml)
-      fieldset
-        legend = t '.file'
-        .field
-          = f.file_field :file
-      .field
-        = f.submit t('.start_import'), :class => 'button-primary'
-  .column
-    h3.title = t '.help'
-    pre
-      code
-        | # jekyll-file.zip struct:
-          _posts/
-          ├── 2013-02-27-rewriting.md
-          ├── 2013-03-05-what-is-writings-io.md
-          ├── {year}-{month}-{day}-{urlname}.md
-          ...
+          = f.submit t('.start_import')
+    .column
+      h3.title = t '.help'
+      pre
+        code
+          | # jekyll-file.zip struct:
+            _posts/
+            ├── 2013-02-27-rewriting.md
+            ├── 2013-03-05-what-is-writings-io.md
+            ├── {year}-{month}-{day}-{urlname}.md
+            ...

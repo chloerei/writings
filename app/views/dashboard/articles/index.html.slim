@@ -11,21 +11,27 @@
       a
         i.icon-search
     li.topbar-nav-item
-      a.actived All
+      a class=('actived' if params['status'].blank?) href=(dashboard_root_path(:status => nil))
+        = t '.all'
     li.topbar-nav-item
-      a Draft
+      a class=('actived' if params['status'] == 'draft') href=(dashboard_root_path(:status => 'draft'))
+        = t '.drafted'
     li.topbar-nav-item
-      a Publish
+      a class=('actived' if params['status'] == 'publish') href=(dashboard_root_path(:status => 'publish'))
+        = t '.published'
     li.topbar-nav-item
-      a
+      a href=(new_dashboard_article_path)
         i.icon-plus
         '
-        | New Article
-    li.topbar-nav-item
-      a.min
-        i.icon-ellipsis-vertical
+        = t '.new_article'
+    = render 'dashboard/share/config_menu'
 
 .main-section
   ul#articles.articles
     - unless @articles.empty?
       = render :partial => 'article', :collection => @articles
+    - else
+      li.empty-message
+        = t '.no_articles'
+  .inner
+    = paginate @articles, :theme => :dashboard

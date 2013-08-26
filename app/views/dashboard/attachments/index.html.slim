@@ -1,31 +1,24 @@
 - append_title t('.pictures')
 
 - content_for :topbar do
-  ul.topbar-nav.pull-left
-    = render 'dashboard/share/sidebar'
-    li.topbar-nav-item.text
-      | Pictures
+  = render :partial => 'dashboard/share/topbar', :locals => { :title => t('.pictures') }
 
-  ul.topbar-nav.pull-right
-    li.topbar-nav-item
-      a.min
-        i.icon-ellipsis-vertical
-
-.main-section.inner
-  #storage-status
-    span.used= number_to_human_size @space.storage_used
-    = ' / '
-    span.limit= number_to_human_size @space.storage_limit
-    - if @space.in_plan? :free
-      = ' '
-      = link_to t('need_more_storage'), dashboard_billing_path
-  ul.pictures
-    - @attachments.each do |attachment|
-      li.picture id=("attachment-#{attachment.id}")
-        a.pic-link href=(attachment.file.url) target='_blank' title=(attachment.file_name)
-          = image_tag attachment.file.thumb.url
-        a.delete href=(dashboard_attachment_path(:id => attachment)) data-remote='true' data-method='delete' data-confirm=(t '.confirm_delete')
-          i.icon-remove
-  = paginate @attachments, :theme => :dashboard
-  - if @attachments.empty?
-    = t '.no_picture'
+.main-section
+  .inner
+    #storage-status
+      span.used= number_to_human_size @space.storage_used
+      = ' / '
+      span.limit= number_to_human_size @space.storage_limit
+      - if @space.in_plan? :free
+        = ' '
+        = link_to t('need_more_storage'), dashboard_billing_path
+    ul.pictures
+      - @attachments.each do |attachment|
+        li.picture id=("attachment-#{attachment.id}")
+          a.pic-link href=(attachment.file.url) target='_blank' title=(attachment.file_name)
+            = image_tag attachment.file.thumb.url
+          a.delete href=(dashboard_attachment_path(:id => attachment)) data-remote='true' data-method='delete' data-confirm=(t '.confirm_delete')
+            i.icon-remove
+    = paginate @attachments, :theme => :dashboard
+    - if @attachments.empty?
+      = t '.no_picture'

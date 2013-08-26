@@ -1,0 +1,22 @@
+li.topbar-nav-item
+  .dropdown
+    a.dropdown-toggle.min.no-arrow
+      i.icon-ellipsis-vertical
+    ul.dropdown-menu.align-right
+      li
+        a href=(account_path)
+          i.icon-user
+          '
+          = t '.account'
+      li
+        a href='http://help.writings.io'
+          i.icon-book
+          '
+          = t '.help'
+      li
+        hr
+      li
+        a href=(logout_path) data-method='delete' data-remote='true'
+          i.icon-signout
+          '
+          = t '.logout'

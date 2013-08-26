@@ -7,21 +7,8 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status])
   end
 
-  def uncategorized
-    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status]).where(:category_id => nil)
-
-    render :index
-  end
-
   def trashed
-    @articles = @space.articles.desc(:updated_at).page(params[:page]).status('trash')
-  end
-
-  def categorized
-    @category = @space.categories.find_by :token => param_to_token(params[:category_id])
-    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status]).where(:category_id => @category.id)
-
-    render :index
+    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status('trash')
   end
 
   def show

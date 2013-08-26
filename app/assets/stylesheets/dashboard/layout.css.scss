@@ -126,9 +126,9 @@ $topbarMinPadding: 15px 20px;
 #main {
   .container {
     width: 768px;
-    margin: 80px auto;
+    margin: 70px auto 20px;
 
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
       width: 95%;
     }
   }
@@ -140,7 +140,13 @@ $topbarMinPadding: 15px 20px;
   .main-section {
     background-color: white;
     border-radius: 2px;
+    margin-bottom: 20px;
+
     @include box-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+
+    h3.title {
+      margin-bottom: 20px;
+    }
   }
 }
 

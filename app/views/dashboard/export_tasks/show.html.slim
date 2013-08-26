@@ -1,44 +1,40 @@
-- content_for :sidebar do
-  = render 'dashboard/share/main_sidebar'
+- append_title t('.export')
 
-.main-header
-  h2
-    a href=(dashboard_export_tasks_path)
-      i.icon-angle-left
-      = t '.export'
+- content_for :topbar do
+  = render :partial => 'dashboard/share/topbar', :locals => { :title => t('.export') }
 
-section
-  header
-    h3
-      - case @export_task.status
-      - when 'success'
-        = t '.task_success'
-      - when 'error'
-        = t '.task_error'
-      - else
-        = t '.task_processing'
-      = ' [ '
-      - if @export_task.category
-        = @export_task.category.name
+.main-section
+  .inner
+    header
+      h3
+        - case @export_task.status
+        - when 'success'
+          = t '.task_success'
+        - when 'error'
+          = t '.task_error'
+        - else
+          = t '.task_processing'
+        = ' [ '
+        - if @export_task.category
+          = @export_task.category.name
+          = ' / '
+        = @export_task.format
         = ' / '
-      = @export_task.format
-      = ' / '
-      = l @export_task.created_at, :format => :long
-      = ' ]'
-  - case @export_task.status
-  - when 'success'
-    p
-      = t '.task_success_detail'
-    p
+        = l @export_task.created_at, :format => :long
+        = ' ]'
+
+    - case @export_task.status
+    - when 'success'
+      p
+        = t '.task_success_detail'
       a.button.button-green href=(download_dashboard_export_task_path(:id => @export_task)) data-no-turbolink=(true)
         = t '.download'
-  - when 'error'
-    p
-      = t '.task_error_detail'
-    p
-      = mail_to 'chloerei@gmail.com', nil, :subject => t('.task_error'), :body => "ExportTask: #{@export_task.id}\n", :class => 'button'
-  - else
-    p
-      = t '.task_processing_detail'
-    p
+    - when 'error'
+      p
+        = t '.task_error_detail'
+      p
+        = mail_to 'chloerei@gmail.com', nil, :subject => t('.task_error'), :body => "ExportTask: #{@export_task.id}\n", :class => 'button'
+    - else
+      p
+        = t '.task_processing_detail'
       = link_to t('.refresh'), url_for, :class => 'button'

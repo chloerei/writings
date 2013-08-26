@@ -1,67 +1,67 @@
 - append_title t('.billing')
 
-- content_for :sidebar do
-  = render 'dashboard/share/main_sidebar'
+- content_for :topbar do
+  = render :partial => 'dashboard/share/topbar', :locals => { :title => t('.billing') }
 
-.main-header
-  h2 = t '.billing'
-
-section
-  table.nice-table
-    tbody
-      tr
-        th = t '.plan'
-        th = t 'plan.free'
-        th = t 'plan.base'
-      tr
-        td = t '.price'
-        td
-          i.icon-minus
-        td = t '.10_per_1_month'
-      tr
-        td = t '.storage'
-        td 10MB
-        td 1GB
-      tr
-        td = t '.history_versions'
-        td 5
-        td 50
-      tr
-        td = t '.members'
-        td
-          i.icon-minus
-        td
-          | 5
-      tr
-        td = t '.custom_domain'
-        td
-          i.icon-minus
-        td
-          i.icon-ok
-      tr
-        td = t '.google_analytics'
-        td
-          i.icon-minus
-        td
-          i.icon-ok
-      tr
-        td = t '.renew'
-        td
-        td
-          = link_to t('.renew'), new_dashboard_order_path, :class => 'button button-green no-margin'
-  p
-    = t '.current_plan'
-    = t "plan.#{@space.plan}"
-    - if @space.plan_expired_at
-      = "（#{l @space.plan_expired_at.to_date, :format => :long}#{t '.expired'}）"
+.main-section
+  .inner
+    h3.title
+      = t '.plan'
+    table.nice-table
+      tbody
+        tr
+          th = t '.plan'
+          th = t 'plan.free'
+          th = t 'plan.base'
+        tr
+          td = t '.price'
+          td
+            i.icon-minus
+          td = t '.10_per_1_month'
+        tr
+          td = t '.storage'
+          td 10MB
+          td 1GB
+        tr
+          td = t '.history_versions'
+          td 5
+          td 50
+        tr
+          td = t '.members'
+          td
+            i.icon-minus
+          td
+            | 5
+        tr
+          td = t '.custom_domain'
+          td
+            i.icon-minus
+          td
+            i.icon-ok
+        tr
+          td = t '.google_analytics'
+          td
+            i.icon-minus
+          td
+            i.icon-ok
+        tr
+          td = t '.renew'
+          td
+          td
+            = link_to t('.renew'), new_dashboard_order_path, :class => 'button button-green no-margin'
+    .quiet
+      = t '.current_plan'
+      = t "plan.#{@space.plan}"
+      - if @space.plan_expired_at
+        = "（#{l @space.plan_expired_at.to_date, :format => :long}#{t '.expired'}）"
 
 - if @orders.any?
-  section
-    header
-      h3
+  .main-section
+    .inner
+      h3.title
         = t '.orders'
-    = render 'dashboard/orders/orders'
-    p.quiet
-      a href=(dashboard_orders_path)
-        i.icon-double-angle-right.no-margin
-        = t '.view_all'
+      = render 'dashboard/orders/orders'
+      .quiet
+        a href=(dashboard_orders_path)
+          i.icon-double-angle-right.no-margin
+          = t '.view_all'

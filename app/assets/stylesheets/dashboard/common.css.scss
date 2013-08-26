@@ -232,14 +232,19 @@
     margin-right: 5%;
   }
 
-  .title {
-    margin-top: 0;
+  @media (max-width: 480px) {
+    .column {
+      float: none;
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 30px;
+    }
   }
 }
 
 table.nice-table {
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto 20px;
   border: 1px solid #ccc;
   @include box-sizing(border-box);
 
