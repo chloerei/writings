@@ -1,104 +1,57 @@
 .articles {
-  .show-on-selected {
-    display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
-    &.show {
-      display: inline-block;
-    }
-  }
-
-  table {
-    width: 100%;
-    border-top: 1px solid #ddd;
+  .article {
     border-bottom: 1px solid #ddd;
+    position: relative;
   }
 
-  tr {
-    border-bottom: 1px solid #eee;
+  .article-info {
+    padding: 10px 50px 10px 40px;
+    display: block;
+    color: #333;
 
-    &:last-child {
-      border-bottom: none;
-    }
-
-    &.selected,
     &:hover {
-      td {
-        background-color: lighten(yellow, 43%);
-      }
+      background-color: #f9f9f9;
     }
-  }
-
-  th,
-  td {
-    &.min {
-      width: 1%;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    &.max {
-      width: 99%;
-    }
-
-    a {
-      display: inline-block;
-      color: #888;
-      padding: 15px;
-
-      &:hover {
-        color: $linkColor;
-      }
-
-      i {
-        margin-right: 0;
-      }
-    }
-
-    .checkbox {
-      line-height: 20px;
-      width: 15px;
-      margin-right: 0;
-      display: inline-block;
-      padding: 15px;
-      cursor: pointer;
-    }
-  }
-
-  th {
-    color: #555;
-    text-align: left;
-  }
-
-  td {
-    cursor: pointer;
 
     h3 {
-      font-size: 14px;
-      line-height: 20px;
-      font-weight: normal;
-      margin: 0;
-
-      a {
-        color: #333;
-        padding-left: 0;
-      }
+      font-size: 16px;
     }
+  }
 
-    .category {
-      padding: 0 5px;
-      background: #efefef;
+  .article-select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding: 16px 10px;
+    font-size: 16px;
+    color: #999;
+    z-index: 1;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f9f9f9;
       color: #555;
-      border-radius: 3px;
-      margin-left: 5px;
     }
   }
 
-  .date {
-    padding-right: 15px;
-  }
+  .article-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 16px 15px;
+    font-size: 16px;
+    color: #999;
+    z-index: 1;
 
-  &.hide-category .category {
-    display: none;
+    &:hover {
+      background-color: #f9f9f9;
+      color: #555;
+    }
   }
 }

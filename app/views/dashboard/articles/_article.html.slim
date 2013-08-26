@@ -1,19 +1,20 @@
 - cache [@space.name, article, I18n.locale] do
-  tr.article id=("article-#{article.token}") data-id=(article.token)
-    td.min
-      i.checkbox.icon-check-empty
-    td.max
+  li.article id=("article-#{article.token}") data-id=(article.token)
+    a.article-select
+      i.icon-check-empty
+    a.article-info href=(edit_dashboard_article_path(:id => article))
       h3
-        a href=(edit_dashboard_article_path(:id => article))
-          = article.title
-          - if article.category
-            span.category = article.category.name
-    td.min.hide-on-mobile
-      - if article.publish?
-        a href=(site_article_url(:id => article, :urlname => article.urlname, :host => @space.host, :protocol => 'http')) target='_blank'
-          i.icon-external-link
-    td.min.date
-      .hide.show-on-mobile
-        = l article.updated_at.to_date, :format => :short
-      .hide-on-mobile
+        = article.title
+      .quiet
+        - if article.last_edit_user
+          = article.last_edit_user.display_name
+        - else
+          = article.user.display_name
+        '
+        | 编辑于
+        '
         = l article.updated_at, :format => :short
+
+    - if article.publish?
+      a.article-link href=(site_article_url(:id => article, :urlname => article.urlname, :host => @space.host, :protocol => 'http')) target='_blank'
+        i.icon-external-link

@@ -1,524 +1,158 @@
-.two-columns {
-  @include clearfix();
-
-  .column {
-    float: left;
-    width: 45%;
-    margin-right: 5%;
-  }
-
-  .title {
-    margin-top: 0;
-  }
-}
-
-table.nice-table {
-  width: 100%;
-  margin: 0 auto;
-  border: 1px solid #ccc;
-  @include box-sizing(border-box);
-
-  tr {
-    border-bottom: 1px solid #ddd;
-  }
-
-  th {
-    text-align: left;
-    @include linear-gradient(#fff, #eee);
-  }
-
-  th, td {
-    padding: 15px;
-
-    &.align-right {
-      text-align: right;
-    }
-  }
-
-  &.max {
-    width: 99%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  .min {
-    width: 1%;
-    white-space: nowrap;
-  }
-
-  .button {
-    display: inline;
-  }
-}
-
-.container {
-  margin: 0 auto;
-  width: $container-width;
-}
-
-// signup, login
-.signup,
-.login {
-  margin: 100px auto;
-  width: 358px;
-  max-width: 90%;
-  padding: $commonPadding;
-  background-color: #fff;
-  @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
-  @include box-sizing(border-box);
-
-  h2 {
-    margin-top: 0;
-  }
-
-  .field {
-    width: 100%;
-
-    .input-append,
-    #{$all-text-inputs},
-    textarea {
-      width: 100%;
-    }
-  }
-}
-
-// topbar
-
-$mainSidebarWidth: $container-width - $editor-container-width;
-
-$topbarLinkColor: #eee;
-$topbarLinkBackgroundColor: #333;
-$topbarLinkHoverColor: #333;
-$topbarLinkHoverBackgroundColor: white;
+$topbarPadding: 15px 30px;
+$topbarMinPadding: 15px 20px;
 
 #topbar {
-  margin-bottom: $commonMargin;
-  color: $topbarLinkColor;
-  background-color: $topbarLinkBackgroundColor;
-  @include linear-gradient(#555, #333);
-  @include box-shadow(0 1px 3px rgba(0, 0, 0, 0.3));
+  background-color: white;
+  font-size: 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  @include clearfix();
+  @include box-shadow(0 0 5px rgba(0, 0, 0, 0.3));
 
-  .container {
-    position: relative;
+  .topbar-nav {
+    margin: 0;
+    padding: 0;
+    @include clearfix();
+
+    &.pull-right {
+      .topbar-nav-item {
+        border-left: 1px solid #ddd;
+        border-right: none;
+      }
+    }
   }
 
-  .space-menu {
-    width: $mainSidebarWidth;
-    position: absolute;
-    left: 0;
+  .topbar-nav-item {
+    float: left;
+    display: block;
+    border-right: 1px solid #ddd;
 
-    .dropdown,
-    .dropdown-toggle {
+    &.text {
+      padding: $topbarPadding;
+      border-right: none;
+      font-weight: bold;
+    }
+
+    a {
+      padding: $topbarPadding;
       display: block;
-    }
-  }
+      cursor: pointer;
+      color: #333;
 
-  .sub-menu {
-    margin-left: $mainSidebarWidth;
-    .dropdown,
-    .dropdown-toggle {
-      vertical-align: top;
-    }
-  }
+      &.min {
+        padding: $topbarMinPadding;
+      }
 
-  .topbar-button {
-    padding: 10px $commonPadding;
-    display: inline-block;
-    color: $topbarLinkColor;
-    @include transition(all 0.15s ease);
-
-    &.actived {
-      background-color: #333;
-    }
-
-    &:hover {
-      background-color: $topbarLinkHoverBackgroundColor;
-      color: $topbarLinkHoverColor;
-    }
-
-    &.highlight {
-      background-color: $blue;
-    }
-  }
-
-  .dropdown {
-    .dropdown-toggle {
-      padding: 10px ($commonPadding + 15px) 10px $commonPadding;
-      color: $topbarLinkColor;
-
-      &:after {
-        padding-right: $commonPadding;
+      &.actived {
+        color: $linkColor;
+        padding-bottom: 11px;
+        border-bottom: 4px solid $linkColor;
       }
 
       &:hover {
-        background-color: $topbarLinkHoverBackgroundColor;
-        color: $topbarLinkHoverColor;
+        background-color: $linkColor;
+        color: white;
       }
     }
+  }
 
-    .dropdown-menu {
-      font-weight: normal;
-      border-radius: 0;
-      margin-top: 0;
+  .pull-right {
+    .topbar-item {
+      border-right: none;
+      border-left: 1px solid #ddd;
+    }
+  }
 
-      li {
-        a {
-          padding: 10px $commonPadding;
-        }
-      }
+  .sidebar {
+    position: fixed;
+    top: 50px;
+    left: -250px;
+    bottom: 0;
+    border-top: 1px solid #ddd;
+    width: 250px;
+    z-index: 999;
+    background-color: white;
+    @include transition(left 0.2s);
+
+    hr {
+      margin: 5px 0;
+    }
+  }
+
+  .sidebar-item {
+    a {
+      padding: $topbarMinPadding;
     }
 
-    &.actived {
-      .dropdown-toggle {
-        background-color: $topbarLinkHoverBackgroundColor;
-        color: $topbarLinkHoverColor;
+    .dropdown {
+      width: 100%;
+    }
+
+    .dropdown-toggle {
+      padding-right: 45px;
+
+      &:after {
+        padding-right: 25px;
       }
+    }
+  }
+
+  .sidebar-background {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 990;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+  }
+
+  &.show-sidebar {
+    .sidebar {
+      left: 0;
+      @include box-shadow(5px 0 5px -5px rgba(0, 0, 0, 0.3));
+    }
+
+    .sidebar-background {
+      display: block;
     }
   }
 }
 
-// main
-
 #main {
-  margin-bottom: $commonMargin;
+  .container {
+    width: 768px;
+    margin: 80px auto;
+
+    @media (max-width: 480px) {
+      width: 95%;
+    }
+  }
 
   .inner {
-    background-color: #fff;
-    @include box-shadow(0 0 2px rgba(0, 0, 0, 0.3));
-    @include clearfix();
+    padding: 20px;
   }
 
-  .main-container {
-    display: table;
-    width: 100%;
-  }
-
-  .main-sidebar {
-    width: $mainSidebarWidth;
-    display: table-cell;
-    background-color: #f9f9f9;
-
-    nav.main-sidebar-nav {
-      margin-bottom: $commonMargin;
-
-      li.main-sidebar-item {
-        &:hover {
-          background-color: white;
-        }
-
-        > a {
-          padding: 15px $commonPadding;
-          display: block;
-          position: relative;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          color: #333;
-
-          &:hover {
-            color: $linkColor;
-          }
-        }
-
-        &.actived {
-          background-color: white;
-
-          > a {
-            color: $linkColor;
-            padding-left: $commonPadding - 4px;
-            border-left: 4px solid $linkColor;
-          }
-        }
-
-        &.append-dropdown {
-          padding-right: 45px;
-          position: relative;
-
-          .dropdown {
-            position: absolute;
-            top: 0;
-            right: 0;
-
-            &.actived {
-              a.dropdown-toggle {
-                visibility: visible;
-              }
-            }
-          }
-
-          a.dropdown-toggle {
-            visibility: hidden;
-            border-left: none;
-            padding: 15px;
-
-            &:hover {
-              color: $linkColor;
-            }
-
-            i {
-              width: 15px;
-              margin-right: 0;
-            }
-          }
-
-          &:hover,
-          &.actived {
-            a.dropdown-toggle {
-              visibility: visible;
-            }
-          }
-
-          .dropdown-menu {
-            top: 100%;
-          }
-        }
-      }
-    }
-  }
-
-  .main-header {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: $commonPadding;
-    margin-bottom: $commonMargin;
-
-    h2 {
-      margin: 0;
-    }
-  }
-
-  .main-content {
-    display: table-cell;
-    vertical-align: top;
-    padding: $commonPadding;
-    @include box-sizing(border-box);
-  }
-
-
-  .main-actions {
-    margin-bottom: $commonPadding;
-  }
-
-  section {
-    margin-bottom: $commonMargin;
-    @include clearfix();
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    header {
-      h3 {
-        margin-top: 0;
-      }
-    }
-
-  }
-
-  .empty-message {
-    padding: 15px;
-    border: 2px dashed #ddd;
-    text-align: center;
-    color: #999;
+  .main-section {
+    background-color: white;
+    border-radius: 2px;
+    @include box-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
   }
 }
 
 #paginator {
-  margin-top: 20px;
   @include clearfix();
-
-  .next {
-    float: right;
-
-    i {
-      margin-right: 0;
-      margin-left: 5px;
-      text-align: right;
-    }
-  }
 
   .prev {
     float: left;
-
-    i {
-      text-align: left;
-    }
-  }
-}
-
-#main-sidebar-background {
-  background-color: white;
-  @include transition(background-color 0.15s ease);
-}
-
-#sidebar-button.topbar-button {
-  display: none;
-}
-
-@media (max-width: 480px) {
-  .two-columns {
-    .column {
-      width: auto;
-      float: none;
-      margin-bottom: $commonMargin;
-      margin-right: 0;
-    }
-  }
-}
-
-@media (max-width: $container-width) {
-  .container {
-    width: 100%;
-  }
-}
-
-@media (max-width: $editor-container-width) {
-  .space-menu {
-    #sidebar-button.topbar-button {
-      cursor: pointer;
-      display: inline-block;
-      position: absolute;
-      left: 0;
-
-      i {
-        width: 15px;
-        margin-right: 0;
-      }
-    }
-
-    .dropdown {
-      margin-left: $commonPadding * 2 + 15px;
-    }
   }
 
-  #topbar {
-    margin-bottom: 0;
-  }
-
-  #main {
-    margin-bottom: 0;
-
-    .main-container {
-      display: block;
-      position: relative;
-    }
-
-    .main-sidebar {
-      display: block;
-      position: absolute;
-      width: $mainSidebarWidth;
-      left: -$mainSidebarWidth;
-      top: 0;
-      bottom: 0;
-      @include transition(left 0.15s ease);
-    }
-
-    .main-content {
-      display: block;
-      margin-left: 0;
-    }
-
-    &.show-sidebar {
-      .main-sidebar {
-        left: 0;
-        z-index: 1;
-        @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
-      }
-
-      .main-content {
-        z-index: -1;
-      }
-
-      #main-sidebar-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-      }
-    }
-  }
-}
-
-#footer {
-  margin: $commonMargin 0 $commonMargin*2;
-  .inner {
-    padding: 0 $commonPadding;
-  }
-
-  .pull-left {
-    color: #555;
-  }
-
-  .pull-right {
-    a {
-      color: #999;
-      padding-left: 10px;
-
-      &:hover {
-        color: #555;
-      }
-    }
-  }
-}
-
-.flash-message {
-  padding: 10px 34px 10px 10px;
-  margin-bottom: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  position: relative;
-  @include clearfix();
-
-  .flash-close {
-    cursor: pointer;
-    position: absolute;
-    width: 14px;
-    padding: 10px;
-    top: 0;
-    right: 0;
-  }
-
-  &.flash-success {
-    background-color: lighten($green, 5%);
-    border-color: $green;
-    color: #fff;
-
-    a {
-      color: #fff;
-    }
-  }
-
-  &.flash-info {
-    background-color: lighten($blue, 5%);
-    border-color: $blue;
-    color: #fff;
-
-    a {
-      color: #fff;
-    }
-  }
-
-  &.flash-warning {
-    background-color: lighten($yellow, 5%);
-    border-color: $yellow;
-    color: #fff;
-
-    a {
-      color: #fff;
-    }
-  }
-
-  &.flash-error {
-    background-color: lighten($red, 5%);
-    border-color: $red;
-    color: #fff;
-
-    a {
-      color: #fff;
-    }
+  .next {
+    float: right;
+    margin-right: 0;
   }
 }

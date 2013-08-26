@@ -1,6 +1,6 @@
 class Dashboard::AttachmentsController < Dashboard::BaseController
   def index
-    @attachments = @space.attachments.desc(:created_at).page(params[:page]).per(50)
+    @attachments = @space.attachments.desc(:created_at).page(params[:page]).per(25)
   end
 
   def create

@@ -8,14 +8,9 @@ html lang=(logined? ? current_user.locale : 'zh-CN')
     = stylesheet_link_tag 'dashboard', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body id=("#{controller_name}-#{action_name}")
-    = render 'layouts/dashboard/topbar'
+    #topbar
+      = yield :topbar
+
     #main
       .container
-        .inner
-          .main-container
-            .main-sidebar
-              = yield :sidebar
-            .main-content
-              = yield
-            #main-sidebar-background
-    = render 'layouts/dashboard/footer'
+        = yield

@@ -1,95 +1,93 @@
 .pictures {
-  ul {
-    list-style: none;
-    padding: 0;
-    @include clearfix();
+  list-style: none;
+  padding: 0;
+  @include clearfix();
 
-    li {
-      float: left;
-      width: 18%;
-      margin-right: 2.5%;
-      padding-bottom: 18%;
-      margin-bottom: 2%;
-      position: relative;
-      background-color: #f9f9f9;
-      @include box-shadow(0 2px 0px #ddd);
+  .picture {
+    float: left;
+    width: 18%;
+    margin-right: 2.5%;
+    padding-bottom: 18%;
+    margin-bottom: 2%;
+    position: relative;
+    background-color: #f9f9f9;
+    @include box-shadow(0 2px 0px #ddd);
+
+    &:hover {
+      @include box-shadow(0 2px 0px #ccc);
+    }
+
+    @media (min-width: $editor-container-width) {
+      &:nth-child(5n) {
+        margin-right: 0;
+      }
+    }
+
+    @media (max-width: $editor-container-width) and (min-width: $editor-container-width * 2/3) {
+      & {
+        width: 22.5%;
+        padding-bottom: 22.5%;
+        margin-right: 3.333%;
+      }
+
+      &:nth-child(4n) {
+        margin-right: 0;
+      }
+    }
+
+    @media (max-width: $editor-container-width * 2/3) {
+      & {
+        width: 30%;
+        padding-bottom: 30%;
+        margin-right: 5%;
+      }
+
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+
+    .pic-link {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      color: #555;
 
       &:hover {
-        @include box-shadow(0 2px 0px #ccc);
+        color: $linkColor;
+      }
+    }
+
+    img {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      max-height: 100%;
+      max-width: 100%;
+    }
+
+    .delete {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 3px;
+      color: #ccc;
+
+      i {
+        margin-right: 0;
       }
 
-      @media (min-width: $editor-container-width) {
-        &:nth-child(5n) {
-          margin-right: 0;
-        }
-      }
-
-      @media (max-width: $editor-container-width) and (min-width: $editor-container-width * 2/3) {
-        & {
-          width: 22.5%;
-          padding-bottom: 22.5%;
-          margin-right: 3.333%;
-        }
-
-        &:nth-child(4n) {
-          margin-right: 0;
-        }
-      }
-
-      @media (max-width: $editor-container-width * 2/3) {
-        & {
-          width: 30%;
-          padding-bottom: 30%;
-          margin-right: 5%;
-        }
-
-        &:nth-child(3n) {
-          margin-right: 0;
-        }
-      }
-
-      .pic-link {
-        height: 100%;
-        width: 100%;
-        position: absolute;
+      &:hover {
         color: #555;
-
-        &:hover {
-          color: $linkColor;
-        }
       }
+    }
 
-      img {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-        max-height: 100%;
-        max-width: 100%;
-      }
-
-      .delete {
-        display: none;
-        position: absolute;
-        right: 0;
-        top: 0;
-        padding: 3px;
-        color: #ccc;
-
-        i {
-          margin-right: 0;
-        }
-
-        &:hover {
-          color: #555;
-        }
-      }
-
-      &:hover .delete {
-        display: inline-block;
-      }
+    &:hover .delete {
+      display: inline-block;
     }
   }
 }
