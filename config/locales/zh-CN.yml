@@ -120,9 +120,8 @@ zh-CN:
 
   dashboard:
     share:
-      main_sidebar:
-        all_articles: "全部文章"
-        uncategorized: "未分类"
+      sidebar:
+        articles: "全部文章"
         trashed: "回收站"
         pictures: "图片"
         new_category: "添加分类"
@@ -131,9 +130,6 @@ zh-CN:
         members: "成员"
         settings: "空间设置"
         billing: "付费服务"
-        edit: "编辑"
-        delete: "删除"
-        delete_category_confirm: "删除分类 %{name}？该分类下的文章会被标记为未归类。"
 
       settings_sidebar:
         account_settings: "账户设置"
@@ -286,7 +282,7 @@ zh-CN:
         no_picture: "没有图片"
     articles:
       index:
-        all_articles: "全部文章"
+        articles: "文章"
         uncategorized: "未分类"
         all: "全部"
         category: "分类"

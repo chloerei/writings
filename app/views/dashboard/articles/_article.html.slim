@@ -1,7 +1,7 @@
 - cache [@space.name, article, I18n.locale] do
   li.article id=("article-#{article.token}") data-id=(article.token)
     a.article-select
-      i.icon-check-empty
+      i.icon-check-status
     a.article-info href=(edit_dashboard_article_path(:id => article))
       h3
         = article.title

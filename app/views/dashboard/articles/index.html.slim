@@ -1,37 +1,61 @@
 - append_title 'Articles'
 
 - content_for :topbar do
-  ul.topbar-nav.pull-left
-    = render 'dashboard/share/sidebar'
-    li.topbar-nav-item.text
-      | Articles
+  #normal-nav.clearfix
+    ul.topbar-nav.pull-left
+      = render 'dashboard/share/sidebar'
+      li.topbar-nav-item.text
+        = t '.articles'
 
-  ul.topbar-nav.pull-right
-    li.topbar-nav-item
-      a
-        i.icon-search
-    li.topbar-nav-item
-      a class=('actived' if params['status'].blank?) href=(dashboard_root_path(:status => nil))
-        = t '.all'
-    li.topbar-nav-item
-      a class=('actived' if params['status'] == 'draft') href=(dashboard_root_path(:status => 'draft'))
-        = t '.drafted'
-    li.topbar-nav-item
-      a class=('actived' if params['status'] == 'publish') href=(dashboard_root_path(:status => 'publish'))
-        = t '.published'
-    li.topbar-nav-item
-      a href=(new_dashboard_article_path)
-        i.icon-plus
+    ul.topbar-nav.pull-right
+      li.topbar-nav-item
+        a
+          i.icon-search
+      li.topbar-nav-item
+        a class=('actived' if params['status'].blank?) href=(dashboard_root_path(:status => nil))
+          = t '.all'
+      li.topbar-nav-item
+        a class=('actived' if params['status'] == 'draft') href=(dashboard_root_path(:status => 'draft'))
+          = t '.drafted'
+      li.topbar-nav-item
+        a class=('actived' if params['status'] == 'publish') href=(dashboard_root_path(:status => 'publish'))
+          = t '.published'
+      li.topbar-nav-item
+        a href=(new_dashboard_article_path)
+          i.icon-plus
+          '
+          = t '.new_article'
+      = render 'dashboard/share/config_menu'
+
+  #toolbar.clearfix.hide
+    ul.topbar-nav.pull-left
+      li.topbar-nav-item
+        a.close-button.min
+          i.icon-remove
+      li.topbar-nav-item.text
+        span#selected-count 0
         '
-        = t '.new_article'
-    = render 'dashboard/share/config_menu'
+        = t '.items'
+    ul.topbar-nav.pull-right
+      li.topbar-nav-item
+        a.select-all-button.min
+          i.icon-check-status
+      li.topbar-nav-item
+        a href=(batch_publish_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
+          = t '.publish'
+      li.topbar-nav-item
+        a href=(batch_draft_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
+          = t '.draft'
+      li.topbar-nav-item
+        a href=(batch_trash_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
+          = t '.trash'
 
 .main-section
-  ul#articles.articles
-    - unless @articles.empty?
+  - if @articles.any?
+    ul#articles.articles
       = render :partial => 'article', :collection => @articles
-    - else
-      li.empty-message
-        = t '.no_articles'
-  .inner
-    = paginate @articles, :theme => :dashboard
+    .inner
+      = paginate @articles, :theme => :dashboard
+  - else
+    .inner.empty-message
+      = t '.no_articles'

@@ -1,11 +1,42 @@
+#toolbar {
+  .select-all-button {
+    .icon-check-status:before {
+      content: "\f096";
+    }
+
+    &.actived {
+      .icon-check-status:before {
+        content: "\f046";
+      }
+    }
+  }
+}
+
 .articles {
   list-style: none;
   margin: 0;
   padding: 0;
 
+  .icon-check-status {
+    text-align: left;
+  }
+
+  .icon-check-status:before {
+    content: "\f096";
+  }
+
   .article {
     border-bottom: 1px solid #ddd;
     position: relative;
+
+    &.selected {
+      background-color: #f9f9f9;
+
+      .icon-check-status:before {
+        color: #333;
+        content: "\f046";
+      }
+    }
   }
 
   .article-info {
@@ -13,12 +44,12 @@
     display: block;
     color: #333;
 
-    &:hover {
-      background-color: #f9f9f9;
-    }
-
     h3 {
       font-size: 16px;
+    }
+
+    &:hover {
+      background-color: #f9f9f9;
     }
   }
 
@@ -54,4 +85,12 @@
       color: #555;
     }
   }
+
+}
+
+.empty-message {
+  font-size: 16px;
+  text-align: center;
+  color: #666;
+  font-weight: bold;
 }

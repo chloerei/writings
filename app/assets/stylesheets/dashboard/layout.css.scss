@@ -151,14 +151,24 @@ $topbarMinPadding: 15px 20px;
 }
 
 #paginator {
-  @include clearfix();
+  position: relative;
+  text-align: center;
+
+  .pages {
+    display: inline-block;
+    padding: 8px 0;
+    font-weight: bold;
+    color: #555;
+  }
 
   .prev {
-    float: left;
+    position: absolute;
+    left: 0;
   }
 
   .next {
-    float: right;
+    position: absolute;
+    right: 0;
     margin-right: 0;
   }
 }
