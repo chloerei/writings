@@ -21,16 +21,22 @@ ArticlesCtrl =
       $(this).data('params', {ids: ids})
     )
 
-    $('#articles').on 'click', '.article-select', ->
-      article = $(this).closest('.article')
-      article.toggleClass('selected')
+    $('#articles').on 'click', '.article', (event) ->
+      if event.target.tagName isnt 'A'
+        article = $(this)
+        article.toggleClass('selected')
 
-      ArticlesCtrl.updateItemCount()
-      ArticlesCtrl.updateToolbar()
+        ArticlesCtrl.updateItemCount()
+        ArticlesCtrl.updateToolbar()
 
   updateItemCount: ->
     count = $('#articles .article.selected').length
     $('#selected-count').text(count)
+
+    if $('#articles .article').length == count
+      $('#toolbar .select-all-button').addClass('actived')
+    else
+      $('#toolbar .select-all-button').removeClass('actived')
 
   updateToolbar: ->
     if $('#articles .article.selected').length > 0

@@ -23,6 +23,8 @@
       li.topbar-nav-item
         a.select-all-button.min
           i.icon-check-status
+          '
+          = t '.select_all'
       li.topbar-nav-item
         a href=(batch_restore_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
           = t '.restore'
@@ -37,8 +39,9 @@
   - unless @articles.empty?
     ul#articles.articles
       = render :partial => 'article', :collection => @articles
-    .inner
-      = paginate @articles, :theme => :dashboard
+    - if @articles.total_pages > 1
+      .inner
+        = paginate @articles, :theme => :dashboard
   - else
     .inner.empty-message
       = t '.no_articles'
