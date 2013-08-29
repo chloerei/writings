@@ -36,6 +36,17 @@ $topbarMinPadding: 15px 20px;
       font-weight: bold;
     }
 
+    .search-form {
+      padding: 8px 20px;
+
+    }
+
+    .search-input {
+      margin-right: 0;
+      border: none;
+      vertical-align: baseline;
+    }
+
     a {
       padding: $topbarPadding;
       display: block;

@@ -4,13 +4,6 @@
   #normal-nav.clearfix
     ul.topbar-nav.pull-left
       = render 'dashboard/share/sidebar'
-      li.topbar-nav-item.text
-        = t '.articles'
-
-    ul.topbar-nav.pull-right
-      li.topbar-nav-item
-        a
-          i.icon-search
       li.topbar-nav-item
         a class=('actived' if params['status'].blank?) href=(dashboard_root_path(:status => nil))
           = t '.all'
@@ -20,6 +13,12 @@
       li.topbar-nav-item
         a class=('actived' if params['status'] == 'publish') href=(dashboard_root_path(:status => 'publish'))
           = t '.published'
+      li.topbar-nav-item
+        = form_tag dashboard_root_path, :method => :get, :class => 'search-form' do
+          i.icon-search
+          = search_field_tag 'query', params[:query], :class => 'search-input', :placeholder => 'Search', :autofocus => true
+
+    ul.topbar-nav.pull-right
       li.topbar-nav-item
         a href=(new_dashboard_article_path)
           i.icon-plus

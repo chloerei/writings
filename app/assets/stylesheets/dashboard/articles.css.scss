@@ -17,10 +17,6 @@
   margin: 0;
   padding: 0;
 
-  .icon-check-status {
-    text-align: left;
-  }
-
   .icon-check-status:before {
     content: "\f096";
   }
@@ -40,7 +36,7 @@
   }
 
   .article-info {
-    padding: 10px 50px 10px 40px;
+    padding: 10px 59px 10px 46px;
     display: block;
     color: #333;
     cursor: pointer;
@@ -66,14 +62,12 @@
     top: 0;
     left: 0;
     bottom: 0;
-    padding: 16px 10px;
+    padding: 16px 10px 16px 20px;
     font-size: 16px;
     color: #999;
-    z-index: 1;
     cursor: pointer;
 
     &:hover {
-      background-color: #f9f9f9;
       color: #555;
     }
   }
@@ -83,7 +77,7 @@
     top: 0;
     right: 0;
     bottom: 0;
-    padding: 16px 15px;
+    padding: 16px 20px;
     font-size: 16px;
     color: #999;
     z-index: 1;

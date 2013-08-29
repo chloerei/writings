@@ -4,7 +4,14 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   before_filter :check_lock_status, :only => [:update]
 
   def index
-    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status])
+    @articles = @space.articles.desc(:created_at).page(params[:page]).per(15)
+    if params[:query].present?
+      query = params[:query].split.map { |string| Regexp.escape string }[0..2].join '|'
+      logger.info query
+      @articles = @articles.where(:body => /#{query}/)
+    else
+      @articles = @articles.status(params[:status])
+    end
   end
 
   def trashed
