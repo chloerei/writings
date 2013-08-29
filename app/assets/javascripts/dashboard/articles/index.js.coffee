@@ -29,6 +29,9 @@ ArticlesCtrl =
         ArticlesCtrl.updateItemCount()
         ArticlesCtrl.updateToolbar()
 
+    $('#search-input').on 'input', ->
+      $('#search-form').submit()
+
   updateItemCount: ->
     count = $('#articles .article.selected').length
     $('#selected-count').text(count)

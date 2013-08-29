@@ -14,9 +14,9 @@
         a class=('actived' if params['status'] == 'publish') href=(dashboard_root_path(:status => 'publish'))
           = t '.published'
       li.topbar-nav-item
-        = form_tag dashboard_root_path, :method => :get, :class => 'search-form' do
+        = form_tag dashboard_root_path, :method => :get, :class => 'search-form', :remote => true, :id => 'search-form' do
           i.icon-search
-          = search_field_tag 'query', params[:query], :class => 'search-input', :placeholder => 'Search', :autofocus => true
+          = search_field_tag 'query', params[:query], :class => 'search-input', :placeholder => 'Search', :autofocus => true, :tabindex => 1, :autocomplete => 'off', :id => 'search-input'
 
     ul.topbar-nav.pull-right
       li.topbar-nav-item
@@ -52,12 +52,5 @@
           = t '.trash'
 
 .main-section
-  - if @articles.any?
-    ul#articles.articles
-      = render :partial => 'article', :collection => @articles
-    - if @articles.total_pages > 1
-      .inner
-        = paginate @articles, :theme => :dashboard
-  - else
-    .inner.empty-message
-      = t '.no_articles'
+  ul#articles.articles
+    = render 'articles'

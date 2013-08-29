@@ -30,35 +30,9 @@ $ ->
   analyticsReferrer = null
 
 
-$(document).on(
+$(document).on
   "page:change": ->
     Mousetrap.reset()
-
-  "page:fetch": ->
-    AlertMessage.show
-      type: 'loading',
-      text: I18n.t('loading')
-      keep: true
-      scope: 'page-loading'
-
-  "page:change": ->
-    AlertMessage.remove('page-loading')
-
-  "ajax:before": ->
-    AlertMessage.show
-      type: 'loading'
-      text: I18n.t('sending')
-      keep: true
-      scope: 'ajax-sending'
-
-  "ajax:error": (xhr, status, error) ->
-    AlertMessage.show
-      type: 'error'
-      text: I18n.t('server_error')
-
-  "ajax:complete": ->
-    AlertMessage.remove('ajax-sending')
-)
 
 $(document).on 'click', '#blog-button.highlight', ->
   $(this).removeClass('highlight')

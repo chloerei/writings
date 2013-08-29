@@ -1,0 +1,8 @@
+- if @articles.any?
+  = render :partial => 'article', :collection => @articles
+  - if @articles.total_pages > 1
+    .inner
+      = paginate @articles, :theme => :dashboard
+- else
+  li.inner.empty-message
+    = t '.no_articles'

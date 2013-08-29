@@ -5,12 +5,17 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def index
     @articles = @space.articles.desc(:created_at).page(params[:page]).per(15)
+
     if params[:query].present?
       query = params[:query].split.map { |string| Regexp.escape string }[0..2].join '|'
-      logger.info query
-      @articles = @articles.where(:body => /#{query}/)
+      @articles = @articles.where(:body => /#{query}/i)
     else
       @articles = @articles.status(params[:status])
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
