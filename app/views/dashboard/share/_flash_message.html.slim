@@ -1,20 +1,25 @@
 - if flash[:success]
-  .flash-message.flash-success
-    = flash[:success]
-    .flash-close
-      i.icon-remove
+  javascript:
+    AlertMessage.show({
+      type: 'success',
+      text: '#{flash[:success]}',
+      timeout: 3000
+    });
 - if flash[:info]
-  .flash-message.flash-info
-    = flash[:info]
-    .flash-close
-      i.icon-remove
+  javascript:
+    AlertMessage.show({
+      type: 'info',
+      text: '#{flash[:success]}'
+    });
 - if flash[:warning]
-  .flash-message.flash-warning
-    = flash[:warning]
-    .flash-close
-      i.icon-remove
-- if flash[:error]
-  .flash-message.flash-error
-    = flash[:error]
-    .flash-close
-      i.icon-remove
+  javascript:
+    AlertMessage.show({
+      type: 'warning',
+      text: '#{flash[:warning]}'
+    });
+- if flash[:errro]
+  javascript:
+    AlertMessage.show({
+      type: 'error',
+      text: '#{flash[:error]}'
+    });

@@ -5,7 +5,6 @@
 
 .main-section
   .inner
-    = render 'dashboard/share/flash_message'
     = form_for @space, :as => :space, :url => dashboard_settings_path, :validate => true, :html => { :data => { :remote => true } } do |f|
       .field
         = f.label :name

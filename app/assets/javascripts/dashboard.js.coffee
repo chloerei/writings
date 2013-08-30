@@ -29,9 +29,8 @@ $ ->
   # Referrer no change in Turbolink
   analyticsReferrer = null
 
-
 $(document).on
-  "page:change": ->
+  'page:change': ->
     Mousetrap.reset()
 
 $(document).on 'click', '#blog-button.highlight', ->

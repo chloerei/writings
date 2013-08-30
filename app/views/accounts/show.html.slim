@@ -14,7 +14,6 @@
 .main-section
   .inner
     = form_for current_user, :url => account_path, :remote => true, :validate => true do |f|
-      = render 'dashboard/share/flash_message'
       fieldset
         legend = t '.login_id'
         .field

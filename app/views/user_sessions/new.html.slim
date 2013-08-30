@@ -4,7 +4,6 @@
   .container
     .signup
       h2 = t '.welcome_back'
-      = render 'dashboard/share/flash_message'
       = form_tag user_sessions_path, :remote => true do |f|
         .field
           = label_tag :login, t('.username_or_email')

@@ -4,7 +4,6 @@
   .container
     .signup
       h2 = t '.password_reset'
-      = render 'dashboard/share/flash_message'
       = form_for @user, :url => password_reset_path, :remote => true, :validate => true do |f|
         .field
           = f.label :password
