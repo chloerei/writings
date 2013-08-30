@@ -6,11 +6,13 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   def index
     @articles = @space.articles.desc(:created_at).page(params[:page]).per(15)
 
+    if params[:status].present?
+      @articles = @articles.status(params[:status])
+    end
+
     if params[:query].present?
       query = params[:query].split.map { |string| Regexp.escape string }[0..2].join '|'
-      @articles = @articles.where(:body => /#{query}/i)
-    else
-      @articles = @articles.status(params[:status])
+      @articles = @articles.where(:title => /#{query}/i)
     end
 
     respond_to do |format|

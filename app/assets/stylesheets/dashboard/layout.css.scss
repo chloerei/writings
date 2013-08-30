@@ -3,7 +3,6 @@ $topbarMinPadding: 15px 20px;
 
 #topbar {
   background-color: white;
-  font-size: 16px;
   position: fixed;
   top: 0;
   left: 0;
@@ -38,7 +37,6 @@ $topbarMinPadding: 15px 20px;
 
     .search-form {
       padding: 8px 20px;
-
     }
 
     .search-input {
@@ -51,7 +49,8 @@ $topbarMinPadding: 15px 20px;
       padding: $topbarPadding;
       display: block;
       cursor: pointer;
-      color: #333;
+      font-weight: bold;
+      color: #444;
 
       &.min {
         padding: $topbarMinPadding;

@@ -38,7 +38,6 @@
   .article-info {
     padding: 10px 59px 10px 46px;
     display: block;
-    color: #333;
     cursor: pointer;
 
     &:hover {
@@ -47,9 +46,9 @@
 
     a {
       display: inline-block;
-      color: #333;
-      font-size: 16px;
+      color: #444;
       line-height: 30px;
+      font-weight: bold;
 
       &:hover {
         color: $linkColor;
