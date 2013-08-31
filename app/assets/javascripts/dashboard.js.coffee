@@ -33,6 +33,16 @@ $(document).on
   'page:change': ->
     Mousetrap.reset()
 
+  'page:fetch': ->
+    AlertMessage.show
+      type: 'loading',
+      text: I18n.t('loading'),
+      keep: true,
+      scope: 'page-loading'
+
+  'page:change': ->
+    AlertMessage.remove 'page-loading'
+
 $(document).on 'click', '#blog-button.highlight', ->
   $(this).removeClass('highlight')
   $.post('/read_blog')

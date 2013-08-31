@@ -154,6 +154,10 @@
       margin-right: 0;
     }
 
+    &.alert-loading {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
     &.alert-info {
       background-color: $blue;
     }

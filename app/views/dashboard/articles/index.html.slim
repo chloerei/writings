@@ -16,7 +16,7 @@
       li.topbar-nav-item
         = form_tag dashboard_root_path(:status => params[:status]), :method => :get, :class => 'search-form', :remote => true, :id => 'search-form' do
           i.icon-search
-          = search_field_tag 'query', params[:query], :class => 'search-input', :placeholder => '搜索', :autofocus => true, :tabindex => 1, :autocomplete => 'off', :id => 'search-input'
+          = search_field_tag 'query', params[:query], :class => 'search-input', :placeholder => '搜索', :tabindex => 1, :autocomplete => 'off', :id => 'search-input'
 
     ul.topbar-nav.pull-right
       li.topbar-nav-item
