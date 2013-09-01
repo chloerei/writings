@@ -42,10 +42,30 @@ $(document).on
     Mousetrap.reset()
 
   'page:fetch': ->
-    PageLoading.show()
+    AlertMessage.show
+      type: 'loading'
+      text: I18n.t('loading')
+      keep: true
+      scope: 'ajax-loading'
 
   'page:change': ->
-    PageLoading.hide()
+    AlertMessage.remove('ajax-loading')
+
+  'ajax:before': ->
+    AlertMessage.show
+      type: 'loading'
+      text: I18n.t('sending')
+      keep: true
+      scope: 'ajax-loading'
+
+  'ajax:success': ->
+    AlertMessage.remove('ajax-loading')
+
+  'ajax:error': ->
+    AlertMessage.show
+      type: 'error'
+      text: I18n.t('server_error')
+      scope: 'ajax-loading'
 
 $(document).on 'click', '#blog-button.highlight', ->
   $(this).removeClass('highlight')

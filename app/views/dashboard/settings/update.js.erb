@@ -1,5 +1,9 @@
 <% if @space.errors.empty? %>
-  Turbolinks.visit('<%= dashboard_settings_url(@space) %>');
+  AlertMessage.show({
+    type: 'success',
+    text: '<%= j t('update_success') %>',
+    timeout: 3000
+  });
 <% else %>
   <% @space.errors.full_messages.each do |message| %>
     AlertMessage.show({ type: 'error', text: "<%= j message %>" });
