@@ -29,19 +29,23 @@ $ ->
   # Referrer no change in Turbolink
   analyticsReferrer = null
 
+@PageLoading =
+  show: ->
+    if !$('#loading').length
+      $('body').append('<div id="loading"></div>')
+
+  remove: ->
+    $('#loading').remove()
+
 $(document).on
   'page:change': ->
     Mousetrap.reset()
 
   'page:fetch': ->
-    AlertMessage.show
-      type: 'loading',
-      text: I18n.t('loading'),
-      keep: true,
-      scope: 'page-loading'
+    PageLoading.show()
 
   'page:change': ->
-    AlertMessage.remove 'page-loading'
+    PageLoading.hide()
 
 $(document).on 'click', '#blog-button.highlight', ->
   $(this).removeClass('highlight')

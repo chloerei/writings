@@ -33,12 +33,17 @@ ArticlesCtrl =
       $('#normal-nav').addClass('searching')
       $('#search-input').focus()
 
+    lastSearchXHR = null
     $('#search-input').on('focus', ->
       $('#normal-nav').addClass('searching')
       $('body').data('need-reload', true)
     ).on('input', ->
       form = $('#search-form')
-      $.getScript(form.prop('action') + '?' + form.serialize())
+      PageLoading.show()
+      lastSearchXHR = $.getScript(form.prop('action') + '?' + form.serialize(), (data, status, xhr) ->
+        if xhr is lastSearchXHR
+          PageLoading.remove()
+      )
     )
 
     $('#search-form').on('reset', ->
