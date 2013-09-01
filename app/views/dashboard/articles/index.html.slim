@@ -17,7 +17,7 @@
         = form_tag dashboard_root_path, :method => :get, :class => 'search-form', :id => 'search-form', :data => { 'reset-url' => dashboard_root_path(:status => params[:status]) } do
           i.icon-search
           = search_field_tag 'query', params[:query], :class => 'search-input', :placeholder => '搜索', :tabindex => 1, :autocomplete => 'off', :autofocus => (params[:query].present? ? true : nil), :id => 'search-input'
-          button.search-close type="reset"
+          button.search-close type="reset" tabindex='2'
             i.icon-remove
 
     ul.topbar-nav.pull-right

@@ -395,6 +395,7 @@ button,
   vertical-align: middle;
   border-radius: $buttonRadius;
   cursor: pointer;
+  outline: 0;
   @include button-color(#fefefe, #333, #ccc);
 
   &.no-margin {
