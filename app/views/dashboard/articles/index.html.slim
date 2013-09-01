@@ -4,19 +4,21 @@
   #normal-nav.clearfix
     ul.topbar-nav.pull-left
       = render 'dashboard/share/sidebar'
-      li.topbar-nav-item
-        a class=('actived' if params['status'].blank?) href=(dashboard_root_path(:status => nil))
+      li.topbar-nav-item class=('actived' if params['status'].blank? && params[:query].blank?)
+        a href=(dashboard_root_path(:status => nil))
           = t '.all'
-      li.topbar-nav-item
-        a class=('actived' if params['status'] == 'draft') href=(dashboard_root_path(:status => 'draft'))
+      li.topbar-nav-item class=('actived' if params['status'] == 'draft')
+        a href=(dashboard_root_path(:status => 'draft'))
           = t '.drafted'
-      li.topbar-nav-item
-        a class=('actived' if params['status'] == 'publish') href=(dashboard_root_path(:status => 'publish'))
+      li.topbar-nav-item class=('actived' if params['status'] == 'publish')
+        a href=(dashboard_root_path(:status => 'publish'))
           = t '.published'
-      li.topbar-nav-item
-        = form_tag dashboard_root_path(:status => params[:status]), :method => :get, :class => 'search-form', :remote => true, :id => 'search-form' do
+      li.topbar-nav-item.search class=('actived' if params['query'].present?)
+        = form_tag dashboard_root_path, :method => :get, :class => 'search-form', :id => 'search-form', :data => { 'reset-url' => dashboard_root_path(:status => params[:status]) } do
           i.icon-search
-          = search_field_tag 'query', params[:query], :class => 'search-input', :placeholder => '搜索', :tabindex => 1, :autocomplete => 'off', :id => 'search-input'
+          = search_field_tag 'query', params[:query], :class => 'search-input', :placeholder => '搜索', :tabindex => 1, :autocomplete => 'off', :autofocus => (params[:query].present? ? true : nil), :id => 'search-input'
+          button.search-close type="reset"
+            i.icon-remove
 
     ul.topbar-nav.pull-right
       li.topbar-nav-item

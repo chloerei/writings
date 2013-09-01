@@ -37,12 +37,33 @@ $topbarMinPadding: 15px 20px;
 
     .search-form {
       padding: 8px 20px;
+      position: relative;
     }
 
     .search-input {
       margin-right: 0;
       border: none;
       vertical-align: baseline;
+    }
+
+    .search-close {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      border: 0;
+      padding: 15px;
+      margin: 0;
+      background: transparent;
+      color: #999;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: transparent;
+        @include box-shadow(none);
+        color: #333;
+      }
     }
 
     a {
@@ -56,15 +77,31 @@ $topbarMinPadding: 15px 20px;
         padding: $topbarMinPadding;
       }
 
-      &.actived {
-        color: $linkColor;
-        padding-bottom: 11px;
-        border-bottom: 4px solid $linkColor;
-      }
-
       &:hover {
         background-color: $linkColor;
         color: white;
+      }
+    }
+
+    &.actived {
+      a {
+        color: $linkColor;
+        padding-bottom: 11px;
+        border-bottom: 4px solid $linkColor;
+
+        &:hover {
+          background-color: $linkColor;
+          color: white;
+        }
+      }
+
+      .search-form {
+        padding-bottom: 4px;
+        border-bottom: 4px solid $linkColor;
+      }
+
+      .search-close {
+        display: block;
       }
     }
   }

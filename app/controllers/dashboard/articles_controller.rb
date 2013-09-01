@@ -4,13 +4,12 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   before_filter :check_lock_status, :only => [:update]
 
   def index
-    @articles = @space.articles.desc(:created_at).page(params[:page]).per(15)
+    sleep 0.2
+    @articles = @space.articles.desc(:created_at).page(params[:page]).per(15).untrash
 
     if params[:status].present?
       @articles = @articles.status(params[:status])
-    end
-
-    if params[:query].present?
+    elsif params[:query].present?
       query = params[:query].split.map { |string| Regexp.escape string }[0..2].join '|'
       @articles = @articles.where(:title => /#{query}/i)
     end

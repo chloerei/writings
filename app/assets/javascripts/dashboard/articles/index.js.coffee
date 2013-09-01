@@ -29,8 +29,21 @@ ArticlesCtrl =
         ArticlesCtrl.updateItemCount()
         ArticlesCtrl.updateToolbar()
 
-    $('#search-input').on 'input', ->
-      $('#search-form').submit()
+    $('#search-input').on('focus', ->
+      $('#topbar .topbar-nav-item.search').addClass('actived').siblings().removeClass('actived')
+    ).on('input', ->
+      form = $('#search-form')
+      $.getScript(form.prop('action') + '?' + form.serialize())
+    )
+
+    $('#search-form').on('reset', ->
+      $('#topbar').removeClass('searching')
+      Turbolinks.visit($(this).data('reset-url'))
+    ).on('submit', (event) ->
+      event.preventDefault()
+      form = $(this)
+      Turbolinks.visit(form.prop('action') + '?' + form.serialize())
+    )
 
   updateItemCount: ->
     count = $('#articles .article.selected').length
