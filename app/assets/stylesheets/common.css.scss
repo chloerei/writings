@@ -190,7 +190,13 @@ nav ul {
   display: none !important;
 }
 
-@media (max-width: 480px) {
+@media (min-width: 768px) {
+  .show-on-mobile {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
   .hide-on-mobile {
     display: none !important;
   }
@@ -200,7 +206,13 @@ nav ul {
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 961px) {
+  .show-on-tablet {
+    display: none !important;
+  }
+}
+
+@media (max-width: 960px) {
   .hide-on-tablet {
     display: none !important;
   }

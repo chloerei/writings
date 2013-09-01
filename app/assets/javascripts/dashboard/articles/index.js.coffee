@@ -29,6 +29,10 @@ ArticlesCtrl =
         ArticlesCtrl.updateItemCount()
         ArticlesCtrl.updateToolbar()
 
+    $('#topbar').on 'click', '.search-toggle', ->
+      $('#normal-nav').addClass('searching')
+      $('#search-input').focus()
+
     $('#search-input').on('focus', ->
       $('#topbar .topbar-nav-item.search').addClass('actived').siblings().removeClass('actived')
     ).on('input', ->
@@ -37,7 +41,6 @@ ArticlesCtrl =
     )
 
     $('#search-form').on('reset', ->
-      $('#topbar').removeClass('searching')
       Turbolinks.visit($(this).data('reset-url'))
     ).on('submit', (event) ->
       event.preventDefault()

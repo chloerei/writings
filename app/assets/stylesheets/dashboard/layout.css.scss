@@ -35,6 +35,14 @@ $topbarMinPadding: 15px 20px;
       font-weight: bold;
     }
 
+    .dropdown-toggle {
+      padding-right: 45px;
+
+      &:after {
+        padding-right: 25px;
+      }
+    }
+
     .search-form {
       padding: 8px 20px;
       position: relative;
@@ -44,6 +52,7 @@ $topbarMinPadding: 15px 20px;
       margin-right: 0;
       border: none;
       vertical-align: baseline;
+      width: 250px;
     }
 
     .search-close {
@@ -106,6 +115,16 @@ $topbarMinPadding: 15px 20px;
     }
   }
 
+  .searching {
+    .hide-on-searching {
+      display: none !important;
+    }
+
+    .topbar-nav-item.search {
+      display: block !important;
+    }
+  }
+
   .pull-right {
     .topbar-item {
       border-right: none;
@@ -138,13 +157,6 @@ $topbarMinPadding: 15px 20px;
       width: 100%;
     }
 
-    .dropdown-toggle {
-      padding-right: 45px;
-
-      &:after {
-        padding-right: 25px;
-      }
-    }
   }
 
   .sidebar-background {
@@ -174,10 +186,6 @@ $topbarMinPadding: 15px 20px;
   .container {
     width: 768px;
     margin: 70px auto 20px;
-
-    @media (max-width: 768px) {
-      width: 95%;
-    }
   }
 
   .inner {
@@ -217,5 +225,21 @@ $topbarMinPadding: 15px 20px;
     position: absolute;
     right: 0;
     margin-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  #main {
+    .container {
+      width: 95%;
+    }
+  }
+
+  #topbar {
+    .topbar-nav-item {
+      .search-input {
+        width: 150px;
+      }
+    }
   }
 }
