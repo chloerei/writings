@@ -103,19 +103,25 @@ $topbarMinPadding: 15px 20px;
           color: white;
         }
       }
-
-      .search-form {
-        padding-bottom: 4px;
-        border-bottom: 4px solid $linkColor;
-      }
-
-      .search-close {
-        display: block;
-      }
     }
   }
 
   .searching {
+    .topbar-nav-item.actived a {
+      padding-bottom: 15px;
+      border-bottom: none;
+      color: #444;
+    }
+
+    .search-form {
+      padding-bottom: 4px;
+      border-bottom: 4px solid $linkColor;
+    }
+
+    .search-close {
+      display: block;
+    }
+
     .hide-on-searching {
       display: none !important;
     }

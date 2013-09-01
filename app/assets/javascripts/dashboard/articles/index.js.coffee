@@ -34,7 +34,8 @@ ArticlesCtrl =
       $('#search-input').focus()
 
     $('#search-input').on('focus', ->
-      $('#topbar .topbar-nav-item.search').addClass('actived').siblings().removeClass('actived')
+      $('#normal-nav').addClass('searching')
+      $('body').data('need-reload', true)
     ).on('input', ->
       form = $('#search-form')
       $.getScript(form.prop('action') + '?' + form.serialize())
@@ -64,6 +65,10 @@ ArticlesCtrl =
     else
       $('#normal-nav').removeClass('hide')
       $('#toolbar').addClass('hide')
+
+$(document).on 'page:restore', ->
+  if $('body').data('need-reload')
+    Turbolinks.visit(location.href)
 
 $ ->
   if $('#articles').length
