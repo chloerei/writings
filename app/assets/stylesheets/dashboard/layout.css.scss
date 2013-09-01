@@ -111,6 +111,10 @@ $topbarMinPadding: 15px 20px;
       padding-bottom: 15px;
       border-bottom: none;
       color: #444;
+
+      &:hover {
+        color: white;
+      }
     }
 
     .search-form {
