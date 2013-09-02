@@ -5,8 +5,6 @@ class Dashboard::SettingsController < Dashboard::BaseController
   end
 
   def update
-    sleep 0.3
-    raise
     @space.update_attributes space_params
   end
 

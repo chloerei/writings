@@ -8,9 +8,7 @@ class AccountsController < ApplicationController
 
   def update
     if current_user.authenticate user_params[:current_password]
-      if current_user.update_attributes(user_params)
-        flash[:success] = I18n.t('update_success')
-      end
+      current_user.update_attributes(user_params)
     else
       current_user.errors.add(:current_password, I18n.t("errors.messages.is_not_match"))
     end

@@ -39,11 +39,7 @@ ArticlesCtrl =
       $('body').data('need-reload', true)
     ).on('input', ->
       form = $('#search-form')
-      PageLoading.show()
-      lastSearchXHR = $.getScript(form.prop('action') + '?' + form.serialize(), (data, status, xhr) ->
-        if xhr is lastSearchXHR
-          PageLoading.remove()
-      )
+      $.getScript(form.prop('action') + '?' + form.serialize())
     )
 
     $('#search-form').on('reset', ->

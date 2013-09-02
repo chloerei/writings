@@ -1,5 +1,9 @@
 <% if current_user.errors.empty? %>
-  Turbolinks.visit('<%= account_path %>');
+  AlertMessage.show({
+    type: 'success',
+    text: '<%= j t('update_success') %>',
+    timeout: 3000
+  });
 <% else %>
   <% current_user.errors.full_messages.each do |message| %>
     AlertMessage.show({ type: 'error', text: "<%= j message %>" });
