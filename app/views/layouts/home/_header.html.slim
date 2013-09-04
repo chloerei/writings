@@ -6,14 +6,10 @@
     nav
       ul
         li
-          a href='/#features'
-            | 特点
+          a href='/#features' = t '.features'
         li
-          a href='/#pricing'
-            | 定价
+          a href='/#pricing' = t '.pricing'
         li
-          a href=(signup_path)
-            | 注册
+          a href=(signup_path) = t '.signup'
         li
-          a href=(login_path)
-            | 登录
+          a href=(login_path) = t '.signin'

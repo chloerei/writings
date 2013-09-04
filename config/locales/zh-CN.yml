@@ -61,6 +61,12 @@ zh-CN:
     completed: "完成"
 
   layouts:
+    home:
+      header:
+        features: "特点"
+        pricing: "定价"
+        signup: "注册"
+        signin: "登录"
     dashboard:
       topbar:
         home: "首页"

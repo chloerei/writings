@@ -52,6 +52,12 @@ en:
     canceled: Canceled
     completed: Completed
   layouts:
+    home:
+      header:
+        features: "Features"
+        pricing: "Pricing"
+        signup: "Sign up"
+        signin: "Sign in"
     dashboard:
       topbar:
         home: Home
