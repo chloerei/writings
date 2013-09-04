@@ -1,21 +1,22 @@
 - append_title t('.signup')
 
-#main
-  .container
-    .signup
-      h2 = t '.signup'
-      = form_for @user, :remote => true, :validate => true do |f|
-        .field
-          = f.label :name
-          = f.text_field :name, :tabindex => 1, :autofocus => true
-        .field
-          = f.label :email
-          = f.text_field :email, :tabindex => 2
-        .field
-          = f.label :password
-          = f.password_field :password, :tabindex => 3, :validate => false
-        .field
-          = f.label :password_confirmation
-          = f.password_field :password_confirmation, :tabindex => 4
-        .field
-          = f.submit t('.signup'), :class => 'button-green', :tabindex => 5
+#home
+  = render 'layouts/home/header'
+
+  .signup
+    h2 = t '.signup'
+    = form_for @user, :remote => true, :validate => true do |f|
+      .field
+        = f.label :name
+        = f.text_field :name, :tabindex => 1, :autofocus => true
+      .field
+        = f.label :email
+        = f.text_field :email, :tabindex => 2
+      .field
+        = f.label :password
+        = f.password_field :password, :tabindex => 3, :validate => false
+      .field
+        = f.label :password_confirmation
+        = f.password_field :password_confirmation, :tabindex => 4
+      .field
+        = f.submit t('.signup'), :class => 'button-green', :tabindex => 5

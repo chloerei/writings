@@ -1,29 +1,11 @@
 #home
-  .home-header
-    .home-container
-      a.logo href='/'
-        | writings
-        small .io
-      nav
-        ul
-          li
-            a href='#features'
-              | 特点
-          li
-            a href='#pricing'
-              | 定价
-          li
-            a href=(signup_path)
-              | 注册
-          li
-            a href=(login_path)
-              | 登录
+  = render 'layouts/home/header'
 
   .home-masthead
     .home-container
       h1
         | 一个简洁的写作空间
-        small 让你专注内容而无需费心组装工具
+        small 让你专注内容而无需组装工具
       .masthead-pic
         = image_tag 'writings-io-manager.png'
       .masthead-buttons
@@ -117,5 +99,6 @@
         .pull-right
           a href="http://blog.writings.io" = t '.blog'
           a href="http://help.writings.io" = t '.help'
+          a href="mailto:chloerei@gmail.com" = t '.contact'
           a href="https://twitter.com/writingsio" Twitter
           a href="https://github.com/writingsio/writingsio/issues" Issues
