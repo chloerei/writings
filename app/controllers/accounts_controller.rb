@@ -14,6 +14,11 @@ class AccountsController < ApplicationController
     end
   end
 
+  def read_blog
+    current_user.update_attribute :read_blog_at, Time.now.utc
+    render :nothing => true
+  end
+
   private
 
   def user_params

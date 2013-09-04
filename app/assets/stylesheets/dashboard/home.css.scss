@@ -1,90 +1,150 @@
+body.home {
+  background: white;
+}
+
 #home {
-  padding: 70px;
-
-  @media (max-width: 960px) {
-    padding: (70px / $container-width) * 100%;
-  }
-
-  .center {
-    text-align: center;
-  }
-
-  img {
-    max-width: 100%;
-    @include box-shadow(0 3px 8px rgba(0, 0, 0, 0.5));
-  }
-
-  section {
-    margin-bottom: 60px;
+  .home-container {
+    width: 960px;
+    margin: 0 auto;
+    position: relative;
     @include clearfix();
   }
 
-  h1 {
-    margin-top: 0;
+  h2 {
+    text-align: center;
+    margin-bottom: 50px;
   }
 
-  li {
-    margin: 5px 0;
-  }
+  .home-header {
+    padding: 30px 0;
+    text-align: center;
 
-  #masthead {
-    .pic {
+    .logo {
+      font-size: 35px;
+      line-height: 50px;
       float: left;
-      width: 60%;
-      margin-right: 5%;
-    }
+      color: #555;
+      font-weight: bold;
 
-    .info {
-      float: left;
-      width: 35%;
-    }
-
-    @media (max-width: 640px) {
-      .pic,
-      .info {
-        float: none;
-        width: 100%;
-      }
-
-      h1 {
-        margin-top: 20px;
+      small {
+        font-size: 1em;
+        color: #aaa;
       }
     }
+
+    nav {
+      position: absolute;
+      top: 10px;
+      right: 0;
+      font-weight: bold;
+
+      li {
+        float: left;
+
+        a {
+          display: block;
+          padding: 7px 15px;
+          color: #444;
+
+          &:hover {
+            color: $linkColor;
+          }
+        }
+      }
+    }
   }
 
-  #features {
-    .column {
-      width: 30%;
-      margin-right: 5%;
-      float: left;
+  .home-masthead {
+    text-align: center;
+    padding: 50px 0;
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 50px;
+
+      small {
+        display: block;
+        color: #999;
+        font-size: 0.6em;
+      }
+    }
+
+    .masthead-pic {
+      img {
+        width: 90%;
+        @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+      }
+    }
+
+    .masthead-buttons {
+      margin: 40px 0;
+    }
+  }
+
+  .home-features {
+    padding: 70px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+
+    .feature {
+      margin-bottom: 70px;
+      @include clearfix();
 
       &:last-child {
-        margin-right: 0;
+        margin-bottom: 0;
       }
+    }
 
-      @media (max-width: 640px) {
+    .feature-pic {
+      width: 55%;
+      float: right;
+
+      img {
         width: 100%;
-        margin-right: 0;
-        float: none;
-        border-bottom: 1px solid #ddd;
-        margin-bottom: 20px;
-        padding-bottom: 20px;
+        @include box-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
       }
     }
 
-    h2 {
+    .feature-info {
+      width: 40%;
+      float: left;
+    }
+
+  }
+
+  .home-pricing {
+    padding: 50px 0;
+
+    .nice-table {
+      width: 90%;
+    }
+
+    .pricing-buttons {
       text-align: center;
-      margin-bottom: 30px;
-
-      @media (max-width: 640px) {
-        text-align: left;
-      }
+      margin: 40px 0;
     }
 
-    h3 {
-      i {
-        width: 1.2em;
-        margin-right: 0.5em;
+    .quiet {
+      text-align: center;
+    }
+  }
+
+  .home-footer {
+    padding: 20px;
+    background-color: #555;
+    border-top: 1px solid #333;
+    color: white;
+    font-weight: bold;
+
+    .pull-right {
+      a {
+        padding: 7px;
+        color: white;
+
+        &:hover {
+          color: #eee;
+        }
       }
     }
   }
