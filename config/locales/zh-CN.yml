@@ -310,6 +310,9 @@ zh-CN:
       add_category_modal:
         new_category: "添加分类"
 
+      articles:
+        no_articles: "没有文章"
+
       article:
         link: "链接"
         draft: "草稿"

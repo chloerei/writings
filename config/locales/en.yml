@@ -309,6 +309,8 @@ en:
         uncategorized: Uncategorized
       add_category_modal:
         new_category: New Category
+      articles:
+        no_articles: "No Articles"
       article:
         link: Link
         draft: Draft
