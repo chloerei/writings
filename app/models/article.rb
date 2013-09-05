@@ -17,7 +17,6 @@ class Article
 
   belongs_to :space
   belongs_to :user
-  belongs_to :category
   belongs_to :last_edit_user, :class_name => 'User'
 
   has_many :versions, :order => [:created_at, :desc]
@@ -41,8 +40,6 @@ class Article
       untrash
     end
   }
-
-  delegate :name, :urlname, :to => :category, :prefix => true, :allow_nil => true
 
   before_save :set_published_at
 

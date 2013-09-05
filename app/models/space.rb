@@ -18,7 +18,6 @@ class Space
   field :plan_expired_at, :type => Time
   field :storage_used, :default => 0
 
-  has_many :categories, :dependent => :delete
   has_many :articles, :dependent => :delete
   has_many :attachments, :dependent => :destroy
   has_many :export_tasks, :dependent => :destroy

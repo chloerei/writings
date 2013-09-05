@@ -17,9 +17,6 @@
           a.top-nav-button href=(dashboard_root_path) title=(t '.return')
             i.icon-level-up.icon-rotate-270
         li.hide-on-mobile
-          a.top-nav-button href='#select-category-modal' data-toggle='modal' title=(t '.collect')
-            i.icon-folder-close-alt
-        li.hide-on-mobile
           a.top-nav-button href='#urlname-modal' data-toggle='modal' title=(t '.urlname')
             i.icon-flag
         li class=(@article.persisted? && @article.publish? ? nil : 'hide')

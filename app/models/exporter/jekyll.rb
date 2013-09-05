@@ -4,7 +4,7 @@ class Exporter::Jekyll < Exporter::Base
 
     FileUtils.mkdir_p "#{tmp_path}/_posts"
 
-    articles.includes(:category).each do |article|
+    articles.each do |article|
       name = article.urlname.present? ? "#{article.token}-#{article.urlname}" : article.token
       filename = "#{article.created_at.to_date.to_s}-#{name}.md"
 
@@ -12,9 +12,6 @@ class Exporter::Jekyll < Exporter::Base
         f.write "---\n"
         f.write "layout: post\n"
         f.write "title: #{article.title}\n"
-        if article.category.present?
-          f.write "category: #{article.category.name}\n"
-        end
         f.write "published: #{article.publish?}\n"
         f.write "---\n\n"
 

@@ -4,10 +4,8 @@ class Exporter::JekyllTest < ActiveSupport::TestCase
   def setup
     @space = create :space
     2.times { create :article, :space => @space }
-    @category = create :category, :space => @space
-    2.times { create :article, :space => @space, :category => @category }
 
-    @exporter = Exporter::Jekyll.new(@space, :category => @category)
+    @exporter = Exporter::Jekyll.new(@space)
   end
 
   test "should export" do

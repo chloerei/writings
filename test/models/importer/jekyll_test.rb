@@ -14,7 +14,6 @@ class Importer::JekyllTest < ActiveSupport::TestCase
         case article.urlname
         when 'public-article'
           assert_equal 'publish', article.status
-          assert_equal 'Ruby', article.category
           assert_equal Time.parse('2013-06-03'), article.created_at
           assert_equal Time.parse('2013-06-03'), article.published_at
         when 'draft-article'

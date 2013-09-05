@@ -3,8 +3,7 @@ require 'test_helper'
 class Dashboard::ArticlesControllerTest < ActionController::TestCase
   def setup
     @space = create :space
-    @category = create(:category, :space => @space)
-    @article = create(:article, :space => @space, :category => @category)
+    @article = create(:article, :space => @space)
     login_as @space.user
 
     request.env["HTTP_REFERER"] = dashboard_root_url(:space_id => @space)
@@ -22,7 +21,7 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
     get :index, :space_id => @space, :status => 'publish'
     assert_response :success, @response.body
 
-    get :index, :space_id => @space, :category_id => @category, :status => 'publish'
+    get :index, :space_id => @space, :status => 'publish'
     assert_response :success, @response.body
 
     get :index, :space_id => @space, :format => :js
@@ -35,11 +34,6 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
       assert_response :success, @response.body
     end
     assert_equal current_user, assigns(:article).user
-
-    assert_difference ["@space.articles.count", "@category.articles.count"] do
-      post :create, :space_id => @space, :format => :json, :article => attributes_for(:article).merge(:category_id => @category.token)
-      assert_response :success, @response.body
-    end
 
     # strong parameters
     other_space = create(:space)
@@ -109,15 +103,6 @@ class Dashboard::ArticlesControllerTest < ActionController::TestCase
 
     assert_difference "@space.articles.draft.count" do
       put :restore, :space_id => @space, :id => article
-    end
-  end
-
-  test "batch category" do
-    ids = 2.times.map { create(:article, :space => @space).token }
-    assert_no_difference "@space.articles.count" do
-      assert_difference "@category.articles.count", 2 do
-        put :batch_category, :space_id => @space, :ids => ids, :category_id => @category.token, :format => :js
-      end
     end
   end
 

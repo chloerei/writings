@@ -17,9 +17,6 @@ xml.rss :version => "2.0" do
           xml.author @space.display_name
           xml.link site_article_url(article, :urlname => article.urlname)
           xml.guid site_article_url(article)
-          if article.category.present?
-            xml.category article.category.name
-          end
         end
       end
     end

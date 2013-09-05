@@ -14,13 +14,11 @@ class Importer::Wordpress < Importer::Base
           urlname = item.xpath('wp:post_name').text
           created_at = Time.parse(item.xpath('wp:post_date').text).utc# rescue nil
           publishded_at = Time.parse(item.xpath('pubDate').text).utc rescue nil
-          category = item.xpath('category').text
 
           article = ImportArticle.new(
             :title        => title,
             :body         => body,
             :status       => status,
-            :category     => category,
             :urlname      => urlname,
             :created_at   => created_at,
             :published_at => publishded_at

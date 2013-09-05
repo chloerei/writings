@@ -38,12 +38,6 @@ class Exporter::Wordpress < Exporter::Base
               xml['wp'].post_type 'post'
               xml['wp'].post_name (article.urlname.present? ? "#{article.token}-#{article.urlname}" : article.token)
               xml['wp'].status article.status
-
-              if article.category
-                xml.category(:domain => 'category') do
-                  xml.cdata article.category.name
-                end
-              end
             end
           end
         end

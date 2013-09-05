@@ -15,9 +15,6 @@
         - else
           = t '.task_processing'
         = ' [ '
-        - if @export_task.category
-          = @export_task.category.name
-          = ' / '
         = @export_task.format
         = ' / '
         = l @export_task.created_at, :format => :long

@@ -8,7 +8,7 @@ class Dashboard::ExportTasksControllerTest < ActionController::TestCase
 
   test "should create task" do
     assert_difference ["@space.export_tasks.count", "Sidekiq::Extensions::DelayedClass.jobs.size"] do
-      post :create, :space_id => @space, :export_task => { :format => 'jekyll', :category_id => '' }
+      post :create, :space_id => @space, :export_task => { :format => 'jekyll' }
     end
   end
 end
