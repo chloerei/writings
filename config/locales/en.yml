@@ -6,6 +6,7 @@ en:
   cancel: Cancel
   restore: Restore
   success: Success
+  update_success: 更新成功
   untitled: Untitled
   articles: Articles
   publish: Publish
@@ -54,10 +55,10 @@ en:
   layouts:
     home:
       header:
-        features: "Features"
-        pricing: "Pricing"
-        signup: "Sign up"
-        signin: "Sign in"
+        features: Features
+        pricing: Pricing
+        signup: Sign up
+        signin: Sign in
     dashboard:
       topbar:
         home: Home
@@ -84,7 +85,8 @@ en:
   spaces:
     new:
       new_space: New Workspace
-      remaining_space: remaining %{count} space
+      space_info: Space is your writing area, with independent homepage, domain, RSS,
+        storage and members.
     limit:
       new_space: New Workspace
       space_limit: No space quote
@@ -121,21 +123,17 @@ en:
       publish_profile: Published Profile
   dashboard:
     share:
-      main_sidebar:
-        all_articles: All Articles
-        uncategorized: Uncategorized
+      sidebar:
+        new_space: New Space
+        articles: Articles
         trashed: Trashed
         pictures: Pictures
         new_category: New Category
         import: Import
         export: Export
         members: Members
-        settings: Space Settings
+        settings: Settings
         billing: Billing
-        edit: Edit
-        delete: Delete
-        delete_category_confirm: Sure to delte %{name}? Articles in this category
-          will mark as uncategorized.
       settings_sidebar:
         account_settings: Account Settings
         billing: Billing
@@ -153,6 +151,21 @@ en:
         url: URL
         create_link: Create Link
         unlink: Unlink
+      main_sidebar:
+        all_articles: All Articles
+        uncategorized: Uncategorized
+        trashed: Trashed
+        pictures: Pictures
+        new_category: New Category
+        import: Import
+        export: Export
+        members: Members
+        settings: Space Settings
+        billing: Billing
+        edit: Edit
+        delete: Delete
+        delete_category_confirm: Sure to delte %{name}? Articles in this category
+          will mark as uncategorized.
       link_modal:
         url: URL
         create_link: Create Link
@@ -287,8 +300,7 @@ en:
         no_picture: No picture
     articles:
       index:
-        all_articles: All Articles
-        uncategorized: Uncategorized
+        articles: 文章
         all: All
         category: Category
         trash: Trash
@@ -296,11 +308,14 @@ en:
         drafted: Draft
         publish: Publish
         draft: Draft
-        more: More
+        select_all: Select All
         new_article: New Article
         no_articles: No Articles
         title: Title
         updated_at: Updated at
+        all_articles: All Articles
+        uncategorized: Uncategorized
+        more: More
         inbox: Inbox
         is_end: is end
       select_category_modal:
@@ -310,7 +325,7 @@ en:
       add_category_modal:
         new_category: New Category
       articles:
-        no_articles: "No Articles"
+        no_articles: No Articles
       article:
         link: Link
         draft: Draft
@@ -325,6 +340,7 @@ en:
         updated_at: Updated at
       trashed:
         trashed: Trashed
+        select_all: Select All
         empty_trash: Empty Trash
         empty_trash_confirm: Sure to empty trash?
         completely_remove: Completely Remove
@@ -475,6 +491,7 @@ en:
       index:
         continue_reading: Continue Reading
         home: Home
+        about: 关于
         authors: Authors
         archives: Archives
       show:
@@ -482,7 +499,7 @@ en:
     authors:
       index:
         authors: Authors
-        authors_of_space: 'Authors of %{name}'
+        authors_of_space: Authors of %{name}
         home: Home
       show:
         other_authors: Other Authors

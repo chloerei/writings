@@ -94,6 +94,7 @@ zh-CN:
   spaces:
     new:
       new_space: "创建写作空间"
+      space_info: "写作空间是你的创作区域，拥有独立的主页、域名、RSS、储存空间和协作成员。"
   users:
     new:
       signup: "注册"
@@ -127,6 +128,7 @@ zh-CN:
   dashboard:
     share:
       sidebar:
+        new_space: "创建写作空间"
         articles: "全部文章"
         trashed: "回收站"
         pictures: "图片"
