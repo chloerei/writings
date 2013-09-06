@@ -43,6 +43,14 @@ $topbarMinPadding: 15px 20px;
       }
     }
 
+    .dropdown-menu {
+      margin-top: 4px;
+
+      &.last {
+        margin-right: 3px;
+      }
+    }
+
     .search-form {
       padding: 8px 20px;
       position: relative;

@@ -311,6 +311,7 @@ en:
         publish: Publish
         draft: Draft
         select_all: Select All
+        view: View
         upgrade: Upgrade
         new_article: New Article
         no_articles: No Articles

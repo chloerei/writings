@@ -301,6 +301,7 @@ zh-CN:
         publish: "发布"
         draft: "草稿"
         select_all: "选中全部"
+        view: "查看"
         upgrade: "升级"
         new_article: "新文章"
         no_articles: "没有文章"

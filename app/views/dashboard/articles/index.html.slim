@@ -47,6 +47,12 @@
 
     ul.topbar-nav.pull-right
       li.topbar-nav-item
+        a href=("http://#{@space.host}") target="_blank"
+          i.icon-external-link
+          span.hide-on-small-screen
+            '
+            = t '.view'
+      li.topbar-nav-item
         a href=(dashboard_billing_path)
           i.icon-level-up
           span.hide-on-small-screen
@@ -75,15 +81,29 @@
           i.icon-check-status
           '
           = t '.select_all'
-      li.topbar-nav-item
+      li.topbar-nav-item.hide-on-mobile
         a href=(batch_publish_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
           = t '.publish'
-      li.topbar-nav-item
+      li.topbar-nav-item.hide-on-mobile
         a href=(batch_draft_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
           = t '.draft'
-      li.topbar-nav-item
+      li.topbar-nav-item.hide-on-mobile
         a href=(batch_trash_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
           = t '.trash'
+      li.topbar-nav-item.show-on-mobile
+        .dropdown
+          a.dropdown-toggle
+            i.icon-wrench
+          ul.dropdown-menu.align-right.last
+            li
+              a href=(batch_publish_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
+                = t '.publish'
+            li
+              a href=(batch_draft_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
+                = t '.draft'
+            li
+              a href=(batch_trash_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
+                = t '.trash'
 
 .main-section
   ul#articles.articles
