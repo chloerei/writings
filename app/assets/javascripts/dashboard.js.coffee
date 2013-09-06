@@ -41,6 +41,16 @@ $(document).on
   'page:change': ->
     Mousetrap.reset()
 
+  'page:fetch': ->
+    AlertMessage.show
+      type: 'loading'
+      text: I18n.t('loading')
+      keep: true
+      scope: 'ajax-loading'
+
+  'page:receive': ->
+    AlertMessage.remove('ajax-loading')
+
   'ajax:before': ->
     AlertMessage.show
       type: 'loading'
