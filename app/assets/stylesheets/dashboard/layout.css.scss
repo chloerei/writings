@@ -1,4 +1,4 @@
-$topbarPadding: 15px 30px;
+$topbarPadding: 15px 25px;
 $topbarMinPadding: 15px 20px;
 
 #topbar {
@@ -15,23 +15,14 @@ $topbarMinPadding: 15px 20px;
     margin: 0;
     padding: 0;
     @include clearfix();
-
-    &.pull-right {
-      .topbar-nav-item {
-        border-left: 1px solid #ddd;
-        border-right: none;
-      }
-    }
   }
 
   .topbar-nav-item {
     float: left;
     display: block;
-    border-right: 1px solid #ddd;
 
     &.text {
       padding: $topbarPadding;
-      border-right: none;
       font-weight: bold;
     }
 
