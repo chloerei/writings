@@ -33,6 +33,12 @@
           td
             | 5
         tr
+          td = t '.article_search'
+          td
+            i.icon-minus
+          td
+            i.icon-ok
+        tr
           td = t '.custom_domain'
           td
             i.icon-minus
@@ -48,7 +54,10 @@
           td = t '.renew'
           td
           td
-            = link_to t('.renew'), new_dashboard_order_path, :class => 'button button-green no-margin'
+            - if @space.in_plan?(:base)
+              = link_to t('.renew'), new_dashboard_order_path, :class => 'button button-green no-margin'
+            - else
+              = link_to t('.upgrade'), new_dashboard_order_path, :class => 'button button-green no-margin'
     .quiet
       = t '.current_plan'
       = t "plan.#{@space.plan}"

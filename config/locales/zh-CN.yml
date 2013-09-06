@@ -52,7 +52,7 @@ zh-CN:
   upgrade: "升级"
   plan:
     free: "免费版"
-    base: "基础版"
+    base: "个人版"
   order_state:
     opening: "打开"
     pending: "等待支付"
@@ -238,10 +238,12 @@ zh-CN:
       show:
         billing: "付费"
         renew: "续费"
+        upgrade: "升级"
         plan: "套餐"
         price: "价格"
         storage: "储存空间"
         history_versions: "历史记录"
+        article_search: "文章搜索"
         members: "成员"
         custom_domain: "独立域名"
         10_per_1_month: "10元 / 月"

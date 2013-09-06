@@ -45,7 +45,7 @@ en:
   upgrade: Upgrade
   plan:
     free: Free
-    base: Base
+    base: Personal
   order_state:
     opening: Opening
     pending: Waiting Payment
@@ -249,10 +249,12 @@ en:
       show:
         billing: Billing
         renew: Renew
+        upgrade: Upgrade
         plan: Plan
         price: Price
         storage: Storage
         history_versions: History Versions
+        article_search: "Article Search"
         members: Members
         custom_domain: Custom Domain
         10_per_1_month: 10 RMB / month

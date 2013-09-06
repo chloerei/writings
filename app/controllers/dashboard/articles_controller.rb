@@ -8,7 +8,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
     if params[:status].present?
       @articles = @articles.status(params[:status])
-    elsif params[:query].present?
+    elsif !@space.in_plan?(:free) && params[:query].present?
       query = params[:query].split.map { |string| Regexp.escape string }[0..2].join '|'
       @articles = @articles.where(:title => /#{query}/i)
     end
