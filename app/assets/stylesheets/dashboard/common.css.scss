@@ -1,3 +1,11 @@
+.tab-pane {
+  display: none;
+
+  &.actived {
+    display: block;
+  }
+}
+
 // modal
 
 #modal-background {
