@@ -311,6 +311,7 @@ en:
         publish: Publish
         draft: Draft
         select_all: Select All
+        upgrade: Upgrade
         new_article: New Article
         no_articles: No Articles
         title: Title

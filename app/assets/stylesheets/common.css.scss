@@ -206,7 +206,7 @@ nav ul {
   }
 }
 
-@media (min-width: 961px) {
+@media (min-width: 960px) {
   .show-on-tablet {
     display: none !important;
   }
@@ -218,6 +218,22 @@ nav ul {
   }
 
   .show-on-tablet {
+    display: inherit !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .show-on-small-screen {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hide-on-small-screen {
+    display: none !important;
+  }
+
+  .show-on-small-screen {
     display: inherit !important;
   }
 }
