@@ -52,12 +52,13 @@
           span.hide-on-small-screen
             '
             = t '.view'
-      li.topbar-nav-item
-        a href=(dashboard_billing_path)
-          i.icon-level-up
-          span.hide-on-small-screen
-            '
-            = t '.upgrade'
+      - if @space.in_plan?(:free)
+        li.topbar-nav-item
+          a href=(dashboard_billing_path)
+            i.icon-level-up
+            span.hide-on-small-screen
+              '
+              = t '.upgrade'
       li.topbar-nav-item
         a href=(new_dashboard_article_path)
           i.icon-plus
