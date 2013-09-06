@@ -132,6 +132,12 @@ en:
         members: Members
         settings: Settings
         billing: Billing
+      config_menu:
+        account: Account
+        blog: Blog
+        help: Help
+        contact: Contact
+        logout: Logout
       settings_sidebar:
         account_settings: Account Settings
         billing: Billing

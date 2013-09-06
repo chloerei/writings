@@ -63,7 +63,7 @@ zh-CN:
     home:
       header:
         features: "特点"
-        pricing: "定价"
+        pricing: "费用"
         signup: "注册"
         signin: "登录"
     dashboard:
@@ -136,6 +136,12 @@ zh-CN:
         members: "成员"
         settings: "空间设置"
         billing: "付费服务"
+      config_menu:
+        account: "账户"
+        blog: "博客"
+        help: "帮助"
+        contact: "联系"
+        logout: "退出"
 
       settings_sidebar:
         account_settings: "账户设置"
