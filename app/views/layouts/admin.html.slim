@@ -10,29 +10,37 @@ html
     = csrf_meta_tags
   body id=("#{controller_name}-#{action_name}")
     #topbar
-      .container
-        a.topbar-button href=(admin_root_path) class=('actived' if controller_name == 'dashboard')
-          i.icon-dashboard
-          = '面板'
-        a.topbar-button href=(admin_articles_path) class=('actived' if controller_name == 'articles')
-          i.icon-pencil
-          = '文章'
-        a.topbar-button href=(admin_attachments_path) class=('actived' if controller_name == 'attachments')
-          i.icon-picture
-          = '图片'
-        a.topbar-button href=(admin_spaces_path) class=('actived' if controller_name == 'spaces')
-          i.icon-group
-          = '写作空间'
-        a.topbar-button href=(admin_users_path) class=('actived' if controller_name == 'users')
-          i.icon-user
-          = '用户'
-        a.topbar-button href=(admin_orders_path) class=(controller_name == 'orders' ? 'actived' : nil)
-          i.icon-money
-          = '订单'
-        a.topbar-button href=(admin_alipay_notifies_path) class=(controller_name == 'alipay_notifies' ? 'actived' : nil)
-          i.icon-info
-          = '支付宝通知'
+      ul.topbar-nav.pull-left
+        li.topbar-nav-item
+          a href=(admin_root_path) class=('actived' if controller_name == 'dashboard')
+            i.icon-dashboard
+            = '面板'
+        li.topbar-nav-item
+          a.topbar-button href=(admin_articles_path) class=('actived' if controller_name == 'articles')
+            i.icon-pencil
+            = '文章'
+        li.topbar-nav-item
+          a.topbar-button href=(admin_attachments_path) class=('actived' if controller_name == 'attachments')
+            i.icon-picture
+            = '图片'
+        li.topbar-nav-item
+          a.topbar-button href=(admin_spaces_path) class=('actived' if controller_name == 'spaces')
+            i.icon-group
+            = '写作空间'
+        li.topbar-nav-item
+          a.topbar-button href=(admin_users_path) class=('actived' if controller_name == 'users')
+            i.icon-user
+            = '用户'
+        li.topbar-nav-item
+          a.topbar-button href=(admin_orders_path) class=(controller_name == 'orders' ? 'actived' : nil)
+            i.icon-money
+            = '订单'
+        li.topbar-nav-item
+          a.topbar-button href=(admin_alipay_notifies_path) class=(controller_name == 'alipay_notifies' ? 'actived' : nil)
+            i.icon-info
+            = '支付宝通知'
     #main
       .container
-        .inner
-          = yield
+        .main-section
+          .inner
+            = yield
