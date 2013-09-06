@@ -15,7 +15,6 @@ en:
   invitation_email_subject: Invite you to join space %{name}
   being_develop: This function is being developed, maybe changed in future
   published_at: Published at
-  category: Category
   subscribe: Subscribe
   author: Author
   articles_count: '%{count} Articles'
@@ -128,7 +127,6 @@ en:
         articles: Articles
         trashed: Trashed
         pictures: Pictures
-        new_category: New Category
         import: Import
         export: Export
         members: Members
@@ -156,7 +154,6 @@ en:
         uncategorized: Uncategorized
         trashed: Trashed
         pictures: Pictures
-        new_category: New Category
         import: Import
         export: Export
         members: Members
@@ -164,8 +161,6 @@ en:
         billing: Billing
         edit: Edit
         delete: Delete
-        delete_category_confirm: Sure to delte %{name}? Articles in this category
-          will mark as uncategorized.
       link_modal:
         url: URL
         create_link: Create Link
@@ -181,7 +176,6 @@ en:
         import: Import
         title: Title
         date: Date
-        category: Category
         status: Status
         task_success: Parse Success
         task_success_detail: 'Please confirm import items:'
@@ -304,7 +298,6 @@ en:
       index:
         articles: 文章
         all: All
-        category: Category
         trash: Trash
         published: Publish
         drafted: Draft
@@ -312,6 +305,7 @@ en:
         draft: Draft
         select_all: Select All
         view: View
+        items: Items
         upgrade: Upgrade
         new_article: New Article
         no_articles: No Articles
@@ -322,12 +316,6 @@ en:
         more: More
         inbox: Inbox
         is_end: is end
-      select_category_modal:
-        select_category: Select Category
-        new_category: New Category
-        uncategorized: Uncategorized
-      add_category_modal:
-        new_category: New Category
       articles:
         no_articles: No Articles
       article:
@@ -335,7 +323,6 @@ en:
         draft: Draft
         publish: Publish
         published: Published
-        category: Category
         move_to_trash: Move to Trash
         restore: Restore
         delete: Delete
@@ -344,6 +331,7 @@ en:
         updated_at: Updated at
       trashed:
         trashed: Trashed
+        items: Items
         select_all: Select All
         empty_trash: Empty Trash
         empty_trash_confirm: Sure to empty trash?
@@ -361,10 +349,6 @@ en:
         need_more_version: Need more versions?
         urlname_modal:
           urlname: URL
-        select_category_modal:
-          select_category: Select Category
-          new_category: New Category
-          uncategorized: Uncategorized
         edit_topbar:
           return: Return to article list
           urlname: URL
@@ -424,33 +408,6 @@ en:
           save: Save
           undo: Undo
           redo: Redo
-        move_category_modal:
-          select_category: Select Category
-          new_category: New Category
-        new_category_modal:
-          new_category: New Category
-    categories:
-      new:
-        new_category: New Category
-      edit:
-        page_title: Setting %{name}
-        all: All
-        publish: Publish
-        draft: Draft
-        new_article: New Article
-        delete_category: Delete Category
-        delete_category_confirm: Delete category %{name}? All articles in this category
-          will mark not collected.
-      tabs:
-        index: Index
-        publish: Publish
-        draft: Draft
-        new_article: New Article
-        trash: Trash
-      new_category_modal:
-        new_category: New Category
-      edit_category_modal:
-        edit_category: Edit Category
     dashboard:
       show:
         articles: Articles
@@ -479,10 +436,6 @@ en:
         quantity: Quantity
       profile:
         name: Name
-        description: Description
-      category:
-        name: Name
-        urlname: URL
         description: Description
       article:
         title: Title

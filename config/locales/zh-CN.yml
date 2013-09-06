@@ -16,7 +16,6 @@ zh-CN:
   being_develop: "该功能正在开发，将来有可能发生变化"
 
   published_at: "发布于"
-  category: "分类"
   subscribe: "订阅"
   author: "作者"
   articles_count: "%{count} 篇文章"
@@ -132,7 +131,6 @@ zh-CN:
         articles: "全部文章"
         trashed: "回收站"
         pictures: "图片"
-        new_category: "添加分类"
         import: "导入"
         export: "导出"
         members: "成员"
@@ -169,7 +167,6 @@ zh-CN:
         import: "导入"
         title: "标题"
         date: "日期"
-        category: "分类"
         status: "状态"
         task_success: "解析完成"
         task_success_detail: "请确认导入条目"
@@ -294,12 +291,12 @@ zh-CN:
       index:
         articles: "文章"
         all: "全部文章"
-        category: "分类"
         trash: "移到回收站"
         published: "已发布"
         drafted: "草稿箱"
         publish: "发布"
         draft: "草稿"
+        items: "项"
         select_all: "选中全部"
         view: "查看"
         upgrade: "升级"
@@ -307,14 +304,6 @@ zh-CN:
         no_articles: "没有文章"
         title: "标题"
         updated_at: "更新时间"
-
-      select_category_modal:
-        select_category: "选择分类"
-        new_category: "添加分类"
-        uncategorized: "未分类"
-
-      add_category_modal:
-        new_category: "添加分类"
 
       articles:
         no_articles: "没有文章"
@@ -324,7 +313,6 @@ zh-CN:
         draft: "草稿"
         publish: "发布"
         published: "已发布"
-        category: "分类"
         move_to_trash: "移到回收站"
         restore: "还原"
         delete: "彻底删除"
@@ -334,6 +322,7 @@ zh-CN:
 
       trashed:
         trashed: "回收站"
+        items: "项"
         select_all: "选中全部"
         empty_trash: "清空回收站"
         empty_trash_confirm: "确认清空回收站？"
@@ -352,10 +341,6 @@ zh-CN:
         need_more_version: "需要查看更多？"
         urlname_modal:
           urlname: "URL"
-        select_category_modal:
-          select_category: "选择分类"
-          new_category: "添加分类"
-          uncategorized: "未分类"
         edit_topbar:
           return: "返回文章列表"
           urlname: "URL"
@@ -414,28 +399,6 @@ zh-CN:
           undo: "撤销"
           redo: "重做"
 
-    categories:
-      new:
-        new_category: "添加分类"
-      edit:
-        page_title: "设置 %{name}"
-        all: "全部"
-        publish: "已发布"
-        draft: "草稿箱"
-        new_article: "新文章"
-        delete_category: "删除分类"
-        delete_category_confirm: "删除分类 %{name}？分类的文章会被标记为未归类。"
-      tabs:
-        index: "索引"
-        publish: "已发布"
-        draft: "草稿箱"
-        new_article: "新文章"
-      new_category_modal:
-        new_category: "添加分类"
-      edit_category_modal:
-        edit_category: "编辑分类"
-
-
   mongoid:
     attributes:
       space:
@@ -458,10 +421,6 @@ zh-CN:
         quantity: "数量"
       profile:
         name: "名称"
-        description: "描述"
-      category:
-        name: "名字"
-        urlname: "URL"
         description: "描述"
       article:
         title: "标题"
