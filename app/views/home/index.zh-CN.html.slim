@@ -1,45 +1,110 @@
-#main
-  .container
-    #home.inner
-      section#masthead
-        .pic
-          = image_tag "masthead.png"
-        .info
-          h1 理想的写作环境
-          p
-            a.button.button-green.button-large href=(signup_path)
-              | 现在注册
-          p 自由发挥写作灵感而无需花时间搭建复杂的系统。
-          p.quiet * 支持 Chrome，Safari，Firefox 较新版本，以及其他基于 webkit 内核的浏览器。
-      section#features
-        h2 喜欢 writings.io 的理由
-        .column
+#home
+  = render 'layouts/home/header'
+
+  .home-masthead
+    .home-container
+      h1
+        | 一个安静的写作空间
+        small 让你专注内容而无需折腾工具
+      .masthead-pic
+        = image_tag 'writings-io-manager.png'
+      .masthead-buttons
+        a.button.button-green.button-large.no-margin href=(signup_path)
+          | 免费注册
+      .quiet
+        | * 支持 Chrome，Firefox，Safari 以及其它基于 webkit 内核的浏览器。
+
+  #features.home-features
+    .home-container
+      h2 特点
+      .feature
+        .feature-pic
+          = image_tag 'writings-io-manager.png'
+        .feature-info
+          h3
+            i.icon-inbox
+            '
+            | 便捷的管理
+          p.quiet 没有多余内容的管理界面，快速创建和查找文章。
+      .feature
+        .feature-pic
+          = image_tag 'writings-io-editor.png'
+        .feature-info
           h3
             i.icon-pencil
-            | 编辑体验
-          p 所见即所得编辑器。
-          p 样式一致，告别预览。
-          p 有限的排版格式，关注内容。
-        .column
+            '
+            | 所见即所得
+          p.quiet 无需学习古怪的语法，在线编辑，自动保存。
+      .feature
+        .feature-pic
+          = image_tag 'writings-io-view.png'
+        .feature-info
           h3
-            i.icon-cloud
-            | 在线储存
-          p 自动保存文章。
-          p 自动生成历史记录。
-          p 每日备份。
-        .column
-          h3
-            i.icon-exchange
-            | 开放
-          p 支持绑定独立域名。
-          p 支持 Disqus 评论。
-          p 支持 Jekyll/Wordpress 存档导入/导出。
-      section.center
-        h2
-          = "加入 #{User.count + 1} 位用户，或者"
-          a href='/feature-manager'
-            | 了解更多
-            i.icon-angle-right.no-margin
-        p
-          a.button.button-green.button-large href=(signup_path)
-            | 现在注册
+            i.icon-globe
+            '
+            | 发布到互联网
+          p.quiet 拥有自己的独立域名，一键发布文章。响应式布局，自适应桌面浏览器和移动浏览器。
+
+  #pricing.home-pricing
+    .home-container
+      h2 费用
+      table.nice-table
+        tbody
+          tr
+            th 套餐
+            th 免费版
+            th 个人版
+          tr
+            td 价格
+            td
+              i.icon-minus
+            td 10元/月
+          tr
+            td 储存空间
+            td 10MB
+            td 1GB
+          tr
+            td 历史版本
+            td 5
+            td 50
+          tr
+            td 协作成员
+            td
+              i.icon-minus
+            td
+              | 5
+          tr
+            td 文章搜索
+            td
+              i.icon-minus
+            td
+              i.icon-ok
+          tr
+            td 独立域名
+            td
+              i.icon-minus
+            td
+              i.icon-ok
+          tr
+            td = t '.google_analytics'
+            td
+              i.icon-minus
+            td
+              i.icon-ok
+      .pricing-buttons
+        a.button.button-green.button-large.no-margin href=(signup_path)
+          | 免费注册
+      .quiet
+        | * 可以稍后升级到更高套餐。
+
+  .home-footer
+    .home-container
+      .clearfix
+        .pull-left
+          | writings.io
+        .pull-right
+          a href="http://blog.writings.io" 博客
+          a href="http://help.writings.io" 帮助
+          a href="mailto:chloerei@gmail.com" 联系
+          a href="https://twitter.com/writingsio" Twitter
+          a href="https://github.com/writingsio/writingsio/issues" 问题反馈

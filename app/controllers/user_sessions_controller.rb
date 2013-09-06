@@ -1,5 +1,5 @@
 class UserSessionsController < ApplicationController
-  layout 'dashboard_base'
+  layout 'home'
   before_filter :require_no_logined, :except => :destroy
   after_filter :inc_ip_count, :only => :create
   helper_method :require_recaptcha?

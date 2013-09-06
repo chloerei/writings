@@ -1,46 +1,46 @@
-- append_title t('.orders')
-- append_title @order.id
+- append_title "#{t '.order'} #{@order.id}"
 
-- content_for :sidebar do
-  = render 'dashboard/share/main_sidebar'
+- content_for :topbar do
+  ul.topbar-nav.pull-left
+    li.topbar-nav-item
+      a.min href=(dashboard_orders_path)
+        i.icon-chevron-left
+    li.topbar-nav-item.text
+      = t('.order')
+      '
+      = @order.id
 
-.main-header
-  h2
-    = link_to t('.billing'), dashboard_billing_path
-    = ' / '
-    = link_to t('.orders'), dashboard_orders_path
-    = ' / '
-    = @order.id
+  ul.topbar-nav.pull-right
+    = render 'dashboard/share/config_menu'
 
-section
-  = render 'dashboard/share/flash_message'
-  table.nice-table
-    tbody
-      tr
-        td = t '.order_id'
-        td = @order.id
-      tr
-        td = t '.created_at'
-        td = l @order.created_at, :format => :long
-      tr
-        td = t '.plan'
-        td = t ("plan.#{@order.plan}")
-      tr
-        td = t '.quantity'
-        td = @order.quantity
-      tr
-        td = t '.total_price'
-        td = t '.price', :price => @order.total_price
-      tr
-        td = t '.state'
-        td = t "order_state.#{@order.state}"
-      tr
-        td = t '.range'
-        td
-          - if @order.paid? or @order.completed?
-            = l @order.start_at.to_date, :format => :long
-            = ' - '
-            = l @order.end_at.to_date, :format => :long
-  p
+.main-section
+  .inner
+    table.nice-table
+      tbody
+        tr
+          td = t '.order_id'
+          td = @order.id
+        tr
+          td = t '.created_at'
+          td = l @order.created_at, :format => :long
+        tr
+          td = t '.plan'
+          td = t ("plan.#{@order.plan}")
+        tr
+          td = t '.quantity'
+          td = @order.quantity
+        tr
+          td = t '.total_price'
+          td = t '.price', :price => @order.total_price
+        tr
+          td = t '.state'
+          td = t "order_state.#{@order.state}"
+        tr
+          td = t '.range'
+          td
+            - if @order.paid? or @order.completed?
+              = l @order.start_at.to_date, :format => :long
+              = ' - '
+              = l @order.end_at.to_date, :format => :long
     = t '.order_question_contact'
     = mail_to 'chloerei@gmail.com', 'chloerei@gmail.com', :subject => "#{t '.order'} #{@order.id}"

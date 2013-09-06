@@ -1,6 +1,9 @@
 <% if current_user.errors.empty? %>
-  AlertMessage.removeAll();
-  AlertMessage.show({ type: 'success', text: '<%= t('success') %>', timeout: 1500 });
+  AlertMessage.show({
+    type: 'success',
+    text: '<%= j t('update_success') %>',
+    timeout: 3000
+  });
 <% else %>
   <% current_user.errors.full_messages.each do |message| %>
     AlertMessage.show({ type: 'error', text: "<%= j message %>" });

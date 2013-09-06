@@ -1,9 +1,8 @@
 class Exporter::Base
-  attr_accessor :space, :category, :tmp_path, :output_path
+  attr_accessor :space, :tmp_path, :output_path
 
   def initialize(space, options = {})
     self.space = space
-    self.category = options[:category]
     time = Time.now.to_i
     self.tmp_path = options[:tmp_path] || "#{Rails.root}/tmp/exporters/#{time}"
     self.output_path = options[:output_path] || "#{Rails.root}/tmp/exporters_output/#{time}"
@@ -19,11 +18,7 @@ class Exporter::Base
   end
 
   def articles
-    if category
-      space.articles.where(:category_id => @category.id)
-    else
-      space.articles
-    end.status(nil).includes(:category).asc(:created_at)
+    space.articles.untrash.asc(:created_at)
   end
 
   def helper

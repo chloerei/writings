@@ -24,14 +24,18 @@ Publish::Application.routes.draw do
     get 'signup' => 'users#new', :as => :signup
     get 'login' => 'user_sessions#new', :as => :login
     delete 'logout' => 'user_sessions#destroy', :as => :logout
-    post 'read_blog', :to => 'home#read_blog'
 
     resources :password_resets, :only => [:new, :create, :edit, :update]
 
     resources :users, :only => [:create]
     resources :user_sessions, :only => [:create]
 
-    resource :account, :only => [:show, :update, :destroy]
+    resource :account, :only => [:show, :update, :destroy] do
+      member do
+        post :read_blog
+      end
+    end
+
     resources :invoices, :only => [:index, :new, :create, :show, :destroy] do
       collection do
         post :alipay_notify

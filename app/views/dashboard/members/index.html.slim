@@ -1,30 +1,28 @@
 - append_title t('.members')
 
-- content_for :sidebar do
-  = render 'dashboard/share/main_sidebar'
+- content_for :topbar do
+  = render :partial => 'dashboard/share/topbar', :locals => { :title => t('.members') }
 
-.main-header
-  h2
-    = t '.members'
+.main-section
+  .inner
+    - if @space.in_plan?(:free)
+      a href=(dashboard_billing_path)
+        .flash-message.flash-info
+          i.icon-exclamation-sign
+          = t('need_upgrade')
 
-- if @space.in_plan?(:free)
-  a href=(dashboard_billing_path)
-    .flash-message.flash-info
-      i.icon-exclamation-sign
-      = t('need_upgrade')
-
-section.two-columns
-  .column
-    h3.title = t '.invite_members'
-    - if is_creator?
-      = render 'form'
-    - else
-      = t '.contact_space_creator_to_invite_members'
-  .column
-    #members.members
-      h3.title = t '.current_members'
-      ul
-        = render :partial => 'member', :collection => @space.members
-    #invitations.members
-      ul
-        = render :partial => 'invitation', :collection => @space.invitations
+    section.two-columns
+      .column
+        h3.title = t '.invite_members'
+        - if is_creator?
+          = render 'form'
+        - else
+          = t '.contact_space_creator_to_invite_members'
+      .column
+        #members.members
+          h3.title = t '.current_members'
+          ul
+            = render :partial => 'member', :collection => @space.members
+        #invitations.members
+          ul
+            = render :partial => 'invitation', :collection => @space.invitations

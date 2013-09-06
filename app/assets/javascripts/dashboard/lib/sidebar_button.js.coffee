@@ -1,9 +1,13 @@
 $ ->
-  if $('#sidebar-button').length
-    $('#sidebar-button').on 'click', ->
-      $('#main').toggleClass('show-sidebar')
+  if $('#sidebar-toggle').length
+    $('#sidebar-toggle').on 'click', ->
+      $('#topbar').toggleClass('show-sidebar')
       $(this).toggleClass('actived')
 
-    $('#main-sidebar-background').on 'click', ->
-      $('#main').removeClass('show-sidebar')
-      $('#sidebar-button').removeClass('actived')
+    $('#sidebar-background').on 'click', ->
+      $('#topbar').removeClass('show-sidebar')
+      $('#sidebar-toggle').removeClass('actived')
+
+$(document).on 'page:receive', ->
+  $('#topbar').removeClass('show-sidebar')
+  $('#sidebar-toggle').removeClass('actived')

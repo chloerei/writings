@@ -1,45 +1,43 @@
 - append_title t('.space_settings')
 
-- content_for :sidebar do
-  = render 'dashboard/share/main_sidebar'
+- content_for :topbar do
+  = render :partial => 'dashboard/share/topbar', :locals => { :title => t('.space_settings') }
 
-.main-header
-  h2 = t '.space_settings'
-
-section
-  = form_for @space, :as => :space, :url => dashboard_settings_path, :validate => true, :html => { :data => { :remote => true } } do |f|
-    .field
-      = f.label :name
-      .input-append
-        = f.text_field :name
-        .add-on = ".#{APP_CONFIG['host']}"
-    .field
-      = f.label :domain
-      = f.text_field :domain, :placeholder => 'your-domain.com', :disabled => !@space.domain_enabled?
-      - if !@space.domain_enabled?
-        .quiet
-          a href=(dashboard_billing_path)
-            i.icon-exclamation-sign.no-margin
-            = t('need_upgrade')
-    .field
-      = f.label :full_name
-      = f.text_field :full_name
-    .field
-      = f.label :description
-      = f.text_area :description
-    .field
-      = f.label :gravatar_email
-      = f.text_field :gravatar_email
-    .field
-      = f.label :disqus_shortname
-      = f.text_field :disqus_shortname, :placeholder => 'shortname'
-    .field
-      = f.label :google_analytics_id
-      = f.text_field :google_analytics_id, :placeholder => 'UA-XXXX-Y', :disabled => @space.in_plan?(:free)
-      - if @space.in_plan?(:free)
-        .quiet
-          a href=(dashboard_billing_path)
-            i.icon-exclamation-sign.no-margin
-            = t('need_upgrade')
-    .field
-      = f.submit t('submit'), :class => 'button-primary'
+.main-section
+  .inner
+    = form_for @space, :as => :space, :url => dashboard_settings_path, :validate => true, :html => { :data => { :remote => true } } do |f|
+      .field
+        = f.label :name
+        .input-append
+          = f.text_field :name
+          .add-on = ".#{APP_CONFIG['host']}"
+      .field
+        = f.label :domain
+        = f.text_field :domain, :placeholder => 'your-domain.com', :disabled => !@space.domain_enabled?
+        - if !@space.domain_enabled?
+          .quiet
+            a href=(dashboard_billing_path)
+              i.icon-exclamation-sign.no-margin
+              = t('need_upgrade')
+      .field
+        = f.label :full_name
+        = f.text_field :full_name
+      .field
+        = f.label :description
+        = f.text_area :description
+      .field
+        = f.label :gravatar_email
+        = f.text_field :gravatar_email
+      .field
+        = f.label :disqus_shortname
+        = f.text_field :disqus_shortname, :placeholder => 'shortname'
+      .field
+        = f.label :google_analytics_id
+        = f.text_field :google_analytics_id, :placeholder => 'UA-XXXX-Y', :disabled => @space.in_plan?(:free)
+        - if @space.in_plan?(:free)
+          .quiet
+            a href=(dashboard_billing_path)
+              i.icon-exclamation-sign.no-margin
+              = t('need_upgrade')
+      .field
+        = f.submit t('submit')

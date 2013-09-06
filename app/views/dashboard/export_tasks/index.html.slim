@@ -1,25 +1,21 @@
-- content_for :sidebar do
-  = render 'dashboard/share/main_sidebar'
+- append_title t('.export')
 
-.main-header
-  h2 = t '.export'
+- content_for :topbar do
+  = render :partial => 'dashboard/share/topbar', :locals => { :title => t('.export') }
 
-= form_for ExportTask.new, :url => dashboard_export_tasks_path do |f|
-  fieldset
-    legend = t '.format'
-    .field
-      label
-        = f.radio_button :format, 'jekyll', :checked => true
-        '
-        | Jekyll (.zip)
-      label
-        = f.radio_button :format, 'wordpress'
-        '
-        | Wordpress (.xml)
-  fieldset
-    legend = t '.content'
-    .field
-      label
-        = f.select :category_id, options_from_collection_for_select(@space.categories, :token, :name), :prompt => t('.all')
-  .field
-    = submit_tag t('.start_export'), :class => 'button-primary'
+.main-section
+  .inner
+    = form_for ExportTask.new, :url => dashboard_export_tasks_path do |f|
+      fieldset
+        legend = t '.format'
+        .field
+          label
+            = f.radio_button :format, 'jekyll', :checked => true
+            '
+            | Jekyll (.zip)
+          label
+            = f.radio_button :format, 'wordpress'
+            '
+            | Wordpress (.xml)
+      .field
+        = submit_tag t('.start_export')

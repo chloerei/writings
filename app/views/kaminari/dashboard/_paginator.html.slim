@@ -1,4 +1,5 @@
 = paginator.render do
   nav#paginator
+    span.pages = "#{current_page} / #{total_pages}"
     == prev_page_tag unless current_page.first?
     == next_page_tag unless current_page.last?

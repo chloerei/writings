@@ -1,27 +1,26 @@
 class Dashboard::ArticlesController < Dashboard::BaseController
   before_filter :find_article, :only => [:show, :status, :edit, :update, :restore]
-  before_filter :find_articles, :only => [:batch_category, :batch_trash, :batch_publish, :batch_draft, :batch_restore, :batch_destroy]
+  before_filter :find_articles, :only => [:batch_trash, :batch_publish, :batch_draft, :batch_restore, :batch_destroy]
   before_filter :check_lock_status, :only => [:update]
 
   def index
-    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status])
-  end
+    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).untrash
 
-  def uncategorized
-    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status]).where(:category_id => nil)
+    if params[:status].present?
+      @articles = @articles.status(params[:status])
+    elsif !@space.in_plan?(:free) && params[:query].present?
+      query = params[:query].split.map { |string| Regexp.escape string }[0..2].join '|'
+      @articles = @articles.where(:title => /#{query}/i)
+    end
 
-    render :index
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def trashed
-    @articles = @space.articles.desc(:updated_at).page(params[:page]).status('trash')
-  end
-
-  def categorized
-    @category = @space.categories.find_by :token => param_to_token(params[:category_id])
-    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status(params[:status]).where(:category_id => @category.id)
-
-    render :index
+    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).status('trash')
   end
 
   def show
@@ -32,9 +31,6 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def new
     @article = @space.articles.new
-    if params[:category_id]
-      @article.category = @space.categories.where(:token => param_to_token(params[:category_id])).first
-    end
     append_title @article.title
     render :edit, :layout => 'editor'
   end
@@ -91,17 +87,6 @@ class Dashboard::ArticlesController < Dashboard::BaseController
     @space.articles.trash.destroy_all
   end
 
-  def batch_category
-    if params[:category_id].blank?
-      @articles.untrash.update_all :category_id => nil, :updated_at => Time.now.utc
-    else
-      @category = @space.categories.find_by(:token => param_to_token(params[:category_id]))
-      @articles.untrash.update_all :category_id => @category.id, :updated_at => Time.now.utc
-    end
-
-    render :batch_update
-  end
-
   def batch_trash
     @articles.untrash.update_all :status => 'trash', :updated_at => Time.now.utc
 
@@ -145,10 +130,6 @@ class Dashboard::ArticlesController < Dashboard::BaseController
 
   def article_params
     base_params = params.require(:article).permit(:title, :body, :urlname, :status, :save_count)
-
-    if params[:article][:category_id]
-      base_params.merge!(:category => @space.categories.where(:token => param_to_token(params[:article][:category_id])).first)
-    end
 
     base_params
   end

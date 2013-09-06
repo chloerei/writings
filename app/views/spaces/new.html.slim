@@ -1,28 +1,46 @@
 - append_title t('.new_space')
 
-.main-header
-  h2
+- content_for :topbar do
+  li.topbar-nav-item
+    a#sidebar-toggle.sidebar-toggle.min
+      i.icon-reorder
+    nav.sidebar
+      ul
+        li.sidebar-item
+          a href=(new_space_path)
+            i.icon-plus
+            '
+            = t ('.new_space')
+        li
+          hr
+        - current_user.member_spaces.each do |space|
+          li.sidebar-item
+            a href=(dashboard_root_path(space))
+              i.icon-user
+              '
+              = space.display_name
+
+    #sidebar-background.sidebar-background
+  li.topbar-nav-item.text
     = t '.new_space'
+  ul.topbar-nav.pull-right
+    = render 'dashboard/share/config_menu'
 
-- content_for :sidebar do
-  nav.main-sidebar-nav
-    ul
-      li.main-sidebar-item.actived
-        a href=(new_space_path)
-          = t '.new_space'
-
-section
-  = form_for Space.new, :validate => true, :html => { :data => { :remote => true } } do |f|
-    .field
-      = f.label :name
-      .input-append
-        = f.text_field :name, :tabindex => 1, :placeholder => 'space-name', :autofocus => true
-        .add-on = ".#{APP_CONFIG['host']}"
-    .field
-      = f.label :full_name
-      = f.text_field :full_name, :tabindex => 2
-    .field
-      = f.label :description
-      = f.text_area :description, :tabindex => 3
-    .field
-      = f.submit t('submit'), :tabindex => 4
+.main-section
+  .inner
+    .flash-message.flash-info
+      = t '.space_info'
+    = form_for Space.new, :validate => true, :html => { :data => { :remote => true } } do |f|
+      .field
+        = f.label :name
+        .input-append
+          = f.text_field :name, :tabindex => 1, :placeholder => 'space-name'
+          .add-on = ".#{APP_CONFIG['host']}"
+      .field
+        = f.label :full_name
+        = f.text_field :full_name, :tabindex => 2
+      .field
+        = f.label :description
+        = f.text_area :description, :tabindex => 3
+      .field
+        = f.submit t('submit'), :tabindex => 4

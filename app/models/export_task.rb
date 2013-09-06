@@ -6,7 +6,6 @@ class ExportTask
   field :status
 
   belongs_to :space
-  belongs_to :category
   belongs_to :user
 
   scope :success, -> { where(:status => 'success') }
@@ -41,7 +40,6 @@ class ExportTask
 
   def export
     options = {
-      :category    => category,
       :tmp_path    => tmp_path,
       :output_path => output_path
     }

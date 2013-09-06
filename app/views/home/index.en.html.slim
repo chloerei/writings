@@ -1,45 +1,110 @@
-#main
-  .container
-    #home.inner
-      section#masthead
-        .pic
-          = image_tag "masthead.png"
-        .info
-          h1 Clean Writing Environment
-          p
-            a.button.button-green.button-large href=(signup_path)
-              | Signup Now
-          p Free play writing inspiration without spend time building complex systems.
-          p.quiet * Support Chrome, Safari, Firefox and other modern browser
-      section#features
-        h2 The Reason Why Love writings.io
-        .column
+#home
+  = render 'layouts/home/header'
+
+  .home-masthead
+    .home-container
+      h1
+        | A quiet writing space
+        small Focus on content and stop waste time for tools
+      .masthead-pic
+        = image_tag 'writings-io-manager.png'
+      .masthead-buttons
+        a.button.button-green.button-large.no-margin href=(signup_path)
+          | Sign up for Free
+      .quiet
+        | * Support Chrome, Firefox, Safari and other webkit-base browser.
+
+  #features.home-features
+    .home-container
+      h2 Features
+      .feature
+        .feature-pic
+          = image_tag 'writings-io-manager.png'
+        .feature-info
+          h3
+            i.icon-inbox
+            '
+            | Manager
+          p.quiet A clean manage page, quickly create and search articles.
+      .feature
+        .feature-pic
+          = image_tag 'writings-io-editor.png'
+        .feature-info
           h3
             i.icon-pencil
-            | Editing Experience
-          p Visual editor.
-          p Same stylesheet in edit/publish mode, no need to preview.
-          p Limit format, focus on content.
-        .column
+            '
+            | Writing
+          p.quiet WYSIWYG editor, online editing, auto save.
+      .feature
+        .feature-pic
+          = image_tag 'writings-io-view.png'
+        .feature-info
           h3
-            i.icon-cloud
-            | Online Store
-          p Auto save.
-          p Auto create history.
-          p Daily backup.
-        .column
-          h3
-            i.icon-exchange
-            | Open
-          p Support custom domain.
-          p Support Disqus comment.
-          p Suport Jekyll/Wordpress archive import/export.
-      section.center
-        h2
-          = "Join #{User.count} User, or "
-          a href='/feature-manager'
-            | find out more
-            i.icon-angle-right.no-margin
-        p
-          a.button.button-green.button-large href=(signup_path)
-            | Singup Now
+            i.icon-globe
+            '
+            | Publish
+          p.quiet Independent domain, one click publish, Responsive web design.
+
+  #pricing.home-pricing
+    .home-container
+      h2 Pricing
+      table.nice-table
+        tbody
+          tr
+            th Plan
+            th Free
+            th Personal
+          tr
+            td Fee
+            td
+              i.icon-minus
+            td CNY 10 / month
+          tr
+            td Storage
+            td 10MB
+            td 1GB
+          tr
+            td History version
+            td 5
+            td 50
+          tr
+            td Members
+            td
+              i.icon-minus
+            td
+              | 5
+          tr
+            td Article Search
+            td
+              i.icon-minus
+            td
+              i.icon-ok
+          tr
+            td Independent domain
+            td
+              i.icon-minus
+            td
+              i.icon-ok
+          tr
+            td = t '.google_analytics'
+            td
+              i.icon-minus
+            td
+              i.icon-ok
+      .pricing-buttons
+        a.button.button-green.button-large.no-margin href=(signup_path)
+          | Sign up for Free
+      .quiet
+        | * Can upgrade to Personal plan later.
+
+  .home-footer
+    .home-container
+      .clearfix
+        .pull-left
+          | writings.io
+        .pull-right
+          a href="http://blog.writings.io" Blog
+          a href="http://help.writings.io" Help
+          a href="mailto:chloerei@gmail.com" Contact
+          a href="https://twitter.com/writingsio" Twitter
+          a href="https://github.com/writingsio/writingsio/issues" Issues

@@ -29,36 +29,43 @@ $ ->
   # Referrer no change in Turbolink
   analyticsReferrer = null
 
+@PageLoading =
+  show: ->
+    if !$('#loading').length
+      $('body').append('<div id="loading"></div>')
 
-$(document).on(
-  "page:change": ->
+  remove: ->
+    $('#loading').remove()
+
+$(document).on
+  'page:change': ->
     Mousetrap.reset()
 
-  "page:fetch": ->
+  'page:fetch': ->
     AlertMessage.show
-      type: 'loading',
+      type: 'loading'
       text: I18n.t('loading')
       keep: true
-      scope: 'page-loading'
+      scope: 'ajax-loading'
 
-  "page:change": ->
-    AlertMessage.remove('page-loading')
+  'page:receive': ->
+    AlertMessage.remove('ajax-loading')
 
-  "ajax:before": ->
+  'ajax:before': ->
     AlertMessage.show
       type: 'loading'
       text: I18n.t('sending')
       keep: true
-      scope: 'ajax-sending'
+      scope: 'ajax-loading'
 
-  "ajax:error": (xhr, status, error) ->
+  'ajax:success': ->
+    AlertMessage.remove('ajax-loading')
+
+  'ajax:error': ->
     AlertMessage.show
       type: 'error'
       text: I18n.t('server_error')
-
-  "ajax:complete": ->
-    AlertMessage.remove('ajax-sending')
-)
+      scope: 'ajax-loading'
 
 $(document).on 'click', '#blog-button.highlight', ->
   $(this).removeClass('highlight')

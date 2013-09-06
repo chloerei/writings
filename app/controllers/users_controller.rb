@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  layout 'dashboard_base'
+  layout 'home'
   before_filter :require_no_logined
 
   def new

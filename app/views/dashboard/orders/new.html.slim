@@ -1,34 +1,37 @@
 - append_title t('.new_order')
 
-- content_for :sidebar do
-  = render 'dashboard/share/main_sidebar'
+- content_for :topbar do
+  ul.topbar-nav.pull-left
+    li.topbar-nav-item
+      a.min href=(dashboard_billing_path)
+        i.icon-chevron-left
+    li.topbar-nav-item.text
+      = t('.new_order')
 
-.main-header
-  h2
-    = link_to t('.billing'), dashboard_billing_path
-    = ' / '
-    = t '.new_order'
+  ul.topbar-nav.pull-right
+    = render 'dashboard/share/config_menu'
 
-section
-  .two-columns
-    .column
-      h3.title = t '.order'
-      = form_for @order, :url => dashboard_orders_path do |f|
-        .field
-          = f.label :plan
-          = t('plan.base')
-        .field
-          = f.label :quantity
-          label
-            = f.radio_button :quantity, 1, :checked => true
-            = t '.10_per_1_month'
-          label
-            = f.radio_button :quantity, 6
-            = t '.50_per_6_month'
-          label
-            = f.radio_button :quantity, 12
-            = t '.100_per_1_year'
-        .field
-          = f.submit t('.alipay_payment'), :class => 'button-green'
-    .column
-      = render 'new_order_help'
+.main-section
+  .inner
+    .two-columns
+      .column
+        h3.title = t '.order'
+        = form_for @order, :url => dashboard_orders_path do |f|
+          .field
+            = f.label :plan
+            = t('plan.base')
+          .field
+            = f.label :quantity
+            label
+              = f.radio_button :quantity, 1, :checked => true
+              = t '.10_per_1_month'
+            label
+              = f.radio_button :quantity, 6
+              = t '.50_per_6_month'
+            label
+              = f.radio_button :quantity, 12
+              = t '.100_per_1_year'
+          .field
+            = f.submit t('.alipay_payment'), :class => 'button-green'
+      .column
+        = render 'new_order_help'

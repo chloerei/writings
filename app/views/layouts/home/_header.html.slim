@@ -1,0 +1,15 @@
+.home-header
+  .home-container
+    a.logo href='/'
+      | writings
+      small .io
+    nav
+      ul
+        li
+          a href='/#features' = t '.features'
+        li
+          a href='/#pricing' = t '.pricing'
+        li
+          a href=(signup_path) = t '.signup'
+        li
+          a href=(login_path) = t '.signin'

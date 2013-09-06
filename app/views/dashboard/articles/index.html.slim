@@ -1,73 +1,111 @@
-- case action_name
-- when 'index'
-  - append_title t('.all_articles')
-- when 'categorized'
-  - append_title @category.name
-- when 'uncategorized'
-  - append_title t('.uncategorized')
+- append_title t('.articles')
 
-- content_for :sidebar do
-  = render 'dashboard/share/main_sidebar'
+- content_for :topbar do
+  #normal-nav.clearfix class=('searching' if params[:query].present?)
+    ul.topbar-nav.pull-left
+      = render 'dashboard/share/sidebar'
+      li.topbar-nav-item.show-on-tablet.hide-on-searching
+        .dropdown
+          a.dropdown-toggle
+            - case params[:status]
+            - when 'draft'
+              = t '.drafted'
+            - when 'publish'
+              = t '.published'
+            - else
+              = t '.all'
+          ul.dropdown-menu
+            li
+              a href=(dashboard_root_path(:status => nil))
+                = t '.all'
+            li
+              a href=(dashboard_root_path(:status => 'draft'))
+                = t '.drafted'
+            li
+              a href=(dashboard_root_path(:status => 'publish'))
+                = t '.published'
 
-.main-header
-  h2
-    - case action_name
-    - when 'index'
-      = t '.all_articles'
-    - when 'categorized'
-      = @category.name
-    - when 'uncategorized'
-      = t '.uncategorized'
-
-#articles.articles class=('hide-category' if %w(categorized uncategorized).include?(action_name))
-  .main-actions.clearfix
-    .pull-left
-      #status-button-group.button-group
-        a.button class=(params[:status].blank? ? 'button-actived' : nil) href=(url_for(:status => nil))
+      li.topbar-nav-item.hide-on-tablet class=('actived' if params[:status].blank? && params[:query].blank?)
+        a href=(dashboard_root_path(:status => nil))
           = t '.all'
-        a.button class=(params[:status] == 'publish' ? 'button-actived' : nil) href=(url_for(:status => 'publish'))
-          = t '.published'
-        a.button class=(params[:status] == 'draft' ? 'button-actived' : nil) href=(url_for(:status => 'draft'))
+      li.topbar-nav-item.hide-on-tablet class=('actived' if params[:status] == 'draft')
+        a href=(dashboard_root_path(:status => 'draft'))
           = t '.drafted'
-      .button-group.show-on-selected
-        a.button href='#select-category-modal' data-toggle='modal' title=(t '.category')
-          i.icon-folder-close-alt.no-margin
-        a.button href=(batch_trash_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true' title=(t '.trash')
-          i.icon-trash.no-margin
-      .dropdown.show-on-selected
-        a.dropdown-toggle.button
-          = t '.more'
-        ul.dropdown-menu
-          li
-            a href=(batch_publish_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true'
-              = t '.publish'
-          li
-            a href=(batch_draft_dashboard_articles_path) data-remote='true' data-method='put' data-batch='true'
-              = t '.draft'
+      li.topbar-nav-item.hide-on-tablet class=('actived' if params[:status] == 'publish')
+        a href=(dashboard_root_path(:status => 'publish'))
+          = t '.published'
+      - unless @space.in_plan?(:free)
+        li.topbar-nav-item.show-on-tablet.hide-on-searching
+          a.search-toggle
+            i.icon-search
+        li.topbar-nav-item.search.hide-on-tablet
+          = form_tag dashboard_root_path, :method => :get, :class => 'search-form', :id => 'search-form', :data => { 'reset-url' => dashboard_root_path(:status => params[:status]) } do
+            i.icon-search
+            = search_field_tag 'query', params[:query], :class => 'search-input', :placeholder => '搜索', :tabindex => 1, :autocomplete => 'off', :autofocus => (params[:query].present? ? true : nil), :id => 'search-input'
+            button.search-close type="reset" tabindex='2'
+              i.icon-remove
 
-    .pull-right
-      a.button.button-green.no-margin href=(new_dashboard_article_path)
-        i.icon-pencil
-        span.hide-on-mobile
+    ul.topbar-nav.pull-right
+      li.topbar-nav-item
+        a href=("http://#{@space.host}") target="_blank"
+          i.icon-external-link
+          span.hide-on-small-screen
+            '
+            = t '.view'
+      - if @space.in_plan?(:free)
+        li.topbar-nav-item
+          a href=(dashboard_billing_path)
+            i.icon-level-up
+            span.hide-on-small-screen
+              '
+              = t '.upgrade'
+      li.topbar-nav-item
+        a href=(new_dashboard_article_path)
+          i.icon-plus
+          span.hide-on-mobile
+            '
+            = t '.new_article'
+      = render 'dashboard/share/config_menu'
+
+  #toolbar.clearfix.hide
+    ul.topbar-nav.pull-left
+      li.topbar-nav-item
+        a.close-button.min
+          i.icon-remove
+      li.topbar-nav-item.text
+        span#selected-count 0
+        '
+        = t '.items'
+    ul.topbar-nav.pull-right
+      li.topbar-nav-item
+        a.select-all-button.min
+          i.icon-check-status
           '
-          = t '.new_article'
+          = t '.select_all'
+      li.topbar-nav-item.hide-on-mobile
+        a href=(batch_publish_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
+          = t '.publish'
+      li.topbar-nav-item.hide-on-mobile
+        a href=(batch_draft_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
+          = t '.draft'
+      li.topbar-nav-item.hide-on-mobile
+        a href=(batch_trash_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
+          = t '.trash'
+      li.topbar-nav-item.show-on-mobile
+        .dropdown
+          a.dropdown-toggle
+            i.icon-wrench
+          ul.dropdown-menu.align-right.last
+            li
+              a href=(batch_publish_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
+                = t '.publish'
+            li
+              a href=(batch_draft_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
+                = t '.draft'
+            li
+              a href=(batch_trash_dashboard_articles_path) data-remote="true" data-method="put" data-batch="true"
+                = t '.trash'
 
-  - unless @articles.empty?
-    table
-      tbody
-        tr
-          th.min
-            i#select-all.checkbox.icon-check-empty
-          th.max
-            = t '.title'
-          th.min.hide-on-mobile
-          th.min.date
-            = t '.updated_at'
-        = render :partial => 'article', :collection => @articles
-    = paginate @articles, :theme => :dashboard
-  - else
-    .empty-message
-      = t '.no_articles'
-
-  = render 'select_category_modal'
-  = render 'add_category_modal'
+.main-section
+  ul#articles.articles
+    = render 'articles'

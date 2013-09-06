@@ -24,18 +24,7 @@ class ArticleEdit
     $("#save-status .retry a").on "click", (event )=> @saveArticle(event)
     $("#publish-button").on "click", (event) => @publishArticle(event)
     $("#draft-button").on "click", (event) => @draftArticle(event)
-    $("#category-form").on "submit", (event) => @saveCategory(event)
     $("#pick-up-button").on "click", (event) => @pickUpTopbar(event)
-
-    $("#new-category-form").on "ajax:success", (event, data) ->
-      $('#article-category-id').append("<option value=#{data.token}>#{data.name}</option>").val(data.token)
-      Dialog.hide "#new-category-modal"
-
-    $("#category-form .dropdown").on "click", ".dropdown-menu li a", (event) ->
-      event.preventDefault()
-      $item = $(this)
-      $item.closest(".dropdown").find(".dropdown-toggle").text $item.text()
-      $("#article-category-id").val $item.data("category-id")
 
     if @article.hasClass("init")
       @editor.formator.h1()
@@ -175,22 +164,6 @@ class ArticleEdit
   showRetryButton: ->
     $("#save-status .retry").show().siblings().hide()
 
-  saveCategory: (event) ->
-    event.preventDefault()
-    categoryId = $("#article-category-id").val()
-    if @isPersisted()
-      @updateArticle
-        article:
-          category_id: categoryId
-      , (data) =>
-        @article.data "category-id", categoryId
-        Dialog.hide "#select-category-modal"
-
-    else
-      @article.data "category-id", categoryId
-      @createArticle()
-      Dialog.hide "#select-category-modal"
-
   saveArticle: (event) ->
     event.preventDefault() if event
 
@@ -220,7 +193,6 @@ class ArticleEdit
           title: @editor.editable.find("h1").text()
           body: @editor.editable.html()
           urlname: @article.data("urlname")
-          category_id: @article.data("category-id")
           status: @article.data("status")
         saveCount: _this.saveCount
       type: "post"
