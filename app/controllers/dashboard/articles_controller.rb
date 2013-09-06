@@ -4,7 +4,7 @@ class Dashboard::ArticlesController < Dashboard::BaseController
   before_filter :check_lock_status, :only => [:update]
 
   def index
-    @articles = @space.articles.desc(:created_at).page(params[:page]).per(15).untrash
+    @articles = @space.articles.desc(:updated_at).page(params[:page]).per(15).untrash
 
     if params[:status].present?
       @articles = @articles.status(params[:status])
