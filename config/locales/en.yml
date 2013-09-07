@@ -256,12 +256,13 @@ en:
         history_versions: History Versions
         article_search: "Article Search"
         members: Members
-        custom_domain: Custom Domain
+        custom_domain: Binding Custom Domain
         10_per_1_month: 10 RMB / month
         current_plan: 'Current plan: '
         expired: ' Expired'
         orders: Orders
         view_all: View all
+        custom_domain_notice: "Need to register domain by youself"
     orders:
       index:
         billing: Billing

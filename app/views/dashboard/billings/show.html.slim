@@ -44,6 +44,8 @@
             i.icon-minus
           td
             i.icon-ok
+            '
+            span.quiet (1)
         tr
           td = t '.google_analytics'
           td
@@ -58,6 +60,8 @@
               = link_to t('.renew'), new_dashboard_order_path, :class => 'button button-green no-margin'
             - else
               = link_to t('.upgrade'), new_dashboard_order_path, :class => 'button button-green no-margin'
+    ol.quiet
+      li = t '.custom_domain_notice'
     .quiet
       = t '.current_plan'
       = t "plan.#{@space.plan}"

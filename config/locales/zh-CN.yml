@@ -248,12 +248,13 @@ zh-CN:
         history_versions: "历史记录"
         article_search: "文章搜索"
         members: "成员"
-        custom_domain: "独立域名"
+        custom_domain: "绑定独立域名"
         10_per_1_month: "10元 / 月"
         current_plan: "当前套餐："
         expired: "到期"
         orders: "订单"
         view_all: "查看全部"
+        custom_domain_notice: "需要自行申请独立域名"
 
     orders:
       index:
