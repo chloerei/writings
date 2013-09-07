@@ -39,6 +39,10 @@ body.home {
       right: 0;
       font-weight: bold;
 
+      ul {
+        @include clearfix();
+      }
+
       li {
         float: left;
 
@@ -165,6 +169,27 @@ body.home {
     h2 {
       margin-bottom: 30px;
       text-align: left;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  #home {
+    .home-header {
+      .logo {
+        float: none;
+        text-align: center;
+        display: block;
+        margin-bottom: 30px;
+      }
+
+      nav {
+        position: relative;
+
+        li {
+          width: 25%;
+        }
+      }
     }
   }
 }
