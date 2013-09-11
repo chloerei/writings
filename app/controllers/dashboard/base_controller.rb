@@ -10,7 +10,7 @@ class Dashboard::BaseController < ApplicationController
   end
 
   def find_space
-    @space = Space.find_by :name => /^#{params[:space_id]}$/i
+    @space = Space.find_by :name => params[:space_id]
   end
 
   def require_space_access
