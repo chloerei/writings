@@ -174,6 +174,11 @@ nav ul {
   @include animation(spin 1s infinite linear);
 }
 
+.logo {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
 .clearfix {
   @include clearfix();
 }
