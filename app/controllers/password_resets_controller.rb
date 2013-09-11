@@ -9,7 +9,7 @@ class PasswordResetsController < ApplicationController
 
   def create
     if !require_recaptcha? || verify_recaptcha(:model => @user)
-      @user = User.where(:email => /^#{params[:email]}$/i).first
+      @user = User.where(:email => /^#{Regexp.escape params[:email]}$/i).first
       if @user
         @user.generate_password_reset_token
         SystemMailer.delay.password_reset(@user.id.to_s)
