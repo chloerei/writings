@@ -255,6 +255,7 @@ zh-CN:
         orders: "订单"
         view_all: "查看全部"
         custom_domain_notice: "需要自行申请独立域名"
+        refund_notice: "付款后一周内可无理由申请退款，请联系："
 
     orders:
       index:

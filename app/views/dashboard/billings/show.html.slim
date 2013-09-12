@@ -62,6 +62,9 @@
               = link_to t('.upgrade'), new_dashboard_order_path, :class => 'button button-green no-margin'
     ol.quiet
       li = t '.custom_domain_notice'
+      li
+        = t '.refund_notice'
+        = mail_to 'chloerei@gmail.com'
     .quiet
       = t '.current_plan'
       = t "plan.#{@space.plan}"

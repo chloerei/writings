@@ -263,6 +263,7 @@ en:
         orders: Orders
         view_all: View all
         custom_domain_notice: "Need to register domain by youself"
+        refund_notice: "You can ask for refund within one week after payment, please contact: "
     orders:
       index:
         billing: Billing
