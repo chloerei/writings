@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require turbolinks
 #= require jquery.turbolinks
+#= require lib/web_font
 #= require lib/dropdown
 #= require lib/highlight
 #= require lib/google_analytics
