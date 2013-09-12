@@ -6,6 +6,13 @@
 
 // base
 
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu'), font-url("ubuntu.woff") format('woff');
+}
+
 body {
   color: #333;
   background-color: #efefef;
@@ -176,7 +183,7 @@ nav ul {
 }
 
 .logo {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Ubuntu, Helvetica, Arial, sans-serif;
   font-weight: bold;
 }
 
