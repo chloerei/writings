@@ -10,6 +10,7 @@ body {
   color: #333;
   background-color: #efefef;
   font-size: 14px;
+  font-family: Helvetica, Arial, sans-serif;
   line-height: $commonLineHeight;
 }
 
@@ -175,7 +176,7 @@ nav ul {
 }
 
 .logo {
-  font-family: sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-weight: bold;
 }
 
