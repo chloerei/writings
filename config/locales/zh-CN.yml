@@ -205,6 +205,9 @@ zh-CN:
     settings:
       show:
         space_settings: "空间设置"
+        how_to_binding_domain: "如何绑定域名"
+        how_to_setup_disqus: "如何安装 Disqus"
+        how_to_setup_ga: "如何安装 Google Analytics"
 
     members:
       index:
@@ -419,6 +422,8 @@ zh-CN:
         gravatar_email: "Gravatar Email"
       user:
         name: "用户名"
+        full_name: "全名"
+        description: "描述"
         email: "邮箱"
         locale: "语言"
         password: "密码"

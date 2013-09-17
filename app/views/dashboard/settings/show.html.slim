@@ -14,11 +14,15 @@
       .field
         = f.label :domain
         = f.text_field :domain, :placeholder => 'your-domain.com', :disabled => !@space.domain_enabled?
-        - if !@space.domain_enabled?
-          .quiet
+        .field-notice.quiet
+          - if !@space.domain_enabled?
             a href=(dashboard_billing_path)
               i.icon-exclamation-sign.no-margin
               = t('need_upgrade')
+          - else
+            a href="http://help.writings.io/articles/2-custom-domain" target="_blank"
+              i.icon-question-sign
+              = t '.how_to_binding_domain'
       .field
         = f.label :full_name
         = f.text_field :full_name
@@ -31,13 +35,21 @@
       .field
         = f.label :disqus_shortname
         = f.text_field :disqus_shortname, :placeholder => 'shortname'
+        .field-notice.quiet
+          a href="http://help.writings.io/articles/3-disqus" target="_blank"
+            i.icon-question-sign
+            = t '.how_to_setup_disqus'
       .field
         = f.label :google_analytics_id
         = f.text_field :google_analytics_id, :placeholder => 'UA-XXXX-Y', :disabled => @space.in_plan?(:free)
-        - if @space.in_plan?(:free)
-          .quiet
+        .field-notice.quiet
+          - if @space.in_plan?(:free)
             a href=(dashboard_billing_path)
               i.icon-exclamation-sign.no-margin
               = t('need_upgrade')
+          - else
+            a href="http://help.writings.io/articles/6-google-analytics" target="_blank"
+              i.icon-question-sign
+              = t '.how_to_setup_ga'
       .field
         = f.submit t('submit')

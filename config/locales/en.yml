@@ -215,6 +215,9 @@ en:
     settings:
       show:
         space_settings: Space Settings
+        how_to_binding_domain: How to binding domain
+        how_to_setup_disqus: How to setup disqus
+        how_to_setup_ga: How to setup Google Analytics
     members:
       index:
         invite_members: Invite Members
@@ -434,6 +437,8 @@ en:
         gravatar_email: Gravatar Email
       user:
         name: User name
+        full_name: Full Name
+        description: Description
         email: Email
         locale: Locale
         password: Password

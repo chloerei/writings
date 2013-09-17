@@ -346,6 +346,10 @@ select {
     margin-bottom: 10px;
   }
 
+  .field-notice {
+    margin-top: 5px;
+  }
+
   &.field-error {
     label {
       color: $red;
