@@ -573,7 +573,7 @@ a.button:hover {
     min-width: 100%;
     top: 100%;
     left: 0;
-    border-radius: 3px;
+    border-radius: 2px;
     background: #fff;
     white-space: nowrap;
     @include box-shadow(0 2px 5px 1px rgba(0, 0, 0, 0.3));
@@ -597,8 +597,7 @@ a.button:hover {
         padding: $buttonPaddingY $buttonPaddingX;
 
         &:hover {
-          background-color: $linkColor;
-          color: white;
+          color: $linkColor;
         }
       }
 

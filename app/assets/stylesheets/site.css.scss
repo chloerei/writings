@@ -111,6 +111,11 @@ body {
 
   .dropdown-menu {
     margin-top: 3px;
+
+    li a {
+      padding: 15px;
+      font-weight: bold;
+    }
   }
 }
 

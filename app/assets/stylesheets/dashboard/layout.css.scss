@@ -86,8 +86,7 @@ $topbarMinPadding: 15px 20px;
       }
 
       &:hover {
-        background-color: $linkColor;
-        color: white;
+        color: $linkColor;
       }
     }
 
@@ -96,11 +95,6 @@ $topbarMinPadding: 15px 20px;
         color: $linkColor;
         padding-bottom: 11px;
         border-bottom: 4px solid $linkColor;
-
-        &:hover {
-          background-color: $linkColor;
-          color: white;
-        }
       }
     }
   }
