@@ -2,7 +2,8 @@ Scribble
 ========
 
 A jekyll theme. [Want a demo? click and read instruction. :point_left:](http://scribble.muan.co/2013/05/06/scribble-the-jekyll-theme/)
-<br />(I am currently working on a collection of themes, here's [a preview for one of them](http://themes.muan.co/personal/2013/05/19/sore-throat/). You know how to [stay](https://twitter.com/muanchiou) [posted](https://github.com/muan). :flushed: )
+<br />
+[More themes](https://github.com/muan/muan.github.com).
 
 ![screenshot](http://scribble.muan.co/images/screenshot.png)
 
