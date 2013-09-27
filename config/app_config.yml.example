@@ -5,6 +5,7 @@ defaults: &defaults
   # Main site setting
   host: 'localhost'
   site_name: 'Writings'
+  ssl: false
 
   admin_emails:
     - ''
