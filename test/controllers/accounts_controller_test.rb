@@ -25,11 +25,4 @@ class AccountsControllerTest < ActionController::TestCase
     put :update, :user => { :name => 'change', :password => 'wrong' }, :format => :js
     assert_not_equal 'change', @user.reload.name
   end
-
-  test "read_blog" do
-    login_as create(:user)
-    assert_nil current_user.read_blog_at
-    post :read_blog
-    assert_not_nil current_user.read_blog_at
-  end
 end

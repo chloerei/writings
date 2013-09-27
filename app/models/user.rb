@@ -15,7 +15,6 @@ class User
   field :password_reset_token
   field :password_reset_token_created_at, :type => Time
   field :locale, :default => I18n.locale.to_s
-  field :read_blog_at, :type => Time
 
   has_many :spaces, :dependent => :destroy
 

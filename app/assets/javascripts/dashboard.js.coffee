@@ -66,7 +66,3 @@ $(document).on
       type: 'error'
       text: I18n.t('server_error')
       scope: 'ajax-loading'
-
-$(document).on 'click', '#blog-button.highlight', ->
-  $(this).removeClass('highlight')
-  $.post('/read_blog')

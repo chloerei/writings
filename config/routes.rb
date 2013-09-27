@@ -30,11 +30,7 @@ Publish::Application.routes.draw do
     resources :users, :only => [:create]
     resources :user_sessions, :only => [:create]
 
-    resource :account, :only => [:show, :update, :destroy] do
-      member do
-        post :read_blog
-      end
-    end
+    resource :account, :only => [:show, :update]
 
     resources :invoices, :only => [:index, :new, :create, :show, :destroy] do
       collection do
