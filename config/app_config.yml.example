@@ -1,26 +1,35 @@
 defaults: &defaults
+  # Use `rake secret` to generate new key and replace it in your production env,
+  secret_key_base: '71198825e963169a145ef28fd6de8c3edbb69172d4441982b670c0f4374167f4445b1e593cb950e892002c65fdca29bfb079425679e395dde0e0db36ffce387b'
+
+  # Main site setting
   host: 'localhost'
-  site_name: 'Site Name'
-  google_analytics_id: ''
+  site_name: 'Writings'
 
   admin_emails:
-    - 'chloerei@gmail.com'
+    - ''
 
+  google_analytics_id: ''
+
+  # Alipay service, for payment
   alipay:
     pid: ''
     key: ''
     seller_email: ''
 
+  # Amazon S3, for attachment
   s3:
     aws_access_key_id: ''
     aws_secret_access_key: ''
-    region: 'ap-northeast-1'
-    fog_directory: 'writingsiotest' # bucket
+    region: ''
+    fog_directory: '' # bucket
 
+  # Amazon SES, for System email
   ses:
     user_name:
     password:
 
+  # Google recaptcha server
   recaptcha:
     public_key: ''
     private_key: ''
