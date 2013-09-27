@@ -32,5 +32,3 @@ APP_CONFIG = YAML.load_file("#{Rails.root}/config/app_config.yml")[Rails.env]
 DOMAIN_LENGTH = APP_CONFIG["host"].split('.').length - 1
 
 Mime::Type.register "text/markdown", :md
-Mime::Type.register "application/vnd.openxmlformats-officedocument.wordprocessingml.document", :docx
-Mime::Type.register "application/vnd.oasis.opendocument.text", :odt

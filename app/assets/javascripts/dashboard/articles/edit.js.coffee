@@ -222,9 +222,7 @@ class ArticleEdit
   buildDownloadList: () ->
     $('#download').closest('li').removeClass('hide')
     $('#download .dropdown-menu').append("
-    <li><a href='/~#{@space}/articles/#{@article.data('id')}.md' >Markdown (.md)</a></li>
-    <li><a href='/~#{@space}/articles/#{@article.data('id')}.odt' >OpenDocument (.odt)</a></li>
-    <li><a href='/~#{@space}/articles/#{@article.data('id')}.docx' >Microsoft Word (.docx)</a></li>
+    <li><a href='/~#{@space}/articles/#{@article.data('id')}.md' target='_blank'>Markdown (.md)</a></li>
     ")
 
   updateViewButton: (data) ->
