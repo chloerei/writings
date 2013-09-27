@@ -7,6 +7,7 @@ defaults: &defaults
   site_name: 'Writings'
   ssl: false
 
+  # Admin access
   admin_emails:
     - ''
 
