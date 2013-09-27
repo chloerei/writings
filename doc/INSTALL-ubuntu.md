@@ -16,7 +16,7 @@ cp config/mongoid.yml.example config/mongoid.yml
 
 rails s
 
-# run this in separate terminals
+# run in separate terminals
 sidekiq # delay jobs
 guard start # live-reload
 ```
