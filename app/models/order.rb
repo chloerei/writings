@@ -112,8 +112,8 @@ class Order
       :logistics_type    => 'DIRECT',
       :logistics_fee     => '0',
       :logistics_payment => 'SELLER_PAY',
-      :return_url        => Rails.application.routes.url_helpers.dashboard_order_url(:space_id => space, :id => self, :protocol => 'https', :host => APP_CONFIG['host']),
-      :notify_url        => Rails.application.routes.url_helpers.alipay_notify_dashboard_orders_url(:space_id => space, :protocol => 'https', :host => APP_CONFIG['host']),
+      :return_url        => Rails.application.routes.url_helpers.dashboard_order_url(:space_id => space, :id => self, :protocol => (APP_CONFIG['ssl'] ? 'https' : 'http'), :host => APP_CONFIG['host']),
+      :notify_url        => Rails.application.routes.url_helpers.alipay_notify_dashboard_orders_url(:space_id => space, :protocol => (APP_CONFIG['ssl'] ? 'https' : 'http'), :host => APP_CONFIG['host']),
       :receive_name      => 'none',
       :receive_address   => 'none',
       :receive_zip       => '100000',
@@ -122,6 +122,6 @@ class Order
   end
 
   def send_good
-    Alipay::Service.send_goods_confirm_by_platform(:trade_no => trade_no, :logistics_name => 'writings.io', :transport_type => 'DIRECT')
+    Alipay::Service.send_goods_confirm_by_platform(:trade_no => trade_no, :logistics_name => APP_CONFIG['site_name'], :transport_type => 'DIRECT')
   end
 end
