@@ -25,4 +25,4 @@ guard start # live-reload
 
 Generate a new secret_key_base string in config/app_config.yml.
 
-An example deploy script in config/deploy.rb, edit it for your situation.
+An example deploy script in config/deploy.rb (for passenger), edit it for your situation.

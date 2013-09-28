@@ -1,7 +1,0 @@
-$('#article-<%= @article.token %>').replaceWith('<%= j render @article %>');
-AlertMessage.remove('ajax-loading');
-AlertMessage.show({
-  text: '<%= t 'success' %>',
-  type: 'success',
-  timeout: 1500
-});
