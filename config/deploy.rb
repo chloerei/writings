@@ -29,9 +29,8 @@ namespace :deploy do
   end
 
   task :copy_config do
-    if Dir["#{deploy_to}/shared/config/*.yml"].empty?
-      run "cp #{release_path}/config/mongoid.yml.example #{deploy_to}/shared/config/mongoid.yml"
-      run "cp #{release_path}/config/app_config.yml.example #{deploy_to}/shared/config/app_config.yml"
+    %w(mongoid.yml app_config.yml).each do |conf|
+      run "test -f #{deploy_to}/shared/config/#{conf} || cp #{release_path}/config/#{conf}.example #{deploy_to}/shared/config/#{conf}"
     end
 
     run "cp #{deploy_to}/shared/config/*.yml #{release_path}/config"
