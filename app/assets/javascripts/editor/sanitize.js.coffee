@@ -96,9 +96,6 @@ class @Editor.Sanitize
       # stript block
       @flattenBlockStript element
     else
-
-      # split block
-
       # stript children
       $(element).children().each ->
         _this.flattenBlock this

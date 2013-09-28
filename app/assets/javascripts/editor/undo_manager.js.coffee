@@ -37,6 +37,13 @@ class @Editor.UndoManager
   hasRedo: ->
     @redoStack.length > 0
 
+  # Mark selection range, clone current content.
+  #
+  # example:
+  #
+  #   <p>normal text <span data-range-start="0" data-range-end="6">select</span><p>
+  #
+  #   <p data-range-start="0" data-range-end="6">select</p>
   currentContents: ->
     if document.getSelection().rangeCount isnt 0
       range = document.getSelection().getRangeAt(0)
@@ -87,6 +94,7 @@ class @Editor.UndoManager
     else
       @editable.contents().clone()
 
+  # Restore content, and reset selection range.
   applyContents: ($contents) ->
     @editable.html $contents
     $startContainer = @editable.find("[data-range-start]")
