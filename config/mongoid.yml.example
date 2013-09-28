@@ -1,7 +1,7 @@
 production:
   sessions:
     default:
-      database: publish_production
+      database: writings_production
       hosts:
         - localhost:27017
   options:
@@ -10,7 +10,7 @@ production:
 development:
   sessions:
     default:
-      database: publish_development
+      database: writings_development
       hosts:
         - localhost:27017
   options:
@@ -19,7 +19,7 @@ development:
 test:
   sessions:
     default:
-      database: publish_test
+      database: writings_test
       hosts:
         - localhost:27017
   options:
