@@ -36,17 +36,6 @@ class Site::ArticlesControllerTest < ActionController::TestCase
     assert_redirected_to "http://#{@space.domain}/"
   end
 
-  test "shuold redirect to domain if domain_keep " do
-    @space.update_attributes :domain => 'custom.domain', :domain_keep => true
-    @request.host = 'custom.domain'
-    get :index
-    assert_response :success, @response.body
-
-    @request.host = "#{@space.name}.#{APP_CONFIG["host"]}"
-    get :index
-    assert_redirected_to "http://#{@space.domain}/"
-  end
-
   test "should get show" do
     get :show, :id => @article
     assert_response :success, @response.body

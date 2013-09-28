@@ -8,7 +8,6 @@ class Space
 
   field :name
   field :domain
-  field :domain_keep, :type => Boolean # for feed user
   field :disqus_shortname
   field :google_analytics_id
   field :full_name
@@ -106,6 +105,6 @@ class Space
   end
 
   def domain_enabled?
-    domain_keep? || !in_plan?(:free)
+    !in_plan?(:free)
   end
 end
