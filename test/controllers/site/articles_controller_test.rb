@@ -58,16 +58,6 @@ class Site::ArticlesControllerTest < ActionController::TestCase
     assert_redirected_to site_article_url(@article, :urlname => @article.urlname)
   end
 
-  test "should redirect old_url" do
-    @article.update_attribute :old_url, 'old-url'
-    get :show, :id => 'old', :urlname => 'url'
-    assert_redirected_to site_article_url(@article, :urlname => @article.urlname)
-
-    @article.update_attribute :old_url, 'old'
-    get :show, :id => 'old'
-    assert_redirected_to site_article_url(@article, :urlname => @article.urlname)
-  end
-
   test "should get feed" do
     get :feed, :format => :rss
     assert_response :success, @response.body

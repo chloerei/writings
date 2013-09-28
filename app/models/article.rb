@@ -7,13 +7,10 @@ class Article
   field :title
   field :body
   field :urlname
-  field :old_url
   field :status, :default => 'draft'
   field :save_count, :type => Integer, :default => 0
   field :last_version_save_count, :type => Integer, :default => 0
   field :published_at, :type => Time
-
-  index({ :space_id => 1, :old_url => 1 }, { :sparse => true })
 
   belongs_to :space
   belongs_to :user

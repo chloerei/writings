@@ -6,15 +6,8 @@ class Site::ArticlesController < Site::BaseController
   def show
     @article = @space.articles.publish.where(:token => params[:id]).first
 
-    if @article
-      # urlname not match redirect
-      if params[:urlname].to_s != @article.urlname.to_s
-        redirect_to site_article_path(@article, :urlname => @article.urlname), :status => 301
-      end
-    else
-      # old url redirect
-      old_url = params[:urlname].present? ? "#{params[:id]}-#{params[:urlname]}" : params[:id]
-      @article = @space.articles.publish.find_by(:old_url => old_url)
+    # urlname not match redirect
+    if params[:urlname].to_s != @article.urlname.to_s
       redirect_to site_article_path(@article, :urlname => @article.urlname), :status => 301
     end
   end
