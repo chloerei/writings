@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Publish::Application.config.secret_key_base = APP_CONFIG['secret_key_base']
+Writings::Application.config.secret_key_base = APP_CONFIG['secret_key_base']

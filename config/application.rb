@@ -7,7 +7,7 @@ require "rails/test_unit/railtie"
 
 Bundler.require(:default, Rails.env)
 
-module Publish
+module Writings
   class Application < Rails::Application
     config.middleware.insert_before Rack::Runtime, 'ConditionalSSL'
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.

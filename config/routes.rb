@@ -14,7 +14,7 @@ class Sitedomain
   end
 end
 
-Publish::Application.routes.draw do
+Writings::Application.routes.draw do
   constraints :host => APP_CONFIG["host"] do
     root :to => 'home#index'
     get 'feature-manager', :to => 'home#feature-manager'
