@@ -2,15 +2,15 @@
 
 Source code of writings.io.
 
-writings.io will be close at 2013-12-31, and this project will no longer maintain.
+writings.io will be closed at 2013-12-31, and this project will no longer be maintained.
 
 ![writings](https://raw.github.com/chloerei/writings/master/app/assets/images/writings-io-manager.png)
 
 ## Introduction
 
-Writings is a multi-user blog platform. It provides a clear dashboard and online WYCIWYG editor.
+Writings is a multi-user blog platform. It provides a clear dashboard and an online WYSIWYG editor.
 
-The project is base on Rails 4.0 and Ruby 2.0, require this component:
+The project is based on Rails 4.0 and Ruby 2.0, and it requires the following components:
 
 - Mongodb for database.
 - Memcached for caching.
