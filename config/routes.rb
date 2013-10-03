@@ -17,10 +17,6 @@ end
 Writings::Application.routes.draw do
   constraints :host => APP_CONFIG["host"] do
     root :to => 'home#index'
-    get 'feature-manager', :to => 'home#feature-manager'
-    get 'feature-editor', :to => 'home#feature-editor'
-    get 'feature-history', :to => 'home#feature-history'
-    get 'about', :to => 'home#about'
     get 'signup' => 'users#new', :as => :signup
     get 'login' => 'user_sessions#new', :as => :login
     delete 'logout' => 'user_sessions#destroy', :as => :logout
@@ -59,14 +55,10 @@ Writings::Application.routes.draw do
         end
       end
 
-      resources :categories, :only => [:create, :edit, :update, :destroy]
-      get '/uncategorized', :as => 'articles_uncategorized', :to => 'articles#uncategorized'
       get '/trashed', :as => 'articles_trashed', :to => 'articles#trashed'
-      get '/categorized/:category_id', :as => 'articles_categorized', :to => 'articles#categorized'
       resources :articles, :only => [:new, :show, :create, :edit, :update, :destroy] do
         collection do
           delete 'trashed', :to => 'articles#empty_trash'
-          put :batch_category
           put :batch_trash
           put :batch_publish
           put :batch_draft
@@ -121,11 +113,6 @@ Writings::Application.routes.draw do
       get 'articles/:id(-:urlname)', :to => 'articles#show', :as => :article, :constraints => { :id => /[a-zA-Z0-9]+/ }
       resources :authors, :only => [:index, :show]
       resources :archives, :only => [:index]
-      resources :categories, :only => [:index, :show] do
-        member do
-          get :feed
-        end
-      end
     end
   end
 
