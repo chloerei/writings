@@ -3,7 +3,7 @@ description:      A jekyll theme. Because I scribble.
 url:              # Site url.
 signoff:          # Your name.
 disqus_shortname: # disqus comment thread for post header options. ( leave blank if unwanted. )
-google_analytics_id: # set tracking, remove from /javascripts/basic.js if unwanted.
+google_analytics_id: # set tracking, UA-XXXX-Y.
 
 links:
   - name:         About
@@ -17,6 +17,7 @@ links:
   - name:         GitHub
     url:          http://github.com/muan
     external:     true
+
 pygments:         true
 permalink:        pretty
 markdown:         redcarpet
