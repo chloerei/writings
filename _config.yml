@@ -9,14 +9,16 @@ google_analytics_id: # set tracking, UA-XXXX-Y.
 links:
   - name:         About
     url:          /about
+  - name:         Feed
+    url:          /feed.xml
   - name:         Blog
-    url:          http://muan.co
+    url:          http://chloerei.com
     external:     true
   - name:         Email
-    url:          mailto:hello@muan.co
+    url:          mailto:chloerei@gmail.com
     external:     true
   - name:         GitHub
-    url:          http://github.com/muan
+    url:          http://github.com/chloerei/scribble
     external:     true
 
 pygments:         true
