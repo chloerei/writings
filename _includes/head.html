@@ -1,14 +1,13 @@
-<link href='/images/fav.png' rel='shortcut icon'>
-<link href='/stylesheets/style.css' rel='stylesheet' type='text/css' />
-<link href='/stylesheets/syntax.css' rel='stylesheet' type='text/css' />
-<link href='/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
-<link href="/feed.xml" rel="alternate" type="application/rss+xml">
-<script src='/javascripts/jquery.js' type='text/javascript'></script>
-<script src='/javascripts/basics.js' type='text/javascript'></script>
+<link href='{{ site.baseurl }}/images/fav.png' rel='shortcut icon'>
+<link href='{{ site.baseurl }}/stylesheets/style.css' rel='stylesheet' type='text/css' />
+<link href='{{ site.baseurl }}/stylesheets/syntax.css' rel='stylesheet' type='text/css' />
+<link href='{{ site.baseurl }}/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
+<link href="{{ site.baseurl }}/feed.xml" rel="alternate" type="application/rss+xml">
+<script src='{{ site.baseurl }}/javascripts/jquery.js' type='text/javascript'></script>
+<script src='{{ site.baseurl }}/javascripts/basics.js' type='text/javascript'></script>
 <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
 <meta content='text/html; charset=utf-8' http-equiv='content-type' />
-<meta content="http://muan.co/images/og.png" property="og:image" />
-<meta content="{{ site.facebook_appid }}" property="fb:app_id" />
+<meta content="{{ site.baseurl }}/images/og.png" property="og:image" />
 {% if page.date %}
   <meta content='{{ site.url }}{{ page.url }}' property='og:url' />
   <meta content="{{ page.content | strip_html | strip_newlines | truncate: 120 }}" property='og:description' />

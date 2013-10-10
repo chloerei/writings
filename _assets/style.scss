@@ -100,7 +100,7 @@ a, .as-link {
   @include transition(color 0.3s);
   &.main, &:hover {
     color: darken(#269, 5%);
-    background-image: url(/images/line.png);
+    background-image: url(../images/line.png);
     background-repeat: repeat-x;
     background-position: left bottom;
   }
