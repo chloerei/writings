@@ -19,6 +19,14 @@ This theme is fork from https://github.com/muan/scribble .
 
 ---
 
+### Replace theme for exists site
+
+1. Remove all theme files in your project, and commit.
+2. `git remote add scribble https://github.com/username/scribble` .
+3. `git pull scribble master` and fix conflict.
+
+---
+
 ### Post options
 
 When writing a post, there are 1 option you can add to the header.
