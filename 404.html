@@ -1,21 +1,21 @@
+---
+layout: none
+permalink: 404.html
+---
 <html>
   <head>
     <title>Scribble</title>
-    <link href='/images/fav.png' rel='shortcut icon'>
-    <link href='/stylesheets/style.css' rel='stylesheet' type='text/css' />
-    <link href='/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
-    <!-- - -->
-    <script src='/javascripts/jquery.js' type='text/javascript'></script>
-    <script src='/javascripts/stuff.js' type='text/javascript'></script>
-    <!-- - -->
+    <link href='{{ site.baseurl }}/images/fav.png' rel='shortcut icon'>
+    <link href='{{ site.baseurl }}/stylesheets/style.css' rel='stylesheet' type='text/css' />
+    <link href='{{ site.baseurl }}/stylesheets/responsive.css' rel='stylesheet' type='text/css' />
     <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
     <meta content='text/html; charset=utf-8' http-equiv='content-type' />
   </head>
   <body>
-    <div class="center">
-    <img src="/images/404.png" alt="not found" width="160" />
+    <div style="margin-top: 50px; width: 100%; text-align: center;">
+      <img src="{{ site.baseurl }}/images/404.png" alt="not found" width="160" />
     <p>
-      <a href="/" class="main" target="_top">Back</a>
+      <a href="/" class="muted" target="_top">Back to {{ site.title }}</a>
     </p>
     </div>
   </body>
