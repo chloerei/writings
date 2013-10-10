@@ -7,16 +7,6 @@
 <script src='{{ site.baseurl }}/javascripts/basics.js' type='text/javascript'></script>
 <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
 <meta content='text/html; charset=utf-8' http-equiv='content-type' />
-<meta content="{{ site.baseurl }}/images/og.png" property="og:image" />
-{% if page.date %}
-  <meta content='{{ site.url }}{{ page.url }}' property='og:url' />
-  <meta content="{{ page.content | strip_html | strip_newlines | truncate: 120 }}" property='og:description' />
-  <meta content="article" property="og:type" />
-{% else %}
-  <meta content='{{ site.url }}' property='og:url' />
-  <meta content="{{ site.description }}" property='og:description' />
-  <meta content="blog" property="og:type" />
-{% endif %}
 {% if site.google_analytics_id %}
   {% include ga.html %}
 {% endif %}
