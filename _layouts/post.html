@@ -19,7 +19,7 @@
           {% include signoff.html %}
         </section>
       </div>
-      {% if page.disqus != false %}
+      {% if site.disqus_shortname and !page.disqus %}
         {% include disqus.html %}
       {% endif %}
       {% include links.html %}
