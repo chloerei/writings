@@ -1,7 +1,7 @@
 Scribble
 ========
 
-A jekyll theme. [Want a demo? click and read instruction. :point_left:](http://chloerei.com/scribble/2013/05/06/placeholder-post/)
+A jekyll theme. [demo](http://chloerei.com/scribble/2013/05/06/placeholder-post/)
 <br />
 
 ![screenshot](http://scribble.muan.co/images/screenshot.png)
@@ -32,4 +32,13 @@ This theme is fork from https://github.com/muan/scribble .
 When writing a post, there are 1 option you can add to the header.
 
 1. **disqus: false**<br />
-  If disqus is set to 'false', at the end of the post there will not be a disqus thread. To use disqus, you MUST [set up your own disqus account](http://disqus.com/).
+
+---
+
+### Page options
+
+When writing a page, there are 3 options you can add to the header.
+
+1. **disqus: false**<br />
+2. **prev_page: /path/to/prev_page**
+3. **next_page: /path/to/next_page**
