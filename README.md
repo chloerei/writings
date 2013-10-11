@@ -27,6 +27,14 @@ This theme is fork from https://github.com/muan/scribble .
 
 ---
 
+### Make it yours
+
+1. I have extract most user specific information to `_config.yml`, you should be able to set up almost everything from it.
+2. Change about.md for blog intro.
+3. For domain settings, see [the guide from GitHub](https://help.github.com/articles/setting-up-a-custom-domain-with-pages).
+
+---
+
 ### Post options
 
 When writing a post, there are 1 option you can add to the header.

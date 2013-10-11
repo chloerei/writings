@@ -262,19 +262,19 @@ ul.posts {
 }
 
 section.post {
-  margin: 0 -60px;
+  margin: 0;
   text-align: left;
   border-top: 0;
   padding: 0;
-  > *:not(.highlight) {
+  > * {
+    margin-left: -60px;
+    margin-right: -60px;
     padding: 0 60px;
-  }
-  > ul, > ol {
-    padding: 0 80px;
   }
   ul, ol {
     ul, ol {
-      margin-left: 20px;
+      margin-left: 0;
+      padding-left: 20px;
     }
   }
   h1 {
@@ -287,8 +287,11 @@ section.post {
       font-size: 10px;
     }
   }
-  iframe {}
-  iframe, img {
+  iframe {
+    margin: 0;
+    padding: 0;
+  }
+  img {
     padding: 0;
     @include border-bottom-radius(3px);
     @include border-top-radius(3px);
@@ -348,14 +351,9 @@ section.post, section > p {
   }
 }
 
-.highlight {
-  margin: 0;
-  padding: 0;
-}
-
 pre {
   word-wrap: break-word;
-  padding: 10px 60px;
+  padding: 10px 0;
   width: 100%;
   line-height: 1.2em;
   @include box-sizing(border-box);

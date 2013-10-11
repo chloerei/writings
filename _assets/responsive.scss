@@ -16,11 +16,14 @@
       .links, .content {
         padding: 15px;
         section.post {
-          margin: 0 -15px;
-          > p, h1, h2, h3, h4, .signoff, blockquote, .highlight, iframe {
+          > * {
+            margin-left: -15px;
+            margin-right: -15px;
             padding: 0 15px;
           }
           > ul, > ol {
+            margin-left: -15px;
+            margin-right: -15px;
             padding: 0 30px;
           }
         }

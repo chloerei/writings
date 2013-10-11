@@ -238,16 +238,17 @@ ul.posts .datetime {
   text-align: right; }
 
 section.post {
-  margin: 0 -60px;
+  margin: 0;
   text-align: left;
   border-top: 0;
   padding: 0; }
-  section.post > *:not(.highlight) {
+  section.post > * {
+    margin-left: -60px;
+    margin-right: -60px;
     padding: 0 60px; }
-  section.post > ul, section.post > ol {
-    padding: 0 80px; }
   section.post ul ul, section.post ul ol, section.post ol ul, section.post ol ol {
-    margin-left: 20px; }
+    margin-left: 0;
+    padding-left: 20px; }
   section.post h1 {
     text-transform: uppercase;
     text-align: center;
@@ -256,7 +257,10 @@ section.post {
     section.post h1 .date {
       color: #d0d0d0;
       font-size: 10px; }
-  section.post iframe, section.post img {
+  section.post iframe {
+    margin: 0;
+    padding: 0; }
+  section.post img {
     padding: 0;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
@@ -309,13 +313,9 @@ section.post, section > p {
   section.post li p, section > p li p {
     margin-bottom: 5px; }
 
-.highlight {
-  margin: 0;
-  padding: 0; }
-
 pre {
   word-wrap: break-word;
-  padding: 10px 60px;
+  padding: 10px 0;
   width: 100%;
   line-height: 1.2em;
   -webkit-box-sizing: border-box;

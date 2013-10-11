@@ -10,9 +10,11 @@
       display: none; }
     body #container .links, body #container .content {
       padding: 15px; }
-      body #container .links section.post, body #container .content section.post {
-        margin: 0 -15px; }
-        body #container .links section.post > p, body #container .links section.post h1, body #container .links section.post h2, body #container .links section.post h3, body #container .links section.post h4, body #container .links section.post .signoff, body #container .links section.post blockquote, body #container .links section.post .highlight, body #container .links section.post iframe, body #container .content section.post > p, body #container .content section.post h1, body #container .content section.post h2, body #container .content section.post h3, body #container .content section.post h4, body #container .content section.post .signoff, body #container .content section.post blockquote, body #container .content section.post .highlight, body #container .content section.post iframe {
-          padding: 0 15px; }
-        body #container .links section.post > ul, body #container .links section.post > ol, body #container .content section.post > ul, body #container .content section.post > ol {
-          padding: 0 30px; } }
+      body #container .links section.post > *, body #container .content section.post > * {
+        margin-left: -15px;
+        margin-right: -15px;
+        padding: 0 15px; }
+      body #container .links section.post > ul, body #container .links section.post > ol, body #container .content section.post > ul, body #container .content section.post > ol {
+        margin-left: -15px;
+        margin-right: -15px;
+        padding: 0 30px; } }
