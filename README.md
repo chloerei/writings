@@ -1,7 +1,7 @@
 Scribble
 ========
 
-A jekyll theme. [demo](http://chloerei.com/scribble/2013/05/06/placeholder-post/)
+A jekyll theme. [demo](http://chloerei.com/scribble/2013/10/11/placeholder-post/)
 <br />
 
 ![screenshot](http://scribble.muan.co/images/screenshot.png)
