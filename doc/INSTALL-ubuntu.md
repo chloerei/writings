@@ -2,7 +2,7 @@
 
 Install Ruby 2.0 by rvm or rbenv.
 
-### Ubuntu 12.04 Dependencies
+### Development Environment
 
 ```bash
 sudo apt-get install mongodb memcached redis-server pandoc
@@ -21,7 +21,7 @@ sidekiq # delay jobs
 guard start # live-reload
 ```
 
-### For Production Environment
+### Production Environment
 
 Generate a new secret_key_base string in config/app_config.yml.
 
