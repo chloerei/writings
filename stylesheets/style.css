@@ -311,7 +311,9 @@ section.post, section > p {
       width: 7px !important;
       white-space: normal; }
   section.post li .highlight, section > p li .highlight {
-    margin: 10px 0; }
+    margin-left: -60px;
+    margin-right: -60px;
+    padding: 0 60px; }
   section.post li p, section > p li p {
     margin-bottom: 5px; }
 
@@ -328,7 +330,7 @@ code {
   font-size: 13px;
   color: #eee;
   background: #39382e;
-  padding: 2px 4px 3px;
+  padding: 3px 4px 2px;
   border-radius: 2px;
   line-height: 1.3em;
   display: inline-block;
