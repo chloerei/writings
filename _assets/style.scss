@@ -326,7 +326,7 @@ section.post, section > p {
       color: darken(#d0dfda, 8%);
     }
     &:before {
-      left: -3px;
+      left: -2px;
     }
     &:after {
       right: -2px;
@@ -342,17 +342,15 @@ section.post, section > p {
       word-break: break-all;
       color: #d0dfda;
       display: block;
-      width: 7px !important;
+      width: 6px !important;
       white-space: normal;
     }
   }
-  li .highlight {
+  li .highlight,
+  blockquote {
     margin-left: -60px;
     margin-right: -60px;
     padding: 0 60px;
-  }
-  li p {
-    margin-bottom: 5px;
   }
 }
 

@@ -294,7 +294,7 @@ section.post, section > p {
     section.post blockquote:hover:before, section > p blockquote:hover:before {
       color: #b8cec7; }
     section.post blockquote:before, section > p blockquote:before {
-      left: -3px; }
+      left: -2px; }
     section.post blockquote:after, section > p blockquote:after {
       right: -2px; }
     section.post blockquote:before, section.post blockquote:after, section > p blockquote:before, section > p blockquote:after {
@@ -308,14 +308,14 @@ section.post, section > p {
       word-break: break-all;
       color: #d0dfda;
       display: block;
-      width: 7px !important;
+      width: 6px !important;
       white-space: normal; }
-  section.post li .highlight, section > p li .highlight {
+  section.post li .highlight,
+  section.post blockquote, section > p li .highlight,
+  section > p blockquote {
     margin-left: -60px;
     margin-right: -60px;
     padding: 0 60px; }
-  section.post li p, section > p li p {
-    margin-bottom: 5px; }
 
 pre {
   word-wrap: break-word;
