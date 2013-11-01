@@ -1,6 +1,3 @@
-h1, h2, h3, h4, h5 {
-  font-weight: 600; }
-
 h2, h3, h4, h5 {
   margin: 2em 0 1em; }
 
@@ -249,7 +246,6 @@ section.post {
     margin-left: 0;
     padding-left: 20px; }
   section.post h1 {
-    text-transform: uppercase;
     text-align: center;
     line-height: 1.5em;
     margin-bottom: 60px; }
@@ -316,6 +312,8 @@ section.post, section > p {
 pre {
   word-wrap: break-word;
   padding: 10px 0;
+  color: #eee;
+  background: #39382e;
   width: 100%;
   line-height: 1.2em;
   -webkit-box-sizing: border-box;
@@ -323,12 +321,7 @@ pre {
   box-sizing: border-box; }
 
 code {
-  font-size: 13px;
-  color: #eee;
-  background: #39382e;
-  padding: 3px 4px 2px;
-  border-radius: 2px;
-  line-height: 1.3em;
+  padding: 0 4px;
   display: inline-block;
   vertical-align: baseline;
   zoom: 1;
@@ -339,6 +332,9 @@ img {
   max-width: 100%; }
   img.half {
     width: 50%; }
+
+form {
+  margin: 1em 0; }
 
 .signoff {
   margin-top: 30px; }
