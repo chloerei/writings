@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Placeholder post
+title: Placeholder Post
 ---
 
 Scribble is a [Jekyll](http://jekyllrb.com/) theme, created by [Mu-An](http://muan.co/) and modify by [Rei](http://chloerei.com/).
