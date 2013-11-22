@@ -1,5 +1,4 @@
 .highlight { font-size: 13px; }
-div.highlight, div.highlight code, div.highlight pre  { background: #29281e; }
 div.highlight code { padding: 0; }
 div.highlight .c { color: #75715e } /* Comment */
 div.highlight .err { color: #960050; background-color: #1e0010 } /* Error */

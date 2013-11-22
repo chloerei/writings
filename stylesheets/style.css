@@ -13,8 +13,6 @@ body {
   line-height: 19px;
   padding: 0;
   margin: 0; }
-  body, body * {
-    -webkit-font-smoothing: antialiased; }
 
 img {
   border: none; }
@@ -85,17 +83,17 @@ footer {
     color: #797979; }
 
 #container {
-  *zoom: 1;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
   width: 100%;
   max-width: 768px;
   background: #fff;
   margin: 40px auto 20px;
   border-radius: 7px;
   border: 1px solid #eee;
-  position: relative; }
+  position: relative;
+  *zoom: 1;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
   #container:before, #container:after {
     content: " ";
     display: table; }
@@ -163,11 +161,6 @@ a, .as-link {
   a.big-button, .as-link.big-button {
     min-width: 30%;
     border-radius: 3px;
-    -webkit-transition: all, 0.2s;
-    -moz-transition: all, 0.2s;
-    -ms-transition: all, 0.2s;
-    -o-transition: all, 0.2s;
-    transition: all, 0.2s;
     color: #fff;
     cursor: pointer;
     font-size: 12px;
@@ -182,7 +175,12 @@ a, .as-link {
     border-style: solid;
     border-color: #8ab;
     background: #6f8f9f;
-    box-shadow: inset 0 -1px 0px rgba(0, 0, 0, 0.1); }
+    box-shadow: inset 0 -1px 0px rgba(0, 0, 0, 0.1);
+    -webkit-transition: all, 0.2s;
+    -moz-transition: all, 0.2s;
+    -ms-transition: all, 0.2s;
+    -o-transition: all, 0.2s;
+    transition: all, 0.2s; }
     a.big-button:hover, .as-link.big-button:hover {
       background: #608090; }
     a.big-button:active, .as-link.big-button:active {
@@ -214,6 +212,9 @@ hr {
   border-bottom: 1px dotted #CCC;
   margin: 25px 0; }
 
+ul, ol {
+  padding: 0 0 0 30px; }
+
 ul.posts, ul.posts li {
   margin: 0;
   padding: 0;
@@ -237,14 +238,9 @@ section.post {
   margin: 0;
   text-align: left;
   border-top: 0;
-  padding: 0; }
-  section.post > * {
-    margin-left: -60px;
-    margin-right: -60px;
-    padding: 0 60px; }
-  section.post ul ul, section.post ul ol, section.post ol ul, section.post ol ol {
-    margin-left: 0;
-    padding-left: 20px; }
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.6em; }
   section.post h1 {
     text-align: center;
     line-height: 1.5em;
@@ -252,81 +248,41 @@ section.post {
     section.post h1 .date {
       color: #d0d0d0;
       font-size: 10px; }
-  section.post iframe {
-    margin: 0;
-    padding: 0; }
   section.post img {
     padding: 0;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px; }
-
-section.post, section > p {
-  font-size: 14px;
-  line-height: 1.6em; }
-  section.post *, section > p * {
-    max-width: 100%; }
-  section.post em strong, section > p em strong {
+  section.post em strong {
     background-color: #ffffee;
     padding: 0 2px; }
-  section.post blockquote, section > p blockquote {
+  section.post blockquote {
+    padding: 0 1em;
+    margin: 14px 0;
+    border: 2px dashed #d0dfda;
+    border-radius: 5px;
+    color: #606060;
+    background: #f9f9f9;
     -webkit-transition: all, 0.3s;
     -moz-transition: all, 0.3s;
     -ms-transition: all, 0.3s;
     -o-transition: all, 0.3s;
-    transition: all, 0.3s;
-    color: #606060;
-    background: #f9f9f9;
-    position: relative;
-    overflow: hidden;
-    display: block; }
-    section.post blockquote:hover, section > p blockquote:hover {
+    transition: all, 0.3s; }
+    section.post blockquote:hover {
       color: #454545; }
-    section.post blockquote:hover:before, section > p blockquote:hover:before {
-      color: #b8cec7; }
-    section.post blockquote:before, section > p blockquote:before {
-      left: -2px; }
-    section.post blockquote:after, section > p blockquote:after {
-      right: -2px; }
-    section.post blockquote:before, section.post blockquote:after, section > p blockquote:before, section > p blockquote:after {
-      content: "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^";
-      font-size: 24px;
-      overflow: hidden;
-      position: absolute;
-      top: 0px;
-      bottom: 0px;
-      line-height: 0.4em;
-      word-break: break-all;
-      color: #d0dfda;
-      display: block;
-      width: 6px !important;
-      white-space: normal; }
-  section.post li .highlight,
-  section.post blockquote, section > p li .highlight,
-  section > p blockquote {
-    margin-left: -60px;
-    margin-right: -60px;
-    padding: 0 60px; }
 
 pre {
   word-wrap: break-word;
-  padding: 10px 0;
   color: #eee;
-  background: #39382e;
+  background: #29281e;
+  padding: 1em;
+  border-radius: 5px;
   width: 100%;
   line-height: 1.2em;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
-
-code {
-  padding: 0 4px;
-  display: inline-block;
-  vertical-align: baseline;
-  zoom: 1;
-  *display: inline;
-  *vertical-align: auto; }
 
 img {
   max-width: 100%; }
