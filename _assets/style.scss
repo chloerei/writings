@@ -19,10 +19,6 @@ body {
   margin: 0;
 }
 
-img {
-  border: none;
-}
-
 #go-back-home {
   margin: 40px 0 0;
   &:hover {
@@ -245,6 +241,22 @@ hr {
   margin: 25px 0;
 }
 
+img {
+  max-width: 100%;
+
+  &.half {
+    width: 50%;
+  }
+}
+
+iframe {
+  max-width: 100%;
+}
+
+form {
+  margin: 1em 0;
+}
+
 ul, ol {
   padding: 0 0 0 30px;
 }
@@ -290,9 +302,7 @@ section.post {
   }
 
   img {
-    padding: 0;
-    @include border-bottom-radius(3px);
-    @include border-top-radius(3px);
+    border-radius: 3px;
   }
 
   em strong {
@@ -324,18 +334,6 @@ pre {
   width: 100%;
   line-height: 1.2em;
   @include box-sizing(border-box);
-}
-
-img {
-  max-width: 100%;
-
-  &.half {
-    width: 50%;
-  }
-}
-
-form {
-  margin: 1em 0;
 }
 
 .signoff {
