@@ -2,7 +2,7 @@ title:            Scribble
 description:      A jekyll theme. Because I scribble.
 url:              # Site url.
 baseurl:          # Base url. ( if use subdirectory-like URL )
-signoff:          # Your name.
+signoff:          Scribble # Your name.
 disqus_shortname: # disqus comment thread for post header options. ( leave blank if unwanted. )
 google_analytics_id: # set tracking, UA-XXXX-Y.
 
