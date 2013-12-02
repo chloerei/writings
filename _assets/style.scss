@@ -161,7 +161,6 @@ footer {
 a, .as-link {
   text-decoration: none;
   color: #269;
-  line-height: 1.4em;
   @include inline-block;
   @include transition(color 0.3s);
 
