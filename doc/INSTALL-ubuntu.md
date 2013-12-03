@@ -5,7 +5,7 @@ Install Ruby 2.0 by rvm or rbenv.
 ### Development Environment
 
 ```bash
-sudo apt-get install mongodb memcached redis-server pandoc
+sudo apt-get install mongodb memcached redis-server pandoc imagemagick
 
 git clone https://github.com/chloerei/writings.git
 cd writings
