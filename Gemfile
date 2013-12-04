@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.2'
 
 gem 'mongoid', '~> 4.0.0', :github => 'mongoid/mongoid'
-gem 'bcrypt-ruby', '~> 3.0.1'
+gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'kaminari', '~> 0.14.1'
 gem 'slim', '~> 1.3.8'
 gem 'client_side_validations', :github => 'bcardarella/client_side_validations', :branch => '4-0-beta'
