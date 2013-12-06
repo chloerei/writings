@@ -306,3 +306,14 @@ pre {
   margin-left: -424px; }
 .paging .right {
   margin-left: 404px; }
+
+iframe.sample {
+  width: 100%;
+  border: 1px solid #ccc; }
+
+figure {
+  margin: 2em 0;
+  text-align: center; }
+  figure figcaption {
+    font-size: 16px;
+    margin-top: 1em; }
