@@ -1,5 +1,5 @@
 <% if logined? %>
-  Turbolinks.visit('<%= j(session.delete(:return_to) || root_url) %>');
+  window.location = '<%= j(session.delete(:return_to) || root_url) %>';
 <% else %>
   Turbolinks.visit('<%= login_url %>');
 <% end %>
