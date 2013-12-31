@@ -1,0 +1,12 @@
+@media (max-width: 480px) {
+  body {
+    padding: 0 10px; }
+    body #container ul.posts .datetime {
+      float: none;
+      display: block;
+      width: auto;
+      text-align: left; }
+    body #container #ind-instagram, body #container #ind-linkedin {
+      display: none; }
+    body #container .links, body #container .content {
+      padding: 15px; } }

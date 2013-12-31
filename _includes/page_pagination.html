@@ -1,0 +1,16 @@
+<section class="paging">
+  {% if page.prev_page %}
+    <div class="left">
+      <a href="{{ site.baseurl }}{{ page.prev_page }}">
+        ‹
+      </a>
+    </div>
+  {% endif %}
+  {% if page.next_page %}
+    <div class="right">
+      <a href="{{ site.baseurl }}{{ page.next_page }}">
+        ›
+      </a>
+    </div>
+  {% endif %}
+</section>
