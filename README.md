@@ -2,7 +2,7 @@
 
 Source code of writings.io.
 
-writings.io will be closed on 2013-12-31, and this project will no longer be maintained.
+writings.io had been closed on 2013-12-31, and this project will no longer be maintained.
 
 ![writings](https://raw.github.com/chloerei/writings/master/app/assets/images/writings-io-manager.png)
 
