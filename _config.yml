@@ -1,24 +1,23 @@
-title:            Scribble
-description:      A jekyll theme. Because I scribble.
-url:              # Site url.
-baseurl:          # Base url. ( if use subdirectory-like URL )
-signoff:          Scribble # Your name.
-disqus_shortname: # disqus comment thread for post header options. ( leave blank if unwanted. )
-google_analytics_id: # set tracking, UA-XXXX-Y.
+title:            Rei
+description:      A web developer.
+url:              http://chloerei.com
+baseurl:          /writings
+signoff:          Rei
+disqus_shortname: chloerei
+google_analytics_id: UA-2196462-6
 
 links:
-  - name:         About
-    url:          /about
+  - name:         关于
+    url:          /about/
+  - name:         联系
+    url:          /contact/
   - name:         Feed
     url:          /feed.xml
-  - name:         Blog
-    url:          http://chloerei.com
-    external:     true
-  - name:         Email
-    url:          mailto:chloerei@gmail.com
+  - name:         Twitter
+    url:          https://twitter.com/chloerei
     external:     true
   - name:         GitHub
-    url:          http://github.com/chloerei/scribble
+    url:          https://github.com/chloerei
     external:     true
 
 pygments:         true
