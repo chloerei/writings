@@ -128,7 +128,8 @@ class ApplicationController < ActionController::Base
   def remember_me
     cookies[:remember_token] = {
       :value   => current_user.remember_token,
-      :expires => 2.weeks.from_now
+      :expires => 2.weeks.from_now,
+      :httponly => true
     }
   end
 end
