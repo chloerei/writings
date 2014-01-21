@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.2'
 
-gem 'mongoid', '~> 4.0.0', :github => 'mongoid/mongoid'
+gem 'mongoid', :github => 'mongoid/mongoid'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'kaminari', '~> 0.14.1'
 gem 'slim', '~> 1.3.8'
